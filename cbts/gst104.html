@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST 110 — INDIGENE 500Q CBT v2</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+:root{--fire:#FF6B00;--ember:#FF9A3C;--dark:#0d0d0d;--surface:#1a1a1a;--card:#222;--border:#333;--text:#f0f0f0;--muted:#888;--correct:#22c55e;--wrong:#ef4444;--correct-bg:rgba(34,197,94,.12);--wrong-bg:rgba(239,68,68,.12);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+header{background:linear-gradient(135deg,#1a0a00,#2d1200,#1a0a00);border-bottom:2px solid var(--fire);padding:18px 20px 14px;text-align:center;position:sticky;top:0;z-index:100}
+header h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;background:linear-gradient(90deg,var(--fire),var(--ember),var(--fire));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{font-size:.75rem;color:var(--muted);margin-top:2px}
+.progress-bar-wrap{height:4px;background:var(--border);margin-top:10px;border-radius:2px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--fire),var(--ember));transition:width .4s;border-radius:2px}
+.meta-row{display:flex;justify-content:space-between;align-items:center;padding:10px 20px 0;font-size:.78rem;color:var(--muted)}
+.meta-row span b{color:var(--ember)}
+.week-badge{display:inline-block;background:rgba(255,107,0,.15);border:1px solid var(--fire);color:var(--ember);font-size:.7rem;font-weight:700;letter-spacing:1px;padding:2px 10px;border-radius:20px;text-transform:uppercase}
+.q-container{max-width:700px;margin:0 auto;padding:18px 16px 100px}
+.question-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 18px 18px;margin-bottom:14px}
+.q-number{font-size:.68rem;color:var(--fire);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.q-text{font-size:.97rem;font-weight:500;line-height:1.55;margin-bottom:16px;color:#eee}
+.options{display:flex;flex-direction:column;gap:9px}
+.option{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;font-size:.88rem;color:#ddd;transition:all .18s;display:flex;align-items:flex-start;gap:10px}
+.option:hover{border-color:var(--fire);color:#fff;background:rgba(255,107,0,.08)}
+.option .opt-letter{font-weight:700;color:var(--fire);min-width:18px}
+.option.correct{border-color:var(--correct);background:var(--correct-bg);color:#fff}
+.option.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:#fff}
+.option.correct .opt-letter{color:var(--correct)}
+.option.wrong .opt-letter{color:var(--wrong)}
+.option.disabled{cursor:default;pointer-events:none}
+.explanation{margin-top:13px;padding:12px 14px;background:rgba(255,154,60,.08);border-left:3px solid var(--ember);border-radius:0 8px 8px 0;font-size:.83rem;color:#ccc;line-height:1.5;display:none}
+.explanation.show{display:block}
+.explanation b{color:var(--ember)}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:100}
+.btn{padding:11px 22px;border-radius:8px;font-size:.85rem;font-weight:700;border:none;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+.btn-primary{background:linear-gradient(135deg,var(--fire),var(--ember));color:#fff}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--fire);color:var(--fire)}
+.btn:disabled{opacity:.35;cursor:default}
+.page-info{font-size:.8rem;color:var(--muted);text-align:center}
+.page-info b{color:var(--ember)}
+.score-screen{display:none;max-width:500px;margin:40px auto;padding:20px;text-align:center}
+.score-screen.show{display:block}
+.score-ring{width:140px;height:140px;border-radius:50%;border:6px solid var(--fire);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;background:radial-gradient(circle,rgba(255,107,0,.1),transparent)}
+.score-ring .big{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--ember);line-height:1}
+.score-ring .small{font-size:.75rem;color:var(--muted)}
+.grade-badge{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;margin:10px 0}
+.score-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px}
+.stat-card .val{font-size:1.6rem;font-weight:700}
+.stat-card .lbl{font-size:.72rem;color:var(--muted);margin-top:3px}
+.week-breakdown{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:16px 0;text-align:left}
+.week-breakdown h3{font-size:.8rem;color:var(--fire);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.wb-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:.78rem}
+.wb-label{width:90px;color:var(--muted)}
+.wb-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.wb-bar{height:100%;background:linear-gradient(90deg,var(--fire),var(--ember));border-radius:4px}
+.wb-pct{width:38px;text-align:right;color:var(--ember);font-weight:600}
+.start-screen{max-width:500px;margin:40px auto;padding:24px 20px;text-align:center}
+.start-screen h2{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;background:linear-gradient(90deg,var(--fire),var(--ember));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.start-screen p{color:var(--muted);font-size:.88rem;line-height:1.6;margin-bottom:20px}
+.week-list{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:24px;text-align:left}
+.wl-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.wl-row:last-child{border-bottom:none}
+.wl-row .wk{color:var(--fire);font-weight:700}
+.wl-row .cnt{color:var(--ember);font-weight:600}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+.filter-btn{padding:7px 14px;border-radius:20px;font-size:.78rem;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--fire);color:var(--fire);background:rgba(255,107,0,.1)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🔥 INDIGENE CBT — GST 110</h1>
+  <p>Nigerian People & Culture · 500 Questions · Weeks 1–7 · Answers Fully Randomized</p>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+</header>
+
+<div class="start-screen" id="startScreen">
+  <h2>GST 110 MASTER CBT</h2>
+  <p>500 exam-focused questions across all 7 weeks.<br>✅ Correct answers are randomized across A, B, C, D every time — no patterns!</p>
+  <div class="week-list">
+    <div class="wl-row"><span class="wk">Week 1</span><span>Nigerian People & Culture</span><span class="cnt">72Q</span></div>
+    <div class="wl-row"><span class="wk">Week 2</span><span>History of Nigeria</span><span class="cnt">72Q</span></div>
+    <div class="wl-row"><span class="wk">Week 3</span><span>Pre-Colonial Cultural Locations</span><span class="cnt">40Q</span></div>
+    <div class="wl-row"><span class="wk">Week 4</span><span>Traditional Economics</span><span class="cnt">30Q</span></div>
+    <div class="wl-row"><span class="wk">Week 5</span><span>Political Institutions</span><span class="cnt">29Q</span></div>
+    <div class="wl-row"><span class="wk">Week 6</span><span>Indigene/Settler Phenomenon</span><span class="cnt">30Q</span></div>
+    <div class="wl-row"><span class="wk">Week 7</span><span>Social Mobility</span><span class="cnt">30Q</span></div>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter(1,this)">Week 1</button>
+    <button class="filter-btn" onclick="setFilter(2,this)">Week 2</button>
+    <button class="filter-btn" onclick="setFilter(3,this)">Week 3</button>
+    <button class="filter-btn" onclick="setFilter(4,this)">Week 4</button>
+    <button class="filter-btn" onclick="setFilter(5,this)">Week 5</button>
+    <button class="filter-btn" onclick="setFilter(6,this)">Week 6</button>
+    <button class="filter-btn" onclick="setFilter(7,this)">Week 7</button>
+  </div>
+  <button class="btn btn-primary" style="width:100%;padding:14px" onclick="startQuiz()">START CBT 🔥</button>
+</div>
+
+<div class="meta-row" id="metaRow" style="display:none">
+  <span>Q <b id="qCounter">1</b> of <b id="qTotal">?</b></span>
+  <span class="week-badge" id="weekBadge">Week 1</span>
+  <span>Score: <b id="scoreCounter">0</b></span>
+</div>
+<div class="q-container" id="quizArea" style="display:none"></div>
+
+<div class="score-screen" id="scoreScreen">
+  <div class="score-ring"><span class="big" id="scorePct">0%</span><span class="small">SCORE</span></div>
+  <div class="grade-badge" id="gradeBadge">F</div>
+  <div class="score-stats">
+    <div class="stat-card"><div class="val" style="color:var(--correct)" id="correctCount">0</div><div class="lbl">Correct</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--wrong)" id="wrongCount">0</div><div class="lbl">Wrong</div></div>
+    <div class="stat-card"><div class="val" id="totalCount">0</div><div class="lbl">Attempted</div></div>
+    <div class="stat-card"><div class="val" id="skippedCount">0</div><div class="lbl">Skipped</div></div>
+  </div>
+  <div class="week-breakdown" id="weekBreakdown"><h3>Performance by Week</h3></div>
+  <button class="btn btn-primary" style="width:100%;padding:14px;margin-bottom:10px" onclick="restartQuiz()">RETAKE 🔥</button>
+  <button class="btn btn-outline" style="width:100%;padding:14px" onclick="reviewWrong()">Review Wrong Answers</button>
+</div>
+
+<div class="nav-bar" id="navBar" style="display:none">
+  <button class="btn btn-outline" id="prevBtn" onclick="changePage(-1)" disabled>← Prev</button>
+  <div class="page-info">Page <b id="pageNum">1</b> / <b id="totalPages">?</b></div>
+  <button class="btn btn-primary" id="nextBtn">Next →</button>
+</div>
+
+<script>
+// RAW questions: correct answer stored separately, 3 wrong answers listed
+// At runtime options are shuffled so correct can land on A/B/C/D randomly
+const RAW=[
+// WEEK 1
+{w:1,q:"What is the approximate number of ethnic groups in Nigeria?",c:"Over 250",x:["Exactly 100","Fewer than 50","Exactly 200"],e:"Nigeria has over 250 ethnic groups, making it one of the most ethnically diverse nations in the world."},
+{w:1,q:"Which three groups are Nigeria's major ethnic groups?",c:"Hausa, Yoruba, Igbo",x:["Fulani, Kanuri, Efik","Tiv, Ijaw, Edo","Nupe, Igala, Idoma"],e:"The Hausa, Yoruba, and Igbo are Nigeria's three dominant ethnic groups by population and political significance."},
+{w:1,q:"Who coined the name 'Nigeria'?",c:"Flora Shaw",x:["Lord Lugard","Herbert Macaulay","Nnamdi Azikiwe"],e:"Flora Shaw, a British journalist, coined the name 'Nigeria' in 1897."},
+{w:1,q:"In what year was the name 'Nigeria' first used in print?",c:"1897",x:["1914","1900","1885"],e:"Flora Shaw first used the name 'Nigeria' in The Times of London in 1897."},
+{w:1,q:"Nigeria is located in which part of Africa?",c:"West Africa",x:["East Africa","Central Africa","Southern Africa"],e:"Nigeria is located in West Africa, bordered by Benin, Niger, Chad, and Cameroon."},
+{w:1,q:"What is the official language of Nigeria?",c:"English",x:["Hausa","Yoruba","Igbo"],e:"English is Nigeria's official language, inherited from British colonial rule."},
+{w:1,q:"Which river gives Nigeria its name?",c:"River Niger",x:["River Benue","River Kaduna","River Cross"],e:"The name Nigeria derives from the River Niger."},
+{w:1,q:"Material culture refers to:",c:"Physical objects made by a society",x:["Beliefs and values","Language and communication","Religious practices only"],e:"Material culture consists of physical, tangible objects produced and used by a society."},
+{w:1,q:"Non-material culture refers to:",c:"Beliefs, values, norms, and language",x:["Buildings and tools","Food and clothing","Physical artifacts"],e:"Non-material culture encompasses intangible aspects: beliefs, values, norms, language, and social institutions."},
+{w:1,q:"Which is NOT a characteristic of culture?",c:"It is biologically inherited",x:["It is learned","It is shared","It is transmitted across generations"],e:"Culture is learned, shared, and transmitted — it is NOT biologically inherited."},
+{w:1,q:"Cultural diffusion means:",c:"The spread of cultural elements from one society to another",x:["The death of a culture","Isolation of one culture","Cultural conflict"],e:"Cultural diffusion is the process by which cultural elements spread from one society to another."},
+{w:1,q:"Enculturation is best described as:",c:"The process by which an individual learns their culture",x:["The merging of two cultures","The loss of culture","Cultural conflict between groups"],e:"Enculturation is the lifelong process by which a person learns and internalises their society's culture."},
+{w:1,q:"Acculturation occurs when:",c:"Two cultures come into prolonged contact and influence each other",x:["A culture disappears completely","A person is born into a culture","A culture remains unchanged"],e:"Acculturation refers to cultural change that occurs when two cultures come into sustained contact."},
+{w:1,q:"Nigeria gained independence in which year?",c:"1960",x:["1963","1914","1956"],e:"Nigeria gained independence from Britain on October 1, 1960."},
+{w:1,q:"Nigeria became a republic in which year?",c:"1963",x:["1960","1966","1979"],e:"Nigeria became a Federal Republic on October 1, 1963."},
+{w:1,q:"The Amalgamation of Nigeria took place in:",c:"1914",x:["1900","1960","1884"],e:"The Amalgamation of the Northern and Southern Protectorates took place in 1914 under Lord Lugard."},
+{w:1,q:"Cultural relativism means:",c:"Judging a culture by its own standards rather than another's",x:["All cultures are equal in every way","Only Western culture is valid","Culture should not be studied"],e:"Cultural relativism holds that a culture should be understood and evaluated on its own terms."},
+{w:1,q:"Ethnocentrism is the tendency to:",c:"View one's own culture as superior to others",x:["Appreciate all cultures equally","Adopt other cultures","Reject one's own culture"],e:"Ethnocentrism is the belief that one's own cultural group is superior."},
+{w:1,q:"Nigeria is broadly divided into:",c:"North, South, Middle Belt",x:["East, West, North","Coastal, Savanna, Forest","Urban, Rural, Semi-urban"],e:"Nigeria is broadly divided into the North, South, and Middle Belt."},
+{w:1,q:"What is a cultural norm?",c:"An accepted standard of behaviour in a society",x:["A physical artifact","A type of food","A government law"],e:"A cultural norm is an accepted rule or standard of behaviour that members of a society follow."},
+{w:1,q:"Folkways are:",c:"Everyday customs that guide routine social behaviour",x:["Sacred religious laws","Government policies","Criminal laws"],e:"Folkways are informal social conventions guiding routine behaviour like greetings and table manners."},
+{w:1,q:"'Mores' in sociology refers to:",c:"Strong moral norms whose violation is considered serious",x:["Everyday casual customs","Economic practices","Political structures"],e:"Mores are strongly held moral norms; violating them is considered deeply offensive."},
+{w:1,q:"Taboo in Nigerian cultures refers to:",c:"A forbidden act or item in a community",x:["A form of greeting","A type of dance","A traditional food"],e:"A taboo is an act, object, or word forbidden by a community for religious or cultural reasons."},
+{w:1,q:"How many official indigenous languages does Nigeria's constitution recognise?",c:"Three (Hausa, Yoruba, Igbo)",x:["One (English only)","Five","All 250+ languages"],e:"Nigeria's constitution recognises Hausa, Yoruba, and Igbo alongside English."},
+{w:1,q:"The Hausa-Fulani are predominantly found in:",c:"Northern Nigeria",x:["Southern Nigeria","Niger Delta","South-West"],e:"The Hausa-Fulani are predominantly found in Northern Nigeria."},
+{w:1,q:"The Yoruba people are predominantly found in:",c:"South-Western Nigeria",x:["Northern Nigeria","South-Eastern Nigeria","North-Central Nigeria"],e:"The Yoruba are predominantly found in South-Western Nigeria."},
+{w:1,q:"The Igbo people are predominantly found in:",c:"South-Eastern Nigeria",x:["North-Western Nigeria","South-Western Nigeria","North-Eastern Nigeria"],e:"The Igbo are predominantly found in South-Eastern Nigeria."},
+{w:1,q:"Cultural heritage means:",c:"The legacy of cultural practices and monuments passed down from previous generations",x:["Only physical monuments","Government policies on culture","Modern artistic innovations"],e:"Cultural heritage includes tangible and intangible aspects passed down from previous generations."},
+{w:1,q:"An example of intangible cultural heritage is:",c:"Oral traditions and storytelling",x:["A bronze sculpture","A historic building","A traditional garment"],e:"Intangible cultural heritage includes oral traditions, performing arts, rituals, and festivals."},
+{w:1,q:"Language is important to culture because:",c:"It transmits cultural values and knowledge across generations",x:["It limits cultural exchange","It is only used for economic purposes","It has no cultural significance"],e:"Language is the primary medium through which culture is transmitted and preserved."},
+{w:1,q:"A cultural institution is:",c:"An established organisation or practice that fulfils social functions",x:["A physical building only","A government ministry","A private company"],e:"Cultural institutions are established practices like marriage and family that fulfil key social functions."},
+{w:1,q:"'Unity in diversity' in Nigeria means:",c:"Despite ethnic and cultural differences, Nigerians share a national identity",x:["All cultures are identical","Diversity should be ignored","Only one culture matters"],e:"Unity in diversity means Nigeria's many ethnic groups are bound together as one nation despite differences."},
+{w:1,q:"Islam in Nigeria is most prevalent in:",c:"Northern Nigeria",x:["Southern Nigeria","Niger Delta","South-West only"],e:"Islam is predominantly practised in Northern Nigeria."},
+{w:1,q:"Christianity in Nigeria is most prevalent in:",c:"Southern Nigeria",x:["Northern Nigeria","The Sahara belt","North-East only"],e:"Christianity is predominantly practised in Southern Nigeria."},
+{w:1,q:"The Nok culture is significant because:",c:"It produced some of Africa's earliest known terracotta sculptures",x:["It built the first railway in Nigeria","It established the first democracy","It introduced Islam to Nigeria"],e:"The Nok culture (c. 500 BC–200 AD) is famous for its sophisticated terracotta sculptures."},
+{w:1,q:"Cultural identity refers to:",c:"A person's sense of belonging to a cultural group",x:["A government ID card","A type of passport","An economic status"],e:"Cultural identity is the sense of belonging shaped by shared language, traditions, and history."},
+{w:1,q:"Assimilation in culture means:",c:"When a minority group adopts the culture of a dominant group",x:["When cultures remain separate","When all cultures are destroyed","When a new culture is invented"],e:"Cultural assimilation is the process by which a minority group gradually adopts the dominant culture."},
+{w:1,q:"Multiculturalism promotes:",c:"The coexistence and mutual respect of different cultures in one society",x:["The dominance of one culture","Cultural isolation","The elimination of minority cultures"],e:"Multiculturalism promotes recognition, acceptance, and celebration of cultural diversity."},
+{w:1,q:"Oral tradition in Nigerian cultures refers to:",c:"The practice of passing knowledge through spoken word, stories, and proverbs",x:["Written records only","Electronic media","Foreign languages"],e:"Oral tradition transmits history and cultural values through spoken stories, proverbs, and songs."},
+{w:1,q:"The Benin Kingdom is known for its:",c:"Bronze castings and ivory carvings",x:["Iron smelting only","Cotton weaving","Terracotta sculptures"],e:"The Benin Kingdom is world-famous for its exquisite bronze castings and ivory carvings."},
+{w:1,q:"A rite of passage is:",c:"A ceremony marking a transition from one social status to another",x:["A government policy","A type of taxation","A foreign custom"],e:"A rite of passage marks an individual's transition from one social stage to another."},
+{w:1,q:"The masquerade in Nigerian cultures represents:",c:"The spirit of ancestors used in ceremonies",x:["A form of entertainment only","A political activity","A foreign tradition"],e:"Masquerades in Nigerian cultures represent ancestral spirits and are used in important ceremonies."},
+{w:1,q:"The Argungu Fishing Festival is associated with:",c:"Kebbi State",x:["Lagos State","Anambra State","Rivers State"],e:"The Argungu Fishing Festival is held annually in Kebbi State."},
+{w:1,q:"The New Yam Festival is most closely associated with:",c:"Igbo ethnic group",x:["Yoruba","Hausa","Kanuri"],e:"The New Yam Festival (Iri Ji) is a major celebration among the Igbo people."},
+{w:1,q:"The Egungun masquerade is associated with:",c:"Yoruba ancestor veneration",x:["Igbo initiation rites","Hausa political ceremonies","Tiv harvest festivals"],e:"The Egungun masquerade is a Yoruba tradition representing ancestral spirits."},
+{w:1,q:"Nigerian Pidgin English is best described as:",c:"A creole language serving as a lingua franca across ethnic groups",x:["The official language of Nigeria","A foreign language","A dialect of Hausa"],e:"Nigerian Pidgin English is a creolised language widely used as an informal lingua franca."},
+{w:1,q:"A lingua franca is:",c:"A common language used by people with different native languages",x:["The most beautiful language","A dying language","An official government language only"],e:"A lingua franca is a common language used for communication between people who don't share a native language."},
+{w:1,q:"Traditional marriage in Nigeria typically involves:",c:"Bride price, family consent, and community ceremonies",x:["Only a church or mosque ceremony","Only a government registration","No ceremony at all"],e:"Traditional Nigerian marriage involves payment of bride price, family negotiations, and community celebrations."},
+{w:1,q:"A subculture is:",c:"A group within a larger culture with its own distinct values and practices",x:["An inferior culture","A foreign culture","A culture without traditions"],e:"A subculture is a group within a larger society that maintains distinct values while participating in the broader culture."},
+{w:1,q:"The role of the extended family in Nigerian culture is to:",c:"Provide social support, identity, and welfare to members",x:["Compete with the nuclear family","Replace government institutions","Have no social function"],e:"In Nigerian culture, the extended family provides social security, identity, and economic support."},
+{w:1,q:"Who introduced the policy of Indirect Rule in colonial Nigeria?",c:"Lord Lugard",x:["Flora Shaw","Herbert Macaulay","Obafemi Awolowo"],e:"Lord Frederick Lugard introduced Indirect Rule, governing through existing traditional rulers."},
+{w:1,q:"Nigeria's diverse food culture includes staples such as:",c:"Yam, cassava, rice, and millet",x:["Only rice","Only bread","Only fruits"],e:"Nigerian cuisine includes yam, cassava, rice, millet, sorghum, and plantain."},
+{w:1,q:"Cultural pluralism in Nigeria refers to:",c:"The coexistence of multiple distinct cultural groups within one nation",x:["The dominance of one culture","The absence of culture","Only religious diversity"],e:"Cultural pluralism refers to the coexistence of many distinct ethnic and cultural groups within Nigeria."},
+{w:1,q:"A challenge to cultural integration in Nigeria is:",c:"Ethnic prejudice and stereotyping",x:["Cultural festivals","Common language","Shared borders"],e:"Ethnic prejudice, stereotyping, and discrimination are significant challenges to cultural integration."},
+{w:1,q:"'Cultural lag' refers to:",c:"When non-material culture fails to keep pace with material cultural change",x:["When all aspects of culture change simultaneously","When a culture is completely static","When material culture disappears"],e:"Cultural lag refers to the period when non-material culture is slow to adapt to rapid material change."},
+{w:1,q:"Culture shock is:",c:"The feeling of disorientation when exposed to an unfamiliar culture",x:["Excitement about a new culture","Cultural pride","Rejection of one's own culture"],e:"Culture shock is the confusion and disorientation when a person encounters an unfamiliar culture."},
+{w:1,q:"Syncretism describes:",c:"The blending of elements from two or more cultures to form a new culture",x:["Cultural assimilation","Cultural diffusion","Ethnocentrism"],e:"Syncretism is the blending of elements from two or more cultures to create a new hybrid cultural form."},
+{w:1,q:"Nigeria's Federal Capital Territory is located in:",c:"Abuja",x:["Lagos","Kaduna","Enugu"],e:"Abuja is Nigeria's Federal Capital Territory, the capital since 1991."},
+{w:1,q:"Nigeria currently has how many states?",c:"36 states and FCT",x:["30 states","40 states","25 states"],e:"Nigeria currently has 36 states and the Federal Capital Territory (FCT, Abuja)."},
+{w:1,q:"Traditional religion in Nigeria is characterised by:",c:"Belief in a supreme being, ancestors, and natural forces",x:["Rejection of all spiritual beliefs","Only monotheism","Worship of foreign deities"],e:"Nigerian traditional religion involves belief in a supreme deity, lesser gods, ancestral spirits, and spiritual nature."},
+{w:1,q:"A function of culture is:",c:"Providing social identity and guiding behaviour",x:["Causing ethnic conflict only","Restricting economic growth","Eliminating language diversity"],e:"Culture gives people social identity, guides behaviour through norms, and provides a social framework."},
+{w:1,q:"Nigerian arts and crafts serve which cultural function?",c:"Expressing identity, history, and spiritual beliefs",x:["Only commercial purposes","Only decorative purposes","No cultural function"],e:"Nigerian arts and crafts express cultural identity, record history, and serve religious and ceremonial functions."},
+{w:1,q:"The Ogboni society among the Yoruba was:",c:"A powerful secret society involved in political governance and earth worship",x:["A purely entertainment group","A trade guild","A religious conversion organisation"],e:"The Ogboni was a powerful Yoruba secret society associated with earth worship and counterbalancing royal power."},
+{w:1,q:"Social values are:",c:"Shared beliefs about what is good, right, and desirable in a society",x:["Personal financial goals","Government budgets","Physical resources"],e:"Social values are the shared beliefs within a society about what is important and right."},
+{w:1,q:"Cultural change refers to:",c:"The modification of a culture over time due to internal or external forces",x:["A culture that never changes","The death of all traditions","Only Western influence"],e:"Cultural change is the evolution of a culture's values, practices, and institutions over time."},
+{w:1,q:"A cultural symbol is:",c:"Something that represents something else and carries shared meaning",x:["A physical tool only","A type of law","A geographical feature"],e:"A cultural symbol carries a shared meaning within a culture, such as a flag or gesture."},
+// WEEK 2
+{w:2,q:"The Berlin Conference that partitioned Africa took place in:",c:"1884-1885",x:["1900","1914","1860"],e:"The Berlin Conference of 1884-1885 was where European powers formally divided Africa."},
+{w:2,q:"The Royal Niger Company was granted a charter in:",c:"1886",x:["1900","1914","1920"],e:"The Royal Niger Company received its royal charter in 1886."},
+{w:2,q:"The Royal Niger Company's charter was revoked in:",c:"1900",x:["1886","1914","1920"],e:"The charter was revoked on January 1, 1900, when the British government took direct control."},
+{w:2,q:"The Sokoto Caliphate was founded by:",c:"Usman dan Fodio",x:["Muhammadu Bello","Muhammad al-Kanemi","Attahiru I"],e:"Usman dan Fodio founded the Sokoto Caliphate following the Fulani Jihad of 1804."},
+{w:2,q:"The Fulani Jihad began in:",c:"1804",x:["1814","1884","1900"],e:"The Fulani Jihad, led by Usman dan Fodio, began in 1804."},
+{w:2,q:"Nigeria's first Prime Minister at independence was:",c:"Abubakar Tafawa Balewa",x:["Nnamdi Azikiwe","Obafemi Awolowo","Ahmadu Bello"],e:"Sir Abubakar Tafawa Balewa became Nigeria's first Prime Minister at independence on October 1, 1960."},
+{w:2,q:"Nigeria's first President was:",c:"Nnamdi Azikiwe",x:["Abubakar Tafawa Balewa","Obafemi Awolowo","Ahmadu Bello"],e:"Dr Nnamdi Azikiwe became Nigeria's first President on October 1, 1963."},
+{w:2,q:"The first military coup in Nigeria occurred in:",c:"January 1966",x:["July 1966","1979","1983"],e:"Nigeria's first military coup took place on January 15, 1966."},
+{w:2,q:"The Nigerian Civil War lasted from:",c:"1967 to 1970",x:["1960 to 1963","1966 to 1968","1970 to 1975"],e:"The Nigerian Civil War lasted from July 1967 to January 1970."},
+{w:2,q:"The Republic of Biafra was declared by:",c:"Odumegwu Ojukwu",x:["Nnamdi Azikiwe","Emeka Anyaoku","Philip Effiong"],e:"Lieutenant Colonel Ojukwu declared the Republic of Biafra on May 30, 1967."},
+{w:2,q:"The slogan 'No Victor, No Vanquished' was used by:",c:"Yakubu Gowon",x:["Murtala Muhammed","Olusegun Obasanjo","Ibrahim Babangida"],e:"General Gowon used this slogan to promote reconciliation after the Civil War."},
+{w:2,q:"Nigeria's oil boom occurred predominantly in the:",c:"1970s",x:["1960s","1950s","1980s"],e:"Nigeria experienced a major oil boom in the 1970s following the 1973 OPEC oil price increases."},
+{w:2,q:"Nigeria's return to democracy after military rule occurred in:",c:"1999",x:["1993","2003","1979"],e:"Nigeria returned to democratic civilian government in 1999 when Obasanjo was elected President."},
+{w:2,q:"The First Republic of Nigeria lasted:",c:"1960 to 1966",x:["1963 to 1979","1966 to 1979","1960 to 1963"],e:"Nigeria's First Republic lasted from independence in 1960 until the military coup of January 1966."},
+{w:2,q:"The Second Republic lasted:",c:"1979 to 1983",x:["1966 to 1979","1983 to 1993","1993 to 1999"],e:"The Second Republic, under President Shagari, lasted from October 1979 until December 1983."},
+{w:2,q:"General Murtala Muhammed came to power in:",c:"1975",x:["1966","1983","1970"],e:"General Murtala Muhammed seized power in a coup on July 29, 1975."},
+{w:2,q:"The June 12, 1993 election is significant because:",c:"It was annulled by General Babangida despite being considered free and fair",x:["It was the first election after independence","It brought the military to power","It was boycotted by all parties"],e:"The June 12, 1993 election won by MKO Abiola was annulled by General Babangida."},
+{w:2,q:"General Sani Abacha ruled Nigeria from:",c:"1993 to 1998",x:["1983 to 1985","1985 to 1993","1998 to 1999"],e:"General Sani Abacha ruled from November 1993 until his sudden death in June 1998."},
+{w:2,q:"The Kanem-Bornu Empire was located in:",c:"North-Eastern Nigeria",x:["South-Western Nigeria","Niger Delta","Middle Belt"],e:"The Kanem-Bornu Empire was located in the Lake Chad basin in North-Eastern Nigeria."},
+{w:2,q:"The Amalgamation of 1914 was done primarily for:",c:"Administrative convenience and economic efficiency for Britain",x:["To give Nigeria independence","To promote democracy","Because Nigerians demanded it"],e:"The Amalgamation was carried out for British administrative convenience and economic efficiency."},
+{w:2,q:"The NCNC was founded by:",c:"Herbert Macaulay and Nnamdi Azikiwe",x:["Obafemi Awolowo","Ahmadu Bello","Tafawa Balewa"],e:"The NCNC was founded in 1944 by Herbert Macaulay and Nnamdi Azikiwe."},
+{w:2,q:"The Action Group was founded by:",c:"Obafemi Awolowo",x:["Ahmadu Bello","Nnamdi Azikiwe","Herbert Macaulay"],e:"Obafemi Awolowo founded the Action Group in 1950."},
+{w:2,q:"The Northern People's Congress was founded by:",c:"Ahmadu Bello",x:["Tafawa Balewa","Nnamdi Azikiwe","Obafemi Awolowo"],e:"The NPC was founded by Sir Ahmadu Bello, the Sardauna of Sokoto."},
+{w:2,q:"The Aba Women's Riots of 1929 were a protest against:",c:"Proposed taxation of women by the British",x:["Slavery","Land seizures","Religious policies"],e:"The Aba Women's Riots were sparked by rumours that the British planned to tax women."},
+{w:2,q:"Indirect Rule failed in Eastern Nigeria because:",c:"The Igbo had decentralised governance with no paramount chiefs",x:["Eastern Nigeria had too many cities","The British refused to try it","The Igbo had a monarchy"],e:"Indirect Rule failed in Eastern Nigeria because Igbo society was highly decentralised with no paramount chiefs."},
+{w:2,q:"The General Strike of 1945 was led by:",c:"Michael Imoudu",x:["Nnamdi Azikiwe","Obafemi Awolowo","Tafawa Balewa"],e:"The General Strike of 1945 was led by trade union leader Michael Imoudu."},
+{w:2,q:"Oil was first discovered commercially in Nigeria in:",c:"1956",x:["1960","1970","1914"],e:"Oil was discovered at Oloibiri in the Niger Delta in 1956."},
+{w:2,q:"Oloibiri is in which state?",c:"Bayelsa State",x:["Rivers State","Delta State","Akwa Ibom State"],e:"Oloibiri, site of Nigeria's first commercial oil discovery, is in present-day Bayelsa State."},
+{w:2,q:"The Nigerian flag was designed by:",c:"Michael Taiwo Akinkunmi",x:["Nnamdi Azikiwe","Obafemi Awolowo","Tafawa Balewa"],e:"Michael Taiwo Akinkunmi designed Nigeria's national flag in a competition in 1959."},
+{w:2,q:"The colours of the Nigerian flag represent:",c:"Green for agriculture, white for peace and unity",x:["Green for Islam, white for Christianity","Green for forests, white for rivers","Green for money, white for purity"],e:"Green represents agricultural wealth; white symbolises peace and unity."},
+{w:2,q:"Nigeria's current constitution was adopted in:",c:"1999",x:["1979","1963","1993"],e:"Nigeria's current constitution was adopted in 1999 at the return to democratic rule."},
+{w:2,q:"Nigeria was divided into 12 states by Gowon in:",c:"1967",x:["1976","1963","1970"],e:"General Gowon divided Nigeria into 12 states on May 27, 1967."},
+{w:2,q:"Nigeria's Fourth Republic began in:",c:"1999",x:["2003","1993","2011"],e:"Nigeria's Fourth Republic began on May 29, 1999 with the inauguration of President Obasanjo."},
+{w:2,q:"The Clifford Constitution of 1922 introduced:",c:"An elective principle and the first elections in Nigeria",x:["Three regions","Independence","Abolition of the slave trade"],e:"The Clifford Constitution of 1922 introduced an elective principle allowing Nigerians to elect members to the Legislative Council."},
+{w:2,q:"The Oyo Empire was predominantly:",c:"A Yoruba empire",x:["An Igbo empire","A Hausa empire","A Fulani empire"],e:"The Oyo Empire was the most powerful Yoruba state."},
+{w:2,q:"British colonisation of Nigeria was primarily motivated by:",c:"Economic interests — trade and resources",x:["Religious missions only","Humanitarian concerns only","Scientific exploration only"],e:"British colonisation was primarily driven by economic interests — securing trade routes and access to resources."},
+{w:2,q:"General Muhammadu Buhari first came to power in:",c:"1983",x:["1966","1975","1993"],e:"General Buhari seized power in a military coup on December 31, 1983."},
+{w:2,q:"The Hausa Bakwai refers to:",c:"The seven legitimate Hausa states",x:["The Fulani Emirates","The Kanuri Kingdom","The Nupe Confederation"],e:"The Hausa Bakwai — Kano, Katsina, Zaria, Gobir, Daura, Rano, and Biram — were the major Hausa political units."},
+{w:2,q:"Which war ended the independence of the Sokoto Caliphate?",c:"The British conquest of Sokoto in 1903",x:["The Fulani Jihad","The Nigerian Civil War","World War I"],e:"The British conquered the Sokoto Caliphate in 1903, killing Sultan Attahiru I at the Battle of Burmi."},
+{w:2,q:"The Lyttleton Constitution of 1954 established:",c:"Full federalism with three regions",x:["A unitary state","Independence for Nigeria","The first military government"],e:"The Lyttleton Constitution of 1954 established a fully federal system with three regions."},
+{w:2,q:"ECOWAS was founded in:",c:"1975",x:["1960","1963","1990"],e:"ECOWAS was founded on May 28, 1975."},
+{w:2,q:"The Structural Adjustment Programme was introduced by:",c:"Ibrahim Babangida",x:["Muhammadu Buhari","Sani Abacha","Shehu Shagari"],e:"General Babangida introduced the Structural Adjustment Programme (SAP) in 1986."},
+{w:2,q:"The Trans-Atlantic Slave Trade impacted Nigeria by:",c:"Depopulating communities and causing economic disruption and social instability",x:["Increasing Nigeria's population","Strengthening traditional kingdoms","Introducing democracy"],e:"The slave trade caused massive depopulation, economic disruption, and social instability."},
+{w:2,q:"Nigeria's first indigenous Governor-General was:",c:"Nnamdi Azikiwe",x:["Abubakar Tafawa Balewa","Obafemi Awolowo","Ahmadu Bello"],e:"Nnamdi Azikiwe became Nigeria's first indigenous Governor-General in 1960."},
+{w:2,q:"Indirect Rule succeeded in Northern Nigeria mainly because:",c:"It worked with existing Hausa-Fulani emirate structures",x:["The North had no traditional rulers","British officers were abundant","The people requested it"],e:"Indirect Rule succeeded in the North because the emirate system provided a ready-made administrative structure."},
+// WEEK 3
+{w:3,q:"The Benin Kingdom's bronze sculptures were created using:",c:"The lost-wax (cire perdue) casting technique",x:["Iron smelting","Clay modelling only","Woodcarving"],e:"The Benin Bronzes were created using the lost-wax casting technique."},
+{w:3,q:"The Oyo Empire's military power was based on:",c:"Cavalry (horse-mounted soldiers)",x:["Naval forces","Iron weapons only","Mercenary soldiers"],e:"The Oyo Empire's military dominance was based on its powerful cavalry."},
+{w:3,q:"Ile-Ife is significant in Yoruba culture because:",c:"It is considered the cradle of Yoruba civilisation and site of creation",x:["It was the largest Yoruba city","It was the capital of the Oyo Empire","It was first colonised by Europeans"],e:"Ile-Ife is regarded as the sacred source of Yoruba civilisation where Oduduwa descended from heaven."},
+{w:3,q:"The Igbo-Ukwu discoveries revealed:",c:"Sophisticated bronze-working technology dating to the 9th century AD",x:["No metallurgical tradition","European contact in the 9th century","Built large empires"],e:"Excavations at Igbo-Ukwu revealed sophisticated bronze artefacts dating to around the 9th century AD."},
+{w:3,q:"The Nok civilisation is located in:",c:"North-Central Nigeria (Kaduna/Plateau states area)",x:["South-East Nigeria","Lagos area","Niger Delta"],e:"The Nok culture flourished in the Jos Plateau and Kaduna areas, c. 500 BC–200 AD."},
+{w:3,q:"The Igala Kingdom is centred in:",c:"Kogi State",x:["Benue State","Anambra State","Plateau State"],e:"The Igala Kingdom is centred in Kogi State, with Idah as its traditional capital."},
+{w:3,q:"Sango is the Yoruba deity of:",c:"Thunder and lightning",x:["Rivers","Iron and war","Earth and fertility"],e:"Sango is the Yoruba orisha (deity) of thunder and lightning."},
+{w:3,q:"The Ijaw people are primarily found in:",c:"The Niger Delta",x:["South-West Nigeria","North-East Nigeria","Middle Belt"],e:"The Ijaw (Izon) are one of the largest ethnic groups in the Niger Delta region."},
+{w:3,q:"The Efik people established significant trading states in:",c:"Calabar area (Cross River)",x:["Lagos","Kano","Owerri"],e:"The Efik established powerful trading city-states in the Calabar area."},
+{w:3,q:"The Tiv people are predominantly located in:",c:"Benue State",x:["Kogi State","Anambra State","Plateau State"],e:"The Tiv people are the dominant ethnic group in Benue State."},
+{w:3,q:"The Ife bronze/terracotta heads are characterised by:",c:"Naturalistic portraiture with remarkable anatomical accuracy",x:["Abstract geometric forms","Animal images only","Spiritual symbols only"],e:"The Ife bronzes and terracotta heads are renowned for their lifelike anatomical accuracy."},
+{w:3,q:"The Nupe Kingdom is centred in:",c:"Niger State (Bida area)",x:["South-East Nigeria","Lagos area","North-East Nigeria"],e:"The Nupe Kingdom is centred in present-day Niger State."},
+{w:3,q:"The Aro people of South-Eastern Nigeria were known as:",c:"Long-distance traders and religious brokers",x:["Farmers only","Warriors only","Fishermen only"],e:"The Aro Chukwu were powerful long-distance traders who used the Arochukwu oracle to dominate trade networks."},
+{w:3,q:"Iron smelting in Nigeria is believed to have been practised as far back as:",c:"Around 550 BC in the Nok area",x:["1800 AD","500 AD","1000 BC"],e:"Evidence from the Nok culture suggests iron smelting was practised around 550 BC."},
+{w:3,q:"Trans-Saharan trade routes connected Northern Nigeria to:",c:"North Africa and the Mediterranean world",x:["Europe directly","The Americas","East Africa directly"],e:"Trans-Saharan routes linked the Hausa states and Kanem-Bornu to North Africa."},
+{w:3,q:"The Benin Kingdom's art primarily served to:",c:"Commemorate royalty, record history, and serve religious purposes",x:["Sell to Europeans","Decorate homes only","Train warriors"],e:"Benin art glorified the Oba, commemorated ancestors, recorded history, and served religious functions."},
+{w:3,q:"Pre-colonial Igbo governance was largely:",c:"Decentralised with village councils and age grades",x:["A centralised monarchy","A military dictatorship","Controlled by foreign rulers"],e:"Igbo pre-colonial governance was largely decentralised and republican."},
+{w:3,q:"The Kano Chronicle is significant because:",c:"It provides a written historical record of the Hausa city-states",x:["It describes the Benin Kingdom","It records the Fulani Jihad","It lists colonial treaties"],e:"The Kano Chronicle is an important historical document recording the history of Kano."},
+{w:3,q:"The Yoruba civil wars of the 19th century were caused by:",c:"The collapse of the Oyo Empire and competition among successor states",x:["British intervention","The Fulani Jihad directly","Slave uprisings"],e:"The collapse of the Old Oyo Empire led to prolonged Yoruba civil wars."},
+{w:3,q:"The Oduduwa legend states that:",c:"Oduduwa descended from heaven on a chain and created the earth at Ile-Ife",x:["Oduduwa came from Egypt","Oduduwa was the first Oba of Benin","Oduduwa founded Oyo"],e:"Yoruba creation myth holds that Oduduwa was lowered from heaven and created land at Ile-Ife."},
+{w:3,q:"The Nsibidi script was used by:",c:"The Efik, Igbo, and related peoples of Cross River area",x:["The Yoruba","The Hausa","The Fulani"],e:"Nsibidi is an ancient ideographic script used by the Efik, Ejagham, and Igbo peoples."},
+{w:3,q:"The title 'Obi' is used by paramount rulers of:",c:"Igbo (especially Onitsha and Delta Igbo)",x:["Yoruba","Hausa","Kanuri"],e:"The title 'Obi' is used by traditional rulers of several Igbo groups."},
+{w:3,q:"The Kwararafa Kingdom was a major rival of:",c:"The Hausa states",x:["Oyo Empire","Benin Kingdom","Kanem-Bornu only"],e:"The Kwararafa (Jukun) Kingdom periodically invaded and challenged the Hausa city-states."},
+{w:3,q:"Oranmiyan is credited with founding:",c:"Both the Oyo Empire and the current Benin Oba dynasty",x:["Only Oyo","Only Benin","The Nupe Kingdom"],e:"Oranmiyan, grandson of Oduduwa, is credited with founding Oyo and establishing the Oba dynasty of Benin."},
+{w:3,q:"Before the Jihad, the Fulani were primarily:",c:"Semi-nomadic cattle herders",x:["Farmers only","Fishermen only","Merchants only"],e:"The Fulani were traditionally semi-nomadic pastoralists who migrated across the Sahel with their cattle."},
+{w:3,q:"The Sefawa dynasty of Kanem-Bornu is notable for:",c:"Being one of the longest-ruling dynasties in world history (about 1,000 years)",x:["Founding the Oyo Empire","Introducing Islam to Yorubaland","Building Benin City"],e:"The Sefawa dynasty ruled Kanem-Bornu for approximately 1,000 years."},
+{w:3,q:"'Alafin' in Yoruba means:",c:"Owner of the palace — the supreme Oyo ruler",x:["Chief warrior","High priest","Chief judge"],e:"'Alafin' means 'Owner of the Palace,' the title of the supreme ruler of the Oyo Empire."},
+{w:3,q:"The Hausa word 'Sarki' means:",c:"King or ruler",x:["Warrior","Merchant","Scholar"],e:"'Sarki' is the Hausa word for king or ruler."},
+{w:3,q:"The Ooni is the paramount ruler of:",c:"Ile-Ife",x:["Oyo","Benin","Ijebu"],e:"The Ooni of Ife is the paramount spiritual ruler of the Yoruba."},
+{w:3,q:"The Borno Empire survived the Fulani Jihad because:",c:"It resisted with the help of al-Kanemi",x:["It had British support","It was too small to conquer","It allied with the French"],e:"Muhammad al-Kanemi rallied the Borno people to successfully resist the Fulani Jihad."},
+{w:3,q:"The Eyo masquerade is associated with:",c:"Lagos Island (Isale-Eko) Yoruba",x:["Igbo","Hausa","Tiv"],e:"The Eyo masquerade is a distinctive Lagos cultural festival unique to the Isale-Eko community."},
+{w:3,q:"Pre-colonial long-distance trade was facilitated by:",c:"Established trade routes, cowrie currency, and merchant guilds",x:["No trade occurred","Only barter within villages","European merchants exclusively"],e:"Long-distance trade was facilitated by established routes, cowrie currency, and organised merchant communities."},
+{w:3,q:"The Kanuri people are associated with:",c:"Kanem-Bornu Empire",x:["Oyo Empire","Benin Kingdom","Sokoto Caliphate"],e:"The Kanuri people were the ruling group of the Kanem-Bornu Empire."},
+{w:3,q:"The Ekitiparapo was:",c:"A coalition of Ekiti and Ijesa Yoruba states against Ibadan domination",x:["Northern Emirate states","Igbo communities against British rule","Fulani states against Kanem-Bornu"],e:"The Ekitiparapo was a 19th-century alliance formed to resist the expansionist Ibadan Empire."},
+{w:3,q:"The Ekpe society among the Efik served to:",c:"Regulate commerce, adjudicate disputes, and enforce social order",x:["Entertainment only","Agricultural ceremonies","Military purposes only"],e:"The Ekpe society enforced laws, regulated trade, and maintained social order."},
+{w:3,q:"The Ogoni people are found in:",c:"Rivers State",x:["Delta State","Bayelsa State","Cross River State"],e:"The Ogoni people are found in Rivers State."},
+{w:3,q:"Sukur in Adamawa State is significant as:",c:"A UNESCO World Heritage Site known for iron smelting and terraced landscape",x:["Capital of Kanem-Bornu","A major slave trade port","Seat of the Borno Sultanate"],e:"Sukur is a UNESCO World Heritage Site for its ancient iron-smelting tradition and terraced landscape."},
+{w:3,q:"The Attah is the paramount ruler of:",c:"Igala Kingdom",x:["Igbo communities","Ijaw peoples","Nupe Kingdom"],e:"The Attah of Igala is the paramount traditional ruler of the Igala people in Kogi State."},
+// WEEK 4
+{w:4,q:"The primary economic activity of pre-colonial Nigerian societies was:",c:"Agriculture",x:["Mining","Long-distance trading only","Manufacturing"],e:"Agriculture was the foundation of pre-colonial Nigerian economies."},
+{w:4,q:"Cowrie shells were used in pre-colonial Nigeria as:",c:"A form of currency",x:["Food","Weapons","Building material"],e:"Cowrie shells served as the dominant currency in many parts of pre-colonial Nigeria."},
+{w:4,q:"The manilla was used as currency primarily among:",c:"Niger Delta and South-Eastern Nigerian peoples",x:["Hausa traders","Yoruba people","Northern Nigeria generally"],e:"Manillas were a form of currency among the peoples of the Niger Delta and South-Eastern Nigeria."},
+{w:4,q:"Kano is historically famous for:",c:"Leather tanning and cloth weaving",x:["Bronze casting","Terracotta sculpture","Canoe building"],e:"Kano has been a major centre of leather tanning and adire/indigo-dyed cloth weaving for centuries."},
+{w:4,q:"Palm oil became a major 19th century export because:",c:"Britain needed it for industrial lubrication and soap-making",x:["Europeans loved the taste","It replaced gold as currency","Nigeria had no other exports"],e:"After abolishing the slave trade, Britain needed palm oil for lubricating industrial machinery and making soap."},
+{w:4,q:"Kola nut was an important trade commodity because:",c:"It was a stimulant valued in Islam with social and ceremonial significance",x:["It was Nigeria's main food crop","It was used as medicine only","Europeans demanded it"],e:"Kola nut had enormous cultural and religious significance, used in ceremonies and consumed as a stimulant."},
+{w:4,q:"Subsistence farming means:",c:"Growing food primarily for household consumption with little surplus for sale",x:["Farming for export only","Industrial-scale farming","Farming using modern technology"],e:"Subsistence farming involves producing just enough food to feed the farmer's family or community."},
+{w:4,q:"Shifting cultivation involves:",c:"Farming land for a few years then leaving it fallow to regain fertility",x:["Permanent settlement on one plot","Crop rotation without leaving land fallow","Irrigation farming"],e:"Shifting cultivation meant farmers cultivated a plot then moved to new land, allowing the old plot to regenerate."},
+{w:4,q:"The Esusu system is a traditional:",c:"Rotating savings and credit association",x:["Type of market","Form of taxation","Agricultural cooperative"],e:"The Esusu is a rotating credit scheme where members contribute periodically and each takes the total pool in turn."},
+{w:4,q:"Salt was highly valued in pre-colonial trade because:",c:"It was essential for food preservation and scarce in many inland areas",x:["It was used in religious rituals only","It was a luxury item only for chiefs","It was exported to Europe"],e:"Salt was critical for food preservation and was scarce in many inland areas."},
+{w:4,q:"The yam is called 'king of crops' in Igbo and Yoruba cultures because:",c:"It is the most prestigious food crop, central to ceremonies and social status",x:["It is the most nutritious","It grows everywhere","It was introduced by colonists"],e:"Yam holds supreme cultural and economic position as a symbol of wealth and prestige."},
+{w:4,q:"Traditional markets served functions beyond commerce, including:",c:"Social interaction, information exchange, and dispute settlement",x:["Only buying and selling","Only religious ceremonies","Only political functions"],e:"Traditional markets were multifunctional social spaces for meeting, news-sharing, and dispute resolution."},
+{w:4,q:"Iron working was economically important because:",c:"It produced tools for farming, weapons for defence, and goods for trade",x:["It was only for decoration","It only produced jewellery","It was a foreign technology"],e:"Iron smelting produced hoes, axes, arrows, and spears supporting agriculture and trade."},
+{w:4,q:"The Aro trading network was:",c:"A long-distance trading system connecting Igbo hinterland markets to the coast",x:["A Hausa salt trade","A Yoruba cloth market","A Benin bronze trading guild"],e:"The Aro trading network linked inland Igbo communities to coastal markets, backed by the Long Juju oracle."},
+{w:4,q:"Groundnut production was historically important in:",c:"Northern Nigeria (Kano, Katsina, Sokoto areas)",x:["Southern Nigeria","Niger Delta","Yorubaland"],e:"The Kano-Katsina area became a major groundnut producer, with famous groundnut pyramids."},
+{w:4,q:"Cocoa farming became economically important in:",c:"South-Western Nigeria (Yorubaland)",x:["Northern Nigeria","Niger Delta","South-Eastern Nigeria primarily"],e:"Cocoa became the dominant cash crop of South-Western Nigeria in the early 20th century."},
+{w:4,q:"Communal land tenure in pre-colonial Nigeria means:",c:"Land belonged to the community/family and could not be permanently sold",x:["Land was individually owned","Land was owned by the king alone","Land could be freely bought and sold"],e:"In most pre-colonial Nigerian societies, land was held communally and could not be permanently alienated."},
+{w:4,q:"The periodic market system operated on:",c:"A rotating cycle (4-day, 7-day, or 8-day market cycles)",x:["A daily basis","Only during festivals","Irregular intervals with no pattern"],e:"Pre-colonial Nigerian markets operated on regular rotating cycles."},
+{w:4,q:"Women played which role in pre-colonial Nigerian economies?",c:"Central roles in farming, trading, and food processing",x:["No economic role","Only domestic roles","Only weaving cloth"],e:"Women were central to pre-colonial economies — they farmed, processed food, traded in markets."},
+{w:4,q:"The River Niger was significant to pre-colonial trade because:",c:"It was the main highway for canoe trade connecting hinterland to the coast",x:["It had no commercial significance","It was a barrier to trade","It was used only for fishing"],e:"The River Niger served as the primary commercial waterway for canoe trade."},
+{w:4,q:"Artisan production in pre-colonial Nigeria was often:",c:"Hereditary, with skills passed from father to son",x:["Available to all regardless of family","Controlled by women exclusively","Replaced by imports"],e:"Craft specialisation was typically hereditary, passed through family lineages."},
+{w:4,q:"The introduction of cash crops by the British was intended to:",c:"Produce export commodities for the British economy",x:["Improve Nigerian food security","Diversify Nigerian farming","Reduce trade deficits for Nigeria"],e:"The British promoted cash crops to generate export revenue and make the colonial administration self-sustaining."},
+{w:4,q:"Traditional Nigerian commodity currencies included:",c:"Iron bars, copper manillas, cowrie shells, and cloth",x:["Paper notes only","Gold coins only","Silver coins only"],e:"Various objects served as currency: cowrie shells, copper manillas, iron bars, and cloth."},
+{w:4,q:"What is 'tribute' in pre-colonial Nigerian economics?",c:"Compulsory payments in goods or labour made by subordinate communities to a ruler",x:["A type of tax on markets","A form of religious offering only","A voluntary gift between equals"],e:"Tribute was a compulsory payment of goods, crops, or labour made by subordinate communities to a dominant ruler."},
+{w:4,q:"The colonial Produce Marketing Boards were used to:",c:"Buy cash crops from farmers at fixed below-market prices and sell at profit",x:["Provide loans to farmers","Improve farming techniques","Distribute food to poor communities"],e:"Marketing Boards bought produce at controlled prices lower than world market prices."},
+{w:4,q:"The Oyo Empire's economy was largely based on:",c:"Trade in slaves, agricultural products, and control of trade routes",x:["Only farming","Only craft production","Fishing in the Atlantic"],e:"The Oyo Empire's prosperity rested on its control of trade routes, tribute, and slave trading."},
+{w:4,q:"The economic consequences of the Trans-Atlantic Slave Trade included:",c:"Population loss, disruption of productive labour, and distortion of internal economies",x:["Economic growth","Increase in agricultural production","No economic consequences"],e:"The slave trade caused massive population loss, diverted resources to slave raiding, and disrupted productive economies."},
+{w:4,q:"The Hausa trade system was characterised by:",c:"Long-distance trading routes connecting the Sahara, forests, and coast",x:["Only local village markets","Barter exclusively","No organised trade"],e:"Hausa traders linked trans-Saharan routes with forest zones and the coast."},
+{w:4,q:"The gift economy in Nigerian traditional societies meant:",c:"Economic exchange was embedded in social relationships creating reciprocal obligations",x:["Gifts were always free with no expectation","Only the poor received gifts","Gifts replaced all trade"],e:"In traditional gift economies, giving and receiving created reciprocal social obligations."},
+{w:4,q:"The Land Use Act of 1978:",c:"Vested all land in the state government, weakening communities' ownership claims",x:["Granted land to settlers","Confirmed indigenes' land ownership","Removed government from land matters"],e:"The Land Use Act vested control of all land in state governments."},
+// WEEK 5
+{w:5,q:"The Oyo Empire's political structure was notable for:",c:"A constitutional monarchy with checks on royal power through the Oyo Mesi council",x:["Absolute monarchy with no checks","Democracy with universal suffrage","A theocracy"],e:"Oyo had a constitutional arrangement where the Alaafin's power was checked by the Oyo Mesi council."},
+{w:5,q:"The Oyo Mesi was:",c:"A council of seven chiefs who advised and checked the power of the Alaafin",x:["The Alaafin's personal bodyguard","A religious council","A court of law only"],e:"The Oyo Mesi was a council of seven lineage chiefs who had the power to challenge or depose the Alaafin."},
+{w:5,q:"In the Benin political system, the Oba was:",c:"A divine king with absolute spiritual and political authority",x:["An elected leader","A constitutional monarch with limited power","A representative of the people"],e:"The Oba of Benin was a divine monarch combining spiritual and political authority."},
+{w:5,q:"The Sokoto Caliphate was based on:",c:"Islamic governance (Sharia) with the Sultan as spiritual and temporal leader",x:["Secular democracy","Traditional Hausa customs only","Military rule"],e:"The Sokoto Caliphate was an Islamic state governed according to Sharia principles."},
+{w:5,q:"The Ofo staff in Igbo tradition represents:",c:"Ancestral authority, justice, and the right to speak on behalf of the lineage",x:["Military power","Wealth","Religious ceremony only"],e:"The Ofo is a sacred staff representing ancestral authority and the moral right to adjudicate disputes."},
+{w:5,q:"The age grade system in Igbo society served to:",c:"Maintain social order, community defence, and execute community decisions",x:["Only entertain","Only agricultural work","Only religious ceremonies"],e:"Igbo age grades had responsibilities for community defence, public works, policing, and executing decisions."},
+{w:5,q:"'Stateless societies' refers to:",c:"Societies organised without a centralised state authority",x:["Societies with no government at all","Societies under foreign rule","Societies with weak economies"],e:"Stateless (acephalous) societies governed through kinship, age grades, and community consensus."},
+{w:5,q:"Indirect rule used which strategy?",c:"Governing through existing traditional rulers as intermediaries",x:["Replacing all traditional rulers with British officers","Creating new rulers chosen by the British","Allowing complete Nigerian self-governance"],e:"Indirect rule used existing traditional rulers as agents of colonial administration."},
+{w:5,q:"The Mai was the title of the paramount ruler of:",c:"Kanem-Bornu Empire",x:["Sokoto Caliphate","Oyo Empire","Benin Kingdom"],e:"'Mai' was the title of the paramount ruler of the Kanem-Bornu Empire."},
+{w:5,q:"The Waziri in Hausa-Fulani political systems was:",c:"The chief minister who assisted the Emir or Sultan in governance",x:["A military commander","A religious judge","A tax collector"],e:"The Waziri (Vizier) was the most senior minister in the emirate system."},
+{w:5,q:"The Alkali (Qadi) in the emirate system was:",c:"A judge who administered Islamic law (Sharia)",x:["A tax collector","A military officer","A trade inspector"],e:"The Alkali was the Islamic judge who presided over courts applying Sharia law."},
+{w:5,q:"The Fulani Jihad transformed Northern Nigeria by:",c:"Replacing Hausa kings with Fulani emirs and establishing Islamic governance",x:["Establishing democracy","Expelling the Hausa people","Creating a federation of independent states"],e:"The Jihad overthrew Hausa Habe kings, replacing them with Fulani emirs loyal to the Sokoto Caliphate."},
+{w:5,q:"The warrant chief system failed because:",c:"It imposed artificial leaders with no traditional authority, causing resentment",x:["The British did not try hard enough","The chiefs were too powerful","The Igbo refused all governance"],e:"Warrant chiefs were appointed without traditional legitimacy, leading to abuse and the 1929 Aba Women's Riots."},
+{w:5,q:"The Iyase was:",c:"The most senior town chief in the Benin Kingdom",x:["The Oba's wife","A religious leader","A military general"],e:"The Iyase was the head of the Eghaevbo n'Ore (town chiefs) in Benin."},
+{w:5,q:"The political structure of the Tiv people was:",c:"A segmentary lineage system with no paramount chief",x:["A centralised monarchy","An emirate system","A democracy with elections"],e:"The Tiv had a segmentary lineage system without any centralised paramount authority."},
+{w:5,q:"The Ekpe society among the Efik functioned as:",c:"A government that regulated commerce, adjudicated disputes, and enforced decisions",x:["Only a religious organisation","Only a social club","A military organisation"],e:"The Ekpe society served as an effective government in Efik city-states."},
+{w:5,q:"A 'kingmaker' in Nigerian tradition is:",c:"A chief or council responsible for selecting and installing a new traditional ruler",x:["A person who becomes king","A colonial officer","A judicial figure"],e:"Kingmakers are senior chiefs who have authority to select and install a new traditional ruler."},
+{w:5,q:"The Oba of Benin 'goes to sleep' rather than 'dies' because:",c:"As a divine king, public acknowledgement of his death was forbidden",x:["The Oba was literally immortal","His death ended the kingdom","The Oba was replaced by election"],e:"Because the Oba was divine, stating he 'died' was blasphemy — the conventional phrase was he had 'gone to sleep.'"},
+{w:5,q:"Divine kingship means:",c:"The ruler is believed to be sacred, serving as a link between community and the spiritual world",x:["The ruler was elected by God","The ruler was a priest only","The ruler had no political power"],e:"Divine kingship holds that the ruler is sacred, serving as the living link between community and the ancestral world."},
+{w:5,q:"The House System in the Niger Delta refers to:",c:"A commercial and political unit led by a successful merchant incorporating slaves and clients",x:["A type of building","A colonial institution","A religious organisation"],e:"The House System combined commerce and politics in Niger Delta trading houses."},
+{w:5,q:"The three main groups in Benin's political hierarchy were:",c:"Town chiefs, Palace chiefs, and the Uzama (kingmakers)",x:["The Oba, warriors, and slaves","The Oba, priests, and merchants","Farmers, craftsmen, and warriors"],e:"Benin's hierarchy consisted of the Uzama, Palace chiefs (Eghaevbo n'Ogbe), and Town chiefs (Eghaevbo n'Ore)."},
+{w:5,q:"Gerontocracy in traditional Nigerian politics means:",c:"Rule by elders where age and seniority confer political authority",x:["Rule by the young","Rule by women","Rule by warriors"],e:"Gerontocracy is a system where political power rests with elders — age brought authority."},
+{w:5,q:"The Diokpa in Igbo society is:",c:"The eldest male in a lineage who holds authority and the Ofo staff",x:["A young warrior","A market leader","A colonial official"],e:"The Diokpa is the eldest male of an Igbo patrilineage, holding the Ofo staff."},
+{w:5,q:"The title 'Etsu' is used among:",c:"Nupe",x:["Yoruba","Igbo","Kanuri"],e:"'Etsu' is the title of the paramount ruler of the Nupe people in Niger State."},
+{w:5,q:"The title 'Eze' is used among:",c:"Igbo",x:["Yoruba","Hausa","Tiv"],e:"'Eze' is a common title for a traditional ruler among the Igbo people."},
+{w:5,q:"Royal regalia in Nigerian kingdoms was significant because:",c:"It validated the ruler's authority and divine right to rule",x:["It was only decorative","It had no political meaning","It was introduced by colonists"],e:"Royal regalia — crowns, staffs, beaded garments — served as sacred symbols validating the ruler's right to govern."},
+{w:5,q:"The Aro had political influence among the Igbo because:",c:"Their control of the Long Juju oracle gave their judgements divine authority",x:["Their military power only","Their alliance with the British","Their large population"],e:"The Aro dominated Igbo politics partly because their Arochukwu oracle was believed to speak for the supreme deity."},
+{w:5,q:"Women in pre-colonial Nigerian political systems:",c:"Some held formal political titles (Iyalode, Lolo) while most formal power was male-dominated",x:["Had equal power to men everywhere","Had no power at all anywhere","Only women ruled in matrilineal societies"],e:"Some societies had formal political roles for women but formal authority was predominantly male."},
+{w:5,q:"The Calabar city-states were governed by:",c:"Merchant-aristocracies organised through the House System",x:["Traditional divine kings","Islamic emirs","British-appointed chiefs"],e:"The Niger Delta city-states were governed by merchant-aristocracies through the House System."},
+// WEEK 6
+{w:6,q:"The indigene/settler dichotomy refers to:",c:"The distinction between original inhabitants of an area and those who migrated there",x:["A legal classification of Nigerian citizens","An ethnic conflict only","A colonial administrative system"],e:"The indigene/settler divide distinguishes between original inhabitants (indigenes) and migrants (settlers)."},
+{w:6,q:"Indigeneship in Nigeria is determined primarily by:",c:"Descent from the original or long-settled community of a local government area",x:["Place of birth","Years of residence","Voter registration"],e:"Indigeneship in Nigeria is based on ancestry — descent from the original community of an LGA."},
+{w:6,q:"Certificates of Indigeneship are issued by:",c:"The Local Government Area (LGA)",x:["The Federal Government","The State Governor","The traditional ruler alone"],e:"Certificates of Indigeneship are issued by Local Government Area (LGA) authorities."},
+{w:6,q:"The indigene/settler conflict is most acute in:",c:"The Middle Belt region (Plateau, Kaduna, Benue, Taraba states)",x:["Only Lagos","Only the Niger Delta","Only Northern Nigeria"],e:"The Middle Belt has been the zone of most intense indigene-settler conflict."},
+{w:6,q:"The Jos crisis is rooted in:",c:"Competing claims to indigeneship between Berom/Anaguta and Hausa-Fulani",x:["Only religious differences","Only economic competition","Purely personal conflicts"],e:"The Jos conflict involves disputes over who is indigenous — the Berom/Anaguta versus Hausa-Fulani communities."},
+{w:6,q:"The main consequence of being classified as a 'settler' in Nigeria is:",c:"Difficulty accessing political appointments, scholarships, land rights, and social services",x:["No practical consequence","Greater wealth","Better educational access"],e:"Settlers face structural disadvantages — no access to state scholarships, appointments, or political positions reserved for indigenes."},
+{w:6,q:"The Federal Character principle is designed to:",c:"Ensure equitable representation of all states and ethnic groups in federal appointments",x:["Benefit only major ethnic groups","Favour indigenes over settlers","Ignore ethnic diversity"],e:"Federal Character requires that federal appointments reflect the diversity of all states and ethnic groups."},
+{w:6,q:"The 'son of the soil' concept in Nigerian politics means:",c:"The belief that political offices and resources should go to indigenes, not settlers",x:["A farming technique","A land tenure system","A constitutional right"],e:"The 'son of the soil' doctrine holds that indigenes have a prior claim to political offices and resources."},
+{w:6,q:"The 1966 pogroms in Northern Nigeria resulted in:",c:"Mass migration of Igbo settlers back to the East and contributed to the Civil War",x:["The strengthening of Nigerian unity","Igbo integration into Northern society","Economic development of the North"],e:"The 1966 massacres of Igbo in the North triggered a mass exodus back to the Eastern Region."},
+{w:6,q:"How the indigene-settler divide affects higher education:",c:"Indigenes access state university admissions and scholarships at lower cut-off marks than settlers",x:["No effect on education","Settlers get preferential treatment","Federal universities have no such distinctions"],e:"State universities often give preferential access to indigenes, disadvantaging settlers."},
+{w:6,q:"The Willink Commission (1957) was set up to:",c:"Investigate minority fears of domination by majority groups",x:["Investigate the Civil War","Review oil revenue sharing","Address electoral fraud"],e:"The Willink Commission investigated fears that minorities would be dominated by majority ethnic groups."},
+{w:6,q:"State creation in Nigeria was partly motivated by:",c:"Addressing minority groups' fears of political marginalisation",x:["Only administrative efficiency","British colonial policy","Military preference"],e:"State creation was significantly driven by the desire to give minority ethnic groups their own political space."},
+{w:6,q:"The Zangon-Kataf crisis was about:",c:"Competing claims between Kataf indigenes and Hausa settlers over market control and land",x:["Only religious differences","Only Northern politics","Personal feuds"],e:"The Zangon-Kataf conflicts (1992) involved Kataf indigenes and Hausa settlers clashing over land and representation."},
+{w:6,q:"The national identity card does NOT resolve the indigene-settler problem because:",c:"It establishes citizenship but not indigeneship, which is determined locally",x:["It is not accepted by communities","Federal law overrides community rights","Traditional rulers issue the cards"],e:"Being a Nigerian citizen does not automatically grant indigene rights in any specific community."},
+{w:6,q:"Section 42 of Nigeria's 1999 Constitution addresses:",c:"Freedom from discrimination based on ethnic origin, sex, religion, or political opinion",x:["Federal Character principle","Secularism","Right to fair hearing"],e:"Section 42 prohibits discrimination against any citizen on grounds of ethnic group, place of origin, sex, or religion."},
+{w:6,q:"The Hausa-Fulani hegemony concept refers to:",c:"The political and cultural dominance of the Hausa-Fulani over other Northern Nigerian groups",x:["An economic system","A religious ruling","A colonial invention only"],e:"The concept describes the perceived political dominance of the Hausa-Fulani in Northern Nigeria over minority groups."},
+{w:6,q:"'Zoning' in Nigerian politics refers to:",c:"The informal arrangement of rotating political offices among different geopolitical zones",x:["A constitutional requirement","A state government policy","A colonial practice"],e:"Zoning is an informal political arrangement where major offices are rotated among geopolitical zones."},
+{w:6,q:"The Kano riot of 1953 was triggered by:",c:"The visit of Action Group politicians, leading to clashes between southerners and Hausa crowds",x:["A religious dispute","An economic crisis","A military revolt"],e:"The Kano riots reflected North-South tensions, erupting when Action Group politicians came north to campaign."},
+{w:6,q:"The autochthon concept refers to:",c:"The original or first-comer inhabitants of a territory",x:["A settler community","A colonial administrator","A recent migrant"],e:"Autochthon refers to those considered the original or earliest inhabitants of a territory."},
+{w:6,q:"The colonial divide and rule policy affected the indigene-settler problem by:",c:"Sharpening ethnic boundaries and creating political structures that privileged some groups",x:["Solving ethnic problems","Creating Nigerian unity","Having no lasting effects"],e:"The British policy sharpened ethnic boundaries and created administrative units privileging some groups."},
+{w:6,q:"Why is it difficult to resolve the indigene-settler problem through law alone?",c:"The problem is rooted in cultural identity, competition for scarce resources, and deep social attitudes",x:["Because Nigerian lawyers are incompetent","Because international law does not apply","Because the constitution is too old"],e:"Legal reforms alone are insufficient — the problem requires broader social, economic, and political solutions."},
+{w:6,q:"When government resources are allocated by indigeneship:",c:"Settlers are systematically excluded, generating resentment and conflict",x:["Settlers are given equal access","Settlers get preferential treatment","No one is disadvantaged"],e:"Allocating government resources by indigeneship systematically disadvantages settlers, creating material conflict."},
+{w:6,q:"The post-Civil War policy of rehabilitation, reconstruction, and reconciliation aimed to:",c:"Reintegrate former Biafrans as equal Nigerian citizens",x:["Punish the Igbo for secession","Create a separate Igbo region","Give settlers in the East more rights"],e:"Gowon's 3Rs policy aimed to bring former Biafra back into Nigeria as equal citizens."},
+{w:6,q:"The demand for resource control by Niger Delta states is a claim that:",c:"States from which petroleum is extracted should primarily benefit from that resource",x:["Foreign companies should own oil","The federal government alone should control oil","Niger Delta states should secede"],e:"Resource control argues that communities from which petroleum is extracted should have primary rights over revenue."},
+{w:6,q:"The Niger Delta communities' claim of resource ownership is based on:",c:"The argument that indigenes of oil-producing land are entitled to greater benefits",x:["That they discovered oil","That the federal government gave them ownership","That foreign companies agreed"],e:"Niger Delta communities argue that as indigenes of oil-producing lands, they have prior rights to resources."},
+{w:6,q:"The Igbo trading diaspora exemplifies:",c:"A settler community maintaining distinct ethnic identity while integrating economically",x:["Complete assimilation into host cultures","Violent conflict everywhere","Only recent migration"],e:"Igbo traders established communities across Nigeria from the late 19th century, maintaining Igbo identity."},
+{w:6,q:"Modern citizenship differs from traditional indigeneship because:",c:"Citizenship implies equal rights for all residents; indigeneship grants superior rights based on ancestry",x:["They are identical concepts","Citizenship is inferior to indigeneship","Only traditional communities use citizenship"],e:"Modern citizenship ideally grants equal rights regardless of origin, whereas indigeneship grants privilege based on ancestry."},
+{w:6,q:"Inter-ethnic marriage in Nigeria tends to:",c:"Complicate indigeneship status for children",x:["Solve the indigene-settler problem completely","Have no effect on indigeneship","Be encouraged equally by all communities"],e:"Children of inter-ethnic marriages face questions about their indigeneship identity."},
+// WEEK 7
+{w:7,q:"Social mobility refers to:",c:"The movement of individuals or groups between different positions in a social hierarchy",x:["Physical movement between cities","Economic migration","Political leadership change"],e:"Social mobility is the movement of individuals or groups from one social position to another."},
+{w:7,q:"Vertical social mobility refers to:",c:"Movement up or down the social hierarchy",x:["Moving from one city to another","Movement between occupations of equal status","Cultural change"],e:"Vertical mobility involves a change in social status — moving up (upward) or down (downward)."},
+{w:7,q:"Horizontal social mobility refers to:",c:"Moving from one position to another of equal status without changing rank",x:["Moving to a higher social position","Moving to a lower social class","Geographic movement only"],e:"Horizontal mobility involves changing social position without a significant change in rank."},
+{w:7,q:"The title-taking system in Igbo society promoted social mobility because:",c:"It allowed men of any background to achieve high status through demonstrated wealth",x:["Only royal families could take titles","Titles were hereditary only","Titles had no social significance"],e:"Igbo title societies allowed men who accumulated wealth to gain prestige regardless of birth."},
+{w:7,q:"Western education was the primary vehicle for social mobility in colonial Nigeria because:",c:"It opened access to government jobs, professional careers, and higher income",x:["It had no effect on social status","Only traditional education mattered","It was only for chiefs' children"],e:"Western education provided access to clerical jobs, the professions, and leadership roles."},
+{w:7,q:"'Ascribed status' refers to:",c:"Social position assigned at birth by family, ethnicity, or caste",x:["Status earned through personal achievement","Economic status","Educational achievement"],e:"Ascribed status is a social position assigned to a person at birth over which they have no control."},
+{w:7,q:"'Achieved status' refers to:",c:"Social position attained through personal effort, talent, or achievement",x:["Status given at birth","Inherited wealth","Royal lineage"],e:"Achieved status is a social position that a person earns through their own efforts."},
+{w:7,q:"The osu caste system among the Igbo represents:",c:"A form of ascribed low status that limited social mobility for designated osu",x:["A meritocratic system","A voluntary association","A colonial creation"],e:"The osu were people dedicated to deities whose descendants faced severe social discrimination."},
+{w:7,q:"Social stratification refers to:",c:"The hierarchical arrangement of individuals and groups based on status, wealth, or power",x:["Random social organisation","Political governance only","Economic production only"],e:"Social stratification is the structured hierarchical ranking of people into layers."},
+{w:7,q:"Karl Marx is most associated with:",c:"The theory of class and social stratification based on economic position",x:["Functionalist theory","Cultural theory","Modernisation theory"],e:"Marx argued that economic class position is the primary determinant of life chances and social mobility."},
+{w:7,q:"Max Weber's view of social stratification included three dimensions:",c:"Class (economic), status (prestige), and party (political power)",x:["Race, religion, and gender","Age, gender, and education","Wealth, beauty, and intelligence"],e:"Max Weber proposed three dimensions: class (wealth), status (prestige), and party (political power)."},
+{w:7,q:"Rural-urban migration in Nigeria is primarily driven by:",c:"The search for better economic opportunities, education, and social advancement",x:["Love of city life only","Government policy only","Climate change only"],e:"Rural-urban migration is driven by people moving to cities seeking jobs, education, and upward social mobility."},
+{w:7,q:"Intergenerational social mobility refers to:",c:"Changes in social status between parents and their children",x:["Mobility within one person's lifetime","Geographic movement of whole families","Ethnic group mobility"],e:"Intergenerational mobility measures changes in social status across generations."},
+{w:7,q:"Intragenerational social mobility refers to:",c:"Changes in social status within one person's own lifetime",x:["Changes across generations","Migration between cities","Changes in one's religion"],e:"Intragenerational mobility measures changes in social position over a single person's lifetime."},
+{w:7,q:"Social capital refers to:",c:"The networks, relationships, and connections that provide individuals with resources and opportunities",x:["Financial capital","Land ownership","Physical infrastructure"],e:"Social capital refers to the value derived from social networks and relationships."},
+{w:7,q:"The patron-client relationship affects social mobility by:",c:"Allowing clients to advance socially through their patron's influence in exchange for loyalty",x:["Creating equal opportunity for all","Eliminating social hierarchies","Reducing the role of family"],e:"Patron-client networks allow patrons to sponsor clients, helping them access jobs and opportunities."},
+{w:7,q:"The 'big man' phenomenon in Nigerian society refers to:",c:"Wealthy and politically connected individuals who use resources to build client networks",x:["Only government ministers","Foreign investors","Community elders only"],e:"The 'big man' is a powerful figure who maintains social prominence by distributing patronage."},
+{w:7,q:"The impact of oil wealth on social mobility in Nigeria has been:",c:"Contradictory — creating extreme wealth for a few while deepening poverty for the majority",x:["Universally positive","Unimportant","Equally distributed"],e:"Oil wealth generated enormous wealth concentrated in a small elite, deepening inequality."},
+{w:7,q:"A 'closed society' in terms of social mobility is one where:",c:"Social positions are rigidly fixed by birth and movement between classes is very difficult",x:["There are no social classes","Everyone is equal","Social classes are fluid"],e:"A closed stratification system makes it very difficult to change one's social position."},
+{w:7,q:"An 'open society' in terms of social mobility is one where:",c:"Individual achievement can change social position relatively freely, regardless of birth",x:["No social classes exist","Everyone has equal wealth","Birth determines all outcomes"],e:"An open stratification system allows individuals to change their social position through achievement."},
+{w:7,q:"The 'glass ceiling' concept applied to Nigerian women means:",c:"Invisible barriers that limit women's advancement to top professional and political positions",x:["Physical workplace barriers","Educational limitations","Cultural dress codes"],e:"The glass ceiling refers to invisible barriers preventing women from advancing beyond a certain level."},
+{w:7,q:"The functionalist theory of social stratification argues that:",c:"Inequality is necessary to motivate talented people to fill important social positions",x:["All inequality is unjust","Classes will eventually disappear","Economic factors alone explain stratification"],e:"The functionalist view holds that inequality is functional — higher rewards motivate talented individuals."},
+{w:7,q:"How did the petroleum economy affect class formation in Nigeria?",c:"It created a small wealthy petroleum bourgeoisie connected to the state",x:["It distributed wealth equally","It eliminated social classes","It promoted agricultural development"],e:"Oil revenue created a class of politically-connected elites who captured petroleum wealth."},
+{w:7,q:"The traditional route to high status among the Hausa was:",c:"Birth into the sarauta class, Islamic scholarship, or successful trade",x:["Only military achievement","Only farming success","Only modern education"],e:"In Hausa society, high status came from birth into nobility, becoming an Islamic scholar, or accumulating wealth."},
+{w:7,q:"'Relative deprivation' means:",c:"The feeling of being disadvantaged relative to others in the same society",x:["Absolute poverty","Physical deprivation","Deprivation of civil rights"],e:"Relative deprivation is the subjective feeling of being worse off relative to comparable others."},
+{w:7,q:"Social exclusion refers to:",c:"The process by which certain groups are denied participation in mainstream social, economic, and political life",x:["Choosing to live in isolation","Academic failure","Religious abstinence"],e:"Social exclusion occurs when individuals or groups are systematically denied full participation in society."},
+{w:7,q:"Diaspora remittances promote social mobility by:",c:"Funding education, business investment, and housing for family members",x:["Only providing consumption goods","Having no economic effect","Only funding religious activities"],e:"Diaspora remittances fund children's education, start businesses, and improve housing."},
+{w:7,q:"The Esusu cooperative promotes social mobility by:",c:"Pooling resources to help members fund businesses and social events",x:["Creating dependency","Limiting individual ambition","Reducing savings"],e:"Cooperative societies pool members' resources to give each member periodic access to capital."},
+{w:7,q:"Which best summarises social mobility in contemporary Nigeria?",c:"Limited by ethnic discrimination and corruption, but expanded by education and entrepreneurship",x:["Non-existent","Only determined by birth","Perfectly meritocratic"],e:"Contemporary Nigerian social mobility is shaped by competing forces — expanding opportunity versus structural barriers."},
+{w:7,q:"'Meritocracy' means:",c:"A system where advancement is based on talent and effort rather than connections or corruption",x:["Only academic achievement","Ethnic preference in appointments","Wealth determines all outcomes"],e:"Meritocracy means access to jobs and positions should be based on individual competence and effort."},
+{w:7,q:"'Status symbols' in Nigerian society show that:",c:"Conspicuous consumption is used to signal and claim high social status",x:["Nigerians are materialistic without cause","Status symbols are unimportant","Only wealth matters, not display"],e:"In Nigeria's status-conscious society, expensive cars, designer goods, and lavish parties signal wealth."},
+{w:7,q:"The church and mosque promoted social mobility by:",c:"Providing education, social networks, and moral legitimacy enabling members to rise socially",x:["They had no effect","They only reinforced existing hierarchies","They were purely spiritual organisations"],e:"Religious institutions provided education, social networks, and moral legitimacy as channels for social mobility."},
+];
+
+// State
+let activeRaw=[];let activeQ=[];let answers={};let currentPage=0;let filterWeek='all';
+const QPP=10;
+
+function setFilter(w,btn){filterWeek=w;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function buildQ(raw){
+  const opts=shuffle([raw.c,...raw.x]);
+  return{w:raw.w,q:raw.q,o:opts,a:opts.indexOf(raw.c),e:raw.e,_raw:raw};
+}
+
+function startQuiz(){
+  const pool=filterWeek==='all'?RAW:RAW.filter(r=>r.w===filterWeek);
+  activeRaw=shuffle(pool);
+  activeQ=activeRaw.map(buildQ);
+  answers={};currentPage=0;
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('scoreScreen').classList.remove('show');
+  document.getElementById('metaRow').style.display='flex';
+  document.getElementById('navBar').style.display='flex';
+  document.getElementById('qTotal').textContent=activeQ.length;
+  document.getElementById('totalPages').textContent=Math.ceil(activeQ.length/QPP);
+  renderPage();
+}
+
+function renderPage(){
+  const start=currentPage*QPP,end=Math.min(start+QPP,activeQ.length),pageQs=activeQ.slice(start,end);
+  document.getElementById('pageNum').textContent=currentPage+1;
+  document.getElementById('totalPages').textContent=Math.ceil(activeQ.length/QPP);
+  let score=0;for(const k in answers)if(answers[k].correct)score++;
+  document.getElementById('qCounter').textContent=start+1;
+  document.getElementById('scoreCounter').textContent=score;
+  document.getElementById('progressBar').style.width=(Object.keys(answers).length/activeQ.length*100)+'%';
+  document.getElementById('weekBadge').textContent=pageQs[0]?`Week ${pageQs[0].w}`:'';
+  const area=document.getElementById('quizArea');
+  area.style.display='block';
+  area.innerHTML=pageQs.map((q,i)=>{
+    const qi=start+i,ans=answers[qi];
+    return`<div class="question-card" id="qcard-${qi}">
+      <div class="q-number">Q${qi+1} · <span class="week-badge">Week ${q.w}</span></div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${q.o.map((opt,oi)=>{
+        let cls='option';
+        if(ans){cls+=' disabled';if(oi===q.a)cls+=' correct';else if(oi===ans.chosen)cls+=' wrong';}
+        return`<div class="${cls}" onclick="pick(${qi},${oi})"><span class="opt-letter">${['A','B','C','D'][oi]}.</span><span>${opt}</span></div>`;
+      }).join('')}</div>
+      <div class="explanation ${ans?'show':''}" id="exp-${qi}"><b>💡 Explanation:</b> ${q.e}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('prevBtn').disabled=currentPage===0;
+  const isLast=(currentPage+1)>=Math.ceil(activeQ.length/QPP);
+  const nb=document.getElementById('nextBtn');
+  nb.textContent=isLast?'Finish 🏁':'Next →';
+  nb.onclick=isLast?showScore:()=>changePage(1);
+}
+
+function pick(qi,oi){
+  if(answers[qi])return;
+  const q=activeQ[qi];
+  answers[qi]={chosen:oi,correct:oi===q.a};
+  const card=document.getElementById('qcard-'+qi);
+  card.querySelectorAll('.option').forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.a)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+  });
+  document.getElementById('exp-'+qi).classList.add('show');
+  let s=0;for(const k in answers)if(answers[k].correct)s++;
+  document.getElementById('scoreCounter').textContent=s;
+  document.getElementById('progressBar').style.width=(Object.keys(answers).length/activeQ.length*100)+'%';
+}
+
+function changePage(d){currentPage+=d;window.scrollTo(0,0);renderPage();}
+
+function showScore(){
+  const total=activeQ.length;let correct=0,attempted=0;
+  const ws={};for(let i=1;i<=7;i++)ws[i]={c:0,t:0};
+  activeQ.forEach((q,i)=>{ws[q.w].t++;if(answers[i]){attempted++;if(answers[i].correct){correct++;ws[q.w].c++;}}});
+  const pct=Math.round(correct/total*100),grade=pct>=70?'A':pct>=60?'B':pct>=50?'C':pct>=45?'D':'F';
+  document.getElementById('scorePct').textContent=pct+'%';
+  document.getElementById('gradeBadge').textContent=grade;
+  document.getElementById('gradeBadge').style.color=pct>=70?'#22c55e':pct>=50?'#eab308':'#ef4444';
+  document.getElementById('correctCount').textContent=correct;
+  document.getElementById('wrongCount').textContent=attempted-correct;
+  document.getElementById('totalCount').textContent=attempted;
+  document.getElementById('skippedCount').textContent=total-attempted;
+  const wn={1:'Wk1: People',2:'Wk2: History',3:'Wk3: Pre-Colonial',4:'Wk4: Economics',5:'Wk5: Politics',6:'Wk6: Indigene',7:'Wk7: Mobility'};
+  document.getElementById('weekBreakdown').innerHTML='<h3>Performance by Week</h3>'+
+    Object.entries(ws).map(([w,s])=>{if(!s.t)return'';const p=Math.round(s.c/s.t*100);
+      return`<div class="wb-row"><span class="wb-label">${wn[w]}</span><div class="wb-bar-wrap"><div class="wb-bar" style="width:${p}%"></div></div><span class="wb-pct">${p}%</span></div>`;}).join('');
+  document.getElementById('quizArea').style.display='none';
+  document.getElementById('metaRow').style.display='none';
+  document.getElementById('navBar').style.display='none';
+  document.getElementById('scoreScreen').classList.add('show');
+  window.scrollTo(0,0);
+}
+
+function restartQuiz(){answers={};currentPage=0;document.getElementById('scoreScreen').classList.remove('show');startQuiz();}
+
+function reviewWrong(){
+  const wrong=activeQ.filter((_,i)=>answers[i]&&!answers[i].correct);
+  if(!wrong.length){alert('🔥 Perfect! No wrong answers!');return;}
+  activeQ=wrong.map(q=>buildQ(q._raw));
+  answers={};currentPage=0;
+  document.getElementById('scoreScreen').classList.remove('show');
+  document.getElementById('metaRow').style.display='flex';
+  document.getElementById('navBar').style.display='flex';
+  document.getElementById('qTotal').textContent=activeQ.length;
+  renderPage();
+}
+</script>
+</body>
+</html>
