@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANA 217 — Gross Anatomy of the Upper Limb | INDIGENE</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://indigene-console.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<style>
+  :root{
+    --bg:#0d0503; --ember:#ff6a1a; --gold:#ffb347; --text:#f5e9df;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; background:var(--bg); color:var(--text);
+    font-family:'Exo 2', sans-serif; display:flex; flex-direction:column; align-items:center;
+  }
+  header{
+    width:100%; padding:14px 16px; text-align:center;
+    background:linear-gradient(180deg,#1a0a03,#0d0503);
+    border-bottom:1px solid #331a0a;
+  }
+  header h1{
+    font-family:'Orbitron', sans-serif; font-size:1rem; margin:0;
+    color:var(--gold); letter-spacing:1px;
+  }
+  #pdf-container{
+    width:100%; max-width:900px; flex:1; padding:8px;
+  }
+  #pdf-container iframe, #pdf-container canvas{
+    width:100%; border:none; border-radius:6px;
+  }
+  .lock-screen{
+    max-width:420px; margin:60px auto; text-align:center; padding:24px;
+    background:#1a0a03; border:1px solid var(--ember); border-radius:10px;
+  }
+  .lock-screen h2{ color:var(--ember); font-family:'Orbitron', sans-serif; }
+  .lock-screen p{ color:#ddc; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ANA 217 — Gross Anatomy of the Upper Limb · INDIGENE</h1>
+</header>
+
+<div id="pdf-container">
+  <p style="text-align:center;color:#998;">Loading document…</p>
+</div>
+
+<script type="module" src="../pdf-lock.js" data-pdf="pdfs/ana217-upper-limb.pdf" data-id="ana217-upper-limb"></script>
+
+</body>
+</html>
