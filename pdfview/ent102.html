@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ENT102 / GST106 – Entrepreneurship | INDIGENE Study Console</title>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0d0705">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#0d0705;
+    color:#e8e4dc;
+    font-family:'Exo 2', Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  header {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    background:#0d0705;
+    border-bottom:2px solid #e8720c;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  header a.back {
+    color:#f5b800;
+    text-decoration:none;
+    font-size:22px;
+    line-height:1;
+    padding:4px 8px;
+    border-radius:6px;
+  }
+  header a.back:active { background:rgba(232,114,12,0.15); }
+  header h1 {
+    font-family:'Orbitron', Arial, sans-serif;
+    font-size:15px;
+    color:#e8e4dc;
+    font-weight:600;
+    letter-spacing:0.3px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  #pdf-container {
+    flex:1;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding:8px;
+    overflow-y:auto;
+  }
+  .indigene-loading {
+    margin:auto;
+    text-align:center;
+    color:#c9c2b6;
+    font-family:'Orbitron', Arial, sans-serif;
+    font-size:13px;
+    letter-spacing:1px;
+  }
+  .indigene-loading .spinner {
+    width:34px; height:34px;
+    border:3px solid #3a2413;
+    border-top:3px solid #e8720c;
+    border-radius:50%;
+    margin:0 auto 14px;
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="../index.html" aria-label="Back to home">&#8592;</a>
+  <h1>ENT102 / GST106 – Entrepreneurship</h1>
+</header>
+
+<div id="pdf-container">
+  <div class="indigene-loading">
+    <div class="spinner"></div>
+    Loading document&hellip;
+  </div>
+</div>
+
+<script type="module" src="../pdf-lock.js" data-pdf="pdfs/ent102.pdf" data-id="ent102"></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://indigene-console.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
