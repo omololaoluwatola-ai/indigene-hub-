@@ -313,9 +313,15 @@ let correctCount = 0;
 let incorrectCount = 0;
 let wrongAnswers = [];
 
-function loadQuestion() {
+async function loadQuestion() {
   if (current >= order.length) {
     showFinal();
+    return;
+  }
+  const { checkCbtAccess, renderCbtLockScreen } = await import('../cbt-lock.js');
+  const access = await checkCbtAccess('ana203-epithelial-connective');
+  if (!access.allowed) {
+    renderCbtLockScreen(document.getElementById('quizCard'), access);
     return;
   }
   const q = QUESTIONS[order[current]];
@@ -343,9 +349,11 @@ function selectAnswer(val) {
   document.getElementById('lockBtn').disabled = false;
 }
 
-function lockAnswer() {
+async function lockAnswer() {
   if (selected === null || locked) return;
   locked = true;
+  const { recordCbtQuestionUsed } = await import('../cbt-lock.js');
+  await recordCbtQuestionUsed('ana203-epithelial-connective');
   const q = QUESTIONS[order[current]];
   const isCorrect = selected === q.a;
   document.getElementById('trueBtn').disabled = true;
