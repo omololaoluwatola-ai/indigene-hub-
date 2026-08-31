@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Go Premium — INDIGENE Study Console</title>
+<meta name="theme-color" content="#0d0704">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<style>
+  :root {
+    --bg: #0d0704;
+    --card: #17100a;
+    --fire1: #ff6a00;
+    --fire2: #ffb300;
+    --fire3: #ff2e00;
+    --text: #fdf1e6;
+    --muted: #b89a80;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 50% 15%, rgba(255,106,0,0.18) 0%, transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(255,46,0,0.12) 0%, transparent 60%),
+      var(--bg);
+    font-family: 'Exo 2', sans-serif;
+    color: var(--text);
+    padding: 24px 20px;
+  }
+  .backlink {
+    align-self: flex-start;
+    color: var(--fire2);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .hero { text-align: center; margin-bottom: 26px; position: relative; }
+  .hero-glow {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,170,50,0.35) 0%, rgba(255,120,0,0.12) 45%, transparent 75%);
+    filter: blur(6px);
+    z-index: -1;
+  }
+  .coin {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 38% 28%, #fffaf0 0%, #ffe9a8 18%, #ffcf5c 45%, #ffab2e 72%, #f08a00 100%);
+    box-shadow:
+      0 0 30px rgba(255,180,60,0.55),
+      0 0 60px rgba(255,130,0,0.3),
+      inset 0 3px 6px rgba(255,255,255,0.5),
+      inset 0 -8px 12px rgba(140,60,0,0.4);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: #2a1400;
+  }
+  .wordmark {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    letter-spacing: 2px;
+    line-height: 1;
+    background: linear-gradient(180deg, #ffe27a 0%, #ffb020 25%, #ff7a00 55%, #ff3d00 80%, #d92600 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 14px rgba(255,140,0,0.55), 0 0 32px rgba(255,90,0,0.4);
+  }
+  .tagline {
+    margin-top: 4px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7d6650;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(180deg, #1c130b 0%, #140d07 100%);
+    border: 1px solid rgba(255,140,0,0.18);
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,180,80,0.06);
+    margin-bottom: 16px;
+  }
+  .plan-name {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fire2);
+    margin-bottom: 4px;
+  }
+  .plan-price {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .plan-price span { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .plan-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  ul.perks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px 0;
+  }
+  ul.perks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  ul.perks li .tick {
+    color: var(--fire2);
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Exo 2', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--fire3), var(--fire1), var(--fire2));
+    color: #1a0a00;
+    box-shadow: 0 4px 18px rgba(255,90,0,0.35);
+  }
+  .btn-primary:disabled { opacity: 0.6; cursor: default; }
+
+  #msg {
+    font-size: 13px;
+    text-align: center;
+    min-height: 18px;
+    margin-top: 12px;
+  }
+  #msg.error { color: #ff6b5c; }
+  #msg.success { color: #ffcf5c; }
+  #msg.info { color: var(--muted); }
+
+  .status-card {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    background: linear-gradient(180deg, #1c130b 0%, #140d07 100%);
+    border: 1px solid rgba(255,140,0,0.18);
+    border-radius: 18px;
+    padding: 22px;
+    display: none;
+  }
+  .status-card.show { display: block; }
+  .status-card .until { color: var(--fire2); font-weight: 700; }
+</style>
+</head>
+<body>
+  <a class="backlink" href="index.html">&larr; Back to INDIGENE Hub</a>
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="coin">A+</div>
+    <div class="wordmark">INDIGENE</div>
+    <div class="tagline">Go Premium</div>
+  </div>
+
+  <div id="alreadyPremium" class="status-card">
+    <div style="font-size:36px;margin-bottom:8px;">🔥</div>
+    <div style="font-weight:700;color:var(--fire2);margin-bottom:6px;">You're already Premium</div>
+    <div style="color:var(--muted);font-size:13px;">Active until <span class="until" id="untilDate"></span></div>
+  </div>
+
+  <div id="planCard" class="card">
+    <div class="plan-name">INDIGENE PREMIUM</div>
+    <div class="plan-price">₦2,000 <span>/ month</span></div>
+    <div class="plan-sub">Cancel anytime. No auto-renewal — you'll pay again manually next month.</div>
+
+    <ul class="perks">
+      <li><span class="tick">✓</span> Every PDF, every course — no 24hr limit</li>
+      <li><span class="tick">✓</span> Unlimited CBT questions — no 20/day cap</li>
+      <li><span class="tick">✓</span> Full access for 30 days from payment</li>
+    </ul>
+
+    <div id="msg"></div>
+    <button id="payBtn" class="btn-primary">Log in to continue</button>
+  </div>
+
+  <script type="module">
+    import { auth, db, watchAuthState } from "./auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    const msg = document.getElementById("msg");
+    const payBtn = document.getElementById("payBtn");
+    const planCard = document.getElementById("planCard");
+    const alreadyPremium = document.getElementById("alreadyPremium");
+    const untilDate = document.getElementById("untilDate");
+
+    function showMsg(text, type) {
+      msg.textContent = text;
+      msg.className = type;
+    }
+
+    // ---- FILL THIS IN when you have your Paystack account ----
+    const PAYSTACK_PUBLIC_KEY = "pk_live_PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE";
+    // The Cloud Function URL that verifies payment and unlocks the user —
+    // fill in once you've deployed verifyPayment (see cloud-functions/index.js)
+    const VERIFY_FUNCTION_URL = "https://REGION-PROJECTID.cloudfunctions.net/verifyPayment";
+    const AMOUNT_KOBO = 200000; // ₦2,000 in kobo (Paystack uses kobo, not naira)
+    // ------------------------------------------------------------
+
+    let currentUser = null;
+
+    watchAuthState(async (user) => {
+      currentUser = user;
+      if (!user) {
+        payBtn.textContent = "Log in to continue";
+        payBtn.onclick = () => (window.location.href = "login.html");
+        return;
+      }
+
+      // Check if already premium
+      const snap = await getDoc(doc(db, "users", user.uid));
+      const data = snap.exists() ? snap.data() : {};
+      const isPremium = data.plan === "premium" &&
+        data.premiumUntil && data.premiumUntil.toMillis() > Date.now();
+
+      if (isPremium) {
+        planCard.style.display = "none";
+        alreadyPremium.classList.add("show");
+        const d = data.premiumUntil.toDate();
+        untilDate.textContent = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+        return;
+      }
+
+      payBtn.textContent = `Pay ₦2,000 — Unlock Premium`;
+      payBtn.onclick = startPayment;
+    });
+
+    function startPayment() {
+      if (!currentUser) return;
+      if (PAYSTACK_PUBLIC_KEY.includes("PASTE_YOUR")) {
+        showMsg("Payments aren't set up yet — check back soon.", "error");
+        return;
+      }
+
+      payBtn.disabled = true;
+      payBtn.textContent = "Opening payment...";
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: currentUser.email,
+        amount: AMOUNT_KOBO,
+        currency: "NGN",
+        ref: `indigene_${currentUser.uid}_${Date.now()}`,
+        metadata: { uid: currentUser.uid },
+        callback: function (response) {
+          showMsg("Payment received — verifying...", "info");
+          verifyAndUnlock(response.reference);
+        },
+        onClose: function () {
+          payBtn.disabled = false;
+          payBtn.textContent = "Pay ₦2,000 — Unlock Premium";
+          showMsg("Payment window closed.", "error");
+        },
+      });
+      handler.openIframe();
+    }
+
+    async function verifyAndUnlock(reference) {
+      try {
+        const idToken = await currentUser.getIdToken();
+        const res = await fetch(VERIFY_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${idToken}`,
+          },
+          body: JSON.stringify({ reference }),
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          showMsg("You're Premium! Redirecting...", "success");
+          setTimeout(() => (window.location.href = "index.html"), 1200);
+        } else {
+          showMsg(result.message || "Verification failed. Contact support with your payment reference: " + reference, "error");
+          payBtn.disabled = false;
+          payBtn.textContent = "Pay ₦2,000 — Unlock Premium";
+        }
+      } catch (e) {
+        showMsg("Couldn't verify payment right now. Save this reference and contact support: " + reference, "error");
+        payBtn.disabled = false;
+        payBtn.textContent = "Pay ₦2,000 — Unlock Premium";
+      }
+    }
+  </script>
+</body>
+</html>
