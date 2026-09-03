@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INDIGENE | ANA203 CBT — The Cell, Transport & Cell Division</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0805;
+    --panel: #16110a;
+    --panel2: #1f1610;
+    --ember: #ff6a1a;
+    --gold: #ffb703;
+    --red: #ff3b3b;
+    --green: #2ecc71;
+    --text: #f2e9dd;
+    --muted: #b9a98f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: radial-gradient(circle at 50% -10%, #2a1608 0%, #0a0805 60%);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+  header {
+    text-align: center;
+    padding: 28px 16px 18px;
+    border-bottom: 2px solid #2e1a08;
+    background: linear-gradient(180deg, #1a0f05, transparent);
+  }
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(255,106,26,0.3);
+  }
+  header p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 18px 14px;
+  }
+  .card {
+    background: linear-gradient(160deg, var(--panel), var(--panel2));
+    border: 1px solid #3a2410;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #2a1a0c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    transition: width 0.3s ease;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .qnum {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .statement {
+    font-size: 1.08rem;
+    line-height: 1.5;
+    margin: 10px 0 22px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .tf-btn {
+    flex: 1;
+    padding: 16px 0;
+    border-radius: 12px;
+    border: 2px solid #3a2410;
+    background: #1a1108;
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tf-btn.selected-true {
+    border-color: var(--green);
+    background: rgba(46,204,113,0.15);
+    color: var(--green);
+  }
+  .tf-btn.selected-false {
+    border-color: var(--red);
+    background: rgba(255,59,59,0.15);
+    color: var(--red);
+  }
+  .tf-btn:active { transform: scale(0.97); }
+  .lock-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    color: #1a0f00;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .lock-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .feedback {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: none;
+  }
+  .feedback.correct {
+    background: rgba(46,204,113,0.12);
+    border: 1px solid var(--green);
+    color: #c9f7d9;
+    display: block;
+  }
+  .feedback.incorrect {
+    background: rgba(255,59,59,0.12);
+    border: 1px solid var(--red);
+    color: #ffd6d6;
+    display: block;
+  }
+  .feedback .label {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .next-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    display: none;
+  }
+  .score-panel {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 18px;
+    font-family: 'Orbitron', sans-serif;
+  }
+  .score-panel div { flex: 1; }
+  .score-panel .num { font-size: 1.3rem; font-weight: 700; }
+  .score-panel .num.correct { color: var(--green); }
+  .score-panel .num.incorrect { color: var(--red); }
+  .score-panel .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
+
+  .final-screen { display: none; text-align: center; }
+  .final-screen h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--gold);
+    font-size: 1.6rem;
+  }
+  .final-score {
+    font-size: 3rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 14px 0;
+  }
+  .review-item {
+    text-align: left;
+    background: #150e07;
+    border-left: 3px solid var(--red);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+  }
+  .review-item.correct-item { border-left-color: var(--green); }
+  .review-item .q { font-weight: 600; margin-bottom: 6px; }
+  .review-item .ans { color: var(--muted); }
+  .action-btn {
+    padding: 12px 20px;
+    margin: 6px;
+    border-radius: 10px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .action-btn.primary {
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    color: #1a0f00;
+    border: none;
+  }
+  #reviewList { margin-top: 20px; display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔥 INDIGENE CBT</h1>
+  <p>ANA203 — The Cell · Membrane Transport · Cell Division (Mitosis &amp; Meiosis)</p>
+</header>
+
+<div class="container">
+  <div class="card" id="quizCard">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="meta-row">
+      <span class="qnum" id="qCounter">Question 1 / 250</span>
+      <span id="liveScore">✅ 0 &nbsp; ❌ 0</span>
+    </div>
+    <div class="statement" id="statementText">Loading...</div>
+    <div class="btn-row">
+      <button class="tf-btn" id="trueBtn" onclick="selectAnswer(true)">TRUE</button>
+      <button class="tf-btn" id="falseBtn" onclick="selectAnswer(false)">FALSE</button>
+    </div>
+    <button class="lock-btn" id="lockBtn" onclick="lockAnswer()" disabled>LOCK IN ANSWER</button>
+    <div class="feedback" id="feedbackBox">
+      <span class="label" id="feedbackLabel"></span>
+      <span id="feedbackText"></span>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">NEXT QUESTION →</button>
+  </div>
+
+  <div class="card final-screen" id="finalCard">
+    <h2>🔥 SESSION COMPLETE</h2>
+    <div class="final-score" id="finalScoreText">0%</div>
+    <div class="score-panel">
+      <div><div class="num correct" id="finalCorrect">0</div><div class="lbl">Correct</div></div>
+      <div><div class="num incorrect" id="finalIncorrect">0</div><div class="lbl">Incorrect</div></div>
+      <div><div class="num" id="finalTotal">250</div><div class="lbl">Total</div></div>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="action-btn primary" onclick="restartQuiz()">RETRY ALL</button>
+      <button class="action-btn" onclick="toggleReview()">REVIEW WRONG ANSWERS</button>
+    </div>
+    <div id="reviewList"></div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [{"s": "Epithelial tissue covers body surfaces and lines cavities and organs.", "a": true, "e": "Correct \u2014 this is the general role of epithelium."}, {"s": "Epithelial cells are tightly packed with minimal extracellular matrix between them.", "a": true, "e": "Correct \u2014 this distinguishes epithelium from connective tissue."}, {"s": "Epithelial tissue is generally vascular, containing many blood vessels within the tissue itself.", "a": false, "e": "Epithelial tissue is AVASCULAR \u2014 nourished by diffusion from underlying connective tissue."}, {"s": "Epithelial tissue receives nutrients by diffusion from underlying connective tissue.", "a": true, "e": "Correct \u2014 since epithelium itself has no blood vessels."}, {"s": "The basement membrane anchors epithelial tissue to underlying connective tissue.", "a": true, "e": "Correct \u2014 this is the basement membrane's main role."}, {"s": "The basement membrane is composed of a basal lamina and a reticular lamina.", "a": true, "e": "Correct \u2014 these two layers make up the basement membrane."}, {"s": "Epithelial tissue has a free (apical) surface exposed to a cavity, lumen, or the outside environment.", "a": true, "e": "Correct \u2014 this defines epithelial polarity."}, {"s": "Epithelial cells lack polarity between their apical and basal surfaces.", "a": false, "e": "Epithelial cells ARE polarized, with distinct apical and basal surfaces."}, {"s": "Epithelial tissue has a high capacity for regeneration/mitosis.", "a": true, "e": "Correct \u2014 epithelium regenerates rapidly, e.g., skin and gut lining."}, {"s": "Epithelial tissue is richly innervated with nerve endings.", "a": true, "e": "Correct \u2014 unlike blood vessels, nerves do supply epithelium."}, {"s": "Simple epithelium consists of a single layer of cells.", "a": true, "e": "Correct \u2014 'simple' means one layer."}, {"s": "Stratified epithelium consists of multiple layers of cells.", "a": true, "e": "Correct \u2014 'stratified' means multiple layers."}, {"s": "Pseudostratified epithelium appears layered but is actually a single layer of cells.", "a": true, "e": "Correct \u2014 a classic histology trap fact."}, {"s": "In pseudostratified epithelium, every cell touches the basement membrane.", "a": true, "e": "Correct \u2014 this is why it's technically 'simple', despite appearing layered."}, {"s": "In pseudostratified epithelium, every cell reaches the free surface.", "a": false, "e": "Not every cell reaches the apical surface \u2014 only some do, giving the false appearance of layers."}, {"s": "Squamous cells are flat and scale-like in shape.", "a": true, "e": "Correct \u2014 this is the definition of squamous cell shape."}, {"s": "Cuboidal cells are roughly as tall as they are wide.", "a": true, "e": "Correct \u2014 this defines cuboidal shape."}, {"s": "Columnar cells are taller than they are wide.", "a": true, "e": "Correct \u2014 this defines columnar shape."}, {"s": "Simple squamous epithelium is found lining the alveoli of the lungs.", "a": true, "e": "Correct \u2014 thin cells allow efficient gas exchange."}, {"s": "Simple squamous epithelium is ideal for diffusion and filtration due to its thinness.", "a": true, "e": "Correct \u2014 minimal thickness speeds diffusion."}, {"s": "Simple squamous epithelium lining blood vessels is called endothelium.", "a": true, "e": "Correct \u2014 endothelium is a specific term for vascular lining."}, {"s": "Simple squamous epithelium lining body cavities (e.g., pleura, peritoneum) is called mesothelium.", "a": true, "e": "Correct \u2014 mesothelium lines serous cavities."}, {"s": "Simple cuboidal epithelium is found in kidney tubules.", "a": true, "e": "Correct \u2014 a classic location for simple cuboidal epithelium."}, {"s": "Simple cuboidal epithelium is commonly associated with secretion and absorption functions.", "a": true, "e": "Correct \u2014 found in glands and kidney tubules."}, {"s": "Simple columnar epithelium lines the stomach and intestines.", "a": true, "e": "Correct \u2014 the digestive tract lining is simple columnar."}, {"s": "Simple columnar epithelium often contains goblet cells that secrete mucus.", "a": true, "e": "Correct \u2014 goblet cells are scattered within this epithelium."}, {"s": "Microvilli increase the surface area of simple columnar epithelial cells for absorption.", "a": true, "e": "Correct \u2014 especially important in the small intestine."}, {"s": "Cilia on pseudostratified columnar epithelium help move mucus and trapped particles.", "a": true, "e": "Correct \u2014 this is the mucociliary escalator function."}, {"s": "Pseudostratified ciliated columnar epithelium lines much of the respiratory tract, including the trachea.", "a": true, "e": "Correct \u2014 a classic location for this tissue type."}, {"s": "Stratified squamous epithelium is found in areas subject to friction and abrasion.", "a": true, "e": "Correct \u2014 multiple layers provide protection."}, {"s": "Keratinized stratified squamous epithelium is found in the epidermis of the skin.", "a": true, "e": "Correct \u2014 keratin adds a waterproof, tough outer layer."}, {"s": "Non-keratinized stratified squamous epithelium lines the esophagus.", "a": true, "e": "Correct \u2014 moist internal surfaces are typically non-keratinized."}, {"s": "Keratin is a tough, waterproofing protein found in the outer layers of skin epithelium.", "a": true, "e": "Correct \u2014 keratin protects against water loss and abrasion."}, {"s": "Stratified cuboidal epithelium is relatively rare and found in sweat gland ducts.", "a": true, "e": "Correct \u2014 this is an uncommon but tested epithelial type."}, {"s": "Stratified columnar epithelium is one of the least common epithelial types in the body.", "a": true, "e": "Correct \u2014 it's a relatively rare epithelial type."}, {"s": "Transitional epithelium is found lining the urinary bladder, ureters, and part of the urethra.", "a": true, "e": "Correct \u2014 the classic location for transitional epithelium."}, {"s": "Transitional epithelium can stretch significantly to accommodate changes in organ volume.", "a": true, "e": "Correct \u2014 this is its defining functional feature."}, {"s": "Transitional epithelial cells appear more cuboidal when the bladder is empty (relaxed).", "a": true, "e": "Correct \u2014 cells appear rounder/cuboidal when relaxed."}, {"s": "Transitional epithelial cells appear more flattened/squamous-like when the bladder is full (stretched).", "a": true, "e": "Correct \u2014 stretching flattens the cells."}, {"s": "Exocrine glands secrete their products through ducts onto an epithelial surface.", "a": true, "e": "Correct \u2014 this defines exocrine glands."}, {"s": "Endocrine glands are ductless and secrete hormones directly into the bloodstream.", "a": true, "e": "Correct \u2014 this defines endocrine glands."}, {"s": "The thyroid gland is an example of an endocrine gland.", "a": true, "e": "Correct \u2014 thyroid hormones are secreted directly into blood."}, {"s": "Salivary glands are an example of exocrine glands.", "a": true, "e": "Correct \u2014 saliva is secreted via ducts."}, {"s": "Unicellular exocrine glands, like goblet cells, secrete mucus directly without a duct network.", "a": true, "e": "Correct \u2014 goblet cells are single-cell exocrine glands."}, {"s": "Multicellular exocrine glands are classified partly by whether their ducts are branched or unbranched.", "a": true, "e": "Correct \u2014 this is part of exocrine gland classification."}, {"s": "Merocrine secretion releases products via exocytosis without loss of cell material.", "a": true, "e": "Correct \u2014 the most common secretion mode, e.g., salivary glands."}, {"s": "Apocrine secretion involves loss of a portion of the cell's cytoplasm along with the secretory product.", "a": true, "e": "Correct \u2014 e.g., mammary glands during lactation."}, {"s": "Holocrine secretion involves the entire cell rupturing to release its contents, as in sebaceous glands.", "a": true, "e": "Correct \u2014 the whole cell disintegrates to release its product."}, {"s": "Sebaceous (oil) glands of the skin use holocrine secretion.", "a": true, "e": "Correct \u2014 a classic example of holocrine secretion."}, {"s": "Sweat (eccrine) glands typically use merocrine secretion.", "a": true, "e": "Correct \u2014 sweat glands release product via exocytosis."}, {"s": "Epithelial tissue forms the majority of glandular tissue in the body.", "a": true, "e": "Correct \u2014 both exocrine and endocrine glands derive from epithelium."}, {"s": "Cell junctions such as tight junctions, desmosomes, and gap junctions help hold epithelial cells together and enable communication.", "a": true, "e": "Correct \u2014 these junctions are key features of epithelial tissue."}, {"s": "Tight junctions prevent substances from passing between adjacent epithelial cells.", "a": true, "e": "Correct \u2014 they seal the paracellular space."}, {"s": "Desmosomes provide strong mechanical attachment between adjacent epithelial cells.", "a": true, "e": "Correct \u2014 desmosomes resist mechanical stress."}, {"s": "Gap junctions allow direct communication between the cytoplasm of adjacent cells.", "a": true, "e": "Correct \u2014 gap junctions form channels between cells."}, {"s": "Epithelial tissue lines both the outer surface of the body and the inner lining of hollow organs and vessels.", "a": true, "e": "Correct \u2014 this describes its widespread distribution."}, {"s": "The epidermis, the outer layer of skin, is composed of stratified squamous epithelium.", "a": true, "e": "Correct \u2014 specifically keratinized stratified squamous epithelium."}, {"s": "Endothelium refers specifically to the simple squamous epithelium lining the heart and blood vessels.", "a": true, "e": "Correct \u2014 this is the specific term used for vascular lining."}, {"s": "Mesothelium lines the pleural, pericardial, and peritoneal cavities.", "a": true, "e": "Correct \u2014 mesothelium lines these serous body cavities."}, {"s": "Chronic irritation of respiratory epithelium (e.g., from smoking) can trigger metaplasia to stratified squamous epithelium.", "a": true, "e": "Correct \u2014 a protective but potentially pre-cancerous adaptation."}, {"s": "Squamous cell carcinoma can arise from epithelial tissue undergoing malignant transformation.", "a": true, "e": "Correct \u2014 a common cancer type originating from epithelium."}, {"s": "Urothelial (transitional cell) carcinoma is a cancer that arises from the epithelium lining the urinary tract.", "a": true, "e": "Correct \u2014 this cancer arises from transitional epithelium."}, {"s": "Epithelial tissue plays a key protective role against pathogens and physical damage.", "a": true, "e": "Correct \u2014 this is one of epithelium's core functions."}, {"s": "Epithelial cells in the intestines are specialized for absorption of nutrients.", "a": true, "e": "Correct \u2014 simple columnar epithelium with microvilli enables this."}, {"s": "Epithelial tissue in the kidney tubules is specialized for reabsorption and secretion functions.", "a": true, "e": "Correct \u2014 cuboidal epithelium performs these roles."}, {"s": "Ciliated epithelium is found only in the respiratory tract and nowhere else in the body.", "a": false, "e": "Ciliated epithelium is also found elsewhere, e.g., the fallopian tubes."}, {"s": "Ciliated epithelium lines the fallopian tubes to help move the ovum toward the uterus.", "a": true, "e": "Correct \u2014 cilia help transport the egg through the tube."}, {"s": "Pseudostratified epithelium is sometimes mistaken for stratified epithelium due to the varying nuclear levels.", "a": true, "e": "Correct \u2014 nuclei at different heights create this illusion."}, {"s": "Simple squamous epithelium is not well suited for areas requiring protection from abrasion.", "a": true, "e": "Correct \u2014 it's thin and fragile, unsuited to friction."}, {"s": "Stratified epithelium is generally found in areas requiring more protection than simple epithelium can provide.", "a": true, "e": "Correct \u2014 multiple layers add protective strength."}, {"s": "The renal (kidney) glomerular capsule is lined partly by simple squamous epithelium.", "a": true, "e": "Correct \u2014 Bowman's capsule has a simple squamous parietal layer."}, {"s": "Goblet cells are specialized unicellular glands found within epithelial linings.", "a": true, "e": "Correct \u2014 goblet cells secrete mucus directly into the lumen."}, {"s": "Mucus secreted by goblet cells helps protect and lubricate epithelial surfaces.", "a": true, "e": "Correct \u2014 mucus forms a protective barrier."}, {"s": "Epithelial basement membranes are involved in guiding cell migration during tissue repair.", "a": true, "e": "Correct \u2014 the basement membrane supports regeneration."}, {"s": "A biopsy showing loss of normal epithelial layering and cell polarity may indicate dysplasia or early neoplasia.", "a": true, "e": "Correct \u2014 disorganized epithelium is a red flag in pathology."}, {"s": "All glandular tissue in the body originates from epithelial tissue.", "a": true, "e": "Correct \u2014 both exocrine and endocrine glands are epithelial derivatives."}, {"s": "Epithelial tissue can be classified by both cell shape and number of layers.", "a": true, "e": "Correct \u2014 this two-part classification system is standard."}, {"s": "Stratified squamous non-keratinized epithelium is found lining the mouth and vagina.", "a": true, "e": "Correct \u2014 moist protective surfaces use the non-keratinized form."}, {"s": "The urinary bladder's transitional epithelium helps prevent urine from diffusing back into underlying tissue.", "a": true, "e": "Correct \u2014 it forms an impermeable barrier."}, {"s": "Epithelial tissues generally have a rapid turnover/renewal rate compared to connective tissue.", "a": true, "e": "Correct \u2014 high mitotic activity is typical of epithelium."}, {"s": "Pseudostratified epithelium without cilia is found in parts of the male reproductive tract, such as the epididymis.", "a": true, "e": "Correct \u2014 a specific non-ciliated variant location."}, {"s": "Simple columnar epithelium with microvilli maximizes surface area for absorption in the small intestine.", "a": true, "e": "Correct \u2014 microvilli form the intestinal 'brush border'."}, {"s": "Epithelial tissue derives from all three primary germ layers (ectoderm, mesoderm, endoderm) depending on location.", "a": true, "e": "Correct \u2014 epithelium has diverse embryonic origins."}, {"s": "Skin epidermis develops from ectoderm.", "a": true, "e": "Correct \u2014 the epidermis is ectodermal in origin."}, {"s": "The lining of the digestive tract mostly develops from endoderm.", "a": true, "e": "Correct \u2014 gut epithelium is largely endodermal."}, {"s": "Mesothelium develops from mesoderm.", "a": true, "e": "Correct \u2014 this matches its name and embryonic origin."}, {"s": "The apical surface of epithelial cells may bear microvilli, cilia, or neither, depending on function.", "a": true, "e": "Correct \u2014 surface specializations vary by tissue role."}, {"s": "Stratified epithelium regenerates from the basal (deepest) layer of cells.", "a": true, "e": "Correct \u2014 new cells arise at the base and migrate upward."}, {"s": "The outermost cells of stratified squamous epithelium are the oldest and eventually shed.", "a": true, "e": "Correct \u2014 this describes normal epithelial turnover."}, {"s": "Epithelial-mesenchymal transition (EMT) is a process where epithelial cells gain migratory, mesenchymal-like properties, relevant in wound healing and cancer metastasis.", "a": true, "e": "Correct \u2014 EMT is clinically important in both healing and cancer spread."}, {"s": "Merkel cells within the epidermis are involved in the sense of touch.", "a": true, "e": "Correct \u2014 Merkel cells are touch receptors."}, {"s": "Keratinocytes are the predominant cell type in the epidermis.", "a": true, "e": "Correct \u2014 keratinocytes make up the majority of epidermal cells."}, {"s": "Melanocytes, found within the epidermis, produce melanin pigment.", "a": true, "e": "Correct \u2014 melanocytes produce skin pigment."}, {"s": "Langerhans cells within the epidermis play a role in immune surveillance.", "a": true, "e": "Correct \u2014 they are antigen-presenting immune cells in skin."}, {"s": "Basal cell carcinoma arises from the basal layer of the epidermis.", "a": true, "e": "Correct \u2014 this is the most common type of skin cancer."}, {"s": "The gastric lining's simple columnar epithelium secretes mucus, acid, and enzymes depending on the cell type.", "a": true, "e": "Correct \u2014 different specialized cells perform different secretory roles."}, {"s": "Parietal cells in the stomach's epithelium secrete hydrochloric acid.", "a": true, "e": "Correct \u2014 parietal cells produce gastric acid."}, {"s": "Chief cells in the stomach's epithelium secrete pepsinogen.", "a": true, "e": "Correct \u2014 chief cells produce the enzyme precursor pepsinogen."}, {"s": "Damage to gastric epithelial lining can contribute to peptic ulcer formation.", "a": true, "e": "Correct \u2014 epithelial breakdown exposes tissue to acid damage."}, {"s": "A strong understanding of epithelial classification (shape + layers) allows prediction of a tissue's likely function and location.", "a": true, "e": "Correct \u2014 structure-function correlation is key in histology."}, {"s": "Connective tissue is characterized by cells scattered within an abundant extracellular matrix.", "a": true, "e": "Correct \u2014 this defines connective tissue's structure."}, {"s": "Connective tissue is generally more vascular than epithelial tissue.", "a": true, "e": "Correct \u2014 most connective tissue has a blood supply, unlike epithelium."}, {"s": "Cartilage, a type of connective tissue, is avascular.", "a": true, "e": "Correct \u2014 cartilage is the exception, nourished by diffusion."}, {"s": "Connective tissue originates embryologically from mesenchyme.", "a": true, "e": "Correct \u2014 mesenchyme is the embryonic source of all connective tissue."}, {"s": "The extracellular matrix of connective tissue consists of ground substance and fibers.", "a": true, "e": "Correct \u2014 these two components make up the matrix."}, {"s": "Ground substance is a gel-like substance filling the space between cells and fibers.", "a": true, "e": "Correct \u2014 this is the standard definition of ground substance."}, {"s": "Collagen fibers provide high tensile strength to connective tissue.", "a": true, "e": "Correct \u2014 collagen resists pulling/stretching forces."}, {"s": "Elastic fibers allow connective tissue to stretch and recoil.", "a": true, "e": "Correct \u2014 elastin gives tissues their stretch-and-return property."}, {"s": "Elastic fibers are made of the protein elastin.", "a": true, "e": "Correct \u2014 elastin is the core protein of elastic fibers."}, {"s": "Reticular fibers form a fine, branching supportive network in organs like the spleen and lymph nodes.", "a": true, "e": "Correct \u2014 reticular fibers create organ stroma."}, {"s": "Reticular fibers are composed of type III collagen.", "a": true, "e": "Correct \u2014 type III collagen forms reticular fibers specifically."}, {"s": "Fibroblasts are the most abundant and primary resident cells of connective tissue proper.", "a": true, "e": "Correct \u2014 fibroblasts are the main 'fixed' cell type."}, {"s": "Fibroblasts synthesize collagen, elastin, and ground substance components.", "a": true, "e": "Correct \u2014 this is the fibroblast's key function."}, {"s": "Macrophages in connective tissue are derived from monocytes and function in phagocytosis.", "a": true, "e": "Correct \u2014 macrophages are monocyte-derived phagocytes."}, {"s": "Mast cells release histamine and heparin, contributing to inflammatory and allergic responses.", "a": true, "e": "Correct \u2014 these are key mast cell mediators."}, {"s": "Plasma cells, found in connective tissue, are responsible for antibody production.", "a": true, "e": "Correct \u2014 plasma cells are differentiated B cells that secrete antibodies."}, {"s": "Adipocytes are specialized cells for storing lipid (fat).", "a": true, "e": "Correct \u2014 this is the defining function of adipocytes."}, {"s": "Leukocytes found in connective tissue are considered transient/wandering cells.", "a": true, "e": "Correct \u2014 they migrate in from blood as needed."}, {"s": "Fixed cells of connective tissue, like fibroblasts and adipocytes, remain relatively stationary within the tissue.", "a": true, "e": "Correct \u2014 this contrasts with wandering immune cells."}, {"s": "Loose (areolar) connective tissue has a high ratio of ground substance to fibers, making it flexible.", "a": true, "e": "Correct \u2014 this gives loose CT its pliability."}, {"s": "Loose connective tissue is commonly found beneath epithelial tissue and surrounding organs.", "a": true, "e": "Correct \u2014 it's a widespread supportive/packing tissue."}, {"s": "Adipose tissue is a specialized type of loose connective tissue for fat storage.", "a": true, "e": "Correct \u2014 adipose tissue is a variant of loose connective tissue."}, {"s": "Adipose tissue provides insulation and cushioning for the body.", "a": true, "e": "Correct \u2014 these are key physical roles of adipose tissue."}, {"s": "White adipose tissue is the primary fat-storing tissue in adults.", "a": true, "e": "Correct \u2014 most adult fat stores are white adipose tissue."}, {"s": "Brown adipose tissue is more abundant in infants and is specialized for heat generation.", "a": true, "e": "Correct \u2014 brown fat generates heat via thermogenesis."}, {"s": "Reticular connective tissue forms the structural framework of lymphoid organs like the spleen and lymph nodes.", "a": true, "e": "Correct \u2014 reticular fibers create the organ's internal scaffold."}, {"s": "Dense regular connective tissue has collagen fibers arranged in parallel bundles.", "a": true, "e": "Correct \u2014 parallel arrangement resists force in one direction."}, {"s": "Dense regular connective tissue is found in tendons and ligaments.", "a": true, "e": "Correct \u2014 a classic location for this tissue type."}, {"s": "Tendons connect muscle to bone.", "a": true, "e": "Correct \u2014 this is the defining function of a tendon."}, {"s": "Ligaments connect bone to bone.", "a": true, "e": "Correct \u2014 this is the defining function of a ligament."}, {"s": "Dense irregular connective tissue has collagen fibers arranged in a random, woven pattern.", "a": true, "e": "Correct \u2014 this random weave resists multidirectional stress."}, {"s": "Dense irregular connective tissue is found in the dermis of the skin and in organ capsules.", "a": true, "e": "Correct \u2014 a classic location for this tissue type."}, {"s": "Dense irregular connective tissue resists stress applied from multiple directions.", "a": true, "e": "Correct \u2014 the woven fiber pattern provides multidirectional strength."}, {"s": "Elastic connective tissue is rich in elastic fibers and found in structures like the walls of large arteries.", "a": true, "e": "Correct \u2014 elastic fibers allow arteries to expand and recoil with each heartbeat."}, {"s": "Elastic connective tissue is found in vocal cords and elastic ligaments.", "a": true, "e": "Correct \u2014 these structures need elasticity for function."}, {"s": "The extracellular matrix largely determines the physical properties of a given connective tissue type.", "a": true, "e": "Correct \u2014 matrix composition dictates tissue strength and flexibility."}, {"s": "Ground substance is composed mainly of proteoglycans, glycosaminoglycans, and glycoproteins.", "a": true, "e": "Correct \u2014 these molecules make up ground substance."}, {"s": "Hyaluronic acid is a component of ground substance that contributes to tissue hydration and lubrication.", "a": true, "e": "Correct \u2014 hyaluronic acid retains water in the matrix."}, {"s": "Connective tissue functions include support, binding of structures, protection, and transport (via blood).", "a": true, "e": "Correct \u2014 these summarize connective tissue's main roles."}, {"s": "Blood is classified as a specialized connective tissue with a liquid extracellular matrix (plasma).", "a": true, "e": "Correct \u2014 blood's matrix (plasma) is fluid rather than solid."}, {"s": "Cartilage is a specialized connective tissue with a firm, flexible matrix.", "a": true, "e": "Correct \u2014 cartilage matrix is firm yet flexible."}, {"s": "Bone is a specialized connective tissue with a hard, mineralized matrix.", "a": true, "e": "Correct \u2014 bone's matrix is mineralized with calcium salts."}, {"s": "Areolar connective tissue contains a mix of collagen, elastic, and reticular fibers within a loose ground substance.", "a": true, "e": "Correct \u2014 this mix gives areolar tissue its versatility."}, {"s": "Fibroblasts are also responsible for wound healing by producing new collagen.", "a": true, "e": "Correct \u2014 fibroblast activity is essential to tissue repair."}, {"s": "Scar tissue is largely composed of dense connective tissue rich in collagen.", "a": true, "e": "Correct \u2014 scars are collagen-dense, less organized tissue."}, {"s": "Marfan syndrome results from a genetic defect affecting the protein fibrillin, weakening elastic fibers.", "a": true, "e": "Correct \u2014 fibrillin defects impair elastic fiber assembly."}, {"s": "Individuals with Marfan syndrome are at increased risk of aortic aneurysm due to weakened elastic connective tissue in the aorta.", "a": true, "e": "Correct \u2014 a major clinical concern in Marfan syndrome."}, {"s": "Ehlers-Danlos syndrome is caused by defects in collagen synthesis or structure.", "a": true, "e": "Correct \u2014 this defines the disorder's underlying cause."}, {"s": "Ehlers-Danlos syndrome commonly presents with hyperelastic skin and joint hypermobility.", "a": true, "e": "Correct \u2014 these are hallmark clinical features."}, {"s": "Scurvy, caused by vitamin C deficiency, impairs collagen synthesis because vitamin C is required for collagen cross-linking.", "a": true, "e": "Correct \u2014 vitamin C is a cofactor for collagen hydroxylation."}, {"s": "Vitamin C deficiency can lead to poor wound healing and fragile blood vessels due to defective collagen.", "a": true, "e": "Correct \u2014 this is a classic consequence of scurvy."}, {"s": "Connective tissue proper is subdivided into loose and dense connective tissue categories.", "a": true, "e": "Correct \u2014 this is the primary classification of connective tissue proper."}, {"s": "Mucous connective tissue (Wharton's jelly) is found in the umbilical cord.", "a": true, "e": "Correct \u2014 Wharton's jelly is a classic embryonic connective tissue example."}, {"s": "Mast cells contain granules with inflammatory mediators such as histamine.", "a": true, "e": "Correct \u2014 these granules are released during allergic/inflammatory reactions."}, {"s": "Macrophages can present antigens to immune cells as part of the immune response.", "a": true, "e": "Correct \u2014 macrophages act as antigen-presenting cells."}, {"s": "The basement membrane, though associated with epithelium, is actually a specialized product involving both epithelial and connective tissue components.", "a": true, "e": "Correct \u2014 it forms at the epithelial-connective tissue interface."}, {"s": "Connective tissue provides the structural framework that supports epithelial tissue.", "a": true, "e": "Correct \u2014 connective tissue underlies and supports epithelium."}, {"s": "Fat cells (adipocytes) have a large lipid droplet that pushes the nucleus to the periphery of the cell.", "a": true, "e": "Correct \u2014 this gives adipocytes their signet-ring appearance."}, {"s": "Reticular fibers are especially thin and form a delicate meshwork compared to thicker collagen fibers.", "a": true, "e": "Correct \u2014 reticular fibers are finer than typical collagen fibers."}, {"s": "Collagen is the most abundant protein in the human body.", "a": true, "e": "Correct \u2014 collagen makes up roughly a quarter to a third of total body protein."}, {"s": "Elastin allows tissues like skin and lungs to return to their original shape after stretching.", "a": true, "e": "Correct \u2014 elastin provides recoil after deformation."}, {"s": "Aging-related loss of collagen and elastin contributes to skin wrinkling.", "a": true, "e": "Correct \u2014 reduced matrix protein leads to skin changes with age."}, {"s": "Chondrocytes, not fibroblasts, are the main cells found in cartilage (a specialized connective tissue).", "a": true, "e": "Correct \u2014 chondrocytes are the resident cells of cartilage."}, {"s": "Osteoblasts, osteocytes, and osteoclasts are cells associated with bone, a specialized connective tissue.", "a": true, "e": "Correct \u2014 these are the three main bone cell types."}, {"s": "Dense regular connective tissue has relatively few cells (fibroblasts) compared to the amount of matrix.", "a": true, "e": "Correct \u2014 matrix dominates over cellular content in dense CT."}, {"s": "Loose connective tissue contains a greater variety of cell types than dense connective tissue.", "a": true, "e": "Correct \u2014 loose CT hosts fibroblasts, macrophages, mast cells, and more."}, {"s": "The dermis of the skin, composed of dense irregular connective tissue, lies beneath the epidermis.", "a": true, "e": "Correct \u2014 this describes basic skin layering."}, {"s": "Connective tissue matrix is produced primarily by fibroblasts in connective tissue proper.", "a": true, "e": "Correct \u2014 fibroblasts synthesize both fibers and ground substance."}, {"s": "The proportion of fibers versus ground substance differs among various types of connective tissue.", "a": true, "e": "Correct \u2014 this variation defines different connective tissue subtypes."}, {"s": "Elastic fibers are highly branched and interwoven within the matrix, contributing to tissue resilience.", "a": true, "e": "Correct \u2014 this branching pattern supports elastic recoil."}, {"s": "Reticular tissue is not the same as reticular fibers, though reticular tissue is defined by predominance of reticular fibers.", "a": true, "e": "Correct \u2014 reticular tissue is a distinct tissue type built around reticular fibers."}, {"s": "The perichondrium is a layer of dense connective tissue surrounding cartilage that provides nutrients via diffusion.", "a": true, "e": "Correct \u2014 this compensates for cartilage's lack of blood supply."}, {"s": "Keloid scars form due to excessive collagen production during wound healing.", "a": true, "e": "Correct \u2014 keloids result from overactive fibroblast collagen synthesis."}, {"s": "Connective tissue proper does not include specialized connective tissues like blood, cartilage, or bone.", "a": true, "e": "Correct \u2014 those are classified separately as specialized connective tissue."}, {"s": "Ligament sprains often heal slowly due to relatively poor blood supply in dense regular connective tissue.", "a": true, "e": "Correct \u2014 reduced vascularity slows healing in tendons/ligaments."}, {"s": "Fibroblasts can differentiate or transition into myofibroblasts during wound contraction.", "a": true, "e": "Correct \u2014 myofibroblasts help contract and close wounds."}, {"s": "Mast cells are structurally and functionally similar to basophils found in blood.", "a": true, "e": "Correct \u2014 both cell types release similar inflammatory mediators."}, {"s": "Ground substance regulates the diffusion of nutrients, gases, and wastes between blood and cells within connective tissue.", "a": true, "e": "Correct \u2014 this is a key physiological role of ground substance."}, {"s": "Loose connective tissue provides a reservoir for water and electrolytes in the body.", "a": true, "e": "Correct \u2014 its gel-like ground substance can hold fluid."}, {"s": "Elastic cartilage, elastic ligaments, and the walls of large arteries all rely on abundant elastic fibers.", "a": true, "e": "Correct \u2014 these all require significant elasticity."}, {"s": "Dense regular connective tissue is poorly vascularized compared to loose connective tissue.", "a": true, "e": "Correct \u2014 this contributes to its slower healing."}, {"s": "The extracellular matrix of connective tissue can range from fluid (blood) to solid (bone).", "a": true, "e": "Correct \u2014 this range illustrates the diversity of connective tissue."}, {"s": "Fat (adipose) tissue also functions as an endocrine organ, secreting hormones like leptin.", "a": true, "e": "Correct \u2014 adipose tissue has recognized endocrine functions."}, {"s": "Leptin, secreted by adipose tissue, plays a role in regulating appetite and energy balance.", "a": true, "e": "Correct \u2014 leptin signals satiety to the brain."}, {"s": "Areolar (loose) connective tissue supports blood vessels and nerves as they pass through tissues.", "a": true, "e": "Correct \u2014 its flexible matrix accommodates vessels and nerves."}, {"s": "Reticular connective tissue provides a supportive stroma for hematopoietic and lymphoid cells.", "a": true, "e": "Correct \u2014 bone marrow and lymphoid organs rely on this framework."}, {"s": "The three main types of connective tissue fibers are collagen, elastic, and reticular fibers.", "a": true, "e": "Correct \u2014 these are the three classic fiber types."}, {"s": "Cartilage lacks nerve supply, similar to its lack of blood supply.", "a": true, "e": "Correct \u2014 cartilage is both avascular and aneural."}, {"s": "Blood vessels supplying connective tissue also nourish adjacent epithelial tissue by diffusion.", "a": true, "e": "Correct \u2014 this is how avascular epithelium gets its nutrients."}, {"s": "Wound healing in richly vascularized connective tissue is generally faster than in avascular tissue like cartilage.", "a": true, "e": "Correct \u2014 blood supply speeds the healing process."}, {"s": "Type I collagen is the most common type, found in tendons, ligaments, bone, and skin.", "a": true, "e": "Correct \u2014 Type I is the most abundant collagen type in the body."}, {"s": "Type II collagen is characteristic of cartilage.", "a": true, "e": "Correct \u2014 Type II collagen is specific to cartilage matrix."}, {"s": "Type III collagen forms reticular fibers.", "a": true, "e": "Correct \u2014 this links collagen type to fiber type."}, {"s": "Excessive or abnormal connective tissue deposition can lead to fibrosis in organs like the liver or lungs.", "a": true, "e": "Correct \u2014 fibrosis reflects abnormal connective tissue accumulation."}, {"s": "Liver cirrhosis involves replacement of normal liver tissue with fibrous (scar) connective tissue.", "a": true, "e": "Correct \u2014 this is the pathological basis of cirrhosis."}, {"s": "Pulmonary fibrosis involves excessive connective tissue deposition in the lungs, impairing gas exchange.", "a": true, "e": "Correct \u2014 scarring reduces lung elasticity and function."}, {"s": "Connective tissue disorders can be broadly grouped into genetic (e.g., Marfan, Ehlers-Danlos) and acquired (e.g., fibrosis) categories.", "a": true, "e": "Correct \u2014 this is a useful clinical classification."}, {"s": "Understanding connective tissue cell types and fiber composition helps explain the pathology of many clinical conditions.", "a": true, "e": "Correct \u2014 structure-function-pathology links are central to histology."}, {"s": "Histological staining techniques, such as H&E staining, are commonly used to visualize connective tissue components under a microscope.", "a": true, "e": "Correct \u2014 H&E is the standard general-purpose histology stain."}, {"s": "A strong grasp of connective tissue proper prepares a student for understanding its specialized derivatives: cartilage, bone, and blood.", "a": true, "e": "Correct \u2014 connective tissue proper is the foundation for these specialized types."}, {"s": "Epithelial tissue can be either avascular or vascular depending on location.", "a": false, "e": "Epithelial tissue is always avascular \u2014 it is nourished by diffusion from underlying connective tissue, regardless of location."}, {"s": "The apical surface of an epithelial cell faces the basement membrane.", "a": false, "e": "The apical surface faces the lumen/outside world; the BASAL surface faces the basement membrane."}, {"s": "Simple squamous epithelium lining the kidney's Bowman's capsule allows efficient filtration of blood.", "a": true, "e": "Correct \u2014 thinness supports rapid filtration."}, {"s": "The number of cell layers in an epithelium generally correlates with how much protection it provides.", "a": true, "e": "Correct \u2014 more layers generally mean more protection from abrasion."}, {"s": "Ciliated pseudostratified epithelium is well suited to trap and move debris out of the airway.", "a": true, "e": "Correct \u2014 coordinated ciliary beating clears mucus and trapped particles."}, {"s": "A single layer of flattened cells lining the inside of blood vessels is termed the endothelium.", "a": true, "e": "Correct \u2014 endothelium is a specialized simple squamous epithelium."}, {"s": "Epithelial tissue never contains glands.", "a": false, "e": "Glands (both exocrine and endocrine) are derived from epithelial tissue."}, {"s": "Merocrine and eccrine are sometimes used interchangeably to describe sweat gland secretion.", "a": true, "e": "Correct \u2014 eccrine sweat glands use the merocrine mechanism."}, {"s": "The junctional complex near the apical surface of epithelial cells often includes a tight junction, adherens junction, and desmosome in sequence.", "a": true, "e": "Correct \u2014 this arrangement is typical in many epithelia."}, {"s": "Columnar epithelial cells are generally taller in absorptive tissues like the small intestine to maximize surface area.", "a": true, "e": "Correct \u2014 height supports greater absorptive capacity."}, {"s": "Epithelium regenerates from stem cells typically located in the basal layer.", "a": true, "e": "Correct \u2014 basal stem cells drive epithelial renewal."}, {"s": "A single layer of cuboidal cells lining ovarian follicles is called germinal epithelium.", "a": true, "e": "Correct \u2014 this is the specific name for this simple cuboidal layer."}, {"s": "Epithelial tissue is the only tissue type capable of forming glands.", "a": true, "e": "Correct \u2014 all glandular tissue is epithelial in origin."}, {"s": "Transitional epithelium is unique to the urinary system among all epithelial types.", "a": true, "e": "Correct \u2014 this tissue type is specific to structures like the bladder and ureters."}, {"s": "The apical surface of intestinal epithelial cells facing the lumen is called the brush border due to dense microvilli.", "a": true, "e": "Correct \u2014 the brush border greatly increases absorptive surface area."}, {"s": "Basal cells in stratified squamous epithelium divide and push older cells toward the apical surface over time.", "a": true, "e": "Correct \u2014 this describes normal epithelial renewal and maturation."}, {"s": "Simple columnar epithelium of the intestine includes both absorptive cells and mucus-secreting goblet cells.", "a": true, "e": "Correct \u2014 both cell types coexist in this lining."}, {"s": "Epithelial tissue lacks the ability to form tight seals between cells.", "a": false, "e": "Tight junctions specifically allow epithelium to form effective barriers/seals."}, {"s": "Ciliated epithelium is absent from the male reproductive tract.", "a": false, "e": "Ciliated pseudostratified epithelium is found in parts of the male reproductive tract, e.g., the efferent ductules."}, {"s": "The presence of keratin distinguishes keratinized from non-keratinized stratified squamous epithelium.", "a": true, "e": "Correct \u2014 keratin content is the defining difference between the two."}, {"s": "Epithelial tissue's high regenerative capacity makes it useful for skin grafts.", "a": true, "e": "Correct \u2014 rapid regeneration underlies successful epidermal grafting."}, {"s": "A gland that loses its duct connection during development and secretes into the blood becomes an endocrine gland.", "a": true, "e": "Correct \u2014 this describes endocrine gland formation embryologically."}, {"s": "Epithelial polarity refers only to differences in shape, not in function, between the apical and basal sides.", "a": false, "e": "Polarity involves both structural AND functional differences between apical and basal surfaces."}, {"s": "The corneal epithelium of the eye is a stratified squamous non-keratinized epithelium.", "a": true, "e": "Correct \u2014 this allows transparency while providing protection."}, {"s": "Understanding gland classification (exocrine vs endocrine, and secretion mechanism) is essential to understanding organ histology throughout the body.", "a": true, "e": "Correct \u2014 these concepts recur across many organ systems."}, {"s": "All connective tissue types share the same ratio of cells to matrix.", "a": false, "e": "The ratio of cells to matrix varies significantly between different connective tissue types."}, {"s": "Collagen fibers are typically flexible but resist stretching once fully extended.", "a": true, "e": "Correct \u2014 collagen has high tensile strength with limited elasticity."}, {"s": "Fibrocytes are the less metabolically active, more mature form of fibroblasts.", "a": true, "e": "Correct \u2014 fibrocytes maintain matrix but synthesize less than active fibroblasts."}, {"s": "Ground substance is entirely solid and does not allow diffusion of substances through it.", "a": false, "e": "Ground substance is gel-like and permits diffusion of nutrients, gases, and wastes."}, {"s": "Loose connective tissue is more resistant to mechanical stress than dense connective tissue.", "a": false, "e": "Dense connective tissue, with more fibers, is more resistant to mechanical stress than loose connective tissue."}, {"s": "The three main cell categories in connective tissue can be grouped as fixed (resident) cells and wandering (transient) cells.", "a": true, "e": "Correct \u2014 this is a standard functional classification."}, {"s": "Elastic fibers can stretch up to about 150% of their length and recoil to their original shape.", "a": true, "e": "Correct \u2014 this remarkable elasticity is due to the elastin protein."}, {"s": "Adipose tissue functions solely as an energy reserve with no other physiological roles.", "a": false, "e": "Adipose tissue also provides insulation, cushioning, and endocrine (hormonal) functions."}, {"s": "Connective tissue proper does not include tendons or ligaments.", "a": false, "e": "Tendons and ligaments (dense regular connective tissue) ARE part of connective tissue proper."}, {"s": "The dermis contains both loose (papillary) and dense irregular (reticular) connective tissue layers.", "a": true, "e": "Correct \u2014 the dermis has two distinct connective tissue layers."}, {"s": "Fibroblasts are typically spindle-shaped or star-shaped cells with an oval nucleus.", "a": true, "e": "Correct \u2014 this describes typical fibroblast morphology."}, {"s": "Mast cell degranulation plays a key role in anaphylactic and allergic reactions.", "a": true, "e": "Correct \u2014 histamine release from mast cells drives these reactions."}, {"s": "Reticular fibers are thicker than collagen fibers.", "a": false, "e": "Reticular fibers are actually thinner and more delicate than typical collagen fibers."}, {"s": "Connective tissue matrix composition can change in response to disease, injury, or aging.", "a": true, "e": "Correct \u2014 matrix remodeling occurs throughout life and in pathology."}, {"s": "Cartilage's lack of blood vessels contributes to its slow rate of repair after injury.", "a": true, "e": "Correct \u2014 nutrient diffusion through the perichondrium is slower than direct blood supply."}, {"s": "A ganglion cyst is an example of a connective tissue-related mass, often arising near joints or tendons.", "a": true, "e": "Correct \u2014 ganglion cysts arise from connective tissue near joints/tendons."}, {"s": "Adipocytes are classified as connective tissue cells despite storing energy rather than producing matrix.", "a": true, "e": "Correct \u2014 adipocytes are still classified within connective tissue proper."}, {"s": "Blood, despite being classified as connective tissue, contains no fibers under normal circumstances until clotting occurs.", "a": true, "e": "Correct \u2014 fibrin fibers form only during coagulation, not normally in circulating blood."}, {"s": "Osteoid is the unmineralized organic matrix of bone tissue, produced by osteoblasts before mineralization.", "a": true, "e": "Correct \u2014 osteoid becomes mineralized to form mature bone matrix."}, {"s": "Chronic inflammation can lead to excessive fibrous connective tissue deposition in affected tissues.", "a": true, "e": "Correct \u2014 this is the basis of fibrosis following chronic inflammation."}, {"s": "Elastic fibers are generally more abundant than collagen fibers in most connective tissue types.", "a": false, "e": "Collagen fibers are generally more abundant than elastic fibers in most connective tissue types."}, {"s": "Reticular fibers help trap and filter blood-borne pathogens as blood passes through organs like the spleen.", "a": true, "e": "Correct \u2014 the reticular meshwork supports immune filtering functions."}, {"s": "The extracellular matrix of connective tissue is entirely absent of any protein components.", "a": false, "e": "The matrix contains protein-based fibers (collagen, elastin, reticulin) as key components."}, {"s": "Vitamin C's role in collagen synthesis makes it clinically relevant to wound healing and connective tissue integrity.", "a": true, "e": "Correct \u2014 this ties biochemistry directly to connective tissue health."}, {"s": "A solid understanding of connective tissue proper is a prerequisite for understanding specialized connective tissues like cartilage, bone, and blood in later topics.", "a": true, "e": "Correct \u2014 connective tissue proper forms the conceptual foundation for these related topics."}, {"s": "The plasma membrane's selective permeability allows it to regulate what enters and exits the cell.", "a": true, "e": "Correct \u2014 this regulation is central to membrane function."}, {"s": "Amphipathic molecules have both hydrophilic and hydrophobic regions, like phospholipids.", "a": true, "e": "Correct \u2014 phospholipids are the classic amphipathic membrane molecule."}, {"s": "The plasma membrane's outer leaflet has a different lipid composition than the inner leaflet.", "a": true, "e": "Correct \u2014 membrane lipid distribution is asymmetric."}, {"s": "Membrane asymmetry means glycolipids are found exclusively on the outer (extracellular) leaflet.", "a": true, "e": "Correct \u2014 glycolipids face outward, important for cell recognition."}, {"s": "Tight junctions between epithelial cells prevent free diffusion between cells (paracellular route).", "a": true, "e": "Correct \u2014 tight junctions seal the space between adjacent cells."}, {"s": "Mitochondria are inherited exclusively from the mother because sperm mitochondria are typically destroyed after fertilization.", "a": true, "e": "Correct \u2014 this explains strictly maternal mitochondrial inheritance."}, {"s": "The mitochondrial matrix is enclosed by the outer mitochondrial membrane.", "a": false, "e": "The matrix is enclosed by the INNER mitochondrial membrane, not the outer."}, {"s": "Ribosomes consist of a large and small subunit.", "a": true, "e": "Correct \u2014 both subunits join to translate mRNA."}, {"s": "The 80S ribosome is found in eukaryotic cytoplasm; mitochondria have 70S-like ribosomes.", "a": true, "e": "Correct \u2014 mitochondrial ribosomes resemble bacterial (70S) ribosomes, supporting endosymbiotic theory."}, {"s": "The Golgi apparatus has a cis face (receiving) and a trans face (shipping).", "a": true, "e": "Correct \u2014 cis receives from ER, trans ships toward the membrane."}, {"s": "Lysosomal storage diseases result from failure to break down specific macromolecules within lysosomes.", "a": true, "e": "Correct \u2014 e.g., Tay-Sachs disease."}, {"s": "Peroxisomal disorders can result in the accumulation of very long chain fatty acids.", "a": true, "e": "Correct \u2014 peroxisomes normally break these down."}, {"s": "The centrosome is located near the nucleus and organizes the cell's microtubules.", "a": true, "e": "Correct \u2014 the centrosome is the main microtubule-organizing center."}, {"s": "Cilia are generally shorter and more numerous than flagella.", "a": true, "e": "Correct \u2014 this distinguishes cilia from flagella."}, {"s": "Human sperm cells are propelled by a single flagellum.", "a": true, "e": "Correct \u2014 the sperm tail is a flagellum."}, {"s": "The cytoskeleton is composed of microtubules, microfilaments, and intermediate filaments.", "a": true, "e": "Correct \u2014 these are the three main cytoskeletal components."}, {"s": "Facilitated diffusion transporters are also called uniporters when moving a single substance down its gradient.", "a": true, "e": "Correct \u2014 uniporters carry one type of molecule passively."}, {"s": "Osmosis is a special case of diffusion involving only water molecules.", "a": true, "e": "Correct \u2014 osmosis is diffusion specific to water."}, {"s": "The Na+/K+ ATPase pump is inhibited by the drug ouabain, illustrating the pump's clinical relevance.", "a": true, "e": "Correct \u2014 ouabain is a classic Na+/K+ pump inhibitor used in pharmacology."}, {"s": "Membrane potential is maintained partly due to the unequal distribution of ions established by active transport.", "a": true, "e": "Correct \u2014 ion pumps establish gradients underlying membrane potential."}, {"s": "Pinocytosis is sometimes called 'cell drinking' because it takes in extracellular fluid non-specifically.", "a": true, "e": "Correct \u2014 pinocytosis is nonspecific fluid uptake."}, {"s": "Receptor-mediated endocytosis often uses clathrin-coated pits to internalize specific ligands.", "a": true, "e": "Correct \u2014 clathrin coating is characteristic of this pathway."}, {"s": "Exocytosis requires fusion of a vesicle membrane with the plasma membrane.", "a": true, "e": "Correct \u2014 this fusion releases vesicle contents outside the cell."}, {"s": "In G0 phase, a cell has exited the active cell cycle and is not preparing to divide.", "a": true, "e": "Correct \u2014 G0 is a resting/quiescent phase."}, {"s": "The cell cycle consists of interphase and the mitotic (M) phase.", "a": true, "e": "Correct \u2014 these are the two major divisions of the cell cycle."}, {"s": "Apoptosis is a form of programmed cell death distinct from cell division.", "a": true, "e": "Correct \u2014 apoptosis and mitosis are separate cellular processes."}, {"s": "Telomeres protect the ends of chromosomes from degradation during replication.", "a": true, "e": "Correct \u2014 telomeres are protective chromosome caps."}, {"s": "Telomerase adds repetitive sequences to chromosome ends, and its activity is often increased in cancer cells.", "a": true, "e": "Correct \u2014 this contributes to unlimited replication in cancer."}, {"s": "A karyotype of a normal human somatic cell shows 46 chromosomes.", "a": true, "e": "Correct \u2014 23 pairs, 46 total, in diploid somatic cells."}, {"s": "A normal human gamete (sperm or egg) contains 23 chromosomes.", "a": true, "e": "Correct \u2014 gametes are haploid."}, {"s": "Homologous chromosomes carry the same genes but may have different alleles.", "a": true, "e": "Correct \u2014 this is the definition of homologous chromosomes."}, {"s": "Sister chromatids are exact copies of each other, formed by DNA replication.", "a": true, "e": "Correct \u2014 they are identical copies joined at the centromere."}, {"s": "In meiosis, four haploid cells are the final product after both divisions are complete.", "a": true, "e": "Correct \u2014 this is the end result of meiosis I and II."}, {"s": "Spermatogenesis and oogenesis both begin with a diploid germ cell.", "a": true, "e": "Correct \u2014 both processes start from diploid precursor cells."}, {"s": "Anaphase I of meiosis separates homologous chromosomes, not sister chromatids.", "a": true, "e": "Correct \u2014 sister chromatids stay together until anaphase II."}, {"s": "Anaphase II of meiosis separates sister chromatids, similar to mitotic anaphase.", "a": true, "e": "Correct \u2014 meiosis II behaves like a mitotic division."}, {"s": "The metaphase plate in mitosis contains single chromosomes, while in meiosis I it contains paired homologous chromosomes (tetrads).", "a": true, "e": "Correct \u2014 this distinction is a key mitosis vs meiosis I difference."}, {"s": "Nondisjunction can occur in either meiosis I or meiosis II.", "a": true, "e": "Correct \u2014 errors can happen at either division."}, {"s": "Trisomy refers to having three copies of a particular chromosome instead of two.", "a": true, "e": "Correct \u2014 e.g., Trisomy 21 in Down syndrome."}, {"s": "Monosomy refers to having only one copy of a chromosome instead of two.", "a": true, "e": "Correct \u2014 e.g., Turner syndrome (45,X)."}, {"s": "Turner syndrome (45,X) is an example of monosomy of a sex chromosome.", "a": true, "e": "Correct \u2014 a single X chromosome is present instead of two."}, {"s": "The cell membrane's selective permeability is critical for maintaining homeostasis.", "a": true, "e": "Correct \u2014 regulated exchange keeps the internal environment stable."}, {"s": "Active transport pumps use energy to maintain concentration gradients essential for cellular processes like nerve signaling.", "a": true, "e": "Correct \u2014 e.g., the Na+/K+ pump supports neuronal excitability."}, {"s": "Simple diffusion does not require any membrane transport proteins.", "a": true, "e": "Correct \u2014 molecules cross directly through the lipid bilayer."}, {"s": "A hypertonic environment causes water to leave a cell via osmosis.", "a": true, "e": "Correct \u2014 water moves toward the higher solute concentration outside."}, {"s": "Isotonic IV solutions prevent unwanted swelling or shrinking of blood cells.", "a": true, "e": "Correct \u2014 this is why isotonic fluids are the safe default for IV use."}, {"s": "Interphase is the longest phase of the cell cycle.", "a": true, "e": "Correct \u2014 most of a cell's life is spent in interphase."}, {"s": "Cytokinesis typically overlaps with the final stages of telophase.", "a": true, "e": "Correct \u2014 cytoplasmic division often begins before telophase fully ends."}, {"s": "The spindle checkpoint (metaphase checkpoint) ensures all chromosomes are properly attached to spindle fibers before anaphase begins.", "a": true, "e": "Correct \u2014 this checkpoint prevents errors in chromosome segregation."}, {"s": "Understanding mitosis and meiosis is foundational to understanding genetic inheritance and disorders.", "a": true, "e": "Correct \u2014 division errors underlie many chromosomal disorders."}];
+
+// Fisher-Yates shuffle
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let order = shuffle(QUESTIONS.map((_, i) => i));
+let current = 0;
+let selected = null;
+let locked = false;
+let correctCount = 0;
+let incorrectCount = 0;
+let wrongAnswers = [];
+
+async function loadQuestion() {
+  if (current >= order.length) {
+    showFinal();
+    return;
+  }
+  try{
+    const { checkCbtAccess, renderCbtLockScreen } = await import('../cbt-lock.js');
+    if(checkCbtAccess){
+      const access = await checkCbtAccess('ana203-epithelial-connective');
+      if(access.blocked){
+        if(renderCbtLockScreen) renderCbtLockScreen(document.getElementById('quizCard'), access.reason);
+        return;
+      }
+    }
+  }catch(e){ /* dormant/misconfigured lock never blocks the quiz */ }
+  const q = QUESTIONS[order[current]];
+  document.getElementById('statementText').textContent = q.s;
+  document.getElementById('qCounter').textContent = `Question ${current + 1} / ${order.length}`;
+  document.getElementById('progressFill').style.width = `${(current / order.length) * 100}%`;
+  document.getElementById('liveScore').textContent = `✅ ${correctCount}   ❌ ${incorrectCount}`;
+  selected = null;
+  locked = false;
+  document.getElementById('trueBtn').className = 'tf-btn';
+  document.getElementById('falseBtn').className = 'tf-btn';
+  document.getElementById('lockBtn').disabled = true;
+  document.getElementById('lockBtn').style.display = 'block';
+  document.getElementById('feedbackBox').className = 'feedback';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('trueBtn').disabled = false;
+  document.getElementById('falseBtn').disabled = false;
+}
+
+function selectAnswer(val) {
+  if (locked) return;
+  selected = val;
+  document.getElementById('trueBtn').className = 'tf-btn' + (val === true ? ' selected-true' : '');
+  document.getElementById('falseBtn').className = 'tf-btn' + (val === false ? ' selected-false' : '');
+  document.getElementById('lockBtn').disabled = false;
+}
+
+async function lockAnswer() {
+  if (selected === null || locked) return;
+  locked = true;
+  try{
+    const { recordCbtQuestionUsed } = await import('../cbt-lock.js');
+    if(recordCbtQuestionUsed) await recordCbtQuestionUsed('ana203-epithelial-connective');
+  }catch(e){ /* dormant/misconfigured lock never blocks the quiz */ }
+  const q = QUESTIONS[order[current]];
+  const isCorrect = selected === q.a;
+  document.getElementById('trueBtn').disabled = true;
+  document.getElementById('falseBtn').disabled = true;
+  document.getElementById('lockBtn').style.display = 'none';
+
+  const fb = document.getElementById('feedbackBox');
+  const lbl = document.getElementById('feedbackLabel');
+  const txt = document.getElementById('feedbackText');
+
+  if (isCorrect) {
+    correctCount++;
+    fb.className = 'feedback correct';
+    lbl.textContent = '✅ CORRECT';
+  } else {
+    incorrectCount++;
+    fb.className = 'feedback incorrect';
+    lbl.textContent = `❌ INCORRECT — Correct answer: ${q.a ? 'TRUE' : 'FALSE'}`;
+    wrongAnswers.push({ s: q.s, correct: q.a, chosen: selected, e: q.e });
+  }
+  txt.textContent = q.e;
+  document.getElementById('liveScore').textContent = `✅ ${correctCount}   ❌ ${incorrectCount}`;
+  document.getElementById('nextBtn').style.display = 'block';
+}
+
+function nextQuestion() {
+  current++;
+  loadQuestion();
+}
+
+function showFinal() {
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('finalCard').style.display = 'block';
+  const total = order.length;
+  const pct = Math.round((correctCount / total) * 100);
+  document.getElementById('finalScoreText').textContent = pct + '%';
+  document.getElementById('finalCorrect').textContent = correctCount;
+  document.getElementById('finalIncorrect').textContent = incorrectCount;
+  document.getElementById('finalTotal').textContent = total;
+
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '';
+  wrongAnswers.forEach(w => {
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    div.innerHTML = `<div class="q">${w.s}</div><div class="ans">Your answer: ${w.chosen ? 'TRUE' : 'FALSE'} &nbsp;|&nbsp; Correct: ${w.correct ? 'TRUE' : 'FALSE'}<br>${w.e}</div>`;
+    reviewList.appendChild(div);
+  });
+}
+
+function toggleReview() {
+  const rl = document.getElementById('reviewList');
+  rl.style.display = rl.style.display === 'block' ? 'none' : 'block';
+}
+
+function restartQuiz() {
+  order = shuffle(QUESTIONS.map((_, i) => i));
+  current = 0;
+  correctCount = 0;
+  incorrectCount = 0;
+  wrongAnswers = [];
+  document.getElementById('finalCard').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'block';
+  document.getElementById('reviewList').style.display = 'none';
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
