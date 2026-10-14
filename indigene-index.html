@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  // Instant auth pre-check: if this browser was previously logged in, render normally.
+  // If not, hide the page before first paint so guests never see the homepage —
+  // they'll be sent to register.html the moment the real check confirms it.
+  if (!localStorage.getItem("indigene_authed")) {
+    document.documentElement.style.visibility = "hidden";
+  }
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>INDIGENE — Study Console</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#fff7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#050d09" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="INDIGENE">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fff7f4; --sheet:#fffdfc; --ink:#171a33; --muted:#5d6079; --rule:#e8d6d1;
+    --grid-s:rgba(209,41,61,.09); --grid-l:rgba(209,41,61,.2);
+    --accent:#c4182d; --accent-ink:#ffffff; --trace:#d1293d; --wash:rgba(196,24,45,.05);
+    --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+    --body:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#050d09; --sheet:#07110c; --ink:#d9f3e5; --muted:#86ab97; --rule:#163020;
+      --grid-s:rgba(61,255,143,.055); --grid-l:rgba(61,255,143,.12);
+      --accent:#3dff8f; --accent-ink:#04120a; --trace:#3dff8f; --wash:rgba(61,255,143,.05);
+    }
+    .trace path{filter:drop-shadow(0 0 3px rgba(61,255,143,.55));}
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5; min-height:100vh; overflow-x:hidden;}
+  ::selection{background:var(--accent); color:var(--accent-ink);}
+  a,button,input{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* ---- hero: graph paper + the trace ---- */
+  .hero{position:relative; padding:56px 0 34px;}
+  .hero::before{
+    content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--grid-l) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-l) 1px, transparent 1px),
+      linear-gradient(var(--grid-s) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-s) 1px, transparent 1px);
+    background-size:40px 40px, 40px 40px, 8px 8px, 8px 8px;
+    background-position:-1px -1px;
+    -webkit-mask-image:linear-gradient(#000 78%, transparent);
+            mask-image:linear-gradient(#000 78%, transparent);
+  }
+  .hero-in{position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 20px;}
+  .kicker{font-size:.9rem; color:var(--muted); max-width:30ch;}
+  .wordmark{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(4.2rem, 23vw, 9.5rem); line-height:.8; letter-spacing:.005em;
+    color:var(--ink); margin:14px 0 0 -3px;
+  }
+  .trace{display:block; width:100%; height:68px; margin-top:6px; overflow:visible;}
+  .trace path{fill:none; stroke:var(--trace); stroke-width:2.6; stroke-linejoin:round; stroke-linecap:round;
+    stroke-dasharray:1; stroke-dashoffset:1; animation:draw 2.2s cubic-bezier(.45,.05,.35,1) .15s forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .hero-foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 18px; margin-top:12px; font-size:.9rem; color:var(--muted);}
+  .hero-foot b{color:var(--ink); font-weight:600;}
+
+  /* ---- controls ---- */
+  .controls{max-width:760px; margin:0 auto; padding:6px 20px 0; display:flex; flex-direction:column; gap:14px;}
+  .tabs{display:flex; gap:26px; border-bottom:1px solid var(--rule);}
+  .tab{font-family:var(--display); font-weight:700; font-size:1.3rem; letter-spacing:.02em; text-transform:uppercase;
+    padding:6px 0 8px; margin-bottom:-1px; background:none; border:none; border-bottom:3px solid transparent; color:var(--muted); cursor:pointer; min-height:44px;}
+  .tab.active{color:var(--ink); border-bottom-color:var(--accent);}
+  .search-wrap{position:relative;}
+  .search-icon{position:absolute; left:2px; top:50%; transform:translateY(-50%); width:18px; height:18px; color:var(--muted); font-size:0; }
+  .search-icon::before{content:''; position:absolute; left:1px; top:1px; width:9px; height:9px; border:2px solid currentColor; border-radius:50%;}
+  .search-icon::after{content:''; position:absolute; left:12px; top:12px; width:6px; height:2px; background:currentColor; transform:rotate(45deg); transform-origin:0 0;}
+  .search{width:100%; min-height:48px; background:transparent; border:none; border-bottom:2px solid var(--rule); padding:10px 0 10px 30px; color:var(--ink); font-size:1rem; outline:none; border-radius:0; transition:border-color .2s;}
+  .search:focus{border-bottom-color:var(--accent);}
+  .search::placeholder{color:var(--muted); opacity:.85;}
+
+  /* ---- the register ---- */
+  main{max-width:760px; margin:0 auto; padding:26px 20px 0;}
+  .section-label{display:flex; align-items:baseline; gap:12px; margin:34px 0 8px;}
+  .section-label b{font-family:var(--display); font-weight:900; font-size:2.1rem; line-height:1; text-transform:uppercase; color:var(--ink);}
+  .section-label span{color:var(--muted); font-size:.95rem;}
+  .section-label.resume b{font-size:1.4rem;}
+
+  .ledger{display:flex; flex-direction:column; border-top:2px solid var(--ink);}
+  .ledger.hidden{display:none;}
+  .row{border-bottom:1px solid var(--rule); position:relative; transition:background .2s;}
+  .row.hidden{display:none;}
+  .row::before{content:''; position:absolute; left:-20px; top:0; bottom:0; width:4px; background:var(--accent); transform:scaleY(0); transform-origin:top; transition:transform .25s ease;}
+  .row.open{background:var(--wash);}
+  .row.open::before{transform:scaleY(1);}
+  .row-head{display:flex; align-items:center; gap:14px; padding:14px 4px; min-height:60px; cursor:pointer; user-select:none;}
+  .code{font-family:var(--display); font-weight:700; font-size:1.55rem; line-height:1; letter-spacing:.02em; min-width:76px; color:var(--ink); transition:color .2s;}
+  .row.open .code{color:var(--accent);}
+  .row-title{flex:1; font-size:1rem; font-weight:500; line-height:1.3;}
+  .chev{position:relative; width:18px; height:18px; flex-shrink:0; font-size:0; color:var(--muted);}
+  .chev::before,.chev::after{content:''; position:absolute; left:2px; right:2px; top:8px; height:2px; background:currentColor; transition:transform .25s ease;}
+  .chev::after{transform:rotate(90deg);}
+  .row.open .chev{color:var(--accent);}
+  .row.open .chev::after{transform:rotate(0deg);}
+
+  .row-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .row.open .row-body{max-height:560px;}
+  .row-body-inner{display:flex; gap:10px; padding:2px 4px 18px 94px; flex-wrap:wrap;}
+
+  .sublist{display:flex; flex-direction:column; padding:0 4px 14px 4px;}
+  .subrow{display:flex; align-items:center; justify-content:space-between; gap:10px 14px; padding:10px 0; border-top:1px solid var(--rule);}
+  .subrow:first-child{border-top:none;}
+  .subname{font-size:.95rem; flex:1; min-width:0;}
+  .pillgroup{display:flex; gap:8px; flex-shrink:0;}
+
+  .pill{font-size:.95rem; font-weight:600; padding:0 18px; min-height:44px; border-radius:2px; text-decoration:none; display:inline-flex; align-items:center; border:2px solid var(--ink); color:var(--ink); white-space:nowrap; transition:background .15s, color .15s, transform .15s;}
+  .pill.cbt{background:var(--ink); color:var(--paper);}
+  .pill.cbt:hover{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .pill.pdf:hover{background:var(--ink); color:var(--paper);}
+  .pill:active{transform:translateY(1px);}
+
+  .empty{padding:48px 4px; color:var(--muted); font-size:1rem;}
+
+  footer{max-width:760px; margin:64px auto 0; padding:0 20px 56px;}
+  footer .fmark{font-family:var(--display); font-weight:900; font-size:1.1rem; text-transform:uppercase; letter-spacing:.04em;}
+  footer .fnote{margin-top:2px; color:var(--muted); font-size:.85rem;}
+
+  @media (max-width:520px){
+    .code{min-width:68px; font-size:1.45rem;}
+    .row-body-inner{padding-left:86px;}
+    .row::before{left:-20px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .trace path{animation:none; stroke-dashoffset:0;}
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+<script type="module">
+  import { auth, watchAuthState } from "./auth.js";
+  watchAuthState((user) => {
+    if (!user) {
+      window.location.replace("register.html");
+      return;
+    }
+    document.documentElement.style.visibility = "visible";
+  });
+</script>
+
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker">Personal study console for FUOYE basic medical sciences</p>
+    <h1 class="wordmark">Indigene</h1>
+    <svg class="trace" id="trace" aria-hidden="true" preserveAspectRatio="none"><path id="tracePath" pathLength="1" d="M0 34H1"/></svg>
+    <div class="hero-foot"><span id="greet">Welcome back</span><span id="rowcount"><b>37</b> courses loaded</span></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="tabs">
+    <button class="tab active" data-level="all">All</button>
+    <button class="tab" data-level="200">200 level</button>
+    <button class="tab" data-level="100">100 level</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon" aria-hidden="true"></span>
+    <input class="search" id="search" type="search" placeholder="Search a course or code" autocomplete="off" aria-label="Search courses">
+  </div>
+</div>
+
+<main>
+  <div class="section-label resume" id="resume-label" style="display:none;"><b>Continue reading</b></div>
+  <div class="ledger" id="resume-ledger" style="display:none;"></div>
+
+  <div class="section-label"><b>100 level</b><span>First semester</span></div>
+  <div class="ledger" data-level="100">
+    <div class="row" data-level="100" data-name="bio101 general biology i">
+      <div class="row-head"><span class="code">BIO101</span><span class="row-title">General Biology I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bio101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/bio101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="chm101 general chemistry i">
+      <div class="row-head"><span class="code">CHM101</span><span class="row-title">General Chemistry I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/chm101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/chm101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="csc101 introduction to computer science i">
+      <div class="row-head"><span class="code">CSC101</span><span class="row-title">Introduction to Computer Science I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/csc101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/csc101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="mth101 elementary mathematics i">
+      <div class="row-head"><span class="code">MTH101</span><span class="row-title">Elementary Mathematics I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mth101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/mth101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="phy101 general physics i">
+      <div class="row-head"><span class="code">PHY101</span><span class="row-title">General Physics I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phy101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/phy101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="ent101 introduction to entrepreneurship">
+      <div class="row-head"><span class="code">ENT101</span><span class="row-title">Introduction to Entrepreneurship</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ent101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ent101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst101 communication in english i">
+      <div class="row-head"><span class="code">GST101</span><span class="row-title">Communication in English I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst101.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst101.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst103 use of library and ict">
+      <div class="row-head"><span class="code">GST103</span><span class="row-title">Use of Library and ICT</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst103.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst103.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>100 level</b><span>Second semester</span></div>
+  <div class="ledger" data-level="100">
+    <div class="row" data-level="100" data-name="bio102 general biology ii">
+      <div class="row-head"><span class="code">BIO102</span><span class="row-title">General Biology II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bio102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/bio102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="chm102 general chemistry ii">
+      <div class="row-head"><span class="code">CHM102</span><span class="row-title">General Chemistry II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/chm102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/chm102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="ent102 evaluation of business concept and opportunities">
+      <div class="row-head"><span class="code">ENT102</span><span class="row-title">Evaluation of Business Concept and Opportunities</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ent102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ent102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst102 communication in english ii">
+      <div class="row-head"><span class="code">GST102</span><span class="row-title">Communication in English II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst104 peoples and cultures of nigeria">
+      <div class="row-head"><span class="code">GST104</span><span class="row-title">Peoples and Cultures of Nigeria</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst104.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst104.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="mth102 elementary mathematics ii">
+      <div class="row-head"><span class="code">MTH102</span><span class="row-title">Elementary Mathematics II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mth102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/mth102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="phy102 general physics ii">
+      <div class="row-head"><span class="code">PHY102</span><span class="row-title">General Physics II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phy102.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/phy102.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>200 level</b><span>First semester</span></div>
+  <div class="ledger" data-level="200">
+    <div class="row has-sub" data-level="200" data-name="ana203 basic histology and cytology cell epithelial connective muscle nerve blood cartilage bone">
+      <div class="row-head"><span class="code">ANA203</span><span class="row-title">Basic Histology and Cytology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="sublist">
+        <div class="subrow"><span class="subname">Full Compendium (PDF)</span><div class="pillgroup"><a class="pill pdf" href="pdfview/ana203.html">▤ PDF</a></div></div>
+        <div class="subrow"><span class="subname">Cell, Transport &amp; Division</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-cell-transport-division.html">▣ CBT</a></div></div>
+        <div class="subrow"><span class="subname">Epithelial &amp; Connective Tissue</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-epithelial-connective.html">▣ CBT</a></div></div>
+        <div class="subrow"><span class="subname">Muscle Tissue</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-muscle-tissue.html">▣ CBT</a></div></div>
+        <div class="subrow"><span class="subname">Nerve, Blood, Cartilage &amp; Bone</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-nerve-blood-cartilage-bone.html">▣ CBT</a></div></div>
+      </div></div>
+    </div>
+    <div class="row has-sub" data-level="200" data-name="ana217 gross anatomy — upper & lower limbs">
+      <div class="row-head"><span class="code">ANA217</span><span class="row-title">Gross Anatomy — Upper & Lower Limbs</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="sublist">
+        <div class="subrow"><span class="subname">Upper Limb</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana217-upper-limb.html">▣ CBT</a><a class="pill pdf" href="pdfview/ana217-upper-limb.html">▤ PDF</a></div></div>
+        <div class="subrow"><span class="subname">Lower Limb</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana217-lower-limb.html">▣ CBT</a><a class="pill pdf" href="pdfview/ana217-lower-limb.html">▤ PDF</a></div></div>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="bst201 biostat and demography">
+      <div class="row-head"><span class="code">BST201</span><span class="row-title">Biostat and Demography</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bst201.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/bst201.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst203 nigerian people and culture">
+      <div class="row-head"><span class="code">GST203</span><span class="row-title">Nigerian People and Culture</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst203.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst203.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst205 introduction to philosophy / existence">
+      <div class="row-head"><span class="code">GST205</span><span class="row-title">Introduction to Philosophy / Existence</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst205.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst205.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="mcb201 general biochemistry">
+      <div class="row-head"><span class="code">MCB201</span><span class="row-title">General Biochemistry</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mcb201.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/mcb201.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc201 foundation of nursing">
+      <div class="row-head"><span class="code">NSC201</span><span class="row-title">Foundation of Nursing</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc201.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc201.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc207 medical microbiology and parasitology">
+      <div class="row-head"><span class="code">NSC207</span><span class="row-title">Medical Microbiology and Parasitology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc207.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc207.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="phs201 physiology — cardiovascular / endocrine / reproductive">
+      <div class="row-head"><span class="code">PHS201</span><span class="row-title">Physiology — Cardiovascular / Endocrine / Reproductive</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phs201.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/phs201.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="pol201 political science">
+      <div class="row-head"><span class="code">POL201</span><span class="row-title">Political Science</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/pol201.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/pol201.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>200 level</b><span>Second semester</span></div>
+  <div class="ledger" data-level="200">
+    <div class="row" data-level="200" data-name="ana204 medical histology">
+      <div class="row-head"><span class="code">ANA204</span><span class="row-title">Medical Histology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana204.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana204.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana218 general and systemic embryology">
+      <div class="row-head"><span class="code">ANA218</span><span class="row-title">General and Systemic Embryology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana218.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana218.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana220 neuroanatomy">
+      <div class="row-head"><span class="code">ANA220</span><span class="row-title">Neuroanatomy</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana220.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana220.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana222 gross anatomy — thorax, abdomen, pelvis, perineum, head & neck">
+      <div class="row-head"><span class="code">ANA222</span><span class="row-title">Gross Anatomy — Thorax, Abdomen, Pelvis, Perineum, Head & Neck</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana222.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana222.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst202 peace and conflict resolution">
+      <div class="row-head"><span class="code">GST202</span><span class="row-title">Peace and Conflict Resolution</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst202.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst202.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst204 communication in french">
+      <div class="row-head"><span class="code">GST204</span><span class="row-title">Communication in French</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst204.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst204.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="mcb202 general biochemistry ii">
+      <div class="row-head"><span class="code">MCB202</span><span class="row-title">General Biochemistry II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mcb202.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/mcb202.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc202 foundation of nursing ii">
+      <div class="row-head"><span class="code">NSC202</span><span class="row-title">Foundation of Nursing II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc202.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc202.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc206 developmental psychology">
+      <div class="row-head"><span class="code">NSC206</span><span class="row-title">Developmental Psychology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc206.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc206.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc208 introduction to medical sociology">
+      <div class="row-head"><span class="code">NSC208</span><span class="row-title">Introduction to Medical Sociology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc208.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc208.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="fhs202 human physiology ii">
+      <div class="row-head"><span class="code">FHS202</span><span class="row-title">Human Physiology II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/fhs202.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/fhs202.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="fth210 general cellular pathology">
+      <div class="row-head"><span class="code">FTH210</span><span class="row-title">General Cellular Pathology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/fth210.html">▣ Run CBT</a>
+        <a class="pill pdf" href="pdfview/fth210.html">▤ Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="empty" id="empty" style="display:none;">No course matches that search. Try the course code, like ANA203, or part of the name.</div>
+</main>
+
+<footer>
+  <div class="fmark">Indigene</div>
+  <div class="fnote">Study console. CBTs and PDFs for every course.</div>
+</footer>
+
+<script>
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function renderResume() {
+    try {
+      const recents = JSON.parse(localStorage.getItem("indigene_recent_pdfs") || "[]");
+      if (!recents.length) return;
+
+      const ledger = document.getElementById("resume-ledger");
+      const label = document.getElementById("resume-label");
+
+      ledger.innerHTML = recents.map((r) => `
+        <div class="row">
+          <div class="row-head" style="cursor:default;">
+            <span class="row-title">${escapeHtml(r.title)}</span>
+            <a class="pill pdf" href="${escapeHtml(r.href)}">▤ Continue</a>
+          </div>
+        </div>
+      `).join("");
+
+      ledger.style.display = "";
+      label.style.display = "";
+    } catch (e) {
+      // localStorage unavailable or malformed data — just skip the resume row.
+    }
+  }
+  renderResume();
+  document.querySelectorAll("#resume-ledger .pill").forEach(p => { p.textContent = p.textContent.replace(/^[▣▤]\s*/, ""); });
+
+  // accordion (top-level rows AND subrows share nothing extra needed for subrows since they're plain links)
+  document.querySelectorAll('.ledger[data-level] .row-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const row = head.parentElement;
+      const wasOpen = row.classList.contains('open');
+      document.querySelectorAll('.row.open').forEach(r => r.classList.remove('open'));
+      if (!wasOpen) row.classList.add('open');
+    });
+  });
+
+  const tabs = document.querySelectorAll('.tab');
+  const rows = document.querySelectorAll('.ledger[data-level] .row');
+  const ledgers = document.querySelectorAll('.ledger[data-level]');
+  let currentLevel = 'all';
+
+  function applyFilters(){
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach(row => {
+      const matchesLevel = currentLevel === 'all' || row.dataset.level === currentLevel;
+      const matchesSearch = !q || row.dataset.name.includes(q);
+      const show = matchesLevel && matchesSearch;
+      row.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    ledgers.forEach(l => {
+      const anyVisible = [...l.querySelectorAll('.row')].some(r => !r.classList.contains('hidden'));
+      l.classList.toggle('hidden', !anyVisible);
+      const label = l.previousElementSibling;
+      if (label && label.classList.contains('section-label')) {
+        label.style.display = anyVisible ? '' : 'none';
+      }
+    });
+    document.getElementById('empty').style.display = visible === 0 ? 'block' : 'none';
+    document.getElementById('rowcount').innerHTML = '<b>' + visible + '</b> course' + (visible===1?'':'s') + ' shown';
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentLevel = tab.dataset.level;
+      applyFilters();
+    });
+  });
+
+  document.getElementById('search').addEventListener('input', applyFilters);
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
+
+<script>
+  /* strip the old glyphs from the buttons, so they read as plain actions */
+  function cleanPills(){
+    document.querySelectorAll('.pill').forEach(p => { p.textContent = p.textContent.replace(/^[▣▤]\s*/, ''); });
+  }
+  cleanPills();
+
+  /* greeting */
+  (function(){
+    const h = new Date().getHours();
+    const g = h >= 4 && h < 12 ? 'Good morning' : h >= 12 && h < 17 ? 'Good afternoon' : h >= 17 && h < 22 ? 'Good evening' : 'Late one tonight';
+    const el = document.getElementById('greet'); if(el) el.textContent = g;
+  })();
+
+  /* the trace: a heartbeat that draws itself once, then sits under the name */
+  (function(){
+    const svg = document.getElementById('trace'), path = document.getElementById('tracePath');
+    if(!svg || !path) return;
+    function build(){
+      const w = Math.max(svg.getBoundingClientRect().width || 320, 200);
+      svg.setAttribute('viewBox', '0 0 ' + w + ' 68');
+      const base = 38, period = 158;
+      let d = 'M0 ' + base;
+      for(let s = 26; s + period <= w + 40; s += period){
+        d += ' H' + (s+10) + ' q10 -13 20 0 H' + (s+46) + ' L' + (s+52) + ' ' + (base+7) +
+             ' L' + (s+61) + ' 4 L' + (s+71) + ' ' + (base+22) + ' L' + (s+77) + ' ' + base +
+             ' H' + (s+96) + ' q15 -17 30 0';
+        if(s + period*2 > w + 40) { d += ' H' + w; return path.setAttribute('d', d); }
+      }
+      path.setAttribute('d', d + ' H' + w);
+    }
+    build();
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 150); });
+  })();
+</script>
+<script src="install.js"></script>
+</body>
+</html>
