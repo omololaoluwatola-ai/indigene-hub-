@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Complete profile — INDIGENE Study Console</title>
+<meta name="theme-color" content="#07050a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07050a; --char:#120b09; --ember:#ff7a1a; --ember-hot:#ffb020; --ember-deep:#8a2c0c;
+    --gold:#e8b84b; --parchment:#f2e6d8; --ash:#a89484; --ash-dim:#7a6a5d; --line:rgba(255,122,26,0.14);
+    --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+    --body:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html{background:var(--void);}
+  body{background:var(--void); color:var(--ash); font-family:var(--body); font-size:16px; line-height:1.5; min-height:100vh; overflow-x:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 20px;}
+  ::selection{background:rgba(255,122,26,0.3); color:#fff;}
+  a,button,input{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--ember); outline-offset:2px;}
+  .glow{position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(600px 380px at 15% -5%, rgba(255,122,26,0.16), transparent 60%),
+      radial-gradient(500px 500px at 100% 15%, rgba(232,184,75,0.09), transparent 55%),
+      radial-gradient(700px 400px at 50% 115%, rgba(138,44,12,0.25), transparent 60%);}
+  .grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .hero,.card{position:relative; z-index:2;}
+  .hero{text-align:center; margin-bottom:28px;}
+  .wordmark{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(4.2rem, 23vw, 7rem); letter-spacing:0.02em; line-height:.85; padding-bottom:.04em;
+    background:linear-gradient(180deg, #fff6ea 0%, var(--ember-hot) 45%, var(--ember-deep) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 0 30px rgba(255,122,26,0.28));
+    opacity:0; animation:ignite 1.1s ease-out 0.1s forwards;}
+  @keyframes ignite{
+    0%{opacity:0; letter-spacing:0.12em; filter:blur(6px) drop-shadow(0 0 0 rgba(255,122,26,0));}
+    100%{opacity:1; letter-spacing:0.02em; filter:blur(0) drop-shadow(0 0 30px rgba(255,122,26,0.28));}}
+  .tagline{font-size:0.8rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--ash-dim); margin-top:16px; font-weight:500;}
+  .hairline{width:120px; height:1px; margin:20px auto 0; background:linear-gradient(90deg, transparent, var(--ember), transparent); opacity:0.6;}
+
+  .card{width:100%; max-width:400px; border:1px solid var(--line);
+    background:linear-gradient(160deg, rgba(255,122,26,0.045), rgba(0,0,0,0) 55%), var(--char);
+    border-radius:6px; padding:26px 22px 22px;}
+  .subtitle{font-family:var(--display); font-weight:900; font-size:1.5rem; line-height:1; text-transform:uppercase; color:var(--parchment); margin-bottom:14px;}
+  input{width:100%; min-height:48px; padding:12px 14px; margin-bottom:12px; border-radius:2px; border:1px solid var(--line);
+    background:var(--void); color:var(--parchment); font-size:1rem; transition:border-color .2s;}
+  input::placeholder{color:var(--ash-dim);}
+  input:focus{outline:none; border-color:rgba(255,122,26,0.6);}
+  button{width:100%; min-height:48px; padding:0 18px; border-radius:2px; font-size:1rem; font-weight:600; cursor:pointer; margin-bottom:10px;
+    transition:background .15s, color .15s, border-color .15s, transform .15s;}
+  button:active{transform:translateY(1px);}
+  .btn-primary{background:var(--parchment); color:var(--void); border:2px solid var(--parchment);}
+  .btn-primary:hover{background:var(--ember); border-color:var(--ember); color:#fff;}
+  .btn-primary:disabled{opacity:0.6; cursor:default;}
+  .btn-google{background:transparent; color:var(--parchment); border:2px solid var(--parchment); display:flex; align-items:center; justify-content:center; gap:10px;}
+  .btn-google:hover{background:var(--parchment); color:var(--void);}
+  .divider{display:flex; align-items:center; gap:10px; color:var(--ash-dim); font-size:.8rem; margin:16px 0; letter-spacing:.1em;}
+  .divider::before,.divider::after{content:""; flex:1; height:1px; background:var(--line);}
+  .switch{text-align:center; font-size:.95rem; color:var(--ash-dim); margin-top:8px;}
+  .switch a{color:var(--gold); text-decoration:none; font-weight:600;}
+  #msg{font-size:.9rem; margin-bottom:10px;}
+  #msg:empty{display:none;}
+  #msg.error{color:#ff6b5c;}
+  #msg.success{color:var(--gold);}
+  select{width:100%; min-height:48px; padding:12px 14px; margin-bottom:12px; border-radius:2px; border:1px solid var(--line);
+    background:var(--void); color:var(--parchment); font-size:1rem; font-family:inherit; transition:border-color .2s;}
+  select:invalid{color:var(--ash-dim);}
+  select:focus{outline:none; border-color:rgba(255,122,26,0.6);}
+  select option{background:#120b09; color:#f2e6d8;}
+  @media (prefers-reduced-motion: reduce){ .wordmark{animation:none; opacity:1;} *{transition:none !important;} }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grain"></div>
+  <div class="hero">
+    <div class="wordmark">INDIGENE</div>
+    <div class="tagline">Personal Study Console</div>
+    <div class="hairline"></div>
+  </div>
+
+  <div class="card">
+    <div class="subtitle">One last step</div>
+
+    <div id="msg"></div>
+
+    <input id="department" type="text" list="deptList" placeholder="Department (e.g. Nursing Science)" autocomplete="off" />
+    <datalist id="deptList">
+      <option value="Nursing Science"></option>
+      <option value="Anatomy"></option>
+      <option value="Physiology"></option>
+      <option value="Biochemistry"></option>
+      <option value="Medical Laboratory Science"></option>
+      <option value="Medicine and Surgery"></option>
+      <option value="Public Health"></option>
+      <option value="Pharmacology"></option>
+    </datalist>
+    <select id="level" required>
+      <option value="" disabled selected>Level</option>
+      <option value="100">100 level</option>
+      <option value="200">200 level</option>
+      <option value="300">300 level</option>
+      <option value="400">400 level</option>
+      <option value="500">500 level</option>
+    </select>
+    <button id="saveBtn" class="btn-primary">Save and continue</button>
+  </div>
+
+  <script type="module">
+    import { watchAuthState, getUserProfile, hasProfile, saveProfile, friendlyError } from "./auth.js";
+
+    const msg = document.getElementById("msg");
+    const saveBtn = document.getElementById("saveBtn");
+    let currentUser = null;
+
+    function showMsg(text, type) {
+      msg.textContent = text;
+      msg.className = type;
+    }
+
+    watchAuthState(async (user) => {
+      if (!user) { window.location.replace("login.html"); return; }
+      currentUser = user;
+      try {
+        const profile = await getUserProfile(user.uid);
+        if (hasProfile(profile)) {
+          try { localStorage.setItem("indigene_profile_" + user.uid, "1"); } catch (e) {}
+          window.location.replace("index.html");
+        }
+      } catch (e) {}
+    });
+
+    saveBtn.addEventListener("click", async () => {
+      const department = document.getElementById("department").value.trim();
+      const level = document.getElementById("level").value;
+      if (!department || !level) {
+        showMsg("Enter your department and pick your level.", "error");
+        return;
+      }
+      saveBtn.disabled = true;
+      saveBtn.textContent = "Saving...";
+      try {
+        await saveProfile(department, level);
+        try { localStorage.setItem("indigene_profile_" + currentUser.uid, "1"); } catch (e) {}
+        window.location.href = "index.html";
+      } catch (err) {
+        showMsg(friendlyError(err.code), "error");
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save and continue";
+      }
+    });
+  </script>
+</body>
+</html>
