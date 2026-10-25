@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · INDIGENE</title>
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js">
+<link rel="modulepreload" href="./auth.js">
+<style>
+  :root{--bg:#0b0706; --char:#120b09; --line:rgba(255,122,26,0.18); --ember:#ff7a1a; --hot:#ffb066; --deep:#d9480f; --text:#f6e9db; --dim:#a89888; --ok:#7ddc8a; --bad:#ff7a6a;}
+  *{box-sizing:border-box; margin:0;}
+  body{background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16px; line-height:1.45; padding:16px; max-width:640px; margin:0 auto; padding-bottom:60px;}
+  h1{font-size:1.7rem; font-weight:900; letter-spacing:.04em; text-transform:uppercase; margin:6px 0 2px;}
+  h1 b{color:var(--ember);}
+  h2{font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--dim); margin:26px 0 10px; font-weight:600;}
+  .top{display:flex; justify-content:space-between; align-items:center; gap:10px;}
+  .sub{color:var(--dim); font-size:.9rem;}
+  .card{border:1px solid var(--line); background:var(--char); border-radius:8px; padding:14px;}
+  input[type=email],input[type=search]{width:100%; min-height:46px; padding:0 14px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); font-size:1rem;}
+  input:focus{outline:none; border-color:rgba(255,122,26,.6);}
+  select{min-height:46px; padding:0 12px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); font-size:1rem; width:100%;}
+  .pair{display:grid; grid-template-columns:3fr 2fr; gap:8px;} .pair select{font-size:.9rem; padding:0 8px;}
+  .res-sc{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .res-sc span{font-size:.78rem; padding:3px 9px; border-radius:999px; background:rgba(255,122,26,.08); color:var(--text);}
+  .res-avg{font-weight:800; color:var(--hot);}
+  .qrow{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--line);}
+  .qrow b{font-size:1.05rem;}
+  .errs{margin:10px 0 0; padding:10px 12px 10px 28px; border:1px solid var(--bad); border-radius:8px; color:var(--bad); font-size:.85rem;}
+  input[type=text]{width:100%; min-height:46px; padding:0 14px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); font-size:1rem; text-transform:uppercase;}
+  input[type=text]:focus,select:focus{outline:none; border-color:rgba(255,122,26,.6);}
+  details.how{margin-top:12px; font-size:.85rem; color:var(--dim);}
+  details.how summary{cursor:pointer; min-height:36px; display:flex; align-items:center; color:var(--hot);}
+  details.how pre{white-space:pre-wrap; word-break:break-word; background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:6px; color:var(--text); font-size:.78rem;}
+  #q-frame{width:100%; height:68vh; border:1px solid var(--line); border-radius:8px; background:#fff; margin-top:12px;}
+  .btn{min-height:44px; padding:0 18px; border-radius:999px; border:none; cursor:pointer; font-weight:700; font-size:.95rem; color:#fff; background:linear-gradient(135deg,var(--ember),var(--deep));}
+  .btn.ghost{background:transparent; border:1px solid var(--line); color:var(--text);}
+  .btn.small{min-height:38px; padding:0 14px; font-size:.85rem;}
+  .btn[disabled]{opacity:.5; cursor:default;}
+  .checks{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0;}
+  .chk{display:flex; align-items:center; gap:10px; min-height:46px; padding:0 12px; border:1px solid var(--line); border-radius:8px; cursor:pointer; font-size:.92rem;}
+  .chk input{width:20px; height:20px; accent-color:var(--ember); flex:none;}
+  .chk:has(input:checked){border-color:var(--ember); background:rgba(255,122,26,.08);}
+  .msg{min-height:1.3em; margin-top:10px; font-size:.9rem;}
+  .msg.ok{color:var(--ok);} .msg.bad{color:var(--bad);}
+  .grp{margin-bottom:14px;}
+  .grp-name{font-weight:700; margin-bottom:6px;}
+  .sw{display:flex; gap:8px;}
+  .swb{flex:1; min-height:46px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--dim); font-weight:700; cursor:pointer;}
+  .swb.on{background:rgba(125,220,138,.12); border-color:var(--ok); color:var(--ok);}
+  .swb small{display:block; font-weight:500; font-size:.7rem; letter-spacing:.06em;}
+  .who{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:12px 0; border-top:1px solid var(--line);}
+  .who:first-child{border-top:none;}
+  .who-email{word-break:break-all; font-weight:600;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .tag{font-size:.72rem; padding:3px 9px; border-radius:999px; border:1px solid var(--line); color:var(--hot);}
+  .acts{display:flex; gap:6px; flex:none;}
+  .center{text-align:center; padding:40px 10px;}
+  .center .btn{margin-top:16px;}
+</style>
+</head>
+<body>
+
+<div id="gate" class="center"><div class="sub">Checking sign-in...</div></div>
+
+<div id="panel" hidden>
+  <div class="top">
+    <div><h1>Indigene <b>Admin</b></h1><div class="sub" id="who-am-i"></div></div>
+    <button class="btn ghost small" id="out" type="button">Log out</button>
+  </div>
+
+  <h2>Unlock a student</h2>
+  <div class="card">
+    <input type="email" id="em" placeholder="Student email" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="checks" id="checks"></div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn" id="save" type="button">Save unlock</button>
+      <button class="btn ghost" id="clear" type="button">Clear</button>
+    </div>
+    <div class="msg" id="msg" role="status"></div>
+  </div>
+
+  <h2>Premium (CBT + past questions)</h2>
+  <div class="card">
+    <input type="email" id="pem" placeholder="Student email" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button class="btn" id="psave" type="button">Give premium</button>
+    </div>
+    <div class="msg" id="pmsg" role="status"></div>
+    <input type="search" id="pfind" placeholder="Search premium students" style="margin:6px 0 6px;">
+    <div id="plist"><div class="sub">Loading...</div></div>
+  </div>
+
+  <h2>Mock switches</h2>
+  <div class="card" id="switches"></div>
+
+  <h2>Upload mock CBT (HTML)</h2>
+  <div class="card">
+    <div class="pair">
+      <select id="q-group" aria-label="Level and semester"></select>
+      <select id="q-mock" aria-label="Mock"><option value="1">Mock 1</option><option value="2">Mock 2</option><option value="3">Mock 3</option></select>
+    </div>
+    <div class="sub" style="margin:12px 0 6px;">Already uploaded for this mock</div>
+    <div id="q-have"><div class="sub">Loading...</div></div>
+
+    <div class="sub" style="margin:14px 0 6px;">Subject code (like PHY101)</div>
+    <input type="text" id="q-subj" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="PHY101">
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; align-items:center;">
+      <label class="btn ghost small" style="display:inline-flex; align-items:center; cursor:pointer;">Choose HTML file<input type="file" id="q-file" accept=".html,.htm,text/html" hidden></label>
+      <span class="sub" id="q-fname">No file chosen</span>
+    </div>
+    <div class="sub" style="margin:14px 0 6px;">Answer key, in question order (like C,A,B,D)</div>
+    <textarea id="q-key" spellcheck="false" placeholder="C,A,B,D,B,A,..."></textarea>
+    <div class="sub" id="q-keycount" style="margin-top:4px;"></div>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button class="btn ghost" id="q-prev" type="button">Preview</button>
+      <button class="btn" id="q-save" type="button">Check and save</button>
+    </div>
+    <div class="msg" id="qmsg" role="status"></div>
+    <ol class="errs" id="qerr" hidden></ol>
+    <iframe id="q-frame" title="Preview" sandbox="allow-scripts" hidden></iframe>
+    <details class="how"><summary>What the HTML file must do</summary>
+<pre>The page must NOT contain the correct answers. When the student finishes it sends back the letter they picked for each question, in the ORIGINAL question order (not the shuffled order), with "-" for a question they did not answer:
+
+window.parent.postMessage({
+  type: "indigene-mock-done",
+  answers: ["B","A","-","D"]
+}, "*");
+
+Paste the correct letters in the Answer key box above, in the same order, for example C,A,B,D.
+Admin marks every student from that key. Nobody sees the key.
+The 20 second and 50 second timers, the shuffling and the auto next question are done inside your HTML.
+Keep each file under 900 KB. Do not use localStorage or Firebase inside it.</pre></details>
+  </div>
+
+  <h2>Mock results</h2>
+  <div class="card">
+    <div class="pair">
+      <select id="r-group" aria-label="Level and semester"></select>
+      <select id="r-mock" aria-label="Mock"><option value="1">Mock 1</option><option value="2">Mock 2</option><option value="3">Mock 3</option></select>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;">
+      <button class="btn small" id="r-all" type="button">Download all (PDF)</button>
+      <button class="btn ghost small" id="r-csv" type="button">Download sheet (CSV)</button>
+      <button class="btn ghost small" id="r-refresh" type="button">Refresh</button>
+    </div>
+    <div class="msg" id="rmsg" role="status"></div>
+    <div id="rlist"><div class="sub">Loading...</div></div>
+  </div>
+
+  <h2>Unlocked students <span id="count"></span></h2>
+  <input type="search" id="find" placeholder="Search email" style="margin-bottom:10px;">
+  <div class="card" id="list"><div class="sub">Loading...</div></div>
+</div>
+
+<script type="module">
+  import { auth, db, watchAuthState, loginWithGoogle, logout } from "./auth.js";
+  import { doc, getDoc, setDoc, deleteDoc, getDocs, collection, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // Must match the email in firestore.rules
+  const ADMIN_EMAIL = "omololaoluwatola@gmail.com";
+  const GROUPS = [
+    { key: "100-1", label: "100 level · 1st semester" },
+    { key: "100-2", label: "100 level · 2nd semester" },
+    { key: "200-1", label: "200 level · 1st semester" },
+    { key: "200-2", label: "200 level · 2nd semester" }
+  ];
+  const $ = id => document.getElementById(id);
+  let switches = {};
+  let rows = [];
+  let prem = [];
+  let results = [];
+  let idx = {};
+  let keys = {};
+
+  function gate(html, btnText, btnFn) {
+    $("panel").hidden = true;
+    const g = $("gate"); g.hidden = false; g.textContent = "";
+    const p = document.createElement("div"); p.textContent = html; g.appendChild(p);
+    if (btnText) { const b = document.createElement("button"); b.className = "btn"; b.textContent = btnText; b.onclick = btnFn; g.appendChild(b); }
+  }
+
+  function say(text, ok) { const m = $("msg"); m.textContent = text; m.className = "msg " + (ok ? "ok" : "bad"); }
+  function cleanEmail(v) { return String(v || "").trim().toLowerCase(); }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+  function buildChecks() {
+    $("checks").innerHTML = "";
+    GROUPS.forEach(g => {
+      const l = document.createElement("label"); l.className = "chk";
+      const i = document.createElement("input"); i.type = "checkbox"; i.value = g.key;
+      const t = document.createElement("span"); t.textContent = g.label;
+      l.append(i, t); $("checks").appendChild(l);
+    });
+  }
+  const ticked = () => [...$("checks").querySelectorAll("input:checked")].map(i => i.value);
+  function setTicks(keys) { $("checks").querySelectorAll("input").forEach(i => { i.checked = keys.includes(i.value); }); }
+
+  function drawSwitches() {
+    const box = $("switches"); box.innerHTML = "";
+    GROUPS.forEach(g => {
+      const w = document.createElement("div"); w.className = "grp";
+      const n = document.createElement("div"); n.className = "grp-name"; n.textContent = g.label; w.appendChild(n);
+      const r = document.createElement("div"); r.className = "sw";
+      [1, 2, 3].forEach(m => {
+        const k = g.key + "-" + m, on = switches[k] === true;
+        const b = document.createElement("button"); b.type = "button"; b.className = "swb" + (on ? " on" : "");
+        b.innerHTML = "Mock " + m + "<small>" + (on ? "ON" : "OFF") + "</small>";
+        b.onclick = () => flip(k, b);
+        r.appendChild(b);
+      });
+      w.appendChild(r); box.appendChild(w);
+    });
+  }
+
+  async function flip(k, btn) {
+    btn.disabled = true;
+    const next = !(switches[k] === true);
+    try {
+      // Turning a mock ON stamps the time. Students can enter for 5 hours after that.
+      await setDoc(doc(db, "mockSwitches", "main"), next ? { [k]: true, [k + "_at"]: serverTimestamp() } : { [k]: false }, { merge: true });
+      switches[k] = next;
+    } catch (e) { say("Could not change the switch. " + (e.code || ""), false); }
+    drawSwitches();
+  }
+
+  function drawList() {
+    const q = cleanEmail($("find").value);
+    const shown = rows.filter(r => !q || r.email.includes(q));
+    $("count").textContent = rows.length ? "(" + rows.length + ")" : "";
+    const box = $("list"); box.innerHTML = "";
+    if (!shown.length) { const d = document.createElement("div"); d.className = "sub"; d.textContent = rows.length ? "No match." : "Nobody unlocked yet."; box.appendChild(d); return; }
+    shown.forEach(r => {
+      const w = document.createElement("div"); w.className = "who";
+      const left = document.createElement("div");
+      const e = document.createElement("div"); e.className = "who-email"; e.textContent = r.email; left.appendChild(e);
+      const tg = document.createElement("div"); tg.className = "tags";
+      GROUPS.filter(g => r.groups[g.key] === true).forEach(g => { const s = document.createElement("span"); s.className = "tag"; s.textContent = g.label; tg.appendChild(s); });
+      left.appendChild(tg);
+      const a = document.createElement("div"); a.className = "acts";
+      const ed = document.createElement("button"); ed.className = "btn ghost small"; ed.textContent = "Edit";
+      ed.onclick = () => { $("em").value = r.email; setTicks(GROUPS.filter(g => r.groups[g.key] === true).map(g => g.key)); window.scrollTo({ top: 0, behavior: "smooth" }); say("Editing " + r.email, true); };
+      const rm = document.createElement("button"); rm.className = "btn ghost small"; rm.textContent = "Remove";
+      rm.onclick = async () => {
+        if (!confirm("Remove " + r.email + "?")) return;
+        try { await deleteDoc(doc(db, "mockUnlocks", r.email)); rows = rows.filter(x => x.email !== r.email); drawList(); say("Removed " + r.email, true); }
+        catch (err) { say("Could not remove. " + (err.code || ""), false); }
+      };
+      a.append(ed, rm); w.append(left, a); box.appendChild(w);
+    });
+  }
+
+  async function loadAll() {
+    // everything at once instead of one after another
+    const grab = (name, fallback) => getDocs(collection(db, name)).catch(() => fallback);
+    const [sw, ps, ks, ix, rs, qs] = await Promise.all([
+      getDoc(doc(db, "mockSwitches", "main")).catch(() => null),
+      grab("premiumUnlocks", null), grab("mockAnswers", null), grab("mockIndex", null), grab("mockResults", null), grab("mockUnlocks", null)
+    ]);
+    if (!qs) say("Could not load data. Check your internet and refresh.", false);
+    switches = sw && sw.exists() ? sw.data() : {};
+    prem = ps ? ps.docs.map(d => d.id).sort() : [];
+    keys = {}; if (ks) ks.docs.forEach(d => { keys[d.id] = (d.data().key || []); });
+    idx = {}; if (ix) ix.docs.forEach(d => { idx[d.id] = d.data(); });
+    results = rs ? rs.docs.map(d => Object.assign({ id: d.id }, d.data())) : [];
+    rows = qs ? qs.docs.map(d => ({ email: d.id, groups: (d.data().groups || {}) })).sort((x, y) => x.email.localeCompare(y.email)) : [];
+    drawSwitches(); drawList(); drawPrem(); drawResults(); drawQHave();
+  }
+
+  function pSay(text, ok) { const m = $("pmsg"); m.textContent = text; m.className = "msg " + (ok ? "ok" : "bad"); }
+
+  function drawPrem() {
+    const q = cleanEmail($("pfind").value);
+    const shown = prem.filter(e => !q || e.includes(q));
+    const box = $("plist"); box.innerHTML = "";
+    if (!shown.length) { const d = document.createElement("div"); d.className = "sub"; d.textContent = prem.length ? "No match." : "No premium students yet."; box.appendChild(d); return; }
+    shown.forEach(email => {
+      const w = document.createElement("div"); w.className = "who";
+      const e = document.createElement("div"); e.className = "who-email"; e.textContent = email;
+      const rm = document.createElement("button"); rm.className = "btn ghost small"; rm.textContent = "Remove";
+      rm.onclick = async () => {
+        if (!confirm("Remove premium from " + email + "?")) return;
+        try { await deleteDoc(doc(db, "premiumUnlocks", email)); prem = prem.filter(x => x !== email); drawPrem(); pSay("Premium removed from " + email, true); }
+        catch (err) { pSay("Could not remove. " + (err.code || ""), false); }
+      };
+      w.append(e, rm); box.appendChild(w);
+    });
+  }
+
+  $("psave").onclick = async () => {
+    const email = cleanEmail($("pem").value);
+    if (!validEmail(email)) return pSay("That email does not look right.", false);
+    $("psave").disabled = true;
+    try {
+      await setDoc(doc(db, "premiumUnlocks", email), { email, premium: true, updatedAt: serverTimestamp() });
+      if (!prem.includes(email)) { prem.push(email); prem.sort(); }
+      drawPrem(); pSay("Premium given to " + email, true); $("pem").value = "";
+    } catch (e) { pSay("Could not save. " + (e.code || ""), false); }
+    $("psave").disabled = false;
+  };
+  $("pfind").addEventListener("input", drawPrem);
+
+  // ---------- Upload mock CBT (HTML) ----------
+  const MAX_HTML = 900000;
+  let pendingHtml = "", pendingName = "";
+  function qSay(text, ok) { const m = $("qmsg"); m.textContent = text; m.className = "msg " + (ok ? "ok" : "bad"); }
+  const idxId = (g, n) => g + "_" + n;
+  const pageId = (g, n, code) => g + "_" + n + "_" + code;
+  const byteLen = t => new TextEncoder().encode(t).length;
+
+  // Turns "C,A,B,D" or "CABD" or "1.C 2.A" into ["C","A","B","D"]
+  function parseKey(raw) {
+    const t = String(raw || "").trim().toUpperCase();
+    if (!t) return { key: [], err: "Paste the answer key (like C,A,B,D)." };
+    let parts = t.split(/[\s,;]+/).filter(Boolean);
+    if (parts.length === 1 && /^[A-F]{2,}$/.test(parts[0])) parts = parts[0].split("");
+    const key = [];
+    for (const p0 of parts) {
+      const x = p0.replace(/^\d+\s*[.):\-]?/, "");
+      if (!/^[A-F]$/.test(x)) return { key: [], err: "Could not read \"" + p0.slice(0, 12) + "\" in the key. Use only the letters A to F." };
+      key.push(x);
+    }
+    if (key.length > 300) return { key: [], err: "The key is too long (limit 300)." };
+    return { key, err: "" };
+  }
+  function markWith(answers, key) {
+    let c = 0; key.forEach((k, i) => { if (String((answers || [])[i] || "").toUpperCase() === k) c++; });
+    return c;
+  }
+
+  function checkHtml(html) {
+    const errs = [];
+    if (!html.trim()) errs.push("Choose an HTML file first.");
+    else {
+      if (byteLen(html) > MAX_HTML) errs.push("The file is too big (" + Math.round(byteLen(html) / 1000) + " KB). The limit is 900 KB.");
+      if (!/<html[\s>]/i.test(html) || !/<\/html>/i.test(html)) errs.push("This does not look like a full HTML page.");
+      if (!/indigene-mock-done/.test(html)) errs.push("This file never sends the answers back. Add the indigene-mock-done line (see 'What the HTML file must do').");
+    }
+    return errs;
+  }
+  function showQErrs(list) {
+    const ol = $("qerr"); ol.innerHTML = ""; ol.hidden = !list.length;
+    list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ol.appendChild(li); });
+  }
+
+  function drawQHave() {
+    const g = $("q-group").value, n = $("q-mock").value;
+    const subs = ((idx[idxId(g, n)] || {}).subjects || []).slice().sort((a, b) => String(a.code).localeCompare(String(b.code)));
+    const box = $("q-have"); box.innerHTML = "";
+    if (!subs.length) { const d = document.createElement("div"); d.className = "sub"; d.textContent = "Nothing yet."; box.appendChild(d); return; }
+    subs.forEach(x => {
+      const row = document.createElement("div"); row.className = "qrow";
+      const l = document.createElement("div"); const b = document.createElement("b"); b.textContent = x.code; l.appendChild(b);
+      const kk = keys[pageId(g, n, x.code)] || [];
+      const c = document.createElement("span"); c.className = "sub"; c.textContent = "  " + Math.round((x.size || 0) / 1000) + " KB  |  " + (kk.length ? "key: " + kk.length + " answers" : "NO KEY"); l.appendChild(c);
+      const acts = document.createElement("div"); acts.className = "acts";
+      const rp = document.createElement("button"); rp.className = "btn ghost small"; rp.textContent = "Replace";
+      rp.onclick = () => { $("q-subj").value = x.code; $("q-key").value = (keys[pageId(g, n, x.code)] || []).join(","); showKeyCount();
+        qSay("Change the key or choose a new HTML file for " + x.code + ", then tap Check and save.", true); };
+      const rm = document.createElement("button"); rm.className = "btn ghost small"; rm.textContent = "Delete";
+      rm.onclick = async () => {
+        if (!confirm("Delete " + x.code + " for this mock?")) return;
+        try {
+          await deleteDoc(doc(db, "mockPages", pageId(g, n, x.code)));
+          await deleteDoc(doc(db, "mockAnswers", pageId(g, n, x.code))); delete keys[pageId(g, n, x.code)];
+          const left = subs.filter(y => y.code !== x.code);
+          await setDoc(doc(db, "mockIndex", idxId(g, n)), { group: g, mock: String(n), subjects: left, updatedAt: serverTimestamp() });
+          idx[idxId(g, n)] = { group: g, mock: String(n), subjects: left };
+          drawQHave(); qSay("Deleted " + x.code + ".", true);
+        } catch (e) { qSay("Could not delete. " + (e.code || ""), false); }
+      };
+      acts.append(rp, rm); row.append(l, acts); box.appendChild(row);
+    });
+  }
+
+  async function saveMock() {
+    showQErrs([]);
+    const g = $("q-group").value, n = $("q-mock").value;
+    const code = $("q-subj").value.trim().toUpperCase();
+    if (!/^[A-Z]{2,5}[0-9]{3}$/.test(code)) return qSay("Type the subject code like PHY101.", false);
+    const have = ((idx[idxId(g, n)] || {}).subjects || []).some(y => y.code === code);
+    const errs = [];
+    const pk = parseKey($("q-key").value); if (pk.err) errs.push(pk.err);
+    if (pendingHtml) errs.push(...checkHtml(pendingHtml)); else if (!have) errs.push("Choose an HTML file first.");
+    if (errs.length) { showQErrs(errs); return qSay("Fix this first. Nothing was saved.", false); }
+    $("q-save").disabled = true;
+    try {
+      // Key first, then the page, so a page can never be live without its key
+      await setDoc(doc(db, "mockAnswers", pageId(g, n, code)), { group: g, mock: String(n), subject: code, key: pk.key, count: pk.key.length, updatedAt: serverTimestamp() });
+      keys[pageId(g, n, code)] = pk.key;
+      let subs = ((idx[idxId(g, n)] || {}).subjects || []).slice();
+      if (pendingHtml) {
+        const size = byteLen(pendingHtml);
+        await setDoc(doc(db, "mockPages", pageId(g, n, code)), { group: g, mock: String(n), subject: code, html: pendingHtml, size, updatedAt: serverTimestamp() });
+        subs = subs.filter(y => y.code !== code).concat([{ code, size }]);
+        await setDoc(doc(db, "mockIndex", idxId(g, n)), { group: g, mock: String(n), subjects: subs, updatedAt: serverTimestamp() });
+        idx[idxId(g, n)] = { group: g, mock: String(n), subjects: subs };
+      }
+      drawQHave(); drawResults();
+      qSay("Saved " + code + " for " + groupLabel(g) + ", Mock " + n + (pendingHtml ? "." : " (key only)."), true);
+      pendingHtml = ""; $("q-subj").value = ""; $("q-key").value = ""; showKeyCount(); $("q-fname").textContent = "No file chosen"; closePreview();
+    } catch (e) { qSay("Could not save. " + (e.code || ""), false); }
+    $("q-save").disabled = false;
+  }
+
+  function showKeyCount() {
+    const t = $("q-key").value.trim(); if (!t) { $("q-keycount").textContent = ""; return; }
+    const pk = parseKey(t); $("q-keycount").textContent = pk.err ? pk.err : pk.key.length + " answers read";
+  }
+  $("q-key").addEventListener("input", showKeyCount);
+
+  function closePreview() { const f = $("q-frame"); f.hidden = true; f.removeAttribute("srcdoc"); $("q-prev").textContent = "Preview"; }
+  function togglePreview() {
+    const f = $("q-frame");
+    if (!f.hidden) return closePreview();
+    showQErrs([]);
+    const errs = checkHtml(pendingHtml);
+    if (errs.length) { showQErrs(errs); return qSay("Fix this first.", false); }
+    f.srcdoc = pendingHtml; f.hidden = false; $("q-prev").textContent = "Close preview";
+    qSay("Preview is running. Nothing is saved from it.", true);
+  }
+  window.addEventListener("message", e => {
+    const f = $("q-frame");
+    if (!f.contentWindow || e.source !== f.contentWindow) return;
+    const d = e.data;
+    if (!d || d.type !== "indigene-mock-done") return;
+    const ans = Array.isArray(d.answers) ? d.answers : [];
+    if (!ans.length) return qSay("The page finished but sent no answers. It must send the answers list.", false);
+    const pk = parseKey($("q-key").value);
+    if (pk.err) return qSay("The page sent " + ans.length + " answers. Paste the answer key to see the score.", true);
+    const c = markWith(ans, pk.key);
+    qSay("The page sent " + ans.length + " answers. With your key that scores " + c + " / " + pk.key.length + "." + (ans.length !== pk.key.length ? " Warning: the page has " + ans.length + " questions but the key has " + pk.key.length + "." : ""), ans.length === pk.key.length);
+  });
+
+  GROUPS.forEach(g => { const o = document.createElement("option"); o.value = g.key; o.textContent = g.label; $("q-group").appendChild(o); });
+  $("q-group").addEventListener("change", drawQHave);
+  $("q-mock").addEventListener("change", drawQHave);
+  $("q-save").onclick = saveMock;
+  $("q-prev").onclick = togglePreview;
+  $("q-file").addEventListener("change", e => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    if (f.size > 1500000) { qSay("That file is too big.", false); return; }
+    const rd = new FileReader();
+    rd.onload = () => {
+      pendingHtml = String(rd.result || ""); pendingName = f.name; $("q-fname").textContent = f.name; closePreview(); showQErrs([]);
+      const m = f.name.toUpperCase().match(/[A-Z]{2,5}[0-9]{3}/); if (m && !$("q-subj").value) $("q-subj").value = m[0];
+    };
+    rd.onerror = () => qSay("Could not read that file.", false);
+    rd.readAsText(f); e.target.value = "";
+  });
+
+  // ---------- Mock results ----------
+  function gradeOf(p) { return p >= 70 ? "A" : p >= 60 ? "B" : p >= 50 ? "C" : p >= 45 ? "D" : p >= 40 ? "E" : "F"; }
+  function rSay(text, ok) { const m = $("rmsg"); m.textContent = text; m.className = "msg " + (ok ? "ok" : "bad"); }
+  function groupLabel(k) { const g = GROUPS.find(x => x.key === k); return g ? g.label : k; }
+
+  // One row per student, with each subject as a percentage, the average and the grade
+  function shape(r) {
+    const subs = Object.keys(r.subjects || {}).sort().map(code => {
+      const v = r.subjects[code] || {};
+      const total = Number(v.total) || 0, right = Math.max(0, Number(v.correct) || 0);
+      const pct = total > 0 ? Math.min(100, Math.round(right / total * 100)) : 0;
+      return { code, pct, grade: gradeOf(pct) };
+    });
+    const avg = subs.length ? Math.round(subs.reduce((a, x) => a + x.pct, 0) / subs.length) : 0;
+    return { name: r.name || r.email || "Student", email: r.email || "", dept: r.department || "", level: r.level || "", subs, avg, grade: gradeOf(avg), missing: r.missing || [] };
+  }
+  function currentRows() {
+    const g = $("r-group").value, m = Number($("r-mock").value);
+    const by = {};
+    results.filter(r => r.group === g && Number(r.mock) === m).forEach(r => {
+      const e = by[r.email] || (by[r.email] = { name: r.name, email: r.email, department: r.department, level: r.level, subjects: {}, missing: [] });
+      if (r.name) e.name = r.name;
+      const key = keys[pageId(g, String(m), r.subject)];
+      if (key && key.length && Array.isArray(r.answers)) e.subjects[r.subject] = { correct: markWith(r.answers, key), total: key.length };
+      else if (r.total && r.correct != null && !Array.isArray(r.answers)) e.subjects[r.subject] = { correct: r.correct, total: r.total };
+      else e.missing.push(r.subject);
+    });
+    return Object.values(by).map(shape).sort((a, b) => a.name.localeCompare(b.name));
+  }
+  function fileBit(t) { return String(t).replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") || "student"; }
+  function tag() { return "Mock" + $("r-mock").value + "-" + $("r-group").value.replace("-", "L-") + "sem"; }
+
+  function drawResults() {
+    const rowsNow = currentRows();
+    const markable = rowsNow.filter(r => r.subs.length);
+    $("r-all").disabled = $("r-csv").disabled = !markable.length;
+    const box = $("rlist"); box.innerHTML = "";
+    if (!rowsNow.length) { const d = document.createElement("div"); d.className = "sub"; d.textContent = "No results for this mock yet."; box.appendChild(d); return; }
+    rowsNow.forEach(r => {
+      const w = document.createElement("div"); w.className = "who";
+      const left = document.createElement("div");
+      const n = document.createElement("div"); n.className = "who-email"; n.textContent = r.name; left.appendChild(n);
+      const sc = document.createElement("div"); sc.className = "res-sc";
+      r.subs.forEach(x => { const s2 = document.createElement("span"); s2.textContent = x.code + " " + x.pct + " " + x.grade; sc.appendChild(s2); });
+      if (r.subs.length) { const av = document.createElement("span"); av.className = "res-avg"; av.textContent = "Avg " + r.avg + " " + r.grade; sc.appendChild(av); }
+      if (r.missing.length) { const mm = document.createElement("span"); mm.style.color = "var(--bad)"; mm.textContent = "No key: " + r.missing.join(", "); sc.appendChild(mm); }
+      left.appendChild(sc);
+      const b = document.createElement("button"); b.className = "btn ghost small"; b.textContent = "PDF";
+      b.onclick = () => makePdf([r], "INDIGENE-" + tag() + "-" + fileBit(r.name) + ".pdf");
+      w.append(left, b); box.appendChild(w);
+    });
+    rSay(rowsNow.length + (rowsNow.length === 1 ? " student" : " students"), true);
+  }
+
+  let pdfLib = null;
+  function loadPdfLib() {
+    if (window.jspdf) return Promise.resolve(window.jspdf.jsPDF);
+    if (pdfLib) return pdfLib;
+    pdfLib = new Promise((res, rej) => {
+      const s2 = document.createElement("script");
+      s2.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+      s2.onload = () => res(window.jspdf.jsPDF); s2.onerror = () => { pdfLib = null; rej(new Error("pdf lib")); };
+      document.head.appendChild(s2);
+    });
+    return pdfLib;
+  }
+
+  async function makePdf(list, fileName) {
+    rSay("Making PDF...", true);
+    let JsPDF;
+    try { JsPDF = await loadPdfLib(); } catch (e) { return rSay("Could not load the PDF tool. Check your internet and try again.", false); }
+    try {
+      const pdf = new JsPDF({ unit: "mm", format: "a4" });
+      const mock = $("r-mock").value, gl = groupLabel($("r-group").value);
+      list.forEach((r, i) => {
+        if (i > 0) pdf.addPage();
+        pdf.setFont("helvetica", "bold"); pdf.setFontSize(22); pdf.text("INDIGENE", 20, 24);
+        pdf.setFontSize(12); pdf.setFont("helvetica", "normal");
+        pdf.text("Exam Mock " + mock + "  |  " + gl, 20, 32);
+        pdf.setDrawColor(217, 72, 15); pdf.setLineWidth(0.8); pdf.line(20, 36, 190, 36);
+        pdf.setFont("helvetica", "bold"); pdf.setFontSize(16);
+        pdf.text(pdf.splitTextToSize(r.name, 170), 20, 48);
+        pdf.setFont("helvetica", "normal"); pdf.setFontSize(11);
+        const info = [r.dept, r.level ? r.level + " level" : ""].filter(Boolean).join("  |  ");
+        if (info) pdf.text(info, 20, 56);
+        let y = 72;
+        pdf.setFont("helvetica", "bold"); pdf.text("Subject", 20, y); pdf.text("Score (/100)", 110, y); pdf.text("Grade", 160, y);
+        pdf.line(20, y + 2, 190, y + 2); y += 11; pdf.setFont("helvetica", "normal");
+        r.subs.forEach(x => { pdf.text(x.code, 20, y); pdf.text(String(x.pct), 110, y); pdf.text(x.grade, 160, y); y += 10; });
+        pdf.line(20, y - 4, 190, y - 4); y += 4;
+        pdf.setFont("helvetica", "bold");
+        pdf.text("Overall average", 20, y); pdf.text(String(r.avg), 110, y); pdf.text(r.grade, 160, y);
+        pdf.setFont("helvetica", "normal"); pdf.setFontSize(9);
+        pdf.text("A 70-100   B 60-69   C 50-59   D 45-49   E 40-44   F 0-39", 20, 280);
+      });
+      pdf.save(fileName);
+      rSay("Downloaded " + fileName, true);
+    } catch (e) { rSay("Could not make the PDF.", false); }
+  }
+
+  function csvCell(v) {
+    let t = String(v == null ? "" : v);
+    if (/^[=+\-@]/.test(t)) t = "'" + t;   // stops spreadsheet formulas running
+    return '"' + t.replace(/"/g, '""') + '"';
+  }
+  function downloadCsv() {
+    const list = currentRows().filter(r => r.subs.length); if (!list.length) return;
+    const codes = [...new Set(list.flatMap(r => r.subs.map(x => x.code)))].sort();
+    const head = ["Name", "Email", "Department", "Level", ...codes.map(c => c + " score"), ...codes.map(c => c + " grade"), "Average", "Grade"];
+    const lines = [head.map(csvCell).join(",")];
+    list.forEach(r => {
+      const by = {}; r.subs.forEach(x => { by[x.code] = x; });
+      lines.push([r.name, r.email, r.dept, r.level, ...codes.map(c => by[c] ? by[c].pct : ""), ...codes.map(c => by[c] ? by[c].grade : ""), r.avg, r.grade].map(csvCell).join(","));
+    });
+    const blob = new Blob(["\ufeff" + lines.join("\r\n")], { type: "text/csv" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "INDIGENE-" + tag() + ".csv";
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    rSay("Downloaded the sheet.", true);
+  }
+
+  GROUPS.forEach(g => { const o = document.createElement("option"); o.value = g.key; o.textContent = g.label; $("r-group").appendChild(o); });
+  $("r-group").addEventListener("change", drawResults);
+  $("r-mock").addEventListener("change", drawResults);
+  $("r-all").onclick = () => { const l = currentRows().filter(r => r.subs.length); if (l.length) makePdf(l, "INDIGENE-" + tag() + "-ALL.pdf"); };
+  $("r-csv").onclick = downloadCsv;
+  $("r-refresh").onclick = async () => {
+    try {
+      const ks = await getDocs(collection(db, "mockAnswers")); keys = {}; ks.docs.forEach(d => { keys[d.id] = (d.data().key || []); });
+      const rs = await getDocs(collection(db, "mockResults")); results = rs.docs.map(d => Object.assign({ id: d.id }, d.data())); drawResults(); drawQHave();
+    }
+    catch (e) { rSay("Could not refresh. " + (e.code || ""), false); }
+  };
+
+  $("save").onclick = async () => {
+    const email = cleanEmail($("em").value);
+    if (!validEmail(email)) return say("That email does not look right.", false);
+    const keys = ticked();
+    if (!keys.length) return say("Tick at least one level and semester.", false);
+    const groups = {}; keys.forEach(k => { groups[k] = true; });
+    $("save").disabled = true;
+    try {
+      await setDoc(doc(db, "mockUnlocks", email), { email, groups, updatedAt: serverTimestamp() });
+      const i = rows.findIndex(r => r.email === email);
+      if (i >= 0) rows[i].groups = groups; else { rows.push({ email, groups }); rows.sort((a, b) => a.email.localeCompare(b.email)); }
+      drawList(); say("Saved. " + email + " is unlocked.", true);
+      $("em").value = ""; setTicks([]);
+    } catch (e) { say("Could not save. " + (e.code || ""), false); }
+    $("save").disabled = false;
+  };
+  $("clear").onclick = () => { $("em").value = ""; setTicks([]); say("", true); };
+  $("find").addEventListener("input", drawList);
+  $("out").onclick = () => logout();
+
+  buildChecks();
+  let started = false;
+  watchAuthState(user => {
+    if (!user) { started = false; return gate("Sign in with the admin Google account.", "Sign in with Google", async () => { try { await loginWithGoogle(); } catch (e) {} }); }
+    const ok = (user.email || "").toLowerCase() === ADMIN_EMAIL && user.emailVerified;
+    if (!ok) {
+      return gate("This account is not the admin: " + (user.email || "") + ". Log out and sign in with the admin Google account.", "Log out", () => logout());
+    }
+    $("gate").hidden = true; $("panel").hidden = false;
+    $("who-am-i").textContent = user.email;
+    if (!started) { started = true; loadAll(); }
+  });
+</script>
+</body>
+</html>
