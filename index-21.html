@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js">
+<link rel="modulepreload" href="./auth.js">
+<script>
+  // Instant auth pre-check: if this browser was previously logged in, render normally.
+  // If not, hide the page before first paint so guests never see the homepage —
+  // they'll be sent to register.html the moment the real check confirms it.
+  if (!localStorage.getItem("indigene_authed")) {
+    document.documentElement.style.visibility = "hidden";
+  }
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>INDIGENE — Study Console</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07050a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="INDIGENE">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Schibsted+Grotesk:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<script>
+(function(){var d=document.documentElement,done=false;d.classList.add('fl');
+function go(){if(done)return;done=true;requestAnimationFrame(function(){d.classList.remove('fl');});}
+setTimeout(go,2500);
+function chk(){if(!document.fonts||!document.fonts.load)return go();
+Promise.all([document.fonts.load('900 1em "Big Shoulders Display"'),document.fonts.load('700 1em "Big Shoulders Display"'),document.fonts.load('400 1em "Schibsted Grotesk"'),document.fonts.load('500 1em "Schibsted Grotesk"')]).then(go,go);}
+var t=setInterval(function(){var l=document.querySelector('link[href*="fonts.googleapis.com/css2"][rel="stylesheet"]');if(l&&l.sheet){clearInterval(t);chk();}},30);
+})();
+</script>
+<style>
+  :root{
+    --void:#07050a;
+    --char:#120b09;
+    --ember:#ff7a1a;
+    --ember-hot:#ffb020;
+    --ember-deep:#8a2c0c;
+    --gold:#e8b84b;
+    --parchment:#f2e6d8;
+    --ash:#a89484;
+    --ash-dim:#7a6a5d;
+    --line:rgba(255,122,26,0.14);
+    --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+    --body:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth; background:var(--void);}
+  body{transition:opacity .5s ease;}
+  html.fl body{opacity:0;}
+  html.fl .wordmark{animation:none;}
+  body{background:var(--void); color:var(--ash); font-family:var(--body); font-size:16px; line-height:1.5; min-height:100vh; overflow-x:hidden;}
+  ::selection{background:rgba(255,122,26,0.3); color:#fff;}
+  a,button,input{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--ember); outline-offset:2px;}
+
+  .glow{position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(600px 380px at 15% -5%, rgba(255,122,26,0.16), transparent 60%),
+      radial-gradient(500px 500px at 100% 15%, rgba(232,184,75,0.09), transparent 55%),
+      radial-gradient(700px 400px at 50% 115%, rgba(138,44,12,0.25), transparent 60%);
+  }
+  .grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  main, header, footer{position:relative; z-index:2;}
+
+  header{padding:56px 24px 38px; text-align:center;}
+  .wordmark{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(4.2rem, 23vw, 8.5rem); letter-spacing:0.02em; line-height:.85; padding-bottom:.04em;
+    background:linear-gradient(180deg, #fff6ea 0%, var(--ember-hot) 45%, var(--ember-deep) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    opacity:0; animation:ignite .8s ease-out .05s forwards;
+  }
+  @keyframes ignite{
+    0%{opacity:0; transform:translateY(10px) scale(.98);}
+    100%{opacity:1; transform:none;}
+  }
+  header::before{content:""; position:absolute; left:50%; top:14%; width:min(520px,92vw); height:230px; transform:translateX(-50%); background:radial-gradient(closest-side, rgba(255,122,26,0.22), transparent); pointer-events:none; z-index:-1;}
+  .tagline{font-size:0.8rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--ash-dim); margin-top:16px; font-weight:500;}
+  .hairline{width:120px; height:1px; margin:22px auto 0; background:linear-gradient(90deg, transparent, var(--ember), transparent); opacity:0.6;}
+  .status-row{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 22px; margin-top:20px; font-size:0.78rem; color:var(--ash-dim); letter-spacing:0.08em; text-transform:uppercase;}
+  .status-row span{white-space:nowrap;}
+  .status-row b{color:var(--gold); font-weight:600;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--ember); display:inline-block; margin-right:8px; box-shadow:0 0 6px 2px rgba(255,122,26,0.7); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.3;}}
+
+  .controls{max-width:760px; margin:0 auto; padding:0 20px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;}
+  .tabs{display:flex; gap:6px; background:var(--char); border:1px solid var(--line); border-radius:999px; padding:4px;}
+  .tab{font-family:var(--display); font-weight:700; font-size:1.1rem; letter-spacing:0.04em; text-transform:uppercase; padding:6px 18px; min-height:40px; border-radius:999px; color:var(--ash-dim); cursor:pointer; border:none; background:transparent; transition:all .2s ease;}
+  .tab.active{background:linear-gradient(135deg, var(--ember), var(--ember-deep)); color:#fff; box-shadow:0 0 16px rgba(255,122,26,0.35);}
+  .search-wrap{position:relative; flex:1; min-width:180px;}
+  .search{width:100%; min-height:48px; background:var(--char); border:1px solid var(--line); border-radius:999px; padding:10px 16px 10px 38px; color:var(--parchment); font-size:1rem; outline:none; transition:border-color .2s ease;}
+  .search:focus{border-color:rgba(255,122,26,0.55);}
+  .search::placeholder{color:var(--ash-dim);}
+  .search-icon{position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--ash-dim); font-size:0.95rem;}
+
+  main{max-width:760px; margin:0 auto; padding:26px 16px 0;}
+  .section-label{display:flex; align-items:baseline; gap:12px; margin:34px 6px 10px;}
+  .section-label b{font-family:var(--display); font-weight:900; font-size:2.1rem; line-height:1; text-transform:uppercase; color:var(--parchment);}
+  .section-label span{color:var(--ash-dim); font-size:.95rem;}
+  .section-label.resume b{font-size:1.4rem;}
+
+  .ledger{display:flex; flex-direction:column; gap:8px;}
+  .ledger.hidden{display:none;}
+  .row{content-visibility:auto; contain-intrinsic-size:auto 66px; border:1px solid var(--line); background:linear-gradient(160deg, rgba(255,122,26,0.045), rgba(0,0,0,0) 55%), var(--char); border-radius:6px; overflow:hidden; transition:border-color .2s ease;}
+  .row.hidden{display:none;}
+  .row:hover, .row.open{border-color:rgba(255,122,26,0.4);}
+  .row-head{display:flex; align-items:center; gap:14px; padding:14px 16px; min-height:60px; cursor:pointer; user-select:none;}
+  .code{font-family:var(--display); font-weight:700; font-size:1.55rem; line-height:1; letter-spacing:.02em; color:var(--gold); min-width:76px;}
+  .row-title{flex:1; font-size:1rem; font-weight:500; color:var(--parchment); line-height:1.3;}
+  .chev{color:var(--ash-dim); font-size:0.8rem; transition:transform .25s ease;}
+  .row.open .chev{transform:rotate(90deg); color:var(--ember);}
+
+  .row-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .row.open .row-body{max-height:560px;}
+  .row-body-inner{display:flex; flex-wrap:wrap; gap:10px; padding:2px 16px 18px 16px;}
+  .row-body-inner .pill{flex:1; justify-content:center; padding:0 12px;}
+
+  .sublist{display:flex; flex-direction:column; padding:0 16px 14px 16px;}
+  .subrow{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; padding:10px 0; border-top:1px solid var(--line);}
+  .subrow:first-child{border-top:none;}
+  .subname{font-size:.95rem; color:var(--ash); flex:1; min-width:140px;}
+  .pillgroup{display:flex; gap:8px; flex-shrink:0;}
+
+  .pill{font-size:.95rem; font-weight:600; padding:0 18px; min-height:44px; border-radius:2px; text-decoration:none; display:inline-flex; align-items:center; border:2px solid var(--parchment); color:var(--parchment); white-space:nowrap; transition:background .15s, color .15s, border-color .15s, transform .15s;}
+  .pill.cbt{background:var(--parchment); color:var(--void);}
+  .pill.cbt:hover{background:var(--ember); border-color:var(--ember); color:#fff;}
+  .pill.pdf:hover{background:var(--parchment); color:var(--void);}
+  .pill:active{transform:translateY(1px);}
+  .row-body-inner .pill.pq{flex:1 1 100%;}
+
+  .empty{text-align:center; padding:50px 20px; color:var(--ash-dim); font-size:1rem;}
+
+  footer{max-width:760px; margin:60px auto 0; padding:22px 20px 46px; border-top:1px solid var(--line); text-align:center;}
+  footer .fmark{font-family:var(--display); font-weight:900; font-size:1.1rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ash-dim);}
+  footer .fmark b{color:var(--ember);}
+
+  /* ---------- bottom bar + extra views ---------- */
+  [hidden]{display:none !important;}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom));}
+  .bottomnav{position:fixed; left:0; right:0; bottom:0; z-index:50; display:flex; justify-content:center; padding:8px 12px calc(8px + env(safe-area-inset-bottom)); background:rgba(7,5,10,0.98); border-top:1px solid var(--line);}
+  .bottomnav-inner{display:flex; width:100%; max-width:520px; gap:6px;}
+  .navbtn{flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:52px; border:none; background:transparent; color:var(--ash-dim); font-family:var(--display); font-weight:700; font-size:.88rem; letter-spacing:.05em; white-space:nowrap; text-transform:uppercase; border-radius:10px; cursor:pointer; transition:color .2s ease, background .2s ease;}
+  .navbtn svg{width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .navbtn.active{color:var(--ember-hot); background:rgba(255,122,26,0.09);}
+
+  body.sub header{padding:18px 24px 2px;}
+  body.sub .wordmark{font-size:clamp(2.6rem,12vw,3.6rem);}
+  body.sub .tagline, body.sub .hairline, body.sub .status-row{display:none;}
+  body.sub footer{margin-top:20px; padding-top:16px; padding-bottom:20px;}
+  main.view{padding-top:6px;}
+  main.view .section-label{margin:16px 4px 8px;}
+  main.view > .section-label:first-child{margin-top:4px;}
+  .hsub{font-size:.8rem; color:var(--ash-dim); font-weight:400;}
+  .hlabel{font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ash-dim); margin:2px 0 4px;}
+
+  .hrow .score-badge{font-family:var(--display); font-weight:900; font-size:1.55rem; line-height:1; color:var(--parchment); text-align:right; white-space:nowrap;}
+  .trend{font-size:.78rem; font-weight:600; margin-top:3px; text-align:right; white-space:nowrap;}
+  .trend.up{color:#7ddc8a;}
+  .trend.down{color:#ff8a6a;}
+  .trend.flat{color:var(--ash-dim);}
+  .hbody{padding:2px 16px 16px;}
+  .spark{display:block; width:100%; height:auto; margin:2px 0 12px;}
+  .attempt{display:flex; align-items:center; gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:.9rem;}
+  .attempt .a-date{flex:1; color:var(--ash);}
+  .attempt .a-mode{font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:3px; padding:2px 6px;}
+  .attempt .a-score{min-width:46px; text-align:right; font-weight:600; color:var(--parchment);}
+  .weak-item{display:flex; align-items:center; gap:12px; padding:12px 14px;}
+
+  .stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:6px 0 0;}
+  .stat{border:1px solid var(--line); background:linear-gradient(160deg, rgba(255,122,26,0.07), rgba(0,0,0,0) 60%), var(--char); border-radius:6px; padding:12px 2px 10px; text-align:center; min-width:0;}
+  .stat b{display:block; font-family:var(--display); font-weight:900; font-size:clamp(1.35rem,7vw,1.9rem); line-height:1; color:var(--parchment); white-space:nowrap;}
+  .stat span{display:block; margin-top:5px; font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ash-dim);}
+  .stat.fire b{color:var(--ember-hot); text-shadow:0 0 14px rgba(255,122,26,0.55);}
+  .pep{margin:8px 0 0; padding:10px 14px; border-left:3px solid var(--ember); background:rgba(255,122,26,0.06); border-radius:0 6px 6px 0; color:var(--parchment); font-size:.95rem;}
+  .grade{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; margin-left:6px; border-radius:50%; font-family:var(--display); font-weight:900; font-size:1.1rem; vertical-align:middle; border:2px solid currentColor;}
+  .g-A{color:#7ddc8a;} .g-B{color:#b6e07a;} .g-C{color:var(--ember-hot);} .g-D{color:#ff9a4a;} .g-E,.g-F{color:#ff6a5a;}
+  .bar{height:6px; border-radius:3px; background:rgba(255,255,255,0.07); overflow:hidden; margin-top:6px;}
+  .bar i{display:block; height:100%; border-radius:3px; background:linear-gradient(90deg, var(--ember-deep), var(--ember), var(--ember-hot));}
+
+  .mock-card{position:relative; overflow:hidden;}
+  .mock-card::before{content:attr(data-n); position:absolute; right:-6px; top:-34px; font-family:var(--display); font-weight:900; font-size:9rem; line-height:1; color:rgba(255,122,26,0.07); pointer-events:none;}
+  .mock-btn svg{width:18px; height:18px; margin-right:8px; fill:currentColor;}
+  .mock-flow{display:flex; gap:8px; margin:10px 0 0; padding:0; list-style:none; counter-reset:s;}
+  .mock-flow li{flex:1; counter-increment:s; border:1px solid var(--line); border-radius:6px; padding:10px 8px; text-align:center; font-size:.78rem; color:var(--ash); background:var(--char);}
+  .mock-flow li{min-width:0; overflow-wrap:anywhere;}
+  @media (max-width:420px){.mock-flow{display:grid; grid-template-columns:1fr 1fr;}}
+  .mock-flow li::before{content:counter(s); display:block; font-family:var(--display); font-weight:900; font-size:1.5rem; line-height:1; color:var(--ember); margin-bottom:4px;}
+
+
+  .sheet{position:fixed; inset:0; z-index:100; display:flex; padding:16px; background:rgba(4,2,6,0.9);}
+  .sheet-card{width:100%; max-width:380px; margin:auto; padding:26px 22px 18px; text-align:center; border:1px solid rgba(255,122,26,0.4); border-radius:8px; background:linear-gradient(160deg, rgba(255,122,26,0.09), rgba(0,0,0,0) 60%), var(--char); box-shadow:0 0 40px rgba(255,122,26,0.18);}
+  .sheet-small{font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--ash-dim);}
+  .sheet-host{font-family:var(--display); font-weight:900; text-transform:uppercase; font-size:clamp(2.1rem,11vw,3.2rem); line-height:1; letter-spacing:.03em; margin:6px 0 10px; white-space:nowrap; padding-bottom:.06em; background:linear-gradient(180deg,#fff6ea 0%,var(--ember-hot) 45%,var(--ember-deep) 100%); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .sheet-text{color:var(--parchment); font-size:1rem; margin-bottom:18px;}
+  .sheet-card .pill{width:100%; justify-content:center; cursor:pointer;}
+  .sheet-no{display:block; width:100%; min-height:44px; margin-top:6px; border:none; background:transparent; color:var(--ash-dim); font-size:.95rem; cursor:pointer;}
+
+  .sheet-who{font-size:.85rem; color:var(--ash-dim); margin:-6px 0 16px;}
+  .form-card{text-align:left;}
+  .form-title{font-family:var(--display); font-weight:900; text-transform:uppercase; font-size:1.7rem; letter-spacing:.03em; line-height:1; margin:4px 0 16px;}
+  .fld{display:block; margin-bottom:12px;}
+  .fld span{display:block; font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ash-dim); margin-bottom:5px;}
+  .fld input,.fld select{width:100%; min-height:46px; padding:0 14px; border-radius:8px; border:1px solid var(--line); background:var(--ink,#0b0710); color:var(--parchment); font-size:1rem; font-family:inherit;}
+  .fld input:focus,.fld select:focus{outline:none; border-color:rgba(255,122,26,0.55);}
+  .form-err{color:#ff8a7a; font-size:.85rem; min-height:0; margin:0 0 8px;}
+  .form-err:empty{display:none;}
+  .mock-card{cursor:default;}
+  .mock-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px 10px;}
+  .mock-title{font-family:var(--display); font-weight:900; font-size:1.9rem; line-height:1; text-transform:uppercase; color:var(--parchment);}
+  .mock-sub{font-size:.85rem; color:var(--ash-dim); margin-top:4px;}
+  .mock-card.loading .mock-btn{opacity:.3; pointer-events:none;}
+  .mock-btn{transition:opacity .25s ease;}
+  .mock-in{padding:0 16px 12px; position:relative;}
+  .mock-in-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:.9rem;}
+  .mock-in-row b{color:var(--parchment); font-weight:600;}
+  .mock-in-row .st{color:var(--ember-hot); font-size:.85rem; text-align:right;}
+  .mock-in-row .st.on{color:#7ddc8a;}
+  .mock-more{display:block; margin-top:2px; padding:8px 0; background:none; border:none; color:var(--ash-dim); font-size:.85rem; text-decoration:underline; cursor:pointer; min-height:40px;}
+  .pill.mock-btn{background:linear-gradient(135deg, var(--ember), var(--ember-deep)); border-color:transparent; color:#fff; cursor:pointer;}
+  .chips{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:0 16px 12px;}
+  .chip{font-family:var(--display); font-weight:700; font-size:.95rem; letter-spacing:.03em; color:var(--gold); border:1px solid var(--line); border-radius:3px; padding:3px 0; text-align:center;}
+  .mock-rules{margin:10px 0 0; padding:10px 14px 10px 30px; border:1px solid var(--line); border-radius:6px; color:var(--ash); font-size:.85rem; line-height:1.5;}
+
+  @media (max-width:520px){
+    .code{min-width:68px; font-size:1.45rem;}
+  }
+  @media (max-width:390px){
+    .navbtn{font-size:.78rem; letter-spacing:.03em;}
+    .bottomnav{padding-left:6px; padding-right:6px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .wordmark{animation:none; opacity:1;}
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+<script type="module">
+  import { auth, db, watchAuthState, getUserProfile, hasProfile, syncIdentity } from "./auth.js";
+  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  function identKey(uid) { return "indigene_ident3_" + uid; }
+
+  // Name + level for the mock WhatsApp message. Read once from the profile, then cached on this device.
+  async function loadIdentity(user) {
+    const cacheKey = identKey(user.uid);
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey) || "null");
+      if (cached && typeof cached.name === "string") return cached;
+    } catch (e) {}
+    let name = user.displayName || "";
+    let level = "";
+    let dept = "";
+    let fetched = false;
+    try {
+      const p = await getUserProfile(user.uid);
+      fetched = true;
+      if (p) {
+        name = p.fullName || p.fullname || p.name || p.displayName || p.username ||
+               ((p.firstName || "") + " " + (p.lastName || "")).trim() || name;
+        const lv = String(p.level || p.Level || p.currentLevel || p.year || "").match(/\d{3}/);
+        level = lv ? lv[0] : "";
+        dept = String(p.department || p.dept || p.Department || "").trim();
+      }
+    } catch (e) {}
+    if (!name && user.email) name = user.email.split("@")[0];
+    const ident = { name: name, level: level, dept: dept };
+    try { if (fetched) localStorage.setItem(cacheKey, JSON.stringify(ident)); } catch (e) {}
+    return ident;
+  }
+
+  watchAuthState(async (user) => {
+    if (!user) {
+      window.location.replace("register.html");
+      return;
+    }
+    document.documentElement.style.visibility = "visible";
+    try { localStorage.setItem("indigene_uid", user.uid); } catch (e) {}
+    try { if (window.IndigeneHistory && window.IndigeneHistory.adoptGuest) window.IndigeneHistory.adoptGuest(); } catch (e) {}
+    // looked up only when someone taps Join, so normal visits cost no extra reads
+    // Which mocks this student is unlocked for, and which mock switches are on. Any failure = nothing unlocked (shows the normal join form).
+    // Unlock status + switches. Remembered for 20 seconds, saved on the phone so the next open paints at once.
+    // Returns null if it could not be loaded (so the page can tell "not unlocked" from "could not check").
+    let mockMemo = null, mockAt = 0;
+    window.__getMock = function (force) {
+      if (!force && mockMemo && Date.now() - mockAt < 20000) return mockMemo;
+      mockAt = Date.now();
+      mockMemo = (async () => {
+        try {
+          const email = String(user.email || "").trim().toLowerCase();
+          if (!email) return { groups: {}, on: {} };
+          const [u, sw] = await Promise.all([
+            getDoc(doc(db, "mockUnlocks", email)),
+            getDoc(doc(db, "mockSwitches", "main")).catch(() => null)
+          ]);
+          const on = sw && sw.exists() ? sw.data() : {};
+          Object.keys(on).forEach(k => { const v = on[k]; if (v && typeof v.toMillis === "function") on[k] = v.toMillis(); });
+          const res = { groups: u.exists() ? (u.data().groups || {}) : {}, on };
+          try { localStorage.setItem("indigene_mock_" + user.uid, JSON.stringify(res)); } catch (e) {}
+          return res;
+        } catch (e) { mockMemo = null; return null; }
+      })();
+      return mockMemo;
+    };
+    window.__getIdent = (function () { let pr; return function () { return pr || (pr = loadIdentity(user)); }; })();
+    window.dispatchEvent(new Event("indigene-uid"));
+    // Anyone without a saved department + level (Google sign-ins, older accounts) completes it once
+    try {
+      const key = "indigene_profile_" + user.uid;
+      if (localStorage.getItem(key)) return;
+      const profile = await getUserProfile(user.uid);
+      if (hasProfile(profile)) {
+        if (!profile.email) await syncIdentity();
+        localStorage.setItem(key, "1");
+      }
+      else window.location.replace("complete-profile.html");
+    } catch (e) {}
+  });
+</script>
+
+<div class="glow"></div>
+<div class="grain"></div>
+
+<header>
+  <div class="wordmark">INDIGENE</div>
+  <div class="tagline">Personal Study Console</div>
+  <div class="hairline"></div>
+  <div class="status-row">
+    <span><span class="dot"></span><b>FUOYE</b> · <b>BASIC MEDICAL SCIENCE</b></span>
+  </div>
+</header>
+
+<div id="view-courses" class="view">
+<div class="controls">
+  <div class="tabs">
+    <button class="tab active" data-level="all">All</button>
+    <button class="tab" data-level="200">200L</button>
+    <button class="tab" data-level="100">100L</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input class="search" id="search" type="search" placeholder="Search course or code…" autocomplete="off" aria-label="Search courses">
+  </div>
+</div>
+
+<main>
+  <div class="section-label resume" id="resume-label" style="display:none;"><b>Continue reading</b></div>
+  <div class="ledger" id="resume-ledger" style="display:none;"></div>
+
+  <div class="section-label"><b>100 level</b><span>First semester</span></div>
+  <div class="ledger" data-level="100">
+    <div class="row" data-level="100" data-name="bio101 general biology i">
+      <div class="row-head"><span class="code">BIO101</span><span class="row-title">General Biology I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bio101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/bio101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="chm101 general chemistry i">
+      <div class="row-head"><span class="code">CHM101</span><span class="row-title">General Chemistry I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/chm101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/chm101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="csc101 introduction to computer science i">
+      <div class="row-head"><span class="code">CSC101</span><span class="row-title">Introduction to Computer Science I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/csc101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/csc101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="mth101 elementary mathematics i">
+      <div class="row-head"><span class="code">MTH101</span><span class="row-title">Elementary Mathematics I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mth101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/mth101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="phy101 general physics i">
+      <div class="row-head"><span class="code">PHY101</span><span class="row-title">General Physics I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phy101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/phy101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="ent101 introduction to entrepreneurship">
+      <div class="row-head"><span class="code">ENT101</span><span class="row-title">Introduction to Entrepreneurship</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ent101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ent101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst101 communication in english i">
+      <div class="row-head"><span class="code">GST101</span><span class="row-title">Communication in English I</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst101.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst101.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst103 use of library and ict">
+      <div class="row-head"><span class="code">GST103</span><span class="row-title">Use of Library and ICT</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst103.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst103.html">Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>100 level</b><span>Second semester</span></div>
+  <div class="ledger" data-level="100">
+    <div class="row" data-level="100" data-name="bio102 general biology ii">
+      <div class="row-head"><span class="code">BIO102</span><span class="row-title">General Biology II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bio102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/bio102.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="chm102 general chemistry ii">
+      <div class="row-head"><span class="code">CHM102</span><span class="row-title">General Chemistry II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/chm102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/chm102.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="ent102 evaluation of business concept and opportunities">
+      <div class="row-head"><span class="code">ENT102</span><span class="row-title">Evaluation of Business Concept and Opportunities</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ent102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ent102.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst102 communication in english ii">
+      <div class="row-head"><span class="code">GST102</span><span class="row-title">Communication in English II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst102.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="gst104 peoples and cultures of nigeria">
+      <div class="row-head"><span class="code">GST104</span><span class="row-title">Peoples and Cultures of Nigeria</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst104.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst104.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="mth102 elementary mathematics ii">
+      <div class="row-head"><span class="code">MTH102</span><span class="row-title">Elementary Mathematics II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mth102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/mth102.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="100" data-name="phy102 general physics ii">
+      <div class="row-head"><span class="code">PHY102</span><span class="row-title">General Physics II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phy102.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/phy102.html">Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>200 level</b><span>First semester</span></div>
+  <div class="ledger" data-level="200">
+    <div class="row has-sub" data-level="200" data-name="ana203 basic histology and cytology cell epithelial connective muscle nerve blood cartilage bone">
+      <div class="row-head"><span class="code">ANA203</span><span class="row-title">Basic Histology and Cytology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="sublist">
+        <div class="subrow"><span class="subname">Full Compendium (PDF)</span><div class="pillgroup"><a class="pill pdf" href="pdfview/ana203.html">PDF</a></div></div>
+        <div class="subrow"><span class="subname">Cell, Transport &amp; Division</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-cell-transport-division.html">CBT</a></div></div>
+        <div class="subrow"><span class="subname">Epithelial &amp; Connective Tissue</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-epithelial-connective.html">CBT</a></div></div>
+        <div class="subrow"><span class="subname">Muscle Tissue</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-muscle-tissue.html">CBT</a></div></div>
+        <div class="subrow"><span class="subname">Nerve, Blood, Cartilage &amp; Bone</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana203-nerve-blood-cartilage-bone.html">CBT</a></div></div>
+      </div></div>
+    </div>
+    <div class="row has-sub" data-level="200" data-name="ana217 gross anatomy — upper &amp; lower limbs">
+      <div class="row-head"><span class="code">ANA217</span><span class="row-title">Gross Anatomy — Upper &amp; Lower Limbs</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="sublist">
+        <div class="subrow"><span class="subname">Upper Limb</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana217-upper-limb.html">CBT</a><a class="pill pdf" href="pdfview/ana217-upper-limb.html">PDF</a></div></div>
+        <div class="subrow"><span class="subname">Lower Limb</span><div class="pillgroup"><a class="pill cbt" href="cbts/ana217-lower-limb.html">CBT</a><a class="pill pdf" href="pdfview/ana217-lower-limb.html">PDF</a></div></div>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="bst201 biostat and demography">
+      <div class="row-head"><span class="code">BST201</span><span class="row-title">Biostat and Demography</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/bst201.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/bst201.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst203 nigerian people and culture">
+      <div class="row-head"><span class="code">GST203</span><span class="row-title">Nigerian People and Culture</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst203.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst203.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst205 introduction to philosophy / existence">
+      <div class="row-head"><span class="code">GST205</span><span class="row-title">Introduction to Philosophy / Existence</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst205.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst205.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="mcb201 general biochemistry">
+      <div class="row-head"><span class="code">MCB201</span><span class="row-title">General Biochemistry</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mcb201.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/mcb201.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc201 foundation of nursing">
+      <div class="row-head"><span class="code">NSC201</span><span class="row-title">Foundation of Nursing</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc201.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc201.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc207 medical microbiology and parasitology">
+      <div class="row-head"><span class="code">NSC207</span><span class="row-title">Medical Microbiology and Parasitology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc207.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc207.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="phs201 physiology — cardiovascular / endocrine / reproductive">
+      <div class="row-head"><span class="code">PHS201</span><span class="row-title">Physiology — Cardiovascular / Endocrine / Reproductive</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/phs201.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/phs201.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="pol201 political science">
+      <div class="row-head"><span class="code">POL201</span><span class="row-title">Political Science</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/pol201.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/pol201.html">Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="section-label"><b>200 level</b><span>Second semester</span></div>
+  <div class="ledger" data-level="200">
+    <div class="row" data-level="200" data-name="ana204 medical histology">
+      <div class="row-head"><span class="code">ANA204</span><span class="row-title">Medical Histology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana204.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana204.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana218 general and systemic embryology">
+      <div class="row-head"><span class="code">ANA218</span><span class="row-title">General and Systemic Embryology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana218.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana218.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana220 neuroanatomy">
+      <div class="row-head"><span class="code">ANA220</span><span class="row-title">Neuroanatomy</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana220.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana220.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="ana222 gross anatomy — thorax, abdomen, pelvis, perineum, head &amp; neck">
+      <div class="row-head"><span class="code">ANA222</span><span class="row-title">Gross Anatomy — Thorax, Abdomen, Pelvis, Perineum, Head &amp; Neck</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/ana222.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/ana222.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst202 peace and conflict resolution">
+      <div class="row-head"><span class="code">GST202</span><span class="row-title">Peace and Conflict Resolution</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst202.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst202.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="gst204 communication in french">
+      <div class="row-head"><span class="code">GST204</span><span class="row-title">Communication in French</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/gst204.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/gst204.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="mcb202 general biochemistry ii">
+      <div class="row-head"><span class="code">MCB202</span><span class="row-title">General Biochemistry II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/mcb202.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/mcb202.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc202 foundation of nursing ii">
+      <div class="row-head"><span class="code">NSC202</span><span class="row-title">Foundation of Nursing II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc202.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc202.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc206 developmental psychology">
+      <div class="row-head"><span class="code">NSC206</span><span class="row-title">Developmental Psychology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc206.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc206.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="nsc208 introduction to medical sociology">
+      <div class="row-head"><span class="code">NSC208</span><span class="row-title">Introduction to Medical Sociology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/nsc208.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/nsc208.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="fhs202 human physiology ii">
+      <div class="row-head"><span class="code">FHS202</span><span class="row-title">Human Physiology II</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/fhs202.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/fhs202.html">Open PDF</a>
+      </div></div>
+    </div>
+    <div class="row" data-level="200" data-name="fth210 general cellular pathology">
+      <div class="row-head"><span class="code">FTH210</span><span class="row-title">General Cellular Pathology</span><span class="chev">▸</span></div>
+      <div class="row-body"><div class="row-body-inner">
+        <a class="pill cbt" href="cbts/fth210.html">Run CBT</a>
+        <a class="pill pdf" href="pdfview/fth210.html">Open PDF</a>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="empty" id="empty" style="display:none;">No matching course. Try another code or name.</div>
+</main>
+</div>
+
+<main id="view-history" class="view" hidden>
+  <div class="section-label"><b>My history</b><span id="hist-count"></span></div>
+  <div class="stats" id="hist-stats" style="display:none;"></div>
+  <div class="pep" id="hist-pep" style="display:none;"></div>
+
+  <div id="weak-wrap" style="display:none;">
+    <div class="section-label"><b>Weak topics</b><span>Start here</span></div>
+    <div class="ledger" id="weak-list"></div>
+  </div>
+
+  <div class="section-label"><b>By course</b></div>
+  <div class="ledger" id="hist-list"></div>
+  <div class="empty" id="hist-empty" style="display:none;">Nothing here yet. Finish a CBT and your scores will show up.</div>
+</main>
+
+<main id="view-mock" class="view" hidden>
+  <div class="section-label"><b>Exam mock</b></div>
+  <div class="ledger">
+    <div class="row mock-card loading" data-n="1">
+      <div class="mock-head">
+        <div><div class="mock-title">Mock 1</div><div class="mock-sub">Date: in the group</div></div>
+        <button class="pill mock-btn" type="button" data-mock="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.8-.1 1.3z"/></svg>Join Mock 1</button>
+      </div>
+      <div class="mock-in" data-in="1" hidden></div>
+    </div>
+    <div class="row mock-card loading" data-n="2">
+      <div class="mock-head">
+        <div><div class="mock-title">Mock 2</div><div class="mock-sub">Date: in the group</div></div>
+        <button class="pill mock-btn" type="button" data-mock="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.8-.1 1.3z"/></svg>Join Mock 2</button>
+      </div>
+      <div class="mock-in" data-in="2" hidden></div>
+    </div>
+    <div class="row mock-card loading" data-n="3">
+      <div class="mock-head">
+        <div><div class="mock-title">Mock 3</div><div class="mock-sub">Date: in the group</div></div>
+        <button class="pill mock-btn" type="button" data-mock="3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.8-.1 1.3z"/></svg>Join Mock 3</button>
+      </div>
+      <div class="mock-in" data-in="3" hidden></div>
+    </div>
+  </div>
+
+  <ol class="mock-flow">
+    <li>Tap Join, fill in your level and semester</li>
+    <li>Contact BOOKWORM, pay, and send your email</li>
+    <li>BOOKWORM adds you to the group</li>
+    <li>Write it on mock day</li>
+  </ol>
+
+  <ul class="mock-rules">
+    <li>4 subjects: Physics, Chemistry, Biology, Maths. All open together.</li>
+    <li>Questions move on by themselves: 20s theory, 50s calculations.</li>
+    <li>One try per mock.</li>
+    <li>No corrections after. Your score is sent to you.</li>
+  </ul>
+</main>
+
+<footer>
+  <div class="fmark"><b>◆</b> INDIGENE STUDY CONSOLE</div>
+</footer>
+
+<div class="sheet" id="form-sheet" role="dialog" aria-modal="true" aria-labelledby="form-title" hidden>
+  <form class="sheet-card form-card" id="mock-form" novalidate>
+    <div class="sheet-small" id="form-mock">Mock</div>
+    <div class="form-title" id="form-title">Your details</div>
+    <label class="fld"><span>Department</span><input id="f-dept" type="text" autocomplete="off" maxlength="60" placeholder="e.g. Nursing Science"></label>
+    <label class="fld"><span>Level</span><select id="f-level"><option value="100">100 level</option><option value="200">200 level</option></select></label>
+    <label class="fld"><span>Semester</span><select id="f-sem"><option value="1st">1st semester</option><option value="2nd">2nd semester</option></select></label>
+    <p class="form-err" id="form-err" role="alert"></p>
+    <button class="pill mock-btn" type="submit">Continue</button>
+    <button class="sheet-no" type="button" id="form-no">Cancel</button>
+  </form>
+</div>
+
+<div class="sheet" id="mock-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-host" hidden>
+  <div class="sheet-card">
+    <div class="sheet-small">Contact</div>
+    <div class="sheet-host" id="sheet-host">BOOKWORM</div>
+    <p class="sheet-text" id="sheet-text">to get access to this mock.</p>
+    <div class="sheet-who" id="sheet-who"></div>
+    <button class="pill mock-btn" type="button" id="sheet-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.8-.1 1.3z"/></svg>Open WhatsApp</button>
+    <button class="sheet-no" type="button" id="sheet-no">Not now</button>
+  </div>
+</div>
+
+<nav class="bottomnav" aria-label="Main">
+  <div class="bottomnav-inner">
+    <button class="navbtn active" type="button" data-view="courses">
+      <svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Courses
+    </button>
+    <button class="navbtn" type="button" data-view="history">
+      <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg>History
+    </button>
+    <button class="navbtn" type="button" data-view="mock">
+      <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Exam Mock
+    </button>
+  </div>
+</nav>
+
+<script src="history.js"></script>
+<script>
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function renderResume() {
+    try {
+      const recents = JSON.parse(localStorage.getItem("indigene_recent_pdfs") || "[]");
+      if (!recents.length) return;
+
+      const ledger = document.getElementById("resume-ledger");
+      const label = document.getElementById("resume-label");
+
+      ledger.innerHTML = recents.map((r) => `
+        <div class="row">
+          <div class="row-head" style="cursor:default;">
+            <span class="row-title">${escapeHtml(r.title)}</span>
+            <a class="pill pdf" href="${escapeHtml(r.href)}">Continue</a>
+          </div>
+        </div>
+      `).join("");
+
+      ledger.style.display = "";
+      label.style.display = "";
+    } catch (e) {
+      // localStorage unavailable or malformed data — just skip the resume row.
+    }
+  }
+  renderResume();
+
+  // accordion
+  document.querySelectorAll('.ledger[data-level] .row-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const row = head.parentElement;
+      const wasOpen = row.classList.contains('open');
+      document.querySelectorAll('.row.open').forEach(r => r.classList.remove('open'));
+      if (!wasOpen) row.classList.add('open');
+    });
+  });
+
+  const tabs = document.querySelectorAll('.tab');
+  const rows = document.querySelectorAll('.ledger[data-level] .row');
+  const ledgers = document.querySelectorAll('.ledger[data-level]');
+  let currentLevel = 'all';
+
+  function applyFilters(){
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach(row => {
+      const matchesLevel = currentLevel === 'all' || row.dataset.level === currentLevel;
+      const matchesSearch = !q || row.dataset.name.includes(q);
+      const show = matchesLevel && matchesSearch;
+      row.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    ledgers.forEach(l => {
+      const anyVisible = [...l.querySelectorAll('.row')].some(r => !r.classList.contains('hidden'));
+      l.classList.toggle('hidden', !anyVisible);
+      const label = l.previousElementSibling;
+      if (label && label.classList.contains('section-label')) {
+        label.style.display = anyVisible ? '' : 'none';
+      }
+    });
+    document.getElementById('empty').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentLevel = tab.dataset.level;
+      applyFilters();
+    });
+  });
+
+  document.getElementById('search').addEventListener('input', applyFilters);
+
+  // ---------- Practice Past Questions: one button per course, files live in the /pastquestions folder ----------
+  // File name = course code in lowercase, e.g. pastquestions/chm101.html
+  const PQ_BASE = 'pastquestions/';
+  document.querySelectorAll('.ledger[data-level] .row').forEach(row => {
+    const codeEl = row.querySelector('.code');
+    if (!codeEl) return;
+    const href = PQ_BASE + codeEl.textContent.trim().toLowerCase() + '.html';
+    const inner = row.querySelector('.row-body-inner');
+    const sub = row.querySelector('.sublist');
+    if (inner) {
+      inner.insertAdjacentHTML('beforeend', '<a class="pill pdf pq" href="' + href + '">Practice Past Questions</a>');
+    } else if (sub) {
+      sub.insertAdjacentHTML('beforeend', '<div class="subrow"><span class="subname">Past Questions</span><div class="pillgroup"><a class="pill pdf pq" href="' + href + '">Practice</a></div></div>');
+    }
+  });
+
+  // ---------- bottom bar: Courses / History / Exam Mock ----------
+  const views = {
+    courses: document.getElementById('view-courses'),
+    history: document.getElementById('view-history'),
+    mock: document.getElementById('view-mock')
+  };
+  const navBtns = document.querySelectorAll('.navbtn');
+
+  function showView(name) {
+    if (!views[name]) name = 'courses';
+    Object.keys(views).forEach(k => { views[k].hidden = (k !== name); });
+    navBtns.forEach(b => b.classList.toggle('active', b.dataset.view === name));
+    document.body.classList.toggle('sub', name !== 'courses');
+    if (name === 'history') renderHistory();
+    if (name === 'mock') renderMockStatus(true);
+    window.scrollTo(0, 0);
+    try { history.replaceState(null, '', name === 'courses' ? location.pathname + location.search : '#' + name); } catch (e) {}
+  }
+  navBtns.forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
+  // login finishes after first paint: redraw History for the right account if it is open
+  window.addEventListener('indigene-uid', () => { if (!views.history.hidden) renderHistory(); });
+
+  // ---------- History ----------
+  const WEAK_BELOW = 70;   // a topic under this % right shows up in Weak topics
+  const WEAK_MIN_Q = 5;    // ...once at least this many questions on it have been answered
+
+  function courseInfo() {
+    const map = {};
+    document.querySelectorAll('.ledger[data-level] .row').forEach(row => {
+      const code = row.querySelector('.code');
+      if (!code) return;
+      const cbt = row.querySelector('a.pill.cbt');
+      map[code.textContent.trim()] = {
+        title: row.querySelector('.row-title').textContent.trim(),
+        cbt: cbt ? cbt.getAttribute('href') : null
+      };
+    });
+    return map;
+  }
+
+  function fmtDate(ts) {
+    const d = new Date(ts);
+    return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }) + ' · ' +
+      d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function sparkline(scores) {
+    const w = 300, h = 64, pad = 6;
+    const pts = scores.map((s, i) => {
+      const x = scores.length === 1 ? w / 2 : pad + (i * (w - pad * 2)) / (scores.length - 1);
+      const y = h - pad - (s / 100) * (h - pad * 2);
+      return [x, y];
+    });
+    const line = pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+    const dots = pts.map(p => '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5" fill="#ffb020"/>').join('');
+    return '<svg class="spark" viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Score trend">' +
+      '<line x1="0" y1="' + (h - pad) + '" x2="' + w + '" y2="' + (h - pad) + '" stroke="rgba(255,122,26,0.18)"/>' +
+      (pts.length > 1 ? '<polyline points="' + line + '" fill="none" stroke="#ff7a1a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' : '') +
+      dots + '</svg>';
+  }
+
+  // Standard Nigerian grade scale
+  function gradeOf(p) { return p >= 70 ? 'A' : p >= 60 ? 'B' : p >= 50 ? 'C' : p >= 45 ? 'D' : p >= 40 ? 'E' : 'F'; }
+
+  function dayKey(ts) { const d = new Date(ts); return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate(); }
+
+  // consecutive days with at least one attempt, counting back from today (or yesterday, so the streak survives until midnight)
+  function streakDays(all) {
+    const days = {};
+    all.forEach(a => { days[dayKey(a.ts)] = 1; });
+    const d = new Date();
+    if (!days[dayKey(d.getTime())]) d.setDate(d.getDate() - 1);
+    let n = 0;
+    while (days[dayKey(d.getTime())]) { n++; d.setDate(d.getDate() - 1); }
+    return n;
+  }
+
+  function renderStats(all) {
+    const statsEl = document.getElementById('hist-stats');
+    const pepEl = document.getElementById('hist-pep');
+    if (!all.length) { statsEl.style.display = 'none'; pepEl.style.display = 'none'; return; }
+    const avg = Math.round(all.reduce((s, a) => s + a.score, 0) / all.length);
+    const best = Math.max.apply(null, all.map(a => a.score));
+    const streak = streakDays(all);
+    statsEl.innerHTML =
+      '<div class="stat"><b>' + all.length + '</b><span>Attempts</span></div>' +
+      '<div class="stat"><b>' + avg + '%</b><span>Average</span></div>' +
+      '<div class="stat"><b>' + best + '%</b><span>Best</span></div>' +
+      '<div class="stat fire"><b>' + (streak ? '🔥 ' + streak : '0') + '</b><span>Day streak</span></div>';
+    statsEl.style.display = '';
+
+    let msg;
+    if (all.length < 3) {
+      msg = 'Just getting started. Do a few more and your trend line will show.';
+    } else {
+      const half = Math.floor(all.length / 2);
+      const older = all.slice(0, half), newer = all.slice(half);
+      const mean = arr => arr.reduce((s, a) => s + a.score, 0) / arr.length;
+      const delta = Math.round(mean(newer) - mean(older));
+      msg = delta > 2 ? 'Your scores are going up. Your recent ones are ' + delta + '% higher than the early ones.'
+        : delta < -2 ? 'Your recent scores dropped by ' + Math.abs(delta) + '%. Check the weak topics below and try again.'
+        : 'Your scores are steady. Hit the weak topics below to push them up.';
+    }
+    pepEl.textContent = msg;
+    pepEl.style.display = '';
+  }
+
+  function renderHistory() {
+    // mock scores are never shown to students; only you see them in the results PDF
+    const all = (window.IndigeneHistory ? window.IndigeneHistory.getAll() : []).filter(a => a.mode !== 'mock');
+    renderStats(all);
+    const info = courseInfo();
+    const list = document.getElementById('hist-list');
+    const empty = document.getElementById('hist-empty');
+    const weakWrap = document.getElementById('weak-wrap');
+    const weakList = document.getElementById('weak-list');
+    const countEl = document.getElementById('hist-count');
+
+    if (!all.length) {
+      list.innerHTML = '';
+      weakWrap.style.display = 'none';
+      empty.style.display = 'block';
+      countEl.textContent = '';
+      return;
+    }
+    empty.style.display = 'none';
+    countEl.textContent = all.length + (all.length === 1 ? ' attempt' : ' attempts');
+
+    const byCourse = {};
+    all.forEach(a => { (byCourse[a.course] = byCourse[a.course] || []).push(a); });
+    const lastTs = c => byCourse[c][byCourse[c].length - 1].ts;
+    const codes = Object.keys(byCourse).sort((x, y) => lastTs(y) - lastTs(x));
+
+    list.innerHTML = codes.map(code => {
+      const arr = byCourse[code];
+      const last = arr[arr.length - 1];
+      const prev = arr.length > 1 ? arr[arr.length - 2] : null;
+      let trend = '<div class="trend flat">first attempt</div>';
+      if (prev) {
+        const diff = last.score - prev.score;
+        trend = diff > 0 ? '<div class="trend up">▲ +' + diff + '</div>'
+          : diff < 0 ? '<div class="trend down">▼ ' + diff + '</div>'
+          : '<div class="trend flat">same as last</div>';
+      }
+      const best = Math.max.apply(null, arr.map(a => a.score));
+      const recent = arr.slice(-10).map(a => a.score);
+      const attempts = arr.slice(-5).reverse().map(a =>
+        '<div class="attempt"><span class="a-date">' + fmtDate(a.ts) + '</span>' +
+        '<span class="a-mode">' + escapeHtml(String(a.mode)) + '</span>' +
+        '<span class="a-score">' + a.score + '%</span>' +
+        '<span class="grade g-' + gradeOf(a.score) + '" style="width:24px;height:24px;font-size:.85rem;margin-left:0;">' + gradeOf(a.score) + '</span></div>'
+      ).join('');
+      const title = info[code] ? info[code].title : '';
+      return '<div class="row hrow">' +
+        '<div class="row-head"><span class="code">' + escapeHtml(code) + '</span>' +
+        '<span class="row-title">' + escapeHtml(title) + '<br><span class="hsub">' + arr.length + ' attempt' + (arr.length === 1 ? '' : 's') + ' · best ' + best + '%</span></span>' +
+        '<div><div class="score-badge">' + last.score + '%<span class="grade g-' + gradeOf(last.score) + '">' + gradeOf(last.score) + '</span></div>' + trend + '</div><span class="chev">▸</span></div>' +
+        '<div class="row-body"><div class="hbody">' + sparkline(recent) +
+        '<div class="hlabel">Last ' + Math.min(5, arr.length) + ' attempts</div>' + attempts + '</div></div></div>';
+    }).join('');
+
+    list.querySelectorAll('.row-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const row = head.parentElement;
+        const was = row.classList.contains('open');
+        list.querySelectorAll('.row.open').forEach(r => r.classList.remove('open'));
+        if (!was) row.classList.add('open');
+      });
+    });
+
+    // weak topics: add up right/total per topic across every attempt
+    const agg = {};
+    all.forEach(a => {
+      Object.keys(a.topics || {}).forEach(t => {
+        const v = a.topics[t];
+        if (!Array.isArray(v)) return;
+        const k = a.course + '||' + t;
+        const o = agg[k] = agg[k] || { course: a.course, topic: t, c: 0, n: 0 };
+        o.c += Number(v[0]) || 0;
+        o.n += Number(v[1]) || 0;
+      });
+    });
+    const weak = Object.keys(agg).map(k => agg[k])
+      .filter(o => o.n >= WEAK_MIN_Q)
+      .map(o => Object.assign(o, { pct: Math.round(o.c / o.n * 100) }))
+      .filter(o => o.pct < WEAK_BELOW)
+      .sort((x, y) => x.pct - y.pct)
+      .slice(0, 6);
+
+    if (weak.length) {
+      weakList.innerHTML = weak.map(o => {
+        const href = info[o.course] && info[o.course].cbt;
+        return '<div class="row"><div class="weak-item">' +
+          '<span class="code" style="min-width:0;font-size:1.2rem;">' + escapeHtml(o.course) + '</span>' +
+          '<span class="row-title">' + escapeHtml(o.topic) + '<br><span class="hsub">' + o.pct + '% right · ' + o.c + ' of ' + o.n + '</span><div class="bar"><i style="width:' + o.pct + '%"></i></div></span>' +
+          (href ? '<a class="pill cbt" href="' + escapeHtml(href) + '">Practice</a>' : '') +
+          '</div></div>';
+      }).join('');
+      weakWrap.style.display = '';
+    } else {
+      weakWrap.style.display = 'none';
+    }
+  }
+
+  // ---------- Exam Mock: each Join button opens WhatsApp with the message ready ----------
+  const MOCK_WHATSAPP = '2348124229969';   // mock WhatsApp number: country code first, digits only
+
+  const sheet = document.getElementById('mock-sheet');
+  function closeSheet() { sheet.hidden = true; }
+
+  const GROUP_LABEL = { '100-1': '100 level · 1st semester', '100-2': '100 level · 2nd semester', '200-1': '200 level · 1st semester', '200-2': '200 level · 2nd semester' };
+
+  let mockSig = '';
+  function cachedMock() {
+    try { return JSON.parse(localStorage.getItem('indigene_mock_' + localStorage.getItem('indigene_uid')) || 'null'); } catch (e) { return null; }
+  }
+
+  // state: 'loading' (greyed Join, nothing flips), 'normal' (Join buttons), or the real status
+  function paintMock(m, state) {
+    const groups = m ? Object.keys(m.groups || {}).filter(k => m.groups[k] === true && GROUP_LABEL[k]) : [];
+    const sig = state + '|' + JSON.stringify(groups) + '|' + JSON.stringify(m ? m.on : {});
+    if (sig === mockSig) return;            // nothing changed, do not touch the page
+    mockSig = sig;
+    document.querySelectorAll('.mock-card').forEach(card => {
+      const n = card.dataset.n;
+      const box = card.querySelector('.mock-in');
+      const join = card.querySelector('button.mock-btn[data-mock]');
+      card.classList.toggle('loading', state === 'loading');
+      if (!groups.length) { box.hidden = true; box.innerHTML = ''; join.style.display = ''; return; }
+      join.style.display = 'none';
+      box.innerHTML = groups.map(g => {
+        const open = m.on[g + '-' + n] === true;
+        const atv = m.on[g + '-' + n + '_at'];
+        const at = Number(atv) || 0;
+        const closed = open && at && Date.now() > at + 5 * 3600 * 1000;
+        const right = closed ? 'Entry closed'
+          : open ? '<a class="pill mock-btn" href="mock/mock.html?g=' + g + '&n=' + n + '">Start</a>'
+          : "You're in. Coming soon.";
+        return '<div class="mock-in-row"><b>' + GROUP_LABEL[g] + '</b><span class="st' + (open && !closed ? ' on' : '') + '">' + right + '</span></div>';
+      }).join('') + '<button class="mock-more" type="button">Join another semester or level</button>';
+      box.hidden = false;
+      box.querySelector('.mock-more').addEventListener('click', () => openForm(n));
+    });
+  }
+
+  let mockGaveUp = null;
+  async function renderMockStatus(force) {
+    const c = cachedMock();
+    if (c) paintMock(c, 'cached'); else paintMock(null, 'loading');
+    // safety: if nothing has answered after 4 seconds (bad network), show the normal Join so it is never stuck dim
+    if (!c && !mockGaveUp) mockGaveUp = setTimeout(() => { if (mockSig.indexOf('loading') === 0) paintMock(null, 'normal'); }, 4000);
+    if (!window.__getMock) return;           // not signed in yet; the login event calls this again
+    let m = null;
+    try { m = await window.__getMock(force === true); } catch (e) {}
+    if (m) paintMock(m, 'live');
+    else if (!c) paintMock(null, 'normal');  // could not check and nothing remembered: show the normal Join
+  }
+
+  const formSheet = document.getElementById('form-sheet');
+  let pick = { mock: 1, dept: '', level: '100', sem: '1st' };
+
+  function closeForm() { formSheet.hidden = true; }
+
+  async function openWhatsApp() {
+    let ident = null;
+    try { ident = await (window.__getIdent ? window.__getIdent() : null); } catch (e) {}
+    const name = (ident && ident.name) || '____';
+    const msg = "I'm " + name + " a " + pick.level + " level student of " + pick.dept.toLowerCase() +
+      " and I want to partake in the " + pick.sem + " semester exam mock " + pick.mock;
+    const url = 'https://wa.me/' + MOCK_WHATSAPP + '?text=' + encodeURIComponent(msg);
+    const w = window.open(url, '_blank');
+    if (!w) window.location.href = url;
+  }
+
+  async function openForm(n) {
+    pick.mock = n;
+    document.getElementById('form-mock').textContent = 'Mock ' + pick.mock;
+    document.getElementById('form-err').textContent = '';
+    formSheet.hidden = false;
+    // Start from their account details; they can change anything
+    let id = null;
+    try { id = await (window.__getIdent ? window.__getIdent() : null); } catch (e) {}
+    const dEl = document.getElementById('f-dept');
+    if (id && !dEl.value && id.dept) dEl.value = id.dept;
+    const lv = id && String(id.level || '').match(/\d{3}/);
+    if (lv && (lv[0] === '100' || lv[0] === '200')) document.getElementById('f-level').value = lv[0];
+    dEl.focus();
+  }
+  document.querySelectorAll('button.mock-btn[data-mock]').forEach(btn => btn.addEventListener('click', () => openForm(btn.dataset.mock)));
+
+  document.getElementById('mock-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const dept = document.getElementById('f-dept').value.replace(/\s+/g, ' ').trim();
+    if (dept.length < 2) { document.getElementById('form-err').textContent = 'Type your department.'; return; }
+    pick.dept = dept;
+    pick.level = document.getElementById('f-level').value;
+    pick.sem = document.getElementById('f-sem').value;
+    closeForm();
+    document.getElementById('sheet-text').textContent = 'to get access to the ' + pick.sem + ' semester, ' + pick.level + ' level Mock ' + pick.mock + '.';
+    document.getElementById('sheet-who').textContent = '';
+    sheet.hidden = false;
+    document.getElementById('sheet-go').focus();
+  });
+  document.getElementById('form-no').addEventListener('click', closeForm);
+  formSheet.addEventListener('click', e => { if (e.target === formSheet) closeForm(); });
+
+  document.getElementById('sheet-go').addEventListener('click', () => { closeSheet(); openWhatsApp(); });
+  document.getElementById('sheet-no').addEventListener('click', closeSheet);
+  sheet.addEventListener('click', e => { if (e.target === sheet) closeSheet(); });
+  document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (!sheet.hidden) closeSheet(); if (!formSheet.hidden) closeForm(); });
+
+  window.addEventListener('indigene-uid', () => renderMockStatus());
+  renderMockStatus();
+  showView((location.hash || '').replace('#', '') || 'courses');
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
+<script src="install.js"></script>
+</body>
+</html>
