@@ -1,0 +1,5 @@
+.git
+.github
+wrangler.jsonc
+.assetsignore
+index.html.txt
