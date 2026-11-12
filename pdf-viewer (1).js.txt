@@ -1,0 +1,1031 @@
+/* ============================================================
+   INDIGENE PDF VIEWER
+   Free, in-page, canvas-only PDF reader. No lock, no download
+   path, no native PDF-reader handoff — nothing but this script
+   ever points at the raw PDF file.
+
+   Wire it into a pdfview/{id}.html page like this:
+     <div id="pdf-container" data-pdf="../pdfs/x.pdf" data-id="x"></div>
+     <script src="../pdf-viewer.js"></script>
+
+   Features:
+     - Continuous vertical scroll through the whole document
+       (native momentum scrolling, not paged/swipe navigation).
+     - Pinch to zoom (up to 3x), anchored exactly to the pinch
+       point — the same content point stays under your fingers the
+       whole gesture and after you let go. No on-screen zoom icons.
+     - Single-finger drag to pan while zoomed in.
+     - High-resolution render up front (headroom above screen
+       density and above max zoom), so zooming is the browser
+       scaling an already-sharp image — nothing to re-render.
+     - Resumes exactly where the reader left off (per file, saved
+       to localStorage) instead of restarting from page 1.
+     - Reflows to fit whenever the screen size changes (e.g.
+       turning the phone to landscape), keeping zoom and position.
+     - Full-screen: fills the whole viewport, and requests true
+       browser fullscreen (hiding the browser's own address bar)
+       the moment you first touch the page — browsers require an
+       actual tap for that, it can't be forced instantly on load.
+     - Screen Wake Lock — display stays on while this page is open
+       and visible.
+     - Scroll handle on the right edge (dark fire orange): drag it to
+       fly through a long PDF, the number inside is the live page,
+       tap it to type a page number and jump. Fades out when idle,
+       comes back when you scroll or touch the right edge.
+     - Memory-safe for very long PDFs: only pages near the screen are
+       kept drawn, far ones are freed and redrawn on return, a few
+       render at a time, and nothing renders mid-drag.
+     - Resume is saved as "page + how far down it", written as you
+       read and the instant the page is hidden or closed.
+     - Defensive: PDF.js loading, the fetch, and every single page's
+       render are wrapped independently. One bad page shows a small
+       "couldn't render" placeholder instead of breaking the reader,
+       and a full load failure shows a retry button instead of a
+       blank screen.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var PDFJS_VERSION = '3.11.174';
+  var PDFJS_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + PDFJS_VERSION + '/';
+  var MIN_ZOOM = 1;
+  var MAX_ZOOM = 3;
+  var MAX_CANVAS_W = 3000; // memory guard on low-end phones, raised for sharper output
+  var MAX_CONCURRENT_RENDERS = 2; // pages drawn at the same time
+  var RENDER_MARGIN = 800; // px above/below the screen that stay drawn; lower = less memory
+  // Everything heavy — the pdf.js library, its worker, and the PDF file
+  // itself — gets stored here on first open. Every open after that is
+  // served straight from here with zero network traffic: no data spent,
+  // works with no connection at all. This is the Cache Storage API, not
+  // the ordinary browser HTTP cache — it's explicit, under our control,
+  // and isn't silently evicted the way an HTTP cache can be.
+  var ASSET_CACHE = 'pdfv-assets-v1';
+
+  var container = document.getElementById('pdf-container');
+  if (!container) return;
+
+  var pdfUrl = container.dataset.pdf;
+  var pdfId = container.dataset.id;
+  if (!pdfUrl || !pdfId) {
+    showError(container, 'This page is missing its PDF reference.');
+    return;
+  }
+
+  // always full-screen: this covers the whole viewport regardless of
+  // whatever header/topbar markup the host page has above it
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  injectStyles();
+  container.classList.add('pdfv-root');
+
+  var scroller = document.createElement('div');
+  scroller.className = 'pdfv-scroller';
+  var pagesWrap = document.createElement('div');
+  pagesWrap.className = 'pdfv-pages';
+  scroller.appendChild(pagesWrap);
+  container.appendChild(scroller);
+
+  var loadingEl = document.createElement('div');
+  loadingEl.className = 'pdfv-loading';
+  loadingEl.innerHTML =
+    '<div class="pdfv-load-label">LOADING PDF</div>' +
+    '<div class="pdfv-load-track"><div class="pdfv-load-fill"></div></div>' +
+    '<div class="pdfv-load-pct">0%</div>';
+  container.appendChild(loadingEl);
+  var loadFill = loadingEl.querySelector('.pdfv-load-fill');
+  var loadPct = loadingEl.querySelector('.pdfv-load-pct');
+
+  function setLoadProgress(pct) {
+    var clamped = Math.max(0, Math.min(100, Math.round(pct)));
+    loadFill.style.width = clamped + '%';
+    loadPct.textContent = clamped + '%';
+  }
+  function setLoadIndeterminate() {
+    loadingEl.classList.add('pdfv-load-indeterminate');
+    loadPct.textContent = '';
+  }
+
+  var hud = document.createElement('div');
+  hud.className = 'pdfv-hud';
+  container.appendChild(hud);
+
+  // best-effort save/copy deterrents (screenshots & screen recording
+  // are OS-level and no webpage can block those)
+  scroller.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  scroller.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p')) e.preventDefault();
+  });
+
+  // request true browser fullscreen (hides the address bar) on the first
+  // tap — browsers refuse this unless it's a direct response to a user
+  // gesture, so it genuinely cannot happen before that first touch
+  var fullscreenTried = false;
+  container.addEventListener('pointerdown', function tryFullscreen() {
+    if (fullscreenTried) return;
+    fullscreenTried = true;
+    var el = document.documentElement;
+    var request = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (request) request.call(el).catch(function () { /* not fatal — CSS full-screen still covers the viewport */ });
+  }, { once: true });
+
+  var pdfDoc = null;
+  var pageCount = 0;
+  var pageDivs = [];
+  var pageBaseHeights = []; // each page's natural height at zoomLevel 1
+  var pageHeightPx = 0; // uniform placeholder guess before a page's real height is known
+  var pageGap = 10;
+  var baseWidth = 0;
+  var zoomLevel = 1;
+  var io = null;
+  var usedSavedCopy = false; // true when this open was served from the copy saved on the phone
+  var savedHeaders = null;   // headers of that saved copy (used to spot a replaced PDF)
+  var dragging = false;      // true while the scroll handle is being dragged
+  var ready = false;         // true once the resume position has been applied
+  var updateRail = function () {}; // replaced by attachRail() once the handle exists
+
+  requestWakeLock();
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') requestWakeLock();
+    else releaseWakeLock();
+  });
+
+  loadScript(PDFJS_BASE + 'pdf.min.js')
+    .then(function () {
+      return cachedFetch(PDFJS_BASE + 'pdf.worker.min.js');
+    })
+    .then(function (res) {
+      return res.blob();
+    })
+    .then(function (workerBlob) {
+      // a blob URL, not the live CDN URL — so spinning up the worker
+      // never touches the network once this has been cached once
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+      return fetchPdfWithProgress(pdfUrl);
+    })
+    .then(function (pdfArrayBuffer) {
+      var loadingTask = window.pdfjsLib.getDocument({ data: pdfArrayBuffer });
+      return loadingTask.promise;
+    })
+    .then(function (doc) {
+      pdfDoc = doc;
+      pageCount = doc.numPages;
+      setLoadProgress(100);
+      return doc.getPage(1);
+    })
+    .then(function (firstPage) {
+      buildPageSlots(firstPage);
+      loadingEl.remove();
+      attachObserver();
+      attachGestures();
+      attachViewportReflow();
+      var resumed = restoreScrollPosition();
+      attachRail();
+      ready = true;
+      renderAround();
+      if (!resumed) flashHud('Page 1 of ' + pageCount);
+      keepSavedFilesSafe();
+      checkForNewVersion();
+    })
+    .catch(function () {
+      if (usedSavedCopy && !pdfDoc) {
+        // the saved copy is damaged: remove it so RETRY downloads a clean one
+        dropSavedCopy();
+        showError(container, 'The saved copy of this PDF is damaged. Turn on data and tap RETRY to download it again.');
+      } else if (navigator.onLine === false) {
+        showError(container, 'This PDF is not saved on your phone yet. Turn on data once to open it. After that it opens with no data.');
+      } else {
+        showError(container, 'Could not open this PDF. Check your connection and try again.');
+      }
+    });
+
+  // ---------- layout ----------
+  // pagesWrap's own width is always set explicitly to match the content
+  // (baseWidth * zoomLevel) and is never centered via flex/margin tricks.
+  // That centering was the actual root cause of imprecise zoom: it shifts
+  // an element's left edge by a constant amount every time its width
+  // changes, and that constant throws off any "scale from an anchor
+  // point" math. With nothing in this whole tree auto-centering an
+  // overflowing element, a point at a given pixel offset always scales
+  // by exactly the zoom ratio — no correction term needed, no drift.
+  function buildPageSlots(firstPage) {
+    var vp1 = firstPage.getViewport({ scale: 1 });
+    baseWidth = Math.max(scroller.clientWidth - 4, 280);
+    var fitScale = baseWidth / vp1.width;
+    pageHeightPx = Math.round(vp1.height * fitScale);
+    pagesWrap.style.width = baseWidth + 'px';
+
+    for (var i = 1; i <= pageCount; i++) {
+      var div = document.createElement('div');
+      div.className = 'pdfv-page';
+      div.dataset.page = String(i);
+      div.style.width = '100%'; // always tracks pagesWrap's width
+      div.style.height = pageHeightPx + 'px';
+      div.style.marginBottom = pageGap + 'px';
+      pagesWrap.appendChild(div);
+      pageDivs.push(div);
+      pageBaseHeights.push(pageHeightPx);
+    }
+  }
+
+  // ---------- rendering (queued, bounded, memory-safe) ----------
+  // Long PDFs used to keep every page you scrolled past as a huge image in
+  // memory, which is what crashes a phone browser. Now:
+  //   - at most MAX_CONCURRENT_RENDERS pages draw at once, nearest first
+  //   - a page that moves far off screen is thrown away (its placeholder
+  //     keeps the exact height so nothing jumps) and is redrawn if you
+  //     scroll back to it
+  //   - while the scroll handle is dragged nothing renders; the pages
+  //     around where you let go are drawn once you stop
+  var renderQueue = [];
+  var activeRenders = 0;
+
+  function renderPage(num) {
+    var div = pageDivs[num - 1];
+    if (!div || div.dataset.rendered) return;
+    div.dataset.rendered = 'queued';
+    renderQueue.push(num);
+    pumpQueue();
+  }
+
+  function pumpQueue() {
+    if (!renderQueue.length) return;
+    var focus = pageIndexAt(scroller.scrollTop + scroller.clientHeight * 0.3) + 1;
+    while (activeRenders < MAX_CONCURRENT_RENDERS && renderQueue.length) {
+      var best = 0;
+      for (var i = 1; i < renderQueue.length; i++) {
+        if (Math.abs(renderQueue[i] - focus) < Math.abs(renderQueue[best] - focus)) best = i;
+      }
+      var num = renderQueue.splice(best, 1)[0];
+      var div = pageDivs[num - 1];
+      if (dragging || div.dataset.near === '0') {
+        delete div.dataset.rendered; // not wanted any more; drawn later if it comes back near
+        continue;
+      }
+      activeRenders++;
+      div.dataset.rendered = 'rendering';
+      drawPage(num).then(renderFinished, renderFinished);
+    }
+  }
+
+  function renderFinished() {
+    activeRenders--;
+    pumpQueue();
+  }
+
+  function drawPage(num) {
+    var div = pageDivs[num - 1];
+    return pdfDoc.getPage(num).then(function (page) {
+      var vp1 = page.getViewport({ scale: 1 });
+      var fitScale = baseWidth / vp1.width;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      var renderScale = fitScale * dpr * MAX_ZOOM;
+      if (vp1.width * renderScale > MAX_CANVAS_W) {
+        renderScale = MAX_CANVAS_W / vp1.width;
+      }
+      var viewport = page.getViewport({ scale: renderScale });
+
+      var canvas = document.createElement('canvas');
+      canvas.className = 'pdfv-canvas';
+      canvas.setAttribute('draggable', 'false');
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+
+      var ctx = canvas.getContext('2d');
+      return page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function () {
+        if (page.cleanup) page.cleanup();
+        if (div.dataset.near === '0') {
+          // scrolled far away while this was drawing: don't keep it
+          canvas.width = 0;
+          canvas.height = 0;
+          delete div.dataset.rendered;
+        } else {
+          div.innerHTML = '';
+          div.appendChild(canvas);
+          div.dataset.rendered = 'done';
+        }
+        // real page height may differ slightly from the placeholder
+        // estimate: correct it (scaled to the current zoom) without
+        // disturbing scroll position
+        var correctH = Math.round(viewport.height / (dpr * MAX_ZOOM));
+        pageBaseHeights[num - 1] = correctH;
+        var target = Math.round(correctH * zoomLevel);
+        if (Math.abs(target - div.clientHeight) > 2) {
+          var delta = target - div.clientHeight;
+          var beforeScroll = scroller.scrollTop;
+          div.style.height = target + 'px';
+          if (div.offsetTop < beforeScroll) scroller.scrollTop = beforeScroll + delta;
+        }
+      });
+    }).catch(function () {
+      div.dataset.rendered = 'failed';
+      div.innerHTML = '<div class="pdfv-page-error">Page ' + num + ' couldn’t render</div>';
+    });
+  }
+
+  // frees a drawn page's image (keeps its placeholder height)
+  function evictPage(div) {
+    var state = div.dataset.rendered;
+    if (state !== 'done' && state !== 'failed') return;
+    var c = div.querySelector('canvas');
+    if (c) { c.width = 0; c.height = 0; }
+    div.innerHTML = '';
+    delete div.dataset.rendered;
+  }
+
+  // index of the page whose top is at or above y (binary search on real positions)
+  function pageIndexAt(y) {
+    var lo = 0, hi = pageDivs.length - 1;
+    while (lo < hi) {
+      var mid = (lo + hi + 1) >> 1;
+      if (pageDivs[mid].offsetTop <= y) lo = mid; else hi = mid - 1;
+    }
+    return lo;
+  }
+
+  // draws whatever is near the current scroll position (used after a drag/jump)
+  function renderAround() {
+    if (!pageDivs.length) return;
+    var top = scroller.scrollTop - RENDER_MARGIN;
+    var bottom = scroller.scrollTop + scroller.clientHeight + RENDER_MARGIN;
+    for (var i = pageIndexAt(top); i < pageDivs.length; i++) {
+      var d = pageDivs[i];
+      if (d.offsetTop > bottom) break;
+      if (d.offsetTop + d.offsetHeight < top) continue;
+      d.dataset.near = '1';
+      renderPage(i + 1);
+    }
+  }
+
+  function attachObserver() {
+    if (io) { io.disconnect(); }
+    if (!('IntersectionObserver' in window)) {
+      // fallback for very old browsers: draw by scroll position
+      var t = null;
+      scroller.addEventListener('scroll', function () {
+        clearTimeout(t);
+        t = setTimeout(renderAround, 120);
+      });
+      renderAround();
+      return;
+    }
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var div = entry.target;
+        if (entry.isIntersecting) {
+          div.dataset.near = '1';
+          if (!dragging) renderPage(parseInt(div.dataset.page, 10));
+        } else {
+          div.dataset.near = '0';
+          evictPage(div);
+        }
+      });
+    }, { root: scroller, rootMargin: RENDER_MARGIN + 'px 0px', threshold: 0.01 });
+    pageDivs.forEach(function (div) { io.observe(div); });
+  }
+
+  // reflows to the phone's current width/height whenever the viewport
+  // changes — most commonly, turning the phone to landscape or back.
+  // Keeps zoom level and reading position intact through the reflow.
+  function attachViewportReflow() {
+    var resizeTimer = null;
+    function scheduleReflow() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(reflowToViewport, 150);
+    }
+    window.addEventListener('resize', scheduleReflow);
+    window.addEventListener('orientationchange', scheduleReflow);
+  }
+
+  function reflowToViewport() {
+    if (!pageDivs.length) return;
+    var oldScrollW = scroller.scrollWidth || 1;
+    var oldScrollH = scroller.scrollHeight || 1;
+    var fracX = scroller.scrollLeft / oldScrollW;
+    var fracY = scroller.scrollTop / oldScrollH;
+
+    var oldBaseWidth = baseWidth || 1;
+    baseWidth = Math.max(scroller.clientWidth - 4, 280);
+    // each page's aspect ratio is fixed — its stored "natural" height
+    // has to scale by the same ratio the width just changed by (e.g.
+    // rotating to landscape roughly doubles the available width), or the
+    // canvas inside it — which always fills its div at width:100%/
+    // height:100% — stretches out of its correct proportions instead of
+    // just getting bigger. zoomLevel itself is untouched here, so the
+    // zoom the reader had (1x, 2x, whatever) stays exactly what it was.
+    var widthRatio = baseWidth / oldBaseWidth;
+    pageBaseHeights = pageBaseHeights.map(function (h) { return h * widthRatio; });
+    pageHeightPx = pageHeightPx * widthRatio;
+
+    pagesWrap.style.width = Math.round(baseWidth * zoomLevel) + 'px';
+    pageDivs.forEach(function (div, i) {
+      div.style.height = Math.round((pageBaseHeights[i] || pageHeightPx) * zoomLevel) + 'px';
+    });
+
+    requestAnimationFrame(function () {
+      scroller.scrollLeft = fracX * scroller.scrollWidth;
+      scroller.scrollTop = fracY * scroller.scrollHeight;
+      updateRail();
+    });
+  }
+
+  // ---------- resume position ----------
+  // Saved as "which page, and how far down it" instead of raw pixels, so it
+  // still lands on the right spot after rotating the phone or zooming.
+  // Written while you read and again the instant the page is hidden or
+  // closed, so it survives the browser killing the tab on a huge PDF.
+  var saveTimer = null;
+  scroller.addEventListener('scroll', function () {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveScrollPosition, 400);
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') saveScrollPosition();
+  });
+  window.addEventListener('pagehide', saveScrollPosition);
+
+  function currentPage() {
+    var max = Math.max(scroller.scrollHeight - scroller.clientHeight, 1);
+    if (scroller.scrollTop >= max - 2) return pageCount;
+    return Math.min(pageCount, pageIndexAt(scroller.scrollTop + scroller.clientHeight * 0.3) + 1);
+  }
+  function saveScrollPosition() {
+    // never save before the saved spot has been applied, or opening and
+    // leaving fast would overwrite it with page 1
+    if (!ready || !pageDivs.length) return;
+    try {
+      var idx = pageIndexAt(scroller.scrollTop);
+      var pd = pageDivs[idx];
+      var frac = (scroller.scrollTop - pd.offsetTop) / (pd.offsetHeight || 1);
+      var all = JSON.parse(localStorage.getItem('pdfv-progress') || '{}');
+      all[pdfId] = { p: idx + 1, f: Math.round(frac * 10000) / 10000 };
+      localStorage.setItem('pdfv-progress', JSON.stringify(all));
+    } catch (e) { /* private mode / storage full: resume just won't work this time */ }
+  }
+  // returns true when it moved past page 1 (so the caller knows it resumed)
+  function restoreScrollPosition() {
+    try {
+      var all = JSON.parse(localStorage.getItem('pdfv-progress') || '{}');
+      var saved = all[pdfId];
+      if (saved == null) return false;
+      var target = null;
+      if (typeof saved === 'number') {
+        target = saved; // oldest format: plain pixel offset
+      } else if (saved && typeof saved.p === 'number') {
+        var pd = pageDivs[clamp(Math.round(saved.p), 1, pageCount) - 1];
+        target = pd.offsetTop + (typeof saved.f === 'number' ? saved.f : 0) * pd.offsetHeight;
+      } else if (saved && typeof saved.scroll === 'number') {
+        target = saved.scroll; // older object format
+      }
+      if (target == null) return false;
+      scroller.scrollTop = target;
+      var pg = currentPage();
+      if (pg > 1) { flashHud('Resumed at page ' + pg); return true; }
+    } catch (e) {}
+    return false;
+  }
+
+  // ---------- pinch zoom, anchored exactly to the pinch point ----------
+  function attachGestures() {
+    var pointers = {};
+    var gestureActive = false;
+    var startDist = 0, startZoom = 1, liveScale = 1;
+    var anchorContentX = 0, anchorContentY = 0, anchorScreenX = 0, anchorScreenY = 0;
+    var anchorPageIndex = 0, anchorPageFrac = 0;
+    var pan = null;
+
+    // pagesWrap has fixed, non-scaling gaps in it (10px top padding, 40px
+    // bottom padding, 10px margin between every page) — only the pages
+    // themselves grow with zoom. So "offset * ratio" is only exact for a
+    // point on page 1 at y=0; anywhere else it drifts by every fixed gap
+    // above the anchor, worse the more you zoom. Instead we record WHICH
+    // page the anchor sits on and how far through it (both zoom-invariant),
+    // then after the real resize we re-read that page's actual new
+    // position from the DOM — exact regardless of how many fixed gaps
+    // sit above it.
+    function locatePageAnchor(y) {
+      for (var i = 0; i < pageDivs.length; i++) {
+        var div = pageDivs[i];
+        var top = div.offsetTop;
+        var h = div.offsetHeight || 1;
+        if (y < top) return { index: i, frac: 0 };
+        if (y <= top + h) return { index: i, frac: (y - top) / h };
+      }
+      var last = Math.max(pageDivs.length - 1, 0);
+      return { index: last, frac: 1 };
+    }
+
+    scroller.style.touchAction = 'pan-y';
+
+    scroller.addEventListener('pointerdown', function (e) {
+      pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      var ids = Object.keys(pointers);
+
+      if (ids.length === 2) {
+        var pts = ids.map(function (id) { return pointers[id]; });
+        gestureActive = true;
+        startDist = dist(pts[0], pts[1]) || 1;
+        startZoom = zoomLevel;
+        liveScale = 1;
+        pan = null;
+
+        var mid = midpoint(pts[0], pts[1]);
+        anchorScreenX = mid.x;
+        anchorScreenY = mid.y;
+        // measured exactly once, right now, before any transform exists —
+        // the one and only read of pagesWrap's box for this whole gesture.
+        // Re-reading it mid-gesture (once a live transform is already
+        // applied) was the bug that made zoom feel inaccurate: the box
+        // you're measuring against is itself already distorted by then.
+        var pwRect = pagesWrap.getBoundingClientRect();
+        anchorContentX = mid.x - pwRect.left;
+        anchorContentY = mid.y - pwRect.top;
+        var pageAnchor = locatePageAnchor(anchorContentY);
+        anchorPageIndex = pageAnchor.index;
+        anchorPageFrac = pageAnchor.frac;
+        pagesWrap.style.transformOrigin = anchorContentX + 'px ' + anchorContentY + 'px';
+      } else if (ids.length === 1 && zoomLevel > 1.02) {
+        pan = { x: e.clientX, y: e.clientY, top: scroller.scrollTop, left: scroller.scrollLeft };
+      }
+    });
+
+    scroller.addEventListener('pointermove', function (e) {
+      if (!(e.pointerId in pointers)) return;
+      pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      var ids = Object.keys(pointers);
+
+      if (ids.length === 2 && gestureActive) {
+        var pts = ids.map(function (id) { return pointers[id]; });
+        var d = dist(pts[0], pts[1]) || 1;
+        liveScale = d / startDist;
+        var previewZoom = clamp(startZoom * liveScale, MIN_ZOOM, MAX_ZOOM);
+        // transform-origin was fixed once above and is never touched again
+        // during this gesture — only the live scale factor updates
+        pagesWrap.style.transform = 'scale(' + (previewZoom / zoomLevel) + ')';
+      } else if (ids.length === 1 && pan) {
+        var dx = e.clientX - pan.x;
+        var dy = e.clientY - pan.y;
+        scroller.scrollLeft = pan.left - dx;
+        scroller.scrollTop = pan.top - dy;
+      }
+    });
+
+    function endPointer(e) {
+      delete pointers[e.pointerId];
+      var ids = Object.keys(pointers);
+
+      if (ids.length < 2 && gestureActive) {
+        gestureActive = false;
+        var newZoom = clamp(startZoom * liveScale, MIN_ZOOM, MAX_ZOOM);
+        commitZoom(newZoom, anchorContentX, anchorContentY, anchorScreenX, anchorScreenY, anchorPageIndex, anchorPageFrac);
+      }
+      if (ids.length === 0) pan = null;
+    }
+    scroller.addEventListener('pointerup', endPointer);
+    scroller.addEventListener('pointercancel', endPointer);
+  }
+
+  function commitZoom(newZoom, anchorContentX, anchorContentY, anchorScreenX, anchorScreenY, anchorPageIndex, anchorPageFrac) {
+    pagesWrap.style.transform = 'none';
+    pagesWrap.style.transformOrigin = '';
+
+    // X has no fixed, non-scaling gaps anywhere in it (pagesWrap has zero
+    // left/right padding, pages are flush edge to edge), so a point at
+    // pixel offset P scales to exactly P * (newZoom/oldZoom) — exact.
+    var ratio = newZoom / zoomLevel;
+    zoomLevel = newZoom;
+
+    pagesWrap.style.width = Math.round(baseWidth * zoomLevel) + 'px';
+    pageDivs.forEach(function (div, i) {
+      div.style.height = Math.round((pageBaseHeights[i] || pageHeightPx) * zoomLevel) + 'px';
+    });
+
+    requestAnimationFrame(function () {
+      var scrollerRect = scroller.getBoundingClientRect();
+      var newContentX = anchorContentX * ratio;
+      // Y is NOT a pure scale from the top — the top/bottom padding and
+      // the gap between every page are fixed pixel values that don't
+      // grow with zoom, so "offset * ratio" drifts off by every fixed
+      // gap sitting above the anchor (worse the further down the doc and
+      // the bigger the zoom jump — exactly the "deviates when I let go"
+      // symptom). Re-read the anchor's own page after the real resize
+      // above and rebuild its position from that page's actual new top
+      // plus the same fraction through it — exact no matter how many
+      // fixed gaps sit above it.
+      var pd = pageDivs[anchorPageIndex] || pageDivs[0];
+      var newContentY = pd ? (pd.offsetTop + anchorPageFrac * pd.offsetHeight) : (anchorContentY * ratio);
+
+      scroller.scrollLeft = newContentX - (anchorScreenX - scrollerRect.left);
+      scroller.scrollTop = newContentY - (anchorScreenY - scrollerRect.top);
+      scroller.style.touchAction = zoomLevel > 1.02 ? 'none' : 'pan-y';
+      updateRail();
+    });
+  }
+
+  // ---------- scroll handle (fast scroll + page number + jump) ----------
+  function attachRail() {
+    var THUMB_H = 40, MARGIN = 8;
+    var thumb = document.createElement('div');
+    thumb.className = 'pdfv-thumb';
+    var numEl = document.createElement('span');
+    thumb.appendChild(numEl);
+    container.appendChild(thumb);
+
+    var jump = document.createElement('div');
+    jump.className = 'pdfv-jump';
+    jump.innerHTML =
+      '<div class="pdfv-jump-card">' +
+      '<div class="pdfv-jump-label">GO TO PAGE</div>' +
+      '<input class="pdfv-jump-input" type="number" inputmode="numeric" min="1" max="' + pageCount + '" placeholder="1 - ' + pageCount + '">' +
+      '<div class="pdfv-jump-row">' +
+      '<button class="pdfv-jump-cancel" type="button">CANCEL</button>' +
+      '<button class="pdfv-jump-go" type="button">GO</button>' +
+      '</div></div>';
+    container.appendChild(jump);
+    var input = jump.querySelector('.pdfv-jump-input');
+
+    var idleTimer = null, thumbTop = MARGIN, frame = 0, drag = null, jumpOpen = false;
+
+    function maxScroll() { return Math.max(scroller.scrollHeight - scroller.clientHeight, 1); }
+    function usable() { return Math.max(scroller.clientHeight - THUMB_H - MARGIN * 2, 1); }
+
+    updateRail = function () {
+      var frac = clamp(scroller.scrollTop / maxScroll(), 0, 1);
+      thumbTop = MARGIN + frac * usable();
+      thumb.style.transform = 'translateY(' + thumbTop + 'px)';
+      var n = currentPage();
+      numEl.textContent = dragging ? (n + ' / ' + pageCount) : String(n);
+    };
+
+    function showRail() {
+      thumb.classList.add('pdfv-on');
+      clearTimeout(idleTimer);
+      if (!dragging && !jumpOpen) {
+        idleTimer = setTimeout(function () { thumb.classList.remove('pdfv-on'); }, 1600);
+      }
+    }
+
+    // appears whenever the page scrolls, or a finger lands on the right edge
+    scroller.addEventListener('scroll', function () {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        frame = 0;
+        updateRail();
+        showRail();
+      });
+    });
+    scroller.addEventListener('pointerdown', function (e) {
+      var r = scroller.getBoundingClientRect();
+      if (e.clientX > r.right - 36) showRail();
+    });
+
+    // drag the handle to scroll; a tap (no movement) opens "go to page"
+    thumb.addEventListener('pointerdown', function (e) {
+      if (!thumb.classList.contains('pdfv-on')) return;
+      e.preventDefault();
+      try { thumb.setPointerCapture(e.pointerId); } catch (err) {}
+      drag = { id: e.pointerId, startY: e.clientY, startTop: thumbTop, moved: false };
+    });
+    thumb.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved) {
+        if (Math.abs(dy) < 6) return;
+        drag.moved = true;
+        dragging = true;
+        thumb.classList.add('pdfv-drag');
+        clearTimeout(idleTimer);
+      }
+      var top = clamp(drag.startTop + dy, MARGIN, MARGIN + usable());
+      scroller.scrollTop = ((top - MARGIN) / usable()) * maxScroll();
+      updateRail();
+    });
+    function endDrag(e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var moved = drag.moved;
+      drag = null;
+      dragging = false;
+      thumb.classList.remove('pdfv-drag');
+      if (moved) {
+        updateRail();
+        renderAround();      // draw the pages around where you let go
+        saveScrollPosition();
+        showRail();
+      } else if (e.type === 'pointerup') {
+        openJump();
+      } else {
+        showRail();
+      }
+    }
+    thumb.addEventListener('pointerup', endDrag);
+    thumb.addEventListener('pointercancel', endDrag);
+
+    function openJump() {
+      jumpOpen = true;
+      clearTimeout(idleTimer);
+      input.value = '';
+      jump.classList.add('pdfv-open');
+      setTimeout(function () { input.focus(); }, 60);
+    }
+    function closeJump() {
+      jumpOpen = false;
+      jump.classList.remove('pdfv-open');
+      input.blur();
+      showRail();
+    }
+    function goToPage() {
+      var n = parseInt(input.value, 10);
+      if (!n) { closeJump(); return; }
+      n = clamp(n, 1, pageCount);
+      var pd = pageDivs[n - 1];
+      scroller.scrollTop = Math.max(pd.offsetTop - pageGap, 0);
+      closeJump();
+      updateRail();
+      renderAround();
+      saveScrollPosition();
+      flashHud('Page ' + n + ' of ' + pageCount);
+    }
+    jump.querySelector('.pdfv-jump-go').addEventListener('click', goToPage);
+    jump.querySelector('.pdfv-jump-cancel').addEventListener('click', closeJump);
+    jump.addEventListener('pointerdown', function (e) { if (e.target === jump) closeJump(); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); goToPage(); }
+      else if (e.key === 'Escape') closeJump();
+    });
+
+    updateRail();
+    showRail();
+  }
+
+  // ---------- wake lock ----------
+  var wakeLock = null;
+  function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    navigator.wakeLock.request('screen').then(function (lock) { wakeLock = lock; }).catch(function () {});
+  }
+  function releaseWakeLock() {
+    if (wakeLock) { wakeLock.release().catch(function () {}); wakeLock = null; }
+  }
+
+  // ---------- helpers ----------
+  function dist(a, b) { return Math.hypot(b.x - a.x, b.y - a.y); }
+  function midpoint(a, b) { return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }; }
+  function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
+  var hudTimer = null;
+  function flashHud(text) {
+    hud.textContent = text;
+    hud.classList.add('pdfv-show');
+    clearTimeout(hudTimer);
+    hudTimer = setTimeout(function () { hud.classList.remove('pdfv-show'); }, 1800);
+  }
+
+  function showError(el, msg) {
+    el.classList.add('pdfv-root');
+    el.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'pdfv-error';
+    box.innerHTML = '<div class="pdfv-error-msg"></div><button class="pdfv-retry">RETRY</button>';
+    box.querySelector('.pdfv-error-msg').textContent = msg;
+    box.querySelector('.pdfv-retry').addEventListener('click', function () { window.location.reload(); });
+    el.appendChild(box);
+  }
+
+  function loadScript(src) {
+    return cachedFetch(src)
+      .then(function (res) {
+        if (!res || !res.ok) throw new Error('script fetch failed: ' + src);
+        return res.blob();
+      })
+      .then(function (blob) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = URL.createObjectURL(blob);
+          s.onload = function () { resolve(); };
+          s.onerror = function () { reject(new Error('script load failed: ' + src)); };
+          document.head.appendChild(s);
+        });
+      });
+  }
+
+  // ---------- offline caching ----------
+  function hasCacheApi() {
+    return typeof window !== 'undefined' && 'caches' in window;
+  }
+
+  // Cache-first fetch for the library/worker files: serves the stored
+  // copy instantly (no network, no data used) on every visit after the
+  // first, and only reaches out to the CDN when nothing's cached yet.
+  // Falls back to a plain fetch on browsers with no Cache Storage API —
+  // same as before, no regression there.
+  function cachedFetch(url) {
+    if (!hasCacheApi()) return fetch(url);
+    return caches.open(ASSET_CACHE).then(function (cache) {
+      return cache.match(url).then(function (hit) {
+        if (hit) return hit;
+        return fetch(url).then(function (res) {
+          if (res && res.ok) {
+            cache.put(url, res.clone()).catch(function () { /* storage full / private mode — reading still works, just won't be cached this time */ });
+          }
+          return res;
+        });
+      });
+    });
+  }
+
+  // Same idea for the PDF itself, but also keeps the loading-bar
+  // percentage working: a cache hit resolves instantly and a fresh
+  // download is read in chunks against Content-Length like before.
+  function fetchPdfWithProgress(url) {
+    if (!hasCacheApi()) return fetch(url).then(readWithProgress);
+    return caches.open(ASSET_CACHE).then(function (cache) {
+      return cache.match(url).then(function (hit) {
+        if (hit) {
+          usedSavedCopy = true;
+          savedHeaders = hit.headers;
+          setLoadProgress(100);
+          return hit.arrayBuffer();
+        }
+        return fetch(url).then(function (res) {
+          if (!res || !res.ok) throw new Error('pdf fetch failed: ' + url);
+          cache.put(url, res.clone()).catch(function () { /* storage full / private mode — this open just won't be cached */ });
+          return readWithProgress(res);
+        });
+      });
+    });
+  }
+
+  function readWithProgress(res) {
+    if (!res.body || !res.body.getReader) {
+      // very old browser with no streams API — no progress to show, just wait
+      setLoadIndeterminate();
+      return res.arrayBuffer();
+    }
+    var total = parseInt(res.headers.get('Content-Length') || '0', 10);
+    var reader = res.body.getReader();
+    var chunks = [];
+    var received = 0;
+    if (!total) setLoadIndeterminate();
+    function pump() {
+      return reader.read().then(function (result) {
+        if (result.done) {
+          var buf = new Uint8Array(received);
+          var offset = 0;
+          chunks.forEach(function (c) { buf.set(c, offset); offset += c.length; });
+          return buf.buffer;
+        }
+        chunks.push(result.value);
+        received += result.value.length;
+        if (total) setLoadProgress((received / total) * 100);
+        return pump();
+      });
+    }
+    return pump();
+  }
+
+  // ---------- new version check ----------
+  // When data is on and this PDF was opened from the saved copy, ask the
+  // server (a tiny HEAD request, no file download) if the PDF was
+  // replaced. If it was, download the new one quietly, swap the saved
+  // copy, and show a "tap to refresh" bar. No cache clearing, ever.
+  // With data off nothing happens and the saved copy keeps working.
+  function sigOf(headers) {
+    if (!headers) return '';
+    var tag = (headers.get('etag') || '').replace(/^W\//, '').replace(/"/g, '');
+    if (tag) return 'e:' + tag;
+    var mod = headers.get('last-modified') || '';
+    return mod ? 'm:' + mod : '';
+  }
+
+  function checkForNewVersion() {
+    if (!usedSavedCopy || !hasCacheApi() || navigator.onLine === false) return;
+    var headSig = '';
+    fetch(pdfUrl, { method: 'HEAD', cache: 'no-store' })
+      .then(function (head) {
+        if (!head || !head.ok) return null;
+        headSig = sigOf(head.headers);
+        if (!headSig) return null;                       // server gave nothing to compare: never guess
+        var known = '';
+        try { known = (JSON.parse(localStorage.getItem('pdfv-sig') || '{}'))[pdfId] || ''; } catch (e) {}
+        if (headSig === sigOf(savedHeaders) || headSig === known) return null;   // same PDF
+        return fetch(pdfUrl, { cache: 'no-store' });     // replaced: get the new one
+      })
+      .then(function (res) {
+        if (!res) return null;
+        var type = (res.headers.get('content-type') || '').toLowerCase();
+        if (!res.ok || res.status !== 200 || type.indexOf('html') !== -1) return null;   // never save an error page
+        return caches.open(ASSET_CACHE).then(function (cache) {
+          return cache.put(pdfUrl, res).then(function () { return true; });
+        });
+      })
+      .then(function (saved) {
+        if (!saved) return;
+        try {
+          var all = JSON.parse(localStorage.getItem('pdfv-sig') || '{}');
+          all[pdfId] = headSig;
+          localStorage.setItem('pdfv-sig', JSON.stringify(all));
+        } catch (e) {}
+        showUpdateBar();
+      })
+      .catch(function () { /* offline or slow: the saved copy keeps working, we try again next open */ });
+  }
+
+  function showUpdateBar() {
+    var bar = document.createElement('button');
+    bar.className = 'pdfv-update';
+    bar.textContent = 'New version ready. Tap to refresh';
+    bar.addEventListener('click', function () { window.location.reload(); });
+    container.appendChild(bar);
+  }
+
+  function dropSavedCopy() {
+    if (!hasCacheApi()) return;
+    caches.open(ASSET_CACHE).then(function (cache) { return cache.delete(pdfUrl); }).catch(function () {});
+  }
+
+  // Ask the phone not to wipe the saved PDFs when storage runs low
+  function keepSavedFilesSafe() {
+    try {
+      if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+    } catch (e) {}
+  }
+
+  function injectStyles() {
+    if (document.getElementById('pdfv-styles')) return;
+    var style = document.createElement('style');
+    style.id = 'pdfv-styles';
+    style.textContent =
+      // !important on every layout-critical property: every course page
+      // defines its own "#pdf-container{position:relative;...}" rule, and
+      // an ID selector always beats this .pdfv-root class selector on
+      // specificity alone — without !important here, that per-page CSS
+      // silently wins, the container never actually leaves the page's
+      // flex layout, and the topbar/title stay visible above it instead
+      // of the PDF filling the whole screen.
+      '.pdfv-root{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;' +
+      'background:#0b0704;overflow:hidden;z-index:99999;' +
+      '-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}' +
+      '.pdfv-scroller{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;}' +
+      '.pdfv-pages{display:flex;flex-direction:column;flex-shrink:0;padding:10px 0 40px;}' +
+      '.pdfv-page{position:relative;background:#161010;overflow:hidden;flex-shrink:0;}' +
+      '.pdfv-canvas{display:block;width:100%;height:100%;pointer-events:none;background:#fff;}' +
+      '.pdfv-page-error{display:flex;align-items:center;justify-content:center;height:100%;' +
+      'color:#ffb066;font-family:"Exo 2",sans-serif;font-size:12px;text-align:center;padding:12px;}' +
+      '.pdfv-hud{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);' +
+      'background:rgba(15,8,3,0.75);border:1px solid rgba(255,153,51,0.4);color:#ffb066;' +
+      'font-family:"Exo 2",sans-serif;font-size:12px;letter-spacing:0.03em;padding:6px 16px;' +
+      'border-radius:999px;pointer-events:none;opacity:0;transition:opacity 0.4s ease;z-index:5;}' +
+      '.pdfv-hud.pdfv-show{opacity:1;}' +
+      '.pdfv-update{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:20;' +
+      'font-family:"Orbitron",sans-serif;font-size:11px;letter-spacing:0.05em;' +
+      'background:linear-gradient(135deg,#ff6a00,#ffb347);border:none;color:#1a0d00;' +
+      'padding:10px 18px;border-radius:999px;cursor:pointer;max-width:92vw;}' +
+      '.pdfv-thumb{position:absolute;top:0;right:0;z-index:30;min-width:46px;height:40px;' +
+      'padding:0 12px 0 16px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;' +
+      'border-radius:20px 0 0 20px;background:linear-gradient(135deg,#ff6a00,#ffb347);color:#1a0d00;' +
+      'font-family:"Orbitron",sans-serif;font-weight:700;font-size:12px;letter-spacing:0.03em;white-space:nowrap;' +
+      'box-shadow:0 0 14px rgba(255,106,0,0.55),0 2px 8px rgba(0,0,0,0.5);' +
+      'opacity:0;pointer-events:none;touch-action:none;transition:opacity 0.35s ease;will-change:transform;}' +
+      '.pdfv-thumb.pdfv-on{opacity:1;pointer-events:auto;}' +
+      '.pdfv-thumb::before{content:"";position:absolute;top:-8px;bottom:-8px;left:-14px;right:0;}' +
+      '.pdfv-thumb.pdfv-drag{box-shadow:0 0 24px rgba(255,153,51,0.9),0 2px 8px rgba(0,0,0,0.5);}' +
+      '.pdfv-jump{position:absolute;inset:0;z-index:40;display:none;align-items:flex-start;justify-content:center;' +
+      'padding-top:22vh;background:rgba(7,5,10,0.75);}' +
+      '.pdfv-jump.pdfv-open{display:flex;}' +
+      '.pdfv-jump-card{width:min(280px,82%);background:#120b09;border:1px solid rgba(255,153,51,0.45);' +
+      'border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;' +
+      'box-shadow:0 0 28px rgba(255,106,0,0.25);}' +
+      '.pdfv-jump-label{color:#ff9933;font-family:"Orbitron",sans-serif;font-size:12px;letter-spacing:0.1em;text-align:center;}' +
+      '.pdfv-jump-input{width:100%;box-sizing:border-box;background:#0b0704;color:#ffb066;' +
+      'border:1px solid rgba(255,153,51,0.5);border-radius:12px;padding:12px;text-align:center;' +
+      'font-family:"Orbitron",sans-serif;font-size:20px;outline:none;-webkit-user-select:text;user-select:text;}' +
+      '.pdfv-jump-row{display:flex;gap:10px;}' +
+      '.pdfv-jump-row button{flex:1;font-family:"Orbitron",sans-serif;font-size:12px;letter-spacing:0.06em;' +
+      'border-radius:999px;padding:11px 0;cursor:pointer;}' +
+      '.pdfv-jump-cancel{background:transparent;border:1px solid rgba(255,153,51,0.5);color:#ffb066;}' +
+      '.pdfv-jump-go{background:linear-gradient(135deg,#ff6a00,#ffb347);border:none;color:#1a0d00;}' +
+      '.pdfv-loading{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;' +
+      'align-items:center;justify-content:center;background:#0b0704;z-index:10;padding:24px;}' +
+      '.pdfv-load-label{color:#ff9933;font-family:"Orbitron",sans-serif;font-size:12px;' +
+      'letter-spacing:0.1em;}' +
+      '.pdfv-load-track{width:min(220px,70%);height:6px;border-radius:999px;background:#2a1a10;' +
+      'overflow:hidden;}' +
+      '.pdfv-load-fill{width:0%;height:100%;border-radius:999px;' +
+      'background:linear-gradient(90deg,#ff6a00,#ffb347);transition:width 0.15s ease-out;}' +
+      '.pdfv-load-indeterminate .pdfv-load-fill{width:40%!important;' +
+      'animation:pdfv-indeterminate 1.1s ease-in-out infinite;}' +
+      '@keyframes pdfv-indeterminate{0%{margin-left:-40%;}100%{margin-left:100%;}}' +
+      '.pdfv-load-pct{color:#ffb066;font-family:"Exo 2",sans-serif;font-size:12px;' +
+      'letter-spacing:0.04em;min-height:14px;}' +
+      '.pdfv-error{position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;' +
+      'align-items:center;justify-content:center;background:#0b0704;color:#ffb066;' +
+      'font-family:"Exo 2",sans-serif;font-size:14px;text-align:center;padding:24px;}' +
+      '.pdfv-retry{font-family:"Orbitron",sans-serif;font-size:12px;letter-spacing:0.06em;' +
+      'background:linear-gradient(135deg,#ff6a00,#ffb347);border:none;color:#1a0d00;' +
+      'padding:10px 22px;border-radius:999px;cursor:pointer;}';
+    document.head.appendChild(style);
+  }
+})();
