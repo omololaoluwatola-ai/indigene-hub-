@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/protect.js"></script>
+<script src="/history.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INDIGENE — GST 103 Use of Library and ICT CBT</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120a07; --bg2:#1a0f0a; --card:#1c110b; --line:#4a2a17;
+  --fire:#ff6a1a; --fire2:#d4400f; --gold:#ffb347; --text:#f3e7dc; --mute:#b49a88;
+  --ok:#2ecc71; --okbg:rgba(46,204,113,.12); --bad:#ff4d4d; --badbg:rgba(255,77,77,.12);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at 50% -10%,#3a1a0b 0%,var(--bg) 55%) fixed;
+  color:var(--text);font-family:'Exo 2',system-ui,sans-serif;min-height:100vh;
+  padding:20px 16px 40px;line-height:1.5;
+}
+#app{max-width:720px;margin:0 auto}
+h1.brand{font-family:'Orbitron',sans-serif;font-weight:900;color:var(--fire);text-align:center;
+  letter-spacing:.08em;font-size:2.1rem;margin:8px 0 6px;text-shadow:0 0 18px rgba(255,106,26,.35)}
+.sub{font-family:'Orbitron',sans-serif;text-align:center;color:var(--mute);font-size:.9rem;letter-spacing:.06em;margin:0 0 20px}
+.panel{background:linear-gradient(180deg,var(--card),#150c08);border:1px solid var(--line);border-radius:22px;padding:22px 18px}
+.panel h2{font-family:'Orbitron',sans-serif;color:var(--gold);text-align:center;font-size:1.35rem;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.run{background:#150c08;border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;color:var(--text);
+  font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:.15s}
+.run .n{display:block;font-family:'Orbitron',sans-serif;font-weight:700;color:var(--gold);font-size:1.5rem;margin-bottom:2px}
+.run.sel{background:linear-gradient(135deg,var(--fire),var(--fire2));border-color:var(--gold);box-shadow:0 0 16px rgba(255,106,26,.35)}
+.run.sel .n{color:#fff}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;margin-top:18px;cursor:pointer;
+  background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;font-family:'Exo 2',sans-serif;font-weight:700;
+  font-size:1.15rem;letter-spacing:.03em;box-shadow:0 8px 22px rgba(255,106,26,.28)}
+.btn:active{transform:scale(.99)}
+.btn.ghost{background:#150c08;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.foot{color:var(--mute);text-align:center;font-size:.92rem;margin-top:16px}
+.chaps{margin-top:14px;display:none}
+.chaps.show{display:block}
+.chaps .tools{display:flex;gap:8px;margin-bottom:8px}
+.chaps .tools button{flex:1;background:#150c08;color:var(--gold);border:1px solid var(--line);border-radius:10px;padding:8px;font-family:inherit;font-weight:600;cursor:pointer}
+.chap{display:flex;align-items:center;gap:10px;background:#150c08;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.chap.on{border-color:var(--gold);background:#24140c}
+.chap .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#000}
+.chap.on .box{background:var(--gold);border-color:var(--gold)}
+.chap .nm{flex:1;font-size:.98rem}
+.chap .ct{color:var(--gold);font-family:'Orbitron',sans-serif;font-size:.85rem}
+
+/* progress + sections */
+.secs{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px 4px}
+.sec{border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:20px;padding:5px 11px;font-size:.82rem;cursor:pointer;font-family:inherit}
+.sec.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
+details.cres{border:1px solid var(--line);background:#150c08;border-radius:14px;margin-top:10px}
+details.cres>summary{padding:12px 14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;list-style:none}
+details.cres>summary::-webkit-details-marker{display:none}
+.cres .sr,.revise .sr{display:flex;justify-content:space-between;gap:10px;font-size:.9rem}
+.cres .sr{padding:8px 14px;border-top:1px solid var(--line)}
+.revise{border:1px solid var(--bad);background:var(--badbg);border-radius:14px;padding:12px 14px;margin-top:14px}
+.revise .sr{padding:6px 0}
+
+/* quiz */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.92rem;color:var(--mute);margin-bottom:8px}
+.top .sc{font-family:'Orbitron',sans-serif;font-size:.85rem}
+.top .sc b.g{color:var(--ok)} .top .sc b.r{color:var(--bad)}
+.bar{height:6px;background:#2a170d;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--fire),var(--gold));transition:width .25s}
+.chtag{display:inline-block;font-size:.78rem;color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.q{font-size:1.15rem;font-weight:600;margin:0 0 14px;white-space:pre-wrap}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#150c08;border:1.5px solid var(--line);
+  color:var(--text);border-radius:14px;padding:13px 14px;margin-bottom:10px;font-family:inherit;font-size:1.02rem;cursor:pointer}
+.opt .l{flex:none;width:28px;height:28px;border-radius:50%;background:#2a170d;color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.85rem}
+.opt:not(.locked):hover{border-color:var(--fire)}
+.opt.locked{cursor:default}
+.opt.correct{border-color:var(--ok);background:var(--okbg)}
+.opt.correct .l{background:var(--ok);color:#001a0a}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .l{background:var(--bad);color:#2a0000}
+.fb{border:1px solid var(--line);border-left:4px solid var(--gold);background:#1a0f0a;border-radius:12px;padding:12px 14px;margin-top:6px}
+.fb .v{font-weight:700;margin-bottom:6px}
+.fb .v.ok{color:var(--ok)} .fb .v.no{color:var(--bad)}
+.fb .trap{display:inline-block;background:var(--fire);color:#fff;font-family:'Orbitron',sans-serif;font-size:.72rem;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.fb .ex{margin:0 0 8px}
+.fb .hk{color:var(--gold);font-weight:600}
+.nav{display:flex;gap:10px;margin-top:16px}
+.nav button{flex:1;border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:12px;padding:13px 8px;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer}
+.nav button.primary{background:linear-gradient(135deg,var(--fire),var(--fire2));border:0;color:#fff}
+.nav button:disabled{opacity:.35;cursor:default}
+
+/* map */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ov.show{display:flex}
+.ov .box{background:var(--card);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:16px}
+.ov h3{font-family:'Orbitron',sans-serif;color:var(--gold);margin:0 0 10px;font-size:1.05rem}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.map button{height:38px;border-radius:8px;border:1px solid var(--line);background:#150c08;color:var(--mute);font-family:inherit;font-weight:600;cursor:pointer;font-size:.82rem}
+.map button.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.map button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.map button.cur{outline:2px solid var(--gold)}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--mute);margin:10px 0}
+
+/* result */
+.big{font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--gold);text-align:center;margin:6px 0}
+.stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px;color:var(--mute)}
+.stats b{color:var(--text)}
+.msg{text-align:center;color:var(--text);margin:8px 0 6px}
+.rv{border:1px solid var(--line);background:#150c08;border-radius:14px;padding:12px 14px;margin-top:12px}
+.rv .rq{font-weight:600;margin-bottom:6px}
+.rv .you{color:var(--bad)} .rv .cor{color:var(--ok)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#2a170d;border:1px solid var(--gold);color:var(--text);padding:10px 16px;border-radius:12px;font-size:.95rem;opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.toast.show{opacity:1}
+.hidden{display:none!important}
+@media (max-width:420px){.q{font-size:1.08rem}h1.brand{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div id="app">
+  <h1 class="brand">INDIGENE</h1>
+  <p class="sub" id="subtitle">GST 103 — Use of Library and ICT CBT</p>
+
+  <!-- SETUP -->
+  <div class="panel" id="setup">
+    <h2>Choose Your Run</h2>
+    <div class="grid" id="runs"></div>
+    <div class="chaps" id="chaps">
+      <div id="chapList"></div>
+    </div>
+    <button class="btn" id="startBtn">START QUIZ</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="panel hidden" id="quiz">
+    <div class="top"><span id="qpos">Q 1 / 1</span><span class="sc">✔ <b class="g" id="sOk">0</b> &nbsp; ✖ <b class="r" id="sNo">0</b></span></div>
+    <div class="bar"><i id="bar"></i></div>
+    <span class="chtag" id="chtag"></span>
+    <p class="q" id="qtext"></p>
+    <div id="opts"></div>
+    <div id="fb"></div>
+    <div class="nav">
+      <button id="prev">◀ Prev</button>
+      <button id="mapBtn">Map</button>
+      <button id="next" class="primary">Next ▶</button>
+    </div>
+    <button class="btn ghost" id="finishBtn" style="margin-top:12px;padding:12px">Finish &amp; see score</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="panel hidden" id="result"></div>
+</div>
+
+<div class="ov" id="ov"><div class="box">
+  <h3>Question Map</h3>
+  <div class="leg"><span>🟩 correct</span><span>🟥 wrong</span><span>⬛ not answered</span></div>
+  <div class="map" id="map"></div>
+  <button class="btn ghost" id="closeMap" style="margin-top:14px;padding:12px">Close</button>
+</div></div>
+<div class="ov" id="cov"><div class="box">
+  <h3>Finish quiz?</h3>
+  <p id="cmsg" style="margin:0 0 6px"></p>
+  <button class="btn" id="cYes" style="padding:13px">Finish now</button>
+  <button class="btn ghost" id="cNo" style="padding:13px">Go back</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = [{"t":"Use of Library (Basics, Types, Stock and Rules)","s":["What Is a Library?","The Six Types of Library","Attributes of a Library","The Four Components of a Library","How a Library Builds Its Stock","Library Rules and Regulations"],"q":[["The word \"library\" comes from the Latin \"liber\", which means:",["Reading","Book","Knowledge","Shelf"],1,"Library comes from liber, meaning book.","Liber = book.",0,0],["The library is also called a \"nest\" where:",["Scholars are hatched","Papers are marked","Students rest","Books are sold"],0,"The book calls the library a store house of knowledge and a nest where scholars are hatched.","Nest = scholars hatched.",0,0],["Which is one of the major roles of a library?",["Marking of scripts","Printing of journals","Selling of books","Dissemination of information"],3,"The roles are acquisition, organisation, storage and dissemination.","Roles = acquire, organise, store, disseminate.",0,0],["Whose definition says the library must turn people into habitual library goers?",["Dewey","Ranganathan","Aristotle","Busayo"],1,"Ranganathan's definition stresses converting people in the neighbourhood into habitual readers.","Habitual reader = Ranganathan.",0,0],["GST 103 is described as a:",["Optional elective","Compulsory general course","Faculty course","Postgraduate course"],1,"Students must pass it before they can graduate.","GST 103 = compulsory.",0,0],["How many types of library does the book list?",["Five","Four","Six","Seven"],2,"Academic, national, private, public, research/special and school.","Six types.",0,1],["The library with legal deposit right is the:",["Public library","Academic library","National library","Private library"],2,"It can acquire everything published in the country.","Legal deposit = national.",0,1],["ISBN and ISSN are issued by the:",["National library","School library","Public library","Private library"],0,"The national library issues them to authors and publishers.","ISBN/ISSN = national.",0,1],["The \"people's university\" is the:",["National library","Academic library","Public library","Research library"],2,"It serves everybody and is paid for with tax-payers' money.","People's university = public.",0,1],["A lawyer's own law collection is a:",["Private library","Special library","School library","Public library"],0,"Private libraries are owned by an individual or an organisation like a church.","Owner's profession = private.",0,1],["IITA Ibadan and CBN Abuja are examples of:",["Academic libraries","School libraries","Public libraries","Research or special libraries"],3,"They serve a defined group of specialist users.","IITA/CBN = special.",0,1],["FUOYE Library is an example of an:",["Academic library","Special library","National library","Public library"],0,"Academic libraries are attached to tertiary institutions.","FUOYE = academic.",0,1],["A library attached to a primary school builds:",["Legal deposit","Reading habit in pupils","Tax records","Research skill"],1,"School libraries serve nursery, primary and secondary pupils.","School = reading habit.",0,1],["How many attributes make a place a real library?",["Four","Six","Five","Three"],2,"The book lists five attributes.","Attributes = 5.",0,2],["Which is an attribute of a real library?",["Kept for one person","Without opening hours","Run by a trained librarian","Locked all year"],2,"It must be run by a person with training in librarianship.","Real library = trained staff.",0,2],["A locked room full of books is:",["A private library","A national library","Not a library","A school library"],2,"Keeping the collection out of reach negates the concept of library.","Locked = not a library.",0,2],["The four components of a library are:",["Books, building, personnel, clientele","Books, shelves, fans, readers","Building, tax, staff, users","Staff, readers, tables, books"],0,"These are B-B-P-C.","B-B-P-C.",0,3],["Users, readers and patrons are collectively called the:",["Stock","Collection","Personnel","Clientele"],3,"They are the reason the library exists.","Users = clientele.",0,3],["A book must have not less than how many pages, apart from the cover?",["20","64","100","49"],3,"Fewer than 49 pages makes it a pamphlet.","Book = 49 pages.",0,3],["A publication with fewer than 49 pages is a:",["Atlas","Journal","Serial","Pamphlet"],3,"The book says anything under 49 pages is a pamphlet.","Under 49 = pamphlet.",0,3],["Publications issued in successive parts with no planned end are:",["Pamphlets","Serials","Textbooks","Atlases"],1,"Examples are journals, magazines and newspapers.","No planned end = serial.",0,3],["Which is part of the core library personnel?",["Porters","Librarians","Library attendants","Clerical officers"],1,"Core staff are librarians and library officers.","Core = librarians + officers.",0,3],["Which is a supportive staff in the library?",["Academic librarians","The Librarian","Library officers","Porters"],3,"Supportive staff include attendants, porters, clerks and technicians.","Supportive = porters, clerks.",0,3],["The four methods of acquiring stock are:",["Gift, loan, exchange, copy","Purchase, gift, exchange, bequeath","Purchase, loan, rent, gift","Purchase, print, gift, rent"],1,"These are P-G-E-B.","P-G-E-B.",0,4],["\"Cash and carry\" refers to:",["Purchase","Bequeath","Exchange","Gift"],0,"Purchase costs money and the librarian visits the vendor.","Cash and carry = purchase.",0,4],["A person's will leaving his books to an institution is:",["Purchase","Bequeath","Exchange","Gift"],1,"It takes effect after his death.","After death = bequeath.",0,4],["Swapping duplicates with sister institutions is:",["Bequeath","Gift","Exchange","Purchase"],2,"You swap, you do not buy.","Swap = exchange.",0,4],["Chief Obafemi Awolowo's law collection went to Ogun State University and took effect in:",["1999","1975","1960","1987"],3,"The book gives this as an example of a bequest.","Awolowo bequest = 1987.",0,4],["Which is a prohibited thing in the library?",["Registration","Silence","Smoking","Reading"],2,"Naked light, smoking, eating, drinking and use of cell phones are all prohibited.","Smoking = prohibited.",0,5],["Registered users get a library:",["Locker key","Borrowing fee","Identity card","Seat number"],2,"The card gives access and is shown at the entrance.","Registered = ID card.",0,5],["Which materials are never borrowed out?",["Past exam scripts","Novels","Textbooks","Reference materials"],3,"Reference, serials and reserved materials stay in the library.","Reference stays in.",0,5],["Which body recommends action against serious offenders?",["Library Disciplinary Committee","The University Senate","The Faculty Board","The Students' Union Government"],0,"Serious offenders appear before this committee.","Offenders = disciplinary committee.",0,5],["The mildest sanction for breaking library rules is:",["Suspension","Dismissal","Payment in lieu","A letter of undertaking"],3,"Sanctions go from letter, to replacement, to suspension, to dismissal.","Letter first, dismissal last.",0,5],["The heaviest sanction for library offences is:",["Dismissal from the university","A warning letter","Suspension","Replacement of the book"],0,"It follows trial and a guilty finding.","Dismissal = heaviest.",0,5]]},{"t":"Serials, Reference Sources and Intellectual Property Rights","s":["Serials and Periodicals","Reference Sources","Reference Services","Intellectual Property Rights","Referencing Basics"],"q":[["Serials carry which international number?",["DOI","ISBN","ISSN","ISO"],2,"ISSN means International Standard Serial Number.","Serial = ISSN.",0,0],["Periodicals are serials published at intervals of:",["Less than a year","No fixed time","Ten years","More than a year"],0,"They come out daily, monthly or quarterly.","Periodical = under a year.",0,0],["Serials are consulted:",["By post","At home","Only inside the library","Through exchange"],2,"They cannot be borrowed.","Serials stay in.",0,0],["Articles in journals go through:",["Student approval","Bookshop selection","Public voting","Peer review by experts"],3,"Journals carry original research that is reviewed before acceptance.","Journal = peer review.",0,0],["Which serial is concise, informal and uses graphics to attract readers?",["Diary","Magazine","Newsletter","Journal"],1,"Magazines are not necessarily written by experts.","Magazine = easy reading.",0,0],["Tell, Newswatch and Ovation are examples of:",["Newsletters","Magazines","Journals","Newspapers"],1,"The book lists them as magazines.","Tell = magazine.",0,0],["Vanguard and Tribune are examples of:",["Newspapers","Journals","Magazines","Diaries"],0,"Newspapers carry current events and adverts.","Vanguard = newspaper.",0,0],["A serial smaller than a newspaper about one organisation is a:",["Gazette","Yearbook","Newsletter","Journal"],2,"Newsletters report news about a particular organisation or activity.","Small + one body = newsletter.",0,0],["Reference sources are used for:",["Quick, specific information","Light reading","Reading from cover to cover","Borrowing at home"],0,"They are not read through or loaned out.","Reference = quick fact.",0,1],["In the library, reference books carry which mark on the spine?",["G or Gen","B or Bk","S or Ser","R or Ref"],3,"The mark shows they stay in the library.","Ref on the spine.",0,1],["Which is a directional reference source?",["Atlas","Yearbook","Dictionary","Bibliography"],3,"Directional sources point to where information can be found.","Directional = B-I-A.",0,1],["The directional reference sources are:",["Bibliographies, atlases, abstracts","Indexes, directories, almanacs","Bibliographies, indexes, abstracts","Dictionaries, indexes, abstracts"],2,"Only these three point you elsewhere.","B-I-A.",0,1],["Summaries that help a researcher decide whether to read the full text are:",["Atlases","Indexes","Gazettes","Abstracts"],3,"LISA is an example.","Summary = abstract.",0,1],["Which gives words with meanings, spelling and pronunciation?",["Almanac","Thesaurus","Dictionary","Gazetteer"],2,"Dictionaries also give origin, synonyms and antonyms.","Meaning = dictionary.",0,1],["A thesaurus gives:",["Meanings of words and their origins","Names of places and their features","Synonyms and antonyms without meanings","Annual statistics in tables"],2,"Roget's Thesaurus is the example.","Thesaurus = no meanings.",0,1],["Britannica and Americana are examples of:",["Handbooks","Directories","Almanacs","Encyclopaedias"],3,"They give essay-like summaries on all knowledge.","Britannica = encyclopaedia.",0,1],["Names, addresses and phone numbers of people and firms are found in a:",["Almanac","Directory","Gazette","Thesaurus"],1,"The Nigerian Telephone Directory is an example.","Addresses = directory.",0,1],["The official government publication of Acts, Bills and appointments is a:",["Gazetteer","Gazette","Almanac","Yearbook"],1,"The Nigerian Gazette is the example.","Government = gazette.",0,1],["Geographic names of places and their features are found in a:",["Yearbook","Gazette","Gazetteer","Handbook"],2,"Chamber's World Gazetteer is an example.","Places = gazetteer.",0,1],["A reference source of events of the previous year is a:",["Directory","Almanac","Handbook","Yearbook"],3,"The Commonwealth Universities Yearbook is an example.","Last year's events = yearbook.",0,1],["Dates, facts and statistics in tables, published yearly, are in an:",["Almanac","Thesaurus","Yearbook","Handbook"],0,"World Almanac Book of Facts is the example.","Tables of statistics = almanac.",0,1],["A collection of maps is called an:",["Almanac","Gazetteer","Handbook","Atlas"],3,"A map shows the earth's surface or parts of it.","Maps together = atlas.",0,1],["Introducing new users to sources, locations and rules is called:",["Referral service","Bibliography compiling","Current awareness","User education"],3,"It is part of reference services.","New users = user education.",0,2],["Sending a user to another library is a:",["User education","Dissemination","Compilation","Referral service"],3,"Referral services send users to other resources.","Send away = referral.",0,2],["CAS stands for:",["Catalogue Access Service","Current Awareness Service","Central Archive System","Core Academic Service"],1,"It is a reference service.","CAS = current awareness.",0,2],["SDI stands for:",["Special Digital Indexing","Selective Dissemination of Information","Standard Data Interface","Serial Database Indexing"],1,"It is a reference service.","SDI = selective dissemination.",0,2],["Trademarks, patents and copyright belong to:",["Reference services","Library rules","Intellectual property","Serial control"],2,"IP covers the creative ideas of the human mind.","IP = trademark, patent, copyright.",0,3],["A legal document giving an inventor the right to profit from an invention is a:",["Trademark","Patent","Royalty","Copyright"],1,"The right lasts for a specified period.","Invention = patent.",0,3],["Symbols put on products to show their origin are:",["Patents","Gazettes","Trademarks","Royalties"],2,"A trademark is the logo on a product.","Logo = trademark.",0,3],["Money paid to owners each time a work is sold or performed is:",["Patent","Piracy","Fair use","Royalty"],3,"Royalties are paid per sale or performance.","Royalty = money per sale.",0,3],["The copyright symbol is:",["™","©","§","®"],1,"Copyright gives creators control of their works.","© = copyright.",0,3],["How many categories of work does Nigerian copyright cover?",["Five","Six","Three","Four"],0,"They are literary, musical, artistic, films and sound recordings.","L-M-A-F-S.",0,3],["Copying another person's work without acknowledgement is:",["Plagiarism","Piracy","Counterfeiting","Fair dealing"],0,"It is also called academic dishonesty.","No credit = plagiarism.",0,3],["Copying copyrighted works for financial gain is:",["Plagiarism","Piracy","Fair use","Referencing"],1,"Piracy deprives the owner of income.","Money = piracy.",0,3],["Reproducing fake copies of an original work for sale is:",["Counterfeiting","Paraphrasing","Plagiarism","Fair use"],0,"Counterfeits are fake copies.","Fake copies = counterfeit.",0,3],["Reusing your own earlier work without acknowledgement is:",["Counterfeiting","Fair use","Self-plagiarism","Piracy"],2,"Even your own work must be acknowledged.","Own work again = self-plagiarism.",0,3],["Using a copyrighted work for research, criticism or teaching without permission is:",["Fair use","Plagiarism","Counterfeiting","Piracy"],0,"It is not for commercial purposes and uses only a limited portion.","Fair use = no permission, limited.",0,3],["The REPRONIG copyright note in the book is dated:",["2004","1990","2010","1999"],0,"It lists when copying does not infringe copyright.","REPRONIG = 2004.",0,3],["Giving accurate information on the sources you used is called:",["Indexing","Referencing","Cataloguing","Plagiarism"],1,"It lets others trace the original works.","Cite your sources.",0,4],["Saying the same idea in entirely different words is:",["Paraphrasing","Quoting","Indexing","Plagiarising"],0,"Either way you must cite the owner.","Same idea, new words = paraphrase.",0,4],["Footnotes appear:",["In the index","At the end of the document","At the bottom of the page","On the cover"],2,"Endnotes appear at the end of the document.","Foot = bottom.",0,4],["Harvard style is mostly used in:",["Computer science and theology only","Social and behavioural sciences and health sciences","Medicine and law only","Literature and the arts only"],1,"Harvard is also used in arts and economics.","Harvard = social, health.",0,4],["MLA style is used mostly in:",["Literature, arts and humanities","Education and teaching methods","Psychology and social work","Medicine and health sciences"],0,"MLA is the Modern Language Association.","MLA = literature.",0,4],["Turabian is a simplified form of:",["APA style","Harvard style","MLA style","Chicago style"],3,"Kate Turabian developed it for theses and term papers.","Turabian = Chicago made easy.",0,4]]},{"t":"Book Anatomy, Citation and Referencing","s":["What Is a Book?","Parts of a Book","Why We Reference and Compile Bibliographies","Harvard Citation Style","APA Citation Style","MLA Citation Style"],"q":[["The technical name for the physical arrangement of a book is:",["Verso","Codex","Spine","Leaf"],1,"One sheet in a codex is a leaf.","Codex = arrangement.",0,0],["One sheet in a codex is called a:",["Leaf","Spine","Recto","Page"],0,"Each side of a leaf is a page.","Sheet = leaf, side = page.",0,0],["A book has how many major parts?",["Four","Two","Five","Three"],1,"They are the preliminary part and the body of the text.","Two parts.",0,0],["Text or pages in electronic format make an:",["Codex","E-book","Pamphlet","Serial"],1,"An e-book can be text or illustrated pages.","Electronic = e-book.",0,0],["The wrapper that protects a hard-bound book is the:",["Verso","Spine","End paper","Dust jacket"],3,"It covers the hard cover.","Jacket = wrapper.",0,1],["The edge where pages are sewn or glued is the:",["Spine","Leaf","Recto","Verso"],0,"Title and author's name are printed on it.","Spine = edge.",0,1],["The blank sheet before the preliminary pages is the:",["End paper","Dust jacket","Verso","Half title"],0,"It comes before the preliminary pages.","End paper = blank sheet.",0,1],["Preliminary pages are numbered in:",["Colours","Letters","Roman figures","Arabic figures"],2,"They may also be unnumbered.","Preliminary = Roman.",0,1],["The back of the title page is the:",["Verso","Leaf","Spine","Recto"],0,"It gives copyright dates and owner.","Back = verso.",0,1],["The right-hand page with an odd number is the:",["Recto","Verso","Spine","Leaf"],0,"The book notes the word is recto, not rector.","Right = recto.",0,1],["Which page carries the author's name, title, publisher, place and date?",["Half title","Dedication","Title page","Preface"],2,"The half title gives less information.","Full details = title page.",0,1],["The ISBN is a number with how many digits?",["9","13","8","10"],1,"It is given by the publisher to one title in the whole world.","ISBN = 13.",0,1],["The ISBN stands for:",["Index Standard Book Number","International Serial Book Number","Internal Standard Book Number","International Standard Book Number"],3,"It identifies one title.","ISBN = book number.",0,1],["Where does an author briefly discuss all aspects of the book?",["Dedication","Table of contents","Spine","Preface"],3,"The preface sits in the preliminary part.","Preface = brief discussion.",0,1],["The part that shows how the book is divided into chapters is the:",["Table of contents","Preface","Acknowledgement","Verso"],0,"It lists the chapters.","Chapters = contents.",0,1],["An author's way of showing gratitude to a person is the:",["Dedication","Acknowledgement","Verso","Preface"],0,"Acknowledgement thanks those who helped prepare the book.","Person = dedication.",0,1],["Thanks to people who helped prepare the book go in the:",["Dedication","Title page","Acknowledgement","Verso"],2,"They are named for their help.","Help = acknowledgement.",0,1],["A list of only the sources you cited in the text is a:",["Bibliography","Abstract","Index","Reference list"],3,"A bibliography may also include works read but not cited.","Cited only = reference list.",0,2],["Which of these is a reason for referencing?",["To hide sources","To avoid plagiarism","To lengthen the work","To copy freely"],1,"Referencing also lets readers trace original works.","Reference = avoid plagiarism.",0,2],["Harvard style is also called the:",["Page-number method","Author-page method","Title-year method","Author-date method"],3,"The surname and year go in the text.","Harvard = author-date.",0,3],["Same author, same year in Harvard is shown by:",["Adding initials","Adding capital letters","Adding small letters like 2007a","Adding page numbers"],2,"Alaba 2007a and 2007b are examples.","Same year = a, b, c.",0,3],["In a Harvard reference list, entries are arranged:",["Alphabetically by first author","By year of publication only","By type of book only","By page number only"],0,"There is no need to separate books and journals.","Harvard list = alphabetical.",0,3],["For four or more authors in Harvard you use:",["The publisher name","All the names","The title only","The first author and et al."],3,"Example: Stone G M et al (2006).","4 or more = et al.",0,3],["A Harvard reference with no author uses:",["The year only","The title of the page","The organisation responsible","The editor's initials"],2,"Example: National Planning Commission (2004).","No author = organisation.",0,3],["A thesis reference must state:",["The page count of the work","The publisher's postal address","The degree level and awarding institution","The name of the editor"],2,"It identifies the level of the work.","Thesis = degree and school.",0,3],["APA needs how many elements?",["Four","One","Three","Two"],3,"It needs in-text citations and a reference list.","APA = text + list.",0,4],["In APA, authors in a 2-3 author reference are joined with:",["A slash","An ampersand","A colon","The word \"plus\""],1,"Example: Blair, G.M., Jones, B.S. & Simpson, R.H.","APA = &.",0,4],["In APA, a chapter in an edited book shows the editors as:",["(Ed.s)","(ed)","(Edits)","(Eds.)"],3,"The page range is shown as (pp. 62-65).","APA chapter = Eds. and pp.",0,4],["An MLA in-text citation has the author's last name and the:",["Publisher","Page number","Year","Title"],1,"It has no year, as in (Olajide, 85).","MLA = page number.",0,5],["In an MLA book entry the year comes:",["Right after the author","At the end","Before the author","After the title"],1,"Publisher then year.","MLA year = end.",0,5],["Full first names in the list, like Olajide, Olabode, point to:",["Harvard","APA","MLA","Chicago"],2,"Harvard and APA use initials.","Full first name = MLA.",0,5],["Which style puts the year right after the author's name?",["Chicago only","MLA only","Harvard or APA","Turabian only"],2,"MLA puts the year at the end.","Year after author = Harvard/APA.",0,5]]},{"t":"Catalogue, Classification and Sections of the Library","s":["Why a Library Must Be Organised","The Library Catalogue","Classification Schemes","How Books Get to the Shelf","Sections and Departments of a University Library"],"q":[["Which tool is used mainly in archives to list items by source?",["Index","Register","Finding aids","Catalogue"],2,"Finding aids are also called inventories.","Archives = finding aids.",0,0],["Which retrieval tool is used in museums?",["Catalogue","Bibliography","Index","Register"],3,"It holds the identity and donor of each object.","Museums = register.",0,0],["The major retrieval tool of a library is the:",["Inventory","Register","Catalogue","Finding aid"],2,"It is the key to the library's holdings.","Library = catalogue.",0,0],["A guide to the content of a document showing where an item is found is an:",["Index","Atlas","Almanac","Register"],0,"Indexes are used in books and journals.","Index = where to find.",0,0],["A catalogue covering more than one library is a:",["Union catalogue","Divided catalogue","Card catalogue","Shelf catalogue"],0,"It records the holdings of several libraries.","Many libraries = union.",0,1],["Describing a book so its bibliographic details are highlighted is:",["Accessioning","Cataloguing","Classification","Stamping"],1,"The person who does it is the cataloguer.","Describe = catalogue.",0,1],["The most used catalogue type in Nigeria is the:",["CD-ROM catalogue","COM catalogue","OPAC","Card catalogue"],3,"OPAC is common in developed countries.","Nigeria = card.",0,1],["OPAC stands for:",["Open Public Access Card","Online Public Access Catalogue","Official Public Access Card","Online Printed Access Catalogue"],1,"It is computer-based.","OPAC = online.",0,1],["A catalogue card measures:",["2 by 4 inches","5 by 7 inches","3 by 5 inches","4 by 6 inches"],2,"Cards are filed in drawers in a cabinet.","3 x 5 card.",0,1],["At least how many cards are made for each item in a card catalogue?",["Three","Five","Four","Two"],0,"They are author, title and subject cards.","3 cards per item.",0,1],["The three approaches of a divided catalogue are:",["Title, publisher, place","Author, year, subject","Author, title, subject","Subject, call mark, year"],2,"An academic library uses these three.","A-T-S.",0,1],["The classification section is headed by the:",["Circulation officer","University librarian","Chief cataloguer","Serials officer"],2,"The book says so.","Classification = chief cataloguer.",0,2],["Which classification scheme uses letters?",["Moys","Library of Congress","Dewey Decimal","Universal Decimal"],1,"LC uses letters and Dewey uses numbers.","LC = letters.",0,2],["In Nigeria, academic libraries mostly use:",["Library of Congress","Dewey Decimal","Moys","Colon"],0,"National and public libraries use Dewey.","Academic = LC.",0,2],["National and public libraries in Nigeria mostly use:",["Library of Congress","Colon","Dewey Decimal","Moys"],2,"Dewey is used by them.","Public = Dewey.",0,2],["In LC, the letter for Medicine is:",["Q","K","R","M"],2,"R is medicine.","R = medicine.",0,2],["In LC, the letter for Law is:",["K","L","J","H"],0,"K is law.","K = law.",0,2],["In LC, the letter for Science is:",["T","S","R","Q"],3,"Q stands for science.","Q = science.",0,2],["In LC, the letter for Education is:",["M","L","P","E"],1,"L is education.","L = education.",0,2],["In LC, the letter Z covers:",["Music and fine arts","Bibliography and library science","Law and criminal justice","Medicine and health science"],1,"It also covers information resources.","Z = library science.",0,2],["DDC divides knowledge into how many main classes?",["Ten","Twenty","Five","Eight"],0,"Each class is 100 numbers wide.","DDC = 10.",0,2],["In DDC, the 500s cover:",["Arts","Literature","Technology","Pure science"],3,"The 600s cover technology.","500 = science.",0,2],["In DDC, the 600s cover:",["Pure science","Arts","Languages","Technology"],3,"Medicine student tip: 610.","600 = technology.",0,2],["In DDC, the 800s cover:",["Arts","Religion","Languages","Literature"],3,"The 400s are languages.","800 = literature.",0,2],["In DDC, 510 is:",["Astronomy","Chemistry","Physics","Mathematics"],3,"520 is astronomy and 530 is physics.","510 = maths.",0,2],["In DDC, 540 is:",["Geology","Chemistry","Botany","Physics"],1,"530 is physics.","540 = chemistry.",0,2],["In DDC, 590 is:",["Botany","Geology","Zoology","Chemistry"],2,"580 is botany.","590 = zoology.",0,2],["The correct order of processing a new book starts with:",["Cataloguing","Stamping","Shelving","Call marking"],1,"It goes stamp, accession, catalogue, call mark, paste, shelve.","Stamp first.",0,3],["A unique serial number given when an item arrives is the:",["Accession number","Call mark","Cutter number","ISBN"],0,"No two items share one.","Arrival number = accession.",0,3],["The call mark is also called the:",["Stamp mark","Index mark","Accession mark","Location mark"],3,"It tells where the item sits on the shelf.","Call mark = shelf address.",0,3],["A call mark is made of the classification number and the:",["ISSN","Cutter number","Accession number","ISBN"],1,"The Cutter number arranges items within one class.","Call mark = class + Cutter.",0,3],["A Cutter number starts with which letter?",["Last letter of the title","The year","First letter of the author's name","First letter of the publisher"],2,"It adds numbers from the Cutter table.","Cutter = author's initial.",0,3],["The Administrative department is headed by the:",["University librarian","Circulation officer","Chief cataloguer","Reference librarian"],0,"He coordinates all departments.","Administration = university librarian.",0,4],["Technical Services is called:",["Readers' section","Public desk","Front of house","Behind the scenes"],3,"It includes acquisition, cataloguing, serials and reprography.","Technical = behind.",0,4],["Which section checks stock to avoid duplicates?",["Reference","Acquisition","Reserve","Circulation"],1,"It also selects and acquires materials.","Duplicates = acquisition.",0,4],["Fines and overdue notices are handled by:",["Serials","Reprography","Circulation","Reserve"],2,"Circulation also handles loans and returns.","Fines = circulation.",0,4],["Materials in constant demand but short supply are kept in:",["Circulation","Acquisition","Serials","Reserve"],3,"They are not loaned out.","High demand, few copies = reserve.",0,4],["Photocopying and binding are done in:",["Reference","Reprography and bindery","Reserve","Circulation"],1,"It belongs to Technical Services.","Copy and bind = reprography.",0,4],["Audio-visual materials like slides and photographs are kept in:",["Non-print media resources","Serials and periodicals","Reserve and loan desk","Reference and advisory desk"],0,"The software and its hardware go there too.","AV = non-print.",0,4]]},{"t":"Library Software and Electronic Databases","s":["Why Libraries Use Software and Databases","Library Software","Electronic Databases","Benefits and Concerns"],"q":[["Libraries are becoming virtual because books and journals have turned into:",["Pamphlets and leaflets","E-books and e-journals","Atlases and maps","Gazettes and yearbooks"],1,"Electronic documents can be stored and delivered as needed.","Virtual = e-resources.",0,0],["Which is a reason software and databases are popular?",["Longer queues at the circulation desk","Fewer users coming into the library","Instant availability of current information","Higher fines on late book returns"],2,"The book also lists portability and flexibility.","Popular = instant, current.",0,0],["Software that controls the computer hardware is:",["Open software","System software","Application software","Library software"],1,"Windows, Linux and Android are examples.","System = runs machine.",0,1],["Microsoft Office and Photoshop are examples of:",["Application software","System software","Device drivers","Operating systems"],0,"Application software helps do a task.","Office = application.",0,1],["Library software is a type of:",["Operating system","System software","Device driver","Application software"],3,"It runs library housekeeping functions.","Library software = application.",0,1],["Which is a function of library software?",["Hardware repair","Typing speed","Circulation","Web design"],2,"Others are cataloguing, acquisition, serials management and OPAC.","Circulation = library function.",0,1],["Which is proprietary library software?",["Symphony","Evergreen","Greenstone","Koha"],0,"Proprietary software needs a subscription fee.","Symphony = paid.",0,1],["Which is open source library software?",["Aleph","Millennium","Voyager","Koha"],3,"Open source is free to use, modify and share.","Koha = free.",0,1],["The library software used at FUOYE is:",["Symphony","Aleph","Koha","Voyager"],2,"The book names Koha for FUOYE.","FUOYE = Koha.",0,1],["Open source software is:",["Free to use, modify and share","Sold per user","Always free of cost","Limited to one library"],0,"It is not always cost-free.","Open source = free to modify.",0,1],["An electronic database is organised for:",["Rapid search and retrieval","Lending of books only","Storage of paper files only","Printing and binding only"],0,"It is searched by computer.","Database = fast search.",0,2],["AGORA is linked to which organisation?",["WHO","NIH","FAO","UNEP"],2,"It covers agriculture research.","AGORA = FAO.",0,2],["HINARI is linked to which organisation?",["WHO","UNEP","FAO","NIH"],0,"It carries biomedical and health literature.","HINARI = WHO.",0,2],["OARE is led by:",["FAO","NIH","UNEP","WHO"],2,"It covers research in the environment.","OARE = UNEP.",0,2],["PubMed is a free archive at the:",["Food and Agriculture Organization","US National Library of Medicine","World Health Organization","UN Environment Programme"],1,"It is run by NIH.","PubMed = NIH.",0,2],["Which database indexes peer-reviewed open access journals?",["TEEAL","DOAJ","HINARI","ScienceDirect"],1,"DOAJ means Directory of Open Access Journals.","DOAJ = open access.",0,2],["Which database is subscription-based and covers scientific and medical research?",["OARE","ScienceDirect","PubMed","DOAJ"],1,"It has millions of items.","ScienceDirect = paid.",0,2],["Which database works offline?",["DOAJ","PubMed","TEEAL","AGORA"],2,"It is the Essential Electronic Agricultural Library.","TEEAL = offline.",0,2],["Which database holds dissertations, theses and e-books among many others?",["AGORA","HINARI","OARE","ProQuest"],3,"It also holds newspapers and historical collections.","ProQuest = many databases.",0,2],["EBSCOhost is a provider of:",["Research databases and e-journals","Computer hardware sales only","Free news and weather only","Operating systems only"],0,"It also provides e-books and a discovery service.","EBSCO = provider.",0,2],["A concern about library databases is that many users:",["Prefer fines","Dislike books","Avoid computers entirely","Do not know how to use them"],3,"Librarians must train and guide users.","Concern = skills.",0,3],["Which is a benefit of library software?",["More paperwork","Slower service","Fewer records","Less time to serve users"],3,"It also improves efficiency.","Benefit = faster service.",0,3]]},{"t":"Sources of Information (Primary, Secondary and Tertiary)","s":["What Is Information?","Primary Sources","Secondary Sources","Tertiary Sources"],"q":[["How many basic sources of information does the book list?",["Three","Five","Two","Four"],0,"They are primary, secondary and tertiary.","Sources = 3.",0,0],["Which source of information you consult depends on:",["The librarian's choice","The cost of the book","The size of the library","The type of information you need"],3,"The book says the choice follows the need.","Need decides source.",0,0],["Original materials with no interpretation by others are:",["Reference sources","Secondary sources","Primary sources","Tertiary sources"],2,"They give first-hand accounts.","Original = primary.",0,1],["Which is a primary source?",["A bibliography","A commentary","A diary","A textbook"],2,"Diaries, letters, speeches and patents are primary.","Diary = primary.",0,1],["Which is a primary source?",["A biography","A patent","An index","A criticism"],1,"Patents report new information in original form.","Patent = primary.",0,1],["Which is a primary source?",["A chronology","A textbook","A thesis","A directory"],2,"Theses and dissertations are primary in the book.","Thesis = primary.",0,1],["Which is a primary source?",["A commentary","An interview","A textbook","A bibliography"],1,"Interviews give first-hand information.","Interview = primary.",0,1],["Coins, fossils and tools are examples of:",["Artefacts","Indexes","Commentaries","Secondary sources"],0,"Artefacts are primary sources.","Coins = artefact.",0,1],["A birth certificate and a will are:",["Indexes","Bibliographies","Commentaries","Original documents"],3,"They count as primary sources.","Certificate = original document.",0,1],["Journal articles and newspapers are treated in the book as:",["Tertiary sources","Reference sources","Secondary sources","Primary sources"],3,"The book lists them as primary.","Article = primary.",0,1],["Sources created from primary sources by writers with no first-hand experience are:",["Tertiary sources","Primary sources","Secondary sources","Original documents"],2,"They describe, analyse and interpret evidence.","Not there = secondary.",0,2],["Which is a secondary source?",["A patent","A speech","A diary","A textbook"],3,"Textbooks, biographies and criticisms are secondary.","Textbook = secondary.",0,2],["Which is a secondary source?",["An interview","A biography","An artefact","A letter"],1,"Biographical works are secondary.","Biography = secondary.",0,2],["Which is a secondary source?",["A criticism","A will","A birth certificate","A speech"],0,"Commentaries and criticisms are secondary.","Criticism = secondary.",0,2],["Secondary sources are best described as:",["Evidence itself","Commentary on evidence","Raw data","Lists of sources"],1,"They are not evidence.","Secondary = commentary.",0,2],["Sources that point to primary and secondary sources are:",["Secondary sources","Tertiary sources","Primary sources","Raw sources"],1,"They list or index other resources.","Pointers = tertiary.",0,3],["Which is a tertiary source?",["A bibliography","A criticism","A textbook","A diary"],0,"Bibliographies list sources.","Bibliography = tertiary.",0,3],["Which is a tertiary source?",["A biography","A speech","An index","A patent"],2,"Indexes compile citations to secondary sources.","Index = tertiary.",0,3],["Which is a tertiary source?",["A thesis","A commentary","A chronology","A letter"],2,"Chronologies, bibliographies, indexes and directories are tertiary.","Chronology = tertiary.",0,3],["Which is a tertiary source?",["A diary","An interview","A textbook","A directory"],3,"Directories are listed as tertiary.","Directory = tertiary.",0,3],["A writer who only lists where to look has produced a:",["Tertiary source","Primary source","Original document","Secondary source"],0,"Quick test: does it just list where to look?","List = tertiary.",0,3]]},{"t":"Online Searching (Challenges, Strategies and Evaluation)","s":["What Is Online Searching?","Seven Challenges of Online Searching","Strategies for Searching Online","Evaluating Internet Resources"],"q":[["A search engine returns results ranked by:",["Price","Relevance","Alphabet","Date of birth"],1,"It compares your request with the entries in its index.","Ranked by relevance.",0,0],["When you use a search engine, you are searching:",["Only your own computer disk","Only the library shelves","A fixed database compiled by someone","The whole internet live"],2,"The book stresses it is not live.","Not live, fixed index.",0,0],["Online searching is a process of:",["Interactively retrieving information from online databases","Printing library books for users in bulk","Binding journals for long-term storage","Cataloguing cards by author and title"],0,"You enter words or characters into a search engine.","Search = interactive retrieval.",0,0],["How many challenges of online searching does the book list?",["Eight","Seven","Six","Five"],1,"They run from spelling variation to reverse concept.","Challenges = 7.",0,1],["Honour and honor show the challenge of:",["Negation","Truncation","Homographs","Spelling variation"],3,"British and American spellings differ.","Honour/honor = spelling.",0,1],["A single general word returning millions of results is:",["Information overload","Excessive truncation","Negation","Reverse concept"],0,"It happens when the query is too general.","Too general = overload.",0,1],["Searching LIB and getting Liberty and Libel shows:",["Excessive truncation","Information overload","Acronyms","Negation"],0,"The word stem was cut too short.","LIB = truncation.",0,1],["ADD, SAD and AIDS retrieving the words \"add\", \"sad\" and \"aids\" shows the challenge of:",["Spelling","Acronyms","Negation","Homographs"],1,"One short form stands for different things.","ADD/SAD = acronym.",0,1],["A database that cannot understand \"not\" in a sentence shows:",["Reverse concept","Homographs","Negation","Acronyms"],2,"It matches the words anyway.","Not = negation.",0,1],["Cricket the game and cricket the insect are:",["Synonyms","Acronyms","Homographs","Antonyms"],2,"They are spelled the same with different meanings.","Same spelling, new meaning = homograph.",0,1],["\"Management school\" returned for \"school management\" shows:",["Reverse concept","Negation","Truncation","Spelling variation"],0,"Reversing word order changes the meaning.","Word order = reverse concept.",0,1],["Which Boolean operator narrows a search to results with both words?",["AND","NOT","IF","OR"],0,"OR widens and NOT removes.","AND narrows.",0,2],["Which Boolean operator widens a search to either word?",["OR","WITH","AND","NOT"],0,"It returns results with either word.","OR widens.",0,2],["Which Boolean operator removes a word from results?",["PLUS","NOT","OR","AND"],1,"It excludes the word.","NOT excludes.",0,2],["Using truncated words helps to pick up:",["Author names","Spelling mistakes","Dates","Singular and plural versions"],3,"The book lists it as a strategy.","Truncate = singular and plural.",0,2],["In a search, the most important keywords should be put:",["In capitals only","First","In brackets only","Last"],1,"Start with the closest keywords.","Important first.",0,2],["Failing to find a term online means:",["It was deleted","It does not exist","It may still exist","It is wrong"],2,"The book says failing to find it does not mean it does not exist.","Not found does not mean absent.",0,2],["Evaluating a webpage includes checking the:",["Colour of the page","Number of images","Font size","Author's name and designation"],3,"Other checks are title, purpose, contact and date.","T-A-P-C-D.",0,3],["The T-A-P-C-D checklist stands for:",["Topic, author, price, company, date","Title, address, page, copy, domain","Title, author, purpose, contact, date","Title, author, place, copy, design"],2,"It is used to judge a webpage.","T-A-P-C-D.",0,3],["Which date matters when evaluating a webpage?",["Date of printing","Date of your visit only","Date of the author's birth","Date produced and last updated"],3,"Both dates help judge currency.","Produced and updated.",0,3],["Search engines are:",["Always fully credible","Better than all librarians","Free of all errors","Not substitutes for human expertise"],3,"The book concludes they retrieve fast but cannot replace expertise.","Engines do not replace experts.",0,3]]},{"t":"Deterioration, Preservation and Conservation","s":["Why Libraries Must Preserve Materials","Three Agents of Deterioration","Five Inhibitors in African Libraries","Ways to Prevent Deterioration","Principles for Restoration"],"q":[["Everything that adds to the physical wellbeing of library resources is:",["Restoration","Acquisition","Conservation","Preservation"],3,"It is broad and preventive.","Broad = preservation.",0,0],["The specialised process of making a fragile object safe is:",["Preservation","Conservation","Acquisition","Circulation"],1,"It prolongs the life of an object and remedies deterioration.","Fragile repair = conservation.",0,0],["Which is a sign of deterioration?",["Dust jacket","Spine label","Call mark","Brittleness"],3,"Others are shrinkage, cracks, warping and holes.","Brittleness = sign.",0,0],["How many agents of deterioration does the book list?",["Two","Five","Three","Four"],2,"They are environmental, biological and microbiological.","Agents = E-B-M.",0,1],["A library built in a swampy area faces which agent?",["Environmental","Biological","Mechanical","Microbiological"],0,"Swampy land brings reptiles and rodents.","Swamp = environmental.",0,1],["Air pollution from an industrial area is an:",["Biological agent","Microbiological agent","Human agent","Environmental agent"],3,"Sulphur and nitrogen oxides make acid that speeds up deterioration.","Industrial = environmental.",0,1],["Which is a biological agent?",["Termites","Moulds","Bacteria","Fungi"],0,"Insects and people are the visible agents.","Termite = biological.",0,1],["Which is a biological agent?",["Silverfish","Bacillus","Moulds","Pseudomonas"],0,"Silverfish are insects.","Silverfish = biological.",0,1],["Which is a microbiological agent?",["Cockroaches","Spiders","Booklice","Fungi"],3,"It cannot be seen by the eye.","Fungi = microbiological.",0,1],["Microbiological agents can only be seen:",["In daylight","After fumigation","By the naked eye","With a microscope"],3,"The book says they need a microscope.","Micro = microscope.",0,1],["Mutilation and theft of books are caused by:",["Acid","Human beings","Bacteria","Moulds"],1,"Humans are listed under biological agents.","People = biological.",0,1],["How many inhibitors to preservation in African libraries does the book list?",["Four","Three","Five","Six"],2,"They run from finance to technical know-how.","Inhibitors = 5.",0,2],["The first inhibitor on the list is:",["Maintenance culture","Technical know-how","Finance","Materials"],2,"Falling budgets stop libraries buying or preserving resources.","Money first.",0,2],["Poor upkeep of infrastructure shows a lack of:",["Maintenance culture","Materials","Finance","Policy"],0,"It is the reason for quick deterioration.","Upkeep = maintenance culture.",0,2],["Few staff trained in preservation shows a lack of:",["Technical know-how","Materials","Maintenance culture","Finance"],0,"Preservation needs knowledge of the physical and chemical nature of materials.","Trained staff = know-how.",0,2],["To control rodents, the book prefers:",["Open windows","Toxic chemical bait","Mechanical traps","Cats only"],2,"Rodents then die in the open, not in walls or ceilings.","Traps, not poison.",0,3],["Temperature in the library should be kept below:",["30°C","25°C","35°C","40°C"],1,"Higher temperature favours microbial growth.","Below 25.",0,3],["Which habit should users be discouraged from?",["Reading quietly at a table","Using bookmarks to mark pages","Wetting fingers with saliva to turn pages","Returning books on or before the due date"],2,"It spreads germs.","No saliva.",0,3],["Edibles are:",["Kept on the open shelves","Sold inside the library hall","Prohibited in reading and shelf areas","Allowed at reading tables only"],2,"It protects books from pests.","No food.",0,3],["Air conditioners and fans help to control:",["Theft","Noise","Fines","Humidity"],3,"They also help keep temperature down.","Fans = humidity.",0,3],["A restoration manager must have skills and knowledge of:",["Accounting","Conservation","Catering","Marketing"],1,"It is the first principle of restoration.","Restorer = conservation skill.",0,4],["Records of every document repaired must be:",["Left unwritten","Safely kept","Shared online","Destroyed"],1,"The book lists it among restoration principles.","Keep repair records.",0,4]]},{"t":"ICT: Threats, Networks, Internet, IoT and NFTs","s":["Computer Threats","Security Measures","What Is ICT?","Computer Networks","The Internet and the Web","Internet of Things (IoT)","E-commerce, Blockchain, Cryptocurrency and NFTs"],"q":[["A harmful program written to damage is called:",["A driver","Malicious code","A browser","Application software"],1,"It is also called a rogue program.","Harmful code = malicious.",0,0],["A program that needs a host file to spread is a:",["Virus","Worm","Trojan horse","Logic bomb"],0,"Viruses attach to files like .doc, .xls and .exe.","Host file = virus.",0,0],["A standalone program that copies itself across a network is a:",["Worm","Trojan horse","Virus","Trapdoor"],0,"It always uses up bandwidth.","Alone on network = worm.",0,0],["A program that looks useful but does unexpected things is a:",["Trojan horse","Virus","Logic bomb","Worm"],0,"A fake login script that steals your password is an example.","Fake friend = Trojan.",0,0],["Malicious code that goes off when a set condition occurs is a:",["Virus","Trojan horse","Worm","Logic bomb"],3,"A time bomb waits for a date or time.","Waits for trigger = logic bomb.",0,0],["A secret way into a program with special privileges is a:",["Worm","Logic bomb","Virus","Trapdoor"],3,"It is also called a backdoor.","Secret entrance = trapdoor.",0,0],["A worm mostly harms:",["Only files","Only the screen","Only printers","The network"],3,"It uses bandwidth.","Worm = network.",0,0],["A virus mostly harms:",["The network cables","Files on the target computer","The monitor","The router"],1,"It corrupts or modifies them.","Virus = files.",0,0],["Which is an antivirus program?",["Ad-aware","Spybot","Norton","Spyware Blaster"],2,"ESET and Kaspersky are also antivirus.","Norton = antivirus.",0,1],["Which is an anti-spyware program?",["Ad-aware","Kaspersky","ESET","Norton"],0,"Spybot Search and Destroy is another.","Ad-aware = anti-spyware.",0,1],["A program placed without your knowledge that secretly collects information is:",["Antivirus","Spyware","Firewall","Backup"],1,"It is also called a spybot.","Secret collector = spyware.",0,1],["Hardware or software that blocks forbidden network communication is a:",["Antivirus","Firewall","Router","Backup"],1,"It follows the security policy.","Blocks = firewall.",0,1],["Copying data from storage into an archive to restore after a loss is:",["Formatting","Backup","Fumigation","Firewall"],1,"It is a simple kind of disaster recovery.","Archive copy = backup.",0,1],["ICT stands for:",["Information and Communication Technology","Internal Communication Tools","Internet and Computer Technology","Information and Computer Training"],0,"It covers technology for information processing.","ICT = information + communication.",0,2],["ICT has a broader scope than IT because it merges:",["Telephone and audiovisual networks with computer networks","Software and banks with computer networks","Printers and scanners with computer networks","Radio and cinema with computer networks"],0,"The book calls ICT an extended synonym of IT.","ICT = wider than IT.",0,2],["Linking two or more computers to share resources is:",["Cataloguing","Backup","Formatting","Computer networking"],3,"They can share discs, modems and printers.","Link to share = network.",0,3],["Which network cable is the most reliable and most expensive?",["Twisted-pair","Copper wire","Coaxial","Fibre-optic"],3,"It is mostly used for backbone devices.","Fibre = best and costly.",0,3],["Which network covers long distances by telephone lines, fibre or satellite?",["PAN","CAN","WAN","LAN"],2,"The Internet is a super WAN.","Long distance = WAN.",0,3],["A network around one person, such as a phone linked to a laptop by Bluetooth, is a:",["MAN","WAN","PAN","CAN"],2,"PAN means Personal Area Network.","One person = PAN.",0,3],["A city-sized network is a:",["MAN","CAN","PAN","LAN"],0,"MAN means Metropolitan Area Network.","City = MAN.",0,3],["Which network usually joins several LANs on a campus?",["PAN","MAN","CAN","WAN"],2,"At FUOYE it is called fuoyeNET.","Campus = CAN.",0,3],["Which is a network topology?",["Circle","Triangle","Star","Square"],2,"The three are bus, ring and star.","Topology = bus, ring, star.",0,3],["Wireless networks use:",["Fibre","Cables","Radio waves","Coaxial wire"],2,"Examples are Wi-Fi and Bluetooth.","Wireless = radio.",0,3],["SSID is the:",["Password of a network","Name of a Wi-Fi network","Cable type","Type of router"],1,"It stands for Service Set IDentifier.","SSID = network name.",0,3],["WPA2 is a:",["Cable type","Network topology","Search engine","Wireless security standard"],3,"The WPA2 key is the password to the connection.","WPA2 = Wi-Fi security.",0,3],["Compared with wireless, a wired network is:",["More reliable and more secure","Easier to install anywhere","Better for mobility","Costlier"],0,"Wireless is prone to interference.","Wired = reliable.",0,3],["The Internet is a global network that uses:",["SMTP only","HTML only","FTP only","TCP/IP"],3,"It is the world's largest network.","Internet = TCP/IP.",0,4],["The Web is:",["One service on the internet","A cable type","The same as the internet","A kind of computer"],0,"Internet is the infrastructure and the Web is a service.","Web = service.",0,4],["The Internet began from which 1960s US project?",["Bitcoin","Wi-Fi","ARPANET","NSFNET"],2,"NSFNET followed in 1985.","Roots = ARPANET.",0,4],["NSFNET was set up in:",["1995","1969","1985","2004"],2,"It was by the National Science Foundation.","NSFNET = 1985.",0,4],["Commercial internet providers came in:",["1969","1995","1985","2004"],1,"They followed NSFNET.","Commercial = 1995.",0,4],["IoT devices send data without:",["The internet and a network cable","Sensors and cloud analysis only","Human-to-human or human-to-computer interaction","A network and a human operator"],2,"Each has a unique identifier.","IoT = no human step.",0,5],["Each IoT device has a:",["Cable","Printed manual","Unique identifier","Password only"],2,"UID stands for unique identifier.","IoT = UID.",0,5],["In IoT, sensors send data first to a:",["Gateway","Printer","Router cable","Scanner"],0,"The data is then analysed in the cloud or locally.","Sensor then gateway.",0,5],["Biometric or barcode ID cards that record attendance automatically are an example of IoT in:",["Distance learning","Syllabus control","Safety","Automated attendance"],3,"Parents can be messaged about absence.","Card = attendance.",0,5],["Scanmarker scans text and translates it into how many languages?",["10","100 plus","5","40 plus"],3,"It scans text from books into a phone or computer.","Scanmarker = 40+.",0,5],["Buying and selling goods using the internet is:",["E-mail","E-commerce","Networking","Blogging"],1,"Customers, suppliers and employees all benefit.","Online trade = e-commerce.",0,6],["A decentralised ledger of transactions on a peer-to-peer network is a:",["Blockchain","Backup","Gateway","Firewall"],0,"No central clearing authority confirms transactions.","Shared ledger = blockchain.",0,6],["The best known cryptocurrency is:",["Cardano","Litecoin","Tether","Bitcoin"],3,"Blockchain was invented for Bitcoin.","Bitcoin first.",0,6],["NFT stands for:",["New Financial Token","Non-Financial Trade","Network File Transfer","Non-Fungible Token"],3,"It is a unique unit of data on a blockchain.","NFT = non-fungible token.",0,6],["Creating an NFT is called:",["Backing up","Mining","Minting","Hosting"],2,"It is pay-per-use.","Create NFT = mint.",0,6],["The first and largest NFT marketplace named in the book is:",["Rarible","OpenSea","Mintable","Nifty Gateway"],1,"Others include Rarible and Mintable.","OpenSea = first.",0,6],["Buying an NFT means you automatically own the:",["The copyright of the object","Encrypted token only, not the copyright","The IP rights of the object","The original artist's studio"],1,"The token represents the object on a blockchain.","NFT is not copyright.",0,6]]},{"t":"Computers: Classification, Components and Supercomputers","s":["What Is a Computer?","Computer History Timeline","Personal Computers by Form","Four Ways to Classify Computers","Components of a Computer System","Fastest Supercomputers"],"q":[["GIGO stands for:",["Good Input, Good Output","Great Items Get Out","Garbage In, Garbage Out","General Input, General Output"],2,"Output quality cannot be better than input quality.","Bad in = bad out.",0,0],["The three major operations of a computer are:",["Read, write, print","Input, store, print","Type, save, send","Input, process, output"],3,"With communication and storage added it becomes IPOCS.","IPO.",0,0],["Which device is an output device?",["Keyboard","Monitor","Mouse","Joystick"],1,"Printers and speakers are also output devices.","Monitor = output.",0,0],["The first counting machine, with wires, frames and beads, is the:",["Slide rule","Napier's Bones","Pascaline","Abacus"],3,"It dates to about 500 BC.","Beads = abacus.",0,1],["Napier's Bones were invented in:",["1642","1617","1822","1632"],1,"John Napier was Scottish.","Napier = 1617.",0,1],["The slide rule was built in England in:",["1642","1890","1632","1617"],2,"It was an analog computer used until the pocket calculator.","Slide rule = 1632.",0,1],["The Pascaline was built by:",["Herman Hollerith","Blaise Pascal","Charles Babbage","John Napier"],1,"It could only add.","Pascal = add only.",0,1],["The Pascaline was invented in:",["1822","1642","1632","1890"],1,"Pascal was 19 when he built it.","Pascal = 1642.",0,1],["Which early machine could add, subtract, multiply, divide and find square roots?",["The early bead abacus","Leibniz's Stepped Reckoner","Pascal's Pascaline machine","The English slide rule"],1,"Leibniz was German.","Leibniz = all four.",0,1],["Which device used punched cards to control weaving patterns?",["Jacquard's loom","Abacus","Pascaline","Slide rule"],0,"It used punched cards.","Loom = cards.",0,1],["Charles Babbage's Difference Engine dates from:",["1890","1833","1642","1822"],3,"It was never completed.","Difference = 1822.",0,1],["Babbage's Analytical Engine dates from:",["1890","1822","1833","1617"],2,"It used punched cards, memory and a \"mill\".","Analytical = 1833.",0,1],["The father of the computer is:",["Charles Babbage","John Napier","Herman Hollerith","Blaise Pascal"],0,"The Analytical Engine earned him the title.","Babbage = father.",0,1],["Hollerith's census machine led to the company:",["Intel","IBM","Apple","Microsoft"],1,"The company became IBM.","Hollerith = IBM.",0,1],["ENIAC stands for:",["Electronic Number Index and Calculator","Electronic Network Input and Control","Electric Numeric Integrated Computer","Electronic Numerical Integrator and Calculator"],3,"It was the first general-purpose electronic computer.","ENIAC = first electronic.",0,1],["ENIAC used:",["Vacuum tubes","Punched wheels","Transistors","Microchips"],0,"It was a first-generation computer.","ENIAC = tubes.",0,1],["UNIVAC used which storage?",["Flash drive","Punched cards","Optical disc","Magnetic tape"],3,"It gave non-volatile storage.","UNIVAC = tape.",0,1],["A very small computer, usually under 2 kg, that fits in a briefcase is a:",["Notebook","Mainframe","Palmtop","Desktop"],0,"It is smaller than a laptop.","Under 2 kg = notebook.",0,2],["A hand-held computer with no keyboard that uses a stylus is a:",["Laptop","Desktop","Palmtop","Notebook"],2,"The screen is the input.","Stylus = palmtop.",0,2],["A computer that runs on AC and battery with a built-in pointing device is a:",["Desktop","Laptop","Mainframe","Palmtop"],1,"It has a keyboard and an LCD screen.","AC + battery = laptop.",0,2],["The four ways to classify computers are:",["Generation, type, size, purpose","Speed, cost, brand, size","Type, brand, size, model","Age, colour, size, price"],0,"They are G-T-S-P.","G-T-S-P.",0,3],["A computer that works on continuous data is:",["Analog","Digital","Hybrid","Micro"],0,"A voltmeter or slide rule is an example.","Continuous = analog.",0,3],["A computer that works on binary 0 and 1 is:",["Special-purpose","Hybrid","Digital","Analog"],2,"Desktops and laptops are digital.","Binary = digital.",0,3],["A computer that combines analog and digital features is:",["Hybrid","Special","Mini","Micro"],0,"Mainframes and supercomputers are examples.","Both = hybrid.",0,3],["The fastest class of computer is the:",["Mainframe","Micro","Supercomputer","Mini"],2,"It is used for weather forecasting and designing aircraft.","Fastest = super.",0,3],["ATMs and huge data in petabytes point to a:",["Mini","Micro","Mainframe","Palmtop"],2,"A mainframe replaces dozens of servers.","ATM = mainframe.",0,3],["A computer built for one application, like traffic control, is:",["Analog","General-purpose","Hybrid","Special-purpose"],3,"General-purpose computers serve many applications.","One job = special.",0,3],["The CPU is made of the control unit and the:",["Arithmetic and Logic Unit","Memory unit and storage","Output unit and printer","Input unit and keyboard"],0,"CU plus ALU make the CPU.","CPU = CU + ALU.",0,4],["Physical parts of a computer you can see and touch are:",["Software","Hardware","Program","Data"],1,"Software is the set of instructions.","Touch = hardware.",0,4],["Output on a monitor is called:",["Paper copy","Print copy","Hard copy","Soft copy"],3,"Printer output is hard copy.","Monitor = soft.",0,4],["Output from a printer is called:",["Screen copy","Soft copy","Hard copy","Digital copy"],2,"Monitor output is soft copy.","Printer = hard.",0,4],["Per the book's list, the fastest supercomputer is:",["Summit","Sierra","Frontera","Fugaku"],3,"It is in Japan and built by Fujitsu.","Fugaku first.",0,5],["Fugaku is a supercomputer from:",["Germany","Japan","China","USA"],1,"It is at RIKEN, Kobe.","Fugaku = Japan.",0,5],["Summit is the fastest supercomputer in the:",["USA","Japan","China","Europe"],0,"It is built by IBM at Oak Ridge.","Summit = fastest in the US.",0,5],["Sunway TaihuLight is from:",["Japan","Germany","China","USA"],2,"It is at Wuxi.","Sunway = China.",0,5],["The most powerful supercomputer in Europe in the list is:",["Frontera","HPCS","Selene","JUWELS Booster"],3,"It is in Germany.","JUWELS = Europe.",0,5]]},{"t":"FUOYE Website, Portal, Email and Campus Network","s":["Website and Portal","Student Email","Wi-Fi and Campus Network","Library Details"],"q":[["The main FUOYE website address is:",["https://fuoye.com","https://www.fuoye.ng","https://fuoye.org.ng","https://fuoye.edu.ng"],3,"The correct domain ends in .edu.ng.","Main site = fuoye.edu.ng.",0,0],["Student registration, courses and payments are done on the:",["University portal","Student email","Main website","Library catalogue"],0,"The portal is where the main student activities are done.","Registration = portal.",0,0],["Which address is a FUOYE portal?",["https://ecampus.fuoye.com","https://www.ecampus.fuoye.ng","https://ecampus.fuoye.edu.ng","https://portal.fuoye.org.ng"],2,"The other portal is portal.fuoye.edu.ng.","Portal = ecampus or portal .fuoye.edu.ng.",0,0],["Which address is also a FUOYE portal?",["https://portal.fuoye.edu.ng","https://portal.fuoye.com","https://portal.fuoye.org.ng","https://fuoye.portal.edu.ng"],0,"Wrong options change one small thing in the domain.","portal.fuoye.edu.ng.",0,0],["The main website mostly gives:",["Course payments","Course registration","Information about the school","Student emails"],2,"The portal handles student activities.","Website = information.",0,0],["A student email ends with:",["@gmail.com","@fuoye.edu.ng","@fuoye.org.ng","@fuoye.com"],1,"Student emails use the university domain.","Email = @fuoye.edu.ng.",0,1],["The student email format includes the student's name and:",["Matric number","Phone number","Faculty code","Birth date"],0,"Names and matric number go in a set order.","Name + matric.",0,1],["The default email password is:",["12345678","fuoye123","password123","fuoye2020"],1,"You must change it.","fuoye123.",0,1],["The school contacts students mainly through:",["Newspapers","Radio","Notice boards only","School email"],3,"The book calls email how the school contacts you.","School contacts by email.",0,1],["The default email password must be:",["Changed","Shared","Written on the ID card","Kept"],0,"The book says you must change it.","Change it.",0,1],["The FUOYE Wi-Fi name (SSID) is:",["oyenet","fuoyewifi","fuoye123","fuoyenet"],3,"SSID is the name of the network.","SSID = fuoyenet.",0,2],["The campus network at FUOYE is called:",["ecampus","oyeLAN","fuoyeNET","fuoyeWAN"],2,"It is a Campus Area Network.","Campus = fuoyeNET.",0,2],["Who can access the campus network?",["Only visitors","Anyone online","Only campus residents","Only staff"],2,"It is also called a residential network or ResNet.","Residents only.",0,2],["The campus network is also called:",["ResNet","Internet","ARPANET","NSFNET"],0,"It is a residential network.","ResNet.",0,2],["The library software used at FUOYE is:",["Symphony","Koha","Aleph","Voyager"],1,"It is open source.","FUOYE = Koha.",0,3],["The FUOYE library ownership stamp reads:",["Federal Library Oye-Ekiti","Oye-Ekiti Library Board stamp","Federal University Oye-Ekiti Library","FUOYE Student Centre Library"],2,"It is the library's stamp.","Stamp = FUOYE Library.",0,3],["The FUOYE library address is:",["P.M.B. 373, Ado-Ekiti, Ekiti State","P.M.B. 373, Oye-Ekiti, Ekiti State","P.M.B. 37, Oye-Ekiti, Ekiti State","P.O. Box 373, Oye-Ekiti"],1,"It is a private mail bag address.","P.M.B. 373.",0,3],["Koha is described as:",["Proprietary","Paid by subscription","Offline only","Open source"],3,"Open source is free to use, modify and share.","Koha = open source.",0,3]]}];
+try{ if(window.IndigeneHistory&&IndigeneHistory.registerStruct) IndigeneHistory.registerStruct('GST103',{title:'GST 103 \u00b7 Use of Library and ICT',chapters:DATA.map(function(c){return {t:c.t,n:c.q.length,s:c.s};})}); }catch(e){}
+const SUBJECT_KEY = 'gst103';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1800); }
+
+// flatten
+const ALL = [];
+DATA.forEach((c,ci)=>c.q.forEach((q,qi)=>ALL.push({id:ci+'_'+qi, ch:ci, stem:q[0], opts:q[1], ans:q[2], exp:q[3], hack:q[4], trap:q[5], sec:q[6]})));
+const TOTAL = ALL.length;
+// questions already served in earlier runs (kept per browser) so new runs favour fresh ones
+let SEEN = new Set();
+try{ SEEN = new Set(JSON.parse(localStorage.getItem('gst103_seen')||'[]')); }catch(e){}
+function saveSeen(){ try{ localStorage.setItem('gst103_seen', JSON.stringify([...SEEN])); }catch(e){} }
+// shuffle, then put unseen questions first (random order inside each half)
+function freshFirst(arr){ const a=shuffle(arr.slice()); return a.filter(q=>!SEEN.has(q.id)).concat(a.filter(q=>SEEN.has(q.id))); }
+const FULL_N = Math.min(500, TOTAL), HALF_N = TOTAL>=500 ? 250 : Math.round(TOTAL/2);
+// fair sample: every chapter is represented in proportion to its size
+function sampleFair(n){
+  const groups = DATA.map((_,ci)=>freshFirst(ALL.filter(q=>q.ch===ci)));
+  const exact = groups.map(g=>g.length*n/TOTAL);
+  const take = exact.map(Math.floor);
+  let left = n - take.reduce((a,b)=>a+b,0);
+  exact.map((x,i)=>[x-Math.floor(x),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{ if(left>0 && take[i]<groups[i].length){ take[i]++; left--; } });
+  let out=[]; groups.forEach((g,i)=>{ out=out.concat(g.slice(0,take[i])); });
+  return shuffle(out);
+}
+
+// optional access gate (cbt-lock.js) — never breaks the quiz if missing
+let lock = null;
+async function loadLock(){
+  try { lock = await import('../cbt-lock.js'); }
+  catch(e){ try { lock = await import('/cbt-lock.js'); } catch(e2){ lock = null; } }
+}
+const lockReady = loadLock();
+
+const PASS = 50;
+const grade = p => p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F';
+let mode = 'full', sel = new Set(), secSel = null, run = [], idx = 0, weakSpec = null;
+// '2.3,4.all' = chapter 2 section 3, whole of chapter 4 (sent from the History tab or the result screen)
+function specPool(spec){
+  const want = spec.map(s=>s.split('.')); let pool = [];
+  want.forEach(([c,s])=>{ const ci=(+c)-1; if(!DATA[ci]) return;
+    pool = pool.concat(ALL.filter(q=>q.ch===ci && (s==='all' || q.sec===(+s)-1))); });
+  pool = shuffle(pool); return pool.length>50 ? pool.slice(0,50) : pool;
+}
+
+function renderSetup(){
+  const quick = Math.min(50, TOTAL), half = HALF_N;
+  const cards = [
+    ['full', FULL_N, 'Full CBT'],
+    ['quick', quick, 'Quick Drill'],
+    ['half', half, 'Half Run'],
+    ['session', '🎯', 'By Chapter']
+  ];
+  $('runs').innerHTML = cards.map(c=>`<button class="run${c[0]===mode?' sel':''}" data-m="${c[0]}"><span class="n">${c[1]}</span>${c[2]}</button>`).join('');
+  document.querySelectorAll('.run').forEach(b=>b.onclick=()=>{ mode=b.dataset.m; renderSetup(); });
+  $('chaps').classList.toggle('show', mode==='session');
+  $('chapList').innerHTML = DATA.map((c,i)=>{
+    const on = sel.has(i);
+    let x = `<div class="chap${on?' on':''}" data-i="${i}"><span class="box" style="border-radius:50%">${on?'●':''}</span><span class="nm">Ch ${i+1}. ${esc(c.t)}</span><span class="ct">${c.q.length}</span></div>`;
+    if(on){
+      x += '<div class="secs"><button class="sec'+(secSel===null?' on':'')+'" data-s="all">Whole chapter · '+c.q.length+'</button>'
+        + c.s.map((sn,si)=>'<button class="sec'+(secSel===si?' on':'')+'" data-s="'+si+'">'+esc(sn)+' · '+c.q.filter(q=>q[6]===si).length+'</button>').join('') + '</div>';
+    }
+    return x;
+  }).join('');
+  document.querySelectorAll('.chap').forEach(d=>d.onclick=()=>{ const i=+d.dataset.i; sel.clear(); sel.add(i); secSel=null; renderSetup(); });
+  document.querySelectorAll('.sec').forEach(b=>b.onclick=()=>{ secSel = b.dataset.s==='all' ? null : +b.dataset.s; renderSetup(); });
+}
+
+function makeItem(q){
+  return { q, perm: shuffle([0,1,2,3]), pick: null };   // perm = order of original options shown 
+}
+
+async function startQuiz(){
+  if(mode==='session' && sel.size===0){ toast('Pick a chapter first'); return; }
+  try{ await lockReady; }catch(e){}
+  if(lock && typeof lock.checkCbtAccess==='function'){
+    try{
+      const r = await lock.checkCbtAccess(SUBJECT_KEY);
+      if(r && r.blocked){ lock.renderCbtLockScreen($('app'), r.reason); return; }
+    }catch(e){}
+  }
+  let pool;
+  if(mode==='full') pool = sampleFair(FULL_N);
+  else if(mode==='quick') pool = freshFirst(ALL).slice(0,Math.min(50,TOTAL));
+  else if(mode==='half') pool = sampleFair(HALF_N);
+  else if(mode==='weak') pool = specPool(weakSpec||[]);
+  else {
+    pool = [];
+    [...sel].sort((a,b)=>a-b).forEach(ci=>{ pool = pool.concat(ALL.filter(q=>q.ch===ci && (secSel===null || q.sec===secSel))); });
+  }
+  if(!pool.length){ toast('Nothing to practise there'); return; }
+  begin(pool);
+}
+
+let startedAt = 0, isRetry = false, saved = false;
+let reviewing=false;
+function begin(pool, retry){
+  reviewing=false; $('finishBtn').textContent='Finish & see score';
+  run = pool.map(makeItem); idx = 0; startedAt = Date.now(); isRetry = !!retry; saved = false;
+  if(!retry){ pool.forEach(q=>SEEN.add(q.id)); if(SEEN.size >= TOTAL) SEEN = new Set(); saveSeen(); }
+  $('setup').classList.add('hidden'); $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  window.scrollTo(0,0);
+  renderQ();
+}
+
+function counts(){
+  let ok=0,no=0;
+  run.forEach(it=>{ if(it.pick!==null){ it.pick===it.q.ans ? ok++ : no++; } });
+  return {ok,no};
+}
+
+function renderQ(){
+  const it = run[idx], q = it.q, c = counts();
+  $('qpos').textContent = `Q ${idx+1} / ${run.length}`;
+  $('sOk').textContent = c.ok; $('sNo').textContent = c.no;
+  $('bar').style.width = ((c.ok+c.no)/run.length*100)+'%';
+  $('chtag').textContent = `Ch ${q.ch+1} · ${DATA[q.ch].t}`;
+  $('qtext').textContent = q.stem;
+  const L = ['A','B','C','D'];
+  const answered = it.pick!==null || reviewing;
+  $('opts').innerHTML = it.perm.map((oi,pos)=>{
+    let cls='opt';
+    if(answered){ cls+=' locked'; if(oi===q.ans) cls+=' correct'; else if(oi===it.pick) cls+=' wrong'; }
+    return `<button class="${cls}" data-oi="${oi}"><span class="l">${L[pos]}</span><span>${esc(q.opts[oi])}</span></button>`;
+  }).join('');
+  if(!answered) document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(+b.dataset.oi));
+  renderFb();
+  $('prev').disabled = idx===0;
+  $('next').textContent = idx===run.length-1 ? (reviewing?'Done ▶':'Finish ▶') : 'Next ▶';
+}
+
+function renderFb(){
+  const it = run[idx], q = it.q;
+  if(it.pick===null && !reviewing){ $('fb').innerHTML=''; return; }
+  const good = it.pick===q.ans;
+  const pos = 'ABCD'[it.perm.indexOf(q.ans)];
+  $('fb').innerHTML = `<div class="fb">
+    ${q.trap?'<span class="trap">⚠ TRAP QUESTION</span>':''}
+    <div class="v ${good?'ok':'no'}">${good?'✅ Correct!':it.pick===null?'⏭ Skipped — the answer is '+pos:'❌ Not quite — the answer is '+pos}</div>
+    <p class="ex">${esc(q.exp)}</p>
+    <div class="hk">⏱ Speed hack: ${esc(q.hack)}</div>
+  </div>`;
+}
+
+function choose(oi){
+  const it = run[idx];
+  if(it.pick!==null || reviewing) return;
+  it.pick = oi;
+  try{ if(lock && typeof lock.recordCbtQuestionUsed==='function') lock.recordCbtQuestionUsed(); }catch(e){}
+  renderQ();
+}
+
+$('prev').onclick=()=>{ if(idx>0){ idx--; renderQ(); window.scrollTo(0,0);} };
+$('next').onclick=()=>{ if(idx<run.length-1){ idx++; renderQ(); window.scrollTo(0,0);} else if(reviewing) backToResult(); else finish(); };
+function startReview(){
+  reviewing=true; idx=0;
+  $('finishBtn').textContent='Back to result';
+  $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  renderQ(); window.scrollTo(0,0);
+}
+function backToResult(){ reviewing=false; $('finishBtn').textContent='Finish & see score'; finish(); }
+$('finishBtn').onclick=()=>{
+  if(reviewing){ backToResult(); return; }
+  const left = run.filter(i=>i.pick===null).length;
+  if(left===0){ finish(); return; }
+  $('cmsg').textContent = left+' question(s) not answered yet. Finish anyway?';
+  $('cov').classList.add('show');
+};
+$('cYes').onclick=()=>{ $('cov').classList.remove('show'); finish(); };
+$('cNo').onclick=()=>$('cov').classList.remove('show');
+
+function openMap(){
+  $('map').innerHTML = run.map((it,i)=>{
+    let c=''; if(it.pick!==null) c = it.pick===it.q.ans?'ok':'no';
+    if(i===idx) c+=' cur';
+    return `<button class="${c}" data-i="${i}">${i+1}</button>`;
+  }).join('');
+  document.querySelectorAll('#map button').forEach(b=>b.onclick=()=>{ idx=+b.dataset.i; $('ov').classList.remove('show'); renderQ(); window.scrollTo(0,0); });
+  $('ov').classList.add('show');
+}
+$('mapBtn').onclick=openMap;
+$('closeMap').onclick=()=>$('ov').classList.remove('show');
+$('ov').onclick=e=>{ if(e.target.id==='ov') $('ov').classList.remove('show'); };
+
+function saveHistory(c){
+  if(saved || isRetry) return;
+  const answered = c.ok + c.no;
+  if(answered<=0) return;
+  saved = true;
+  try{
+    if(window.IndigeneHistory && typeof window.IndigeneHistory.save==='function'){
+      const topics = {};
+      run.forEach(it=>{
+        if(it.pick===null) return;
+        const k = 'Ch '+(it.q.ch+1)+' · '+DATA[it.q.ch].s[it.q.sec];
+        if(!topics[k]) topics[k]=[0,0];
+        topics[k][1]++; if(it.pick===it.q.ans) topics[k][0]++;
+      });
+      window.IndigeneHistory.save({course:'GST103', mode:'cbt', correct:c.ok, total:answered,
+        secs:Math.round((Date.now()-startedAt)/1000), topics:topics});
+    }
+  }catch(e){}
+}
+function finish(){
+  const c = counts(), n = run.length, un = n-c.ok-c.no;
+  const pct = n? Math.round(c.ok/n*100):0;
+  const msg = pct>=70?'Outstanding. You are ready for the exam. 🔥':pct>=50?'You passed. Keep pushing higher and clear every section.':pct>=40?'Close. Revise the failed sections and run again.':'Keep going. Read the failed sections again, then retry.';
+  saveHistory(c);
+  const chs = {}, secs = {};
+  run.forEach(it=>{
+    const q = it.q, good = it.pick===q.ans;
+    const a = chs[q.ch] || (chs[q.ch] = {ok:0,n:0}); a.n++; if(good) a.ok++;
+    const k = q.ch+'_'+q.sec; const b = secs[k] || (secs[k] = {ch:q.ch,sec:q.sec,ok:0,n:0}); b.n++; if(good) b.ok++;
+  });
+  const chKeys = Object.keys(chs).map(Number).sort((x,y)=>x-y);
+  const pc = x => Math.round(x.ok/x.n*100);
+  const need = ci => Math.max(8, Math.ceil(DATA[ci].q.length*0.4));
+  const rows = chKeys.map(ci=>{
+    const a = chs[ci], s = pc(a), full = a.n>=need(ci), ok = s>=PASS;
+    const sr = Object.values(secs).filter(x=>x.ch===ci).sort((x,y)=>x.sec-y.sec).map(x=>`<div class="sr"><span>${esc(DATA[ci].s[x.sec])}</span><b class="${pc(x)>=PASS?'pass':'fail'}">${x.ok}/${x.n} · ${pc(x)}%</b></div>`).join('');
+    return `<details class="cres"${(full&&!ok)?' open':''}><summary><span>Ch ${ci+1} · ${esc(DATA[ci].t)}</span><b class="${!full?'na':ok?'pass':'fail'}" style="white-space:nowrap">${s}/100 · ${grade(s)} · ${!full?'PRACTICE':ok?'PASS ✔':'FAIL ✖'}</b></summary>${sr}</details>`;
+  }).join('');
+  const weak = Object.values(secs).filter(x=>x.n>=2 && pc(x)<PASS).sort((x,y)=>x.ch-y.ch||x.sec-y.sec);
+  const revise = weak.length ? `<div class="revise"><b>Revise these sections</b>${weak.map(x=>`<div class="sr"><span>Ch ${x.ch+1} · ${esc(DATA[x.ch].s[x.sec])}</span><b class="fail">${pc(x)}%</b></div>`).join('')}</div>` : '<p class="msg pass"><b>Every section in this run is at pass mark or above.</b></p>';
+  const fullKeys = chKeys.filter(ci=>chs[ci].n>=need(ci));
+  const passedN = fullKeys.filter(ci=>pc(chs[ci])>=PASS).length;
+  const wrong = run.filter(it=>it.pick!==null && it.pick!==it.q.ans);
+  $('quiz').classList.add('hidden'); $('result').classList.remove('hidden');
+  window.scrollTo(0,0);
+  $('result').innerHTML = `
+    <h2>Result</h2>
+    <div class="big" style="font-size:2.2rem">${pct}/100 · ${grade(pct)}</div>
+    <div class="stats"><span>Correct <b>${c.ok}</b></span><span>Wrong <b>${c.no}</b></span><span>Skipped <b>${un}</b></span><span>Total <b>${n}</b></span></div>
+    <p class="msg"><b class="${pct>=PASS?'pass':'fail'}">${pct>=PASS?'PASS':'FAIL'}</b> · pass mark ${PASS}/100 · ${fullKeys.length?'chapters passed in this run '+passedN+'/'+fullKeys.length:'practice run, no chapter pass or fail'}</p>
+    <p class="msg">${msg}</p>
+    <h2 style="margin-top:16px">Score per chapter</h2>
+    ${rows}
+    <p class="msg" style="font-size:.8rem;color:var(--mute)">PRACTICE means this run had under 40% of that chapter's questions, so it shows a score but no pass or fail.</p>
+    ${revise}
+    ${weak.length?'<button class="btn" id="weakBtn">Practice these weak sections ('+weak.length+')</button>':''}
+    <button class="btn" id="reviewBtn">Review answers${wrong.length?' ('+wrong.length+' wrong)':''}</button>
+    <a class="btn ghost" style="text-align:center;text-decoration:none" href="/#history=GST103">My history</a>
+    ${wrong.length?`<button class="btn" id="retryWrong">Retry wrong answers (${wrong.length})</button>`:''}
+    <button class="btn ghost" id="newRun">New run</button>
+    `;
+  $('reviewBtn').onclick=startReview;
+  if($('weakBtn')) $('weakBtn').onclick=()=>{ weakSpec=weak.map(x=>(x.ch+1)+'.'+(x.sec+1)); mode='weak'; startQuiz(); };
+  if($('retryWrong')) $('retryWrong').onclick=()=>begin(shuffle(wrong.map(w=>w.q)), true);
+  $('newRun').onclick=()=>{ $('result').classList.add('hidden'); $('setup').classList.remove('hidden'); renderSetup(); window.scrollTo(0,0); };
+}
+
+document.addEventListener('keydown',e=>{
+  if($('quiz').classList.contains('hidden') || $('ov').classList.contains('show') || $('cov').classList.contains('show')) return;
+  const k=e.key.toLowerCase();
+  if('abcd'.includes(k) && k.length===1){ const it=run[idx]; if(it.pick===null){ choose(it.perm['abcd'.indexOf(k)]); } }
+  else if(e.key==='ArrowRight') $('next').click();
+  else if(e.key==='ArrowLeft') $('prev').click();
+});
+
+$('startBtn').onclick=startQuiz;
+renderSetup();
+try{
+  const pr = new URLSearchParams(location.search).get('practice');
+  if(pr && /^[\d.,all]+$/.test(pr)){ weakSpec = pr.split(',').filter(Boolean); mode='weak'; startQuiz(); }
+}catch(e){}
+</script>
+</body>
+</html>

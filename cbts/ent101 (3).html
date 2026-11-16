@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/protect.js"></script>
+<script src="/history.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INDIGENE — ENT 101 Entrepreneurship CBT</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120a07; --bg2:#1a0f0a; --card:#1c110b; --line:#4a2a17;
+  --fire:#ff6a1a; --fire2:#d4400f; --gold:#ffb347; --text:#f3e7dc; --mute:#b49a88;
+  --ok:#2ecc71; --okbg:rgba(46,204,113,.12); --bad:#ff4d4d; --badbg:rgba(255,77,77,.12);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at 50% -10%,#3a1a0b 0%,var(--bg) 55%) fixed;
+  color:var(--text);font-family:'Exo 2',system-ui,sans-serif;min-height:100vh;
+  padding:20px 16px 40px;line-height:1.5;
+}
+#app{max-width:720px;margin:0 auto}
+h1.brand{font-family:'Orbitron',sans-serif;font-weight:900;color:var(--fire);text-align:center;
+  letter-spacing:.08em;font-size:2.1rem;margin:8px 0 6px;text-shadow:0 0 18px rgba(255,106,26,.35)}
+.sub{font-family:'Orbitron',sans-serif;text-align:center;color:var(--mute);font-size:.9rem;letter-spacing:.06em;margin:0 0 20px}
+.panel{background:linear-gradient(180deg,var(--card),#150c08);border:1px solid var(--line);border-radius:22px;padding:22px 18px}
+.panel h2{font-family:'Orbitron',sans-serif;color:var(--gold);text-align:center;font-size:1.35rem;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.run{background:#150c08;border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;color:var(--text);
+  font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:.15s}
+.run .n{display:block;font-family:'Orbitron',sans-serif;font-weight:700;color:var(--gold);font-size:1.5rem;margin-bottom:2px}
+.run.sel{background:linear-gradient(135deg,var(--fire),var(--fire2));border-color:var(--gold);box-shadow:0 0 16px rgba(255,106,26,.35)}
+.run.sel .n{color:#fff}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;margin-top:18px;cursor:pointer;
+  background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;font-family:'Exo 2',sans-serif;font-weight:700;
+  font-size:1.15rem;letter-spacing:.03em;box-shadow:0 8px 22px rgba(255,106,26,.28)}
+.btn:active{transform:scale(.99)}
+.btn.ghost{background:#150c08;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.foot{color:var(--mute);text-align:center;font-size:.92rem;margin-top:16px}
+.chaps{margin-top:14px;display:none}
+.chaps.show{display:block}
+.chaps .tools{display:flex;gap:8px;margin-bottom:8px}
+.chaps .tools button{flex:1;background:#150c08;color:var(--gold);border:1px solid var(--line);border-radius:10px;padding:8px;font-family:inherit;font-weight:600;cursor:pointer}
+.chap{display:flex;align-items:center;gap:10px;background:#150c08;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.chap.on{border-color:var(--gold);background:#24140c}
+.chap .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#000}
+.chap.on .box{background:var(--gold);border-color:var(--gold)}
+.chap .nm{flex:1;font-size:.98rem}
+.chap .ct{color:var(--gold);font-family:'Orbitron',sans-serif;font-size:.85rem}
+
+/* progress + sections */
+.secs{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px 4px}
+.sec{border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:20px;padding:5px 11px;font-size:.82rem;cursor:pointer;font-family:inherit}
+.sec.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
+details.cres{border:1px solid var(--line);background:#150c08;border-radius:14px;margin-top:10px}
+details.cres>summary{padding:12px 14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;list-style:none}
+details.cres>summary::-webkit-details-marker{display:none}
+.cres .sr,.revise .sr{display:flex;justify-content:space-between;gap:10px;font-size:.9rem}
+.cres .sr{padding:8px 14px;border-top:1px solid var(--line)}
+.revise{border:1px solid var(--bad);background:var(--badbg);border-radius:14px;padding:12px 14px;margin-top:14px}
+.revise .sr{padding:6px 0}
+
+/* quiz */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.92rem;color:var(--mute);margin-bottom:8px}
+.top .sc{font-family:'Orbitron',sans-serif;font-size:.85rem}
+.top .sc b.g{color:var(--ok)} .top .sc b.r{color:var(--bad)}
+.bar{height:6px;background:#2a170d;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--fire),var(--gold));transition:width .25s}
+.chtag{display:inline-block;font-size:.78rem;color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.q{font-size:1.15rem;font-weight:600;margin:0 0 14px;white-space:pre-wrap}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#150c08;border:1.5px solid var(--line);
+  color:var(--text);border-radius:14px;padding:13px 14px;margin-bottom:10px;font-family:inherit;font-size:1.02rem;cursor:pointer}
+.opt .l{flex:none;width:28px;height:28px;border-radius:50%;background:#2a170d;color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.85rem}
+.opt:not(.locked):hover{border-color:var(--fire)}
+.opt.locked{cursor:default}
+.opt.correct{border-color:var(--ok);background:var(--okbg)}
+.opt.correct .l{background:var(--ok);color:#001a0a}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .l{background:var(--bad);color:#2a0000}
+.fb{border:1px solid var(--line);border-left:4px solid var(--gold);background:#1a0f0a;border-radius:12px;padding:12px 14px;margin-top:6px}
+.fb .v{font-weight:700;margin-bottom:6px}
+.fb .v.ok{color:var(--ok)} .fb .v.no{color:var(--bad)}
+.fb .trap{display:inline-block;background:var(--fire);color:#fff;font-family:'Orbitron',sans-serif;font-size:.72rem;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.fb .ex{margin:0 0 8px}
+.fb .hk{color:var(--gold);font-weight:600}
+.nav{display:flex;gap:10px;margin-top:16px}
+.nav button{flex:1;border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:12px;padding:13px 8px;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer}
+.nav button.primary{background:linear-gradient(135deg,var(--fire),var(--fire2));border:0;color:#fff}
+.nav button:disabled{opacity:.35;cursor:default}
+
+/* map */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ov.show{display:flex}
+.ov .box{background:var(--card);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:16px}
+.ov h3{font-family:'Orbitron',sans-serif;color:var(--gold);margin:0 0 10px;font-size:1.05rem}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.map button{height:38px;border-radius:8px;border:1px solid var(--line);background:#150c08;color:var(--mute);font-family:inherit;font-weight:600;cursor:pointer;font-size:.82rem}
+.map button.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.map button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.map button.cur{outline:2px solid var(--gold)}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--mute);margin:10px 0}
+
+/* result */
+.big{font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--gold);text-align:center;margin:6px 0}
+.stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px;color:var(--mute)}
+.stats b{color:var(--text)}
+.msg{text-align:center;color:var(--text);margin:8px 0 6px}
+.rv{border:1px solid var(--line);background:#150c08;border-radius:14px;padding:12px 14px;margin-top:12px}
+.rv .rq{font-weight:600;margin-bottom:6px}
+.rv .you{color:var(--bad)} .rv .cor{color:var(--ok)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#2a170d;border:1px solid var(--gold);color:var(--text);padding:10px 16px;border-radius:12px;font-size:.95rem;opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.toast.show{opacity:1}
+.hidden{display:none!important}
+@media (max-width:420px){.q{font-size:1.08rem}h1.brand{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div id="app">
+  <h1 class="brand">INDIGENE</h1>
+  <p class="sub" id="subtitle">ENT 101 — Entrepreneurship CBT</p>
+
+  <!-- SETUP -->
+  <div class="panel" id="setup">
+    <h2>Choose Your Run</h2>
+    <div class="grid" id="runs"></div>
+    <div class="chaps" id="chaps">
+      <div id="chapList"></div>
+    </div>
+    <button class="btn" id="startBtn">START QUIZ</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="panel hidden" id="quiz">
+    <div class="top"><span id="qpos">Q 1 / 1</span><span class="sc">✔ <b class="g" id="sOk">0</b> &nbsp; ✖ <b class="r" id="sNo">0</b></span></div>
+    <div class="bar"><i id="bar"></i></div>
+    <span class="chtag" id="chtag"></span>
+    <p class="q" id="qtext"></p>
+    <div id="opts"></div>
+    <div id="fb"></div>
+    <div class="nav">
+      <button id="prev">◀ Prev</button>
+      <button id="mapBtn">Map</button>
+      <button id="next" class="primary">Next ▶</button>
+    </div>
+    <button class="btn ghost" id="finishBtn" style="margin-top:12px;padding:12px">Finish &amp; see score</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="panel hidden" id="result"></div>
+</div>
+
+<div class="ov" id="ov"><div class="box">
+  <h3>Question Map</h3>
+  <div class="leg"><span>🟩 correct</span><span>🟥 wrong</span><span>⬛ not answered</span></div>
+  <div class="map" id="map"></div>
+  <button class="btn ghost" id="closeMap" style="margin-top:14px;padding:12px">Close</button>
+</div></div>
+<div class="ov" id="cov"><div class="box">
+  <h3>Finish quiz?</h3>
+  <p id="cmsg" style="margin:0 0 6px"></p>
+  <button class="btn" id="cYes" style="padding:13px">Finish now</button>
+  <button class="btn ghost" id="cNo" style="padding:13px">Go back</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = [{"t":"Origin and Concepts of Entrepreneurship","s":["Origin of the Concept","Key Definitions","Types of Entrepreneurs","Roles and Characteristics","Mintzberg's Managerial Roles","Specific Entrepreneurial Roles"],"q":[["Who first introduced the concept \"entrepreneur\", per Schumpeter (1951)?",["John Stuart Mill","Alfred Marshall","Jean-Baptiste Say","Richard Cantillon"],3,"Cantillon, a French economist, first introduced the concept and saw the entrepreneur as a risk taker.","Cantillon = coined it. Say came later.",0,0],["The word \"entrepreneur\" comes from the French \"entreprendre\", which means:",["To manage","To undertake","To invest","To trade"],1,"Entreprendre means to undertake.","Entre-prendre = undertake.",0,0],["Which year is given for Jean-Baptiste Say identifying the entrepreneur as a new economic phenomenon?",["1821","1934","1755","1890"],0,"Say (1821) saw the entrepreneur as a new economic phenomenon.","Say = 1821.",0,0],["Who stressed the importance of entrepreneurship to economic growth?",["David McClelland","Alfred Marshall","John Stuart Mill","Richard Cantillon"],2,"Mill stressed the significance of entrepreneurship for economic growth.","Mill = growth.",0,0],["Alfred Marshall (1890) formally recognised entrepreneurship as:",["A source of finance","A form of risk taking","A type of management","A factor of production"],3,"Marshall saw entrepreneurship as a factor of production, linked to creating organisations.","Marshall = 1890 = factor of production.",0,0],["Which pair is matched correctly?",["Say, 1890","Cantillon, 1755","Schumpeter, 1755","Marshall, 1821"],1,"Cantillon coined the term in 1755, Say 1821, Marshall 1890.","1755 Cantillon, 1821 Say, 1890 Marshall.",0,0],["Entrepreneurship is best described as a function that involves:",["Selling goods at a profit only","Routine running of a business","Avoiding all business risk","Exploiting opportunities in a market"],3,"The book defines it as exploiting opportunities in a market, including setting up, nurturing and sustaining a business.","Opportunity = entrepreneurship.",0,1],["Schumpeter (1934) described entrepreneurship as:",["Identifying market opportunities","Creation of new organisations","Innovation applied to business","Self-employment of any sort"],2,"Schumpeter linked entrepreneurship with innovation and combining resources.","Schumpeter = innovation.",0,1],["Who defined entrepreneurship as the creation of new organisations?",["Gartner (1988)","Penrose (1963)","Schumpeter (1934)","Knight (1921)"],0,"Gartner (1988) saw it as creating new organisations.","Gartner = new organisations.",0,1],["Penrose (1963) described entrepreneurship as:",["Identifying opportunities in the economic system","Applying innovation to business","Creating new organisations","Predicting changes in the market"],0,"Penrose saw it as an activity of identifying opportunities within the economic system.","Penrose = opportunities.",0,1],["Knight (1921) said entrepreneurs:",["Avoid uncertainty","Predict and act upon market change","Only copy existing firms","Create new organisations"],1,"Knight saw entrepreneurs as people who predict and act on change in markets.","Knight = predict change.",0,1],["An entrepreneur who works inside an existing organisation is called an:",["Investor","Imitator","Technopreneur","Intrapreneur"],3,"An intrapreneur pursues opportunities as a visionary within an existing organisation.","Intra = inside.",0,1],["Technopreneur is an individual whose business is in:",["Retail trade","Public service","Agriculture","High technology"],3,"Ogundele (2007) describes the technopreneur as combining technological innovation with entrepreneurial spirit.","Techno = high tech.",0,1],["Who among these cannot start his own business but still seeks opportunity within an organisation?",["Technopreneur","Intrapreneur","Social entrepreneur","Entrepreneur"],1,"The intrapreneur works within an existing firm.","Intra = cannot go solo.",0,1],["The four types of entrepreneurs listed by Rockstar (2008) are:",["Creative, Imitating, Fabian, Drone","Innovative, Imitating, Fabian, Drone","Innovative, Social, Fabian, Drone","Innovative, Imitating, Passive, Drone"],1,"The four types are Innovative, Imitating, Fabian and Drone.","I-I-F-D.",0,2],["Which entrepreneur invests heavily in R&D to bring in something new?",["Fabian","Innovative","Imitating","Drone"],1,"The innovative type is preoccupied with introducing something new.","Innovative = new + R&D.",0,2],["A \"copy cat\" entrepreneur who does it better than the original is:",["Innovative","Drone","Imitating","Fabian"],2,"The imitating type replicates an existing system in a better way.","Imitating = copy better.",0,2],["The very careful and lazy entrepreneur who shies away from innovation is:",["Innovative","Imitating","Fabian","Drone"],2,"Fabian entrepreneurs are cautious and avoid change.","Fabian = cautious.",0,2],["The \"old school\" entrepreneur resistant to change is called a:",["Imitator","Fabian","Drone","Technopreneur"],2,"Drone entrepreneurs stick to traditional methods.","Drone = old school.",0,2],["Entrepreneurs act as agents of:",["Political, social and legal change","Economic, social and technological change","Social, financial and legal change","Economic, cultural and religious change"],1,"The three behavioural roles are economic, social and technological change.","E-S-T change.",0,3],["Which characteristic of entrepreneurship involves product and production-technique innovation?",["Creative activity","Involves risk","Dynamic process","Purposeful activity"],0,"Creative activity covers innovation in product and production technique.","Creative = innovation.",0,3],["Entrepreneurship is a \"dynamic process\" because it must:",["Follow one fixed set of rules","Avoid competition completely","Depend on a single product line","Account for a changing business environment"],3,"The process must respond to the dynamic business environment.","Dynamic = changing environment.",0,3],["According to Driessen and Zwart (2010), how many main characteristics do successful entrepreneurs have?",["Five","Eight","Three","Two"],2,"There are 3 main and 5 secondary characteristics.","3 main + 5 secondary.",0,3],["Which is one of the three main characteristics in Driessen and Zwart (2010)?",["Endurance","Need for power","Tolerance of ambiguity","Need for achievement"],3,"The main three are need for achievement, internal locus of control and risk taking propensity.","nAch, ILOC, RTP.",0,3],["Which of these is a secondary characteristic in Driessen and Zwart (2010)?",["Risk taking propensity","Internal locus of control","Endurance","Need for achievement"],2,"The five secondary ones include endurance, need for power and need for affiliation.","Secondary = Aut, Pow, ToA, Aff, End.",0,3],["Mintzberg published the managerial roles in which year?",["1973","1890","1986","1971"],0,"Henry Mintzberg identified the roles in 1973.","Mintzberg = 1973.",0,4],["How many managerial roles did Mintzberg identify?",["Ten","Seven","Twelve","Five"],0,"The book lists ten roles.","Ten roles.",0,4],["The role of arbitrating conflict to keep harmony is the:",["Liaison","Disturbance handler","Monitor","Resource allocator"],1,"The disturbance handler settles conflicts.","Conflict = disturbance.",0,4],["Deciding how scarce resources are used is the:",["Resource allocator","Figure head","Monitor","Negotiator"],0,"The resource allocator decides how scarce resources are shared out.","Scarce = allocator.",0,4],["Performing ceremonial duties for the business is the:",["Figure head role","Leader role","Liaison role","Spokesman role"],0,"The figure head represents the organisation in ceremonies.","Ceremony = figure head.",0,4],["The role that links the business to outside parties is the:",["Liaison role","Monitor role","Leader role","Negotiator role"],0,"The liaison builds links with outsiders.","Liaison = outside link.",0,4],["Launching new ideas and bearing risk is the:",["Leader role","Spokesman role","Monitor role","Entrepreneurial role"],3,"This is the entrepreneurial role, the basic role of the entrepreneur.","New ideas + risk = entrepreneurial.",0,4],["Which is a social role of the entrepreneur (Ogundele, 2007)?",["Mobilising savings","Bearing uncertainty risk","Creating jobs","Adapting imported technology"],2,"Job creation is a social role.","Social = jobs, wealth spread.",0,5],["Mobilising savings is an example of an entrepreneur's:",["Political role","Technological role","Economic role","Social role"],2,"Mobilising savings and bearing the risk of uncertainty are economic roles.","Savings = economic.",0,5],["Adapting imported technology to the local setting is a:",["Economic role","Managerial role","Social role","Technological role"],3,"Ogundele puts it under technological roles.","Adapting tech = technological.",0,5]]},{"t":"Motivation, Creativity and Innovation","s":["Motivational Influences","Non-Motivational Influences","Entrepreneurship Variables","Creativity vs Innovation","Stages and Factors of Creativity","Forms and Degrees of Innovation","Moore's Taxonomy and Innovation Phases"],"q":[["Who is the father of the need for achievement theory?",["David McClelland","Begley","Teoh and Foo","Albert Bandura"],0,"McClelland's theory says high N Ach people take moderately difficult goals with clear feedback.","McClelland = N Ach.",0,0],["People high in N Ach prefer tasks that have:",["Tasks with no clear feedback","Moderate difficulty and clear feedback","Tasks with very high risk","Tasks with no risk at all"],1,"They pursue moderately difficult goals with clear feedback.","N Ach = moderate + feedback.",0,0],["Begley (1995) said entrepreneurs have a willingness to take:",["No risks","Only safe risks","Moderate risks","Very high risks"],2,"Risk taking propensity means taking moderate risks, an offshoot of N Ach.","Risk propensity = moderate.",0,0],["Ability to respond positively to unclear situations is called:",["Locus of control","Self-efficacy","Drive","Tolerance for ambiguity"],3,"Teoh and Foo (1997) describe it this way.","Unclear situation = ambiguity.",0,0],["A person with an internal locus of control believes that:",["Fate decides outcomes","Others decide outcomes","His own actions decide outcomes","Luck decides outcomes"],2,"Internal locus pushes people toward entrepreneurship.","Internal = me.",0,0],["Task-specific self-confidence is called:",["Self-efficacy","Desire for independence","Egoistic passion","Drive"],0,"Bandura (1997) is linked with self-efficacy.","Efficacy = confidence in a task.",0,0],["Drive, as a motivational influence, has how many aspects?",["Five","Four","Six","Three"],1,"The four aspects are ambition, goals, energy and stamina, and persistence.","Drive = 4.",0,0],["A passionate and selfish love of the work itself is called:",["Egoistic passion","Desire for independence","Drive","Self-efficacy"],0,"Shane et al. (2003) use this term.","Ego = selfish love of work.",0,0],["Amit et al. (2009) said entrepreneurs act when they have:",["No ideas","High salaries","More to lose","Less to lose"],3,"This is opportunity cost, the dark side of motivation.","Opportunity cost = less to lose.",0,1],["Evans and Leighton (1989) found that older workers are more likely to become entrepreneurs because they:",["Have no family","Are less educated","Had time to build capital","Have more energy"],2,"Stocks of financial capital build up over time.","Older = more capital.",0,1],["Aldrich and Zimmer (1986) linked entrepreneurship to:",["Personal savings","Social ties to investors","Family background","Career transition"],1,"Entrepreneurs embed themselves in social contexts.","Aldrich = social ties.",0,1],["Which of these is a life-path circumstance?",["Drive","Self-efficacy","Egoistic passion","Negative displacement"],3,"Life-path circumstances include unsatisfactory work environment, negative displacement, career transition and positive pull.","Life-path = displacement, transition, pull.",0,1],["Which two factors affect the supply of entrepreneurship?",["Money and time to spare","Opportunity and willingness","Skill and good luck","Risk and expected profit"],1,"Supply depends on opportunity and willingness.","Supply = opportunity + willingness.",0,2],["Opportunity is shaped by the individual's ability and the:",["Number of friends","Size of the family","Level of profit","Macro-economic environment"],3,"The two shapers are intuition or ability and the general macro-economic environment.","Opportunity = ability + macro environment.",0,2],["Creativity is defined as the:",["Ability to bring something new into existence","The process of doing new things","The act of copying other firms","The sale of newly made products"],0,"The emphasis is on ability, not activity.","Creativity = ability.",0,3],["Innovation is defined as the:",["Ability to imagine new things","Copying existing ideas","Process of doing new things","Discovery of old ideas"],2,"Innovation turns creative ideas into marketplace reality.","Innovation = process.",0,3],["According to Holt (1992), creativity is a prerequisite for:",["Risk taking","Invention only","Innovation","Imitation"],2,"Creativity must come before innovation.","Creativity first, then innovation.",0,3],["An invention becomes an innovation once it is:",["Commercialised","Discovered","Patented","Advertised"],0,"Desouza et al. (2007) said commercialisation makes it an innovation.","Invention + sold = innovation.",0,3],["How many stages of creativity did Holt (1992) list?",["Six","Four","Five","Seven"],2,"The five stages are germination, preparation, incubation, illumination and verification.","G-P-I-I-V.",0,4],["The first stage of creativity in Holt's (1992) list is:",["Idea germination","Incubation","Preparation","Illumination"],0,"Germination is the seeding stage where interest begins.","Germination first.",0,4],["The stage where the mind works on the idea subconsciously is:",["Verification","Illumination","Incubation","Preparation"],2,"Incubation is mulling it over below the surface.","Incubation = subconscious.",0,4],["The stage where the idea surfaces as a realistic creation is:",["Germination","Preparation","Incubation","Illumination"],3,"Illumination is the stage the idea appears.","Illumination = idea appears.",0,4],["Testing an idea to prove it has value is the stage of:",["Incubation","Illumination","Preparation","Verification"],3,"Verification applies or tests the idea.","Verification = test.",0,4],["Which is NOT a critical factor for individual creativity (Adams, 2005)?",["Verification","Knowledge","Thinking","Personal motivation"],0,"Adams lists knowledge, thinking, personal motivation, environment and an explicit decision to be creative.","Verification is a Holt stage, not an Adams factor.",0,4],["How many forms of innovation did Hamel (1997) list?",["Two","Three","Five","Four"],1,"They are technological, products-market and administrative innovativeness.","Hamel = 3.",0,5],["Innovation in management systems and organisation structure is:",["Technological innovativeness","Administrative innovativeness","Products-market innovativeness","Radical innovation"],1,"Hamel's administrative type deals with management systems and control techniques.","Management = administrative.",0,5],["Innovation based on market research, product design and advertising is:",["Modular innovation","Products-market innovativeness","Technological innovativeness","Administrative innovativeness"],1,"This is Hamel's products-market type.","Market = products-market.",0,5],["Small changes to an existing solution are called:",["Modular innovation","Incremental innovation","Radical innovation","Architectural innovation"],1,"Incremental means small modifications.","Incremental = small.",0,5],["Changing the core design of one component only is:",["Architectural innovation","Radical innovation","Incremental innovation","Modular innovation"],3,"Example from the book: digital replacing analog phone.","Modular = one component.",0,5],["Reconfiguring how existing components link together is:",["Architectural innovation","Modular innovation","Radical innovation","Incremental innovation"],0,"Example: shrinking the hard drive disk size.","Architectural = new linking.",0,5],["A new dominant design with new core concepts is:",["Architectural innovation","Incremental innovation","Modular innovation","Radical innovation"],3,"Henderson and Clark (1990) classify it as radical.","New dominant design = radical.",0,5],["How many phases of successful innovation did Desouza et al. (2007) list?",["Three","Six","Five","Four"],2,"The five phases run from idea generation to diffusion.","Phases = 5.",0,6],["Which is the first phase of successful innovation?",["Commercialisation phase","Idea generation and mobilisation","Experimentation phase","Advocacy and screening phase"],1,"It starts with idea generation and mobilisation.","Idea first.",0,6],["The phase where ideas without potential are weeded out is:",["Commercialisation","Advocacy and screening","Experimentation","Diffusion"],1,"Costs and benefits are weighed here.","Screening = weeding out.",0,6],["Which phase comes last in successful innovation?",["Diffusion and implementation","Experimentation","Advocacy and screening","Commercialisation"],0,"Diffusion and implementation is the fifth phase.","Diffusion = last.",0,6],["Which author gave the innovation taxonomy with disruptive, application and product types?",["Holt (1992)","Adams (2005)","Hamel (1997)","Moore (2004)"],3,"Moore's taxonomy has eight types.","Moore = taxonomy.",0,6],["Which is one of the types in Moore's (2004) taxonomy?",["Modular innovation","Verification innovation","Business model innovation","Germination innovation"],2,"Moore lists business model, structural, marketing and others.","Moore includes business model.",0,6]]},{"t":"Business and the Business Environment","s":["Business and Business Functions","Characteristics of the Business Environment","Internal and External Environment","Intermediate Environment and NDE","SWOT Analysis"],"q":[["The four organic business functions are:",["Production, marketing, finance, personnel","Production, budgeting, reporting, selling","Planning, organising, staffing, directing","Marketing, finance, staffing, coordinating"],0,"The organic functions are production, marketing, finance and personnel.","Organic = P-M-F-P.",0,0],["POSDCORB stands for the managerial functions. How many are they?",["Five","Four","Ten","Seven"],3,"Planning, organising, staffing, directing, coordinating, reporting, budgeting.","POSDCORB = 7.",0,0],["Which of these is NOT one of the organic business functions?",["Budgeting","Production","Personnel","Marketing"],0,"Budgeting belongs to POSDCORB, the managerial functions.","Budgeting = POSDCORB.",0,0],["Kazmi (1999) listed how many characteristics of the business environment?",["Four","Six","Eight","Five"],1,"Stable, simple, dynamism, complexity, multifaceted and far-reaching impact.","Kazmi = 6.",0,1],["An environment that is highly predictable and allows standardisation is:",["Complex","Multifaceted","Stable","Dynamic"],2,"Stable conditions allow standardisation.","Stable = predictable.",0,1],["An environment that changes continuously is described as:",["Stable","Simple","Dynamic","Far-reaching"],2,"Dynamism means continuous change.","Dynamism = change.",0,1],["A threat to one firm that is an opportunity to another shows the environment is:",["Multifaceted","Stable","Complex","Simple"],0,"Multifaceted means many-sided.","Many-sided = multifaceted.",0,1],["A \"ripple effect\" across the system describes which characteristic?",["Stability","Far-reaching impact","Dynamism","Simplicity"],1,"Far-reaching impact spreads through the system.","Ripple = far-reaching.",0,1],["Customers, competition, distribution channels and suppliers are:",["Macro-environmental forces","Technological forces","Internal forces","Micro-environmental forces"],3,"Kotler (1995) places them in the micro environment.","Kotler: customers, competition, channels, suppliers = micro.",0,1],["Demographic, economic, technological and political forces are:",["Macro-environmental forces","Micro-environmental forces","Intermediate forces","Internal forces"],0,"These make up the macro environment.","Macro = big forces.",0,1],["The internal environment is:",["Natural","Political","Uncontrollable","Controllable"],3,"Internal factors can be controlled by the firm.","Internal = controllable.",0,2],["The 5 S's used to assess the internal environment are:",["Sales, strategy, staff, supply, systems","Skills, staff, stock, structure, systems","Skills, strategy, staff, structure, systems","Skills, strategy, shares, structure, status"],2,"These are the five S's, with shared values sometimes added.","5S = Skills, Strategy, Staff, Structure, Systems.",0,2],["Which is an external environment factor?",["Structure of the firm","Strategy of the firm","Competitive environment","Staff and skills of the firm"],2,"The competitive environment is external and not controllable.","External = outside the firm.",0,2],["Which is a type of competitive environment listed in the book?",["Franchise","Cartel union","Syndicate","Oligopoly"],3,"The list includes monopoly, oligopoly, monopolistic competition and perfect competition.","Competition = Mono, Oligo, MonoComp, Perfect.",0,2],["Laws and regulations that affect business fall under the:",["Demographic environment","Political and legal environment","Technological environment","Socio-cultural environment"],1,"Government rules belong to the political and legal environment.","Laws = political/legal.",0,2],["The environment lying between internal and external is the:",["Remote environment","General environment","Natural environment","Intermediate environment"],3,"It holds borderline factors like customers and suppliers.","Between = intermediate.",0,3],["NDE was established in which year?",["1990","1986","2004","1976"],1,"The National Directorate of Employment was set up in November 1986.","NDE = 1986.",0,3],["NDE was set up mainly to tackle:",["Export trade","Corruption","Mass unemployment","Food safety"],2,"It targeted unemployment, especially among school leavers.","NDE = jobs.",0,3],["How many core programmes does NDE have?",["Three","Six","Five","Four"],3,"The book lists four core programmes.","NDE = 4 programmes.",0,3],["In SWOT, strengths and weaknesses come from:",["External scanning","Internal scanning","Market surveys","Government reports"],1,"The internal environment is scanned with the 5 S's.","SW = inside.",0,4],["In SWOT, opportunities and threats come from:",["Staff reports","Internal scanning","External scanning","Financial statements"],2,"The external environment gives opportunities and threats.","OT = outside.",0,4],["A business with high opportunity and low threat is:",["Ideal","Speculative","Troubled","Mature"],0,"This is the ideal business.","High Opp, Low Threat = Ideal.",0,4],["A business with high opportunity and high threat is:",["Mature","Speculative","Troubled","Ideal"],1,"High on both makes it speculative.","High both = Speculative.",0,4],["A business with low opportunity and low threat is:",["Troubled","Mature","Ideal","Speculative"],1,"Low on both is a mature business.","Low both = Mature.",0,4],["A business with low opportunity and high threat is:",["Troubled","Speculative","Mature","Ideal"],0,"This is a troubled business.","Low Opp, High Threat = Troubled.",0,4]]},{"t":"Forms of Business Ownership and Legal Implications","s":["Categories of Ownership","Sole Proprietorship","Partnership","Types of Partners","Limited Liability Companies (CAMA 1990)","Documents of Incorporation and Share Capital","Co-operatives"],"q":[["The three legal categories of business ownership are:",["Sole proprietorship, co-operative, trust","Company, co-operative, syndicate","Partnership, company, franchise","Sole proprietorship, partnership, company"],3,"Brone and Kurtz (2009) group every business into these three.","Three = sole, partnership, company.",0,0],["A sole proprietorship is owned by:",["Twenty persons","One person","Seven persons","Two persons"],1,"It has one owner, with no legal distinction between owner and business.","Sole = one.",0,1],["The simplest and most popular form of business in Nigeria is the:",["Co-operative","Partnership","Public company","Sole proprietorship"],3,"The book names it the most popular.","Sole = most popular.",0,1],["Which is an advantage of sole proprietorship?",["Lack of continuity","Limited access to capital","Unlimited liability","Ownership of all profit"],3,"The owner keeps all the profit.","Sole advantage = all profit.",0,1],["Which is a disadvantage of sole proprietorship?",["Flexibility","Unlimited personal liability","Privacy","Easy to discontinue"],1,"The owner is personally liable for all debts.","Sole weakness = unlimited liability.",0,1],["The minimum and maximum number of partners is:",["1 and 20","2 and 20","7 and 20","2 and 50"],1,"Professional firms such as lawyers and accountants can exceed 20.","Partners = 2 to 20.",0,2],["The Partnership Act of 1907 governs:",["Public companies","Limited partnerships","Co-operatives","Sole proprietorships"],1,"It governs limited partnerships.","1907 = limited partnership.",0,2],["A partnership that is taxed like a partnership but trades like a corporation is:",["Limited partnership","Limited liability partnership","Master limited partnership","General partnership"],2,"That is the MLP.","MLP = trades like a corporation.",0,2],["How many types of partnership by liability does the book list?",["Five","Six","Four","Three"],2,"General, limited, master limited and limited liability.","By liability = 4.",0,2],["The final act of intentionally closing a partnership as a business is:",["Dissolution","Registration","Termination","Incorporation"],2,"Dissolution is when a general partner ceases association.","Termination = final closing.",0,2],["Dissolution occurs when:",["A general partner ceases association","A new partner is admitted","The firm is first registered","A new company is formed"],0,"Expiry, withdrawal, death, bankruptcy or judicial decree can cause it.","Dissolution = partner leaves.",0,2],["How many types of partners does the book list?",["Five","Eight","Four","Six"],3,"General, limited, silent, secret, sleeping and nominal.","By role = 6.",0,3],["A partner known to the public but not active in the business is:",["Secret","Silent","General","Sleeping"],1,"Silent partners are known as owners but take no active part.","Silent = known, not active.",0,3],["A partner who is active but unknown to outsiders is:",["Secret","Silent","Sleeping","Nominal"],0,"Secret is the opposite of silent.","Secret = active, unknown.",0,3],["A partner who is neither known nor active is:",["Sleeping","Secret","Silent","Nominal"],0,"Sleeping is also called dormant.","Sleeping = neither.",0,3],["A partner known to the public but with no investment or management rights is:",["Nominal","Silent","Sleeping","Limited"],0,"A nominal partner may still be liable for debts.","Nominal = name only.",0,3],["Which partner has unlimited liability and actively manages the firm?",["General","Nominal","Limited","Sleeping"],0,"General partners are active and liable without limit.","General = unlimited.",0,3],["Which Act guides company formation in Nigeria?",["Partnership Act 1907","CAMA 1990","NAFDAC Decree 1993","ICPC Act 2000"],1,"The Companies and Allied Matters Act guides formation and registration.","Company law = CAMA 1990.",0,4],["The three types of company in the book are:",["By shares, by capital, unlimited","Public, private, mixed","By guarantee, by loan, limited","By shares, by guarantee, unlimited"],3,"Companies are limited by shares, limited by guarantee or unlimited.","Three = shares, guarantee, unlimited.",0,4],["A private company has a maximum of how many members?",["20","No limit","7","50"],3,"Employees are not counted in the 50.","Private = 50 max.",0,4],["A public company has:",["No maximum number of members","A maximum of 20 members","A maximum of 7 members","A maximum of 50 members"],0,"Public companies have no upper limit, and the minimum is two.","Public = no max.",0,4],["A company name ending in \"PLC\" shows it is:",["A co-operative","Unlimited","Private","Public"],3,"Private companies end in Limited.","PLC = public.",0,4],["Under Section 20, who is disqualified from forming a company?",["A person under 18","A person with a diploma","A person aged 25","A foreign student"],0,"Others disqualified include persons of unsound mind and undischarged bankrupts.","Under 18 = out.",0,4],["Which document is superior when it conflicts with the Articles of Association?",["Statutory declaration","Memorandum of Association","Partnership agreement","Certificate of incorporation"],1,"The Memorandum prevails.","Memorandum beats Articles.",0,5],["Minimum share capital for a private company is:",["₦50,000","₦100,000","₦500,000","₦10,000"],3,"The book gives ₦10,000 for private companies.","Private = 10,000.",0,5],["Minimum share capital for a public company is:",["₦10,000","₦100,000","₦500,000","₦5,000,000"],2,"The book gives ₦500,000 for public companies.","Public = 500,000.",0,5],["Subscribers must take at least what share of the capital?",["75%","10%","25%","50%"],2,"The subscription clause sets the minimum at 25%.","Subscribers = 25%.",0,5],["The section of CAMA that lists the documents of incorporation is:",["Section 254","Section 18","Section 35","Section 20"],2,"Section 35 covers the documents required.","Documents = 35.",0,5],["A co-operative is a form of:",["Collective ownership","Foreign ownership","Public ownership","Sole ownership"],0,"It involves collective ownership of production, storage, transport or marketing.","Co-op = collective.",0,6],["One of the three types of co-operative is:",["Public co-operative","Unlimited co-operative","Workers co-operative","Sleeping co-operative"],2,"The three are consumer or producer, workers and finance co-operatives.","Co-op types = consumer/producer, workers, finance.",0,6]]},{"t":"Teamwork and Group Dynamics","s":["Definition and Typology of Teams","Stages of Team Formation","Theories of Group Formation","Types of Groups","Group Decision-Making Methods"],"q":[["A team, per Daft (1997), is a unit of:",["Two or more people working to one goal","Any group of people in a firm","One manager and his own staff","Ten or more people in a firm"],0,"The people interact and coordinate to accomplish a specific goal.","Team = 2+ for one goal.",0,0],["A vertical team is made up of:",["Same-level staff","A manager and subordinates","Outsiders only","Special project staff"],1,"It is also called a functional or command team.","Vertical = boss + staff.",0,0],["A horizontal team brings together people from:",["People from one department only","People from outside the firm","The same level with different expertise","People at different levels of the firm"],2,"Task forces and committees are examples.","Horizontal = same level.",0,0],["A special-purpose team works:",["Only on routine daily tasks","Inside the vertical chain of command","Outside the formal structure on special projects","Only with the manager present"],2,"It is formed for special projects.","Special = outside structure.",0,0],["Problem-solving teams usually have how many multi-skilled workers?",["50 to 100","5 to 20","2 to 5","20 to 50"],1,"Workers in these teams rotate jobs.","Problem-solving = 5 to 20.",0,0],["The five stages of team formation in the book are:",["Forming, stormy, working, performing, ending","Joining, stormy, norming, performing, adjusting","Forming, storming, norming, performing, adjourning","Forming, stormy, norming, performing, adjusting"],3,"The book uses \"stormy\" and \"adjusting\".","F-S-N-P-A.",0,1],["The stage where members learn the task, rules and methods is:",["Forming","Norming","Adjusting","Stormy"],0,"Forming is the learning stage.","Forming = learn.",0,1],["Emotional resistance to task demands happens at the:",["Norming stage","Forming stage","Performing stage","Stormy stage"],3,"Members resist what the task asks of them.","Stormy = resistance.",0,1],["Open exchange and growing cooperation mark the:",["Norming stage","Adjusting stage","Stormy stage","Forming stage"],0,"Cooperation develops at norming.","Norming = cooperation.",0,1],["The stage where changes are made based on feedback is:",["Norming","Adjusting","Performing","Forming"],1,"Adjusting is the last stage in the book.","Adjusting = feedback.",0,1],["Group formation because of nearness in space is explained by:",["Propinquity","Balance theory","Homans' theory","Exchange theory"],0,"Propinquity is affiliation due to physical closeness.","Propinquity = proximity.",0,2],["George Homans' theory is built on activities, interactions and:",["Sentiments","Attitudes","Rewards","Costs"],0,"More shared activities lead to more interaction and stronger sentiments.","Homans = A-I-S.",0,2],["Balance theory was put forward by:",["David McClelland","Henry Mintzberg","George Homans","Theodore Newcomb"],3,"Attraction rests on similar attitudes toward shared objects or goals.","Newcomb = balance.",0,2],["Which theory says rewards must exceed costs for people to join a group?",["Homans' theory","Balance theory","Propinquity","Exchange theory"],3,"Exchange theory is based on reward and cost outcomes.","Exchange = reward over cost.",0,2],["An intimate face-to-face group that shapes social nature is a:",["Work group","Formal group","Primary group","Command group"],2,"Primary groups shape ideals and social nature.","Primary = intimate.",0,3],["A group made through formal authority for a given purpose is a:",["Reference group","Informal group","Primary group","Formal group"],3,"Formal groups are created by authority.","Formal = created by authority.",0,3],["A group that emerges unofficially, often as cliques, is:",["Task force","Informal","Formal","Command"],1,"Informal groups form inside formal ones.","Informal = clique.",0,3],["A work group is created by formal authority to:",["Give social support","Provide friendship","Turn inputs into outputs","Share hobbies"],2,"It transforms inputs into outputs.","Work group = inputs to outputs.",0,3],["How many group decision-making methods does the book list?",["Five","Six","Seven","Four"],1,"They run from lack of response to unanimity.","Methods = 6.",0,4],["A decision backed by most members, with dissenters still heard, is by:",["Unanimity","Consensus","Authority rule","Majority"],1,"In consensus even opponents feel heard.","Consensus = most.",0,4],["A decision where all members agree is by:",["Consensus","Minority rule","Unanimity","Majority"],2,"No member disagrees.","Unanimity = all.",0,4],["Which of these is NOT a group decision method in the book?",["Voting by lot","By lack of response","By authority rule","By minority rule"],0,"The book lists lack of response, authority, minority, majority, consensus and unanimity.","No \"lot\" in the list.",0,4]]},{"t":"Vision, Mission and Objectives","s":["Vision","Components of Vision","Effect of Missing Elements","Mission Statement","Goals vs Objectives"],"q":[["Vision is best described as:",["A list of daily office tasks","A mental picture of a preferred future","A yearly financial budget","A legal document of the firm"],1,"It gives non-specific guidance and is usually produced by the CEO.","Vision = picture of future.",0,0],["Vision is normally produced by the:",["CEO","Accountant","Customers","Suppliers"],0,"Haggins and Vineze say the CEO produces it.","Vision = CEO.",0,0],["Collins and Porras (1996) gave how many main components of vision?",["Two","Three","Five","Four"],0,"They are core ideology and envisioned future.","Vision = 2 components.",0,1],["Core ideology is made up of core value and:",["Envisioned future","Core mission","Core purpose","Core goal"],2,"Core value is the guiding beliefs and core purpose is the reason for existence.","Ideology = value + purpose.",0,1],["The reason a firm exists is its:",["Core value","Envisioned future","Core purpose","Objective"],2,"Core purpose is the reason for existence.","Purpose = why we exist.",0,1],["The part of vision that stays motivating even after the founders are gone is the:",["Envisioned future","Core value","Action plan","Core purpose"],0,"The envisioned future is creative and motivating.","Envisioned future = lasting motivator.",0,1],["Without vision, the result is:",["Frustration","False starts","Anxiety","Confusion"],3,"Take away vision and confusion follows.","Vision gone = confusion.",0,2],["Without skills, the result is:",["Anxiety","Confusion","Frustration","False starts"],0,"Removing skills brings anxiety.","Skills gone = anxiety.",0,2],["Without resources, the result is:",["Gradual change","Frustration","Confusion","Anxiety"],1,"Removing resources brings frustration.","Resources gone = frustration.",0,2],["Without an action plan, the result is:",["Anxiety","Confusion","Frustration","False starts"],3,"Removing the action plan causes false starts.","Plan gone = false starts.",0,2],["Without incentives, the result is:",["Confusion","Gradual change","Anxiety","False starts"],1,"Removing incentives brings gradual change.","Incentives gone = gradual change.",0,2],["A mission statement shows the business's:",["Yearly profit and loss","Unique purpose and scope","Rate of company tax","List of all staff and pay"],1,"Pearce II and Robinson Jr. (2004) say it sets the business apart and shows its scope.","Mission = unique purpose.",0,3],["Kazmi (2004) gave how many characteristics of an effective mission statement?",["Ten","Five","Seven","Four"],2,"The seven include visible, precise, clear and motivating.","Mission = 7.",0,3],["Which is a characteristic of an effective mission statement?",["Complicated","Lengthy","Distinctive","Secret"],2,"Distinctive is on the list with visible, precise, clear and motivating.","Mission = distinctive.",0,3],["Goals are:",["Specific and measurable","Broad and qualitative","Financial reports","Short-term tasks"],1,"Goals state what an organisation hopes to accomplish.","Goals = broad.",0,4],["Objectives are:",["Broad and vague","Qualitative only","Optional","Concrete and measurable"],3,"They make goals operational.","Objectives = specific.",0,4],["Which makes goals operational?",["Vision","Mission","Values","Objectives"],3,"Objectives break goals into measurable targets.","Objectives operate goals.",0,4]]},{"t":"Government and Business Regulatory Agencies in Nigeria","s":["Levels of Regulation","CAC, NAFDAC and SON","ICPC and EFCC","Other Regulatory Agencies","Promotional and Supportive Roles of Government"],"q":[["How many levels of regulation exist in Nigeria?",["Two","Four","Five","Three"],3,"They are federal acts, state laws and local government by-laws.","Levels = 3.",0,0],["Business falls under which legislative list?",["Exclusive list","Local list","Concurrent list","Residual list"],2,"Federal and state can both legislate.","Business = concurrent.",0,0],["When federal and state laws conflict on business, which prevails?",["The older law","State law","Federal law","Local by-law"],2,"Federal law supersedes in conflict.","Conflict = federal wins.",0,0],["CAC was established by:",["CAMA 1990","Decree No. 15 of 1993","SON Act 1971","ICPC Act 2000"],0,"CAC regulates company formation, registration and winding up.","CAC = 1990.",0,1],["The headquarters of CAC is in:",["Abuja","Lagos","Kano","Ibadan"],0,"The book places CAC head office in Abuja.","CAC = Abuja.",0,1],["NAFDAC was established under which Decree?",["Decree No. 26 of 1976","ICPC Act 2000","CAMA 1990","Decree No. 15 of 1993"],3,"NAFDAC regulates food, drugs, cosmetics and bottled water.","NAFDAC = 1993.",0,1],["NAFDAC regulates:",["Company registration and winding up","Financial crimes and fraud","Food, drugs, cosmetics and bottled water","Export trade promotion only"],2,"It also covers medical devices and chemicals.","NAFDAC = food and drugs.",0,1],["SON was originally set up under the Nigerian Standard Organization Act of:",["1976","1971","1993","1990"],1,"SON sets and certifies standards.","SON = 1971.",0,1],["Which agency can seal or confiscate assets of non-compliant firms?",["SON","NEPC","CAC","EFCC"],0,"SON has powers over firms that fail standards.","SON seals firms.",0,1],["ICPC was set up by an Act of which year?",["1993","2000","1990","2004"],1,"The ICPC Act of 2000 created it.","ICPC = 2000.",0,2],["EFCC was established by an Act of Parliament in:",["1990","1993","2000","2004"],3,"EFCC investigates financial crimes like money laundering.","EFCC = 2004.",0,2],["Advance fee fraud and money laundering are handled by:",["SON","EFCC","NAFDAC","ICPC"],1,"EFCC deals with financial crimes.","Fraud = EFCC.",0,2],["Which agency investigates corruption complaints and educates the public?",["ICPC","SON","CAC","EFCC"],0,"ICPC investigates, prosecutes and educates.","Corruption = ICPC.",0,2],["Which of these is a regulatory or supportive agency named in the book?",["FUSSI","NDE","NDIC","NAPEP"],2,"NDIC is the Nigerian Deposit Insurance Corporation.","NDIC = deposit insurance.",0,3],["NICON stands for:",["Nigerian Investment Corporation","National Income Council","National Industrial Council","National Insurance Corporation"],3,"It is listed among regulatory and supportive agencies.","NICON = insurance.",0,3],["A temporary cut or removal of tax to attract investment is a:",["Subsidy","Credit facility","Tax holiday","Incubator"],2,"Tax holiday is one of the government's incentives.","Tax holiday = tax break.",0,4],["NEPC stands for:",["National Enterprise Promotion Council","Nigerian Export Promotion Council","National Export Policy Committee","Nigerian Economic Planning Council"],1,"It promotes export trade.","NEPC = export.",0,4],["NEPC was set up by Decree No. 26 of:",["1976","1993","1986","1971"],0,"It was inaugurated in March 1977.","NEPC = 1976.",0,4],["A business incubator unit is created to:",["Collect taxes from firms","Support new small businesses","Regulate banks and insurers","Register new companies"],1,"Creating incubators is a promotional role of government.","Incubator = support starters.",0,4]]},{"t":"Business Plan and Feasibility Studies","s":["Feasibility Study","Components of a Feasibility Study","Business Plan","Principles of a Good Plan","Components of a Written Business Plan"],"q":[["A feasibility study comes:",["After the business starts","Instead of the business plan","After the business plan","Before the business plan"],3,"It feeds into the business plan.","Feasibility first.",0,0],["Thompson (2005) describes a feasibility study as a process that:",["Raises capital from investors","Registers a company with CAC","Assesses costs and benefits of alternatives","Hires and trains new staff"],2,"It identifies problems and opportunities and defines successful outcomes.","Feasibility = weigh options.",0,0],["The executive summary is:",["Written first, presented last","Written and presented first","Written and presented last","Written last, presented first"],3,"It runs to a maximum of one page.","Last written, first read.",0,1],["The maximum length of an executive summary is:",["Two pages","Ten pages","Five pages","One page"],3,"The book sets one page.","Summary = 1 page.",0,1],["Which is a component of a feasibility study?",["Competition","Tax return","Board minutes","Staff payroll"],0,"It also covers product, technology, market, industry and business model.","Feasibility includes competition.",0,1],["The \"final findings and recommendations\" part covers viability of:",["Financial and exit viability only","Market, technical, business model, management, financial and exit","Technical and legal viability only","Market and financial viability only"],1,"These areas are tested for viability.","Findings = all models.",0,1],["A business plan is often called a:",["Licence","Road map","Contract","Balance sheet"],1,"It describes a business opportunity.","Plan = road map.",0,2],["Kuratko and Hodgetts (1998) say a business plan tells investors:",["Only the product to be sold","Only the name of the owner","Only the profit it expects to make","All events likely to affect the venture"],3,"It is written for investors and financial sources.","Plan = for investors.",0,2],["Which event can spur a full business plan (Cagan, 2006)?",["Hiring a cleaner","Paying a bill","Launching a new business","Changing office hours"],2,"Others include growth, new markets, new product and buying a business.","Plan triggers: launch, growth, expand.",0,2],["How many principles of a good plan does the book list?",["Six","Four","Three","Five"],1,"They are explicit, intelligible, flexible and written.","Principles = 4.",0,3],["A plan that can accept change is:",["Flexible","Intelligible","Explicit","Written"],0,"Flexible means capable of accepting change.","Flexible = changes.",0,3],["A plan where all steps are spelled out is:",["Intelligible","Flexible","Explicit","Written"],2,"Explicit means all steps are stated.","Explicit = all steps.",0,3],["Which is NOT a principle of a good plan?",["Intelligible","Explicit","Profitable","Written"],2,"The four are explicit, intelligible, flexible and written.","E-I-F-W only.",0,3],["Which is a component of a written business plan?",["Share prices","Tax refund","Court orders","The business idea"],3,"The plan starts with the business idea and the entrepreneurs.","Plan starts with idea.",0,4],["Capital needs and financial viability belong under:",["Financial information","Business organisation","Management and operations","The market"],0,"Financial information also covers sources and cost of finance.","Capital = financial.",0,4],["Market research and competitive position belong under:",["Business objectives","The market","Financial information","Business organisation"],1,"The market section includes the marketing programme.","Research = market.",0,4],["Legal form, licences and premises belong under:",["Business organisation","The market","Business objectives","Financial information"],0,"Business organisation covers these items.","Legal form = organisation.",0,4]]},{"t":"Sources of Business Finance","s":["Broad Sources of Funds","Short-Term Finance","Medium-Term Finance","Long-Term Finance","SME Lending Data"],"q":[["The three broad sources of funds are:",["Personal, bank and government","Internal, bank and shares","Family, friends and bank only","Personal and family, internal, external"],3,"External sources split into short, medium and long term.","Three = personal/family, internal, external.",0,0],["Retained profits and provisions are:",["External sources","Internal sources","Personal sources","Government sources"],1,"Internal sources are for an existing venture only.","Retained profit = internal.",0,0],["Personal savings and loans from friends are:",["Long-term sources of finance","Personal and family sources","Internal sources of a firm","Bank loans and overdrafts"],1,"They are the first source for most starters.","Savings = personal.",0,0],["Short-term finance matures in:",["Over twenty years","Two to five years","Five to ten years","Less than one year"],3,"Short-term is under one year.","Short = under 1 year.",0,1],["Trade credit is usually paid within:",["1 to 2 years","10 years","30 to 90 days","2 to 5 years"],2,"Open account credit is paid in 30 to 90 days.","Trade credit = 30-90 days.",0,1],["Which is a short-term source of finance?",["Hire purchase","Mortgage","Bank overdraft","Debenture"],2,"Overdraft facilities are short term.","Overdraft = short.",0,1],["A letter of credit is an example of a loan from:",["Acceptance houses","Mortgage banks","Finance companies","Credit unions"],0,"Acceptance houses are short-term lenders in the book.","Letter of credit = acceptance house.",0,1],["Medium-term finance runs for:",["Over twenty years","Two to five years","Under one year","Ten days"],1,"The book gives two to five years.","Medium = 2 to 5 years.",0,2],["Which is a medium-term source?",["Debenture","Trade credit","Overdraft","Hire purchase"],3,"Ownership passes after the final instalment.","Hire purchase = medium.",0,2],["Credit unions are known to be:",["For-profit with high interest","Traded like shares on a market","Non-profit with lower interest than banks","Owned by the government"],2,"They charge less interest than banks.","Credit union = cheap, non-profit.",0,2],["Equipment leasing is also described as:",["Rent","Mortgage","Purchase","Gift"],0,"The book calls leasing \"rent\".","Leasing = rent.",0,2],["Finance companies are asset-based lenders that charge:",["Lower interest than banks","Higher interest than banks","No interest","Interest only at year end"],1,"They lend against assets.","Finance company = higher interest.",0,2],["Equity finance has:",["Repayment secured by collateral","A fixed repayment every year","No share of ownership at all","No repayment obligation but shares ownership"],3,"Shareholders' funds do not have to be repaid.","Equity = no repayment.",0,3],["A secured debenture is backed by:",["Shares","Collateral","Government","Earnings only"],1,"The lender has a right of lien.","Secured = collateral.",0,3],["An unsecured debenture gives the holder a claim on:",["Equipment","Collateral","Earnings only","Land"],2,"It has no pledged collateral.","Unsecured = earnings.",0,3],["In liquidation, debenture holders are paid:",["Before preference shareholders","After preference shareholders","Last of all","Together with ordinary shareholders"],0,"Debenture holders rank first.","Debenture before preference.",0,3],["Mortgage financing is for:",["Landed property","Stock","Wages","Advertising"],0,"It can run for over 20 years.","Mortgage = land, 20+ years.",0,3],["Of the loans disbursed by DMBs from 1992 to 2001, SMEs got only:",["14%","30%","50%","5%"],0,"The other sectors took 86%.","SME = 14%.",0,4],["Which is a reason for low SME lending?",["High profits","Low interest rates","Lack of collateral","Too many banks"],2,"The book also lists high interest, poor track record and poor proposals.","SME reason = no collateral.",0,4]]},{"t":"Ethics in Entrepreneurship","s":["Meaning and Key Concepts","Ethics Policies and History","Why Ethics Matters","Shareholder and Stakeholder Views"],"q":[["Ethics is a system of:",["Tax rules and filing duties","Business laws and penalties","Moral principles governing conduct","Trade customs of a market"],2,"The book cites Microsoft Encarta (2008).","Ethics = moral principles.",0,0],["Rights and duties between a company and its host society is:",["Fiduciary responsibility","Corporate governance","Corporate manslaughter","Corporate social responsibility"],3,"CSR is company and society.","CSR = society.",0,0],["Rights and duties between a company and its shareholders is:",["Fiduciary responsibility","International ethics","Corporate governance","Corporate social responsibility"],0,"Fiduciary is company and shareholders.","Fiduciary = shareholders.",0,0],["Corporate governance is concerned with the quality of:",["Profit","Leadership","Advertising","Products"],1,"It focuses on leadership of organisations.","Governance = leadership.",0,0],["A broad and general ethics policy is called an:",["Ethics contract","Ethics code","Ethics audit","Ethics statement"],3,"The detailed version is the ethics code.","General = statement.",0,1],["A detailed policy with specific behaviour rules is an:",["Ethics vision","Ethics note","Ethics statement","Ethics code"],3,"It lists specific behavioural requirements.","Detailed = code.",0,1],["Business ethics as a field emerged in the:",["1950s","1930s","1970s","1990s"],2,"The international branch came later.","Business ethics = 1970s.",0,1],["International business ethics emerged in the:",["1950s","1930s","1970s","Late 1990s"],3,"It stresses cultural relativity of ethical values.","International = late 1990s.",0,1],["How many reasons for ethics in business did Ogundele (2011) give?",["Three","Four","Five","Six"],1,"They are competition, legitimacy, deterring white-collar crime and trust.","Reasons = 4.",0,2],["Which is a reason ethics is necessary in business?",["To reduce staff","To promote trust","To raise prices","To avoid tax"],1,"Ethics also deters white-collar crime.","Ethics = trust.",0,2],["Ethics helps a business to deter:",["White-collar crime","Competition","Customers","Growth"],0,"It is one of the four reasons.","Deter = white-collar crime.",0,2],["Which scholar said a firm's main purpose is to maximise shareholder returns?",["David McClelland","Henry Mintzberg","Milton Friedman","Alfred Marshall"],2,"Friedman was a leading proponent of this view.","Friedman = shareholders first.",0,3],["Stakeholder theory says a business owes duties to:",["Owners and top managers only","The government and regulators","Employees, customers, vendors and society","Shareholders and owners only"],2,"It goes beyond just obeying the law.","Stakeholder = everyone affected.",0,3],["Some scholars adapt which theory to give stakeholders a voice in governance?",["Social contract theory","Exchange theory","Need theory","Balance theory"],0,"The book says they adapt social contract theory.","Voice = social contract.",0,3]]},{"t":"Some Successful Nigerian Entrepreneurs","s":["Evolution of Contemporary Nigeria","Development of Entrepreneurship in Nigeria","Entrepreneur vs Social Entrepreneur","Notable Nigerian Entrepreneurs","Notable Social Entrepreneurs","Peculiarities of the Nigerian Business Environment"],"q":[["Present-day Nigeria was amalgamated by the British in:",["1914","1960","1900","1999"],0,"The amalgamation is linked to Lugard.","Amalgamation = 1914.",0,0],["Nigeria gained independence in:",["1999","1960","1966","1914"],1,"It followed about 60 years of British rule.","Independence = 1960.",0,0],["Nigeria moved from three regions to twelve states in:",["1976","1960","1967","1991"],2,"Nineteen states followed in 1976.","12 states = 1967.",0,0],["The number of states created in 1976 was:",["12","21","19","36"],2,"Nigeria now has 36 states plus the FCT.","1976 = 19 states.",0,0],["Nigeria's commercial capital is:",["Abuja","Port Harcourt","Kano","Lagos"],3,"Abuja is the political capital.","Commercial = Lagos.",0,0],["Port Harcourt is known as Nigeria's:",["Political capital","Oil capital","Groundnut capital","Commercial capital"],1,"The book calls it the oil capital.","Port Harcourt = oil.",0,0],["Democratic rule in the current era began when Obasanjo was sworn in on:",["October 1, 1960","May 29, 1993","May 29, 1999","January 15, 1966"],2,"The date is now celebrated as Democracy Day.","1999 = Obasanjo.",0,0],["Nigeria's area is:",["923,300 sq km","1,000,000 sq km","500,000 sq km","650,000 sq km"],0,"The book says it is the fourth largest in West Africa.","Area = 923,300.",0,0],["Modern entrepreneurship in Nigeria began with:",["Independence","Military rule","Oil discovery","Colonisation"],3,"Colonialists used Nigerians as middlemen.","Start = colonisation.",0,1],["Which company hindered indigenous entrepreneurship by dealing directly with producers?",["United African Company","Chisco","Dangote Group","Globacom"],0,"UAC cut out Nigerian middlemen.","UAC cut out middlemen.",0,1],["Whose free education policy widened the pool of potential entrepreneurs?",["Michael Okpara","Obafemi Awolowo","Sani Abacha","Ahmadu Bello"],1,"It was the Western Nigeria policy.","Free education = Awolowo.",0,1],["Which is a support institution for entrepreneurship in Nigeria?",["Nigerian Ports Authority Board","Nigerian Stock Exchange","National Poverty Alleviation Programme","Central Bank of Nigeria"],2,"The list also has NDE, People's Bank and FUSSI.","NAPEP, NDE, FUSSI, People's Bank.",0,1],["FUSSI stands for Funds for:",["Social Support Initiatives","Starting Small Investments","Small-Scale Industries","Self-employed Staff"],2,"It is a support institution in the book.","FUSSI = small-scale industries.",0,1],["A social entrepreneur's success is measured by:",["Profit made alone","Size of the staff employed","Social impact made alone","Profit and societal impact"],3,"Osalor (2010) says both count.","Social = profit + impact.",0,2],["Social entrepreneurs bear extra risk, which includes:",["Only market and stock risk","Social activism and passion","Only tax and legal risk","No extra risk at all"],1,"They add social activism and passion to financial security.","Social = extra risk.",0,2],["Aliko Dangote's group is known for sugar, cement and:",["Banking","Mobile phones","Flour","Cars"],2,"It also covers salt and real estate.","Dangote = sugar, cement, flour.",0,3],["Mike Adenuga's Consolidated Oil was the first indigenous company to strike crude, in:",["December 1991","1999","2002","1981"],0,"Adenuga was born in 1953.","Consolidated = Dec 1991.",0,3],["Globacom won the Second National Operator licence in:",["2004","1991","1999","2002"],3,"His first telecom attempt in 1999 failed after revocation.","Glo = 2002.",0,3],["Chisco Group is linked to:",["Paul Okafor","Chidi Anyaegbu","Aliko Dangote","Razaq Okoya"],1,"Chisco is a transport company.","Chisco = Anyaegbu.",0,3],["Obat Oil and Petroleum, set up in 1981, belongs to:",["Mike Adenuga","Razaq Okoya","Chris Ejiofor","Obateru Akinruntan"],3,"It has the largest private oil depot and jetty in Africa.","Obat = Akinruntan.",0,3],["Eleganza Industries is linked to:",["Aliko Dangote","Razaq Okoya","Paul Okafor","Poly Emenike"],1,"He is a notable Nigerian entrepreneur in the book.","Eleganza = Okoya.",0,3],["DMT Mobile Toilets was founded in 1999 by:",["Cletus Olebune","Joachim Ezeji","Ada Onyejike","Durojaiye Isaac"],3,"Its slogan was \"Shit business is Good Business\".","DMT = Durojaiye.",0,4],["The Girl Child Art Foundation was set up by:",["Ada Onyejike","Joachim Ezeji","Durojaiye Isaac","Rochas Okorocha"],0,"It empowers young women aged 8 to 25.","GCAF = Ada.",0,4],["RAWDP stands for Rural Africa Water Development Project and was founded by:",["Joachim Ezeji","Cletus Olebune","Gabriel Ogunjimi","Ada Onyejike"],0,"It started in 2000.","RAWDP = Ezeji.",0,4],["Landmark Internship International is linked to:",["Rochas Okorocha","Durojaiye Isaac","Cletus Olebune","Gabriel Uriel Ogunjimi"],3,"It deals with IT and employment.","Landmark = Ogunjimi.",0,4],["Nigeria's economy is described as:",["Mixed","Fully capitalist","Fully socialist","Barter"],0,"It sits between free-market and planned systems.","Nigeria = mixed.",0,5],["Which is a peculiar problem of the Nigerian business environment?",["Few banks","Small population","Infrastructural problems","Too much rain"],2,"It also lists financial problems, low business ethics and political instability.","Peculiar = infrastructure, finance, ethics, instability.",0,5]]},{"t":"Economic Development through Entrepreneurship","s":["Stages of Economic Development","Types of Entrepreneurial Activity","Roles in Economic Development","Vision 2020 and NEEDS","Regional Pioneers"],"q":[["Porter, Sachs and MacArthur (2002) gave how many stages of economic development?",["Three","Four","Five","Two"],0,"They are factor-driven, efficiency-driven and innovation-driven.","Stages = 3.",0,0],["A large agricultural sector with necessity-driven self-employment marks the:",["Service economy","Efficiency-driven economy","Factor-driven economy","Innovation-driven economy"],2,"Surplus labour moves out of agriculture.","Factor = farm.",0,0],["Industrialisation and economies of scale mark the:",["Efficiency-driven economy","Innovation-driven economy","Barter economy","Factor-driven economy"],0,"Small-scale manufacturing replaces necessity activity.","Efficiency = industry.",0,0],["Entrepreneurs as \"agents of creative destruction\" appear in the:",["Efficiency-driven economy","Innovation-driven economy","Subsistence economy","Factor-driven economy"],1,"A wealthy economy shifts to services.","Innovation = creative destruction.",0,0],["Necessity-driven self-employment is common at:",["Only in oil states","Low stages of development","Only in services","High stages of development"],1,"Opportunity-driven activity rises with development.","Necessity = low stage.",0,1],["Opportunity-driven entrepreneurship is found at:",["Higher stages of development","Only farming areas","Only small villages","The lowest stage"],0,"It rises as the economy matures.","Opportunity = high stage.",0,1],["Which is a role of entrepreneurship in economic development?",["Higher unemployment","Importing all raw materials","Lower government revenue","Employment creation"],3,"It also reduces rural-urban drift and crime.","Role = jobs.",0,2],["Entrepreneurship increases government revenue through:",["Gifts and donations","Fines and court fees only","Import duty and fines only","VAT and company income tax"],3,"Employee income tax also counts.","Revenue = VAT, company tax, PAYE.",0,2],["Which ethics code defines guiding values and shared accountability?",["Integrity-based","Compliance-based","Penalty-based","Legal-based"],0,"Compliance codes prevent unlawful behaviour through control and penalties.","Integrity = values.",0,2],["Which ethics code prevents unlawful behaviour through control and penalties?",["Social-based","Integrity-based","Compliance-based","Value-based"],2,"Compliance relies on rules and punishment.","Compliance = control.",0,2],["Entrepreneurs support larger industries as:",["Importers of finished goods","Suppliers of raw materials","Regulators of local markets","Owners of commercial banks"],1,"Small firms feed larger ones.","Small feeds big.",0,2],["NEEDS stands for:",["National Enterprise Empowerment and Development System","National Economic Empowerment and Development Strategy","National Employment and Economic Development Scheme","Nigerian Economic Empowerment and Development Strategy"],1,"It came into operation in 2004.","NEEDS = 2004.",0,3],["NEEDS came into operation in:",["1999","2020","2000","2004"],3,"Vision 2020 is a separate target.","NEEDS = 2004.",0,3],["Vision 2020 aims to place Nigeria among the:",["Top 20 industrialised nations by 2020","Top 10 oil producers by 2020","Top 50 economies by 2010","Top 5 in Africa by 2020"],0,"2020 is the target year, not the launch year.","Vision 2020 = top 20 by 2020.",0,3],["Which is a goal of NEEDS?",["Tax increase","Debt growth","Import growth","Wealth creation"],3,"Others are employment generation, poverty reduction and values reorientation.","NEEDS = wealth, jobs, poverty, values.",0,3],["How many pillars does the NEEDS macroeconomic framework have?",["Four","Three","Two","Five"],1,"They are empowering people, promoting private enterprise and changing how government works.","NEEDS pillars = 3.",0,3],["Which leader built Odu'a Group and the first TV station in Africa?",["Michael Okpara","Nnamdi Azikiwe","Ahmadu Bello","Obafemi Awolowo"],3,"He funded it with cocoa revenue in the West.","Awolowo = West = cocoa.",0,4],["Ahmadu Bello's development was funded mainly by:",["Cocoa","Palm produce","Groundnuts and cotton","Coal"],2,"He led the Northern Region.","Bello = North = groundnut/cotton.",0,4],["Michael Okpara led development in the:",["Eastern Region","Northern Region","Western Region","Mid-West"],0,"His funding came from palm produce and coal.","Okpara = East = palm/coal.",0,4],["Which bank did Ahmadu Bello's government set up?",["African Continental Bank","Odu'a Bank","Bank of the North","Eastern Bank"],2,"He also set up New Nigerian Newspapers.","Bello = Bank of the North.",0,4],["African Continental Bank is linked to:",["Obafemi Awolowo","Ahmadu Bello","Michael Okpara","Sani Abacha"],2,"It came with the Eastern Nigerian Corporation.","ACB = Okpara.",0,4]]}];
+try{ if(window.IndigeneHistory&&IndigeneHistory.registerStruct) IndigeneHistory.registerStruct('ENT101',{title:'ENT 101 \u00b7 Entrepreneurship',chapters:DATA.map(function(c){return {t:c.t,n:c.q.length,s:c.s};})}); }catch(e){}
+const SUBJECT_KEY = 'ent101';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1800); }
+
+// flatten
+const ALL = [];
+DATA.forEach((c,ci)=>c.q.forEach((q,qi)=>ALL.push({id:ci+'_'+qi, ch:ci, stem:q[0], opts:q[1], ans:q[2], exp:q[3], hack:q[4], trap:q[5], sec:q[6]})));
+const TOTAL = ALL.length;
+// questions already served in earlier runs (kept per browser) so new runs favour fresh ones
+let SEEN = new Set();
+try{ SEEN = new Set(JSON.parse(localStorage.getItem('ent101_seen')||'[]')); }catch(e){}
+function saveSeen(){ try{ localStorage.setItem('ent101_seen', JSON.stringify([...SEEN])); }catch(e){} }
+// shuffle, then put unseen questions first (random order inside each half)
+function freshFirst(arr){ const a=shuffle(arr.slice()); return a.filter(q=>!SEEN.has(q.id)).concat(a.filter(q=>SEEN.has(q.id))); }
+const FULL_N = Math.min(500, TOTAL), HALF_N = TOTAL>=500 ? 250 : Math.round(TOTAL/2);
+// fair sample: every chapter is represented in proportion to its size
+function sampleFair(n){
+  const groups = DATA.map((_,ci)=>freshFirst(ALL.filter(q=>q.ch===ci)));
+  const exact = groups.map(g=>g.length*n/TOTAL);
+  const take = exact.map(Math.floor);
+  let left = n - take.reduce((a,b)=>a+b,0);
+  exact.map((x,i)=>[x-Math.floor(x),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{ if(left>0 && take[i]<groups[i].length){ take[i]++; left--; } });
+  let out=[]; groups.forEach((g,i)=>{ out=out.concat(g.slice(0,take[i])); });
+  return shuffle(out);
+}
+
+// optional access gate (cbt-lock.js) — never breaks the quiz if missing
+let lock = null;
+async function loadLock(){
+  try { lock = await import('../cbt-lock.js'); }
+  catch(e){ try { lock = await import('/cbt-lock.js'); } catch(e2){ lock = null; } }
+}
+const lockReady = loadLock();
+
+const PASS = 50;
+const grade = p => p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F';
+let mode = 'full', sel = new Set(), secSel = null, run = [], idx = 0, weakSpec = null;
+// '2.3,4.all' = chapter 2 section 3, whole of chapter 4 (sent from the History tab or the result screen)
+function specPool(spec){
+  const want = spec.map(s=>s.split('.')); let pool = [];
+  want.forEach(([c,s])=>{ const ci=(+c)-1; if(!DATA[ci]) return;
+    pool = pool.concat(ALL.filter(q=>q.ch===ci && (s==='all' || q.sec===(+s)-1))); });
+  pool = shuffle(pool); return pool.length>50 ? pool.slice(0,50) : pool;
+}
+
+function renderSetup(){
+  const quick = Math.min(50, TOTAL), half = HALF_N;
+  const cards = [
+    ['full', FULL_N, 'Full CBT'],
+    ['quick', quick, 'Quick Drill'],
+    ['half', half, 'Half Run'],
+    ['session', '🎯', 'By Chapter']
+  ];
+  $('runs').innerHTML = cards.map(c=>`<button class="run${c[0]===mode?' sel':''}" data-m="${c[0]}"><span class="n">${c[1]}</span>${c[2]}</button>`).join('');
+  document.querySelectorAll('.run').forEach(b=>b.onclick=()=>{ mode=b.dataset.m; renderSetup(); });
+  $('chaps').classList.toggle('show', mode==='session');
+  $('chapList').innerHTML = DATA.map((c,i)=>{
+    const on = sel.has(i);
+    let x = `<div class="chap${on?' on':''}" data-i="${i}"><span class="box" style="border-radius:50%">${on?'●':''}</span><span class="nm">Ch ${i+1}. ${esc(c.t)}</span><span class="ct">${c.q.length}</span></div>`;
+    if(on){
+      x += '<div class="secs"><button class="sec'+(secSel===null?' on':'')+'" data-s="all">Whole chapter · '+c.q.length+'</button>'
+        + c.s.map((sn,si)=>'<button class="sec'+(secSel===si?' on':'')+'" data-s="'+si+'">'+esc(sn)+' · '+c.q.filter(q=>q[6]===si).length+'</button>').join('') + '</div>';
+    }
+    return x;
+  }).join('');
+  document.querySelectorAll('.chap').forEach(d=>d.onclick=()=>{ const i=+d.dataset.i; sel.clear(); sel.add(i); secSel=null; renderSetup(); });
+  document.querySelectorAll('.sec').forEach(b=>b.onclick=()=>{ secSel = b.dataset.s==='all' ? null : +b.dataset.s; renderSetup(); });
+}
+
+function makeItem(q){
+  return { q, perm: shuffle([0,1,2,3]), pick: null };   // perm = order of original options shown 
+}
+
+async function startQuiz(){
+  if(mode==='session' && sel.size===0){ toast('Pick a chapter first'); return; }
+  try{ await lockReady; }catch(e){}
+  if(lock && typeof lock.checkCbtAccess==='function'){
+    try{
+      const r = await lock.checkCbtAccess(SUBJECT_KEY);
+      if(r && r.blocked){ lock.renderCbtLockScreen($('app'), r.reason); return; }
+    }catch(e){}
+  }
+  let pool;
+  if(mode==='full') pool = sampleFair(FULL_N);
+  else if(mode==='quick') pool = freshFirst(ALL).slice(0,Math.min(50,TOTAL));
+  else if(mode==='half') pool = sampleFair(HALF_N);
+  else if(mode==='weak') pool = specPool(weakSpec||[]);
+  else {
+    pool = [];
+    [...sel].sort((a,b)=>a-b).forEach(ci=>{ pool = pool.concat(ALL.filter(q=>q.ch===ci && (secSel===null || q.sec===secSel))); });
+  }
+  if(!pool.length){ toast('Nothing to practise there'); return; }
+  begin(pool);
+}
+
+let startedAt = 0, isRetry = false, saved = false;
+let reviewing=false;
+function begin(pool, retry){
+  reviewing=false; $('finishBtn').textContent='Finish & see score';
+  run = pool.map(makeItem); idx = 0; startedAt = Date.now(); isRetry = !!retry; saved = false;
+  if(!retry){ pool.forEach(q=>SEEN.add(q.id)); if(SEEN.size >= TOTAL) SEEN = new Set(); saveSeen(); }
+  $('setup').classList.add('hidden'); $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  window.scrollTo(0,0);
+  renderQ();
+}
+
+function counts(){
+  let ok=0,no=0;
+  run.forEach(it=>{ if(it.pick!==null){ it.pick===it.q.ans ? ok++ : no++; } });
+  return {ok,no};
+}
+
+function renderQ(){
+  const it = run[idx], q = it.q, c = counts();
+  $('qpos').textContent = `Q ${idx+1} / ${run.length}`;
+  $('sOk').textContent = c.ok; $('sNo').textContent = c.no;
+  $('bar').style.width = ((c.ok+c.no)/run.length*100)+'%';
+  $('chtag').textContent = `Ch ${q.ch+1} · ${DATA[q.ch].t}`;
+  $('qtext').textContent = q.stem;
+  const L = ['A','B','C','D'];
+  const answered = it.pick!==null || reviewing;
+  $('opts').innerHTML = it.perm.map((oi,pos)=>{
+    let cls='opt';
+    if(answered){ cls+=' locked'; if(oi===q.ans) cls+=' correct'; else if(oi===it.pick) cls+=' wrong'; }
+    return `<button class="${cls}" data-oi="${oi}"><span class="l">${L[pos]}</span><span>${esc(q.opts[oi])}</span></button>`;
+  }).join('');
+  if(!answered) document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(+b.dataset.oi));
+  renderFb();
+  $('prev').disabled = idx===0;
+  $('next').textContent = idx===run.length-1 ? (reviewing?'Done ▶':'Finish ▶') : 'Next ▶';
+}
+
+function renderFb(){
+  const it = run[idx], q = it.q;
+  if(it.pick===null && !reviewing){ $('fb').innerHTML=''; return; }
+  const good = it.pick===q.ans;
+  const pos = 'ABCD'[it.perm.indexOf(q.ans)];
+  $('fb').innerHTML = `<div class="fb">
+    ${q.trap?'<span class="trap">⚠ TRAP QUESTION</span>':''}
+    <div class="v ${good?'ok':'no'}">${good?'✅ Correct!':it.pick===null?'⏭ Skipped — the answer is '+pos:'❌ Not quite — the answer is '+pos}</div>
+    <p class="ex">${esc(q.exp)}</p>
+    <div class="hk">⏱ Speed hack: ${esc(q.hack)}</div>
+  </div>`;
+}
+
+function choose(oi){
+  const it = run[idx];
+  if(it.pick!==null || reviewing) return;
+  it.pick = oi;
+  try{ if(lock && typeof lock.recordCbtQuestionUsed==='function') lock.recordCbtQuestionUsed(); }catch(e){}
+  renderQ();
+}
+
+$('prev').onclick=()=>{ if(idx>0){ idx--; renderQ(); window.scrollTo(0,0);} };
+$('next').onclick=()=>{ if(idx<run.length-1){ idx++; renderQ(); window.scrollTo(0,0);} else if(reviewing) backToResult(); else finish(); };
+function startReview(){
+  reviewing=true; idx=0;
+  $('finishBtn').textContent='Back to result';
+  $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  renderQ(); window.scrollTo(0,0);
+}
+function backToResult(){ reviewing=false; $('finishBtn').textContent='Finish & see score'; finish(); }
+$('finishBtn').onclick=()=>{
+  if(reviewing){ backToResult(); return; }
+  const left = run.filter(i=>i.pick===null).length;
+  if(left===0){ finish(); return; }
+  $('cmsg').textContent = left+' question(s) not answered yet. Finish anyway?';
+  $('cov').classList.add('show');
+};
+$('cYes').onclick=()=>{ $('cov').classList.remove('show'); finish(); };
+$('cNo').onclick=()=>$('cov').classList.remove('show');
+
+function openMap(){
+  $('map').innerHTML = run.map((it,i)=>{
+    let c=''; if(it.pick!==null) c = it.pick===it.q.ans?'ok':'no';
+    if(i===idx) c+=' cur';
+    return `<button class="${c}" data-i="${i}">${i+1}</button>`;
+  }).join('');
+  document.querySelectorAll('#map button').forEach(b=>b.onclick=()=>{ idx=+b.dataset.i; $('ov').classList.remove('show'); renderQ(); window.scrollTo(0,0); });
+  $('ov').classList.add('show');
+}
+$('mapBtn').onclick=openMap;
+$('closeMap').onclick=()=>$('ov').classList.remove('show');
+$('ov').onclick=e=>{ if(e.target.id==='ov') $('ov').classList.remove('show'); };
+
+function saveHistory(c){
+  if(saved || isRetry) return;
+  const answered = c.ok + c.no;
+  if(answered<=0) return;
+  saved = true;
+  try{
+    if(window.IndigeneHistory && typeof window.IndigeneHistory.save==='function'){
+      const topics = {};
+      run.forEach(it=>{
+        if(it.pick===null) return;
+        const k = 'Ch '+(it.q.ch+1)+' · '+DATA[it.q.ch].s[it.q.sec];
+        if(!topics[k]) topics[k]=[0,0];
+        topics[k][1]++; if(it.pick===it.q.ans) topics[k][0]++;
+      });
+      window.IndigeneHistory.save({course:'ENT101', mode:'cbt', correct:c.ok, total:answered,
+        secs:Math.round((Date.now()-startedAt)/1000), topics:topics});
+    }
+  }catch(e){}
+}
+function finish(){
+  const c = counts(), n = run.length, un = n-c.ok-c.no;
+  const pct = n? Math.round(c.ok/n*100):0;
+  const msg = pct>=70?'Outstanding. You are ready for the exam. 🔥':pct>=50?'You passed. Keep pushing higher and clear every section.':pct>=40?'Close. Revise the failed sections and run again.':'Keep going. Read the failed sections again, then retry.';
+  saveHistory(c);
+  const chs = {}, secs = {};
+  run.forEach(it=>{
+    const q = it.q, good = it.pick===q.ans;
+    const a = chs[q.ch] || (chs[q.ch] = {ok:0,n:0}); a.n++; if(good) a.ok++;
+    const k = q.ch+'_'+q.sec; const b = secs[k] || (secs[k] = {ch:q.ch,sec:q.sec,ok:0,n:0}); b.n++; if(good) b.ok++;
+  });
+  const chKeys = Object.keys(chs).map(Number).sort((x,y)=>x-y);
+  const pc = x => Math.round(x.ok/x.n*100);
+  const need = ci => Math.max(8, Math.ceil(DATA[ci].q.length*0.4));
+  const rows = chKeys.map(ci=>{
+    const a = chs[ci], s = pc(a), full = a.n>=need(ci), ok = s>=PASS;
+    const sr = Object.values(secs).filter(x=>x.ch===ci).sort((x,y)=>x.sec-y.sec).map(x=>`<div class="sr"><span>${esc(DATA[ci].s[x.sec])}</span><b class="${pc(x)>=PASS?'pass':'fail'}">${x.ok}/${x.n} · ${pc(x)}%</b></div>`).join('');
+    return `<details class="cres"${(full&&!ok)?' open':''}><summary><span>Ch ${ci+1} · ${esc(DATA[ci].t)}</span><b class="${!full?'na':ok?'pass':'fail'}" style="white-space:nowrap">${s}/100 · ${grade(s)} · ${!full?'PRACTICE':ok?'PASS ✔':'FAIL ✖'}</b></summary>${sr}</details>`;
+  }).join('');
+  const weak = Object.values(secs).filter(x=>x.n>=2 && pc(x)<PASS).sort((x,y)=>x.ch-y.ch||x.sec-y.sec);
+  const revise = weak.length ? `<div class="revise"><b>Revise these sections</b>${weak.map(x=>`<div class="sr"><span>Ch ${x.ch+1} · ${esc(DATA[x.ch].s[x.sec])}</span><b class="fail">${pc(x)}%</b></div>`).join('')}</div>` : '<p class="msg pass"><b>Every section in this run is at pass mark or above.</b></p>';
+  const fullKeys = chKeys.filter(ci=>chs[ci].n>=need(ci));
+  const passedN = fullKeys.filter(ci=>pc(chs[ci])>=PASS).length;
+  const wrong = run.filter(it=>it.pick!==null && it.pick!==it.q.ans);
+  $('quiz').classList.add('hidden'); $('result').classList.remove('hidden');
+  window.scrollTo(0,0);
+  $('result').innerHTML = `
+    <h2>Result</h2>
+    <div class="big" style="font-size:2.2rem">${pct}/100 · ${grade(pct)}</div>
+    <div class="stats"><span>Correct <b>${c.ok}</b></span><span>Wrong <b>${c.no}</b></span><span>Skipped <b>${un}</b></span><span>Total <b>${n}</b></span></div>
+    <p class="msg"><b class="${pct>=PASS?'pass':'fail'}">${pct>=PASS?'PASS':'FAIL'}</b> · pass mark ${PASS}/100 · ${fullKeys.length?'chapters passed in this run '+passedN+'/'+fullKeys.length:'practice run, no chapter pass or fail'}</p>
+    <p class="msg">${msg}</p>
+    <h2 style="margin-top:16px">Score per chapter</h2>
+    ${rows}
+    <p class="msg" style="font-size:.8rem;color:var(--mute)">PRACTICE means this run had under 40% of that chapter's questions, so it shows a score but no pass or fail.</p>
+    ${revise}
+    ${weak.length?'<button class="btn" id="weakBtn">Practice these weak sections ('+weak.length+')</button>':''}
+    <button class="btn" id="reviewBtn">Review answers${wrong.length?' ('+wrong.length+' wrong)':''}</button>
+    <a class="btn ghost" style="text-align:center;text-decoration:none" href="/#history=ENT101">My history</a>
+    ${wrong.length?`<button class="btn" id="retryWrong">Retry wrong answers (${wrong.length})</button>`:''}
+    <button class="btn ghost" id="newRun">New run</button>
+    `;
+  $('reviewBtn').onclick=startReview;
+  if($('weakBtn')) $('weakBtn').onclick=()=>{ weakSpec=weak.map(x=>(x.ch+1)+'.'+(x.sec+1)); mode='weak'; startQuiz(); };
+  if($('retryWrong')) $('retryWrong').onclick=()=>begin(shuffle(wrong.map(w=>w.q)), true);
+  $('newRun').onclick=()=>{ $('result').classList.add('hidden'); $('setup').classList.remove('hidden'); renderSetup(); window.scrollTo(0,0); };
+}
+
+document.addEventListener('keydown',e=>{
+  if($('quiz').classList.contains('hidden') || $('ov').classList.contains('show') || $('cov').classList.contains('show')) return;
+  const k=e.key.toLowerCase();
+  if('abcd'.includes(k) && k.length===1){ const it=run[idx]; if(it.pick===null){ choose(it.perm['abcd'.indexOf(k)]); } }
+  else if(e.key==='ArrowRight') $('next').click();
+  else if(e.key==='ArrowLeft') $('prev').click();
+});
+
+$('startBtn').onclick=startQuiz;
+renderSetup();
+try{
+  const pr = new URLSearchParams(location.search).get('practice');
+  if(pr && /^[\d.,all]+$/.test(pr)){ weakSpec = pr.split(',').filter(Boolean); mode='weak'; startQuiz(); }
+}catch(e){}
+</script>
+</body>
+</html>
