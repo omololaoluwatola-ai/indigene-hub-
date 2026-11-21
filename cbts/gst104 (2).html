@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/protect.js"></script>
+<script src="/history.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INDIGENE — GST 110 Nigerian People and Culture CBT</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120a07; --bg2:#1a0f0a; --card:#1c110b; --line:#4a2a17;
+  --fire:#ff6a1a; --fire2:#d4400f; --gold:#ffb347; --text:#f3e7dc; --mute:#b49a88;
+  --ok:#2ecc71; --okbg:rgba(46,204,113,.12); --bad:#ff4d4d; --badbg:rgba(255,77,77,.12);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at 50% -10%,#3a1a0b 0%,var(--bg) 55%) fixed;
+  color:var(--text);font-family:'Exo 2',system-ui,sans-serif;min-height:100vh;
+  padding:20px 16px 40px;line-height:1.5;
+}
+#app{max-width:720px;margin:0 auto}
+h1.brand{font-family:'Orbitron',sans-serif;font-weight:900;color:var(--fire);text-align:center;
+  letter-spacing:.08em;font-size:2.1rem;margin:8px 0 6px;text-shadow:0 0 18px rgba(255,106,26,.35)}
+.sub{font-family:'Orbitron',sans-serif;text-align:center;color:var(--mute);font-size:.9rem;letter-spacing:.06em;margin:0 0 20px}
+.panel{background:linear-gradient(180deg,var(--card),#150c08);border:1px solid var(--line);border-radius:22px;padding:22px 18px}
+.panel h2{font-family:'Orbitron',sans-serif;color:var(--gold);text-align:center;font-size:1.35rem;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.run{background:#150c08;border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;color:var(--text);
+  font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:.15s}
+.run .n{display:block;font-family:'Orbitron',sans-serif;font-weight:700;color:var(--gold);font-size:1.5rem;margin-bottom:2px}
+.run.sel{background:linear-gradient(135deg,var(--fire),var(--fire2));border-color:var(--gold);box-shadow:0 0 16px rgba(255,106,26,.35)}
+.run.sel .n{color:#fff}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;margin-top:18px;cursor:pointer;
+  background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;font-family:'Exo 2',sans-serif;font-weight:700;
+  font-size:1.15rem;letter-spacing:.03em;box-shadow:0 8px 22px rgba(255,106,26,.28)}
+.btn:active{transform:scale(.99)}
+.btn.ghost{background:#150c08;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.foot{color:var(--mute);text-align:center;font-size:.92rem;margin-top:16px}
+.chaps{margin-top:14px;display:none}
+.chaps.show{display:block}
+.chaps .tools{display:flex;gap:8px;margin-bottom:8px}
+.chaps .tools button{flex:1;background:#150c08;color:var(--gold);border:1px solid var(--line);border-radius:10px;padding:8px;font-family:inherit;font-weight:600;cursor:pointer}
+.chap{display:flex;align-items:center;gap:10px;background:#150c08;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.chap.on{border-color:var(--gold);background:#24140c}
+.chap .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#000}
+.chap.on .box{background:var(--gold);border-color:var(--gold)}
+.chap .nm{flex:1;font-size:.98rem}
+.chap .ct{color:var(--gold);font-family:'Orbitron',sans-serif;font-size:.85rem}
+
+/* progress + sections */
+.secs{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px 4px}
+.sec{border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:20px;padding:5px 11px;font-size:.82rem;cursor:pointer;font-family:inherit}
+.sec.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
+details.cres{border:1px solid var(--line);background:#150c08;border-radius:14px;margin-top:10px}
+details.cres>summary{padding:12px 14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;list-style:none}
+details.cres>summary::-webkit-details-marker{display:none}
+.cres .sr,.revise .sr{display:flex;justify-content:space-between;gap:10px;font-size:.9rem}
+.cres .sr{padding:8px 14px;border-top:1px solid var(--line)}
+.revise{border:1px solid var(--bad);background:var(--badbg);border-radius:14px;padding:12px 14px;margin-top:14px}
+.revise .sr{padding:6px 0}
+
+/* quiz */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.92rem;color:var(--mute);margin-bottom:8px}
+.top .sc{font-family:'Orbitron',sans-serif;font-size:.85rem}
+.top .sc b.g{color:var(--ok)} .top .sc b.r{color:var(--bad)}
+.bar{height:6px;background:#2a170d;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--fire),var(--gold));transition:width .25s}
+.chtag{display:inline-block;font-size:.78rem;color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.q{font-size:1.15rem;font-weight:600;margin:0 0 14px;white-space:pre-wrap}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#150c08;border:1.5px solid var(--line);
+  color:var(--text);border-radius:14px;padding:13px 14px;margin-bottom:10px;font-family:inherit;font-size:1.02rem;cursor:pointer}
+.opt .l{flex:none;width:28px;height:28px;border-radius:50%;background:#2a170d;color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.85rem}
+.opt:not(.locked):hover{border-color:var(--fire)}
+.opt.locked{cursor:default}
+.opt.correct{border-color:var(--ok);background:var(--okbg)}
+.opt.correct .l{background:var(--ok);color:#001a0a}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .l{background:var(--bad);color:#2a0000}
+.fb{border:1px solid var(--line);border-left:4px solid var(--gold);background:#1a0f0a;border-radius:12px;padding:12px 14px;margin-top:6px}
+.fb .v{font-weight:700;margin-bottom:6px}
+.fb .v.ok{color:var(--ok)} .fb .v.no{color:var(--bad)}
+.fb .trap{display:inline-block;background:var(--fire);color:#fff;font-family:'Orbitron',sans-serif;font-size:.72rem;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.fb .ex{margin:0 0 8px}
+.fb .hk{color:var(--gold);font-weight:600}
+.nav{display:flex;gap:10px;margin-top:16px}
+.nav button{flex:1;border:1px solid var(--line);background:#150c08;color:var(--text);border-radius:12px;padding:13px 8px;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer}
+.nav button.primary{background:linear-gradient(135deg,var(--fire),var(--fire2));border:0;color:#fff}
+.nav button:disabled{opacity:.35;cursor:default}
+
+/* map */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ov.show{display:flex}
+.ov .box{background:var(--card);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:16px}
+.ov h3{font-family:'Orbitron',sans-serif;color:var(--gold);margin:0 0 10px;font-size:1.05rem}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.map button{height:38px;border-radius:8px;border:1px solid var(--line);background:#150c08;color:var(--mute);font-family:inherit;font-weight:600;cursor:pointer;font-size:.82rem}
+.map button.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.map button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.map button.cur{outline:2px solid var(--gold)}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--mute);margin:10px 0}
+
+/* result */
+.big{font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--gold);text-align:center;margin:6px 0}
+.stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px;color:var(--mute)}
+.stats b{color:var(--text)}
+.msg{text-align:center;color:var(--text);margin:8px 0 6px}
+.rv{border:1px solid var(--line);background:#150c08;border-radius:14px;padding:12px 14px;margin-top:12px}
+.rv .rq{font-weight:600;margin-bottom:6px}
+.rv .you{color:var(--bad)} .rv .cor{color:var(--ok)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#2a170d;border:1px solid var(--gold);color:var(--text);padding:10px 16px;border-radius:12px;font-size:.95rem;opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.toast.show{opacity:1}
+.hidden{display:none!important}
+@media (max-width:420px){.q{font-size:1.08rem}h1.brand{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div id="app">
+  <h1 class="brand">INDIGENE</h1>
+  <p class="sub" id="subtitle">GST 110 — Nigerian People and Culture CBT</p>
+
+  <!-- SETUP -->
+  <div class="panel" id="setup">
+    <h2>Choose Your Run</h2>
+    <div class="grid" id="runs"></div>
+    <div class="chaps" id="chaps">
+      <div id="chapList"></div>
+    </div>
+    <button class="btn" id="startBtn">START QUIZ</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="panel hidden" id="quiz">
+    <div class="top"><span id="qpos">Q 1 / 1</span><span class="sc">✔ <b class="g" id="sOk">0</b> &nbsp; ✖ <b class="r" id="sNo">0</b></span></div>
+    <div class="bar"><i id="bar"></i></div>
+    <span class="chtag" id="chtag"></span>
+    <p class="q" id="qtext"></p>
+    <div id="opts"></div>
+    <div id="fb"></div>
+    <div class="nav">
+      <button id="prev">◀ Prev</button>
+      <button id="mapBtn">Map</button>
+      <button id="next" class="primary">Next ▶</button>
+    </div>
+    <button class="btn ghost" id="finishBtn" style="margin-top:12px;padding:12px">Finish &amp; see score</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="panel hidden" id="result"></div>
+</div>
+
+<div class="ov" id="ov"><div class="box">
+  <h3>Question Map</h3>
+  <div class="leg"><span>🟩 correct</span><span>🟥 wrong</span><span>⬛ not answered</span></div>
+  <div class="map" id="map"></div>
+  <button class="btn ghost" id="closeMap" style="margin-top:14px;padding:12px">Close</button>
+</div></div>
+<div class="ov" id="cov"><div class="box">
+  <h3>Finish quiz?</h3>
+  <p id="cmsg" style="margin:0 0 6px"></p>
+  <button class="btn" id="cYes" style="padding:13px">Finish now</button>
+  <button class="btn ghost" id="cNo" style="padding:13px">Go back</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = [{"t": "Concepts of Nigerian Culture and Civilisation", "s": ["Civilisation and Culture", "Key Facts About Nigeria", "Religion in Nigeria", "Family, Hierarchy and Communication", "Arts and Literature"], "q": [["The word civilisation comes from the Latin civis, which means:", ["Inhabitant of a city", "A ruler of a kingdom", "A member of a tribe", "One who tills the soil"], 0, "Civis means an inhabitant of a city.", "Civis = city.", 0, 0], ["The word culture comes from the Latin colere, which means:", ["To till the soil", "To rule a people", "To build a wall", "To live in a city"], 0, "Colere means to till the soil.", "Colere = cultivate.", 0, 0], ["Which of these is the external achievement of a society?", ["Culture", "Civilisation", "Mutual trust", "Tradition"], 1, "Civilisation is the external achievement; culture is the inner values.", "Outside = civilisation.", 0, 0], ["Which of these covers the inner values, beliefs and norms of a society?", ["Politics", "Technology", "Culture", "Civilisation"], 2, "Culture is the inner side of a society.", "Inside = culture.", 0, 0], ["Culture grows out of human:", ["Migration", "Weapons", "Creativity", "Wealth"], 2, "The notes say culture grows out of creativity, which is unique to humans.", "Culture = creativity.", 0, 0], ["Civilisation includes arts, technology, sciences, religions and:", ["Soil", "Climate", "Politics", "Rainfall"], 2, "These are the areas the notes list under civilisation.", "Add politics.", 0, 0], ["Culture includes all the positive aspects and achievements that make mankind different from:", ["Machines", "Plants", "Animals", "Spirits"], 2, "That is the book's definition of culture.", "Humans vs animals.", 0, 0], ["How are civilisation and culture related, according to the notes?", ["They mean exactly the same thing", "They have no link at all", "They are enemies of each other", "They are inseparable companions"], 3, "Culture is the constant and necessary companion of civilisation, but they are not the same.", "Not the same, but inseparable.", 0, 0], ["In the mnemonic CC = City & Cultivation, the city side stands for:", ["Creativity", "Colonialism", "Culture", "Civilisation"], 3, "Civilisation = city life; culture = cultivation of mind and values.", "City = civilisation.", 0, 0], ["Where is Nigeria located?", ["Central Africa, bordering the Indian Ocean", "West Africa, bordering the Gulf of Guinea", "East Africa, bordering the Red Sea", "North Africa, bordering the Atlantic"], 1, "Nigeria lies in West Africa on the Gulf of Guinea, between Benin and Cameroun.", "West Africa.", 0, 1], ["Who suggested the name Nigeria in 1914?", ["Mungo Park", "Frederick Lugard", "Nnamdi Azikiwe", "Flora Shaw"], 3, "Flora Shaw, a British journalist, suggested it.", "Shaw named it.", 0, 1], ["The name Nigeria was influenced by which river?", ["River Congo", "River Benue", "River Volta", "River Niger"], 3, "The name was influenced by the River Niger.", "Niger gave the name.", 0, 1], ["Who merged the Northern and Southern Protectorates in 1914?", ["Abubakar Tafawa Balewa", "Sir Frederick Lugard", "Flora Shaw", "Obafemi Awolowo"], 1, "Lugard carried out the amalgamation.", "Lugard merged them.", 0, 1], ["Nigeria became independent on:", ["October 1, 1960", "May 29, 1999", "October 1, 1963", "January 15, 1966"], 0, "Independence came on October 1, 1960.", "Independence = 1960.", 0, 1], ["Nigeria became a republic on:", ["January 15, 1966", "October 1, 1979", "October 1, 1963", "October 1, 1960"], 2, "The republic began on October 1, 1963.", "Republic = 1963.", 0, 1], ["The capital of Nigeria moved from Lagos to Abuja in:", ["1999", "1979", "1960", "1991"], 3, "Lagos was the capital until 1991, then Abuja.", "Abuja = 1991.", 0, 1], ["Nigeria's population is about:", ["17 million", "700 million", "170 million", "70 million"], 2, "The notes give about 170 million, the largest Black population in the world.", "About 170 million.", 0, 1], ["Nigeria's civil war with Biafra ran from:", ["1963 to 1966", "1979 to 1983", "1960 to 1963", "1967 to 1970"], 3, "The Civil War lasted from 1967 to 1970.", "War = 1967-1970.", 0, 1], ["Nigeria ranks where among the world's oil-producing nations, per the notes?", ["3rd largest", "6th largest", "10th largest", "1st largest"], 1, "The notes say 6th largest.", "Sixth.", 0, 1], ["Nigeria is the largest contributor to UN and which other body's peacekeeping missions?", ["NATO", "The African Union only", "The Commonwealth", "ECOWAS"], 3, "The notes name the UN and ECOWAS.", "UN and ECOWAS.", 0, 1], ["The mnemonic NAIL stands for Name, Amalgamation, Independence and:", ["Law and Islam", "Lugard and Aba", "Lagos to Abuja", "Language of Nigeria"], 2, "NAIL = Name, Amalgamation, Independence, Lagos to Abuja.", "L = Lagos to Abuja.", 0, 1], ["Which religion has about 50% of Nigerians and is mostly in the North?", ["Christianity", "Judaism", "Islam", "Traditional religion"], 2, "Islam is about 50% and mainly in the North.", "North = Islam.", 0, 2], ["Christianity is about 40% and is mainly found in which region?", ["Lake Chad area", "North", "Jos Plateau only", "South"], 3, "Christianity is mostly in the South.", "South = Christianity.", 0, 2], ["Traditional or indigenous religion accounts for about:", ["25%", "60%", "1%", "10%"], 3, "The notes give about 10%, found nationwide.", "About 10%.", 0, 2], ["Which is a key Muslim celebration listed in the notes?", ["Eid-ul-Fitr", "Easter", "Christmas", "Egungun festival"], 0, "Ramadan, Eid-ul-Fitr and Eid-ul-Adha are listed.", "Eid = Islam.", 0, 2], ["Which deity belongs to Eastern Nigeria?", ["Sango", "Ishepa", "Amadioha", "Egbunu"], 2, "Amadioha is listed under Eastern Nigeria.", "Amadioha = East.", 0, 2], ["Which deity belongs to the South-West (Yoruba)?", ["Amadioha", "Sango", "Okike", "Egu"], 1, "Sango is among the Yoruba deities.", "Sango = Yoruba.", 0, 2], ["In Kogi State, Egbunu is the deity of the:", ["Ebira", "Yoruba", "Igala", "Nupe"], 0, "Egbunu (Ebira), Ishepa (Igala), Egu (Nupe).", "Egbunu = Ebira.", 0, 2], ["In Kogi State, Ishepa is the deity of the:", ["Ebira", "Igala", "Igbo", "Nupe"], 1, "Ishepa belongs to the Igala.", "Ishepa = Igala.", 0, 2], ["Christianity was established in southern Nigeria in the:", ["Late 19th century", "Early 15th century", "Early 20th century", "Mid 17th century"], 0, "The notes say late 19th century.", "Late 1800s.", 0, 2], ["The Roman Catholic Church was established mainly among which people?", ["Yoruba, in the South-West", "Igbo, in the South-East", "Hausa, in the North", "Efik, in the South-South"], 1, "Church of England = Yoruba SW; Roman Catholic = Igbo SE.", "Catholic = Igbo.", 0, 2], ["What is the backbone of Nigeria's social system?", ["The age grade", "The extended family", "The nuclear family", "The village market"], 1, "The extended family is the backbone.", "Extended family.", 0, 3], ["Family relationships in Nigeria are guided by hierarchy and:", ["Education", "Wealth", "Seniority", "Gender only"], 2, "The notes say hierarchy and seniority.", "Seniority rules.", 0, 3], ["Who is greeted and served first in a group?", ["The youngest person", "The most educated person", "The oldest person", "The richest person"], 2, "The oldest person is revered, greeted and served first.", "Oldest first.", 0, 3], ["Nigeria is described as what kind of society?", ["Nomadic", "Classless", "Egalitarian", "Hierarchical"], 3, "Age and position earn respect.", "Hierarchical.", 0, 3], ["Which group uses proverbs, sayings and songs, and is indirect in speech?", ["Yoruba", "Igbo", "Efik", "Hausa"], 0, "The notes say the Yoruba use proverbs and embed humour.", "Proverbs = Yoruba.", 0, 3], ["Why do the Yoruba embed humour in their speech?", ["To end the talk quickly", "To prevent boredom", "To hide the truth", "To mock elders"], 1, "Humour prevents boredom.", "Humour stops boredom.", 0, 3], ["How is communication in Nigeria usually begun?", ["With a gift of money", "With a direct demand", "With a formal speech", "With informal enquiries about family or personal welfare"], 3, "This is the soft-landing the notes describe.", "Soft landing first.", 0, 3], ["Southern Nigerians generally communicate in a way that is more:", ["Direct, with a slightly louder tone", "Silent and secretive", "Based on proverbs only", "Indirect and quiet"], 0, "The notes say more direct and slightly louder.", "South = direct.", 0, 3], ["Nigeria's artistic heritage goes back more than:", ["2,000 years", "20,000 years", "500 years", "200 years"], 0, "The notes say more than 2,000 years.", "2,000 years.", 0, 4], ["Which culture produced the earliest notable terracotta sculptures?", ["Ife", "Nok", "Benin", "Igbo-Ukwu"], 1, "Nok terracotta is the earliest notable piece.", "Nok is first.", 0, 4], ["Nok terracotta sculptures were produced on the:", ["Lake Chad basin", "Jos Plateau", "Niger Delta", "Lagos Lagoon"], 1, "Nok art came from the Jos Plateau.", "Nok = Jos.", 0, 4], ["The Ife bronzes date from the:", ["13th century", "19th century", "16th century", "11th century"], 0, "Ife bronzes are from the 13th century.", "Ife = 13th.", 0, 4], ["Benin bronze plaques, statues and ivory carvings date from the:", ["11th century onwards", "19th century", "2nd century", "13th century only"], 0, "Benin art goes back to the 11th century onwards.", "Benin = 11th.", 0, 4], ["Islamic influence in the North shaped architecture and:", ["Calligraphy", "Sculpture of people", "Mask carving", "Bronze casting"], 0, "The notes say architecture and calligraphy, not sculpture of people or animals.", "North = calligraphy.", 0, 4], ["Who founded the Sokoto Caliphate and wrote nearly 100 texts in Arabic?", ["Askia Mohammed", "Usuman Dan Fodio", "Bernard Fagg", "Ulli Beier"], 1, "That is Usuman Dan Fodio.", "Dan Fodio = Sokoto.", 0, 4], ["Who founded the Oshogbo School in the early 1960s?", ["Frederick Lugard", "Usuman Dan Fodio", "Ulli Beier", "Bernard Fagg"], 2, "Ulli Beier founded it.", "Beier = Oshogbo.", 0, 4], ["Which art school is known for strong social and political content?", ["Zaria School", "Nsukka School", "Ife School", "Oshogbo School"], 1, "The Nsukka School began in the early 1970s.", "Nsukka = political.", 0, 4], ["The Zaria School of the late 1950s is known for:", ["Islamic calligraphy only", "Pure political protest", "Yoruba spirituality only", "Mixing traditional and modern themes"], 3, "It synthesised traditional and modern themes.", "Zaria = blend.", 0, 4], ["The Oshogbo School explores which of these?", ["Yoruba spirituality", "Islamic law", "Igbo age grades", "Colonial rule"], 0, "The notes say it explores Yoruba spirituality.", "Oshogbo = Yoruba.", 0, 4]]}, {"t": "History of Nigeria", "s": ["Coat of Arms and Flag", "Birth of Nigeria and the First Republic", "Civil War and Military Rule", "Second Republic to Fourth Republic"], "q": [["What does the red eagle on the Coat of Arms stand for?", ["Nigeria's strength", "Agriculture of the farmers", "Peace and unity of the land", "The dignity of the people"], 0, "The red eagle is mounted on a wreath and symbolises strength.", "Eagle = strength.", 0, 0], ["The black shield on the Coat of Arms stands for:", ["The two great rivers of the land", "Dignity and honour of the people", "Peace and unity of the people", "The fertile land and its resources"], 3, "It stands for the fortunate qualities of the land: agriculture, minerals and solid resources.", "Shield = resources.", 0, 0], ["The Y-shaped silver band stands for the River Niger and the:", ["River Kaduna", "River Benue", "River Volta", "River Congo"], 1, "The Y-band shows Niger and Benue.", "Y = two rivers.", 0, 0], ["The two white horses on the Coat of Arms symbolise:", ["Peace", "Agriculture", "Dignity", "Strength"], 2, "Horses support the shield and stand for dignity.", "Horses = dignity.", 0, 0], ["The wild flower at the base of the Coat of Arms is called:", ["Coctus Spectabilis", "Hibiscus syriacus, the red hibiscus", "Bougainvillea spectabilis, the climber", "Nymphaea lotus, the water lily"], 0, "It grows in many parts of Nigeria.", "Coctus Spectabilis.", 0, 0], ["The green stripes on the flag stand for:", ["Agriculture", "Strength", "Dignity", "Peace"], 0, "Two green stripes = agriculture.", "Green = farming.", 0, 0], ["The white stripe on the flag stands for:", ["Strength", "Peace and unity", "Dignity", "Agriculture"], 1, "It also reflects the Niger River bisecting the country.", "White = peace.", 0, 0], ["Nigeria's motto is:", ["Strength in Unity and Labour for all", "Peace, Unity and Freedom for all", "Faith, Hope and Charity for all", "Unity and Faith, Peace and Progress"], 3, "That is the motto under the Coat of Arms.", "Unity and Faith.", 0, 0], ["Who was Nigeria's first Prime Minister at independence?", ["Alhaji Sir Abubakar Tafawa Balewa", "Alhaji Shehu Shagari, of the NPN", "Chief Olusegun Obasanjo, the general", "Dr. Nnamdi Azikiwe, the Governor-General"], 0, "He was PM when the 1st Republic began on Oct 1, 1960.", "Balewa = PM.", 0, 1], ["Who was the first Governor-General of independent Nigeria?", ["Frederick Lugard", "Abubakar Tafawa Balewa", "Dr. Nnamdi Azikiwe", "Shehu Shagari"], 2, "He took office on Nov 16, 1960.", "Azikiwe = first G-G.", 0, 1], ["At independence, Nigeria was a federation of how many regions?", ["Six", "Three", "Two", "Four"], 1, "The regions were North, East and West.", "Three regions.", 0, 1], ["What was the capital of Nigeria at independence?", ["Kaduna", "Ibadan", "Lagos", "Abuja"], 2, "Lagos was the capital until 1991.", "Lagos then.", 0, 1], ["What happened on October 1, 1963?", ["The Civil War with Biafra began", "The first military coup took place", "Nigeria gained independence from Britain", "Nigeria became a Federal Republic"], 3, "Nigeria severed ties with the British crown but stayed in the Commonwealth.", "1963 = republic.", 0, 1], ["When Nigeria became a republic, the Governor-General was redesignated:", ["Premier", "Prime Minister", "President", "Head of State"], 2, "The G-G became President.", "G-G to President.", 0, 1], ["After 1963, Nigeria stayed in which body?", ["The League of Nations", "The Warsaw Pact", "The Arab League", "The Commonwealth"], 3, "The notes say it remained in the Commonwealth.", "Still in Commonwealth.", 0, 1], ["What ended the 1st Republic in January 1966?", ["The first military coup", "An election won by a party", "A civil war with the Biafrans", "An annulment of a vote"], 0, "Eight military regimes followed.", "Coup ended it.", 0, 1], ["When did Nigeria declare full-scale war on Biafra?", ["October 1, 1960", "December 31, 1983", "January 15, 1966", "August 9, 1967"], 3, "The Civil War began in 1967.", "War = 1967.", 0, 2], ["The Civil War ended in:", ["1967", "1979", "1970", "1966"], 2, "Biafra collapsed in 1970 and reconciliation began.", "War ended 1970.", 0, 2], ["Which era followed the end of the Civil War?", ["A parliamentary era", "An oil boom", "A drought era", "A colonial era"], 1, "The notes mention the Oil Boom era.", "After war = oil boom.", 0, 2], ["Who overthrew the 2nd Republic on December 31, 1983?", ["Gen. Abdulsalami Abubakar, the soldier", "Maj. Gen. Muhammadu Buhari", "Gen. Sani Abacha, the Defence Chief", "Maj. Gen. Ibrahim Babangida"], 1, "Buhari took over the government.", "Buhari 1983.", 0, 2], ["Which campaign did Buhari's military government launch?", ["Vision 2010", "Operation Feed the Nation", "Structural Adjustment", "War Against Indiscipline"], 3, "It was an anti-indiscipline campaign.", "WAI = Buhari.", 0, 2], ["Who ousted Buhari in a bloodless coup in August 1985?", ["Gen. Sani Abacha, the Defence Chief", "Maj. Gen. Ibrahim Babangida", "Gen. Abdulsalami Abubakar, the soldier", "Alhaji Shehu Shagari, the civilian"], 1, "It happened on Aug 27, 1985.", "Babangida 1985.", 0, 2], ["Who won the June 12, 1993 election, which Babangida annulled?", ["M.K.O. Abiola", "Olusegun Obasanjo", "Bashir Tofa", "Ernest Shonekan"], 0, "More than 100 people died in the riots that followed.", "Abiola won.", 0, 2], ["Who forced Shonekan to resign on November 17, 1993?", ["Ibrahim Babangida", "Muhammadu Buhari", "Abdulsalami Abubakar", "Sani Abacha"], 3, "Abacha seized power.", "Abacha 1993.", 0, 2], ["Who replaced Abacha after his death on June 8, 1998?", ["Maj. Gen. Ibrahim Babangida, the soldier", "Chief Olusegun Obasanjo, the soldier", "Gen. Abdulsalami Abubakar", "Chief Ernest Shonekan, the civilian"], 2, "He took over as head of state.", "Abubakar next.", 0, 2], ["The 2nd Republic began in:", ["December 1983", "October 1979", "October 1960", "May 1999"], 1, "Shehu Shagari was sworn in.", "2nd Republic = 1979.", 0, 3], ["Who was the first Executive President of Nigeria?", ["Shehu Shagari", "Muhammadu Buhari", "Umaru Yar'Adua", "Olusegun Obasanjo"], 0, "He was in the National Party of Nigeria.", "Shagari = executive.", 0, 3], ["Which party was Shagari a member of?", ["National Council of Nigeria", "Action Group", "People's Democratic Party", "National Party of Nigeria"], 3, "The NPN.", "Shagari = NPN.", 0, 3], ["The 4th Republic began on:", ["May 29, 1999", "May 29, 2007", "June 12, 1993", "October 1, 1979"], 0, "Obasanjo was sworn in.", "4th Republic = 1999.", 0, 3], ["Obasanjo's swearing-in ended how many years of consecutive military rule?", ["30 years", "16 years", "6 years", "10 years"], 1, "The notes say 16 years.", "Sixteen years.", 0, 3], ["May 29, 2007 is important because it was the:", ["Return to civilian rule after Abacha died", "End of the Civil War with Biafra", "First civilian-to-civilian transition since independence", "First military coup after independence"], 2, "Yar'Adua's swearing-in was the first transition from one civilian administration to another.", "2007 = first civilian handover.", 0, 3], ["Who was sworn in in 2007 in that first civilian-to-civilian handover?", ["Goodluck Jonathan", "Olusegun Obasanjo", "Umaru Yar'Adua", "Muhammadu Buhari"], 2, "Yar'Adua succeeded Obasanjo.", "Yar'Adua 2007.", 0, 3], ["Who succeeded Yar'Adua after his death in May 2010?", ["Olusegun Obasanjo", "Goodluck Jonathan", "Abdulsalami Abubakar", "Muhammadu Buhari"], 1, "Jonathan was sworn in on May 6, 2010.", "Jonathan 2010.", 0, 3], ["Which civilian president won the presidential election in 2015 and revived the anti-corruption fight?", ["Muhammadu Buhari", "Goodluck Jonathan", "Ibrahim Babangida", "Umaru Yar'Adua"], 0, "Buhari won in 2015.", "Buhari 2015.", 0, 3]]}, {"t": "Pre-Colonial Cultural Locations and Characteristics", "s": ["Early Human Habitation and Metalworking", "Nok Culture", "Songhai Empire", "Oyo Empire", "Benin Empire", "Nri Kingdom and Kanem-Bornu"], "q": [["Where do the notes place people living in Nigeria as early as 11,000 BC?", ["Nok", "Iwo-Eleru", "Kainji", "Taruga"], 1, "Iwo-Eleru is the site of the earliest habitation listed.", "11,000 BC = Iwo-Eleru.", 0, 0], ["The earliest fossil human skeleton in West Africa, about 13,000 years old, was found at:", ["Taruga", "Iwo-Eleru", "Kainji", "Ugwuelle-Uturu"], 1, "It was found in western Nigeria at Iwo-Eleru.", "Skeleton = Iwo-Eleru.", 0, 0], ["Microliths were used at which south-eastern site, per the notes?", ["Iwo-Eleru", "Taruga", "Ugwuelle-Uturu (Okigwe)", "Igbo-Ukwu"], 2, "It is earlier evidence in the south-east.", "Microliths = Okigwe.", 0, 0], ["Smelting furnaces at Taruga date from the 4th century BC and are the oldest evidence of:", ["Pottery", "Weaving", "Metalworking", "Farming"], 2, "Taruga gives the oldest metalworking evidence in the notes.", "Taruga = metal.", 0, 0], ["Kainji Dam excavations revealed iron-working by the:", ["4th century AD", "2nd century BC", "16th century AD", "11th century AD"], 1, "The notes give the 2nd century BC.", "Kainji = 2nd c. BC.", 0, 0], ["Nigeria moved from the Neolithic to the Iron Age without:", ["Any farming", "Any trade", "Any pottery", "Intermediate bronze production"], 3, "The notes say it was achieved without an intermediate bronze stage.", "No bronze stage.", 0, 0], ["Which is the earliest identified Nigerian culture?", ["Benin", "Nok culture", "Oyo", "Songhai"], 1, "Nok is the earliest identified culture.", "Nok = earliest.", 0, 1], ["Nok culture is located on the:", ["Sokoto basin", "Niger Delta", "Lagos coast", "Jos Plateau"], 3, "Nok sits on the Jos Plateau in the north-east.", "Nok = Jos.", 0, 1], ["Nok was the earliest sub-Saharan producer of life-sized:", ["Terracotta", "Ivory masks", "Bronze plaques", "Wooden drums"], 0, "Nok terracotta heads and figures are hollow and coil-built.", "Nok = terracotta.", 0, 1], ["Nok terracotta is described as:", ["Hollow and coil-built", "Solid and cast", "Carved from stone", "Moulded from bronze"], 0, "The notes call it hollow, coil-built and nearly life-sized.", "Hollow, coil-built.", 0, 1], ["Nok was first discovered in 1928 during:", ["Farming", "Road building", "A war", "Tin mining"], 3, "Tin mining brought it to light.", "Tin mining.", 0, 1], ["Which archaeologist recognised the importance of Nok?", ["Ulli Beier", "Flora Shaw", "Bernard Fagg", "Robert Smith"], 2, "Bernard Fagg recognised its importance.", "Fagg = Nok.", 0, 1], ["By when did the Nok people practise iron smelting, per the notes?", ["550 BC", "2015", "AD 200", "1928"], 0, "The notes give iron smelting by 550 BC.", "Iron by 550 BC.", 0, 1], ["Nok culture is remembered for terracotta and:", ["Ivory", "Iron", "Gold", "Bronze"], 1, "Nok = terracotta and iron.", "Nok = terracotta + iron.", 0, 1], ["Where did the Songhai settle as early as 800 CE?", ["Oyo-Ile", "Timbuktu", "Gao", "Kano"], 2, "They settled at Gao.", "Songhai = Gao.", 0, 2], ["Who is named as the one who brought Islam to the Songhai Empire's influence?", ["Askia Mohammed Ture", "Oranmiyan", "Sonni Ali", "Dia Kossoi"], 0, "Askia Mohammed Ture is called Askia the Great.", "Askia = Islam.", 0, 2], ["Askia the Great succeeded which ruler?", ["Ewuare", "Eri", "Sonni Ali", "Dia Kossoi"], 2, "He was the successor of Sonni Ali.", "Askia after Sonni.", 0, 2], ["Which city was the Songhai cultural and commercial centre at its peak?", ["Timbuktu", "Katunga", "Benin City", "Gao"], 0, "Timbuktu was the centre at its peak.", "Peak = Timbuktu.", 0, 2], ["The Songhai economy was based on a:", ["Caste system", "Trade union of farmers", "Clan system", "Guild of kings"], 2, "The clan determined a person's occupation.", "Clan decided work.", 0, 2], ["In the Songhai Empire, what determined a person's occupation?", ["The clan", "Religion", "Wealth", "Age"], 0, "Occupation followed the clan.", "Clan = job.", 0, 2], ["Songhai criminal justice was based on:", ["Secret society rulings", "Oyo customs", "Islamic principles", "Colonial law"], 2, "Local Qadis applied it.", "Islamic justice.", 0, 2], ["Local judges in the Songhai Empire were called:", ["Ogboni", "Oyomesi", "Ilari", "Qadis"], 3, "Local Qadis handled justice.", "Qadi = judge.", 0, 2], ["Who founded the Oyo Empire?", ["Eri", "Sonni Ali", "Ogiso Igodo", "Oranyan (Oranmiyan)"], 3, "He was the 2nd prince of Ile-Ife.", "Oranmiyan = Oyo.", 0, 3], ["The capital of the Oyo Empire was:", ["Oyo-Ile", "Igodomigodo", "Ile-Ife", "Gao"], 0, "It was also called Katunga or Old Oyo.", "Capital = Oyo-Ile.", 0, 3], ["Alaafin means:", ["Chief priest", "Head of the army", "Keeper of the market", "Owner of the palace"], 3, "The Alaafin was the king of Oyo.", "Alaafin = palace owner.", 0, 3], ["The Oyomesi were how many principal councillors?", ["Three", "Seven", "Nineteen", "Twelve"], 1, "The notes say 7 principal councillors.", "Oyomesi = 7.", 0, 3], ["Who was head of the Oyomesi?", ["The Samu", "The Oluwo", "The Bashorun", "The Aremo"], 2, "He was a sort of Prime Minister.", "Bashorun = head.", 0, 3], ["Which secret society spoke for the people at Oyo?", ["Ekpe", "Ogboni", "Oyomesi", "Ekpo"], 1, "The Ogboni was a powerful secret society.", "Ogboni = secret society.", 0, 3], ["Oyo's military success rested on powerful:", ["Elephants", "Cavalry", "Archers", "Warships"], 1, "The notes say powerful cavalry.", "Oyo = cavalry.", 0, 3], ["How was an unpopular Alaafin removed?", ["By the Oluwo's sword", "By exile to Ile-Ife", "By a public vote", "By presenting him a parrot's egg or empty calabash"], 3, "It was a sign he must commit suicide, since he could not be legally deposed.", "Parrot's egg = suicide.", 0, 3], ["Is the position of Bashorun hereditary?", ["Yes, it passes to the Alaafin's son", "No, he is selected by the Oyomesi", "Yes, it passes to the first son", "No, the Alaafin appoints him"], 1, "The Bashorun is not hereditary.", "Not hereditary.", 0, 3], ["The Oyo empire was most politically important from the:", ["Early 20th century", "Early 14th century", "9th to 11th century", "Mid-17th to late 18th century"], 3, "The notes give this period.", "17th to 18th c.", 0, 3], ["Which people founded the Benin Empire?", ["The Hausa", "The Yoruba", "The Igbo", "The Edo"], 3, "The Edo were first ruled by the Ogiso dynasty.", "Edo = Benin.", 0, 4], ["Before Benin, the land was called:", ["Oyo-Ile", "Gao", "Katunga", "Igodomigodo"], 3, "Its kings were the Ogiso.", "Igodomigodo.", 0, 4], ["Who was the first Ogiso of Benin?", ["Ewuare", "Idia", "Igodo", "Eri"], 2, "Igodo was the first Ogiso and a good ruler.", "Igodo = first.", 0, 4], ["Who was the first Golden Age Oba of Benin?", ["Oba Ewuare", "Oba Idia", "Oba Igodo", "Oba Oranmiyan"], 0, "The notes name Ewuare.", "Ewuare = Golden Age.", 0, 4], ["The FESTAC Mask is based on:", ["Eri", "Oba Ewuare", "Dia Kossoi", "Queen Idia"], 3, "That is the notes' link.", "FESTAC = Idia.", 0, 4], ["Benin is remembered for artistic work in bronze, iron and:", ["Cowries", "Gold", "Ivory", "Terracotta"], 2, "Benin = bronze and ivory.", "Benin = bronze + ivory.", 0, 4], ["When did Portuguese figures first appear in Benin bronzes?", ["16th century", "11th century", "13th century", "19th century"], 0, "The notes give the 16th century.", "Portuguese = 16th c.", 0, 4], ["The Benin inner wall was about:", ["70 miles long", "700 miles long", "7 miles long", "1 mile long"], 2, "It had a moat 50 feet deep.", "Wall = 7 miles.", 0, 4], ["What is unique about the Nri Kingdom's leader?", ["He exercised no military power", "He was always a woman", "He was chosen by Askia", "He ruled from a cavalry base"], 0, "Nri was led by a priest-king, the eze Nri.", "Nri = no military.", 0, 5], ["The ruler of Nri was a priest-king called:", ["Oba", "Eze Nri", "Alaafin", "Ogiso"], 1, "That is the title.", "Eze Nri.", 0, 5], ["Who founded Nri and settled the region around 948 AD?", ["Igodo", "Eri", "Oranmiyan", "Ewuare"], 1, "Eri was said to be a sky being.", "Eri = Nri.", 0, 5], ["Nri expanded by:", ["Converts, not force", "Conquest by cavalry", "Tribute from provinces", "Trading in slaves"], 0, "The notes say converts, not force.", "Converts not force.", 0, 5], ["Nri was a safe haven for slaves set free and:", ["Merchants", "Soldiers", "Princes", "Outcasts"], 3, "Outcasts were welcomed.", "Haven for outcasts.", 0, 5], ["The best-known remnant of Nri culture is the:", ["Benin plaques", "Igbo-Ukwu bronze items", "Nok terracotta", "Ife bronzes"], 1, "Igbo-Ukwu bronzes.", "Igbo-Ukwu.", 0, 5], ["Kanem-Bornu was located:", ["North-east of Lake Chad", "South-west of Lagos", "In the Niger Delta", "On the Jos Plateau"], 0, "Bornu was the western province of Kanem.", "Lake Chad.", 0, 5], ["When did Bornu become independent of Kanem, per the notes?", ["Early 16th century", "9th century", "Late 14th century", "Late 19th century"], 2, "It became independent in the late 14th century.", "Bornu = late 14th c.", 0, 5]]}, {"t": "Traditional Concept of Economics, Peace and Development", "s": ["Concept of Peace", "Sacred Peace Periods", "Wars and Conflict", "Concept of Development"], "q": [["In African Traditional Religion, peace is linked to order, harmony and:", ["Conquest", "Conflict", "War", "Equilibrium"], 3, "Peace is not conflict or war.", "Peace = equilibrium.", 0, 0], ["In traditional Africa, peace is seen as a:", ["Market good", "Poetic idea", "Divine gift", "Military prize"], 2, "The notes say it is practical and down-to-earth.", "Peace = gift of gods.", 0, 0], ["Peace is associated with religious, moral and which other values?", ["Political only", "Military", "Social", "Tribal only"], 2, "The three are religious, moral and social.", "Moral, religious, social.", 0, 0], ["True or false: in traditional Africa, peace means only the absence of war.", ["True in the North only", "True in times of harvest", "True", "False"], 3, "It also includes the absence of pestilence, untimely death, poor harvest and slave raids.", "More than no war.", 0, 0], ["Which is NOT listed as something absent in peace?", ["Pestilence", "Untimely death", "Slave raid", "Rainfall"], 3, "Pestilence, untimely death, poor harvest, unsafe journey, slave raid and sundry vices are listed.", "Rainfall not listed.", 0, 0], ["Peace is described as the totality of well-being and:", ["Fullness of life here and hereafter", "Strength in war for the village", "Absence of all rulers in the land", "Wealth alone for every household"], 0, "That is the notes' definition.", "Fullness of life.", 0, 0], ["Is material wealth without harmonious community relations peace?", ["No", "Yes, in towns", "Yes, for chiefs", "Yes"], 0, "Wealth without harmony is not peace.", "Wealth alone is not peace.", 0, 0], ["Selfish or unjust persons, even when non-violent, are called:", ["Heroes of peace", "Judges of peace", "Friends of peace", "Enemies of peace"], 3, "The notes call them enemies of peace.", "Selfish = enemy.", 0, 0], ["The central principle of African traditional peace is the promotion of:", ["War", "Land", "Life", "Trade"], 2, "Life is the central principle.", "Promote life.", 0, 0], ["Sacred peace periods in many African societies lasted:", ["A single day each year only", "Up to a week or more", "A full year without any quarrels", "A single hour at the market"], 1, "The notes say up to a week or more.", "A week or more.", 0, 1], ["During the sacred peace period, litigation was:", ["Announced", "Doubled", "Hurried", "Suspended"], 3, "Litigations were suspended and quarrels avoided.", "Cases suspended.", 0, 1], ["Why were quarrels avoided in the sacred period?", ["Fear of the market women's anger", "Fear of the gods' wrath", "Fear of the army of the king", "Fear of the king's tax collectors"], 1, "Breach was feared to anger the gods.", "Gods' wrath.", 0, 1], ["The sacred peace period often came before the:", ["The hunting season of the year", "Planting season", "The trading season of the year", "The wedding season of the year"], 1, "A breach would mean a poor harvest.", "Before planting.", 0, 1], ["Traditional African wars were not fought for the sake of:", ["Justice", "Might", "Land", "Survival"], 1, "The notes say not for the sake of might.", "Not for might.", 0, 2], ["Even with provocation, what was attempted first?", ["Negotiation", "Armed attack", "Exile", "Taxation"], 0, "Negotiation came first before armed conflict.", "Talk first.", 0, 2], ["Who observed that pre-colonial African wars were mere skirmishes?", ["Bernard Fagg", "Robert Smith", "Flora Shaw", "Ulli Beier"], 1, "Robert Smith made that observation.", "Smith = skirmishes.", 0, 2], ["Wars were suspended during planting and:", ["Festivals", "Harvest", "Weddings", "Funerals"], 1, "Wars paused at planting and harvest seasons.", "Planting and harvest.", 0, 2], ["Which two places were common for settling conflicts?", ["The market place and the river bank", "The farm land and the village shrine", "The palace gate and the prison", "Village square and King's yard"], 3, "Those meetings were common features.", "Square and yard.", 0, 2], ["Aggrieved parties ended an impasse by drinking palm wine from the same:", ["Calabash", "Bowl of brass", "Cup of clay", "Gourd of oil"], 0, "They also shared kola nuts.", "Same calabash.", 0, 2], ["Which two things symbolised the end of an impasse?", ["Cowries and cloth from the market", "Palm wine and kola nuts", "Yams and goats from the farm", "Drums and songs from the elders"], 1, "Wine from the same calabash and shared kola.", "Wine and kola.", 0, 2], ["Traditional Africa saw war as:", ["Morally unacceptable", "A sacred duty to the ancestors", "A source of wealth and fame", "A sport for young men"], 0, "It meant total collapse of social order.", "War = unacceptable.", 0, 2], ["What raised violent conflict to new dimensions?", ["European slave trade, colonial conquest and globalization", "The age grades and the village squares", "The planting seasons and harvest times", "The traditional rituals of the elders"], 0, "The notes name those three.", "Slave trade, colonialism, globalization.", 0, 2], ["In the traditional view, the order of progress is Justice, Peace and then:", ["Migration", "Trade", "Development", "War"], 2, "Justice is a prerequisite for peace; peace is a prerequisite for development.", "Justice, peace, development.", 0, 3], ["Traditional Africans saw development as a:", ["A gift from the colonial rulers", "Divine blessing", "A military gain by the strongest", "A gift from the market"], 1, "True progress was impossible amid disorder.", "Development = blessing.", 0, 3], ["How many dimensions of traditional African development does the book list?", ["Seven", "Two", "Three", "Five"], 2, "Social/moral, economic and spiritual/personal.", "SES = three.", 0, 3], ["The mnemonic SES stands for:", ["Social, Economic, Spiritual", "Spiritual, Ethnic, Social", "Security, Education, Strength", "Society, Elders, Shrine"], 0, "These are the three dimensions.", "SES.", 0, 3], ["Which dimension covers high yield on farm produce and profitable trade?", ["Social/Moral", "Political", "Spiritual/Personal", "Economic"], 3, "It covers farm yield, hunting and trade.", "Farm and trade = economic.", 0, 3], ["Which dimension covers maintaining social order and moral obligations?", ["Spiritual/Personal", "Economic", "Social/Moral", "Military"], 2, "It includes social justice.", "Order = social/moral.", 0, 3], ["Which dimension holds that all occurrences are ordained by a Supreme Being?", ["Economic", "Social/Moral", "Spiritual/Personal", "Political"], 2, "There is no chance or coincidence.", "Ordained = spiritual.", 0, 3], ["A breach of social order was believed to bring:", ["The wrath of the gods", "A tax paid to the king each year", "A reward given to elders", "Peace and calm in the home"], 0, "It hinders development.", "Breach = wrath.", 0, 3], ["Which idea was alien to traditional African thought?", ["Peace between two neighbours", "Divine order in the whole of life", "Chance or coincidence", "Moral duty of every villager"], 2, "The notes say it was alien.", "No chance.", 0, 3]]}, {"t": "Political Institutions in Traditional Nigeria", "s": ["Overview of Political Institutions", "Songhai Empire: Government and Economy", "Oyo Empire: Political Structure", "Efik-Ibibio Political Institution", "Igbo Political Organisation"], "q": [["What was the major demand for traditional political power?", ["Waging of wars", "Collection of tribute", "Maintenance of law and order", "Control of trade"], 2, "The notes call it the major demand.", "Law and order.", 0, 0], ["The two paramount systems of traditional government were monarchical and:", ["Military", "Non-monarchical", "Parliamentary", "Colonial"], 1, "These are the kingdom and the republican or stateless types.", "Monarchical or not.", 0, 0], ["The smallest unit of social and political organisation is the:", ["Clan", "Age grade", "Village", "Nuclear family"], 3, "The notes say the nuclear family.", "Smallest = nuclear family.", 0, 0], ["Who heads a family and controls its political and economic affairs?", ["The oldest male member", "The youngest son in the family", "The eldest woman of the compound", "The richest member of the family"], 0, "He is also custodian of family tradition.", "Oldest male.", 0, 0], ["In traditional Nigeria, each village was regarded as a:", ["Tribe", "State", "Province", "Colony"], 1, "Each village was independent of the others.", "Village = state.", 0, 0], ["The most common Songhai occupations were metalworkers, fishermen and:", ["Weavers", "Potters", "Priests", "Carpenters"], 3, "These three are listed.", "Metal, fish, carpentry.", 0, 1], ["Who stood at the top of Songhai society?", ["Fishermen and metalworkers of the clans", "Slaves and captives taken in war", "Merchants and the Julla traders", "Noblemen and direct descendants of the original Songhai"], 3, "That is the top of the clan system.", "Nobles on top.", 0, 1], ["The Julla were:", ["Merchants", "Judges", "Soldiers", "Priests"], 0, "They formed partnerships, protected by the state.", "Julla = merchants.", 0, 1], ["The Songhai labour system resembled modern:", ["Schools run by the priests", "Banks of the merchant class", "Armies of the king's soldiers", "Unions or craft guilds"], 3, "The notes say craft guilds.", "Like guilds.", 0, 1], ["Who established the Songhai government system?", ["Sonni Ali", "Oranmiyan", "Askia Muhammad", "Eri"], 0, "It was expanded by Askia Muhammad.", "Sonni set it up.", 0, 1], ["Under Askia Muhammad, learning was encouraged in:", ["Kano", "Oyo-Ile", "Gao", "Timbuktu"], 3, "He also increased centralisation.", "Askia = Timbuktu.", 0, 1], ["Who presided over local tributary states in the Songhai Empire?", ["The Oyomesi councillors of the palace", "Governors and mayors", "Lineage heads of the villages", "Age grades of the towns"], 1, "They were appointed.", "Governors and mayors.", 0, 1], ["Which Oyo official was a leader of Ogboni and had direct access to the Alaafin?", ["Aremo", "Oluwo", "Ilari", "Bashorun"], 1, "Oluwo had the unqualified right of direct access.", "Oluwo = Ogboni leader.", 0, 2], ["The Oyomesi had electoral powers and also:", ["Legislative powers", "Military powers only", "Tax powers only", "Priestly powers only"], 0, "The notes compare them to the US Congress.", "Like US Congress.", 0, 2], ["Which body judged cases involving the spilling of blood?", ["Oyomesi", "Ogboni", "Ilari", "Aremo"], 1, "That was a function of the Ogboni.", "Blood cases = Ogboni.", 0, 2], ["The Ilari were officials, usually:", ["Warriors with red caps and spears", "Eunuchs with half-shaved heads", "Women with long plaited hair", "Priests wearing white cloth"], 1, "They were half-heads.", "Ilari = half-heads.", 0, 2], ["The Ilari served as spies, tax collectors, guards and:", ["Judges", "Farmers", "Messengers", "Priests"], 2, "Those are their functions.", "Ilari = messengers.", 0, 2], ["The Aremo was the:", ["First-born prince, eldest son of the Alaafin", "Head of the Oyomesi council", "Spy and tax collector of the palace", "Leader of the Ogboni society"], 0, "He was quite powerful.", "Aremo = first son.", 0, 2], ["When an Alaafin was rejected, who else committed suicide with him?", ["His eldest son and the Samu", "The Oluwo and the Ilari", "The Bashorun and the Aremo only", "The Oyomesi as a whole"], 0, "The Alaafin, his eldest son and the Samu all did so, during the Orun festival.", "Alaafin, son and Samu.", 0, 2], ["How many layers did the Oyo Empire have?", ["Seven", "Three", "Six", "Four"], 3, "Metropolitan Oyo, Yorubaland, Egbado Corridor and Ajaland.", "Four layers.", 0, 2], ["Which layer was the hub of the Oyo Empire?", ["Metropolitan Oyo", "Egbado Corridor", "Ajaland", "Yorubaland"], 0, "It spoke the Oyo dialect and had 6 provinces.", "Hub = Metropolitan.", 0, 2], ["Which layer guaranteed Oyo's trade with the coast?", ["Yorubaland", "Ajaland", "Egbado Corridor", "Metropolitan Oyo"], 2, "It was supervised by the Ajele.", "Coast = Egbado.", 0, 2], ["Which was the most restive and distant Oyo territory?", ["Ajaland", "Metropolitan Oyo", "Egbado Corridor", "Yorubaland"], 0, "It extended into modern Togo.", "Furthest = Ajaland.", 0, 2], ["Who supervised the Egbado Corridor?", ["The Oluwo", "The Aremo", "The Samu", "The Ajele"], 3, "The Ajele was the supervisor.", "Ajele = Egbado.", 0, 2], ["The mnemonic MOY-EA stands for the four layers of the:", ["Nri Kingdom", "Songhai Empire", "Benin Empire", "Oyo Empire"], 3, "Metropolitan, Yorubaland, Egbado, Ajaland.", "MOY-EA = Oyo.", 0, 2], ["The unit of political authority among the Efik-Ibibio is the:", ["Ekpe", "Ekpuk", "Obong", "Esopidung"], 1, "Ekpuk means extended family or lineage.", "Ekpuk = lineage.", 0, 3], ["Who is the president of the village council among the Efik-Ibibio?", ["Amanayabo of the founding family", "Esopidung, the village council", "Akpan Okuku", "Obong Obio of the founding family"], 2, "He has executive, judicial and administrative powers.", "Akpan Okuku.", 0, 3], ["What is the nucleus of the Efik-Ibibio system?", ["Obong Order, the royal class", "Itibe Ekpuk (the Royal Family)", "Esopidung, the village council", "Akpan Okuku, the council president"], 1, "It is the royal family.", "Nucleus = royal family.", 0, 3], ["The Esopidung is a village council whose main function is:", ["Religious", "Military", "Judicial", "Commercial"], 0, "The notes say religious.", "Esopidung = religion.", 0, 3], ["Ministers among the Efik-Ibibio are appointed from the:", ["Esopidung", "Obong Order", "Itibe", "Ekpuk"], 1, "It is a special class of royal members.", "Ministers = Obong.", 0, 3], ["In the Annang village system, no one can rise beyond the:", ["Village level of the council", "Lineage level (Ekpuk)", "Age-grade level of the youths", "Royal level of the Obong"], 1, "That is a limit in Annang village life.", "Stops at Ekpuk.", 0, 3], ["Igbo political organisation is based on:", ["A military chain of command", "A single king and his council", "A monarchy under one king", "Lineage structure"], 3, "It is flexible and democratic.", "Igbo = lineage.", 0, 4], ["Igbo decisions are organised through lineage heads, title societies and:", ["Merchants", "Judges", "Cavalry", "Age grades"], 3, "These form the autonomous federations.", "Heads, titles, ages.", 0, 4], ["How many categories of Igbo decision-makers does the book list?", ["Four", "Three", "Seven", "Five"], 3, "Traditional, title societies, secret societies, age grade and hierarchical.", "Five categories.", 0, 4], ["In which group are secret societies dominant?", ["Cross River Igbo (Abriba, Ohafia, Arochukwu)", "Awka Igbo, with title societies", "Asaba Igbo, with age grades", "Niger Igbo, with a hierarchy"], 0, "They are the 3rd category.", "3rd = Cross River.", 0, 4], ["The Awka Igbo decide through title societies and:", ["Secret cults", "A hierarchy of kings", "Lineage elders", "Age grades alone"], 2, "That is the 2nd category.", "2nd = Awka.", 0, 4], ["Which Igbo areas have a hierarchical political structure?", ["Asaba and Aguleri, with age grades", "Abriba and Ohafia, with secret cults", "Niger Igbo, such as Onitsha and Oguta", "Awka and Nri, with title societies"], 2, "The 5th category is hierarchical.", "5th = Niger Igbo.", 0, 4], ["Which age grade administers oaths and offers sacrifices?", ["The oldest grade", "The middle grade", "The lowest grade", "The women's grade"], 0, "It is co-opted into the village council.", "Oldest = oaths.", 0, 4], ["Which age grade is in charge of public sanitation?", ["The middle grade of the traders", "The title holders of the lineage", "The lowest grade (children)", "The oldest grade of the elders"], 2, "The lowest grade does sanitation.", "Lowest = sanitation.", 0, 4], ["The middle age grade is made up of:", ["Retired elders of the lineage", "Priests of the shrine", "Successful business people", "Children of the village"], 2, "They assist youths in military and social services.", "Middle = business people.", 0, 4], ["Ekpe is the:", ["Ghost society", "Title society", "Leopard society", "Masquerade club"], 2, "Ekpe = leopard.", "Ekpe = leopard.", 0, 4], ["Ekpo is the:", ["Ghost or masquerade society", "Age grade of the middle men", "Royal council of the Obong", "Leopard society of the Cross River"], 0, "Ekpo = ghost.", "Ekpo = ghost.", 0, 4], ["What is the Igbo masquerade club called?", ["Esopidung", "Mmuo", "Ekpe", "Owu"], 1, "In the Delta and Riverine areas it is owu.", "Igbo = mmuo.", 0, 4], ["In Delta and Riverine areas the masquerade club is called:", ["Mmuo", "Ekpuk", "Owu", "Ekpo"], 2, "Igbo = mmuo; Delta = owu.", "Delta = owu.", 0, 4], ["Who may join the executive and masquerade clubs?", ["Women only", "Elders of both sexes", "Men only", "Both men and women"], 2, "They are exclusively for men.", "Men only.", 0, 4]]}, {"t": "Indigene/Settler Phenomenon and Conflict in Nigeria", "s": ["The Indigene/Settler Concept", "Plateau State Example", "Colonial History", "Causes of the Crisis", "Notable Ethnic Conflicts"], "q": [["The concept of indigeneity took root in which Nigerian constitution?", ["The 1979 constitution", "The 1966 decree", "The 1960 constitution", "The 1963 constitution"], 0, "It lives on in the 1999 constitution.", "Indigeneity = 1979.", 0, 0], ["The system divides Nigerians into indigenes and:", ["Northerners and southerners", "Citizens and aliens", "Rulers and subjects", "Non-indigenes (settlers)"], 3, "It is based on where parents or grandparents were born.", "Indigene vs settler.", 0, 0], ["The indigene/settler status is based on where a person's:", ["Parents or grandparents were born", "Religion of the person was born", "Business was set up by them", "School was located near them"], 0, "That is the basis in the notes.", "Parents' birthplace.", 0, 0], ["What was the original intent of the policy?", ["To expel all settlers from the land", "To end local governments", "To protect colonial laws and courts", "To ensure ethnic parity in education and employment"], 3, "It also aimed to protect traditional cultures.", "Parity in jobs and school.", 0, 0], ["Which two bodies reported in 2006 that the principle had marginalised millions of Nigerians?", ["The World Bank and the IMF", "Human Rights Watch and International Crisis Group", "NATO and Amnesty International", "The UN and ECOWAS together"], 1, "They reported it separately.", "HRW and ICG.", 0, 0], ["In what year did those bodies report on the principle?", ["2011", "2006", "1999", "1979"], 1, "The notes say 2006.", "Report = 2006.", 0, 0], ["The policy became a tool to exclude settlers from educational, employment and:", ["Political opportunities", "Market trading", "Religious rites", "Family life"], 0, "That is the notes' complaint.", "Excluded from politics too.", 0, 0], ["Since 1996, Nigeria has been divided into 36 states and how many local government areas?", ["774", "174", "1,000", "500"], 0, "The notes say 774.", "774 LGAs.", 0, 0], ["Indigeneity in Plateau State was used by Christian politicians to exclude:", ["Jarawa people of the area", "Muslim Hausa/Fulani settlers", "Yoruba farmers of the villages", "Igbo traders of the markets"], 1, "That is the Plateau example.", "Plateau = Hausa/Fulani.", 0, 1], ["The Jarawa are called non-indigenes in Plateau and also fail to qualify as indigenes:", ["Only in the Northern region", "Only in Bauchi State", "Anywhere else in Nigeria", "Only in Lagos State"], 2, "They have no home status elsewhere.", "Nowhere indigene.", 0, 1], ["Since 1999, Plateau fighting has displaced over:", ["5,000 people", "550,000 people", "55,000 people", "5 million people"], 1, "The notes give over 550,000 internally displaced persons.", "550,000 IDPs.", 0, 1], ["The April 2006 clash was between which two groups?", ["Pan and Gomai", "Ife and Modakeke", "Ijaw and Itsekiri", "Tiv and Jukun"], 0, "More than 100 were killed and 8,000 displaced.", "Pan vs Gomai.", 0, 1], ["In 1885, what was internationally recognised?", ["Nigeria's independence from Britain", "The end of the Royal Niger Company", "The 1914 amalgamation of Nigeria", "The British claim to lands in today's Nigeria"], 3, "The notes say it was recognised.", "1885 = British claim.", 0, 2], ["In 1900, Nigeria was administered as a concession of the:", ["The Northern Council of chiefs", "The Colonial Office in London", "The Lagos Colony government", "Royal Niger Company"], 3, "That is the entry for 1900.", "1900 = Royal Niger Company.", 0, 2], ["In 1906, the Lagos Colony was merged with the:", ["Northern Protectorate", "Western Region", "Southern Protectorate", "Royal Niger Company"], 2, "That is the 1906 entry.", "1906 = Lagos + South.", 0, 2], ["The 1914 amalgamation created the:", ["Colony and Protectorate of Nigeria", "Northern Federation of Emirates", "Federal Republic of Nigeria", "Union of Three Regions"], 0, "All three units were joined.", "1914 = Colony and Protectorate.", 0, 2], ["In 1939, the Southern Protectorate was split into:", ["Lagos and Benin Provinces", "Niger and Benue Provinces", "Northern and Southern Provinces", "Eastern and Western Provinces"], 3, "That is the 1939 change.", "1939 = East and West.", 0, 2], ["In 1947 Nigeria was divided into three regions, which gave prominence to the Hausa-Fulani, Igbo and:", ["Yoruba", "Efik", "Ijaw", "Tiv"], 0, "North, East and West.", "Hausa, Igbo, Yoruba.", 0, 2], ["What became a major political question after the 1954 and 1957 conferences?", ["The capital city", "The flag", "The currency", "The minority problem"], 3, "The notes say it became major.", "Minority problem.", 0, 2], ["What is the main cause of indigene/settler crises?", ["Fear of dominance by another group", "Resource-based, with ethnicity used by elites for state power", "Colonial rule and partition", "Weak state structure and poverty"], 1, "Elites use ethnicity to access resources.", "Main cause = resources.", 0, 3], ["How many causes of the crisis does the book list?", ["Seven", "Three", "Five", "Ten"], 2, "Resources, primordial loyalties, fear of dominance, weak state and imperialism.", "RPFWI = five.", 0, 3], ["The mnemonic RPFWI begins with Resources, Primordial loyalty and then:", ["Federal wealth from oil", "Fear of dominance", "Fear of war with neighbours", "Faith in the laws of the state"], 1, "It then adds Weak state and Imperialism.", "F = fear.", 0, 3], ["Primordial loyalties mean that people feel safe and secure among their:", ["Work group", "Age group", "Ancestral group", "Religious group"], 2, "Intrusion is viewed with suspicion.", "Safe with own group.", 0, 3], ["The fear of dominance cause was seen between Hausa-Fulani and which people of Sango-Kataf?", ["Jarawa", "Pan", "Tiv", "Vum"], 3, "This was in Plateau State.", "Vum = fear of dominance.", 0, 3], ["Which cause includes poverty, winner-takes-all thinking and weak institutions?", ["Primordial loyalties", "Imperialism", "Weak state structure", "Resource-based"], 2, "That cause drives inter-ethnic rivalry.", "Poverty = weak state.", 0, 3], ["Which cause includes arbitrary delimitation and partitioning by colonial masters?", ["Fear of dominance by others", "Primordial loyalties to the group", "Imperialism and colonialism", "Weak state structure and poverty"], 2, "They created ethnic fault lines.", "Borders = imperialism.", 0, 3], ["Ethnicity is described as a viable source of underdevelopment and:", ["Peace", "Bad governance", "Wealth", "Good governance"], 1, "The notes say so in the exam tip.", "Ethnicity = bad governance.", 0, 3], ["The solution advocated for these crises is a:", ["Military model", "Winner-takes-all model", "Power-sharing model", "Regional-border model"], 2, "It promotes integration and cooperation.", "Share power.", 0, 3], ["Which of these is listed among notable ethnic conflicts in Nigeria?", ["Nok/Songhai", "Hausa/Fulani", "Oyo/Benin", "Ife/Modakeke"], 3, "Others are Jos, Umuleri/Aguleri, Ijaw/Itsekiri and Tiv/Jukun.", "Ife/Modakeke listed.", 0, 4], ["Which conflict pairs the Tiv with the:", ["Modakeke", "Aguleri", "Jukun", "Itsekiri"], 2, "Tiv/Jukun is listed.", "Tiv/Jukun.", 0, 4], ["Which conflict pairs the Ijaw with the:", ["Itsekiri", "Umuleri", "Modakeke", "Jukun"], 0, "Ijaw/Itsekiri is listed.", "Ijaw/Itsekiri.", 0, 4], ["The notes suggest which kind of alternative may stay imperative in the new millennium?", ["Military rule by generals", "African traditional conflict resolution", "Border closure by the state", "Colonial courts of the British"], 1, "Traditional alternatives may be imperative.", "Traditional methods.", 0, 4]]}, {"t": "Social Mobility and Social Change", "s": ["Definition of Social Mobility", "Types of Mobility", "Forms of Capital", "Factors Responsible for Mobility", "Social Change"], "q": [["Social mobility is the movement of individuals or groups within or between layers in an:", ["Open system of social stratification", "Closed caste system of birth", "Colonial system of rule", "Military rank list of soldiers"], 0, "That is the definition in the notes.", "Open stratification.", 0, 0], ["Which of these is a measure of social mobility?", ["Literacy", "Rainfall", "Skin colour", "Height"], 0, "Measures are health status, literacy, education and income.", "Literacy, income, education.", 0, 0], ["Vertical mobility is movement:", ["Within the same social level", "Between parents and children only", "Up or down socio-economic levels", "Between towns and villages only"], 2, "It happens through a job, marriage or position change.", "Vertical = up or down.", 0, 0], ["Horizontal movement is from one position to another:", ["Within the same social level", "Down the social ladder of status", "Across a nation's border by migrants", "Up the social ladder of status"], 0, "The level does not change.", "Horizontal = same level.", 0, 0], ["Absolute social mobility refers to the:", ["Move between towns and regions", "Differences in the chance of an outcome", "Movement of one person in life", "Overall numbers who end up in a different layer from their parents"], 3, "It is a count of people.", "Absolute = numbers.", 0, 0], ["Relative social mobility refers to differences in the:", ["Probability of attaining a certain outcome", "Number of people who moved", "Cost of living in the town", "Size of the families in it"], 0, "It holds regardless of structural changes.", "Relative = probability.", 0, 0], ["Barber defined social mobility as movement between higher or lower:", ["Cities", "Religions", "Social classes", "Armies"], 2, "Barber's definition is about classes and roles.", "Barber = classes.", 0, 0], ["How many types of mobility does the book list?", ["Ten", "Four", "Three", "Six"], 3, "IIV-HLS: intra, inter, vertical, horizontal, lateral and structural.", "Six types.", 0, 1], ["Intra-generational mobility is a change in status:", ["From parents to children", "Because of a law", "Between two towns", "Within a single lifetime"], 3, "It is personal development over time.", "Intra = same lifetime.", 0, 1], ["Inter-generational mobility is a change in status:", ["Between two regions of a country", "Between two similar jobs in a firm", "Within one person's own lifetime", "From the parents' to the children's generation"], 3, "An example is a professor whose father is a school teacher.", "Inter = across generations.", 0, 1], ["A professor who is the son of a school teacher is an example of:", ["Intra-generational mobility", "Lateral mobility", "Structural mobility", "Inter-generational mobility"], 3, "Status changed across generations.", "Son of teacher = inter.", 0, 1], ["The last-born who becomes the breadwinner of the household is an example of:", ["Horizontal mobility", "Intra-generational mobility", "Inter-generational mobility", "Lateral mobility"], 1, "It happens within a single lifetime.", "Breadwinner = intra.", 0, 1], ["A school teacher promoted to principal is an example of:", ["Upward vertical mobility", "Horizontal mobility", "Downward vertical mobility", "Lateral mobility"], 0, "It is movement up the scale.", "Promotion = upward.", 0, 1], ["A businessman who goes bankrupt is an example of:", ["Structural mobility from a law", "Upward vertical mobility in rank", "Horizontal mobility between jobs", "Downward vertical mobility"], 3, "He moves down the scale.", "Bankrupt = downward.", 0, 1], ["A Minister of Education transferred to the Finance Ministry is an example of:", ["Lateral mobility", "Structural mobility", "Horizontal mobility", "Vertical mobility"], 2, "He moves across similar positions.", "Transfer = horizontal.", 0, 1], ["Lateral mobility is a:", ["Change caused by a new law", "Geographical movement between towns or regions", "Move up a job grade at work", "Move from parents' to children's status"], 1, "It combines vertical and horizontal movement.", "Lateral = place.", 0, 1], ["Migration due to economic, religious or social reasons is an example of:", ["Structural mobility", "Lateral mobility", "Vertical mobility", "Intra-generational mobility"], 1, "It is geographic movement.", "Migration = lateral.", 0, 1], ["Structural or exchange mobility is caused by:", ["Personal hard work of a person", "Marriage to a wealthy person", "Societal changes, not individual effort", "A move to another town"], 2, "It forces vertical mobility.", "Structural = society.", 0, 1], ["A declaration of free and compulsory secondary education is an example of:", ["Structural or exchange mobility", "Lateral mobility between towns", "Intra-generational mobility alone", "Horizontal or lateral mobility"], 0, "It changes the distribution of status in society.", "Free education = structural.", 0, 1], ["How many forms of capital enabling mobility does the book list?", ["Five", "Ten", "Three", "Seven"], 0, "IHSPS: Information, Human, Social, Physical, Symbolic.", "Five capitals.", 0, 2], ["Higher education is an example of which capital?", ["Social capital of the network", "Information or knowledge capital", "Physical capital of the owner", "Human capital of the worker"], 1, "Information capital includes higher education.", "Education = information.", 0, 2], ["Competence and effort in labour make up:", ["Physical capital", "Human capital", "Social capital", "Symbolic capital"], 1, "That is human capital.", "Effort = human.", 0, 2], ["Support from one's social network is:", ["Symbolic capital", "Social capital", "Human capital", "Physical capital"], 1, "That is social capital.", "Network = social.", 0, 2], ["Ownership of tools or means of production is:", ["Social capital", "Human capital", "Symbolic capital", "Physical capital"], 3, "That is physical capital.", "Tools = physical.", 0, 2], ["The worth of an official title or celebrity status is:", ["Human capital", "Physical capital", "Symbolic capital", "Social capital"], 2, "That is symbolic capital.", "Title = symbolic.", 0, 2], ["How many factors responsible for social mobility does the book list?", ["Five", "Seven", "Three", "Four"], 0, "MAEMI: Motivation, Achievements, Education, Migration, Industrialisation.", "Five factors.", 0, 3], ["Without which factor is mobility impossible?", ["Migration", "Education", "Motivation", "Industrialisation"], 2, "Motivation is the desire to improve social standing.", "No motivation, no mobility.", 0, 3], ["Which factor is called the knowledge passport for higher prestige jobs?", ["Industrialisation", "Education", "Motivation", "Migration"], 1, "A minimum formal education is needed.", "Education = passport.", 0, 3], ["Fraudulent bankruptcy leading to the loss of club membership is an example of:", ["Failure causing downward mobility", "Motivation causing change", "Education causing upward mobility", "Migration causing lateral mobility"], 0, "Failures and misdeeds lead downward.", "Failure = down.", 0, 3], ["People migrate because of push and which other factors?", ["Drag factors", "Rank factors", "Pull factors", "Weight factors"], 2, "New places may offer new openings.", "Push and pull.", 0, 3], ["Under the Industrial Revolution, status was based on ability and:", ["Religion", "Race", "Caste", "Training"], 3, "It was not based on caste, race, religion or ethnicity.", "Ability and training.", 0, 3], ["Social change is an alteration in the:", ["Income of one family only", "Social order of a society", "Rank of one worker only", "Size of one town only"], 1, "That is the definition.", "Change = society.", 0, 4], ["Social change is driven by cultural, religious, economic, scientific or:", ["Weather forces only", "Technological forces", "Family forces only", "Colonial forces only"], 1, "Those are the forces in the notes.", "Forces list.", 0, 4], ["How many sources of social change does the book list?", ["Two", "Six", "Five", "Three"], 0, "Random or unique factors and systemic factors.", "Two sources.", 0, 4], ["Climate and weather are which kind of source of change?", ["Systemic factors from human action", "Structural factors of the economy", "Random or unique factors", "Political factors of the state"], 2, "They are natural, mostly an act of God.", "Climate = random.", 0, 4], ["Which is a systemic factor of social change?", ["Drought in a farming year", "Earthquakes in a region", "Change from military to civilian rule", "Rainfall that fails in a season"], 2, "Systemic factors are human factors.", "Human = systemic.", 0, 4], ["What is the difference between social change and social mobility?", ["Change is only about money and trade", "They mean exactly the same thing", "Mobility alters society, change moves people", "Change alters society, mobility moves individuals or groups"], 3, "Social change is not social mobility.", "Change = society.", 0, 4]]}];
+try{ if(window.IndigeneHistory&&IndigeneHistory.registerStruct) IndigeneHistory.registerStruct('GST110',{title:'GST 110 \u00b7 Nigerian People and Culture',chapters:DATA.map(function(c){return {t:c.t,n:c.q.length,s:c.s};})}); }catch(e){}
+const SUBJECT_KEY = 'gst110';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1800); }
+
+// flatten
+const ALL = [];
+DATA.forEach((c,ci)=>c.q.forEach((q,qi)=>ALL.push({id:ci+'_'+qi, ch:ci, stem:q[0], opts:q[1], ans:q[2], exp:q[3], hack:q[4], trap:q[5], sec:q[6]})));
+const TOTAL = ALL.length;
+// questions already served in earlier runs (kept per browser) so new runs favour fresh ones
+let SEEN = new Set();
+try{ SEEN = new Set(JSON.parse(localStorage.getItem('gst110_seen')||'[]')); }catch(e){}
+function saveSeen(){ try{ localStorage.setItem('gst110_seen', JSON.stringify([...SEEN])); }catch(e){} }
+// shuffle, then put unseen questions first (random order inside each half)
+function freshFirst(arr){ const a=shuffle(arr.slice()); return a.filter(q=>!SEEN.has(q.id)).concat(a.filter(q=>SEEN.has(q.id))); }
+const FULL_N = Math.min(500, TOTAL), HALF_N = TOTAL>=500 ? 250 : Math.round(TOTAL/2);
+// fair sample: every chapter is represented in proportion to its size
+function sampleFair(n){
+  const groups = DATA.map((_,ci)=>freshFirst(ALL.filter(q=>q.ch===ci)));
+  const exact = groups.map(g=>g.length*n/TOTAL);
+  const take = exact.map(Math.floor);
+  let left = n - take.reduce((a,b)=>a+b,0);
+  exact.map((x,i)=>[x-Math.floor(x),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{ if(left>0 && take[i]<groups[i].length){ take[i]++; left--; } });
+  let out=[]; groups.forEach((g,i)=>{ out=out.concat(g.slice(0,take[i])); });
+  return shuffle(out);
+}
+
+// optional access gate (cbt-lock.js) — never breaks the quiz if missing
+let lock = null;
+async function loadLock(){
+  try { lock = await import('../cbt-lock.js'); }
+  catch(e){ try { lock = await import('/cbt-lock.js'); } catch(e2){ lock = null; } }
+}
+const lockReady = loadLock();
+
+const PASS = 50;
+const grade = p => p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F';
+let mode = 'full', sel = new Set(), secSel = null, run = [], idx = 0, weakSpec = null;
+// '2.3,4.all' = chapter 2 section 3, whole of chapter 4 (sent from the History tab or the result screen)
+function specPool(spec){
+  const want = spec.map(s=>s.split('.')); let pool = [];
+  want.forEach(([c,s])=>{ const ci=(+c)-1; if(!DATA[ci]) return;
+    pool = pool.concat(ALL.filter(q=>q.ch===ci && (s==='all' || q.sec===(+s)-1))); });
+  pool = shuffle(pool); return pool.length>50 ? pool.slice(0,50) : pool;
+}
+
+function renderSetup(){
+  const quick = Math.min(50, TOTAL), half = HALF_N;
+  const cards = [
+    ['full', FULL_N, 'Full CBT'],
+    ['quick', quick, 'Quick Drill'],
+    ['half', half, 'Half Run'],
+    ['session', '🎯', 'By Chapter']
+  ];
+  $('runs').innerHTML = cards.map(c=>`<button class="run${c[0]===mode?' sel':''}" data-m="${c[0]}"><span class="n">${c[1]}</span>${c[2]}</button>`).join('');
+  document.querySelectorAll('.run').forEach(b=>b.onclick=()=>{ mode=b.dataset.m; renderSetup(); });
+  $('chaps').classList.toggle('show', mode==='session');
+  $('chapList').innerHTML = DATA.map((c,i)=>{
+    const on = sel.has(i);
+    let x = `<div class="chap${on?' on':''}" data-i="${i}"><span class="box" style="border-radius:50%">${on?'●':''}</span><span class="nm">Ch ${i+1}. ${esc(c.t)}</span><span class="ct">${c.q.length}</span></div>`;
+    if(on){
+      x += '<div class="secs"><button class="sec'+(secSel===null?' on':'')+'" data-s="all">Whole chapter · '+c.q.length+'</button>'
+        + c.s.map((sn,si)=>'<button class="sec'+(secSel===si?' on':'')+'" data-s="'+si+'">'+esc(sn)+' · '+c.q.filter(q=>q[6]===si).length+'</button>').join('') + '</div>';
+    }
+    return x;
+  }).join('');
+  document.querySelectorAll('.chap').forEach(d=>d.onclick=()=>{ const i=+d.dataset.i; sel.clear(); sel.add(i); secSel=null; renderSetup(); });
+  document.querySelectorAll('.sec').forEach(b=>b.onclick=()=>{ secSel = b.dataset.s==='all' ? null : +b.dataset.s; renderSetup(); });
+}
+
+function makeItem(q){
+  return { q, perm: shuffle([0,1,2,3]), pick: null };   // perm = order of original options shown 
+}
+
+async function startQuiz(){
+  if(mode==='session' && sel.size===0){ toast('Pick a chapter first'); return; }
+  try{ await lockReady; }catch(e){}
+  if(lock && typeof lock.checkCbtAccess==='function'){
+    try{
+      const r = await lock.checkCbtAccess(SUBJECT_KEY);
+      if(r && r.blocked){ lock.renderCbtLockScreen($('app'), r.reason); return; }
+    }catch(e){}
+  }
+  let pool;
+  if(mode==='full') pool = sampleFair(FULL_N);
+  else if(mode==='quick') pool = freshFirst(ALL).slice(0,Math.min(50,TOTAL));
+  else if(mode==='half') pool = sampleFair(HALF_N);
+  else if(mode==='weak') pool = specPool(weakSpec||[]);
+  else {
+    pool = [];
+    [...sel].sort((a,b)=>a-b).forEach(ci=>{ pool = pool.concat(ALL.filter(q=>q.ch===ci && (secSel===null || q.sec===secSel))); });
+  }
+  if(!pool.length){ toast('Nothing to practise there'); return; }
+  begin(pool);
+}
+
+let startedAt = 0, isRetry = false, saved = false;
+let reviewing=false;
+function begin(pool, retry){
+  reviewing=false; $('finishBtn').textContent='Finish & see score';
+  run = pool.map(makeItem); idx = 0; startedAt = Date.now(); isRetry = !!retry; saved = false;
+  if(!retry){ pool.forEach(q=>SEEN.add(q.id)); if(SEEN.size >= TOTAL) SEEN = new Set(); saveSeen(); }
+  $('setup').classList.add('hidden'); $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  window.scrollTo(0,0);
+  renderQ();
+}
+
+function counts(){
+  let ok=0,no=0;
+  run.forEach(it=>{ if(it.pick!==null){ it.pick===it.q.ans ? ok++ : no++; } });
+  return {ok,no};
+}
+
+function renderQ(){
+  const it = run[idx], q = it.q, c = counts();
+  $('qpos').textContent = `Q ${idx+1} / ${run.length}`;
+  $('sOk').textContent = c.ok; $('sNo').textContent = c.no;
+  $('bar').style.width = ((c.ok+c.no)/run.length*100)+'%';
+  $('chtag').textContent = `Ch ${q.ch+1} · ${DATA[q.ch].t}`;
+  $('qtext').textContent = q.stem;
+  const L = ['A','B','C','D'];
+  const answered = it.pick!==null || reviewing;
+  $('opts').innerHTML = it.perm.map((oi,pos)=>{
+    let cls='opt';
+    if(answered){ cls+=' locked'; if(oi===q.ans) cls+=' correct'; else if(oi===it.pick) cls+=' wrong'; }
+    return `<button class="${cls}" data-oi="${oi}"><span class="l">${L[pos]}</span><span>${esc(q.opts[oi])}</span></button>`;
+  }).join('');
+  if(!answered) document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(+b.dataset.oi));
+  renderFb();
+  $('prev').disabled = idx===0;
+  $('next').textContent = idx===run.length-1 ? (reviewing?'Done ▶':'Finish ▶') : 'Next ▶';
+}
+
+function renderFb(){
+  const it = run[idx], q = it.q;
+  if(it.pick===null && !reviewing){ $('fb').innerHTML=''; return; }
+  const good = it.pick===q.ans;
+  const pos = 'ABCD'[it.perm.indexOf(q.ans)];
+  $('fb').innerHTML = `<div class="fb">
+    ${q.trap?'<span class="trap">⚠ TRAP QUESTION</span>':''}
+    <div class="v ${good?'ok':'no'}">${good?'✅ Correct!':it.pick===null?'⏭ Skipped — the answer is '+pos:'❌ Not quite — the answer is '+pos}</div>
+    <p class="ex">${esc(q.exp)}</p>
+    <div class="hk">⏱ Speed hack: ${esc(q.hack)}</div>
+  </div>`;
+}
+
+function choose(oi){
+  const it = run[idx];
+  if(it.pick!==null || reviewing) return;
+  it.pick = oi;
+  try{ if(lock && typeof lock.recordCbtQuestionUsed==='function') lock.recordCbtQuestionUsed(); }catch(e){}
+  renderQ();
+}
+
+$('prev').onclick=()=>{ if(idx>0){ idx--; renderQ(); window.scrollTo(0,0);} };
+$('next').onclick=()=>{ if(idx<run.length-1){ idx++; renderQ(); window.scrollTo(0,0);} else if(reviewing) backToResult(); else finish(); };
+function startReview(){
+  reviewing=true; idx=0;
+  $('finishBtn').textContent='Back to result';
+  $('result').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  renderQ(); window.scrollTo(0,0);
+}
+function backToResult(){ reviewing=false; $('finishBtn').textContent='Finish & see score'; finish(); }
+$('finishBtn').onclick=()=>{
+  if(reviewing){ backToResult(); return; }
+  const left = run.filter(i=>i.pick===null).length;
+  if(left===0){ finish(); return; }
+  $('cmsg').textContent = left+' question(s) not answered yet. Finish anyway?';
+  $('cov').classList.add('show');
+};
+$('cYes').onclick=()=>{ $('cov').classList.remove('show'); finish(); };
+$('cNo').onclick=()=>$('cov').classList.remove('show');
+
+function openMap(){
+  $('map').innerHTML = run.map((it,i)=>{
+    let c=''; if(it.pick!==null) c = it.pick===it.q.ans?'ok':'no';
+    if(i===idx) c+=' cur';
+    return `<button class="${c}" data-i="${i}">${i+1}</button>`;
+  }).join('');
+  document.querySelectorAll('#map button').forEach(b=>b.onclick=()=>{ idx=+b.dataset.i; $('ov').classList.remove('show'); renderQ(); window.scrollTo(0,0); });
+  $('ov').classList.add('show');
+}
+$('mapBtn').onclick=openMap;
+$('closeMap').onclick=()=>$('ov').classList.remove('show');
+$('ov').onclick=e=>{ if(e.target.id==='ov') $('ov').classList.remove('show'); };
+
+function saveHistory(c){
+  if(saved || isRetry) return;
+  const answered = c.ok + c.no;
+  if(answered<=0) return;
+  saved = true;
+  try{
+    if(window.IndigeneHistory && typeof window.IndigeneHistory.save==='function'){
+      const topics = {};
+      run.forEach(it=>{
+        if(it.pick===null) return;
+        const k = 'Ch '+(it.q.ch+1)+' · '+DATA[it.q.ch].s[it.q.sec];
+        if(!topics[k]) topics[k]=[0,0];
+        topics[k][1]++; if(it.pick===it.q.ans) topics[k][0]++;
+      });
+      window.IndigeneHistory.save({course:'GST110', mode:'cbt', correct:c.ok, total:answered,
+        secs:Math.round((Date.now()-startedAt)/1000), topics:topics});
+    }
+  }catch(e){}
+}
+function finish(){
+  const c = counts(), n = run.length, un = n-c.ok-c.no;
+  const pct = n? Math.round(c.ok/n*100):0;
+  const msg = pct>=70?'Outstanding. You are ready for the exam. 🔥':pct>=50?'You passed. Keep pushing higher and clear every section.':pct>=40?'Close. Revise the failed sections and run again.':'Keep going. Read the failed sections again, then retry.';
+  saveHistory(c);
+  const chs = {}, secs = {};
+  run.forEach(it=>{
+    const q = it.q, good = it.pick===q.ans;
+    const a = chs[q.ch] || (chs[q.ch] = {ok:0,n:0}); a.n++; if(good) a.ok++;
+    const k = q.ch+'_'+q.sec; const b = secs[k] || (secs[k] = {ch:q.ch,sec:q.sec,ok:0,n:0}); b.n++; if(good) b.ok++;
+  });
+  const chKeys = Object.keys(chs).map(Number).sort((x,y)=>x-y);
+  const pc = x => Math.round(x.ok/x.n*100);
+  const need = ci => Math.max(8, Math.ceil(DATA[ci].q.length*0.4));
+  const rows = chKeys.map(ci=>{
+    const a = chs[ci], s = pc(a), full = a.n>=need(ci), ok = s>=PASS;
+    const sr = Object.values(secs).filter(x=>x.ch===ci).sort((x,y)=>x.sec-y.sec).map(x=>`<div class="sr"><span>${esc(DATA[ci].s[x.sec])}</span><b class="${pc(x)>=PASS?'pass':'fail'}">${x.ok}/${x.n} · ${pc(x)}%</b></div>`).join('');
+    return `<details class="cres"${(full&&!ok)?' open':''}><summary><span>Ch ${ci+1} · ${esc(DATA[ci].t)}</span><b class="${!full?'na':ok?'pass':'fail'}" style="white-space:nowrap">${s}/100 · ${grade(s)} · ${!full?'PRACTICE':ok?'PASS ✔':'FAIL ✖'}</b></summary>${sr}</details>`;
+  }).join('');
+  const weak = Object.values(secs).filter(x=>x.n>=2 && pc(x)<PASS).sort((x,y)=>x.ch-y.ch||x.sec-y.sec);
+  const revise = weak.length ? `<div class="revise"><b>Revise these sections</b>${weak.map(x=>`<div class="sr"><span>Ch ${x.ch+1} · ${esc(DATA[x.ch].s[x.sec])}</span><b class="fail">${pc(x)}%</b></div>`).join('')}</div>` : '<p class="msg pass"><b>Every section in this run is at pass mark or above.</b></p>';
+  const fullKeys = chKeys.filter(ci=>chs[ci].n>=need(ci));
+  const passedN = fullKeys.filter(ci=>pc(chs[ci])>=PASS).length;
+  const wrong = run.filter(it=>it.pick!==null && it.pick!==it.q.ans);
+  $('quiz').classList.add('hidden'); $('result').classList.remove('hidden');
+  window.scrollTo(0,0);
+  $('result').innerHTML = `
+    <h2>Result</h2>
+    <div class="big" style="font-size:2.2rem">${pct}/100 · ${grade(pct)}</div>
+    <div class="stats"><span>Correct <b>${c.ok}</b></span><span>Wrong <b>${c.no}</b></span><span>Skipped <b>${un}</b></span><span>Total <b>${n}</b></span></div>
+    <p class="msg"><b class="${pct>=PASS?'pass':'fail'}">${pct>=PASS?'PASS':'FAIL'}</b> · pass mark ${PASS}/100 · ${fullKeys.length?'chapters passed in this run '+passedN+'/'+fullKeys.length:'practice run, no chapter pass or fail'}</p>
+    <p class="msg">${msg}</p>
+    <h2 style="margin-top:16px">Score per chapter</h2>
+    ${rows}
+    <p class="msg" style="font-size:.8rem;color:var(--mute)">PRACTICE means this run had under 40% of that chapter's questions, so it shows a score but no pass or fail.</p>
+    ${revise}
+    ${weak.length?'<button class="btn" id="weakBtn">Practice these weak sections ('+weak.length+')</button>':''}
+    <button class="btn" id="reviewBtn">Review answers${wrong.length?' ('+wrong.length+' wrong)':''}</button>
+    <a class="btn ghost" style="text-align:center;text-decoration:none" href="/#history=GST110">My history</a>
+    ${wrong.length?`<button class="btn" id="retryWrong">Retry wrong answers (${wrong.length})</button>`:''}
+    <button class="btn ghost" id="newRun">New run</button>
+    `;
+  $('reviewBtn').onclick=startReview;
+  if($('weakBtn')) $('weakBtn').onclick=()=>{ weakSpec=weak.map(x=>(x.ch+1)+'.'+(x.sec+1)); mode='weak'; startQuiz(); };
+  if($('retryWrong')) $('retryWrong').onclick=()=>begin(shuffle(wrong.map(w=>w.q)), true);
+  $('newRun').onclick=()=>{ $('result').classList.add('hidden'); $('setup').classList.remove('hidden'); renderSetup(); window.scrollTo(0,0); };
+}
+
+document.addEventListener('keydown',e=>{
+  if($('quiz').classList.contains('hidden') || $('ov').classList.contains('show') || $('cov').classList.contains('show')) return;
+  const k=e.key.toLowerCase();
+  if('abcd'.includes(k) && k.length===1){ const it=run[idx]; if(it.pick===null){ choose(it.perm['abcd'.indexOf(k)]); } }
+  else if(e.key==='ArrowRight') $('next').click();
+  else if(e.key==='ArrowLeft') $('prev').click();
+});
+
+$('startBtn').onclick=startQuiz;
+renderSetup();
+try{
+  const pr = new URLSearchParams(location.search).get('practice');
+  if(pr && /^[\d.,all]+$/.test(pr)){ weakSpec = pr.split(',').filter(Boolean); mode='weak'; startQuiz(); }
+}catch(e){}
+</script>
+</body>
+</html>
