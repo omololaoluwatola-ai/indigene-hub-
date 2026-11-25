@@ -54,7 +54,7 @@ export async function checkCbtAccess(cbtId) {
   // Switch off (dormant) = everything open. premium.js answers this from a 5-minute
   // saved copy, so nobody waits.
   let monetizationActive;
-  try { monetizationActive = await isMonetizationActive(); } catch (e) { monetizationActive = true; }
+  try { monetizationActive = await isMonetizationActive(); } catch (e) { monetizationActive = false; }
 
   if (!monetizationActive) {
     return { blocked: false, questionsAllowedToday: Infinity };
