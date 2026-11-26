@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ENT 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">ENT 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>ENT 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · ENT 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Meaning & Thinkers",
+  "Types & Roles",
+  "Business Environment",
+  "Creativity & Innovation",
+  "Vision, Teams & Ownership",
+  "Starting & Running a Business",
+  "Nigeria & General Facts"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Meaning & Thinkers ---------- */
+[0,"Richard Cantillon belongs to a French school of thought known as","French, physiocrats","Greek, scholars","French, economists","Greek, physiocrats","The Physiocrats were French thinkers who tied the wealth of a nation to land and agriculture.","Cantillon: French + physiocrats."],
+[0,"Which of these stories was linked to the definition of entrepreneurship?","Seven blind men and seven elephants","Seven economists and seven businesses","Seven business women and seven products","Two French men and two chicks","Like blind men touching different parts of an elephant, scholars describe the entrepreneur from different angles.","Many views of one thing = blind men and elephants."],
+[0,"Who said an enterprising person sees a pile of scrap metal and imagines a wonderful sculpture?","Jim Rohn","Joseph A. Schumpeter","David McClelland","Alfred Marshall","The quote is about seeing value where others see waste. Your past question spells the name Jim Rohm.","Scrap to sculpture = Jim Rohn."],
+[0,"Enterprise is composed of two things, namely","Creativity and requirement","Business and business ideas","Innovation and power","None of these","You need a creative idea and a need that the idea answers.","Enterprise = create what is required."],
+[0,"Who described an entrepreneur as a human bulldozer who turns stumbling blocks into stepping stones?","Okpara in 2000","Okpara in 1775","Okpara in 2002","Okpara in 1990","Okpara used this picture to show how entrepreneurs push through obstacles.","Bulldozer = Okpara 2000."],
+[0,"Who introduced the concept of creative and imaginative thought?","Shackle","Schumpeter","Peter Drucker","Max Weber","Shackle stressed imagination in making choices under uncertainty.","Shackle frees the imagination."],
+[0,"Who defined an entrepreneur as someone who makes judgments to coordinate scarce resources?","Casson","Everett Hagen","Cole","Meredith","Casson focused on judgmental decisions about scarce resources.","Casson = careful judgment."],
+[0,"According to Merriam-Webster (1972), an entrepreneur is an individual who","Organizes and manages a business and takes its risk for profit","Seeks continuous change in society and works to bring it about","Gathers the necessary resources and acts on them to ensure success","Reacts to practical problems and solves them with new technologies","The dictionary meaning has three parts: organize, manage and take risk for profit.","Dictionary: organize, manage, risk."],
+[0,"Meredith and others defined an entrepreneur as an individual who","Gathers necessary resources and acts on them to ensure success","Seeks continuous change in society and works to bring it about","Organizes and manages a business and takes its risk for profit","Reacts to practical problems and solves them with new technologies","Their definition is about gathering resources and taking action.","Meredith = muster resources."],
+[0,"Everett Hagen defined an entrepreneur as an individual who is a","Reactive problem solver using creative technologies","Seeker of continuous change in the wider society","Gatherer of the resources needed to ensure success","Manager of a business who takes its risk for profit","Hagen saw the entrepreneur as solving practical problems with creative technology.","Hagen = handles problems."],
+[0,"Who defined entrepreneurship as a purposeful activity to initiate, maintain and grow a profit-oriented business?","Cole","Alfred Marshall","Peter Drucker","Say","Cole called it a purposeful activity built around a profit-oriented business.","Cole = purposeful."],
+[0,"Who said the entrepreneur searches for change, responds to it and exploits it as an opportunity?","Peter Drucker","Alfred Marshall","Cole","Say","This is Drucker's well known definition.","Drucker drives on change."],
+[0,"Who introduced the concept of innovation and power in entrepreneurship?","Joseph A. Schumpeter","Max Weber","Frank Knight","Israel Kirzner","Schumpeter is the main name for innovation theory.","Innovation = Schumpeter."],
+[0,"According to Frank Knight, an entrepreneur is viewed as","A risk taker","A business owner","A business starter","A business head","Knight linked profit to bearing uncertainty and risk.","Knight takes risks."],
+[0,"The scholar who first stressed the importance of entrepreneurship for economic growth is","Cantillon","Mill","Quesnay","Ricardo","Your past question credits Cantillon, one of the earliest writers on the entrepreneur.","First = Cantillon."],
+[0,"The two disciplines where entrepreneurship originated are","Economics and business","French and English","Economics and history","History and French","The idea grew out of economic theory and business.","Money subjects: economics and business."],
+[0,"Who listed entrepreneurs as risk bearers, coordinators and innovators?","Joseph Schumpeter","Adam Smith","David Ricardo","John Stuart Mill","Your past question gives this list of traits to Schumpeter.","Innovator in the list = Schumpeter."],
+[0,"The concept entrepreneur was first coined by","Richard Cantillon","David McClelland","David Hisrich","Jean-Baptiste Say","Cantillon was the first to use the term in economic theory.","Coined it = Cantillon."],
+[0,"Who viewed entrepreneurship as a force of creative destruction?","Schumpeter","Casson","Knight","Williams","New ideas destroy old market structures and create new ones.","Creative destruction = Schumpeter."],
+/* ---------- 1 · Types & Roles ---------- */
+[1,"A self-employed person who works alone or with only a few employees is called a","Soloist","Grouper","Intrapreneur","Patriarch","A soloist prefers to work independently.","Solo = alone."],
+[1,"Individuals who prefer the psychological or financial relief of working with a partner or group are called","Groupers","Soloists","Benefiters","Turn-about artists","Groupers like to share the load with others.","Group = grouper."],
+[1,"A person who starts alone and then builds a large company through delegation and organization is a","Workforce builder","Successful intrapreneur","Solicitor","Inventor researcher","The workforce builder grows the firm by organizing people well.","Large company through people = workforce builder."],
+[1,"A person who prefers to take over an existing business instead of starting a new one is an","Acquirer","Heritrepreneur","Value manipulator","Inventor","An acquirer buys what already exists.","Acquire = take over."],
+[1,"An entrepreneur with the potential to acquire large assets on which capital gain can be earned is a","Speculator","Business innovator","Thinker","Capitalist","Speculators hold assets and profit when their value rises.","Capital gain = speculator."],
+[1,"Someone who buys companies that have problems but also potential for profit is a","Turn-about artist","Rich business man","Legal depositor","Copreneur","The turn-about artist turns a struggling company around.","Turns it about."],
+[1,"The individual who heads a family business is called the","Matriarch or patriarch","Head of the table","Conglomerate head","None of these","A female head is a matriarch and a male head is a patriarch.","Family head = matriarch or patriarch."],
+[1,"An entrepreneur who directs and controls all activities to make sure things are done properly is playing the role of","Leader","Resource allocator","Directing and controlling","Visionary","Your past question names this the leader role.","Marked answer here is Leader, even though one option repeats the wording."],
+[1,"Which of these is NOT considered entrepreneurship?","Routine management of an ongoing operation","The creation of a completely new business","Innovation applied to a business context","The combination of productive resources","Routine management keeps things running without creating anything new.","Routine is not enterprise."],
+[1,"A person who shows innovation and mobilizes resources while working inside an existing organization is an","Intrapreneur","Entrepreneur","Inventor","Manager","Intrapreneurship is entrepreneurship inside an organization.","Intra = inside."],
+[1,"Which of these people is NOT an entrepreneur?","A teacher","A shoemaker","A business owner","A suya seller","A salaried teacher does not own or bear the risk of a venture.","Salary earner, not entrepreneur."],
+[1,"The part of entrepreneurship that deals largely with technology is","Technopreneurship","Technology entrepreneurship","Modern entrepreneurship","Digital management","Technopreneurship joins technology with enterprise.","Techno + preneur."],
+[1,"Which of these is a popular example of a technopreneur?","Elon Musk","Charles Babbage","Kelon Kennedy","Keeng Daveed","Elon Musk is known for technology ventures such as Tesla and SpaceX.","Tesla = Musk."],
+[1,"The classic entrepreneur who feels a compelling need to achieve is the","Personal achiever","Super salesperson","Complex entrepreneur","Real manager","The personal achiever is driven by the need to reach goals.","Need to achieve = achiever."],
+[1,"Entrepreneurs are motivated by","All of these","Money only","Personal values only","Pull influences only","Money, values and pull factors can all drive an entrepreneur.","Motivation has many sources."],
+/* ---------- 2 · Business Environment ---------- */
+[2,"The environment that recognizes the customs, traditions and values of the community is the","Socio-cultural environment","Demographic environment","Technological environment","Historical environment","Customs and values belong to society and culture.","Customs = culture."],
+[2,"The body of regulations and laws falls under which environment?","Political and legal","Socio-cultural","Technological","Demographic","Laws come from government and the courts.","Laws = legal."],
+[2,"When one organization's threat is another organization's opportunity, the business environment is","Multifaceted","Stable","Simple","Potent","The same event has more than one side.","Many faces = multifaceted."],
+[2,"The concept environment can also be referred to as","Surroundings","External objects","Inferences","Circumstances","The environment is what surrounds the business.","Environment = surroundings."],
+[2,"An entrepreneur can assess the internal environment of a business by looking at its","Strengths and weaknesses","Opportunities only","Threats and opportunities","Strengths and threats","Strengths and weaknesses are inside the firm. Opportunities and threats are outside.","S and W are inside."],
+[2,"Scanning the business environment to identify favourable and unfavourable conditions is","SWOT analysis","External evaluation","Internal evaluation","Market analysis","SWOT covers both the good and bad conditions inside and outside.","Good and bad scan = SWOT."],
+[2,"The business environment can be broadly classified into how many parts?","Two","Three","Four","Five","The two broad parts are internal and external.","In and out = two."],
+[2,"An inherent constraint that creates a strategic disadvantage for an organization is a","Weakness","Threat","Strategy","Risk","A weakness comes from within. A threat comes from outside.","Inherent = inside = weakness."],
+[2,"What is the correct meaning of SWOT?","Strength, Weakness, Opportunity, Threat","Strenght, Weakness, Opportunity, Threat","Strength, Weekness, Opportunity, Threat","Strenght, Weekness, Opportunity, Threat","Only the first option spells every word correctly.","Check the spelling of Strength and Weakness."],
+/* ---------- 3 · Creativity & Innovation ---------- */
+[3,"Which of these is NOT a form of innovation?","Idea generation","Technological innovation","Product-market innovation","Administrative innovation","Idea generation is a step toward innovation, not a form of it.","An idea alone is not yet innovation."],
+[3,"When innovation brings a new dominant design and a new set of core concepts, it is called","Radical innovation","Architectural innovation","Modular innovation","Incremental innovation","Radical innovation replaces the old design completely.","New everything = radical."],
+[3,"Which term means involving new ideas and the ability to do something in a new way?","Creative thinking","Identification","Will power","Decision making","Creative thinking finds new ways of doing things.","New way = creative."],
+[3,"Innovation can best be defined as","The successful exploitation of new ideas","The continuous generation of new ideas","The gradual evolution of many new ideas","The direct opposite of creative thinking","Creativity produces the idea and innovation puts it to successful use.","Innovation = idea put to use."],
+/* ---------- 4 · Vision, Teams & Ownership ---------- */
+[4,"Which term is creative, looks to a future of greatness and keeps the organization motivated after the founders are gone?","Envisioned future","Company policy","Envisioned vision","Distant future","The envisioned future gives long term direction.","Future of greatness = envisioned future."],
+[4,"The reason for an organization's existence is its","Core purpose","Core mission","Core movement","Core activities","Core purpose answers why the organization exists.","Why we exist = purpose."],
+[4,"Core value is the extent of what the organization is ready to maintain?","Integrity","Knowledge","Capacity","Inspiration","Core values are the standards the organization will not give up.","Value = integrity."],
+[4,"The core value of an organization is also called its","Core tenet","Core motive","Core intent","Core mission","A tenet is a central belief.","Value = tenet."],
+[4,"The stage where a mature, well functioning group handles tasks effectively is the","Total integration stage","Initial integration stage","Forming stage","Storming stage","At total integration the group works as one.","Mature = total."],
+[4,"Which theory says that the more activities people share, the more they interact and the stronger their sentiments?","George Homans theory","Balance theory","Exchange theory","Propinquity theory","Homans linked activities, interaction and sentiment.","Activities, interaction, sentiment = Homans."],
+[4,"A team with different levels of hierarchy is a","Vertical team","Horizontal team","Special purpose team","Football team","A vertical team cuts across levels of authority.","Levels go up and down = vertical."],
+[4,"Which of these is NOT a disadvantage of sole proprietorship?","Easy to raise capital","Lack of continuity","Limited growth","Unlimited liability","A sole owner usually finds it hard to raise capital, so ease of raising it is not one of the problems.","Easy is never a disadvantage."],
+[4,"The oldest form of business organization is","Sole proprietorship","Partnership","Joint stock company","Co-operative society","One owner trading alone came first.","Oldest = one person."],
+/* ---------- 5 · Starting & Running a Business ---------- */
+[5,"One common mistake of beginners is putting early emphasis on profit. It is tagged","Profit first","Greedification","Hatching one's egg","Looseguard","Chasing profit too early can starve a young business.","Early profit = Profit First."],
+[5,"Who bears the non-insurable or systematic risk in a business?","The entrepreneur","The guarantor","The insurance company","The business sponsors","Risks that no insurer will cover stay with the entrepreneur.","Cannot insure it, you carry it."],
+[5,"All of these are major factors to consider before starting a business EXCEPT","Certificate","Time","Locality","National laws and regulations","Your past question treats a certificate as the item that is not a major factor.","Paper is not the major factor."],
+[5,"An entrepreneur must have a competitive spirit in order to","Take success and failure impartially","Wage war against business opponents","Be a threat to other entrepreneurs","Be superior to every single opponent","A healthy spirit accepts both winning and losing calmly.","Competitive, not combative."],
+[5,"Which of these is NOT a type of loan or credit facility?","Branch credit","Trade credit","Long term loan","Thrift cooperative loan","Branch credit is not one of the recognised facilities.","No such thing as branch credit."],
+[5,"Which of these is NOT among the objectives of setting up a business venture?","Tertiary objective","Collateral objective","Primary objective","Secondary objective","The listed objectives are primary, secondary and collateral.","No tertiary."],
+[5,"The reward for land as a factor of production is","Rent","Wages","Salary","Interest","Land earns rent, labour earns wages, capital earns interest and the entrepreneur earns profit.","Land = rent."],
+[5,"According to Baumback (1992), all of these help to avert business failure EXCEPT","Watching closely the next business to do","Careful study of the market for the goods","Keeping an adequate record of all expenses","None of these","Looking ahead to another business takes focus off the present one.","Focus on this business."],
+[5,"Which of these is needed to remain a successful business person?","All of these","Clear communication only","Good planning only","Making precise decisions only","Communication, planning and precision are all needed.","All three work together."],
+[5,"A business is an economic activity for","Satisfying human wants","Satisfying consumers' want only","Satisfying producers' demand","Satisfying demand and supply","Business provides goods and services that meet human wants.","Business = human wants."],
+[5,"An entrepreneur should draw up which of these to make sure a project is completed on time?","Implementation plan","Cost structure","Market structure","Production structure","An implementation plan sets out what happens and when.","Timely = implementation plan."],
+/* ---------- 6 · Nigeria & General Facts ---------- */
+[6,"IPR means","Intellectual Property Right","Industrial Profit Resources","Informative Public Relations","Internal Product Registration","These are legal rights over creations of the mind such as patents and copyrights.","IP = Intellectual Property."],
+[6,"SMEDAN was established in what year?","2003","2001","2002","2004","SMEDAN supports small and medium enterprises in Nigeria.","SMEDAN = 2003."],
+[6,"Who is the founder and CEO of Facebook?","Mark Zuckerberg","Jack Sukabag","Mack Zuckerberg","Jack Zuckerberg","Mark Zuckerberg founded Facebook in 2004. The company is now called Meta.","Watch the spelling: Mark."],
+[6,"Which body at FUOYE handles the practical aspect of entrepreneurship?","CEDSS","CEPEO","CEPEP","FEPEP","Your past question names CEDSS as the centre in charge.","CEDSS, ending in double S."],
+[6,"The age range for taking part in N-Power is","18 to 35","14 to 40","18 to 45","20 to 37","N-Power was a youth empowerment scheme for ages 18 to 35.","Youth = 18 to 35."],
+[6,"BOI means","Bank of Industry","Bank of Investment","Bank of Innovation","Board of Industry","The Bank of Industry finances industrial development in Nigeria.","I = Industry."],
+[6,"The full meaning of FOMO is","Fear Of Missing Out","Federal Organization for Medical Attention","Fear Of Marketing Orientation","Federal Organization for Marketing Attention","It is the worry of being left out of something.","Fear first."],
+[6,"The full meaning of FIIRO is","Federal Institute of Industrial Research, Oshodi","Federal Inter-market Innovation and Research Organization","Federal Investment and Innovation Research Organization","Federal Institute of Innovation and Resources, Oshodi","FIIRO is a Nigerian research institute based in Oshodi.","Ends in O for Oshodi."],
+[6,"Entrepreneurship in Nigeria started with","Barter of farm produce","Online sales of goods","Buying and selling with money","Ordering of paid services","Early trade was the exchange of farm produce.","Oldest trade = barter."],
+];
+
+window.PQ_BANK.push(
+[0,"The non-continuous process of combining time, people, money and materials to create products, services and ideas is","Entrepreneurship","Management","Intrapreneurship","Production","Entrepreneurship creates something new and is not a routine, continuous activity.","Non-continuous creation = entrepreneurship."],
+[0,"The one who creates a new enterprise in a risky and uncertain environment is called","Entrepreneur","Risk taker","Adventurist","Leader","Creating a new venture under risk is what an entrepreneur does.","New enterprise + risk = entrepreneur."],
+[1,"An entrepreneur who starts a business with a fresh idea is simply performing which role?","Visionary","Leadership","Resource allocator","Directing and controlling","Seeing and starting something fresh is the visionary role. Your two past questions disagree on this, so check your notes.","Fresh idea = vision."],
+[3,"Creativity is","The ability to bring something new into existence","The process of doing new things","Ability to imitate perfectly","All of these","Creativity is bringing something new into existence.","Create = bring into being."],
+[3,"The first step in the creative process according to Holt 1992 is","Idea generation","Incubation","Preparation","Verification","Both of your past question sets give idea generation as Holt's first step.","Holt starts with the idea."],
+[3,"According to Holt 1992, the creative process has how many stages?","5 stages","4 stages","6 stages","7 stages","Your past questions give five stages.","Holt = five."],
+[3,"Innovation made up of market research, product design, advertising and promotion is called","Product-market innovation","Technological Innovation","Consumer related Innovation","Administrative Innovation","These activities connect the product to its market.","Market + product = product-market."],
+[5,"A written document that describes all the internal and external issues involved in starting a new venture is a","Business plan","Feasibility study","Appraisal","Business structure","The business plan sets out the whole venture on paper.","Written roadmap = business plan."],
+[6,"SMIEIS stands for","Small and Medium Industry Equity Investment Schemes","Small and Medium Investment Schools","Small and Medium Industry Equity Investment Schools","None of these","It was a scheme for equity investment in small and medium industries.","EI = Equity Investment."],
+[0,"Management is continuous. Which of these is described as non-continuous?","Entrepreneurship","Entrepreneur","Environmental","Management","Entrepreneurship happens in bursts of new creation, while management goes on daily.","Management runs daily, entrepreneurship does not."],
+[0,"Who creates a business, establishes it and nurses it to survival and success?","Entrepreneur","Sales Manager","Feasibility report","Feasibility study","The entrepreneur carries the venture from start to success.","Creates and nurses = entrepreneur."],
+[3,"Which technique for generating business ideas allows criticism?","Reverse brainstorming","Matrix charting","Brainstorming","Collective notebook","Reverse brainstorming looks for faults in ideas.","Reverse = criticise."],
+[6,"In Britain, COSIRA means","Council for Small Industries in Rural Areas","Committee for Small Industries in Rural Areas","Council for Small Investment in Rural Areas","Committee for Small Investment in Rural Areas","It supported small industries in rural areas.","R = Rural, A = Areas."],
+[6,"The exclusive right to stop others from copying or making derivative versions of a work of authorship is","Copyright","Patent right","Intellectual right","Royalty","Copyright protects works of authorship.","Copy right = stops copying."],
+[6,"COSIRA is to Britain as which of these is to Nigeria?","SMIEIS","SMEs","SMEDIS","SMEDAN","Your past question pairs COSIRA with Nigeria's SMIEIS.","COSIRA pairs with SMIEIS."],
+[5,"Which of these is NOT one of McCarthy's four Ps of marketing?","Public relations","Product","Place","Promotion","The four Ps are product, price, place and promotion.","Public relations is not one of the four."],
+[5,"Which of these is the fourth step in the entrepreneurial process?","Growing the entrepreneurial firm","Developing successful business ideas","Deciding to become an entrepreneur","Moving from an idea to an entrepreneurial firm","Growth comes after the firm has been set up.","Growth comes last."],
+[1,"An individual who initiates, creates and manages a new business is called","An entrepreneur","A leader","A manager","A professional","Starting and running a new venture makes one an entrepreneur.","Initiates = entrepreneur."],
+[1,"A person who owns and runs a small firm is known as","An owner-manager","A manager-owner","A professional adapter","An enterprise worker","The same person is both owner and manager.","Own first, then manage."],
+[1,"Someone who improves an existing business can be called","An intrapreneur","A professional","A co-worker","A changeling","Your past question treats improvement from within as intrapreneurship.","Existing business = intrapreneur."],
+[1,"When individual skills are combined into a group, this is called","Team entrepreneurship","Collective entrepreneurship","Intrapreneurship","Dual innovation","The group acts as one entrepreneurial team.","Group skills = team."],
+[2,"Threats from external environmental factors can come from","All of these","Direct competition","Indirect competitors","Consumers","Competitors and consumers are all outside the firm.","All are outside."],
+[2,"The main purpose of scanning the external environment is to identify","Opportunities and threats","Only strengths","Weaknesses","Strengths and weaknesses","Outside factors show up as opportunities and threats.","Outside = O and T."],
+[4,"Which of these is NOT an advantage of sole proprietorship?","Unlimited liability","Ownership of all profits","Minimum legal restriction","Privacy","Unlimited liability puts the owner's property at risk.","Unlimited liability is a burden."],
+[4,"The minimum number of people required to start a sole proprietorship is","One","Two","Seven","Twenty","Sole means one.","Sole = one."],
+[4,"The minimum and maximum number of partners in a partnership are respectively","2 and 20","2 and 50","2 and 7","7 and 20","Your past question gives two to twenty.","2 to 20."],
+[4,"General partners have","Unlimited liability and participate in the day to day running of the business","Limited liability","Unlimited liability","Participate in the day to day running of the business","They bear full liability and help run the business daily.","General = full risk and full work."],
+[5,"Management of resources in a small firm is largely concerned with","All of these","Operations","Finance","Marketing","Operations, finance and marketing all use resources.","All three."],
+[5,"Using equipment such as machinery without owning it is called","Leasing","Hire purchase","Factoring","Acquisition","Leasing gives use without ownership.","Lease = use, not own."],
+[5,"A cash flow forecast belongs to which section of a business plan?","Finance","Operations","Marketing","Executive summary","Cash flow is a money matter.","Cash = finance."],
+[5,"A key aspect of the financial section of a business plan is","A realistic sales forecast","A statement of management skills","Production capacity","A description of competitors","The figures depend on a believable sales forecast.","Money plan needs sales."],
+[5,"As a new company grows, the entrepreneur will need to","All of these","Be responsive to changes in the market","Ensure financial controls are maintained","Build a management team","Growth needs market response, financial control and a team.","All three."],
+[5,"The business planning process sometimes fails because","All of these","The planning process is poorly managed","Plans are impractical","Planners lack the appropriate skills","Poor management, unrealistic plans and weak skills all cause failure.","All three."],
+[5,"Being overoptimistic about market size could result from","Poor market research","Proper planning","Diversifying too soon","Focusing on sales volume rather than profit","Research shows the real size of a market.","Wrong size = weak research."],
+[3,"Which technique is excellent for initially screening ideas as well as generating new ones?","Brainstorming","Focus group","Problem inventory analysis","Reverse brainstorming","Your past question gives brainstorming.","Generate = brainstorm."],
+[6,"The importance of intellectual property should be understood by an entrepreneur even before","Developing a product","Hiring a manager","Engaging an attorney","Establishing new venture","Protection matters before the product is developed.","Protect before you build."],
+[0,"Entrepreneurship can best be described as","A process involving innovation, new products or services, and value creation","A process that requires setting up a business","Taking a significant risk in a business context","Having a strong vision","It combines innovation, new offerings and value creation.","Pick the fullest meaning."],
+[0,"Which statement best describes the context for entrepreneurship?","Entrepreneurship takes place in a wide variety of contexts","Entrepreneurship takes place in small businesses","Entrepreneurship takes place in large businesses","Entrepreneurship does not take place in social enterprises","It can happen in firms of any size and in social ventures.","Anywhere."],
+[0,"The sociological theory of entrepreneurship refers to","Reviewing the way in which the environment influences who becomes entrepreneurial","Looking at individuals personality traits","Understanding how our thought processes influence our entrepreneurial capacity","Describing how different business-types influence entrepreneurial activity","Sociology looks at how surroundings shape people.","Socio = environment and society."],
+[1,"Which of these is NOT one of the building blocks of the model entrepreneur?","Business awareness","Technical skills","Management competencies","Personal attributes","The blocks are technical skills, management competencies and personal attributes.","Awareness is not a block."],
+[5,"Which factor is least likely to influence the timing of new business births?","Weather conditions","Government policies","Profitability","Consumer expenditure","Weather has the weakest link to when firms are started.","Pick the non-economic one."],
+[3,"Which statement most accurately describes innovation?","Innovation is a relative not an absolute concept","Innovation is an absolute not a relative concept","Innovation is easy to measure","Innovation is much more important to small business than to large businesses","What is new depends on where it is compared.","Innovation is relative."],
+[3,"Which of these is NOT an advantage large firms hold over small firms in managing innovation?","Large firms are more likely to come up with better ideas than small businesses","Large firms are more likely to attract highly skilled specialists often for research and development","Large firms are more able to employ patent and legal specialists","Large firms are more able to raise venture capital and spread risk","Big firms have more resources, but not necessarily better ideas.","Money does not buy ideas."],
+[6,"Which of these does NOT form intellectual property?","Tangible assets","Trademarks","Patents","Copyright","Tangible assets can be touched, while intellectual property cannot.","Tangible is not intellectual."],
+[5,"A business centre that offers working space and specialised support for new ventures is called","Incubator","Isolator","Injector","Integrator","An incubator nurtures young businesses.","Incubate = nurture."],
+[1,"An entrepreneur who owns more than one business at the same time is","A portfolio entrepreneur","An intrapreneur","A corporate entrepreneur","None of these","Owning several at once is portfolio entrepreneurship.","Portfolio = many at once."],
+[1,"An entrepreneur who runs a business, sells it and moves to another soon after is","A serial entrepreneur","A failed entrepreneur","A multiple entrepreneur","Secondary entrepreneur","One venture follows another.","Serial = one after another."],
+[6,"To give financial help to entrepreneurs, government has set up a number of","Financial institutions","Financial advisors","Financial intermediaries","Industrial estates","These institutions provide funds.","Finance = institutions."],
+[5,"Technical feasibility examines a project with reference to","All of these","Location","Land and building","Technical competence","Location, buildings and competence are all checked.","All three."],
+[5,"A commercial banker would prefer which kind of debt-equity ratio over the years?","Declining","Increasing","Stable","Fluctuating","A falling ratio shows less reliance on debt.","Less debt is better."],
+[5,"Term financing is mainly used by entrepreneurs for","All of these","New industrial units","Acquisition of fixed assets","Expansion in plant capacity","It funds new units, fixed assets and expansion.","All three."],
+[5,"The first step in starting a new business venture is","Idea generation","Scanning of ideas","Preparing a business plan","Project implementation","Every venture begins with an idea.","Idea first."],
+[5,"Which is primarily concerned with identifying, quantifying and evaluating project resources?","Feasibility analysis","Techno-economic analysis","Input analysis","Financial analysis","Feasibility analysis checks the resources of a project.","Resources check = feasibility."],
+[5,"A project with large investment in fixed assets is termed","Capital Intensive","Labour Intensive","Product Intensive","Market Intensive","Capital is the main input.","Big assets = capital."],
+[6,"PERT stands for","Programme Evaluation and Review Techniques","Programme Evaluation and Research Techniques","Project Evaluation and Review Techniques","Project Evaluation and Research Techniques","It is a planning and scheduling tool.","Programme, Evaluation, Review."],
+[5,"The process of identifying opportunities for new business ventures is","Project identification","Project formulation","Project feasibility","Project evaluation","This is the first look for a project.","Identify = identification."],
+[5,"The systematic development of a project idea to reach an investment decision is","Project formulation","Project identification","Project feasibility","Project evaluation","Formulation shapes the idea into a decision.","Develop = formulate."],
+[5,"The availability of plant, machinery and technical know-how relates to","Technical feasibility","Economic viability","Financial feasibility","Managerial competence","These are technical matters.","Machines = technical."],
+[5,"Preparing an inventory of skills needed to implement a project falls under","Managerial competence","Economic viability","Financial feasibility","Technical feasibility","Skills are a matter of managerial competence.","Skills = competence."],
+[6,"An arrangement where someone else is allowed to use something belonging to a company is","Licensing","Patent","Copyright","Trade mark","A licence grants permission to use.","Permission = licence."],
+[5,"A company-wide consumer orientation aimed at long-run profit is the","Marketing Concept","Political concept","Technological concept","Demographic concept","The marketing concept puts the customer first.","Consumer = marketing."],
+[2,"A business environment made of many factors that interact with one another is","Complex and dynamic","Simple","Stable","Potent","Many linked factors make it complex and changing.","Many and moving = complex, dynamic."],
+[2,"The environment on the borderline between the internal and external environment is the","Intermediate","General","Remote","Close","It sits in between the two.","In between = intermediate."],
+[2,"An entrepreneur can assess the external environment of a business by looking at","Opportunities and threats","Opportunities and strengths","Opportunities and weaknesses","Weaknesses and threats","Opportunities and threats come from outside.","O and T are outside."],
+[5,"Which is the most common cause of business failure?","Poor entrepreneurship","Insufficient capital","Unstable market","Insufficient experience","Your past question gives poor entrepreneurship.","Failure starts with the entrepreneur."],
+[5,"What is a target market?","A specific group of potential customers toward which a venture aims its marketing plan","A group of customers a venture reaches by accident","All consumers who purchase the venture’s product","A chain of discount stores","It is the group the marketing plan is aimed at.","Target = aimed at."],
+[3,"Which of these shows the process of creating something new?","Innovation","Business model","Modeling","Creative flexibility","Innovation brings new things into use.","New = innovation."],
+[3,"Which source gives suggestions for new products and also helps to market them?","Distribution channels","Existing products and services","Federal government","Consumers","Distributors know the market and sell to it.","Suggest and sell = channels."],
+[6,"Which do entrepreneurs use to gain international experience before a major commitment?","Minority interest","Merger","Joint venture","Majority interest","A small shareholding limits the commitment.","Small stake first."],
+[6,"GATT was established in 1947 under whose leadership?","U.S. leadership","German leadership","French leadership","U.K. leadership","The United States led its creation.","GATT = U.S."],
+[0,"The process by which individuals pursue opportunities without regard to resources they currently control is","Entrepreneurship","Start-up management","Financial analysis","Feasibility planning","Entrepreneurs chase opportunity first and gather resources after.","Opportunity over resources."],
+[3,"Entrepreneurs developing new products that over time make current ones obsolete is","Creative destruction","New business model","Anatomization","None of these","The new destroys the old.","Obsolete = creative destruction."],
+[1,"People who influence an entrepreneur's career choice and style are known as","Role model","Moral-support network","Professional support network","Support system","Role models shape choices by example.","Influence = role model."],
+[5,"The activity that occurs when a new venture is started is called the","Departure point","Motivation","Business skills","Goal orientation","It is the point of setting off.","Start = departure."],
+[3,"Members of distribution channels are excellent sources of new ideas because","They are familiar with the needs of the market","They earn a handsome profit from new business","They do not bother if entrepreneur bears a loss","They have well-developed sales force","They are close to customers.","Close to market."],
+[5,"The most important characteristic of a successful business website is","Speed","Innovation","Graphics","Products","Visitors leave slow sites.","Speed first."],
+[5,"Why should an entrepreneur do a feasibility study before a new venture?","To see if there are possible barriers to success","To identify possible sources of funds","To estimate the expected sales","To explore potential customers","It reveals obstacles early.","Feasible means can it work."],
+[6,"Which is TRUE of a Disclosure Document?","It gives recognition that he is the first inventor of the idea","It gives recognition that he was the inventor of the idea in past","It gives recognition that the idea will be invented in the future","It gives recognition that he wants to copy the idea","It records that the person had the idea first.","Disclosure proves first."],
+[0,"In the administrative domain, resources are committed for","Total amount needed","Periodic intervals","For certain tasks","For long time","Managers tend to commit the full amount in one decision.","Manager = all at once."],
+[6,"Which factor has allowed small companies to act like big ones?","Technology","Customers","Economic development","Competition","Technology widens what a small team can do.","Tech levels the field."],
+[3,"Which action is most likely to contribute to creative destruction?","Development of a new product","Take-over of a competitor","Issuing shares","Reducing prices","A new product can displace old ones.","New product destroys old."],
+[3,"An advantage of the small firm in the innovation process is the","Ability of the entrepreneur to act on new ideas or product development","Ability to carry out research and development","Ability to raise finance","Ability of the entrepreneur to carry out multiple tasks","Small firms can move quickly.","Small = quick action."],
+[3,"External links may provide incentives to","Introduce improvements to products","Raise finance","Introduce new working practices","Attend business exhibitions","Outside contacts push better products.","Links improve products."],
+[5,"Which data for management decisions is found in libraries, magazines and government agencies?","Secondary","Primary","Questionnaire","Issues","Data already collected by others is secondary.","Already published = secondary."],
+[3,"Innovative small firms are more likely to be found in","Knowledge-based sectors","Biotechnology","Automobile manufacture","Aerospace manufacture","Knowledge sectors need ideas more than heavy capital.","Innovation likes knowledge."],
+[5,"Innovative entrepreneurs face special problems in raising","Seed capital","Development capital","Structured capital","Human capital","Early money for untested ideas is hard to get.","Seed = start."],
+[6,"Innovative entrepreneurs may pay high insurance premiums because of","The need to protect patents","Greater employee liability","Greater customer liability","Greater trading risks","Protecting patents adds to the risk covered.","Innovation needs patent cover."],
+[5,"Networking by innovative entrepreneurs may be most encouraged by","Business incubators","Science parks","Chambers of Commerce","Business associations","Incubators bring new firms together.","Incubator again."],
+[6,"Knowledge and skills that are preserved, catalogued and made available for sharing are called","Intellectual property","Intellectual rights","Intellectual copyright","Intellectual debtor","They are treated as intellectual property.","Stored knowledge = property."],
+[2,"Positive external trends that give unique chances for creating value are","Opportunities","Strengths","Weaknesses","Threats","Good outside conditions are opportunities.","Positive and outside = opportunity."],
+[1,"A person with no prior business ownership experience as founder, inheritor or buyer is a","Novice","Habitual","Serial","Portfolio","Novice means new.","Novice = first timer."],
+[1,"A person with prior business ownership experience is called a","Habitual","Novice","Serial","Portfolio","Experience makes the entrepreneur habitual.","Been there = habitual."],
+[0,"All of these are popular demographic factors studied about entrepreneurs EXCEPT","Self-confidence","Gender","Education","Family birth order","Self-confidence is a personality trait.","Confidence is not demographic."],
+[0,"Developing a new venture from an inventor's work often requires","Expertise of an entrepreneur","Heavy investment from financiers","Skilled human resources","Highly educated staff","An inventor needs someone who can build the business.","Invention needs an entrepreneur."],
+[6,"SMEDAN stands for","Small and Medium Enterprises Development Agency of Nigeria","Small and Medium Equity Investment Schools","Small and Medium Industry Equity Investment Schemes","None of these","It is Nigeria's agency for small and medium enterprises.","DAN = Development Agency of Nigeria."],
+[0,"The major issue that unlocks the entrepreneurial process is","Business opportunity","Business manager","Business stocks","Business Ethics","The process begins with an opportunity.","Opportunity opens the door."],
+[0,"The entrepreneur was first distinguished from the provider of capital in the","18th century","17th century","19th and 20th century","Middle ages","Your past question gives the 18th century.","Split in the 1700s."],
+[5,"Assessing the resources an entrepreneur needs starts with","An appraisal of the entrepreneur’s present resources","An assessment of economic conditions of the country","A scanning of friends and family for funds","A survey of banks and other finance","First know what you already have.","Start with yourself."],
+[1,"Intrapreneurship is also called","Corporate venturing","Entrepreneurship","Act of stating a new venture","Offering new products by an existing company","It is venturing inside a corporation.","Inside a corporation."],
+[4,"What is unique about a private limited company?","Restrictions on the transfer of shares","Limited liability","Minimum of two person to start the business","Shares are publicly subscribed","Shares cannot be transferred freely.","Private = restricted shares."],
+[4,"One difference between public and private limited companies is","The minimum number of owners","The maximum number of owners","Limited liability","Unlimited liability of owners","They require different minimum numbers of members.","Minimum differs."],
+[4,"One of the major documents of incorporation is the","Memorandum of association","Article of partnership","Partnership agreement","Memorandum of incorporation","The memorandum is filed to form a company.","Company = memorandum."],
+[1,"An entrepreneur who buys and sells collectibles such as antiques or art works is","A speculator","An innovator","A researcher","An acquirer","Profit comes from changes in value.","Buy to resell = speculator."],
+[1,"Which is typical of most entrepreneurs?","Choose moderate or calculated risk ventures","Choose high risk ventures","Choose low risk ventures","Choose no risk ventures","They take risks they have weighed.","Calculated risk."],
+[5,"Which could motivate a person to start a new venture?","All of these","The financial rewards","A desire to be independent","Being made redundant from existing job","Money, independence and job loss can all push someone.","All push."],
+[6,"Which government actions could help create a more entrepreneurial society?","All of these","Deregulation","Financial start-up","Information and advice","All three support new businesses.","All help."],
+[6,"Which sector tends to promote small businesses and has lower barriers to entry?","Service","Manufacturing","Distribution","Agriculture","Services usually need less capital to start.","Service is cheapest to enter."],
+[4,"Where there is no legal separation between business and owner assets, the business is a","A sole trader","A limited company","A cooperative","A partnership","A sole trader and the business are one in law.","No separation = sole."],
+[6,"Intellectual property laws can protect","All of these","Trademarks","Copyright","Patents","Trademarks, copyright and patents are all covered.","All three."],
+[4,"An arrangement where one party lets another use its business name and sell its products is a","A franchise","A cooperative","An owner-manager business","A limited company","This is franchising.","Borrowed name = franchise."],
+[4,"A disadvantage of a franchise to the franchisee is","Lack of independence","Franchise businesses typically have a high failure rate","Lack of brand identity","Training is not normally provided by the franchisor","The franchisee must follow the franchisor's rules.","Franchisee is not free."],
+[5,"Which is a reason for business failure?","All of these","Lack of market research","Poor financial control","Poor management","Research, money control and management all matter.","All three."],
+[0,"Who believed entrepreneurial activity is the source of innovation in an economy?","Schumpeter","McClelland","Porter","Fayol","Schumpeter is the innovation theorist.","Innovation = Schumpeter."],
+[5,"The systematic collection and analysis of public information about competitors and market developments is","Marketing Intelligence","Marketing Research","Marketing Mix","Demographic concept","Watching competitors is intelligence work.","Spy on market = intelligence."],
+[5,"Which section of a business plan holds back-up material not needed in the main text?","Appendix","Business plan","Feasibility study","None of these","Extra material goes at the end.","Extra = appendix."],
+[3,"According to your past question, Drucker's sources of innovation number","4","3","5","7","The marked answer is four. Drucker is often quoted with seven, so check your notes.","Follow your lecturer's figure."],
+[0,"Most entrepreneurs begin their careers between the ages of","22 and 45","15 and 22","45 and 57","57 and 63","Your past question gives 22 to 45.","22 to 45."],
+[5,"The market for entrepreneurial offerings is","People who have a need for them","Where they are sold","An arrangement that bring a buyer and seller together","All of these","A market is made of people with the need.","Market = people."]
+);
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='ENT101', LABEL='ENT 101', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('ENT101');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
