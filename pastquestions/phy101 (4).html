@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PHY 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<!-- ANALYTICS: paste the same Google Analytics (gtag) and GoatCounter snippets that are in index.html here -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">PHY 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>PHY 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · PHY 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Dimensions, Units & Conversions",
+  "Kinematics & Motion in One Dimension",
+  "Newton's Laws, Momentum & Relative Motion",
+  "Vectors & Scalars",
+  "Rotational Motion & Torque",
+  "Force, Mass & Weight",
+  "Equilibrium, Friction & Circular Motion",
+  "Conservation Laws & Moment of Inertia",
+  "Space, Time & Galilean Invariance",
+  "Special Relativity",
+  "Gravitation, Work & Energy"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Dimensions, Units & Conversions ---------- */
+[0,"A solid cube has mass 856 g and each edge is 5.35 cm long. Its density in SI units is","5.59 × 10³ kg/m³","5.59 × 10⁶ kg/m³","5.59 kg/m³","1.79 × 10⁻⁴ kg/m³","Change to SI first: 856 g is 0.856 kg and 5.35 cm is 0.0535 m. Then 0.856 divided by 0.0535 cubed gives about 5590 kg/m³.","g/cm³ times 1000 gives kg/m³. Never leave cm in the cube."],
+[0,"Adding 40 m and 11 cm correctly gives","40.11 m","51 m","40.011 m","4011 m","You cannot add numbers carrying different units. Change 11 cm to 0.11 m first, then 40 + 0.11 = 40.11 m.","Same unit first, then add."],
+[0,"Multiplying 1.5 m by 3.0 kg gives","4.5 kg m","4.5 kg","4.5 m","Cannot be evaluated at all","Rule 2 says dimensions multiply freely, so the units simply multiply too. Only addition and subtraction need matching units.","Adding needs matching units. Multiplying never does."],
+[0,"Which of these sums is dimensionally invalid?","1.5 m plus 1.5 kg","1.5 m plus 1.5 cm","1.5 m² plus 1.5 cm²","1.5 kg plus 1.5 g","A length and a mass have different dimensions, so they can never be added. The other three pairs only differ in unit size.","Different dimension, not just different unit, means invalid."],
+[0,"The five basic dimensions used in the course are","Mass, length, time, electric current and temperature","Mass, length, time, force and temperature","Mass, length, time, energy and current","Length, time, velocity, current and temperature","M, L, T, I and Θ are the five base dimensions. Force, energy and velocity are built from them.","M L T I Θ. Everything else is derived."],
+[0,"The dimensions of speed are written","L/T","L/T²","L × T","T/L","Speed is distance over time, so its dimension is length divided by time.","Speed is L over T. Acceleration just adds another T below."],
+[0,"The dimensions of density are","M L⁻³","M L³","M L⁻²","M² L⁻³","Density is mass per unit volume, and volume carries L³, so the dimension is M divided by L³.","Mass on top, volume below."],
+[0,"In sin x, ln x and eˣ, the argument x must be","Dimensionless","A length","A time","A mass","Rule 3: arguments of transcendental functions such as sine, logarithm and exponential must have no dimension.","Angle, log or exponent means pure number inside."],
+[0,"If the displacement of a particle is y = k aᵐ tⁿ, where a is acceleration, t is time and k has no dimension, dimensional consistency requires","m = 1 and n = 2","m = 2 and n = 1","m = 1 and n = 1","m = 2 and n = 2","Length is L. a gives L T⁻² and t gives T, so you need one power of a and two powers of t to cancel T and leave L.","Match the T powers first. T⁻² needs T² to cancel it."],
+[0,"Can dimensional analysis give the value of the dimensionless constant k in y = k a t²?","No, it only fixes the exponents","Yes, k comes out as one half","Yes, k equals g","Yes, but only for free fall","Dimensional analysis checks the form of the equation. A pure number such as one half can only come from the actual derivation or an experiment.","Dimensions check powers, never numbers."],
+[0,"If m is mass, g is acceleration and h is length, the dimensions of m g h are","M L² T⁻²","M L T⁻²","M L² T⁻¹","M L T⁻¹","Mass times acceleration is M L T⁻². Multiplying by one more length gives M L² T⁻², which is the dimension of energy.","mgh is energy, so M L² T⁻²."],
+[0,"From F = G m₁m₂/r², the dimensions of the gravitational constant G are","M⁻¹ L³ T⁻²","M L³ T⁻²","M⁻¹ L² T⁻²","M⁻² L³ T⁻²","Make G the subject: G = F r² / m₁m₂. Put in M L T⁻² for force, L² for r² and M² below, and you get M⁻¹ L³ T⁻².","Rearrange first, then substitute dimensions."],
+[0,"In r = √[(s − a)(s − b)(s − c)/s] for a triangle with sides a, b, c, the quantity under the square root has dimension","L²","L³","L","L⁴","Three lengths multiplied give L³ and dividing by s leaves L². The square root then gives L, so the formula is consistent for a radius.","Count lengths on top and bottom, then take the root."],
+[0,"A hollow copper sphere has inner radius 5.70 cm and outer radius 5.75 cm. If copper has density 8.92 g/cm³, the mass of copper is about","184 g","7.1e+03 g","0.00467 g","21.4 g","The copper fills the space between the two spheres, so volume = 4/3 π times outer cube minus inner cube. Multiply that volume by 8.92 g/cm³.","Shell volume is big cube minus small cube. Never subtract the radii first."],
+[0,"A tiny iron cube has edge 5.00 × 10⁻⁸ cm and density 7.86 g/cm³. Its mass is","9.82 × 10⁻²² g","3.93 × 10⁻⁷ g","9.82 × 10⁻¹⁹ g","6.29 × 10²² g","Volume is edge cubed, 1.25 × 10⁻²² cm³. Mass is density times volume.","Cube the edge, then multiply by density."],
+[0,"The iron cube above contains about how many iron atoms? The molar mass of iron is 55.9 g/mol.","10.6 atoms","1.06e+04 atoms","1.06 atoms","1.76e-23 atoms","Moles = mass divided by molar mass. Multiply the moles by Avogadro's number to count atoms. The answer is only about eleven atoms.","grams to moles to atoms."],
+[0,"Hair grows at 1/32 cm per day. In nanometres per second this is about","3.62 nm/s","0.362 nm/s","36.2 nm/s","3.62e+03 nm/s","1 cm is 10⁷ nm and 1 day is 86400 s. So 0.03125 × 10⁷ / 86400 is about 3.62 nm/s.","1 cm = 10⁷ nm. 1 day = 86400 s."],
+[0,"A piece of lead has mass 23.94 g and volume 2.10 cm³. Its density in kg/m³ is","1.14 × 10⁴ kg/m³","1.14 × 10⁷ kg/m³","1.14 × 10¹ kg/m³","1.14 × 10⁻² kg/m³","23.94 / 2.10 = 11.4 g/cm³, and multiplying by 1000 turns g/cm³ into kg/m³.","g/cm³ × 1000 = kg/m³."],
+[0,"Lead has density 11.3 g/cm³. A 10.0 cm³ piece of lead has a mass of","113 g","27.0 g","1.13 g","1130 g","Mass = density times volume = 11.3 × 10.0 = 113 g. The 27.0 g figure belongs to aluminium of the same size.","Same volume, denser metal, bigger mass."],
+[0,"One mole of a substance contains as many particles as there are atoms in","12 g of carbon-12","1 g of hydrogen-1","16 g of oxygen-16","12 g of carbon-14","The mole is defined from carbon-12. Twelve grams of it holds Avogadro's number of atoms.","Mole is tied to 12 g of carbon-12."],
+[0,"Avogadro's number is about","6.02 × 10²³ per mole","6.02 × 10²² per mole","6.67 × 10⁻¹¹ per mole","9.80 × 10²³ per mole","One mole of any element contains 6.022 × 10²³ particles. The 6.67 × 10⁻¹¹ value is the gravitational constant.","Avogadro is 6.02 times ten to the 23."],
+[0,"One atomic mass unit, 1 u, is equal to","1.66 × 10⁻²⁷ kg","1.66 × 10⁻²⁴ kg","1.66 × 10⁻³¹ kg","6.02 × 10⁻²⁷ kg","The atomic mass unit is 1.6605 × 10⁻²⁷ kg. The 10⁻²⁴ figure is the same quantity in grams.","Kilogram value is 10⁻²⁷. Gram value is 10⁻²⁴."],
+[0,"The SI second is defined using the vibration of radiation from","A cesium-133 atom","A hydrogen atom","A quartz crystal","A pendulum of 1 m length","One second is 9 192 631 770 periods of a particular radiation from the cesium-133 atom.","Seconds belong to cesium."],
+[0,"The international standard kilogram is a cylinder made of","Platinum and iridium alloy","Pure silicon","Stainless steel only","Pure gold","The standard kilogram is a platinum-iridium alloy, chosen because the alloy is unusually stable.","Platinum plus iridium. Stable alloy."],
+[0,"The number of seconds in one day is","86400 s","8640 s","3600 s","864000 s","60 s × 60 min × 24 h = 86400 s.","3600 times 24."],
+[0,"One slug is equal to about","14.59 kg","1.459 kg","145.9 kg","0.4536 kg","The table gives 1 slug = 14.59 kg. The 0.4536 figure is the kilogram value of a pound.","Slug is a bit under fifteen kilograms."],
+[0,"One inch is equal to","2.54 cm","25.4 cm","0.254 cm","30.48 cm","The conversion table gives 1 in = 2.540 × 10⁻² m, which is 2.54 cm. The 30.48 cm value is one foot.","Inch 2.54 cm. Foot 30.48 cm."],
+[0,"One mile is equal to about","1609 m","160.9 m","16090 m","3048 m","The table gives 1 mile = 1.609 × 10³ m, which is about 1.609 km.","Mile about 1.6 km."],
+[0,"If D = A + B + C, then A, B and C must","All have the same dimension","Each be dimensionless","Have different dimensions","Be multiplied by the same constant","Rule 1: every term that is added or subtracted must carry the same dimension.","Plus and minus need matching dimensions."],
+[0,"Matter is best described as a substance that","Has inertia and occupies space","Has weight but no volume","Has volume but no mass","Is always made of gold atoms","The notes define matter as anything with inertia that takes up physical space.","Matter equals inertia plus space."],
+[0,"For the equation x = ½ a t², the right hand side has dimension","L","L T⁻²","L²","T²","a gives L T⁻² and t² gives T². Multiplying them leaves L, the same as x on the left.","Check the right side collapses to L."],
+/* ---------- 1 · Kinematics & Motion in One Dimension ---------- */
+[1,"Kinematics is the study of motion","Without considering what causes it","With all the forces included","Of bodies at rest only","Of energy changes only","Kinematics describes how bodies move, with no mention of forces. It is often called the geometry of motion.","Kinematics describes. Dynamics explains."],
+[1,"The study of the causes of motion is called","Dynamics","Kinematics","Statics","Geometry","Dynamics deals with the forces that cause motion. Kinematics only describes the motion.","D for dynamics, D for driving force."],
+[1,"The point x = 3.50 m, y = 2.50 m has a distance from the origin of","4.30 m","6.00 m","18.5 m","1.00 m","Use r² = x² + y². That gives 12.25 + 6.25 = 18.5, and the square root is 4.30 m.","Do not forget the square root."],
+[1,"For the point x = 3.50 m, y = 2.50 m, the polar angle θ is","35.5°","54.5°","45.0°","0.714°","tan θ = y/x = 2.50/3.50 = 0.714, so θ = 35.5°. The 54.5° answer comes from dividing x by y.","tan θ is opposite over adjacent, y over x."],
+[1,"Average speed differs from average velocity because average speed is","Always positive since it is a scalar","Always equal to the displacement","Zero for a round trip","Measured in different units","Speed uses total path length and has no direction, so it cannot be negative. Velocity uses displacement and carries a sign.","Speed has no sign. Velocity does."],
+[1,"A person runs one full lap of a 400 m oval track in 2 minutes. Which statement is true?","The displacement is 0 m","The displacement is 400 m","The average velocity is 200 m/min","The average velocity is 150 m/min","The person ends where they began, so displacement is zero and so is the average velocity. The average speed is 200 m/min.","Round trip means displacement zero."],
+[1,"On a graph of x against t, the instantaneous velocity at a point is","The slope of the tangent at that point","The area under the curve","The height of the curve","The slope of a chord across the whole graph","Instantaneous velocity is the limit of Δx/Δt as the interval shrinks, which is the slope of the tangent line.","Velocity is slope. Position graph, tangent slope."],
+[1,"A body can have a very large acceleration and still be at rest at one instant because","Position, velocity and acceleration are independent quantities","Acceleration is always zero at rest","Velocity always equals acceleration","Position decides the acceleration","Specifying one of them does not fix the others. A ball at the top of its throw has zero velocity but still accelerates at g.","Zero velocity does not mean zero acceleration."],
+[1,"An object in free fall near the Earth's surface, ignoring air resistance, has an acceleration of","9.8 m/s² downward both rising and falling","9.8 m/s² upward while rising","Zero at the top of its path","Less than 9.8 m/s² while rising","Gravity gives the same downward acceleration at every point of the flight. Only the velocity changes direction.","Top of the path: v is zero, a is still g."],
+[1,"An airplane accelerates from rest at 3.20 m/s² for 32.8 s before lift off. The distance covered is","1721 m","3443 m","105 m","52.5 m","Starting from rest, d = ½ a t² = 0.5 × 3.20 × 32.8² which is about 1721 m. Leaving out the half doubles the answer.","From rest, distance is half a t squared."],
+[1,"A car starts from rest and covers 110 m in 5.21 s with uniform acceleration. The acceleration is","8.10 m/s²","4.05 m/s²","21.1 m/s²","42.2 m/s²","From d = ½ a t² with zero start speed, a = 2d/t² = 220/27.1 which is 8.10 m/s².","a equals 2d over t squared."],
+[1,"A race car speeds up uniformly from 18.5 m/s to 46.1 m/s in 2.47 s. Its acceleration is","11.2 m/s²","18.7 m/s²","26.2 m/s²","5.59 m/s²","Acceleration is change in velocity over time: 27.6 divided by 2.47 is 11.2 m/s².","Subtract speeds first, then divide by time."],
+[1,"For the same race car, the distance travelled during those 2.47 s is","79.8 m","114 m","45.7 m","160 m","With uniform acceleration, distance = average speed times time = 32.3 × 2.47 which is 79.8 m.","Average speed times time."],
+[1,"A bullet moving at 367 m/s stops after penetrating 0.0621 m of clay. The size of its acceleration is","1.08 × 10⁶ m/s²","2.17 × 10⁶ m/s²","5.91 × 10³ m/s²","1.35 × 10⁵ m/s²","Use v² = u² + 2ad with v = 0. Then a = u²/2d = 367² / 0.1242, giving 1.08 × 10⁶ m/s². The negative sign only means it slows down.","Final speed zero: a is minus u squared over 2d."],
+[1,"A car travelling at 22.4 m/s skids to a stop in 2.55 s with uniform deceleration. The skid distance is","28.6 m","57.1 m","8.78 m","14.3 m","The average speed is 22.4/2 = 11.2 m/s, so distance = 11.2 × 2.55 which is 28.6 m.","Stopping from v: distance equals half v times t."],
+[1,"With what speed must an object be thrown upward to reach a height of 91.5 m? Ignore air resistance.","42.3 m/s","29.9 m/s","1.79e+03 m/s","84.7 m/s","At the top v = 0, so u² = 2gh = 2 × 9.8 × 91.5 and u is about 42.3 m/s.","Throw speed equals the square root of 2 g h."],
+[1,"The speed 42.3 m/s is how many miles per hour, using 1 m/s = 2.23 mi/hr?","94.4 mi/hr","19.0 mi/hr","42.3 mi/hr","189 mi/hr","Multiply by the given factor: 42.35 × 2.23 = 94.4 mi/hr.","m/s to mi/hr multiplies by 2.23."],
+[1,"A basketball player has a vertical leap of 1.29 m. His take off speed is","5.03 m/s","25.3 m/s","3.56 m/s","10.1 m/s","At the peak v = 0, so u² = 2gh = 2 × 9.8 × 1.29 = 25.3, and u = 5.03 m/s.","Take the square root at the end."],
+[1,"For the same 1.29 m leap, the hang time from take off to landing is about","1.03 s","0.513 s","2.05 s","0.257 s","Time up is v/g = 5.03/9.8 = 0.513 s. Hang time is up plus down, so double it to get 1.03 s.","Hang time is twice the time to the top."],
+[1,"A train accelerates from rest for 5 minutes, runs at constant speed for 5 minutes and brakes at the same rate for another 5 minutes, covering 10 km in all. Its acceleration is","0.0556 m/s²","0.111 m/s²","0.0278 m/s²","0.333 m/s²","Acceleration and braking each cover ½ a t² and the cruise covers a t × t. So the total is 2 a t², and a = 10000 / 180000 which is 0.0556 m/s².","Convert minutes to seconds before anything else."],
+[1,"Ball A is dropped from 10 m. At the same instant ball B is thrown up from the ground at 10 m/s. They meet at a height of about","5.1 m","4.9 m","10.0 m","2.50 m","Both feel the same gravity, so relative speed is just 10 m/s. They meet after 10/10 = 1 s. Ball A has then fallen 4.9 m, so it is at 5.1 m.","Gravity cancels in the relative motion, so use 10 over 10."],
+[1,"In the two ball problem above, the balls meet after","1.0 s","0.5 s","2.0 s","1.4 s","Closing speed is 10 m/s because gravity acts equally on both balls. Distance 10 m divided by 10 m/s gives 1.0 s.","Time to meet is gap over closing speed."],
+[1,"A fastball is thrown at 160 km/h. It takes how long to travel 18.4 m to the plate?","0.414 s","0.115 s","2.42 s","8.70 s","Convert 160 km/h to 44.4 m/s first. Time is 18.4/44.4 = 0.414 s. Using 160 directly gives a wrong 0.115 s.","Change km/h to m/s by dividing by 3.6."],
+[1,"An electron moves along x with x = 16 t e⁻ᵗ metres. It stops momentarily at a distance from the origin of","5.89 m","16.0 m","43.5 m","0 m","v = 16 e⁻ᵗ times one minus t, which is zero at t = 1 s. Then x = 16 e⁻¹, about 5.89 m.","Set v to zero, then put that time back in x."],
+[1,"For x = 20t − 5t³ metres, the velocity is zero at t equal to about","1.15 s","1.33 s","0.866 s","2.31 s","v = 20 − 15t². Setting it to zero gives t² = 4/3, so t = 1.15 s (the positive root).","Differentiate, set to zero, take the positive root."],
+[1,"For x = 20t − 5t³ metres, the acceleration is zero at","t = 0 only","t = 1.15 s","t = 1.33 s","t = 2.00 s","a = −30t, which is zero only at t = 0. Zero velocity at 1.15 s does not make the acceleration zero.","Velocity zero and acceleration zero are separate checks."],
+[1,"For x = 20t − 5t³ metres, the acceleration at the moment the velocity is zero is","−34.6 m/s²","34.6 m/s²","−30.0 m/s²","−17.3 m/s²","a = −30t and the velocity is zero at t = 1.15 s, so a = −30 × 1.15 = −34.6 m/s².","Keep the minus sign. It matters."],
+[1,"A spot on a screen moves with x = 9.00t − 0.750t³ cm. It is instantaneously at rest at t equal to","2.00 s","3.46 s","3.00 s","1.73 s","v = 9.00 − 2.25t². Setting v = 0 gives t² = 4, so t = 2.00 s.","Set the derivative to zero."],
+[1,"For the same spot, its position when it is instantaneously at rest is","12.0 cm","15.0 cm","18.0 cm","9.00 cm","Put t = 2.00 s into x: 9.00 × 2 − 0.75 × 8 = 18 − 6 = 12.0 cm.","Use the rest time in the position equation."],
+[1,"For the same spot, its acceleration when it is instantaneously at rest is","−9.0 cm/s²","+9.0 cm/s²","−4.5 cm/s²","Zero","a = dv/dt = −4.50t, so at t = 2.00 s it is −9.0 cm/s². Negative acceleration means the velocity is dropping from positive to negative.","At rest does not mean zero acceleration."],
+[1,"For the same spot, the first time it reaches the left edge x = 0 after the start is","3.46 s","2.00 s","4.00 s","1.73 s","Set 9.00t − 0.750t³ = 0, so t² = 12 and t = 3.46 s. The spot only climbs to 12.0 cm, so it never reaches the 15.0 cm edge.","Factor out t, then solve the leftover quadratic."],
+[1,"A jet lands at 100 m/s and can decelerate at most at 5 m/s². The minimum stopping time is","20 s","10 s","500 s","50 s","t = (v − u)/a = (0 − 100)/(−5) = 20 s. The strongest braking gives the shortest time.","Time is change in speed over acceleration."],
+[1,"The same jet touches down on a runway that is 0.80 km long. Can it land safely?","No, it needs at least 1.0 km","Yes, it needs only 0.5 km","Yes, it needs 0.8 km exactly","No, it needs 2.0 km","Stopping takes 20 s with average speed 50 m/s, so the distance is 1000 m. That is more than 800 m.","Average speed times stopping time."],
+[1,"For x = 2t³ − 2t² + 3 metres, the acceleration at t = 2 s is","20 m/s²","24 m/s²","12 m/s²","16 m/s²","v = 6t² − 4t and a = 12t − 4. At t = 2 that is 24 − 4 = 20 m/s².","Differentiate twice. Do not drop the constant term from the slope."],
+[1,"For x = 3t³ − 2t² + 6 metres, the instantaneous velocity at t = 3 s is","69 m/s","81 m/s","27 m/s","57 m/s","v = 9t² − 4t. At t = 3: 81 − 12 = 69 m/s.","Differentiate first. Do not plug into x."],
+[1,"For x = 3t³ − 2t² + 6 metres, the displacement between t = 1 s and t = 3 s is","62 m","66 m","72 m","75 m","At t = 1 the position is 3 − 2 + 6 = 7 m and at t = 3 it is 81 − 18 + 6 = 69 m. The displacement is 69 − 7 = 62 m.","Final position minus starting position."],
+[1,"For the same motion, the average velocity between t = 1 s and t = 3 s is","31 m/s","62 m/s","34.5 m/s","69 m/s","Average velocity is displacement over time: 62 m divided by 2 s is 31 m/s.","Divide by the time gap, not the end time."],
+[1,"A car speeds up from 30 m/s to 50 m/s with acceleration 2.5 m/s². The distance covered is","320 m","640 m","160 m","40 m","Use v² = u² + 2as. So s = (2500 − 900)/5 = 320 m.","Difference of squares over 2a."],
+[1,"A ball is dropped from 45 m. Taking g = 10 m/s², it lands after","3 s","9 s","4.5 s","6 s","From rest 45 = ½ × 10 × t², so t² = 9 and t = 3 s.","Take the square root at the very end."],
+[1,"An object moves with initial speed 3 m/s and accelerates uniformly for 4 s, covering 24 m. Its final speed is","9 m/s","6 m/s","12 m/s","15 m/s","From 24 = 3 × 4 + ½ a × 16, so a = 1.5 m/s². Then v = 3 + 1.5 × 4 = 9 m/s. The 6 m/s figure is only the average speed.","Find a first, then the final speed."],
+[1,"A car starts from rest at 2 m/s² and chases the distance covered by another car moving steadily at 20 m/s. It covers the same distance after","20 s","10 s","40 s","5 s","Set ½ × 2 × t² equal to 20 t. That gives t = 20 s.","Equal distances means ½ a t² equals v t."],
+[1,"A golf ball is released from a very tall building. After 6.00 s, with g = 9.8 m/s², its velocity is","58.8 m/s","29.4 m/s","176 m/s","353 m/s","From rest v = g t = 9.8 × 6.00 = 58.8 m/s downward.","From rest v equals g t. Distance is half g t squared."],
+[1,"For the same golf ball, the distance fallen in 6.00 s is","176 m","58.8 m","353 m","29.4 m","s = ½ g t² = 0.5 × 9.8 × 36 = 176 m. The 58.8 figure is the speed.","Distance has a square on t."],
+[1,"A particle has x = 13.2 + 8.9t² + 1.2t³ metres. Its acceleration at t = 2.6 s is","36.5 m/s²","27.6 m/s²","17.8 m/s²","70.6 m/s²","Differentiate twice: a = 17.8 + 7.2t. At t = 2.6 s that is 17.8 + 18.7 = 36.5 m/s². The 70.6 value is the velocity.","Two derivatives for acceleration."],
+[1,"A stone is thrown up at 19 m/s. Taking g = 9.8 m/s², it reaches its maximum height after","1.94 s","3.88 s","0.516 s","186 s","At the top v = 0, so t = u/g = 19/9.8 = 1.94 s. The 3.88 s value is the full up and down time.","Time to the top is u over g."],
+[1,"A lift moves downward with acceleration 3 m/s². A ball is released 1.7 m above the lift floor. Taking g = 9.8 m/s², it hits the floor after","0.71 s","0.59 s","1.1 s","0.52 s","Relative to the lift the ball accelerates at 9.8 − 3 = 6.8 m/s². Then 1.7 = ½ × 6.8 × t², so t = 0.71 s.","Subtract the lift's acceleration from g."],
+[1,"An airplane lands at 50 m/s and slows at 10 m/s² to 20 m/s. The distance travelled on the runway is","105 m","145 m","150 m","60 m","Use v² = u² + 2as. So s = (2500 − 400)/20 = 105 m.","Subtract the squares, never add them."],
+[1,"A particle has x = 3t² − 12t + 20 metres. It is at rest at","t = 2 s","t = 4 s","t = 6 s","t = 1 s","v = 6t − 12. Setting v = 0 gives t = 2 s.","At rest means velocity zero, not x zero."],
+[1,"A particle has x = 30t² − 5t³ metres. Its acceleration is zero at","t = 2 s","t = 4 s","t = 6 s","t = 0 s","a = 60 − 30t. Setting it to zero gives t = 2 s. Zero velocity would give t = 4 s instead.","Differentiate twice before setting to zero."],
+[1,"A mango falls from 125 m. Taking g = 10 m/s², it reaches the ground after","5 s","25 s","12.5 s","2.5 s","125 = ½ × 10 × t², so t² = 25 and t = 5 s. The 25 s answer forgets the square root.","Root the last line."],
+[1,"A bicycle accelerates uniformly from rest and has speed v at time t. It will have speed 4v at time","4t","2t","8t","16t","From rest v is proportional to t, so four times the speed needs four times the time.","From rest, speed is proportional to time."],
+[1,"A runner starts from rest and accelerates uniformly for 2 s, covering 12 m. The final speed is","12 m/s","6 m/s","24 m/s","3 m/s","12 = ½ a × 4 gives a = 6 m/s². Then v = a t = 12 m/s. The 6 m/s figure is the average speed.","Final speed from rest is twice the average speed."],
+[1,"A car travelling at v stops in a distance d. A second car at 2v stops in a distance 2d. The ratio of the first acceleration to the second is","1 : 2","2 : 1","1 : 1","4 : 1","a = v²/2d. The first is v²/2d. The second is 4v²/4d = v²/d, twice as big. So the ratio is 1 : 2.","Speed is squared, distance is not."],
+/* ---------- 2 · Newton's Laws, Momentum & Relative Motion ---------- */
+[2,"Newton's first law is also known as the law of","Inertia","Reaction","Gravitation","Momentum","A body stays at rest or in uniform straight line motion unless an external force acts on it. That resistance to change is inertia.","First law means inertia."],
+[2,"A passenger in a car lurches forward when the car stops suddenly. This is best explained by","Inertia of the passenger's body","The reaction of the seat belt alone","Gravity pulling forward","Friction pushing the passenger forward","The car stops but the body keeps moving at its old velocity until a force changes it. That is Newton's first law.","Body keeps going. The car is what stopped."],
+[2,"Newton's second law says that the rate of change of momentum of a body is","Proportional to the force applied","Equal to the mass of the body","Proportional to the speed","Always zero in a closed room","F is proportional to Δp over Δt, and the change happens in the direction of the force.","Force is momentum change per second."],
+[2,"Impulse is measured in","N s","N m","N/s","kg m","Impulse is force times time, so its unit is newton second, the same as kg m/s.","Impulse is F times t."],
+[2,"A 10 N force acts for 5 s on a body whose initial momentum is 20 kg m/s along the force. Its final momentum is","70 kg m/s","30 kg m/s","50 kg m/s","250 kg m/s","Impulse = F t = 50 N s, which is the change in momentum. So final momentum = 20 + 50 = 70 kg m/s. The 50 only gives the change.","Final equals starting plus impulse."],
+[2,"If the velocity of an object is doubled, its momentum","Doubles","Stays the same","Quadruples","Halves","Momentum is mass times velocity, so doubling v doubles p. It is kinetic energy that goes up four times.","p is linear in v. Energy is squared."],
+[2,"Linear momentum is conserved in a collision only when","No net external force acts on the system","The collision is perfectly elastic","The masses are equal","The bodies move in a straight line","Total momentum stays fixed for an isolated system. Kinetic energy is a different question and depends on the type of collision.","No outside force, no change in total momentum."],
+[2,"A 15000 kg truck coasts at 2.5 m/s on frictionless track. Rice is dumped straight down into it and the truck slows to 2.0 m/s. The mass of the rice is","3750 kg","2500 kg","7500 kg","1875 kg","Horizontal momentum is conserved: 15000 × 2.5 = (15000 + m) × 2.0. So 37500 = 30000 + 2m and m = 3750 kg.","Rice adds mass but no horizontal momentum."],
+[2,"A motorboat heads east at 4 m/s into a current of 3 m/s toward the north. Its resultant speed is","5 m/s","7 m/s","1 m/s","12 m/s","The two velocities are at right angles, so resultant = √(4² + 3²) = 5 m/s.","3, 4, 5 triangle."],
+[2,"The resultant velocity of that boat points at what angle from the east direction?","36.9° towards north","53.1° towards north","45.0° towards north","30.0° towards north","tan θ = 3/4 = 0.75, so θ = 36.9° from east. The 53.1° answer is measured from north.","tan θ is north speed over east speed."],
+[2,"A cyclist starts from rest and accelerates uniformly at 1.5 m/s² for 8 s. The maximum speed reached is","12 m/s","6 m/s","18 m/s","1.5 m/s","v = a t = 1.5 × 8 = 12 m/s.","From rest v equals a t."],
+[2,"The cyclist then keeps constant speed for 10 s. The total displacement over the whole motion is","168 m","120 m","216 m","96 m","Acceleration stage: ½ × 1.5 × 64 = 48 m. Constant stage: 12 × 10 = 120 m. Total 168 m.","Add the two stages, never use one speed for all of it."],
+[2,"A soccer ball is kicked horizontally from a height of 2 m at 20 m/s. With g = 10 m/s², it hits the ground after","0.632 s","0.400 s","1.00 s","0.200 s","Fall time depends only on height: 2 = ½ × 10 × t², so t² = 0.4 and t = 0.632 s.","Horizontal speed has no effect on fall time."],
+[2,"For the same kick, the horizontal range is","12.6 m","40.0 m","8.00 m","6.32 m","Range = horizontal speed × flight time = 20 × 0.632 = 12.6 m.","Range equals speed times fall time."],
+[2,"For the same kick, the vertical velocity component just before impact is","6.32 m/s","20.0 m/s","6.32 m/s upward","12.6 m/s","vy = g t = 10 × 0.632 = 6.32 m/s, directed downward. The horizontal component stays 20 m/s.","Horizontal never changes. Vertical is g t."],
+[2,"A 5 kg box on a frictionless surface is pushed by a 20 N force at 30° to the horizontal. Its horizontal acceleration is","3.46 m/s²","4.00 m/s²","2.00 m/s²","17.3 m/s²","Only the horizontal component drives it: 20 cos 30° = 17.3 N. Then a = 17.3/5 = 3.46 m/s².","Use cosine for the part along the motion."],
+[2,"A rocket has net acceleration 15 m/s² upward from rest. Its speed after 5 s is","75 m/s","15 m/s","37.5 m/s","150 m/s","v = a t = 15 × 5 = 75 m/s.","From rest v equals a t."],
+[2,"A rocket has thrust 2000 N and a net upward acceleration of 15 m/s², with g = 10 m/s². Its mass is","80 kg","133 kg","200 kg","50 kg","Net force is thrust minus weight, so 2000 − 10m = 15m. That gives m = 2000/25 = 80 kg. Dividing 2000 by 15 forgets gravity.","Thrust minus weight equals m a."],
+[2,"The rocket above rises from rest for 5 s at 15 m/s². The height reached is","187.5 m","375 m","75 m","93.8 m","h = ½ a t² = 0.5 × 15 × 25 = 187.5 m.","Half a t squared."],
+[2,"An 80 kg firefighter slides down a pole with acceleration 2 m/s² downward. With g = 10 m/s², the friction force from the pole is","640 N","160 N","800 N","960 N","Weight is 800 N down and net force is m a = 160 N down. So friction = 800 − 160 = 640 N upward.","Friction equals weight minus m a."],
+[2,"The firefighter pushes down on the pole with 640 N. By Newton's third law, the pole pushes on the firefighter with","640 N upward","640 N downward","160 N upward","800 N upward","Action and reaction are equal and opposite and they act on different bodies. So the pole's force on the firefighter is 640 N upward.","Equal size, opposite direction, different bodies."],
+[2,"The gravitational force between a 2 kg and a 5 kg mass placed 1 m apart is","6.67 × 10⁻¹⁰ N","3.33 × 10⁻¹⁰ N","6.67 × 10⁻⁹ N","4.67 × 10⁻¹⁰ N","F = G m₁m₂ / r² = 6.67 × 10⁻¹¹ × 10 / 1 = 6.67 × 10⁻¹⁰ N. Such a tiny force is why you never notice pulls between everyday objects.","Multiply the masses, do not add them."],
+[2,"Two point charges of +3 C and −2 C are 0.5 m apart. The electrostatic force between them has magnitude","2.16 × 10¹¹ N","1.08 × 10¹¹ N","5.40 × 10¹⁰ N","8.64 × 10¹¹ N","F = k q₁q₂ / r² = 9 × 10⁹ × 6 / 0.25 = 2.16 × 10¹¹ N. Leaving out the square on r gives half that.","Square the distance."],
+[2,"The force between the +3 C and −2 C charges is","Attractive","Repulsive","Zero","Perpendicular to the line joining them","Unlike charges attract, and the force lies along the line joining them.","Unlike attract, like repel."],
+[2,"A 0.01 kg object carries the −2 C charge in that arrangement. Its acceleration is about","2.16 × 10¹³ m/s²","2.16 × 10¹¹ m/s²","1.08 × 10¹³ m/s²","2.16 × 10⁹ m/s²","a = F/m = 2.16 × 10¹¹ / 0.01 = 2.16 × 10¹³ m/s².","Divide force by the small mass."],
+[2,"A 0.2 kg ball is thrown straight up at 20 m/s. With g = 10 m/s², it rises to a maximum height of","20 m","40 m","10 m","2 m","h = u²/2g = 400/20 = 20 m.","Height is u squared over 2g."],
+[2,"At the top of that throw the net force on the 0.2 kg ball is","2 N downward","Zero","4 N upward","2 N upward","The velocity is zero for an instant but gravity still acts. Net force = m g = 0.2 × 10 = 2 N downward.","Zero speed does not mean zero force."],
+[2,"A 60 kg skater moving east at 5 m/s grabs an 80 kg skater moving west at 4 m/s. Their common velocity afterwards is","0.14 m/s west","0.14 m/s east","0.50 m/s east","4.5 m/s west","Taking east as positive: 60 × 5 − 80 × 4 = −20. Divide by 140 kg to get −0.14 m/s, so they move west.","Opposite directions give opposite signs."],
+[2,"Newton's third law pairs of forces always","Act on different bodies","Act on the same body","Cancel each other out","Have different magnitudes","Action and reaction are equal in size and opposite in direction but they act on two separate bodies, so they never cancel.","Pairs act on different bodies. Never cancel."],
+[2,"The relative velocity of car A with respect to car B is given by","vA − vB","vA + vB","vB − vA","vA × vB","Relative velocity of A with respect to B is velocity of A minus velocity of B, with both measured by the same observer.","A relative to B is A minus B."],
+[2,"A force is fully specified only when we state its magnitude, direction, line of action and","Point of application","Its mass","Its charge","Its time of action","The notes list four characteristics: magnitude, direction, line of action and point of application.","Four characteristics of a force."],
+[2,"An isolated system is one in which","No net external force acts","Energy is always lost","Mass is always zero","Every object is at rest","In an isolated system the total momentum is conserved because nothing from outside pushes on it.","Isolated means no outside net force."],
+/* ---------- 3 · Vectors & Scalars ---------- */
+[3,"Which of these quantities is a vector?","The relative velocity of two aircraft","The volume of a petrol tank","The work done by a force","The electrostatic potential","Relative velocity has both size and direction. Volume, work and potential are scalars.","Velocity, force, torque, momentum: vectors."],
+[3,"Which of these quantities is a scalar?","The work done by a force","Torque","Momentum","Magnetic field","Work is just a number with a unit. Torque, momentum and magnetic field all need a direction.","Work and energy are scalars."],
+[3,"Which pair contains only scalar quantities?","Density and charge","Force and time","Momentum and length","Velocity and mass","Density, charge, length, time, mass and work have magnitude only. Force, momentum and velocity are vectors.","Scalar means magnitude only."],
+[3,"The area of a classroom is a","Scalar","Vector","Dimensionless vector","Pseudovector","Area here is just a size with a unit. It has no direction, so it is a scalar.","Area is a scalar. Do not confuse with area vectors."],
+[3,"If A = 3i + 7j + 3k and B = 5i + 2j + 4k, then A · B equals","41","15i + 14j + 12k","22i + 3j − 29k","58","The dot product multiplies matching components and adds: 15 + 14 + 12 = 41. The answer is a scalar, not a vector.","Dot gives a number. Cross gives a vector."],
+[3,"If A = 3i + 7j + 3k and B = 5i + 2j + 4k, then A × B equals","22i + 3j − 29k","22i − 3j − 29k","22i + 3j + 29k","−22i + 3j − 29k","i component: 7×4 − 3×2 = 22. j component: 3×5 − 3×4 = 3. k component: 3×2 − 7×5 = −29.","The j term carries a flipped sign in the determinant."],
+[3,"With A = 3i + 7j + 3k, B = 5i + 2j + 4k and C = 4i − 3j + 2k, the value of A × C · B is","−21","21","−37","115","First A × C = 23i + 6j − 37k. Then dot with B gives 115 + 12 − 148 = −21.","Cross first, then dot. The result is a scalar."],
+[3,"For A = 3i + 7j + k, B = 4i + 2j − 4k and C = 2i − 3j + 2k, A + C is","5i + 4j + 3k","5i + 10j + 3k","1i + 10j − k","6i − 21j + 2k","Add the matching components: 3 + 2, 7 − 3 and 1 + 2.","Add i with i, j with j, k with k."],
+[3,"For the same vectors, A · B equals","22","30","26","−22","12 + 14 − 4 = 22. A dot product of two vectors is always a scalar.","Multiply matching parts, then add."],
+[3,"For the same vectors, A × B equals","−30i + 16j − 22k","30i + 16j − 22k","−30i − 16j − 22k","−30i + 16j + 22k","i: 7×−4 − 1×2 = −30. j: 1×4 − 3×−4 = 16. k: 3×2 − 7×4 = −22.","Expand the 3 by 3 determinant carefully."],
+[3,"For the same vectors, 3A + C is","11i + 18j + 5k","9i + 21j + 3k","11i + 18j + 3k","5i + 4j + 3k","Triple A first: 9i + 21j + 3k. Then add C: 11i + 18j + 5k.","Scale before you add."],
+[3,"Find the resultant of F₁ = 20i − 36j + 73k, F₂ = −17i + 21j − 46k and F₃ = −12k, all in newtons.","3i − 15j + 15k","3i − 15j + 27k","37i − 57j + 15k","3i + 15j + 15k","i: 20 − 17 = 3. j: −36 + 21 = −15. k: 73 − 46 − 12 = 15.","Add each direction separately."],
+[3,"The magnitude of that resultant, to two significant figures, is","21 N","459 N","33 N","12 N","√(3² + 15² + 15²) = √459 which is 21.4 N, about 21 N. Forgetting the root gives 459.","Square, add, root."],
+[3,"If A = 7i − 6j, B = −3i + 12j and C = 4i − 4j, then A + B + C is","8i + 2j","14i + 10j","8i + 22j","−6i + 2j","i: 7 − 3 + 4 = 8. j: −6 + 12 − 4 = 2.","Add components one axis at a time."],
+[3,"For the same A and B, A − B is","10i − 18j","4i + 6j","10i + 18j","−10i + 18j","i: 7 − (−3) = 10. j: −6 − 12 = −18.","Subtracting a negative adds."],
+[3,"For the same A and C, A − C is","3i − 2j","11i − 10j","3i − 10j","−3i + 2j","i: 7 − 4 = 3. j: −6 − (−4) = −2.","Subtract axis by axis."],
+[3,"The magnitude of A = 3i − 2j + k is","3.74","6.00","14.0","2.45","√(9 + 4 + 1) = √14 = 3.74. So the unit vector in the direction of A is A divided by √14.","Root of the sum of squares."],
+[3,"The unit vector along A = 3i − 2j + k is","3i − 2j + k divided by √14","3i − 2j + k divided by 14","3i − 2j + k divided by √6","3i − 2j + k divided by 3.0","Divide the vector by its magnitude √14. A unit vector has length 1 and no units.","Unit vector means vector over its own magnitude."],
+[3,"Four coplanar forces act at a point: 100 N at 30° above the negative x axis, 90 N at 45° above the positive x axis, 80 N along positive x and 160 N at 20° below the negative x axis. The resultant magnitude to two significant figures is","110 N","58 N","93 N","170 N","Sum x components: −86.6 + 63.6 + 80 − 150.3 = −93.3 N. Sum y components: 50 + 63.6 − 54.7 = 58.9 N. The magnitude is √(93.3² + 58.9²) = 110 N.","Resolve every force, add the x's and y's, then take the root."],
+[3,"Five coplanar forces give a resultant with Rx = −10.6 N and Ry = +0.8 N. Measured from the positive x axis its direction is","175.7°","4.3°","184.3°","85.7°","tan⁻¹(0.8/10.6) = 4.3° is the reference angle. The resultant points left and slightly up, so the angle is 180° − 4.3° = 175.7°.","Check the quadrant before you quote an angle."],
+[3,"The rectangular components of a vector R at angle θ from the x axis are","Rx = R cos θ and Ry = R sin θ","Rx = R sin θ and Ry = R cos θ","Rx = R tan θ and Ry = R","Rx = R / cos θ and Ry = R / sin θ","Along the axis you measure from, use cosine. Across it, use sine.","Angle from x: x is cosine, y is sine."],
+[3,"The cross product A × B has a magnitude of","A B sin θ","A B cos θ","A B tan θ","A + B","The magnitude of the vector product is A B sin θ, which is also the area of the parallelogram built on A and B.","Cross goes with sine. Dot goes with cosine."],
+[3,"The direction of A × B is","Perpendicular to both A and B","Along A","Along the sum A + B","Along B","The vector product is perpendicular to the plane containing A and B, fixed by the right hand rule.","Cross product points out of the plane."],
+[3,"If A × B = C, then B × A equals","−C","C","0","2C","Swapping the order of a cross product flips its sign. The dot product is the one that does not care about order.","Cross is anticommutative."],
+[3,"The area of the parallelogram formed by two adjacent sides A and B equals","The magnitude of A × B","A · B","A + B","The magnitude of A / B","The size of the cross product equals the area of the parallelogram with sides A and B.","Cross magnitude is area."],
+[3,"The parallelogram law gives the resultant of two forces as the","Diagonal of the parallelogram","Longer side of the parallelogram","Difference of the two sides","Perimeter of the parallelogram","Draw the two forces as adjacent sides. The diagonal from the common point is the resultant in size and direction.","Resultant is the diagonal."],
+[3,"By the cosine rule, two vectors a and b at angle α between them have a resultant R where","R² = a² + b² + 2ab cos α","R² = a² + b² − 2ab cos α","R = a + b","R² = a² − b²","For two vectors drawn tail to tail with angle α between them, the resultant satisfies R² = a² + b² + 2ab cos α.","Plus sign when you add tail to tail."],
+/* ---------- 4 · Rotational Motion & Torque ---------- */
+[4,"A wheel turns through an angle θ = 5t² radians. Its angular velocity at t = 4 s is","40 rad/s","20 rad/s","80 rad/s","10 rad/s","Angular velocity is dθ/dt = 10t. At t = 4 s that is 40 rad/s. The 80 figure is the angle itself.","Differentiate, then substitute."],
+[4,"A wheel speeds up from rest to 20 rad/s in 5 s at a constant rate. Its angular acceleration is","4 rad/s²","100 rad/s²","0.25 rad/s²","15 rad/s²","α = Δω / t = 20/5 = 4 rad/s².","Same shape as a = Δv over t."],
+[4,"The moment of inertia of a solid sphere of mass 2 kg and radius 0.2 m about its centre is","0.032 kg m²","0.16 kg m²","0.080 kg m²","0.400 kg m²","For a solid sphere I = 2/5 M R² = 0.4 × 2 × 0.04 = 0.032 kg m².","Sphere is two fifths M R squared."],
+[4,"A 20 N force acts perpendicular to a spanner at 0.8 m from the pivot. The torque is","16 N m","25 N m","0.04 N m","160 N m","Torque = F × perpendicular distance = 20 × 0.8 = 16 N m.","Force times perpendicular arm."],
+[4,"A 50 N force acts at 60° to a spanner handle 0.3 m from the pivot. The torque is","13.0 N m","15.0 N m","7.50 N m","43.3 N m","τ = r F sin θ = 0.3 × 50 × sin 60° = 13.0 N m. Without the sine you get the maximum value 15 N m.","Torque needs sine of the angle between r and F."],
+[4,"A 50 N force acts perpendicular to a wrench 0.3 m from the pivot. The torque produced is","15 N m","150 N m","0.006 N m","50.3 N m","τ = F r = 50 × 0.3 = 15 N m.","Perpendicular force means no sine needed."],
+[4,"A weightless beam AB rests on pivots C and D. A 20 N load hangs 2 m from C and D is 8 m from C. The reaction at D is","5 N","15 N","10 N","2.5 N","Take moments about C: 20 × 2 = Q × 8, so Q = 5 N. Then P = 20 − 5 = 15 N at C.","Moments about one pivot kill that pivot's unknown force."],
+[4,"For the same beam, the reaction at C is","15 N","5 N","10 N","20 N","The upward forces must add to the 20 N load. P + Q = 20 with Q = 5 N gives P = 15 N.","First condition: ups equal downs."],
+[4,"A 2 kg particle moves at 3 m/s on a circle of radius 4 m. Its angular momentum about the centre is","24 kg m²/s","6 kg m²/s","12 kg m²/s","1.5 kg m²/s","L = m v r = 2 × 3 × 4 = 24 kg m²/s.","Multiply all three."],
+[4,"A solid disc of mass 5 kg and radius 0.5 m spins at 10 rad/s about its centre. Its moment of inertia is","0.625 kg m²","1.25 kg m²","2.50 kg m²","0.250 kg m²","I = ½ M R² = 0.5 × 5 × 0.25 = 0.625 kg m². The 1.25 answer leaves out the half.","Disc has a half in front."],
+[4,"For the same disc spinning at 10 rad/s, the angular momentum is","6.25 kg m²/s","12.5 kg m²/s","62.5 kg m²/s","0.625 kg m²/s","L = I ω = 0.625 × 10 = 6.25 kg m²/s.","L equals I times omega."],
+[4,"A 500 kg satellite moves at 8000 m/s on a circular orbit of radius 7.0 × 10⁶ m. Its angular momentum about the Earth's centre is","2.8 × 10¹³ kg m²/s","5.7 × 10⁻¹ kg m²/s","4.0 × 10⁶ kg m²/s","2.2 × 10¹⁷ kg m²/s","L = m v r = 500 × 8000 × 7.0 × 10⁶ = 2.8 × 10¹³ kg m²/s.","L equals m v r on a circle."],
+[4,"A disc of mass 2 kg and radius 0.5 m spins at 20 rad/s. Its rotational kinetic energy is","50 J","12.5 J","100 J","5 J","I = ½ M R² = 0.25 kg m². Then K = ½ I ω² = 0.5 × 0.25 × 400 = 50 J. The 12.5 J figure comes from losing a factor of four.","Square the omega, then take half."],
+[4,"A wheel starts from rest with α = 4 rad/s². After 5 s its angular velocity is","20 rad/s","10 rad/s","50 rad/s","0.8 rad/s","ω = α t = 4 × 5 = 20 rad/s.","From rest omega equals alpha t."],
+[4,"For the same wheel, the angle turned through in the 5 s is","50 rad","100 rad","25 rad","20 rad","θ = ½ α t² = 0.5 × 4 × 25 = 50 rad.","Half alpha t squared."],
+[4,"A flywheel of mass 10 kg and radius 0.2 m, treated as a uniform disc, receives a torque of 5 N m. Its angular acceleration is","25 rad/s²","50 rad/s²","12.5 rad/s²","1.0 rad/s²","I = ½ M R² = 0.2 kg m². Then α = τ/I = 5/0.2 = 25 rad/s².","Alpha equals torque over I."],
+[4,"A stool spinner has I = 4 kg m² and ω = 2 rad/s. She pulls her arms in so that I becomes 0.25 kg m². Her new angular velocity is","32 rad/s","0.125 rad/s","8 rad/s","16 rad/s","No external torque, so I₁ω₁ = I₂ω₂. That gives ω₂ = 4 × 2 / 0.25 = 32 rad/s.","Smaller I means faster spin."],
+[4,"One complete revolution equals","2π radians","π radians","360 radians","57.3 radians","A full circle is 2π radians, which is 360 degrees.","2π rad is 360 degrees."],
+[4,"Angular displacement is normally measured in","Radians","Metres","Newtons","Joules","Angle is arc length over radius, so the natural SI measure is the radian.","Radian equals arc over radius."],
+[4,"The SI unit of moment of inertia is","kg m²","kg m","N m","kg m²/s","Moment of inertia is mass times distance squared. The unit kg m²/s belongs to angular momentum.","I is mass times r squared."],
+[4,"The relation between net torque and angular acceleration is","τ = I α","τ = I ω","τ = α / I","τ = m a","This is Newton's second law for rotation. Torque plays the role of force and I plays the role of mass.","Force to torque, mass to I."],
+[4,"Torque is the cause of a change in","Angular momentum","Linear momentum only","Mass","Moment of inertia","The rate of change of angular momentum equals the net torque. With no torque, angular momentum stays constant.","Torque is the rate of change of L."],
+[4,"Two conditions must hold for a rigid body to stay in equilibrium. They are","Net force zero and net torque zero","Net force zero only","Net torque zero only","Constant speed and constant mass","Zero net force stops it translating and zero net torque stops it rotating.","Both force and torque balance."],
+[4,"The moment of inertia of a body depends on","Mass and how it is distributed about the axis","Its angular velocity","Its angular momentum","The torque applied","I is the sum of m r² for every particle, so it depends on the mass and where that mass sits relative to the axis.","Mass far from the axis matters most."],
+[4,"A ring of mass M and radius R spinning about its central axis has moment of inertia","M R²","½ M R²","⅖ M R²","⅓ M R²","Every bit of the ring is at distance R from the axis, so I = M R².","Ring, all mass at R."],
+[4,"A thin rod of mass M and length L rotating about its centre has moment of inertia","M L² / 12","M L² / 3","M L² / 2","M L²","About the centre it is ML²/12. About one end it is ML²/3.","Centre twelfth, end third."],
+/* ---------- 5 · Force, Mass & Weight ---------- */
+[5,"A net force of 120 N acts on a 60.0 kg object. Its acceleration is","2.00 m/s²","0.500 m/s²","7200 m/s²","180 m/s²","a = F/m = 120/60 = 2.00 m/s².","Acceleration is force over mass."],
+[5,"A 165 kg object accelerates at 2.40 m/s². The net force on it is","396 N","68.8 N","4.50 N","1620 N","F = m a = 165 × 2.40 = 396 N.","Force is mass times acceleration."],
+[5,"A net force of 64.0 N gives an object an acceleration of 8.00 m/s². The mass of the object is","8.00 kg","512 kg","0.125 kg","72.0 kg","m = F/a = 64/8 = 8.00 kg.","Mass is force over acceleration."],
+[5,"A 20,000 kg truck accelerates at 1.5 m/s². The driving force needed is","30,000 N","196,000 N","13,300 N","300,000 N","F = m a = 20,000 × 1.5 = 30,000 N. The 196,000 N figure is the normal force.","Horizontal force uses a. Vertical force uses g."],
+[5,"For the same truck on level ground, the normal force from the road is","196,000 N","30,000 N","2,000 N","20,000 N","Vertical forces balance, so N = m g = 20,000 × 9.8 = 196,000 N.","No vertical acceleration, so N equals weight."],
+[5,"A sled of mass 2100 kg has four rockets. Its initial acceleration is 49 m/s² and friction is 650 N. The thrust of each rocket is about","2.6 × 10⁴ N","1.0 × 10⁴ N","1.0 × 10⁵ N","5.2 × 10⁴ N","4T − f = m a gives 4T = 2100 × 49 + 650 = 1.04 × 10⁵ N. Divide by four rockets to get about 2.6 × 10⁴ N each.","Total thrust first, then split it among the rockets."],
+[5,"A 0.400 kg soccer ball has acceleration a = 3.00 i + 7.00 j m/s². The magnitude of the resultant force is","3.05 N","10.0 N","1.20 N","2.80 N","F = m a = 1.20 i + 2.80 j newtons. The magnitude is √(1.2² + 2.8²) = 3.05 N.","Multiply first, then root the sum of squares."],
+[5,"The direction of that force measured from the x axis is","66.8°","23.2°","45.0°","76.8°","tan θ = 2.80/1.20 = 2.33, so θ = 66.8° above the x axis.","tan θ is y over x."],
+[5,"Four forces act on a 4.0 kg particle: 10.0 N at 30° above +x, 40.0 N down, 5.0 N toward −x and 2.0 N up. The y component of its acceleration is","−8.3 m/s²","−10.0 m/s²","−7.75 m/s²","−8.80 m/s²","Sum of forces along y: 10 sin 30° + 2 − 40 = −33 N. Divide by 4 kg to get −8.3 m/s².","Add the y parts with signs, then divide by mass."],
+[5,"For the same particle, the x component of its acceleration is","0.92 m/s²","2.50 m/s²","−1.25 m/s²","3.66 m/s²","Sum of forces along x: 10 cos 30° − 5.0 = 3.66 N. Dividing by 4.0 kg gives 0.92 m/s².","Forget the 4.0 kg and you pick the wrong option."],
+[5,"A cyclist and bicycle of mass 100 kg feel a forward push of 320 N and a drag of 180 N. The acceleration is","1.4 m/s²","3.2 m/s²","5.0 m/s²","0.5 m/s²","Net force = 320 − 180 = 140 N. So a = 140/100 = 1.4 m/s².","Subtract the opposing force before dividing."],
+[5,"A constant force reduces the speed of a 5.0 kg object from 7.0 m/s to 3.0 m/s in 3.0 s. The force is","−6.7 N","+6.7 N","−20 N","−3.3 N","a = −4.0/3.0 = −1.33 m/s². Then F = m a = −6.7 N. The minus sign means it opposes the motion.","Negative force means it slows the object."],
+[5,"A 62 kg passenger rides a lift that accelerates upward at 1.5 m/s². The reaction force from the lift floor is about","700 N","608 N","515 N","93 N","R − m g = m a, so R = m (g + a) = 62 × 11.3 = 700 N. At rest the floor gives only 608 N.","Going up with acceleration means you feel heavier."],
+[5,"A 45 kg woman hangs from a rope that can take only 300 N. The minimum downward acceleration she must have to avoid breaking it is","3.13 m/s²","6.67 m/s²","3.50 m/s²","1.00 m/s²","Weight = 441 N, so the rope must not carry more than 300 N. m a = 441 − 300 = 141 N, so a = 3.13 m/s².","Weight minus rope pull equals m a."],
+[5,"A 70 kg box is pushed along a floor by a horizontal 400 N force. The coefficient of kinetic friction is 0.5. Its acceleration is","0.81 m/s²","5.71 m/s²","0.41 m/s²","3.43 m/s²","Friction = 0.5 × 70 × 9.8 = 343 N. Net force 57 N, so a = 57/70 = 0.81 m/s².","Friction opposes. Subtract it first."],
+[5,"The same box is now pulled by a 400 N force at 30° above the horizontal. Its acceleration is about","1.5 m/s²","0.81 m/s²","4.01 m/s²","2.46 m/s²","The upward component 200 N reduces the normal force to 487 N, so friction drops to 243 N. Then a = (346 − 243)/70 = 1.47 m/s².","Pulling upward reduces the normal force and friction."],
+[5,"A watermelon weighs 44.0 N on Earth. Its mass is","4.49 kg","44.0 kg","431 kg","0.223 kg","m = W/g = 44.0/9.8 = 4.49 kg. Mass stays the same everywhere.","Mass is weight over g."],
+[5,"On Jupiter's moon Io, g = 1.81 m/s². The same watermelon weighs","8.13 N","44.0 N","24.3 N","79.6 N","Mass 4.49 kg times 1.81 m/s² gives 8.13 N.","Same mass, new g."],
+[5,"An astronaut's pack weighs 17.5 N on Earth and 3.24 N on an asteroid. The pack's mass is","1.79 kg","0.331 kg","5.40 kg","56.7 kg","Mass comes from the Earth reading: 17.5/9.8 = 1.79 kg. The asteroid reading is used for its g.","Use Earth weight and Earth g for mass."],
+[5,"For the same pack, the acceleration due to gravity at the asteroid's surface is","1.81 m/s²","9.80 m/s²","5.40 m/s²","0.331 m/s²","g = weight / mass = 3.24 / 1.79 = 1.81 m/s².","g equals weight over mass."],
+[5,"A fisherman pushes a box on frozen frictionless pond with 48.0 N and it accelerates at 3.00 m/s². The mass of the box is","16.0 kg","144 kg","0.0625 kg","51.0 kg","m = F/a = 48.0/3.00 = 16.0 kg.","Divide, do not multiply."],
+[5,"A dock worker pushes a block of ice with 80.0 N and it moves 11.0 m in 5.00 s from rest, with no friction. The mass of the block is","90.9 kg","36.4 kg","176 kg","0.0110 kg","a = 2d/t² = 22/25 = 0.88 m/s². Then m = F/a = 80/0.88 = 90.9 kg.","Find a from the distance first."],
+[5,"If the worker stops pushing after the first 5.00 s, how far does the ice move in the next 5.00 s?","22.0 m","11.0 m","44.0 m","5.50 m","Speed at 5 s is 0.88 × 5 = 4.4 m/s. With no friction it keeps that speed, so distance = 4.4 × 5 = 22.0 m.","No force means constant velocity."],
+[5,"A 32.5 kg crate starts from rest with a net horizontal force of 140 N. Its speed after 10.0 s is","43.1 m/s","4.31 m/s","215 m/s","13.8 m/s","a = 140/32.5 = 4.31 m/s². Then v = a t = 43.1 m/s.","v equals a t."],
+[5,"A 4.80 kg bucket hangs from a cord that breaks at 60.0 N. The largest upward acceleration without breaking is","2.7 m/s²","12.5 m/s²","22.3 m/s²","2.04 m/s²","60.0 − 47.0 = 13.0 N is left over to accelerate it, so a = 13.0/4.80 = 2.7 m/s². The 12.5 figure forgets gravity.","Tension minus weight equals m a."],
+[5,"A 10.0 N force acts on a 2.00 kg body. Its acceleration, and the acceleration if the force is doubled, are","5.00 m/s² and 10.0 m/s²","5.00 m/s² and 5.00 m/s²","20.0 m/s² and 40.0 m/s²","0.200 m/s² and 0.400 m/s²","a = F/m = 5.00 m/s². Doubling the force doubles the acceleration to 10.0 m/s².","Acceleration is proportional to force."],
+[5,"A man weighs 900 N on Earth. On Jupiter, where g = 25.9 m/s², he weighs","2379 N","900 N","340 N","91.8 N","His mass is 900/9.8 = 91.8 kg. His weight on Jupiter is 91.8 × 25.9, which is about 2379 N.","Find mass first. It never changes."],
+[5,"A farmer lifts a 180 N stone with an upward acceleration of 1.5 m/s². With g = 9.8 m/s², the force he applies is about","207.6 N","180 N","153 N","27.6 N","F − W = m a, so F = 180 + 18.4 × 1.5 = 207.6 N. Lifting at constant speed would need only 180 N.","Accelerating upward means more than the weight."],
+[5,"A professor with mass 65 kg pushes a 12 kg cart carrying 7.0 kg of equipment by pushing back on the floor with 150 N. Total opposition is 24.0 N. Her acceleration with the cart is","1.5 m/s²","1.78 m/s²","2.31 m/s²","0.286 m/s²","Everything moves together, so the mass is 84 kg. Net force is 150 − 24 = 126 N, and a = 126/84 = 1.5 m/s².","Add every moving mass."],
+[5,"A 60.0 kg person weighs 100 N on the Moon. The Moon's gravitational acceleration is","1.67 m/s²","0.600 m/s²","9.80 m/s²","6000 m/s²","g = W/m = 100/60 = 1.67 m/s².","g is weight over mass."],
+[5,"Which has the greater value, a newton of gold on Earth or a newton of gold on the Moon?","They have the same value","The newton on Earth","The newton on the Moon","It depends on the local g","A newton is a unit of force and is the same everywhere. It is the mass of gold behind that newton that would differ.","A newton is a newton anywhere."],
+[5,"A bird hits a plane's windshield. During the impact, compared with the force on the windshield, the force on the bird is","Equal in size","Much greater","Much smaller","Zero","Newton's third law: the two forces are equal and opposite. The bird just accelerates far more because its mass is small.","Same force, different acceleration."],
+[5,"A 3000 N boulder is pushed to give it a horizontal acceleration of 20.0 m/s². Its mass is about","306 kg","3000 kg","61,200 kg","147 kg","m = W/g = 3000/9.8 = 306 kg. The force needed is then m a = 306 × 20 = 6120 N.","Weight gives mass through g."],
+[5,"A boulder has mass 306 kg and must accelerate horizontally at 20.0 m/s². The force required is about","6.12e+03 N","3000 N","61.2 N","1.5 × 10⁵ N","F = m a = 306 × 20.0 = 6120 N.","F equals m a."],
+[5,"An object moves along x with x = A t + B t², where A and B are constants and m is its mass. The net force on it is","2 m B","m B","2 m B t","m A + 2 m B t","Velocity is A + 2Bt and acceleration is 2B, which is constant. So F = m a = 2 m B.","Differentiate twice. Constants drop out."],
+[5,"A 3.50 kg bucket is lifted by a rope that can take 65.7 N at most. The largest upward acceleration is","8.97 m/s²","18.8 m/s²","6.70 m/s²","3.50 m/s²","a = T/m − g = 18.77 − 9.80 = 8.97 m/s².","Always subtract g from T over m."],
+[5,"A watermelon weighs 52.0 N on Earth. Its mass is","5.31 kg","52.0 kg","5.31 N","509 kg","m = W/g = 52.0/9.8 = 5.31 kg.","Mass is weight over g."],
+[5,"A 16 kg dog weighs about","157 N","16 N","1.63 N","16 kg","W = m g = 16 × 9.8 = 157 N. Kilogram is a unit of mass, not weight.","Weight in newtons is mass times 9.8."],
+[5,"Mass and weight differ in that","Mass stays constant while weight depends on local g","Weight stays constant while mass depends on g","Both depend on local g","Neither depends on location","Mass is the amount of matter and does not change. Weight is m g, so it changes with the strength of gravity.","Mass is the same everywhere. Weight is not."],
+/* ---------- 6 · Equilibrium, Friction & Circular Motion ---------- */
+[6,"A body is in translational equilibrium when","The net force on it is zero","Its speed is exactly zero","Its mass is constant","Only one force acts on it","Zero net force means zero acceleration. The body is either at rest or moving at constant velocity, so speed need not be zero.","Equilibrium means a equals zero, not v equals zero."],
+[6,"A 2000 kg lift has an upward cable force of 1.2 × 10⁴ N. Taking g = 9.8 m/s², its acceleration is","−3.8 m/s²","+3.8 m/s²","6.0 m/s²","−9.8 m/s²","Weight is 19,600 N, larger than the 12,000 N pull. Net force is −7600 N, so a = −7600/2000 = −3.8 m/s², meaning it accelerates downward.","Cable force minus weight, then divide by mass."],
+[6,"A crate rests on a floor and a 50 N horizontal push does not move it. The static friction force is","50 N","Zero","More than 50 N","Equal to μ N always","The crate is in equilibrium, so friction exactly balances the push. Static friction only reaches μs N at the point of slipping.","At rest means friction equals the push."],
+[6,"A sliding block has a retardation of 4.0 m/s² on a horizontal surface. The coefficient of kinetic friction is","0.41","2.45","0.25","9.80","Friction is the only horizontal force, so μ m g = m a. That gives μ = a/g = 4.0/9.8 = 0.41.","Mass cancels. μ equals a over g."],
+[6,"A 500 N crate is pulled at constant velocity by a rope at 30° above the horizontal. The coefficient of kinetic friction is 0.40. The tension in the rope is about","188 N","200 N","250 N","125 N","Horizontal: T cos 30° = 0.40 N. Vertical: N = 500 − T sin 30°. Solving gives T = 188 N.","Pulling upward lowers the normal force, so T is less than 200 N."],
+[6,"For that crate, the normal force from the floor is about","406 N","500 N","594 N","188 N","N = 500 − T sin 30° = 500 − 94 = 406 N. It is less than the weight because the rope helps to lift.","Normal force is weight minus the vertical part of the pull."],
+[6,"A wheel of radius 0.29 m turns at 830 rev/min. The speed of a point on its rim is about","25.2 m/s","1510 m/s","50.4 m/s","12.6 m/s","Period T = 60/830 = 0.0723 s. Speed = 2π r / T = 2π × 0.29 / 0.0723 = 25.2 m/s.","Convert rev/min to rev/s first."],
+[6,"A sled needs a steady 36 N horizontal pull to keep moving at constant speed. Its weight is 52 N. The coefficient of kinetic friction is","0.69","1.44","0.31","0.52","Constant speed means the pull equals kinetic friction, so μk = 36/52 = 0.69.","μ equals friction over normal force."],
+[6,"A 52 N sled carries a 650 N person. The coefficient of static friction is 0.12. The horizontal force needed to start it moving is about","84.2 N","6.24 N","78.0 N","62.4 N","Total normal force = 650 + 52 = 702 N. Static friction limit is 0.12 × 702 = 84.2 N.","Add the person to the weight before multiplying."],
+[6,"A 65.0 kg skier is pulled up a 26° frictionless slope at constant speed by a rope parallel to the slope. The rope tension is","279 N","637 N","572 N","0 N","At constant speed, the pull equals the weight component along the slope: m g sin 26° = 65 × 9.8 × 0.438 = 279 N.","Along a slope use sine. Perpendicular to it use cosine."],
+[6,"A force F pulls a box up a 20° ramp at 30° from the ramp surface. The component along the ramp is 28.0 N. The size of F is","32.3 N","14.0 N","56.0 N","24.2 N","F cos 30° = 28.0, so F = 28.0/0.866 = 32.3 N.","Divide by cosine to recover the full force."],
+[6,"For that same force F = 32.3 N, the component perpendicular to the ramp is","16.2 N","28.0 N","32.3 N","48.5 N","F sin 30° = 32.3 × 0.5 = 16.2 N, which is the same as 28.0 tan 30°.","Perpendicular part is F sin θ."],
+[6,"A 20 kg box is pulled up a frictionless 15° ramp by a rope at 40° above the horizontal, giving it an acceleration of 1 m/s² up the ramp. The rope tension is about","78.0 N","92.3 N","70.7 N","50.7 N","The rope is 40° − 15° = 25° from the ramp surface. Along the ramp: T cos 25° − m g sin 15° = m a. So T = 70.7 / 0.906 = 78.0 N.","Angle between rope and ramp is the difference of the two angles."],
+[6,"A 5 kg block is held against a vertical wall by a horizontal push. The coefficient of static friction is 0.40. The smallest push that stops it slipping is","122.5 N","19.6 N","49.0 N","245 N","Friction must carry the weight: μs F ≥ m g. So F ≥ 49/0.40 = 122.5 N.","Friction holds weight, push gives the normal force."],
+[6,"The magnitude of static friction can never exceed","μs times the normal force","The weight of the body","μk times the weight","The applied force","Static friction adjusts up to a limit of μs N. Beyond that, the body starts to slide.","Static friction has a ceiling, μs N."],
+[6,"Compared with the coefficient of static friction, the coefficient of kinetic friction for the same surfaces is usually","Smaller","Larger","Exactly equal","Always zero","It takes more force to start sliding than to keep sliding, so μk is normally less than μs.","Starting is harder than sliding."],
+[6,"The coefficient of friction has","No units","Units of newton","Units of N/kg","Units of m/s²","It is the ratio of two forces, friction over normal force, so the units cancel.","Ratio of forces means no unit."],
+[6,"In uniform circular motion the acceleration of the body points","Towards the centre of the circle","Along the velocity","Away from the centre","Along the tangent in the backward direction","The speed stays constant but the direction keeps changing, so the acceleration points inward. This is centripetal acceleration.","Centripetal means centre seeking."],
+[6,"The centripetal force needed to keep a mass m moving at speed v on a circle of radius r is","m v² / r","m v / r","m v r","m r / v²","F = m a and a = v²/r, so F = m v² / r.","Speed is squared, radius is divided."],
+[6,"If the speed of a body on a circle of fixed radius doubles, the centripetal force needed becomes","Four times as large","Twice as large","Half as large","The same","F is proportional to v², so doubling v gives four times the force.","v squared is the trap."],
+[6,"The period of a body moving at speed v on a circle of radius r is","T = 2π r / v","T = v / 2π r","T = π r² / v","T = 2π v / r","One lap is 2π r long and it is covered at speed v, so the time is 2π r / v.","Distance of one lap over speed."],
+[6,"The speed needed for a circular orbit at distance r from the centre of a planet of mass M is","v = the square root of G M divided by r","v = the square root of 2 G M divided by r","v = G M divided by r","v = the square root of G M times r","Gravity supplies the centripetal force: m v²/r = G M m / r², which gives v = √(G M / r). The factor 2 belongs to escape speed.","Orbit has no 2. Escape has the 2."],
+[6,"The escape speed from a planet is larger than its circular orbital speed at the surface by a factor of","√2","2","1.5","4","Escape speed is √(2GM/R) and orbital speed is √(GM/R), so the ratio is √2.","Escape is root two times orbital."],
+[6,"The escape speed from the surface of the Earth is about","11.2 km/s","7.9 km/s","1.12 km/s","42.0 km/s","The Earth's escape speed is about 11.2 km/s. The 7.9 km/s figure is the speed of a low orbit.","Eleven point two."],
+[6,"The escape speed of an object from a planet depends on","The planet's mass and radius but not the object's mass","The object's mass","The object's shape","The direction of launch only","Escape speed is √(2GM/R). The mass of the escaping object cancels out.","Small mass and large mass escape at the same speed."],
+[6,"A geostationary satellite is located about","35,786 km above the equator with a period of 24 h","160 km above the poles","2000 km above the equator","400 km above the equator with a period of 90 min","To stay above one spot, it must orbit above the equator with a period of one day, which fixes the altitude near 35,786 km.","Geostationary equals equator and 24 hours."],
+/* ---------- 7 · Conservation Laws & Moment of Inertia ---------- */
+[7,"The law of conservation of linear momentum for two colliding bodies is written","m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂","m₁u₁ − m₂u₂ = m₁v₁ + m₂v₂","m₁u₁² + m₂u₂² = m₁v₁² + m₂v₂²","m₁ + m₂ = v₁ + v₂","Total momentum before equals total momentum after. The version with squares is the kinetic energy equation for elastic collisions.","Momentum has no squares."],
+[7,"A bullet embeds in a block of wood after striking it. In this collision","Momentum is conserved but kinetic energy is not","Both momentum and kinetic energy are conserved","Kinetic energy is conserved but momentum is not","Neither is conserved","The collision is perfectly inelastic. Momentum is always conserved when there is no external force, while some kinetic energy turns into heat and deformation.","Stick together means energy is lost."],
+[7,"A stationary 3 kg body explodes into three equal parts. Two parts fly off at right angles with velocities 2 i and 3 j m/s. If the explosion lasts 10⁻³ s, the average force on the third part is","−2000 i − 3000 j N","2000 i + 3000 j N","−2 i − 3 j N","−6000 i − 9000 j N","Total momentum stays zero, so the third part has momentum −2 i − 3 j kg m/s. Dividing by 10⁻³ s gives −2000 i − 3000 j N.","Third piece must cancel the other two."],
+[7,"In an explosion of a body that was at rest, the total momentum of all pieces just afterwards is","Zero","Equal to the total kinetic energy","Larger than before","Impossible to know","The internal forces of an explosion cancel in pairs. The system had zero momentum before so it has zero after.","Rest in, zero out."],
+[7,"The moment of inertia of a thin rod of mass 5 kg and length 5 m about one end is","41.7 kg m²","10.4 kg m²","125 kg m²","62.5 kg m²","I = ⅓ M L² = 5 × 25 / 3 = 41.7 kg m². About the centre it would be ML²/12 = 10.4 kg m².","End of rod is a third, centre is a twelfth."],
+[7,"A solid disc of mass 20 kg has angular momentum 520 kg m²/s at 2 rad/s. Its radius is about","5.1 m","26.0 m","10.2 m","2.55 m","L = ½ M R² ω gives 520 = ½ × 20 × R² × 2 = 20 R². So R² = 26 and R = 5.1 m.","Do not forget to take the square root of R²."],
+[7,"An object on a 0.5 m string makes 4 rotations every second. Its period is","0.25 s","4 s","2 s","0.5 s","Frequency is 4 Hz, so the period is 1/4 = 0.25 s.","Period is the reciprocal of frequency."],
+[7,"For the same object, the tangential speed is about","12.6 m/s","2.00 m/s","25.1 m/s","6.28 m/s","v = 2π f r = 2π × 4 × 0.5 = 12.6 m/s.","v equals 2π f r."],
+[7,"For the same object, the angular velocity is about","25.1 rad/s","4.00 rad/s","12.6 rad/s","0.25 rad/s","ω = 2π f = 2π × 4 = 25.1 rad/s.","Omega is 2π times frequency."],
+[7,"The kinetic energy of a mass m moving on a circle of radius r with angular velocity ω is","½ m ω² r²","½ m ω r","m ω² r","½ m ω² r","Put v = ω r into ½ m v² to get ½ m ω² r².","Replace v with omega r."],
+[7,"A wheel turns at 120 rev/min. Its frequency and period are","2 Hz and 0.5 s","120 Hz and 0.0083 s","0.5 Hz and 2 s","12 Hz and 0.083 s","120 rev/min is 2 rev/s, so f = 2 Hz and T = 1/f = 0.5 s.","Divide rev/min by 60."],
+[7,"A wheel makes 1800 revolutions in 6 minutes. Its angular velocity is about","31.4 rad/s","5.00 rad/s","1.00 rad/s","188 rad/s","1800 rev in 360 s is 5 rev/s. Then ω = 2π × 5 = 31.4 rad/s, which is 10π rad/s.","Minutes to seconds before anything else."],
+[7,"Object one has mass m on radius r, and object two has mass 9m on radius 3r. Both turn at the same frequency. The ratio of their centripetal forces F₁ : F₂ is","1 : 27","1 : 3","1 : 9","1 : 81","F is proportional to m r f². Mass is nine times and radius three times, so the ratio is 1 : 27.","Multiply the mass and radius ratios."],
+[7,"A turntable starts from rest with α = 2.5 rad/s². After 5 s it has turned through","31.25 rad","12.5 rad","62.5 rad","15.6 rad","θ = ½ α t² = 0.5 × 2.5 × 25 = 31.25 rad. That is about 5 revolutions.","Half alpha t squared."],
+[7,"For the same turntable after 5 s, the angular velocity is","12.5 rad/s","31.3 rad/s","6.25 rad/s","2.50 rad/s","ω = α t = 2.5 × 5 = 12.5 rad/s.","From rest ω equals α t."],
+[7,"A body spins at 2 rev/s and has angular acceleration 0.5 rev/s². After 10 s its angular velocity is","7 rev/s","5 rev/s","2.5 rev/s","12 rev/s","ω = ω₀ + α t = 2 + 0.5 × 10 = 7 rev/s.","Keep the revolution unit all through."],
+[7,"For the same body, the angular displacement during the 10 s is","45 rev","70 rev","25 rev","20 rev","θ = ω₀ t + ½ α t² = 2 × 10 + 0.5 × 0.5 × 100 = 45 rev. Using the final speed alone would give 70.","Average speed is 4.5 rev/s over 10 s."],
+[7,"A wheel turns at 360 rev/min. Its angular velocity is","37.7 rad/s","360 rad/s","6.00 rad/s","2260 rad/s","360 rev/min is 6 rev/s, so ω = 2π × 6 = 12π = 37.7 rad/s.","Rev per min to rad per s: multiply by 2π over 60."],
+[7,"A point 5 cm from the axis of that 360 rev/min wheel has a speed of","1.88 m/s","37.7 m/s","0.314 m/s","11.3 m/s","v = ω r = 37.7 × 0.05 = 1.88 m/s. Keep the radius in metres.","Change cm to m first."],
+[7,"Cast iron is machined at a cutting speed of 0.64 m/s on a stock 0.04 m in diameter. The stock must turn at about","306 rev/min","32.0 rev/min","1530 rev/min","51.0 rev/min","ω = v/r = 0.64/0.02 = 32 rad/s. Then 32 × 60 / 2π = 306 rev/min. Remember to use the radius, not the diameter.","Radius is half the diameter."],
+[7,"A wheel rotates at a constant 15 rad/s. At a point 50 cm from the axis, the radial acceleration is","112.5 m/s²","7.50 m/s²","225 m/s²","30.0 m/s²","a = ω² r = 225 × 0.5 = 112.5 m/s².","Square the omega."],
+[7,"For the same point on that wheel, the tangential speed is","7.50 m/s","30.0 m/s","112 m/s","0.033 m/s","v = ω r = 15 × 0.5 = 7.5 m/s.","v equals omega r."],
+[7,"Two 15.0 kg spheres are joined by a light rod 1.5 m long. Treated as point masses, the moment of inertia about an axis through the centre of the rod and normal to it is","16.9 kg m²","33.8 kg m²","22.5 kg m²","67.5 kg m²","Each mass is 0.75 m from the axis. I = 2 × 15 × 0.75² = 16.9 kg m².","Distance from the axis is half the rod."],
+[7,"An ice skater spinning with her arms out pulls them in. Her angular velocity increases because","Her moment of inertia decreases while her angular momentum stays constant","Her angular momentum increases","A torque speeds her up","Her mass decreases","No outside torque acts, so I ω stays fixed. A smaller I forces a bigger ω.","I down, omega up."],
+[7,"The SI unit of angular momentum is","kg m²/s","kg m/s","N m","kg m²","Angular momentum is I ω, which is kg m² times 1/s.","Say it as I times omega."],
+[7,"A solid sphere about its centre has moment of inertia","⅖ M R²","½ M R²","⅓ M R²","M R²","The solid sphere formula is I = 2/5 M R². Disc is a half. Ring is the whole M R².","Sphere is two fifths."],
+[7,"A hollow cylinder with a thin wall about its axis has moment of inertia","M R²","½ M R²","⅖ M R²","M R² / 12","All the mass is at the same distance R from the axis, so I = M R².","Thin hollow ring or cylinder is M R squared."],
+/* ---------- 8 · Space, Time & Galilean Invariance ---------- */
+[8,"An arbitrary set of coordinates that describes the position, velocity and acceleration of objects is called a","Reference frame","Point","Origin","Observer","A reference frame is a coordinate system, with a clock, used to describe motion.","Frame equals coordinates plus clock."],
+[8,"In physics, reference frames are classified into two main types, which are","Inertial and non-inertial","True and fictional","Fast and slow","Real and imagined","An inertial frame moves at constant velocity. A non-inertial frame accelerates.","Inertial: no acceleration."],
+[8,"An inertial frame of reference is one that","Moves with constant velocity or is at rest","Is constantly accelerating","Rotates about a fixed axis","Moves with changing speed","In an inertial frame Newton's first law holds. That only happens when the frame is not accelerating.","Inertial means zero acceleration."],
+[8,"Newton's laws of motion are not valid in a frame that is","Non-inertial","At rest","Inertial","Moving with uniform velocity","Accelerating frames produce fictitious forces, so Newton's laws in their usual form fail there.","Accelerating frame, laws break."],
+[8,"Which of these can be treated as a frame of reference that is not accelerating?","A stationary train","A merry-go-round","A rotating fan","A car speeding up","A stationary train has no acceleration. Rotating and speeding up frames accelerate.","Rotation counts as acceleration."],
+[8,"Which of these is the odd one out as an inertial frame?","A rope whirled around with a stone rotating at constant speed","An athlete running at constant speed in a straight line","A vehicle moving at constant velocity","A stationary ship in a harbour","A whirling stone changes direction all the time, so it accelerates. The other three have zero acceleration.","Circular motion, even at constant speed, accelerates."],
+[8,"The statement that all laws of motion are the same in every inertial frame of reference is known as","Galilean relativity","Universal gravitation","The Heisenberg principle","Kepler's laws","This is the principle of Galilean relativity.","Same laws in every inertial frame."],
+[8,"Which of the following is NOT Galilean invariant?","Velocity","Force","Acceleration","Time","Under a Galilean transformation the velocity changes by the relative velocity of the frames. Acceleration, force and time stay the same.","Velocity shifts, acceleration does not."],
+[8,"Which of these is Galilean invariant?","Acceleration","Velocity","Position","Kinetic energy","Frames in uniform relative motion see the same acceleration. Position, velocity and kinetic energy change.","Acceleration is the same for all inertial observers."],
+[8,"For a frame S' moving with constant speed v along the positive x axis of S, the Galilean transformation is","x' = x − v t, y' = y, z' = z, t' = t","x' = x + v t, y' = y, z' = z, t' = t","x' = x − v t, y' = y − v t, z' = z, t' = t","x' = x, y' = y − v t, z' = z, t' = t","Only the coordinate along the motion shifts, by v t. The other two and the time are unchanged.","Shift along the motion only."],
+[8,"If frame S' moves at constant speed v along the positive y axis of S, the Galilean transformation is","x' = x, y' = y − v t, z' = z, t' = t","x' = x − v t, y' = y, z' = z, t' = t","x' = x − v t, y' = y − v t, z' = z, t' = t","x' = x, y' = y, z' = z − v t, t' = t","The shift goes with the axis along which the frame moves, which is y here.","Only the moving axis changes."],
+[8,"The Galilean velocity transformation along the direction of relative motion is","u' = u − v","u' = u + v","u' = u / v","u' = u × v","Differentiate x' = x − v t with t' = t. You get u' = u − v.","Subtract the frame speed."],
+[8,"In Galilean relativity the time coordinate satisfies","t' = t in all inertial frames","t' = t − v x / c²","t' = γ t","t' = t / γ","Time is treated as universal. The expressions with c belong to special relativity.","Galileo: one clock for all."],
+[8,"A boat starts from rest and moves in the positive x direction at 10 m/s relative to the water, which is frame 2. An event occurs at x₂ = 50 m after 120 s. In the frame 1 of the shore, the position of the event is","1250 m","1200 m","1150 m","50 m","x₁ = x₂ + v t = 50 + 10 × 120 = 1250 m.","Frame offset is speed times time."],
+[8,"Frame S' moves along the positive x axis of S at 37 m/s. A particle in S' has velocity 12 m/s along x'. Its velocity in S is","49 m/s","25 m/s","12 m/s","444 m/s","u = u' + v = 12 + 37 = 49 m/s. Velocities along the same line simply add in Galilean physics.","Add the frame speed back."],
+[8,"A girl cycles at constant speed past a friend at a bus stop and 60 s later the friend catches a bus. The two events are 126 m apart in the girl's frame. The speed of the bicycle is","2.10 m/s","7560 m/s","0.476 m/s","186 m/s","Speed = distance / time = 126 / 60 = 2.10 m/s.","Divide the separation by the time."],
+[8,"A police car at 30 m/s catches up with a truck at 20 m/s in 25 s from first sighting. The truck was first sighted ahead by","250 m","750 m","500 m","50 m","Relative speed is 30 − 20 = 10 m/s. Over 25 s the gap closes by 250 m.","Gap equals relative speed times time."],
+[8,"According to Einstein, the fourth dimension is","Time","Space curvature","Mass","Temperature","Special relativity treats time as a coordinate along with three space coordinates, forming space-time.","Fourth dimension equals time."],
+[8,"The spatial and temporal coordinates of a physical event together describe its","Space-time position","Velocity-time position","Space-temperature position","Mass-time position","Each event has three space coordinates and a time coordinate.","Space plus time is space-time."],
+[8,"An observer is someone who","Defines the position of an event relative to himself","Always moves with the event","Never uses a reference frame","Is always at the origin of the sun","Each observer measures positions and times relative to their own frame.","Observer ties to a frame."],
+[8,"Newton's law of universal gravitation keeps the same form for all inertial observers because","It depends on masses and separations, which are Galilean invariant","It does not involve any force","It depends on velocity","It depends on absolute time and position","The separation between two bodies and their masses are the same in all inertial frames.","Distances and masses do not change."],
+/* ---------- 9 · Special Relativity ---------- */
+[9,"Special relativity is built on the postulate that the speed of light in vacuum","Is the same for all inertial observers","Depends on the speed of the source","Is infinite","Changes with the observer's direction","Einstein's second postulate says light travels at c, about 3.00 × 10⁸ m/s, whatever the motion of the source or the observer.","Light speed is the same for everyone."],
+[9,"The speed of light in vacuum is about","3.00 × 10⁸ m/s","3.00 × 10⁶ m/s","3.00 × 10¹⁰ m/s","3.00 × 10⁵ m/s","c is 3.00 × 10⁸ m/s, or about 300,000 km/s.","Three times ten to the eight."],
+[9,"Which of these is NOT a consequence of special relativity?","Absolute universal time","Time dilation","Length contraction","Relativity of simultaneity","Special relativity removes the idea of absolute time. The other three are its direct results.","Absolute time belongs to Galileo."],
+[9,"Two events are simultaneous in one inertial frame at different places. In another frame moving relative to the first, they are","Generally not simultaneous","Always simultaneous","Never occur","Always in the same place","Simultaneity depends on the observer's motion. This is the relativity of simultaneity.","Simultaneous for one is not simultaneous for all."],
+[9,"The time difference between two events that are simultaneous in S and separated by Δx, as seen in S' moving at v, is","Δt' = −γ v Δx / c²","Δt' = γ Δx / v","Δt' = Δx / c","Δt' = γ v Δx","From the Lorentz time transformation, with Δt = 0 you get Δt' = −γ v Δx / c². The size of this term grows with the separation.","Gap in simultaneity is v Δx over c squared."],
+[9,"The Lorentz factor is defined as","γ = 1 divided by the square root of 1 minus v²/c²","γ = the square root of 1 minus v²/c²","γ = 1 divided by the square root of 1 plus v²/c²","γ = 1 minus v²/c²","It is 1 at rest and grows without limit as v approaches c.","Root in the denominator, minus sign inside."],
+[9,"The Lorentz factor γ is always","Greater than or equal to 1","Less than or equal to 1","Equal to 0 at rest","Negative above half of c","At v = 0 it equals 1 and it only increases with speed.","Gamma starts at one and only grows."],
+[9,"The Lorentz factor at v = 0.8c is","1.67","0.600","1.25","2.78","γ = 1/√(1 − 0.64) = 1/0.6 = 1.67. The 0.600 figure is just 1/γ.","0.6, 0.8, 1 gives 5 over 3."],
+[9,"The Lorentz factor at v = 0.9c is about","2.29","1.11","0.436","5.26","γ = 1/√(1 − 0.81) = 1/√0.19 = 2.29.","At ninety percent of c the factor is a bit above two."],
+[9,"The time interval measured by a clock that is at rest relative to the events is called the","Proper time","Dilated time","Relative time","Universal time","Proper time is the shortest interval between two events. Any observer moving relative to the clock measures γ times longer.","Proper means in the event's own frame."],
+[9,"A clock moving relative to an observer is measured to tick","Slower than the observer's own identical clock","Faster than the observer's own clock","At exactly the same rate","Backwards","Time dilation: Δt = γ Δt₀, so moving clocks run slow.","Moving clocks run slow."],
+[9,"A particle has lifetime 8.4 × 10⁻¹⁷ s in its rest frame and is measured in the lab to live 4.2 × 10⁻¹⁶ s. Its speed is about","0.980 c","0.200 c","0.040 c","0.500 c","γ = 4.2 × 10⁻¹⁶ / 8.4 × 10⁻¹⁷ = 5. Then v/c = √(1 − 1/25) = 0.98.","Gamma first, then solve for v over c."],
+[9,"Length contraction affects the length of a moving object","Only along the direction of motion","Only perpendicular to the motion","In every direction equally","Only when it is heavy","Lengths perpendicular to the relative motion are unchanged.","Contraction is along the motion only."],
+[9,"The length of an object measured in its own rest frame is called its","Proper length","Contracted length","Relative length","Dilated length","Proper length is the largest. An observer moving relative to the object measures L = L₀ / γ.","Proper length is the longest."],
+[9,"A rocket zooms past the Earth at 0.95c and Earth observers measure its length as 5.5 m. The length measured by an astronaut inside is about","17.6 m","5.50 m","1.72 m","5.78 m","5.5 = L₀ √(1 − 0.95²) = L₀ × 0.312. So L₀ = 5.5/0.312 = 17.6 m.","The rest length is the long one."],
+[9,"The formula for length contraction is","L = L₀ times the square root of 1 minus v²/c²","L = L₀ divided by the square root of 1 minus v²/c²","L = L₀ times 1 minus v²/c²","L = L₀ + v t","L = L₀ / γ and 1/γ = √(1 − v²/c²).","Moving length equals proper length over gamma."],
+[9,"An event is characterised by","Its space coordinates and its time","Only its position","Only its time","Only its energy","Each event needs three space coordinates and one time coordinate in a given frame.","Event equals where and when."],
+[9,"Time dilation becomes noticeable only when","The speed is a significant fraction of c","The mass is very large","The distance is very small","The clock is made of heavy metal","At everyday speeds γ is practically 1, so the effects are unmeasurable without very precise clocks.","Tiny speeds give gamma near one."],
+[9,"An astronaut's own clock ticks off 10 s while she travels at 0.8c. Observers on Earth measure the same interval as about","16.7 s","6.00 s","10.0 s","8.00 s","Her 10 s is the proper time. Earth observers measure γ times longer: 10 × 1.67 = 16.7 s.","Proper time is the shortest. Others measure more."],
+[9,"The transformation that replaces the Galilean transformation for speeds close to c is called the","Lorentz transformation","Maxwell transformation","Newton transformation","Kepler transformation","Lorentz transformations keep the speed of light the same in all inertial frames.","Lorentz replaces Galileo near c."],
+/* ---------- 10 · Gravitation, Work & Energy ---------- */
+[10,"Newton's law of universal gravitation states that the force between two point masses is","Proportional to the product of the masses and inversely proportional to the square of the distance","Proportional to the sum of the masses and inversely proportional to the distance","Proportional to the product of the masses and to the square of the distance","Proportional to the distance and inversely proportional to the product of the masses","F = G m₁ m₂ / r². Doubling a mass doubles the force, and doubling the distance cuts it to a quarter.","Masses multiply on top, distance squared below."],
+[10,"The universal gravitational constant G has the value","6.67 × 10⁻¹¹ N m²/kg²","6.67 × 10⁻¹¹ N kg/m²","9.80 N/kg","6.67 × 10¹¹ N m²/kg²","G = 6.67 × 10⁻¹¹ N m²/kg². The 9.80 N/kg is the field strength g at the Earth's surface.","G is tiny. g is not."],
+[10,"If the distance between two masses is doubled, the gravitational force between them becomes","One quarter","One half","Double","Four times as large","Force goes as 1/r². Doubling r gives 1/4 of the force.","Distance is squared. Double it, quarter the force."],
+[10,"If the mass of one of two attracting bodies is tripled and the distance is unchanged, the force becomes","Three times larger","Nine times larger","One third","Unchanged","Force is directly proportional to each mass, so tripling one mass triples the force.","Mass is not squared in the formula."],
+[10,"A planet has two moons of equal mass. Moon 2 orbits at twice the radius of Moon 1. Compared with the force on Moon 1, the force on Moon 2 is","One quarter","One half","Twice","The same","Equal masses and double the distance means the force is 1/4 as big.","Twice as far, a quarter of the pull."],
+[10,"The gravitational force between two spheres of mass 200 kg and 500 kg with centres 25 m apart is","1.07 × 10⁻⁸ N","2.67 × 10⁻⁷ N","1.07 × 10⁻⁹ N","7.47 × 10⁻¹¹ N","F = G m₁m₂ / r² = 6.67 × 10⁻¹¹ × 1.0 × 10⁵ / 625 = 1.07 × 10⁻⁸ N.","Multiply the masses and square the distance."],
+[10,"Two spheres of mass 1.5 × 10⁵ kg and 8.5 × 10² kg have centres 2500 m apart. The gravitational force between them is about","1.36 × 10⁻⁹ N","3.40 × 10⁻⁶ N","8.50 × 10⁻³ N","1.61 × 10⁻¹² N","F = 6.67 × 10⁻¹¹ × 1.275 × 10⁸ / 6.25 × 10⁶ = 1.36 × 10⁻⁹ N.","Convert to powers of ten carefully before dividing."],
+[10,"Three 0.3 kg billiard balls sit at the corners of a right triangle with sides 0.4 m, 0.3 m and 0.5 m. The magnitude of the net gravitational force on the ball at the right angle corner is about","7.65 × 10⁻¹¹ N","1.04 × 10⁻¹⁰ N","6.67 × 10⁻¹¹ N","2.40 × 10⁻¹¹ N","The two forces are at right angles: 6.67 × 10⁻¹¹ N from the 0.3 m ball and 3.75 × 10⁻¹¹ N from the 0.4 m ball. The resultant is √(6.67² + 3.75²) = 7.65 × 10⁻¹¹ N.","Forces on the two legs are at right angles, so use Pythagoras."],
+[10,"For the same arrangement, the net force on the right angle ball makes an angle with the 0.3 m side of about","29.3°","60.7°","45.0°","36.9°","tan θ = 3.75 / 6.67 = 0.562, so θ = 29.3°.","tan θ is the smaller force over the larger one."],
+[10,"An object of mass m near the Earth's surface has a free fall acceleration equal to","G M / R²","G M m / R²","G m / R²","G M / R","Set m g = G M m / R². The mass m cancels, so g = G M / R² where M and R belong to the Earth.","g does not depend on the falling mass."],
+[10,"At a height h above the Earth's surface, the free fall acceleration is","G M divided by the square of R plus h","G M divided by R squared","G M h divided by R squared","G M divided by h squared","The distance from the centre is R + h, so g = G M / (R + h)². It decreases as altitude increases.","Measure from the centre of the Earth."],
+[10,"The free fall acceleration at an altitude of 1000 km above the Earth is about","7.33 m/s²","9.80 m/s²","8.83 m/s²","4.90 m/s²","From the table, g at 1000 km is 7.33 m/s². The 8.83 m/s² value is for 350 km.","Higher up, g is smaller."],
+[10,"The International Space Station at 350 km altitude has a surface weight of 4.22 × 10⁶ N. Its weight in orbit is about","3.80 × 10⁶ N","4.22 × 10⁶ N","0 N","4.31 × 10⁵ N","Mass is 4.22 × 10⁶ / 9.8 = 4.31 × 10⁵ kg. Gravity at 350 km is 8.83 m/s², so weight = 4.31 × 10⁵ × 8.83 = 3.80 × 10⁶ N.","Mass is the same, g is smaller."],
+[10,"For the space station above, the acceleration due to gravity at 350 km is about","8.83 m/s²","9.80 m/s²","0 m/s²","6.20 m/s²","g = G M / (R + h)² = 6.67 × 10⁻¹¹ × 5.98 × 10²⁴ / (6.72 × 10⁶)² = 8.83 m/s². Astronauts float because they are in free fall, not because g is zero.","Floating does not mean no gravity."],
+[10,"The gravitational force between the Earth, mass 6 × 10²⁴ kg, and the Sun, mass 2 × 10³⁰ kg, at 1.5 × 10¹¹ m apart is about","3.56 × 10²² N","5.34 × 10³³ N","3.56 × 10²⁵ N","8.00 × 10⁴⁴ N","F = G M m / r² = 6.67 × 10⁻¹¹ × 1.2 × 10⁵⁵ / 2.25 × 10²² = 3.56 × 10²² N.","Add the powers of ten, then subtract."],
+[10,"The Earth takes 3.156 × 10⁷ s to orbit the Sun at a radius of 1.5 × 10¹¹ m. Using T² = 4π² r³ / G M, the mass of the Sun is about","2.0 × 10³⁰ kg","2.0 × 10²⁴ kg","6.0 × 10²⁴ kg","3.3 × 10²⁷ kg","M = 4π² r³ / (G T²) = 39.5 × 3.375 × 10³³ / (6.67 × 10⁻¹¹ × 9.96 × 10¹⁴) which is about 2.0 × 10³⁰ kg.","Kepler's third law gives the mass of the central body."],
+[10,"Mercury orbits the Sun at a mean radius of 5.8 × 10¹⁰ m. The mass of the Sun is 1.99 × 10³⁰ kg. Mercury's orbital period is about","88 days","225 days","365 days","58.0 days","T = 2π √(r³ / G M) = 7.6 × 10⁶ s, which is 88 days.","Divide seconds by 86400 for days."],
+[10,"The force exerted by the Earth on the Moon, using 5.97 × 10²⁴ kg, 7.35 × 10²² kg and 3.84 × 10⁸ m, is about","1.98 × 10²⁰ N","7.62 × 10²⁸ N","1.98 × 10²⁶ N","2.70 × 10⁻³ N","F = G M m / r² = 6.67 × 10⁻¹¹ × 4.39 × 10⁴⁷ / 1.47 × 10¹⁷ = 1.98 × 10²⁰ N. The distance must be in metres, not kilometres.","Convert km to m before squaring."],
+[10,"The gravitational force between an 80 kg man and a 65 kg woman standing 10 m apart is","3.47 × 10⁻⁹ N","3.47 × 10⁻⁸ N","3.47 × 10⁻⁷ N","9.67 × 10⁻¹¹ N","F = 6.67 × 10⁻¹¹ × 80 × 65 / 100 = 3.47 × 10⁻⁹ N, far too small to feel.","Square the 10 m."],
+[10,"A baseball is thrown horizontally from a very tall mountain so that it goes into a circular orbit just above the Earth. Its acceleration in orbit is about","9.8 m/s² toward the Earth's centre","Zero","9.8 m/s² along its velocity","19.6 m/s² toward the centre","Near the surface gravity gives 9.8 m/s². It is the only acceleration and it points to the centre.","In orbit the ball is falling the whole time."],
+[10,"Using g = 9.80 m/s² and an Earth radius of 6.37 × 10⁶ m, the average density of the Earth is about","5.5 × 10³ kg/m³","1.0 × 10³ kg/m³","1.1 × 10⁴ kg/m³","2.7 × 10³ kg/m³","From g = G M / R² you get M = g R² / G. Divide by the volume 4/3 π R³ to get ρ = 3g / (4π G R), about 5.5 × 10³ kg/m³.","Earth is a little over five times denser than water."],
+[10,"The speed of a satellite in a circular orbit at altitude h above the Earth is","The square root of G M divided by R plus h","The square root of G M divided by h","The square root of 2 G M divided by R plus h","G M divided by R plus h","Measure from the Earth's centre. Gravity supplies the centripetal force, giving v = √(G M / (R + h)).","Orbit radius is R plus h."],
+[10,"Kepler's first law states that planets move in","Ellipses with the Sun at one focus","Circles centred on the Sun","Parabolas around the Sun","Straight lines at constant speed","Each planet's orbit is an ellipse, and the Sun sits at one of its two foci.","Ellipse, Sun at a focus."],
+[10,"Kepler's second law says that a line joining a planet and the Sun","Sweeps out equal areas in equal times","Has constant length","Turns at a constant angular speed","Sweeps out equal lengths in equal times","A planet moves faster when it is closer to the Sun. This follows from conservation of angular momentum.","Equal areas, equal times."],
+[10,"Kepler's third law says that the square of the period of a planet is proportional to","The cube of its mean orbital radius","The square of its mean orbital radius","Its mass","The Sun's radius","T² is proportional to r³. For the Sun the constant is about 2.97 × 10⁻¹⁹ s²/m³.","T squared goes with r cubed."],
+[10,"A planet moves fastest in its orbit when it is","Closest to the Sun, at perihelion","Farthest from the Sun","At the midpoint of its orbit","Moving away from the Sun","Angular momentum is conserved, so a smaller distance means a higher speed.","Closer in, faster."],
+[10,"Work done by a constant force F over a displacement d at angle θ to the force is","W = F d cos θ","W = F d sin θ","W = F d tan θ","W = F / d","Only the component of force along the displacement does work, so the cosine appears.","Work uses cosine. Torque uses sine."],
+[10,"The work done by a force that is perpendicular to the displacement is","Zero","Maximum","Negative","Equal to F d","cos 90° is zero. A centripetal force, for example, does no work on a body in uniform circular motion.","Right angle, no work."],
+[10,"Work is measured in","Joules","Newtons","Watts","Kilograms","One joule is one newton metre of work.","Joule is N times m."],
+[10,"A 5.0 kg body is dragged 6 m at constant speed along a floor by a 10 N rope at 30° above the horizontal. The work done by the rope is","52.0 J","60.0 J","30.0 J","104 J","W = F d cos θ = 10 × 6 × 0.866 = 52.0 J.","Use the horizontal component of the pull."],
+[10,"For that same body, the total work done on it is","Zero","52.0 J","60.0 J","−52.0 J","The speed is constant, so the kinetic energy does not change. The 52.0 J from the rope is cancelled by −52.0 J from friction.","Constant speed means net work is zero."],
+[10,"For that same body, the coefficient of kinetic friction is about","0.20","0.18","0.52","1.00","Friction = 10 cos 30° = 8.66 N. The normal force is 49 − 10 sin 30° = 44 N. So μk = 8.66/44 = 0.20.","The upward part of the pull lowers the normal force."],
+[10,"Gravitational potential energy of a mass m raised through a height h near the Earth is","m g h","½ m g h","m g / h","m g h²","It equals the work done against gravity in lifting the mass at constant speed.","Weight times height."],
+[10,"The kinetic energy of a body of mass m and speed v is","½ m v²","m v²","½ m v","m v","KE = ½ m v². Notice the square on v, which is why doubling the speed quadruples the energy.","Half m v squared."],
+[10,"The work-energy theorem states that the net work done on a body equals","The change in its kinetic energy","Its final kinetic energy only","Its change in momentum","Its change in potential energy always","W net = KE final − KE initial.","Net work, change in KE."],
+[10,"A proton accelerates at 3.6 × 10¹⁵ m/s² over 3.5 cm. With mass 1.67 × 10⁻²⁷ kg, its gain in kinetic energy is about","2.1 × 10⁻¹³ J","2.1 × 10⁻¹¹ J","1.1 × 10⁻¹³ J","2.1 × 10⁻¹⁰ J","ΔKE = m a d = 1.67 × 10⁻²⁷ × 3.6 × 10¹⁵ × 0.035 = 2.1 × 10⁻¹³ J. Remember 3.5 cm is 0.035 m.","Net force times distance, with distance in metres."],
+[10,"A 2 kg body moving at 8 m/s is stopped by a constant retarding force of 0.5 N. It travels","128 m","64 m","32 m","256 m","Work done = change in KE: 0.5 × d = ½ × 2 × 64 = 64 J. So d = 128 m.","Equate force times distance to the initial KE."],
+[10,"A body swings on a rope between a lowest point 1.5 m above the ground and a highest point 2.5 m above the ground. Its maximum speed is about","4.4 m/s","9.80 m/s","2.21 m/s","6.26 m/s","Only the height difference of 1.0 m matters: ½ m v² = m g Δh, so v = √(2 × 9.8 × 1.0) = 4.4 m/s.","Use the height difference, not the heights."],
+[10,"A 50 kg body is raised to a height of 2 m. Its potential energy is about","980 J","100 J","490 J","25 J","PE = m g h = 50 × 9.8 × 2 = 980 J.","Multiply mass, g and height."],
+[10,"If that 50 kg body falls from 2 m, its kinetic energy when it is half way down is about","490 J","980 J","245 J","0 J","At half height, half the potential energy has become kinetic. That is 490 J.","Half way down, half and half."],
+[10,"For the same fall, the kinetic energy just before the body hits the floor is about","980 J","490 J","1960 J","0 J","All the potential energy has turned into kinetic energy, so KE = m g h = 980 J.","Bottom of the fall, all PE is now KE."],
+[10,"A trailer pulls a car with a force of 900 N on a level road. The car moves at 70 km/h for 15 minutes. The work done on the car is about","1.58 × 10⁷ J","1.57 × 10⁴ J","9.45 × 10⁸ J","2.52 × 10⁵ J","Distance = 70 km/h × 0.25 h = 17.5 km = 17,500 m. Work = 900 × 17,500 = 1.575 × 10⁷ J, about 1.58 × 10⁷ J.","Convert to metres, then multiply by force."],
+[10,"A 1600 kg vehicle moving at 15 m/s receives 90 kJ of braking work. Its speed after that is about","10.6 m/s","7.50 m/s","5.30 m/s","13.0 m/s","Initial KE = ½ × 1600 × 225 = 180 kJ. After removing 90 kJ, 90 kJ remains. Then v = √(2 × 90000 / 1600) = 10.6 m/s.","Subtract the work from the initial KE."],
+[10,"The total work needed to stop that 1600 kg vehicle moving at 15 m/s is","180 kJ","90 kJ","360 kJ","24 kJ","Work to stop equals the initial kinetic energy, ½ m v² = 0.5 × 1600 × 225 = 180,000 J.","Work to stop is the whole KE."],
+[10,"The escape speed of Mars from its surface is about","5.0 km/s","11.2 km/s","2.3 km/s","60 km/s","From the table, Mars is 5.0 km/s, Earth is 11.2 km/s, the Moon is 2.3 km/s and Jupiter is 60 km/s.","Mars is about half the Earth's value."],
+[10,"In free fall without air resistance, the sum of kinetic and potential energy is","Constant","Increasing","Decreasing","Zero","Energy only changes form. Whatever PE is lost shows up as KE, so the total stays the same.","Total mechanical energy is conserved."],
+[10,"When a pendulum is momentarily at the top of its swing, its energy is","All potential energy","All kinetic energy","Half kinetic and half potential","Zero","At the top the speed is momentarily zero, so there is no kinetic energy. All the energy is potential.","Top of swing, no speed."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='PHY101', LABEL='PHY 101', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions are premium only. The shared lock lives in ../premium.js */
+try{
+  var m=await import('../premium.js');
+  var ok=true;
+  if(typeof m.requirePremium==='function'){
+    var res=await m.requirePremium({course:'PHY101',feature:'Past Questions'});
+    if(res===false)ok=false;
+  }
+  if(ok)window.__pqBoot();
+  else window.__pqGate('Past Questions are for premium students.');
+}catch(e){
+  window.__pqGate('Could not check your plan. Check your network and <a href="" style="color:#ff9a1f">refresh</a>.');
+}
+</script>
+</body>
+</html>
