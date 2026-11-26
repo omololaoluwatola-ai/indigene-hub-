@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CSC 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">CSC 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">10:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 50</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">50 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>CSC 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">50</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · CSC 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Operating Systems",
+  "Computer Generations and History",
+  "Internet and Web",
+  "Security and Malware",
+  "Hardware, Software and Computer Basics",
+  "Algorithms and Flowcharts",
+  "OSI Model",
+  "Founders and Pioneers"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Operating Systems ---------- */
+[0,"An operating system is best defined as software that","Manages computer hardware and software resources","Solves only mathematical problems","Produces only office documents","Connects computers only to the Internet","The OS sits between the user and the hardware and controls both.","OS is the manager."],
+[0,"Which of these is NOT a function of an operating system?","Word processing","Memory management","Process management","File management","Word processing is the job of application software.","Typing letters is an app job."],
+[0,"The core part of an operating system is called the","Kernel","Shell","Compiler","Driver","The kernel controls the hardware and core services.","Kernel is the core, shell is the cover."],
+[0,"Which operating system allows more than one user at the same time?","Multi-user operating system","Single-user operating system","Batch operating system","Standalone operating system","Multi-user means many users share it at once.","Read the name: multi-user."],
+[0,"Booting a computer means","Loading the operating system into memory","Shutting down the whole system","Installing new application software","Formatting the computer disk","At start up the OS is loaded into memory.","Boot = load the OS."],
+[0,"Which of these is an example of an operating system?","Linux","MS Word","Excel","PowerPoint","Linux is an OS. The others are applications.","Office tools are never the OS."],
+[0,"A multitasking operating system allows","Multiple programs to run at once","Only one task at a time","Multiple users but one program","Only background processes","Multitasking is many tasks together.","Multi task, many programs."],
+[0,"Which interface uses icons and windows?","GUI","CLI","DOS","BIOS","GUI means Graphical User Interface.","G for graphics."],
+[0,"The operating system function that handles hardware devices is","Device management","File management","Memory management","Process scheduling","Device management controls printers, keyboards and other hardware.","Devices go to device management."],
+[0,"Virtual memory is mainly used to","Extend RAM using disk space","Increase hard disk speed","Replace the processor","Store files permanently","Part of the disk is used as extra RAM.","Virtual = pretend RAM."],
+/* ---------- 1 · Computer Generations and History ---------- */
+[1,"The first generation of computers used","Vacuum tubes","Transistors","Integrated circuits","Microprocessors","First generation circuitry was vacuum tubes.","VTIMA, first letter V."],
+[1,"ENIAC belongs to the","First generation","Second generation","Third generation","Fourth generation","ENIAC was built with vacuum tubes.","ENIAC and UNIVAC are first."],
+[1,"Transistors were used in which generation?","Second","First","Third","Fourth","Transistors replaced vacuum tubes in the second generation.","VTIMA, second letter T."],
+[1,"Integrated circuits were introduced in the","Third generation","First generation","Second generation","Fifth generation","The IC is the mark of the third generation.","IC is third."],
+[1,"Microprocessors are associated with the","Fourth generation","First generation","Second generation","Third generation","The microprocessor brought the fourth generation.","Micro is four."],
+[1,"Which generation introduced personal computers?","Fourth","First","Second","Third","The microprocessor made personal computers possible.","PC came with the chip."],
+[1,"Artificial Intelligence is a major feature of the","Fifth generation","Second generation","Third generation","Fourth generation","The fifth generation is based on AI.","Five is AI."],
+[1,"Computers first became smaller and more reliable than vacuum tube machines in the","Second generation","First generation","Fourth generation","Fifth generation","Transistors were smaller and more reliable than tubes.","Tubes out, transistors in."],
+[1,"Which computer generation is still under development?","Fifth","Second","Third","Fourth","AI based computing is still developing.","The latest is unfinished."],
+[1,"Vacuum tube computers were mostly","Very large and power consuming","Cheap and easily portable","Small and very reliable","Built for artificial intelligence","Tubes took space, used much power and gave off heat.","Tubes are big and hot."],
+/* ---------- 2 · Internet and Web ---------- */
+[2,"The Internet is best described as","A global network of computers","A single local computer network","A software package","An operating system","It links networks all over the world.","Internet = network of networks."],
+[2,"WWW stands for","World Wide Web","World Web Wide","Web World Wide","Wide World Web","WWW is the World Wide Web.","World, Wide, Web."],
+[2,"A software used to access websites is called a","Browser","Server","Search engine","Protocol","A browser opens and displays web pages.","You browse with a browser."],
+[2,"Which of these is a web browser?","Chrome","Google Search","Yahoo Search","Bing","Chrome is a browser. The others are search services.","Chrome opens, Bing searches."],
+[2,"URL means","Uniform Resource Locator","Universal Research Link","Unified Routing Line","Uniform Register Link","A URL is the address of a resource on the web.","L is Locator."],
+[2,"Email is used to","Send electronic messages","Process numerical data","Store files only","Design web pages","Email is electronic mail.","E-mail = e-message."],
+[2,"Buying and selling goods online is known as","E-commerce","E-learning","E-banking","E-mailing","Commerce means trade.","Commerce is buying and selling."],
+[2,"A search engine is used to","Find information online","Protect computers from viruses","Send electronic mail","Design websites","It looks through the web for what you type.","Engine searches."],
+[2,"Which protocol is used to access web pages?","HTTP","FTP","SMTP","POP3","HTTP carries web page requests.","Web is HTTP, mail is SMTP."],
+[2,"One major disadvantage of the Internet is","Cybercrime","Fast communication","Easy communication","Access to information","The other three are benefits.","Pick the bad one."],
+[2,"Which of these can access a web server?","Web client","Web author","Web cable","Web page","A computer that has access to a web server is a web client.","Client asks, server answers."],
+[2,"Which service allows a user to log in to another computer on the Internet?","Telnet","Email","UseNet","FTP","Telnet gives remote login.","Telnet = tele login."],
+[2,"Which technique marked the beginning of computer communications?","Time sharing","User environment","Batch environment","Message passing","With time sharing, users could interact and share the computer.","Sharing started communication."],
+[2,"Dumb terminals connected to a central computer system is a feature of","Time sharing","Message passing","Batch processing","User environment","Many terminals share the time of one central computer.","Dumb terminals share time."],
+/* ---------- 3 · Security and Malware ---------- */
+[3,"A computer virus is a program that","Replicates and damages systems","Improves system speed","Manages computer memory","Designs graphics","A virus copies itself and causes harm.","Virus = copy and harm."],
+[3,"Which of these is NOT a type of malware?","Spreadsheet","Worm","Trojan horse","Ransomware","A spreadsheet is application software.","Spot the office tool."],
+[3,"A Trojan horse is a program that","Appears useful but is harmful","Replicates itself freely","Protects computer files","Repairs the operating system","It hides harm inside something that looks useful.","Gift outside, enemy inside."],
+[3,"Software used to detect and remove viruses is called","Antivirus","Firewall","Compiler","Operating system","Antivirus scans for and removes known malware.","The name says it."],
+[3,"Which of these spreads without user action?","Worm","Trojan horse","Macro virus","Boot sector virus","A worm spreads across networks on its own.","Worm walks alone."],
+[3,"Ransomware mainly","Locks data and demands payment","Deletes files to free space","Only speeds up the system","Improves computer security","It holds your files until you pay.","Ransom = pay."],
+[3,"A boot sector virus affects the","Booting area of storage","Random access memory","Central processing unit","Monitor screen","It infects the part used to start the system.","Boot virus, boot area."],
+[3,"One common way viruses spread is through","Infected email attachments","Computer monitors","Computer keyboards","Printer paper","Opening an infected attachment runs the virus.","Do not open strange attachments."],
+[3,"Which of these helps prevent virus attacks?","Regular system updates","Opening unknown files","Disabling the antivirus","Sharing flash drives freely","Updates close security holes.","Update to protect."],
+[3,"Malware is best described as","Harmful software","Useful software","A hardware component","A network protocol","Malware is malicious software.","Mal means bad."],
+[3,"A firewall is used for","Network security","Printing documents","Creating viruses","File storage","It blocks unauthorised access between networks.","Firewall is the gate man."],
+[3,"Data backup is important because it","Helps recover lost data","Deletes unwanted files","Prevents hardware use","Slows down the system","A copy lets you restore what is lost.","Backup brings it back."],
+/* ---------- 4 · Hardware, Software and Computer Basics ---------- */
+[4,"Who is known as the father of computers?","Charles Babbage","James Gosling","Dennis Ritchie","Bjarne Stroustrup","Babbage designed the early mechanical computing engines.","Babbage, the baba of computers."],
+[4,"In this course material, COMPUTER is expanded as","Commonly Operated Machine Used in Technical and Educational Research","Commonly Occupied Machine Used in Technical and Educational Research","Commonly Operated Machine Used in Technical and Environmental Research","Commonly Oriented Machine Used in Technical and Educational Research","This is the expansion the past question uses.","Operated and Educational."],
+[4,"Which statement correctly defines or describes a computer?","All of the listed statements","It performs arithmetic and logic operations automatically","It understands binary language of zeros and ones","It stores, retrieves and processes data","Each of the three statements is true.","When all are true, take all."],
+[4,"What is the full meaning of CPU?","Central Processing Unit","Computer Processing Unit","Computer Principle Unit","Control Processing Unit","CPU is the Central Processing Unit.","Central, not computer."],
+[4,"Which language does a computer understand directly?","Binary language","C language","Assembly language","BASIC language","Other languages must be translated to binary.","Computer speaks 0 and 1."],
+[4,"Which computer language is written in binary codes only?","Machine language","Pascal","C","C sharp","Machine language needs no translator.","Machine = binary."],
+[4,"The brain of the computer is the","Central Processing Unit","Main memory","Arithmetic and Logic Unit","Control Unit","The CPU contains both the ALU and the control unit.","Whole CPU is the brain."],
+[4,"Which of these is NOT a characteristic of a computer?","Intelligence quotient","Versatility","Accuracy","Diligence","A computer has no IQ of its own.","No brain of its own."],
+[4,"The smallest unit of data in a computer is the","Bit","Kilobyte","Nibble","Byte","A bit is a single 0 or 1.","Bit, nibble 4, byte 8."],
+[4,"Which unit converts user data into a form the computer understands?","Input unit","Output unit","Memory unit","Arithmetic and Logic Unit","Input turns what you enter into binary.","In comes first."],
+[4,"Which monitor looks like a television and is used with non portable computers?","CRT","LED","LCD","Flat panel","The Cathode Ray Tube monitor is bulky like an old television.","CRT = old TV."],
+[4,"Which of these is NOT a computer code?","EDIC","ASCII","BCD","EBCDIC","There is no coding scheme called EDIC.","EDIC is the fake one."],
+[4,"Which part of a processor contains the hardware to perform all operations?","Data path","Controller","Registers","Cache","The controller only tells the data path what to do.","Data path does the work."],
+[4,"Which software is designed to control the operations of a computer?","System software","Application software","Presentation software","Spreadsheet software","System software runs and extends the computer.","System controls the system."],
+[4,"Which device uses positional notation to represent a decimal number?","Abacus","Pascaline","Modern monitor","Scanner","Bead positions on an abacus give the value.","Beads have positions."],
+[4,"EBCDIC is mainly used in","Mainframes","Supercomputers","Mobile phones","Calculators","IBM developed it for its mainframes.","EBCDIC, IBM mainframe."],
+[4,"The physical parts of a computer are called","Hardware","Software","Shareware","Freeware","Hardware is what you can touch.","Touchable is hard."],
+[4,"The assigned ordering among characters used by a computer is called","Collating sequence","Accumulation","Unicode table","Instruction cycle","It decides which character comes before another.","Collate = arrange."],
+[4,"A storage system where a robotic arm mounts and removes offline media is","Tertiary storage","Magnetic core storage","Primary storage","Virtual storage","Robot libraries are third level storage.","Robot arm, tertiary."],
+[4,"The time from a request for disk data until the transfer is complete is the","Disk access time","Disk utilization time","Drive utilization time","Disk arrival time","Access time covers the whole wait for the data.","Request to receive is access."],
+[4,"Which devices provide communication between a computer and the outside world?","Input and output devices","Compact discs","Device drivers","Storage devices","They are also called peripherals.","I/O talks to the world."],
+[4,"Which input devices enter data directly from source documents?","Data scanning devices","System access devices","Data retrieving devices","Output display devices","Scanning removes the need to retype.","Scan the paper."],
+[4,"Which device converts maps and drawings into digital form for storage?","Digitizer","Plotter","MICR reader","Printer","Digitizers are used in computer aided design.","Digitize the drawing."],
+[4,"Which package helps individuals store and retrieve personal information?","Personal assistance package","Graphics package","Spreadsheet package","Animation package","It manages schedules and contacts.","Personal data, personal assistant."],
+[4,"What is created in the computer system when a user opens an account?","Subdirectory","Master file directory","Root file directory","System file directory","The new account is given its own subdirectory.","New user, new sub folder."],
+[4,"Which of these is NOT a type of computer based on operation?","Remote","Digital","Analog","Hybrid","The three types are analog, digital and hybrid.","ADH."],
+[4,"Which type of computer is mostly used for automatic control of physical processes?","Hybrid","Analog","Digital","Remote","Hybrid combines analog and digital features.","Hybrid does both."],
+[4,"Which invention gave birth to much cheaper microcomputers?","Microprocessor","Personal digital assistant","Mainframe","Magnetic drum","The whole CPU on one chip cut cost.","One chip, cheap computer."],
+[4,"Which computers are below mainframes in speed and storage capacity?","Minicomputers","Supercomputers","Hybrid computers","Mainframe clusters","Minicomputers are smaller than mainframes.","Mini is smaller."],
+[4,"Which of these was the first neural network computer?","SNARC","ENIAC","UNIVAC","EDVAC","SNARC was built by Minsky and Edmonds.","SNARC, neural."],
+[4,"Which of these is an input device?","Keyboard","Printer","Monitor","Speaker","A keyboard sends data in.","The others give out."],
+[4,"Which device produces hard copy output?","Printer","Monitor","Scanner","Mouse","Hard copy is on paper.","Hard copy, paper."],
+[4,"RAM is an example of","Primary memory","Secondary storage","An input device","An output device","RAM is main memory.","RAM is primary."],
+[4,"Which storage device is permanent?","Hard disk","RAM","Cache","Register","A hard disk keeps data without power.","Non volatile."],
+[4,"A computer designed to fit and stay on a desk is a","Desktop computer","Supercomputer","Laptop computer","Mainframe","The name tells where it sits.","Desk, desktop."],
+[4,"Software designed to help manage hardware is called","System software","Application software","Presentation software","Programming game","System software manages hardware.","System manages."],
+[4,"Which of these is application software?","MS Word","Windows","Linux","UNIX","The others are operating systems.","Word does a user task."],
+[4,"Which unit performs arithmetic operations?","ALU","Control Unit","RAM","ROM","The Arithmetic and Logic Unit calculates.","A is arithmetic."],
+[4,"ROM stands for","Read Only Memory","Random Only Memory","Ready Output Machine","Rapid Office Memory","ROM is Read Only Memory.","Read, not random."],
+[4,"A computer that can be carried about easily is a","Laptop","Desktop","Mainframe","Supercomputer","Laptops are portable.","Sits on your lap."],
+[4,"Which best describes ICT?","Information and Communication Technology","Information Control Technology","Internet Communication Tool","Integrated Computer Technique","ICT is Information and Communication Technology.","Info and Comm."],
+/* ---------- 5 · Algorithms and Flowcharts ---------- */
+[5,"In a flowchart, the oval symbol used for start and stop is called the","Terminal","Flow line","Decision box","Input and output box","The terminal marks where a program starts and stops.","Oval ends it."],
+[5,"A flowchart is best described as","A pictorial representation of an algorithm","A written form of machine language","A list of computer hardware","A type of operating system","The flowchart draws the algorithm. An algorithm is not a picture of a flowchart.","Chart is the picture."],
+[5,"The process of drawing a flowchart for an algorithm is called","Flowcharting","Performance","Evaluation","Compilation","Drawing the chart is flowcharting.","Chart, charting."],
+[5,"Actual instructions in flowcharting are written in","Boxes","Circles","Arrows","Plain lines","Boxes hold instructions and arrows show the flow.","Write inside the box."],
+[5,"In a flowchart, a diamond shaped box denotes","Decision","Initiation","Initialization","Input and output","The diamond asks a question with two paths.","Diamond decides."],
+[5,"Which flowchart shape can lead to two different conditions?","Diamond","Rectangle","Circle","Parallelogram","One path for true and one for false.","Two exits, diamond."],
+[5,"Is there a fixed set standard for the amount of detail in a flowchart?","No, there is no set standard","Yes, every step must be one line","Yes, only ten boxes are allowed","Yes, detail is fixed by the compiler","The level of detail depends on the purpose.","Detail is free."],
+[5,"A detailed flowchart is called a","Micro flowchart","Macro flowchart","Stack flowchart","Union flowchart","Micro shows all the parts of the algorithm.","Micro, small details."],
+[5,"A flowchart that outlines only the main segments of a program is a","Macro flowchart","Micro flowchart","Queue flowchart","Union flowchart","Macro gives the big picture.","Macro, big parts."],
+[5,"Which of these is NOT an advantage of a flowchart?","Improper documentation","Better communication","Efficient coding","Systematic testing","Flowcharts give proper documentation.","Pick the negative word."],
+[5,"An algorithm is best defined as","A step by step procedure for solving a problem","A finished computer program","A programming language","A single flowchart symbol","It is the ordered plan before coding.","Steps to solve."],
+[5,"Which of these best describes an algorithm?","A finite set of clear steps","A set of ambiguous instructions","A list of random commands","A hardware process","Steps must be clear and must end.","Finite and clear."],
+[5,"An algorithm must always have","A definite beginning and end","An endless number of steps","One chosen programming language","A particular computer system","It starts, runs and stops.","Begin and end."],
+[5,"Which is NOT a characteristic of an algorithm?","Ambiguity","Finiteness","Definiteness","Effectiveness","Every step must be unambiguous.","No confusion allowed."],
+[5,"The first step in writing an algorithm is to","Understand the problem","Draw the flowchart","Write the program","Compile the code","You cannot solve what you do not understand.","Understand first."],
+[5,"The correct order of algorithm stages is","Input, Process, Output","Input, Output, Process","Process, Input, Output","Output, Process, Input","Data goes in, is worked on, then comes out.","IPO."],
+[5,"An algorithm that never ends lacks","Finiteness","Definiteness","Input","Output","Finiteness means it must stop.","Finite, finish."],
+[5,"Which tool is commonly used to represent an algorithm graphically?","Flowchart","Spreadsheet","Database","Compiler","A flowchart uses shapes and arrows.","Graphic = chart."],
+[5,"In algorithm design, input means","The data supplied to solve a problem","The result produced at the end","The processing steps","The hardware used","Input is what you feed in.","In = given data."],
+[5,"Output in an algorithm means","The result of computation","The raw data supplied","The processing unit","The storage device","Output is what comes out.","Out = answer."],
+[5,"Which of these is an example of an algorithm?","A recipe for cooking rice","Microsoft Word","A computer monitor","An operating system","A recipe is a set of ordered steps.","Recipe = steps."],
+[5,"Algorithms are written mainly to","Solve problems logically","Repair computers","Design hardware","Increase memory size","They plan a logical solution.","Problem solving."],
+[5,"Which is NOT a way of representing an algorithm?","Keyboard layout","Pseudocode","Flowchart","Programming language","A keyboard layout shows keys, not steps.","Keys are not steps."],
+[5,"Pseudocode is best described as","An informal description of algorithm steps","Compiled machine language","A description of hardware","Compiled object code","It is plain language planning and does not compile.","Pseudo = not real code."],
+[5,"An algorithm should be written in a way that is","Clear and simple","Hard to understand","Dependent on one machine","Specific to one hardware","Others must be able to follow it.","Keep it simple."],
+[5,"Which characteristic ensures an algorithm produces a result?","Output","Input","Finiteness","Definiteness","An algorithm must give at least one output.","Result = output."],
+[5,"Which of these shows a property of an algorithm?","It has well defined steps","It runs only on computers","It must be written in English","It is always graphical","Definiteness means each step is clear.","Well defined."],
+[5,"Algorithms are independent of","Programming language","Logic","Ordered steps","Input and output","The same algorithm can be coded in any language.","Language free."],
+[5,"The last step of an algorithm usually produces","Output","Input","Stored data only","A new decision","It ends by giving the result.","End with the answer."],
+/* ---------- 6 · OSI Model ---------- */
+[6,"What does OSI stand for?","Open Systems Interconnection","Open Software Internet","Operating System Interface","Online Systems Integration","It is a reference model for network communication.","Open, Systems, Interconnection."],
+[6,"Which organisation published the OSI model?","ISO","IBM","ARPA","CERN","The International Organization for Standardization published it.","ISO made OSI, same letters."],
+[6,"How many layers does the OSI model have?","Seven","Four","Five","Six","The TCP/IP model is commonly given four, but OSI has seven.","OSI is seven."],
+[6,"The OSI model is best described as","A reference model for network communication","A physical networking device","A type of network cable","A commercial software product","It is a guide, not a device or product.","Model, not machine."],
+[6,"Which is layer 1 of the OSI model?","Physical","Application","Data Link","Network","Counting starts from the bottom.","Please is first."],
+[6,"Which is layer 2 of the OSI model?","Data Link","Network","Physical","Transport","Data Link sits just above Physical.","Please DO."],
+[6,"Which is layer 3 of the OSI model?","Network","Transport","Data Link","Session","Network handles routing at layer 3.","Please Do NOT."],
+[6,"Which is layer 4 of the OSI model?","Transport","Session","Network","Presentation","Transport is below Session.","Please Do Not THROW."],
+[6,"Which is layer 5 of the OSI model?","Session","Transport","Presentation","Application","Session is above Transport. Students often swap them.","Sausage is five."],
+[6,"Which is layer 6 of the OSI model?","Presentation","Session","Application","Transport","Presentation is just below Application.","Pizza is six."],
+[6,"Which is layer 7 of the OSI model?","Application","Presentation","Physical","Session","Application is closest to the user.","Away is seven."],
+[6,"Encryption belongs to which OSI layer?","Presentation","Application","Session","Transport","Data format and encryption are Presentation jobs. Application is the usual trap.","Presentation dresses the data."],
+[6,"Compression of data is handled at the","Presentation layer","Network layer","Data Link layer","Session layer","Presentation handles translation, encryption and compression.","Same home as encryption."],
+[6,"Which layer translates data format so both sides understand it?","Presentation","Application","Session","Network","Translation is a Presentation job.","Presentation presents it properly."],
+[6,"Which layer opens, manages and closes a session between applications?","Session","Transport","Presentation","Data Link","Like starting and ending a phone call.","The name says it."],
+[6,"Which layer provides end to end delivery between two hosts?","Transport","Network","Session","Physical","Transport takes data from host to host.","Transport transports end to end."],
+[6,"The data unit at the Transport layer is the","Segment","Packet","Frame","Bit","Transport breaks data into segments.","T for Transport, S for Segment."],
+[6,"The data unit at the Network layer is the","Packet","Segment","Frame","Bit","Network sends packets between networks.","B F P S D from the bottom."],
+[6,"The data unit at the Data Link layer is the","Frame","Packet","Segment","Bit","Data Link delivers frames.","Link makes frames."],
+[6,"The data unit at the Physical layer is the","Bit","Frame","Packet","Segment","Raw bits travel as signals.","Physical, bits."],
+[6,"A hub works at which OSI layer?","Physical","Data Link","Network","Transport","It only copies the signal to all ports.","Hub 1, Switch 2, Router 3."],
+[6,"A switch works mainly at which OSI layer?","Data Link","Network","Physical","Transport","It forwards using MAC addresses. Do not say Network.","Switch is 2."],
+[6,"A router works at which OSI layer?","Network","Data Link","Physical","Session","It forwards packets using IP addresses.","Router is 3."],
+[6,"A bridge operates at which layer of the OSI model?","Data Link","Physical","Network","Transport","A bridge connects segments using MAC addresses.","Bridge goes with switch."],
+[6,"MAC addresses are used at the","Data Link layer","Network layer","Transport layer","Physical layer","MAC belongs to layer 2.","MAC is 2, IP is 3."],
+[6,"IP addressing is a function of the","Network layer","Data Link layer","Transport layer","Application layer","Logical addressing happens at layer 3.","IP is 3."],
+[6,"Routing, or finding the best path, happens at the","Network layer","Transport layer","Data Link layer","Session layer","The Network layer picks the path.","Router layer."],
+[6,"TCP and UDP operate at the","Transport layer","Network layer","Session layer","Application layer","Both are transport protocols.","TCP is 4."],
+[6,"HTTP, FTP and SMTP are found at the","Application layer","Presentation layer","Session layer","Transport layer","They serve the user's programs.","Web, files, mail are applications."],
+[6,"Error detection on frames is done at the","Data Link layer","Physical layer","Session layer","Presentation layer","Data Link checks the frames on the same network.","Frames are checked at 2."],
+[6,"The Network Interface Card is associated with the","Data Link layer","Network layer","Transport layer","Application layer","Despite its name it sits at layer 2 because of MAC addressing.","Network card, but layer 2."],
+[6,"Cables and raw electrical signals belong to the","Physical layer","Data Link layer","Network layer","Transport layer","Anything you can plug is Physical.","Touchable layer."],
+[6,"When data is being sent, it moves through the OSI layers from","Layer 7 down to layer 1","Layer 1 up to layer 7","Layer 4 up to layer 7","Layer 3 down to layer 1 only","Receiving is the reverse.","Send down, receive up."],
+[6,"Which mnemonic gives the OSI layers from bottom to top?","Please Do Not Throw Sausage Pizza Away","All People Seem To Need Data Processing","Please Send Not The Data Packets Again","All Dogs Need To Seek Proper Places","The other well known line runs from top to bottom.","Please starts with Physical."],
+/* ---------- 7 · Founders and Pioneers ---------- */
+[7,"Who is credited with creating Facebook at Harvard in 2004?","Mark Zuckerberg","Bill Gates","Jack Dorsey","Larry Page","Zuckerberg launched it with co-founders in 2004.","Zuck for Facebook."],
+[7,"Who invented the World Wide Web?","Tim Berners-Lee","Vint Cerf","Bill Gates","Charles Babbage","He proposed it at CERN in 1989. The Web is not the same as the Internet.","Tim wove the Web."],
+[7,"Google was founded by","Larry Page and Sergey Brin","Bill Gates and Paul Allen","Steve Jobs and Steve Wozniak","Jerry Yang and David Filo","They founded Google in 1998.","Page and Brin search pages."],
+[7,"Microsoft was founded by","Bill Gates and Paul Allen","Steve Jobs and Steve Wozniak","Larry Page and Sergey Brin","Jan Koum and Brian Acton","It was founded in 1975.","Gates opened Windows."],
+[7,"Which man co-founded Apple with Steve Wozniak and Ronald Wayne?","Steve Jobs","Bill Gates","Paul Allen","Michael Dell","Apple began in 1976.","Jobs at Apple."],
+[7,"Who created the Linux kernel?","Linus Torvalds","Dennis Ritchie","Bill Gates","James Gosling","He released it in 1991.","Linus, Linux."],
+[7,"Who is widely regarded as the first computer programmer?","Ada Lovelace","Grace Hopper","Alan Turing","Charles Babbage","She wrote a program idea for Babbage's Analytical Engine.","Ada was first."],
+[7,"Who is credited with inventing the computer mouse?","Douglas Engelbart","Alan Turing","Tim Berners-Lee","Ray Tomlinson","Engelbart developed it in the 1960s.","Engelbart, mouse."],
+[7,"Who is credited with sending the first network email?","Ray Tomlinson","Vint Cerf","Tim Berners-Lee","Mark Zuckerberg","He did it in 1971 and chose the @ sign.","Tomlinson typed the at sign."],
+[7,"Who designed TCP/IP together with Vint Cerf?","Robert Kahn","Tim Berners-Lee","Linus Torvalds","Ray Tomlinson","Cerf and Kahn designed the Internet's core protocols.","Cerf and Kahn connect."],
+[7,"Who created the C programming language?","Dennis Ritchie","Bjarne Stroustrup","James Gosling","Guido van Rossum","Ritchie developed C at Bell Labs.","Ritchie, C."],
+[7,"Who created the C++ programming language?","Bjarne Stroustrup","Dennis Ritchie","James Gosling","Brendan Eich","C++ grew from C.","Bjarne added the plus."],
+[7,"Who is known as the creator of Java?","James Gosling","Guido van Rossum","Brendan Eich","Dennis Ritchie","Gosling led Java at Sun Microsystems.","Gosling, Java."],
+[7,"Who created the Python programming language?","Guido van Rossum","James Gosling","Brendan Eich","Linus Torvalds","Python first appeared in 1991.","Guido guides Python."],
+[7,"Who created JavaScript?","Brendan Eich","James Gosling","Guido van Rossum","Tim Berners-Lee","He created it at Netscape in 1995. It is not Java.","Eich for JavaScript."],
+[7,"WhatsApp was founded by","Jan Koum and Brian Acton","Larry Page and Sergey Brin","Chad Hurley and Steve Chen","Bill Gates and Paul Allen","It was founded in 2009.","Koum and Acton chat."],
+[7,"Which of these men was a co-founder of Twitter, now called X?","Jack Dorsey","Mark Zuckerberg","Jeff Bezos","Larry Page","Twitter started in 2006.","Jack tweeted."],
+[7,"Who founded Amazon?","Jeff Bezos","Jack Ma","Elon Musk","Mark Zuckerberg","Bezos started it in 1994 as an online bookshop.","Bezos, boxes."],
+[7,"YouTube was founded by Chad Hurley, Steve Chen and","Jawed Karim","Sergey Brin","Brian Acton","Paul Allen","The three launched it in 2005.","Karim completes the three."]
+];
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='CSC101', LABEL='CSC 101', N=50, SECS=600;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('CSC101');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
