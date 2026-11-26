@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CHM 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<!-- ANALYTICS: paste the same Google Analytics (gtag) and GoatCounter snippets that are in index.html here -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">CHM 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>CHM 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · CHM 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Physical Quantities and Error Treatments",
+  "Structure of the Atom",
+  "States of Matter",
+  "Mole Concept and Stoichiometry",
+  "Acids, Bases and Salts",
+  "Chemical Bonding and Intermolecular Forces",
+  "Chemical Equilibrium and Thermodynamics",
+  "Chemical Kinetics",
+  "Nuclear Chemistry",
+  "Colligative Properties",
+  "Redox and Electrochemistry"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Physical Quantities and Error Treatments ---------- */
+[0,"What symbol is used to express the factor 10⁻⁶?","μ","M","m","n","The prefix for one millionth is micro, and its symbol is the Greek letter mu. Capital M is mega, which is 10⁶.","Micro is tiny, so mu. Capital M is the big one."],
+[0,"The factor 0.001 corresponds to which prefix?","milli","deka","deci","centi","0.001 is one thousandth, which is milli, or 10⁻³. Deci is 0.1 and centi is 0.01.","Count the zeros: deci 0.1, centi 0.01, milli 0.001."],
+[0,"How many significant figures are there in the answer to the following problem? 23.1 + 0.5848 + 11 = ?","two","one","three","four","In addition you keep the least number of decimal places. The number 11 has none, so 34.6848 becomes 35, which has two significant figures.","Add or subtract: follow decimal places. Multiply or divide: follow significant figures."],
+[0,"Round off 0.00307506 to four significant figures.","3.075 × 10⁻³","0.0031","3076","3100","Start counting at the first digit that is not zero: 3, 0, 7, 5. The next digit is 0, so nothing rounds up and you get 0.003075, which is 3.075 × 10⁻³.","Leading zeros never count. Start from the first non-zero digit."],
+[0,"Convert 0.008723 to standard scientific notation.","8.723 × 10⁻³","8723 × 10⁻⁶","8.723 × 10³","8723 × 10⁶","Standard form has one non-zero digit before the decimal point. The point moves 3 places to the right, so the power is minus 3.","Number less than 1 means a negative power. Count how far the point moved."],
+[0,"Convert 7.0 μm to meter.","7.0 × 10⁻⁶ m","7.0 × 10⁻⁹ m","7.0 × 10³ m","7.0 × 10⁶ m","Micro means 10⁻⁶, so 7.0 μm is 7.0 × 10⁻⁶ m.","Micro is minus six, nano is minus nine."],
+[0,"The fundamental SI unit of mass is the","Kilogram","Kelvin","Meter","mL","The SI base unit of mass is the kilogram, not the gram. Kelvin is for temperature, the meter is for length and mL is for volume.","Kilogram is the only SI base unit that already carries a prefix."],
+/* ---------- 1 · Structure of the Atom ---------- */
+[1,"According to history, the concept that all matter is composed of atoms was first proposed by","The Greek philosopher Democritus, but not widely accepted until modern times","Dalton, but not widely accepted until the work of Mendeleev","Dalton, but not widely accepted until the work of Einstein","Dalton, and widely accepted within a few decades","Democritus, an ancient Greek, was the first to say matter is made of tiny particles that cannot be cut further. People did not take the idea seriously until modern times.","Democritus said it first. Dalton made it scientific."],
+[1,"Mendeleev arranged the elements according to","Atomic weight and chemical reactivity","Atomic number and atomic weight","Electron configuration and atomic weight","Physical state and relative abundance","Atomic number was not known in Mendeleev's time. He lined the elements up by increasing atomic weight and put those that react alike in the same group.","Mendeleev used weight. Moseley later used atomic number."],
+[1,"Elements in a periodic group have similar","Chemical properties","Densities","Masses","Physical properties","Elements in one group have the same number of outer electrons, so they react in similar ways.","Same group, same outer electrons, same chemistry."],
+[1,"Which group of elements reacts violently with water?","Alkali metals","Halogens","Noble gases","Alkaline earth metals","Group 1 metals such as sodium and potassium react fast with water, give off hydrogen and can catch fire. Alkaline earth metals react more slowly.","Group 1 plus water means trouble."],
+[1,"The existence of electrons in atoms of all elements was demonstrated by","Thomson's cathode ray tube experiment","Millikan's oil drop experiment","Rutherford's gold foil experiment","None of these","Thomson's cathode rays bent in electric and magnetic fields and behaved the same whatever gas was used, so electrons are part of every atom. Millikan measured the electron's charge and Rutherford found the nucleus.","Thomson found the electron, Millikan measured its charge, Rutherford found the nucleus."],
+/* ---------- 2 · States of Matter ---------- */
+[2,"Which statement about real gases is true?","Forces of attraction and repulsion exist between gas particles at close range","The volume of the gas particles is zero","The mass of the gas particles is zero","The behaviour of real gases can be exactly predicted using the ideal gas law","The ideal gas law assumes particles have no volume and no attraction. Real particles have size, and they attract and repel each other when close, so the law is only an approximation.","Real gas means the particles have size and they feel each other."],
+[2,"Which one of the following is not used to describe the condition of a gas?","Electronic configuration","Number of moles","Temperature","Pressure","A gas is described by pressure, volume, temperature and number of moles. Electronic configuration belongs to the atom, not to the state of the gas.","P, V, T and n describe a gas. Nothing else."],
+/* ---------- 3 · Mole Concept and Stoichiometry ---------- */
+[3,"Molarity is defined as","Moles of solute per liter of solution","Moles of solute per liter of solvent","Moles of solvent per liter of solution","Moles of solvent per liter of solvent","Molarity is the number of moles of solute in one liter of the whole solution, not just the solvent.","Molarity is solute over solution. Molality is solute over solvent mass."],
+[3,"Chemical equations are balanced in order to obey the law of","Mass conservation","Definite proportions","Mass action","Multiple proportions","Atoms are not created or destroyed in a reaction, so each element must have the same number of atoms on both sides.","Balanced means same atoms both sides, which is conservation of mass."],
+[3,"Which contains Avogadro's number of formula units?","36.5 g of HCl","36.5 g of Cl","36.5 g of Cl₂","All of the above","The molar mass of HCl is 36.5 g/mol, so 36.5 g is exactly one mole, which is 6.02 × 10²³ units. Cl is 35.5 g per mole and Cl₂ is 71 g per mole.","When the grams equal the molar mass, you have one mole."],
+[3,"What is the molar mass of aspartic acid, C₄O₄H₇N?","133 g/mol","43 g/mol","70 g/mol","197 g/mol","Add the masses: 4 × 12 + 4 × 16 + 7 × 1 + 14 = 48 + 64 + 7 + 14 = 133 g/mol.","Multiply each atom count by its mass, then add."],
+[3,"How many moles are in 1.50 g of ethylamine, CH₃CH₂NH₂?","0.0332 mol","0.0222 mol","90.16 mol","45.08 mol","The molar mass of ethylamine is 45.08 g/mol. Moles = 1.50 ÷ 45.08, which is about 0.033 mol, and 0.0332 is the nearest option.","Moles = mass ÷ molar mass. A small mass can never give 90 moles."],
+[3,"Ozone is unstable, decomposing to oxygen, as shown in the balanced equation 2O₃ → 3O₂. In this reaction, how many grams of oxygen can be formed from the decomposition of 96 grams of ozone?","96 g","16 g","32 g","6 g","Ozone and oxygen are both made only of oxygen atoms, so mass is conserved. 96 g of ozone gives 96 g of oxygen.","Same atoms, same mass. No calculation needed."],
+[3,"How many grams of KNO₃ are needed to make 250. mL of a solution that is 0.135 M?","3.41 g","1.71 g","0.341 g","6.82 g","Moles = 0.135 × 0.250 = 0.03375 mol. Mass = 0.03375 × 101.1 = 3.41 g.","Change 250 mL to 0.250 L first, then M × V × molar mass."],
+[3,"How many milliliters of a 6.0 M HNO₃ solution are needed to make 0.25 L of a 3.5 M HNO₃ solution?","146 mL","686 mL","428 mL","119 mL","Use M₁V₁ = M₂V₂. V₁ = 3.5 × 250 ÷ 6.0 = 146 mL.","In a dilution, the stock volume is always smaller than the final volume."],
+[3,"Write a balanced net ionic equation for the reaction of H₂SO₄ with Ba(OH)₂.","2H⁺ + SO₄²⁻ + Ba²⁺ + 2OH⁻ → BaSO₄ + 2H₂O","The molecular form, sulphuric acid plus barium hydroxide giving barium sulphate and water","H⁺ + OH⁻ → H₂O","Ba²⁺ + SO₄²⁻ → BaSO₄","Two things happen together: H⁺ joins OH⁻ to make water, and Ba²⁺ joins SO₄²⁻ to make the solid BaSO₄. Since no ion is left over, all four ions must appear in the net equation.","When a solid and water both form, show all the ions."],
+[3,"How many liters of oxygen are needed to exactly react with 55.6 g of methane at STP? CH₄ + 2O₂ → CO₂ + 2H₂O","156 L","19.5 L","39.0 L","77.8 L","55.6 ÷ 16.04 = 3.47 mol of CH₄. Oxygen needed is twice that, 6.93 mol, and 6.93 × 22.4 = 156 L.","Grams to moles, use the equation ratio, then moles × 22.4 for liters at STP."],
+[3,"Molality is defined as moles of solute per","Kilogram of solvent","Liter of solvent","Mole of solvent","Total moles present","Molality uses the mass of the solvent in kilograms, so it does not change with temperature.","Molality has m for mass of solvent."],
+[3,"A 3.17 m solution of CaCl₂ in water has a density of 1.24 g/mL. What is the molarity?","2.91 M CaCl₂","2.56 M CaCl₂","3.50 M CaCl₂","3.93 M CaCl₂","Take 1 kg of water. The 3.17 mol of CaCl₂ weighs 352 g, so the solution weighs 1352 g and its volume is 1352 ÷ 1.24 = 1090 mL. Molarity = 3.17 ÷ 1.090 = 2.91 M.","To go from molality to molarity, use the density to find the solution volume."],
+[3,"What mass of HNO₃, 63 g/mol, is contained in 300 mL of 0.30 M HNO₃ solution?","5.67 g","30.0 g","0.30 g","6.30 g","Moles = 0.30 × 0.300 = 0.090 mol. Mass = 0.090 × 63 = 5.67 g.","Change mL to L first, then M × V × molar mass."],
+[3,"Calculate the percentage composition of nitrogen in magnesium nitrate, Mg(NO₃)₂. Mg = 24.31, N = 14.01, O = 16.00","18.89%","1.889%","0.1889%","0.01889%","Molar mass = 24.31 + 2 × 14.01 + 6 × 16.00 = 148.33. Nitrogen is 2 × 14.01 = 28.02, so 28.02 ÷ 148.33 × 100 = 18.89%.","Two nitrate groups means two N atoms. Do not use only one."],
+/* ---------- 4 · Acids, Bases and Salts ---------- */
+[4,"A saturated solution is defined as","A solution that is in equilibrium with undissolved solute","A concentrated solution","A solution that is in equilibrium with pure solute","A solution that is not in equilibrium with both pure solvent and undissolved solute","In a saturated solution, dissolving and crystallising go on at the same rate, so no more solute can dissolve and any extra stays as undissolved solid.","Saturated means full. Extra solute just sits at the bottom."],
+[4,"Which of the following compounds is not an Arrhenius acid?","KOH","HF","HClO","H₂SO₃","An Arrhenius acid gives H⁺ in water. KOH gives OH⁻, so it is a base.","Arrhenius acid gives H⁺, Arrhenius base gives OH⁻."],
+[4,"When dissolved in water, NaOH behaves as","A base that forms Na⁺ and OH⁻ ions","An acid that forms Na⁺ and OH⁻ ions","An acid that forms NaO⁻ and H⁺ ions","A base that forms NaO⁻ and H⁺ ions","NaOH splits into Na⁺ and OH⁻ in water. The OH⁻ is what makes it a base.","OH⁻ in water means base."],
+[4,"What ion is provided when Arrhenius bases dissolve in water?","OH⁻","H⁺","Na⁺","Cl⁻","By definition, an Arrhenius base is a substance that gives hydroxide ions in water.","Base gives OH⁻."],
+[4,"How many H⁺ ions can the acid H₂CO₃ donate per molecule?","2","0","1","3","H₂CO₃ has two ionisable hydrogen atoms, so it can give out two H⁺ ions. It is a diprotic acid.","Count the H at the front of the formula. That is how many it can donate."],
+[4,"Write a net ionic equation for the neutralization reaction of HCN with NaOH.","HCN + OH⁻ → CN⁻ + H₂O","HCN + NaOH → NaCN + H₂O","HCN + Na⁺ + OH⁻ → Na⁺ + CN⁻ + H₂O","H⁺ + OH⁻ → H₂O","HCN is a weak acid, so it stays as HCN in the equation and does not split into H⁺. Na⁺ is a spectator ion and is left out of the net equation.","Weak acid stays whole. Cross out the spectator Na⁺."],
+[4,"The reaction 2HNO₃ + Ba(OH)₂ → Ba(NO₃)₂ + 2H₂O is best classified as","Acid base neutralization reaction","Oxidation reduction reaction","Precipitation reaction","Single replacement reaction","An acid and a base react to give a salt and water, which is neutralization. No oxidation numbers change and no solid forms.","Acid plus base gives salt plus water, so neutralization."],
+[4,"Calculate the hydroxide ion concentration in an aqueous solution that contains 3.50 × 10⁻³ M hydronium ion.","2.86 × 10⁻¹² M","2.86 × 10⁻² M","2.86 × 10⁻⁴ M","3.50 × 10⁻¹² M","Kw = [H₃O⁺][OH⁻] = 1.0 × 10⁻¹⁴. So [OH⁻] = 1.0 × 10⁻¹⁴ ÷ 3.50 × 10⁻³ = 2.86 × 10⁻¹² M.","OH⁻ = 10⁻¹⁴ divided by H₃O⁺. More acid means very little OH⁻."],
+[4,"If the ionization constant of water, Kw, at 40 °C is 2.92 × 10⁻¹⁴, then what is the hydronium ion concentration for a neutral solution?","The hydronium ion concentration is 1.71 × 10⁻⁷ M","The hydronium ion concentration is less than 1.00 × 10⁻⁷ M","The hydronium ion concentration is greater than 1.71 × 10⁻⁷ M","The hydronium ion concentration is less than 1.71 × 10⁻⁷ M","In a neutral solution [H₃O⁺] = [OH⁻], so [H₃O⁺] = √Kw = √(2.92 × 10⁻¹⁴) = 1.71 × 10⁻⁷ M.","Neutral means H₃O⁺ equals OH⁻, so take the square root of Kw."],
+[4,"Calculate the pH for an aqueous solution of acetic acid that contains 2.15 × 10⁻³ M hydronium ion.","2.67","4.65 × 10⁻¹²","2.15 × 10⁻³","11.33","pH = −log 2.15 × 10⁻³ = 2.67.","pH is a little under the power. Power 3 gives a pH a bit less than 3."],
+[4,"Calculate the pH for an aqueous solution of pyridine that contains 2.15 × 10⁻⁴ M hydroxide ion.","10.33","4.65 × 10⁻¹¹","2.15 × 10⁻⁴","3.67","pOH = −log 2.15 × 10⁻⁴ = 3.67, and pH = 14 − 3.67 = 10.33.","Given OH⁻, find pOH first, then subtract from 14. A base must have pH above 7."],
+[4,"Which of the following solutions has the highest concentration of hydroxide ions, OH⁻?","pH = 12.04","pH = 3.21","pH = 7.83","pH = 10.93","The higher the pH, the more basic the solution and the more OH⁻ it contains.","Highest pH means highest OH⁻."],
+[4,"Which of the following can be classified as a weak base?","Both CH₃NH₂ and NH₄OH","CH₃NH₂ only","NH₄OH only","Neither CH₃NH₂ nor NH₄OH","Methylamine and ammonia solution both ionise only slightly in water, so both are weak bases.","Amines and ammonia are weak bases. NaOH and KOH are the strong ones."],
+[4,"Which of the following species cannot act as a Lewis base?","CH₄","O²⁻","H₂O","NH₃","A Lewis base donates a pair of electrons. O²⁻, water and ammonia all have lone pairs, but methane has none.","No lone pair, no Lewis base."],
+/* ---------- 5 · Chemical Bonding and Intermolecular Forces ---------- */
+[5,"Covalent bonding is a","Sharing of electrons","Gain of electrons","Loss of electrons","Transfer of electrons","In a covalent bond two atoms share pairs of electrons. Gain, loss and transfer of electrons describe ionic bonding.","Covalent is share. Ionic is give and take."],
+[5,"What type of bonding is found in the compound PCl₃?","Covalent bonding","Hydrogen bonding","Ionic bonding","Metallic bonding","Phosphorus and chlorine are both non-metals, so they share electrons.","Non-metal with non-metal is covalent."],
+[5,"Which bond should have the highest bond dissociation energy?","N≡N","N–N","N=N","All the bonds have the same energy","More shared electron pairs pull the atoms closer, so the triple bond is the shortest and the strongest and needs the most energy to break.","More lines, stronger and shorter bond."],
+[5,"The greater the electronegativity difference between two atoms, the","Greater the ionic character of the bond","Greater the bond order","Greater the covalent character of the bond","Lower the polarity of the bond","A big electronegativity gap means one atom pulls the shared electrons much harder, so the bond is more polar and more ionic.","Bigger difference, more ionic. No difference, pure covalent."],
+[5,"Which of the following compounds exhibits hydrogen bonding?","CH₃OH","CH₃F","CH₃OCH₃","Trimethylamine","Hydrogen bonding needs a hydrogen atom attached directly to N, O or F. Only CH₃OH has an O–H bond, and the other options have no H on N, O or F.","Hydrogen must sit on F, O or N. Think FON."],
+[5,"Which of the following is not a property of electrovalent compounds?","They usually have low melting points","They are made up of positive and negative ions arranged in crystal lattices","They usually have high boiling points","They are usually soluble in polar solvents","The attraction between ions in the crystal lattice is strong, so ionic compounds usually have high melting and boiling points.","Ionic means high melting point, dissolves in water, conducts when melted or dissolved."],
+/* ---------- 6 · Chemical Equilibrium and Thermodynamics ---------- */
+[6,"Which is a measure of the sum of the kinetic and potential energies of each particle in the system?","E, the internal energy","G, the Gibbs free energy","H, the enthalpy","T, the temperature","Internal energy is the total of the kinetic and potential energies of all the particles in a system.","E stands for everything inside the system."],
+[6,"Which of the following can be interpreted as a measure of randomness?","Entropy","Enthalpy","Free energy","Temperature","Entropy tells how spread out or disordered the particles and their energy are.","Entropy is disorder, and disorder is randomness."],
+[6,"For a particular process that is carried out at constant pressure, q = 200 kJ and w = −85 kJ. Therefore,","ΔE = 115 kJ and ΔH = 200 kJ","ΔE = 200 kJ and ΔH = 115 kJ","ΔE = 200 kJ and ΔH = 285 kJ","ΔE = 285 kJ and ΔH = 200 kJ","ΔE = q + w = 200 − 85 = 115 kJ. At constant pressure the heat q is the enthalpy change, so ΔH = 200 kJ.","ΔE is q plus w. At constant pressure, ΔH is just q."],
+[6,"Under thermodynamic standard state conditions, the element oxygen occurs as","O₂ as a gas","Single O atoms as a gas","O₃ as a gas","O₂ as a liquid","The standard state of an element is its most stable form at 1 atm. For oxygen that is the diatomic gas, O₂.","O, N, H and Cl come as pairs, so oxygen is O₂."],
+[6,"Which combination always results in a reaction being spontaneous?","ΔH is negative and ΔS is positive","ΔH is negative and ΔS is negative","ΔH is positive and ΔS is negative","ΔH is positive and ΔS is positive","ΔG = ΔH − TΔS. A negative ΔH and a positive ΔS make ΔG negative at every temperature.","Gives out heat and gains disorder, always spontaneous."],
+[6,"What is the thermodynamic criterion for equilibrium for a reaction at constant temperature and pressure, PV work only?","ΔG = 0","ΔS = 0","ΔS > 0","ΔG < 0","At equilibrium there is no net change, so the free energy change is zero. A negative ΔG means the reaction is spontaneous.","Spontaneous is G negative. Equilibrium is G zero."],
+[6,"The energy of motion is","Kinetic energy","Electrical energy","Dam energy","Reserve energy","Energy of motion is kinetic energy, for example a moving car or fast moving gas particles.","Kinetic means moving."],
+[6,"Which of the following is not a type of energy or energy transfer?","Height","Thermal energy","Heat","Work","Height is a distance, not energy. Thermal energy is a type of energy, and heat and work are ways energy moves.","Energy is measured in joules. Height is measured in meters."],
+[6,"A reaction reaches dynamic equilibrium at a given temperature when","The relative amounts of reactants and products are constant and the rate of the forward reaction equals the rate of the reverse reaction","The amount of products exceeds the amount of reactants","The forward rate constant equals the reverse rate constant","Opposing reactions cease and the system is static","At equilibrium both reactions are still going on, but at the same rate, so the amounts stop changing. It is dynamic, not stopped.","Equal rates, not equal amounts. The reactions never stop."],
+[6,"Which equilibrium below is homogeneous?","2CO g + O₂ g ⇌ 2CO₂ g","CaSO₄ s ⇌ Ca²⁺ aq + SO₄²⁻ aq","2H₂O₂ l ⇌ 2H₂O l + O₂ g","NH₄NO₃ s ⇌ N₂O g + 2H₂O g","Homogeneous means every species is in the same phase. Only the CO and O₂ reaction has all its species as gases. In the others a solid or liquid sits beside a gas or an ion.","Look at the state symbols. All the same, then homogeneous."],
+/* ---------- 7 · Chemical Kinetics ---------- */
+[7,"What is the minimum energy barrier that must be overcome for a chemical reaction to occur?","Activation energy","Net energy","Potential energy","Rate limiting energy","Reacting particles must collide with at least the activation energy before they can change into products.","Activation energy is the hill the reaction must climb."],
+[7,"What is the overall reaction order for the reaction that has the rate law: Rate = k[H₂][NO]²?","Third order","Zero order","First order","Second order","Add the powers in the rate law: 1 for H₂ and 2 for NO makes 3.","Overall order is the sum of the powers."],
+[7,"Using the method of initial rates for the reaction A → B, if the initial concentration of A is doubled and the rate of reaction quadruples, what is the order of reaction with respect to A?","Second","Zeroth","First","Fourth","Doubling the concentration multiplies the rate by 2ⁿ. Since the rate became 4 times, 2ⁿ = 4 and n = 2.","Double the concentration: rate ×2 is first order, ×4 is second order, ×8 is third order."],
+[7,"The rate constant, k, for a first-order reaction is equal to 4.2 × 10⁻⁴ s⁻¹. What is the half-life for the reaction?","1.7 × 10³ s","2.9 × 10⁻⁴ s","1.2 × 10⁵ s","2.4 × 10⁶ s","For a first-order reaction t½ = 0.693 ÷ k = 0.693 ÷ 4.2 × 10⁻⁴ = 1.7 × 10³ s.","First-order half-life is 0.693 over k."],
+[7,"The elementary reaction 2HF → H₂ + F₂ is an example of a ______ reaction.","Bimolecular","Unimolecular","Termolecular","Tetramolecular","Two HF molecules must collide for the step to happen, so the molecularity is two, which is bimolecular.","Count the molecules on the left. Two means bimolecular."],
+[7,"Which general rate law below corresponds to an elementary bimolecular reaction? Here A, B, C and D stand for concentrations.","Rate = k × A²","Rate = k × B","Rate = k × A × B × C × D","Rate = k × A × B²","In an elementary step the powers equal the number of molecules colliding. Bimolecular means two in total, as in k[A]² or k[A][B].","In an elementary step, the powers add up to the molecularity."],
+[7,"A catalyst increases the rate of a reaction by providing a different reaction pathway that","Lowers only the activation energy","Raises only the energy of the products","Lowers only the energy of the reactants and products","All of these are affected by the presence of a catalyst","A catalyst gives an easier route with a lower activation energy. The energies of the reactants and products stay the same, so ΔH does not change.","A catalyst lowers the hill, not the start or the finish."],
+/* ---------- 8 · Nuclear Chemistry ---------- */
+[8,"Which statement about nuclear reactions is true?","Tremendous amounts of energy are involved in nuclear reactions","New elements are never produced in a nuclear reaction","Nuclear reactions involve valence electrons","The rate of a nuclear reaction is affected by catalysts","Nuclear reactions release far more energy than chemical ones. They can produce new elements, they involve the nucleus and not the valence electrons, and catalysts do not change their rate.","Nuclear means nucleus, huge energy, new elements."],
+[8,"The number of nucleons in an atom or ion is the same as the","Mass number","Atomic number","Charge on the atom or ion","None of these","Nucleons are protons and neutrons together, and that total is the mass number.","Nucleons = protons + neutrons = mass number."],
+[8,"The number of nucleons in a uranium-236 ion, with atomic number 92 and charge 3+, is","236","92","144","328","Nucleons means the mass number, which is 236. The charge only concerns electrons and does not change the nucleus.","Charge never changes the nucleus."],
+[8,"The number of neutrons in an iron ion with mass number 62, atomic number 26 and charge 2+ is","36","26","60","62","Neutrons = mass number − atomic number = 62 − 26 = 36.","Top number minus bottom number gives neutrons."],
+[8,"A beta particle is","An electron with mass number 0 and charge −1","A particle with mass number −1 and charge 0","A proton","A helium nucleus","A beta particle is a fast electron coming from the nucleus. It is written as ⁰₋₁e, with mass number 0 and charge −1.","Beta is an electron. Alpha is helium."],
+[8,"Gamma radiation can be described as","High energy electromagnetic radiation","A helium nucleus","A negatively charged free electron","A positively charged free electron","Gamma rays are not particles. They are very high energy electromagnetic waves with no mass and no charge.","Alpha is helium, beta is electron, gamma is a wave."],
+[8,"The binding energy is defined as","The amount of energy required to break apart a nucleus into individual protons and neutrons","The amount of energy absorbed when electrons are added to an ion","The amount of energy absorbed when protons and neutrons form a nucleus","The amount of energy released when electrons are removed from the atom","Binding energy is the energy that holds the nucleus together, which is the same energy you must supply to pull it apart into protons and neutrons.","Binding energy is the energy to break the nucleus up."],
+[8,"Elements with ______ atomic mass are best possible candidates for a fusion reaction.","Very low","Moderate","Moderate to heavy","Very heavy","Fusion joins small nuclei, such as hydrogen, into a bigger one and releases energy.","Fusion joins light nuclei. Fission splits heavy ones."],
+[8,"Elements with ______ atomic mass are best possible candidates for a fission reaction.","Very heavy","Very low","Moderate","Moderate to heavy","Fission splits large unstable nuclei such as uranium and plutonium into smaller ones.","Fission splits heavy nuclei. Fusion joins light ones."],
+[8,"Radiation is detected by its ______ properties.","Ionizing","Gravitational","Kinetic","Thermal","Radiation knocks electrons off the atoms in a detector, such as a Geiger counter, so it is detected by its ionizing effect.","A Geiger counter works on ionizing."],
+[8,"Which unit of radiation describes the amount of energy absorbed by a kilogram of tissue exposed to a radiation source?","Rad","Becquerel","Curie","Rem","The rad measures absorbed dose. Becquerel and curie count disintegrations per second, and rem includes the biological effect.","Rad stands for radiation absorbed dose."],
+[8,"The effects of ionizing radiation depend on","All of the above","Length of exposure to radiation only","Location of the source, internal or external, only","Type and energy of the radiation only","How long you are exposed, whether the source is inside or outside the body, and the type and energy of the radiation all matter.","When every point sounds true, pick all of the above."],
+/* ---------- 9 · Colligative Properties ---------- */
+[9,"In most liquid solutions, the component present in the larger amount is called the","Solvent","Dispersed medium","Emulsifying agent","Solute","The solvent is the part present in the larger amount, and it dissolves the solute.","Solvent is the big part. Solute is the small part that dissolves."],
+[9,"One reason ionic compounds do not dissolve well in nonpolar solvents is that","Ion-solvent interactions are not strong enough to solvate the ions in solution","Ion-dipole interactions are too large for effective solvation to occur","Not all cations and anions have the same magnitude of charge and therefore do not form neutral ion pairs","There are no forces of attraction between ions and nonpolar molecules","Nonpolar molecules cannot surround and stabilise the ions, so the ionic lattice stays together. Like dissolves like.","Like dissolves like. Ionic goes into polar, nonpolar goes into nonpolar."],
+[9,"When two similar liquids mix to form a solution, the entropy of solution is expected to be","Positive","Negative","Zero","Negative at low temperatures but positive at high temperatures","Mixing spreads the particles out, so disorder goes up and the entropy of solution is positive.","Mixing increases disorder."],
+[9,"What is the mole fraction of ethanol in a solution made by dissolving 25.0 g of ethanol, C₂H₅OH, in 53.6 g of water?","0.154","0.846","0.214","0.272","Ethanol: 25.0 ÷ 46.07 = 0.543 mol. Water: 53.6 ÷ 18.02 = 2.97 mol. Mole fraction of ethanol = 0.543 ÷ 3.52 = 0.154.","0.846 is the water fraction. The two fractions add up to 1."],
+[9,"Which of the following is not an application of colligative properties?","Reduced boiling points of pure liquids at increased altitudes","Adding silver to mercury to lower the vapor pressure of mercury","Desalinating sea water by reverse osmosis","Melting snow by application of salt","A pure liquid boils at a lower temperature on a mountain because the air pressure is lower, not because of a dissolved solute.","Colligative needs a dissolved solute. Pure liquid means no solute."],
+[9,"A KCl solution is prepared by dissolving 60.0 g KCl in 250.0 g of water at 25 °C. What is the vapor pressure of the solution if the vapor pressure of water at 25 °C is 23.76 mm Hg?","21.3 mm Hg","20.5 mm Hg","22.5 mm Hg","25.5 mm Hg","KCl gives 2 particles, so particles = 2 × 0.805 = 1.61 mol. Water is 13.9 mol. Mole fraction of water = 13.9 ÷ 15.5 = 0.896, and 0.896 × 23.76 = 21.3 mm Hg.","For salts, multiply the moles by the number of ions first. The answer must be lower than 23.76, so 25.5 is out."],
+[9,"What is the expected freezing point of a 0.50 m solution of Na₂CO₃ in water? Kf for water is 1.86 °C/m.","−2.8 °C","−0.93 °C","−1.9 °C","−6.5 °C","Na₂CO₃ gives 3 ions, so ΔTf = 3 × 1.86 × 0.50 = 2.79 °C. The freezing point is 0 − 2.79, which is about −2.8 °C.","Count the ions: Na₂CO₃ is 3, NaCl is 2."],
+[9,"Two aqueous solutions, A and B, are separated by a semipermeable membrane. The osmotic pressure of solution A immediately begins to decrease. Which of the following statements is true?","Solvent molecules are moving from solution B into solution A","The initial osmotic pressure of solution B is greater than that of solution A","The solvent molecules are moving from the solution of higher osmotic pressure to that of lower osmotic pressure","Both B and C are true statements","The osmotic pressure of A falls because A is being diluted, so solvent is entering A from B. Solvent moves from the weaker solution into the stronger one.","Water moves toward the more concentrated side."],
+[9,"How will the osmotic pressure of an aqueous solution change as evaporation occurs?","The osmotic pressure will increase","The osmotic pressure will not change","The osmotic pressure will decrease","The osmotic pressure will increase or decrease until it equals the vapor pressure of water","Evaporation removes water, so the solution becomes more concentrated and its osmotic pressure rises.","Less water, stronger solution, higher osmotic pressure."],
+[9,"An aqueous solution has a normal boiling point of 105.0 °C. What is the freezing point of this solution? For water, Kb is 0.51 °C/m and Kf is 1.86 °C/m.","−18.2 °C","14.7 °C","−14.7 °C","18.2 °C","ΔTb = 105.0 − 100 = 5.0 °C, so m = 5.0 ÷ 0.51 = 9.8. ΔTf = 1.86 × 9.8 = 18.2 °C, so the freezing point is −18.2 °C.","Use the same molality for both. A water solution freezes below zero, so the positive options are out."],
+/* ---------- 10 · Redox and Electrochemistry ---------- */
+[10,"HBr, HCl, HClO₄, KBr, and NaCl are all classified as","Strong electrolytes","Acids","Nonelectrolytes","Weak electrolytes","All of them ionise completely in water, so they are strong electrolytes. KBr and NaCl are salts, so they are not acids.","Strong acids and soluble salts are strong electrolytes."],
+[10,"In the following reaction, Cl₂ is: 2Rb + Cl₂ → 2RbCl","The oxidizing agent","The reducing agent","Oxidized","The electron donor","Cl₂ takes electrons from rubidium, so it is reduced. The substance that gets reduced is the oxidizing agent.","The oxidizing agent is the one that gets reduced."],
+[10,"Which species functions as the oxidizing agent in the following reduction oxidation reaction? 5Fe²⁺ + MnO₄⁻ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O","MnO₄⁻","Fe²⁺","H⁺","Mn²⁺","Manganese goes from +7 to +2, so it is reduced and MnO₄⁻ is the oxidizing agent. Fe²⁺ is oxidized to Fe³⁺.","Find the oxidation number that drops. That species is the oxidizing agent."],
+[10,"Determine the number of water molecules necessary to balance the following chemical equation. Cr₂O₇²⁻ + Cl⁻ + H⁺ → Cr³⁺ + Cl₂ + ___ H₂O","7","3","5","14","The balanced equation is Cr₂O₇²⁻ + 6Cl⁻ + 14H⁺ → 2Cr³⁺ + 3Cl₂ + 7H₂O. The 7 oxygen atoms of dichromate end up as 7 water molecules.","The oxygen atoms in dichromate become water, so 7."],
+[10,"What is the oxidation half reaction in the following chemical reaction? Cr₂O₇²⁻ + 6Cl⁻ + 14H⁺ → 2Cr³⁺ + 3Cl₂ + 7H₂O","2Cl⁻ → Cl₂ + 2e⁻","Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O","Cr₂O₇²⁻ + 14H⁺ → 2Cr³⁺ + 7H₂O + 6e⁻","Cl₂ + 2e⁻ → 2Cl⁻","Oxidation is loss of electrons, so the electrons appear on the product side. Chloride loses electrons to form chlorine gas.","Oxidation puts the electrons on the right. Chloride becomes chlorine."],
+[10,"Which cell involves a non-spontaneous redox reaction?","Electrolytic cell","Concentration cell","Fuel cell","Galvanic cell","An electrolytic cell uses an outside electric current to force a reaction that would not happen on its own.","Electrolytic needs a power supply."],
+[10,"During an electrochemical reaction, electrons move through the external circuit toward the ______ and positive ions in the cell move toward the ______.","Cathode, cathode","Anode, anode","Anode, cathode","Cathode, anode","Electrons travel through the wire to the cathode, and positive ions move through the solution to the cathode to meet those electrons.","The cathode attracts both electrons and cations. Reduction happens there."],
+[10,"What is the shorthand notation that represents the following galvanic cell reaction? Fe + Cu(NO₃)₂ → Fe(NO₃)₂ + Cu","Fe s | Fe²⁺ aq || Cu²⁺ aq | Cu s","Cu s | Cu²⁺ aq || Fe²⁺ aq | Fe s","Fe s | NO₃⁻ aq || NO₃⁻ aq | Cu s","Cu s | Cu nitrate aq || Fe nitrate aq | Fe s","Iron is oxidized, so the anode, Fe | Fe²⁺, goes on the left. The cathode, Cu²⁺ | Cu, goes on the right. The double bar stands for the salt bridge.","Anode on the left, cathode on the right. Oxidation first."],
+[10,"Given that E° = +0.897 V, calculate E at 25 °C for Pb | Pb²⁺ 0.0400 M || Fe³⁺ 0.200 M, Fe²⁺ 0.0100 M | Pt","+1.015 V","−0.779 V","+0.935 V","+1.134 V","The cell reaction is Pb + 2Fe³⁺ → Pb²⁺ + 2Fe²⁺, so Q = 0.0400 × 0.0100² ÷ 0.200² = 1.0 × 10⁻⁴. E = 0.897 − 0.0592 ÷ 2 × log 1.0 × 10⁻⁴ = 0.897 + 0.118 = 1.015 V.","Q is less than 1, so the cell works better than standard and E comes out bigger than E°."],
+[10,"How many grams of chromium metal are plated out when a constant current of 8.00 A is passed through an aqueous solution containing Cr³⁺ ions for 40.0 minutes?","3.45 g","6.15 g","10.3 g","31.0 g","Charge = 8.00 × 2400 s = 19200 C, which is 19200 ÷ 96500 = 0.199 mol of electrons. Cr³⁺ needs 3 electrons, so 0.0663 mol of Cr, and 0.0663 × 52.0 = 3.45 g.","Q = I × t, divide by 96500, divide by the ion charge, then multiply by the molar mass."],
+[10,"How many grams of nickel metal are plated out when a constant current of 15.0 A is passed through aqueous NiCl₂ for 80.0 minutes?","21.9 g","14.7 g","43.8 g","48.4 g","Charge = 15.0 × 4800 s = 72000 C, which is 0.746 mol of electrons. Ni²⁺ needs 2 electrons, so 0.373 mol of Ni, and 0.373 × 58.7 = 21.9 g.","Change minutes to seconds first. 43.8 g is double the answer, the trap of forgetting the 2."],
+[10,"Given the half-cell potentials below, calculate the cell potential. Ag⁺ + e⁻ → Ag, 0.80 V. Cu²⁺ + 2e⁻ → Cu, 0.34 V","0.46 V","1.14 V","1.26 V","1.94 V","Silver has the higher potential, so it is the cathode. E°cell = 0.80 − 0.34 = 0.46 V. Potentials are not multiplied by the coefficients.","Subtract, never add. The bigger potential is the cathode."],
+/* ---------- 1 · Structure of the Atom ---------- */
+[1,"Using ΔE = K times 1 over n₁² minus 1 over n₂², how does the energy change for the jump n = 3 to n = 1 relate to the other two jumps?","ΔE for 3 to 1 equals ΔE for 3 to 2 plus ΔE for 2 to 1","ΔE for 3 to 1 equals ΔE for 3 to 2 minus ΔE for 2 to 1","ΔE for 3 to 1 equals ΔE for 3 to 2 multiplied by ΔE for 2 to 1","ΔE for 3 to 1 equals ΔE for 3 to 2 divided by ΔE for 2 to 1","Going 3 to 2 and then 2 to 1 ends at the same place as going 3 to 1, so the energies add: K times 1 over 4 minus 1 over 9, plus K times 1 minus 1 over 4, gives K times 1 minus 1 over 9.","Energy steps add up like stairs. Two small steps make one big step."],
+[1,"A body of mass 0.23 mg moves with a wavelength of 1.45 × 10⁻²⁵ m. Calculate the frequency of the body movement. Planck's constant h = 6.63 × 10⁻³⁴ J s.","1.988 × 10⁻² Hz","1.988 × 10⁻⁵ Hz","1.988 × 10⁻⁸ Hz","1.988 × 10² Hz","From λ = h ÷ mv and the relation used in the book, ν = h ÷ mλ. Change 0.23 mg to 2.3 × 10⁻⁷ kg, then ν = 6.63 × 10⁻³⁴ ÷ 2.3 × 10⁻⁷ × 1.45 × 10⁻²⁵ = 1.988 × 10⁻².","Convert the mass to kg first. One mg is 10⁻⁶ kg."],
+[1,"Calculate the frequency of a wave that has a wavelength of 631 nm. Speed of light = 3.00 × 10⁸ m/s.","4.75 × 10¹⁴ Hz","4.75 × 10⁵ Hz","4.75 × 10¹¹ Hz","2.10 × 10⁻¹⁵ Hz","Change 631 nm to 6.31 × 10⁻⁷ m. Then ν = c ÷ λ = 3.00 × 10⁸ ÷ 6.31 × 10⁻⁷ = 4.75 × 10¹⁴ Hz.","Nano is 10⁻⁹. Convert first, then divide c by the wavelength."],
+[1,"Calculate the wavelength of the first line of the Balmer series. Rydberg constant R = 1.097 × 10⁷ per meter.","656 nm","486 nm","122 nm","1875 nm","The Balmer series ends at n = 2, and its first line starts from n = 3. So 1 ÷ λ = R times 1 over 4 minus 1 over 9 = 1.524 × 10⁶ per meter, and λ = 656 nm.","Balmer lands on 2, Lyman lands on 1, Paschen lands on 3. First line starts one level above."],
+[1,"Calculate the wavelength of the second line of the Balmer series. Rydberg constant R = 1.097 × 10⁷ per meter.","486 nm","656 nm","434 nm","103 nm","The second Balmer line is the jump from n = 4 to n = 2. So 1 ÷ λ = R times 1 over 4 minus 1 over 16 = 2.057 × 10⁶ per meter, and λ = 486 nm.","Second line of Balmer starts from 4, third line from 5."],
+[1,"Calculate the wavelength of the first line of the Lyman series. Rydberg constant R = 1.097 × 10⁷ per meter.","122 nm","103 nm","656 nm","486 nm","The Lyman series ends at n = 1, and its first line is the jump from n = 2. So 1 ÷ λ = R times 1 minus 1 over 4 = 8.23 × 10⁶ per meter, and λ = 122 nm. It is in the ultraviolet.","Lyman is ultraviolet and the wavelengths are short, near 100 nm."],
+[1,"Calculate the wavelength of the second line of the Lyman series. Rydberg constant R = 1.097 × 10⁷ per meter.","103 nm","122 nm","656 nm","97 nm","The second Lyman line is the jump from n = 3 to n = 1. So 1 ÷ λ = R times 1 minus 1 over 9 = 9.75 × 10⁶ per meter, and λ = 103 nm.","Higher starting level means a bigger energy gap and a shorter wavelength."],
+[1,"An element M has atomic number 17. What is its electronic configuration?","1s² 2s² 2p⁶ 3s² 3p⁵","1s² 2s² 2p⁶ 3s² 3p⁴","1s² 2s² 2p⁶ 3s² 3p⁶","1s² 2s² 2p⁶ 3s¹ 3p⁶","Seventeen electrons fill 1s² 2s² 2p⁶ 3s² and leave 5 for the 3p subshell. This is chlorine.","Fill in order and count to 17. Stop when you run out of electrons."],
+[1,"What is the electronic configuration of the K⁺ ion? Potassium has atomic number 19.","1s² 2s² 2p⁶ 3s² 3p⁶","1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹","1s² 2s² 2p⁶ 3s² 3p⁶ 4s²","1s² 2s² 2p⁶ 3s² 3p⁵","Potassium has 19 electrons, and K⁺ has lost one, the 4s electron, so it has 18 electrons like argon.","Positive ion means electrons removed from the outermost shell."],
+[1,"What is the electronic configuration of the Ca²⁺ ion? Calcium has atomic number 20.","1s² 2s² 2p⁶ 3s² 3p⁶","1s² 2s² 2p⁶ 3s² 3p⁶ 4s²","1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹","1s² 2s² 2p⁶ 3s² 3p⁴","Calcium has 20 electrons and Ca²⁺ has lost two, both from 4s, leaving 18 electrons like argon.","Ca²⁺ and K⁺ both end up like argon."],
+[1,"What is the electronic configuration of the Al³⁺ ion? Aluminium has atomic number 13.","1s² 2s² 2p⁶","1s² 2s² 2p⁶ 3s²","1s² 2s² 2p⁶ 3s² 3p¹","1s² 2s² 2p⁶ 3s¹","Aluminium has 13 electrons. Losing three, the two 3s and the one 3p, leaves 10 electrons like neon.","Remove from the highest shell first. Three off from 13 leaves 10."],
+[1,"What is the electronic configuration of the F⁻ ion? Fluorine has atomic number 9.","1s² 2s² 2p⁶","1s² 2s² 2p⁵","1s² 2s² 2p⁶ 3s¹","1s² 2s² 2p⁴","Fluorine has 9 electrons and F⁻ gains one, so it has 10 electrons and a full 2p subshell, like neon.","Negative ion means electrons added. Fluoride fills up to neon."],
+[1,"What is the electronic configuration of the Cl⁻ ion? Chlorine has atomic number 17.","1s² 2s² 2p⁶ 3s² 3p⁶","1s² 2s² 2p⁶ 3s² 3p⁵","1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹","1s² 2s² 2p⁶ 3s² 3p⁴","Chlorine has 17 electrons, and Cl⁻ gains one to have 18, which fills 3p like argon.","Chloride fills up to argon."],
+[1,"What is the electronic configuration of the Br⁻ ion? Bromine has atomic number 35.","1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶","1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁵","1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 5s¹","1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁴","Bromine has 35 electrons, and Br⁻ gains one to have 36, which fills 4p like krypton.","Bromide fills up to krypton."],
+[1,"What is the electronic configuration of the O²⁻ ion? Oxygen has atomic number 8.","1s² 2s² 2p⁶","1s² 2s² 2p⁴","1s² 2s² 2p⁵","1s² 2s² 2p⁶ 3s²","Oxygen has 8 electrons and O²⁻ gains two, giving 10 electrons and a full 2p subshell like neon.","Oxide is two extra electrons. Eight plus two gives ten, same as neon."],
+/* ---------- 2 · States of Matter ---------- */
+[2,"10.0 L of a gas has a pressure of 0.7 atm and a temperature of 23 °C. What will be the volume if the pressure is increased to 1.4 atm and the temperature to 380 K?","6.42 L","5.00 L","3.89 L","82.6 L","Use P₁V₁ ÷ T₁ = P₂V₂ ÷ T₂ with T₁ = 23 + 273 = 296 K. V₂ = 0.7 × 10.0 × 380 ÷ 296 × 1.4 = 6.42 L.","Change °C to K first. Pressure goes up so the volume drops, temperature goes up so the volume rises."],
+[2,"The volume of hydrogen collected is 453 mL at 18 °C and 780 mm Hg. What is its volume at STP?","436 mL","496 mL","465 mL","425 mL","STP is 273 K and 760 mm Hg. V₂ = 780 × 453 × 273 ÷ 291 × 760 = 436 mL, using T₁ = 18 + 273 = 291 K.","Pressure ratio is 780 over 760, temperature ratio is 273 over 291. Put the lower value on top when the gas should shrink."],
+[2,"A compound X with density 8.9 g/L was synthesized in the laboratory at 60 °C and 2.73 atm. Calculate the molar mass of X. R = 0.082 L atm per mol per K.","89 g/mol","16 g/mol","243 g/mol","0.0112 g/mol","Molar mass = dRT ÷ P with T = 60 + 273 = 333 K. So M = 8.9 × 0.082 × 333 ÷ 2.73 = 89 g/mol.","M = dRT over P. Always use kelvin."],
+/* ---------- 3 · Mole Concept and Stoichiometry ---------- */
+[3,"Calculate the mass of 0.0892 mol of Cu. Cu = 63.55 g/mol.","5.67 g","1.40 × 10⁻³ g","712 g","56.7 g","Mass = moles × molar mass = 0.0892 × 63.55 = 5.67 g.","Mass = moles times molar mass. A small number of moles gives a small mass."],
+[3,"Calculate the number of moles of Cu in a 72.5 g sample. Cu = 63.55 g/mol.","1.14 mol","0.877 mol","11.4 mol","4607 mol","Moles = mass ÷ molar mass = 72.5 ÷ 63.55 = 1.14 mol.","More than one molar mass of sample means more than one mole."],
+[3,"Calculate the mass of a sample of Cu containing 2.00 × 10²³ atoms. Cu = 63.55 g/mol.","21.1 g","211 g","2.11 g","0.332 g","2.00 × 10²³ ÷ 6.022 × 10²³ = 0.332 mol. Then 0.332 × 63.55 = 21.1 g.","Atoms to moles by Avogadro, then moles to grams by molar mass."],
+[3,"Calculate the mass of a single atom of Cu. Cu = 63.55 g/mol.","1.055 × 10⁻²² g","1.055 × 10⁻²³ g","9.48 × 10²¹ g","3.83 × 10²⁵ g","One mole weighs 63.55 g and holds 6.022 × 10²³ atoms. So one atom weighs 63.55 ÷ 6.022 × 10²³ = 1.055 × 10⁻²² g.","One atom is molar mass divided by Avogadro's number, always a tiny number."],
+[3,"Calculate the molecular mass of ammonium sulphate, (NH₄)₂SO₄. N = 14, H = 1, S = 32, O = 16.","132 u","96 u","114 u","264 u","Two N is 28, eight H is 8, one S is 32 and four O is 64. The total is 28 + 8 + 32 + 64 = 132 u.","The 2 outside the bracket multiplies both N and the four H."],
+[3,"Calculate the number of SO₄²⁻ ions in a 150 g sample of H₂SO₄. H = 1, S = 32, O = 16.","9.22 × 10²³ ions","1.53 × 10²³ ions","9.22 × 10²² ions","3.69 × 10²⁴ ions","The molar mass of H₂SO₄ is 98 g/mol, so 150 g is 1.53 mol. Each molecule has one SO₄²⁻, so the ions are 1.53 × 6.022 × 10²³ = 9.22 × 10²³.","One H₂SO₄ gives one sulphate ion. Do not count the oxygen atoms."],
+[3,"Calculate the total number of Cl atoms in 150 mL of liquid CCl₄ of density 1.589 g/mL. C = 12, Cl = 35.5.","3.73 × 10²⁴ atoms","9.33 × 10²³ atoms","2.80 × 10²⁴ atoms","3.73 × 10²³ atoms","Mass = 150 × 1.589 = 238.4 g. Moles of CCl₄ = 238.4 ÷ 153.8 = 1.55 mol. Each molecule has 4 Cl, so Cl atoms = 4 × 1.55 × 6.022 × 10²³ = 3.73 × 10²⁴.","Mass from density, moles from mass, then multiply by the number of Cl in each formula."],
+[3,"Find the number of grams of carbon in 300 g of sucrose, C₁₂H₂₂O₁₁. C = 12, H = 1, O = 16.","126 g","144 g","10.5 g","154 g","The molar mass of sucrose is 342 g/mol and the carbon in it is 12 × 12 = 144 g. So carbon in 300 g = 300 × 144 ÷ 342 = 126 g.","Mass of C in the formula over molar mass, times the sample mass."],
+[3,"Calculate the volume of aqueous 40% sucrose, density 0.911 g/mL, required to furnish 1.5 mol of C atoms. Sucrose is C₁₂H₂₂O₁₁. C = 12, H = 1, O = 16.","117 mL","46.9 mL","107 mL","1408 mL","1.5 mol C is 18 g of carbon. Sucrose needed = 18 × 342 ÷ 144 = 42.75 g. A 40% solution has 0.40 g of sucrose per g, so solution mass = 106.9 g, and volume = 106.9 ÷ 0.911 = 117 mL.","Carbon to sucrose, then percent to solution mass, then density to volume."],
+[3,"Calculate the mass of Ag in 3 atoms of silver. Ag = 107.9 g/mol.","5.38 × 10⁻²² g","1.79 × 10⁻²² g","5.38 × 10⁻²¹ g","1.95 × 10²⁶ g","One atom weighs 107.9 ÷ 6.022 × 10²³ = 1.79 × 10⁻²² g, so three atoms weigh 5.38 × 10⁻²² g.","Few atoms means a tiny mass. Multiply the single atom mass by the count."],
+[3,"How many grams of Zn are there in 0.54 mol of Zn? Zn = 65.39 g/mol.","35.3 g","0.00826 g","121 g","3.53 g","Mass = moles × molar mass = 0.54 × 65.39 = 35.3 g.","Moles times molar mass."],
+[3,"Compute the mass of americium in 12 atoms of Am. Am = 243 g/mol.","4.84 × 10⁻²¹ g","4.03 × 10⁻²² g","2.03 × 10⁻²² g","1.46 × 10²⁶ g","One atom weighs 243 ÷ 6.022 × 10²³ = 4.03 × 10⁻²² g. Twelve atoms weigh 12 × 4.03 × 10⁻²² = 4.84 × 10⁻²¹ g.","Atoms to grams: multiply by molar mass, divide by Avogadro's number."],
+[3,"Calculate the number of moles of atoms in a 20 g sample of Ce. Ce = 140.1 g/mol.","0.143 mol","7.01 mol","2802 mol","0.0143 mol","Moles = 20 ÷ 140.1 = 0.143 mol.","A sample lighter than the molar mass is less than one mole."],
+[3,"Calculate the number of atoms in a 20 g sample of Ce. Ce = 140.1 g/mol.","8.60 × 10²² atoms","6.02 × 10²³ atoms","8.60 × 10²¹ atoms","4.22 × 10²⁵ atoms","20 g is 0.143 mol. Number of atoms = 0.143 × 6.022 × 10²³ = 8.60 × 10²².","Grams to moles, then moles times Avogadro's number."],
+[3,"How many silicon atoms are there in a silicon chip that has a mass of 6.78 mg? Si = 28.09 g/mol.","1.45 × 10²⁰ atoms","1.45 × 10²³ atoms","2.41 × 10²⁰ atoms","1.45 × 10¹⁷ atoms","6.78 mg is 6.78 × 10⁻³ g. Moles = 6.78 × 10⁻³ ÷ 28.09 = 2.41 × 10⁻⁴ mol. Atoms = 2.41 × 10⁻⁴ × 6.022 × 10²³ = 1.45 × 10²⁰.","Change mg to g first, then grams to moles to atoms."],
+[3,"Calculate the number of moles in a sample of cobalt containing 3.00 × 10²⁰ atoms.","4.98 × 10⁻⁴ mol","1.81 × 10⁴⁴ mol","2.01 × 10³ mol","4.98 × 10⁻³ mol","Moles = atoms ÷ Avogadro's number = 3.00 × 10²⁰ ÷ 6.022 × 10²³ = 4.98 × 10⁻⁴ mol.","Fewer atoms than Avogadro's number means a tiny fraction of a mole."],
+[3,"Calculate the mass of a sample of cobalt containing 3.00 × 10²⁰ atoms. Co = 58.93 g/mol.","0.0294 g","29.4 g","0.294 g","1.18 × 10⁵ g","Moles = 3.00 × 10²⁰ ÷ 6.022 × 10²³ = 4.98 × 10⁻⁴ mol. Mass = 4.98 × 10⁻⁴ × 58.93 = 0.0294 g.","Atoms to moles to grams. Check the size at the end: tiny atoms count, tiny mass."],
+[3,"Determine the mass percent of sulphur in penicillin, C₁₄H₂₀N₂SO₄. C = 12, H = 1, N = 14, S = 32, O = 16.","10.3%","12.5%","3.2%","27.3%","Molar mass = 14 × 12 + 20 × 1 + 2 × 14 + 32 + 4 × 16 = 312 g/mol. Sulphur is 32 ÷ 312 × 100 = 10.3%.","Mass percent is the element's mass in the formula over the whole molar mass."],
+[3,"Carbon has two isotopes: carbon-12 with mass 12.00000 u and abundance 98.892 percent, and carbon-13 with mass 13.00335 u and abundance 1.108 percent. Calculate the average atomic mass of carbon.","12.011 u","12.502 u","12.989 u","11.867 u","Change the percentages to fractions, then 12.00000 × 0.98892 + 13.00335 × 0.01108 = 11.867 + 0.144 = 12.011 u.","Average mass is weighted. It sits very close to the isotope with most abundance."],
+[3,"Copper has two isotopes, ⁶³Cu of mass 62.9298 u and ⁶⁵Cu of mass 64.9278 u. If the average atomic mass of copper is 63.546 u, what are the percent abundances?","69.16 percent for copper-63 and 30.84 percent for copper-65","30.84 percent for copper-63 and 69.16 percent for copper-65","50.00 percent for copper-63 and 50.00 percent for copper-65","55.00 percent for copper-63 and 45.00 percent for copper-65","Let the fraction of ⁶³Cu be x. Then 62.9298x + 64.9278 × 1 − x = 63.546, which gives x = 0.6916. So ⁶³Cu is 69.16% and ⁶⁵Cu is 30.84%.","The average 63.546 is closer to 62.9 than to 64.9, so the lighter isotope is the majority."],
+[3,"Neon has three isotopes: ²⁰Ne of mass 19.99244 u and 90.51 percent, ²¹Ne of mass 20.99395 u and 0.27 percent, and ²²Ne of mass 21.99138 u and 9.22 percent. Calculate the average atomic mass of neon.","20.18 u","20.99 u","21.00 u","19.99 u","Multiply each mass by its fraction and add: 19.99244 × 0.9051 + 20.99395 × 0.0027 + 21.99138 × 0.0922 = 18.095 + 0.057 + 2.028 = 20.18 u.","Most of the neon is ²⁰Ne, so the average must sit just above 20."],
+[3,"Chlorine has two isotopes, ³⁵Cl of mass 34.9688 u and ³⁷Cl of mass 36.9659 u. If the average atomic mass of chlorine is 35.45 u, what are the percent abundances?","75.90 percent for chlorine-35 and 24.10 percent for chlorine-37","24.10 percent for chlorine-35 and 75.90 percent for chlorine-37","50.00 percent for chlorine-35 and 50.00 percent for chlorine-37","65.00 percent for chlorine-35 and 35.00 percent for chlorine-37","Let the fraction of ³⁵Cl be x. Then 34.9688x + 36.9659 × 1 − x = 35.45, so x = 0.7590. That is 75.90% for ³⁵Cl and 24.10% for ³⁷Cl.","35.45 is much closer to 35 than to 37, so the lighter isotope is the majority."],
+[3,"Balance the equation Fe + O₂ → Fe₂O₃.","4Fe + 3O₂ → 2Fe₂O₃","2Fe + 3O₂ → 2Fe₂O₃","3Fe + 2O₂ → Fe₂O₃","4Fe + 2O₂ → 2Fe₂O₃","Oxygen must be even on both sides, so use 3 O₂ and 2 Fe₂O₃, which gives 6 O each. Then 2 Fe₂O₃ has 4 Fe, so use 4 Fe.","Balance the element that appears in one place on each side last. Start with the odd one, oxygen."],
+[3,"Balance the equation C₂H₆ + O₂ → CO₂ + H₂O.","2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O","C₂H₆ + 7O₂ → 2CO₂ + 3H₂O","2C₂H₆ + 5O₂ → 4CO₂ + 6H₂O","2C₂H₆ + 7O₂ → 4CO₂ + 3H₂O","Two C₂H₆ give 4 C and 12 H, so 4 CO₂ and 6 H₂O. That makes 8 + 6 = 14 O atoms, so 7 O₂.","Balance C, then H, then O last. If O comes out odd, double everything."],
+[3,"Balance the equation SiCl₄ + H₂O → SiO₂ + HCl.","SiCl₄ + 2H₂O → SiO₂ + 4HCl","SiCl₄ + H₂O → SiO₂ + 2HCl","SiCl₄ + 2H₂O → SiO₂ + 2HCl","SiCl₄ + 4H₂O → SiO₂ + 4HCl","Four Cl on the left need 4 HCl on the right. That uses 4 H, which come from 2 H₂O, and the 2 O go into SiO₂.","Chlorine first, then hydrogen, and oxygen balances itself."],
+[3,"Balance the equation PCl₃ + H₂O → H₃PO₃ + HCl.","PCl₃ + 3H₂O → H₃PO₃ + 3HCl","PCl₃ + 2H₂O → H₃PO₃ + 3HCl","PCl₃ + 3H₂O → H₃PO₃ + HCl","2PCl₃ + 3H₂O → 2H₃PO₃ + 3HCl","Three Cl need 3 HCl. Three O in H₃PO₃ need 3 H₂O, and the hydrogen then matches: 6 on the left, 3 + 3 on the right.","Match chlorine first, then check oxygen and hydrogen."],
+[3,"Balance the equation CaO + P₂O₅ → Ca₃(PO₄)₂. What is the coefficient of CaO?","3","1","2","6","Ca₃(PO₄)₂ has 3 calcium atoms, so 3 CaO are needed. The oxygen then balances: 3 + 5 = 8 on the left and 8 on the right.","Balance the metal first. Three calcium means three CaO."],
+[3,"Balance the combustion of C₅H₁₂O₂ in oxygen to give CO₂ and H₂O.","C₅H₁₂O₂ + 7O₂ → 5CO₂ + 6H₂O","C₅H₁₂O₂ + 8O₂ → 5CO₂ + 6H₂O","2C₅H₁₂O₂ + 13O₂ → 10CO₂ + 12H₂O","C₅H₁₂O₂ + 6O₂ → 5CO₂ + 6H₂O","Five carbon give 5 CO₂ and twelve hydrogen give 6 H₂O. That is 10 + 6 = 16 oxygen atoms on the right. The molecule already has 2, so O₂ must supply 14, which is 7 O₂.","Balance C and H first, then count oxygen last and take away what the molecule already has."],
+[3,"Calculate the percentage composition of oxygen in C₃H₈O₃. C = 12, H = 1, O = 16.","52.2%","17.4%","39.1%","8.7%","Molar mass = 36 + 8 + 48 = 92 g/mol. Oxygen is 48 ÷ 92 × 100 = 52.2%.","Count all three O atoms: 3 × 16 = 48."],
+[3,"Calculate the percentage composition of oxygen in ammonium sulphate, (NH₄)₂SO₄. N = 14, H = 1, S = 32, O = 16.","48.5%","24.2%","21.2%","16.0%","Molar mass = 132 g/mol. Four O atoms give 64, so 64 ÷ 132 × 100 = 48.5%.","Oxygen is the biggest part of the mass. 48.5 percent, nearly half."],
+[3,"Calculate the percentage composition of oxygen in N(CH₂CH₂OH)₃. C = 12, H = 1, N = 14, O = 16.","32.2%","48.3%","9.4%","10.1%","The formula is C₆H₁₅NO₃ with molar mass 149 g/mol. Oxygen is 48 ÷ 149 × 100 = 32.2%.","Open the bracket and count atoms: three CH₂CH₂OH groups give 6 C, 15 H and 3 O."],
+[3,"Establish the empirical formula of phenol, which is 76.57% C, 6.49% H and 17.00% O by mass. C = 12, H = 1, O = 16.","C₆H₆O","C₆H₅O","C₆H₆O₂","C₇H₆O","Divide each percent by its atomic mass: C 6.38, H 6.49, O 1.0625. Divide by the smallest, 1.0625, to get 6.0 : 6.1 : 1. So C₆H₆O.","Percent to moles, divide by the smallest, round to whole numbers."],
+[3,"Establish the empirical formula of cyclohexanol, which is 71.95% C, 12.08% H and 15.97% O. C = 12.011, H = 1.0079, O = 15.99.","C₆H₁₂O","C₆H₁₀O","C₅H₁₀O","C₆H₁₂O₂","Moles: C 5.99, H 11.98, O 0.999. Dividing by 0.999 gives 6 : 12 : 1, so C₆H₁₂O.","Divide by the smallest number of moles. Oxygen gave 1."],
+[3,"Determine the empirical formula of mebutamate, which is 51.70% C, 8.68% H, 12.06% N and 27.55% O. C = 12.011, H = 1.0079, N = 14.0067, O = 15.999.","C₅H₁₀NO₂","C₅H₁₀N₂O₂","C₅H₁₀NO₃","C₁₀H₂₀N₂O₄","Moles: C 4.304, H 8.61, N 0.861, O 1.722. Dividing by 0.861 gives 5 : 10 : 1 : 2, so C₅H₁₀NO₂. The doubled formula C₁₀H₂₀N₂O₄ is the molecular formula, not the simplest.","Simplest whole number ratio only. Check that no number can still be halved."],
+[3,"Ascorbic acid has the composition by mass 40.91% C, 4.58% H and 54.51% O. Determine its empirical formula. C = 12, H = 1, O = 16.","C₃H₄O₃","C₆H₈O₆","C₃H₈O₃","CH₂O","Moles: C 3.41, H 4.58, O 3.41. Dividing by 3.41 gives 1 : 1.34 : 1. Multiply by 3 to remove the fraction, giving 3 : 4 : 3, so C₃H₄O₃.","A ratio like 1.33 means multiply everything by 3."],
+[3,"A sample of a gas is found to contain 2.34 g of N and 5.34 g of O. What is its empirical formula? N = 14, O = 16.","NO₂","N₂O","NO","N₂O₄","Moles: N 2.34 ÷ 14 = 0.167 and O 5.34 ÷ 16 = 0.334. Dividing by 0.167 gives 1 : 2, so NO₂.","Give grams, divide by atomic mass, then divide by the smaller."],
+[3,"A 0.10 g sample of an alcohol containing only C, H and O was burned. It gave 0.1910 g of CO₂ and 0.1172 g of H₂O. What is its empirical formula? C = 12, H = 1, O = 16.","C₂H₆O","C₂H₄O","CH₃O","C₃H₈O","Carbon = 0.1910 × 12 ÷ 44 = 0.0521 g. Hydrogen = 0.1172 × 2 ÷ 18 = 0.0130 g. Oxygen is the rest, 0.10 − 0.0651 = 0.0349 g. Moles are 0.00434, 0.0130 and 0.00218, which gives 2 : 6 : 1.","In combustion analysis, find oxygen by subtraction."],
+[3,"A compound that contains only C and H was burned in oxygen. It gave 3.007 g of CO₂ and 1.845 g of H₂O. What is its empirical formula?","CH₃","CH₂","CH₄","C₂H₃","Moles of C = 3.007 ÷ 44 = 0.0683. Moles of H = 2 × 1.845 ÷ 18 = 0.205. The ratio is 1 : 3, so CH₃.","Each H₂O carries two H atoms. Do not forget the 2."],
+[3,"If the molecular mass of fruit sugar is 180.2 and its empirical formula is CH₂O, what is its molecular formula? C = 12, H = 1, O = 16.","C₆H₁₂O₆","C₃H₆O₃","C₁₂H₂₄O₁₂","C₅H₁₀O₅","The empirical formula mass is 30. So n = 180.2 ÷ 30 = 6, and the molecular formula is C₆H₁₂O₆.","n = molecular mass over empirical formula mass."],
+[3,"Adenine has a molecular mass of 135.1 and consists of 44.45% C, 3.73% H and 52.82% N by mass. Determine its molecular formula.","C₅H₅N₅","C₄H₄N₄","CHN","C₆H₆N₆","Moles: C 3.70, H 3.70, N 3.77, so the empirical formula is CHN with mass 27. Then n = 135.1 ÷ 27 = 5, giving C₅H₅N₅.","Empirical first, then multiply by n."],
+[3,"An unknown compound contains 49.02% C, 2.74% H and 48.24% Cl by mass. Its molecular mass is 147.0. Calculate the molecular formula.","C₆H₄Cl₂","C₃H₂Cl","C₆H₄Cl","C₉H₆Cl₃","Moles: C 4.08, H 2.72, Cl 1.36, so the ratio is 3 : 2 : 1 and the empirical formula is C₃H₂Cl with mass 73.5. Then n = 147 ÷ 73.5 = 2, giving C₆H₄Cl₂.","Check the empirical mass. If it is half the molecular mass, double it."],
+[3,"The empirical formula of hydroquinone is C₃H₃O. If its molecular mass is 110, what is its molecular formula?","C₆H₆O₂","C₃H₃O","C₉H₉O₃","C₆H₆O","The empirical formula mass is 36 + 3 + 16 = 55. So n = 110 ÷ 55 = 2, and the molecular formula is C₆H₆O₂.","110 over 55 is 2. Double every subscript."],
+[3,"Ethylene has a molar mass of 28.0 g/mol and the empirical formula CH₂. What is its molecular formula?","C₂H₄","CH₂","C₃H₆","C₄H₈","The empirical formula mass of CH₂ is 14, so n = 28 ÷ 14 = 2, which gives C₂H₄.","CH₂ weighs 14, so divide the molar mass by 14."],
+[3,"Cyclohexane has a molar mass of 84.0 g/mol and the empirical formula CH₂. What is its molecular formula?","C₆H₁₂","C₆H₆","C₅H₁₀","C₇H₁₄","n = 84 ÷ 14 = 6, so the molecular formula is C₆H₁₂.","Molar mass over 14 gives the number of CH₂ units."],
+[3,"1-Pentene has a molar mass of 70.0 g/mol and the empirical formula CH₂. What is its molecular formula?","C₅H₁₀","C₅H₈","C₆H₁₂","C₅H₁₂","n = 70 ÷ 14 = 5, so the molecular formula is C₅H₁₀.","Same trick. Seventy over fourteen is five."],
+[3,"If the empirical formula of a liquid is NO₂ and its molecular mass is 92.0, what is its molecular formula?","N₂O₄","NO₂","N₂O₂","N₃O₆","The empirical formula mass of NO₂ is 46, so n = 92 ÷ 46 = 2, giving N₂O₄.","Ninety-two is double forty-six."],
+[3,"How many moles of CO₂ will be produced in the complete combustion of 4.30 moles of C₆H₆? The balanced equation is 2C₆H₆ + 15O₂ → 12CO₂ + 6H₂O.","25.8 mol","51.6 mol","12.9 mol","2.15 mol","Two moles of C₆H₆ give 12 moles of CO₂, a ratio of 6 to 1. So 4.30 × 12 ÷ 2 = 25.8 mol.","Use the ratio from the coefficients. Here, 6 CO₂ for every 1 C₆H₆."],
+[3,"How many moles of H₂O are produced from 0.40 mol of C₆H₆ according to 2C₆H₆ + 15O₂ → 12CO₂ + 6H₂O?","1.2 mol","0.40 mol","2.4 mol","4.8 mol","Two moles of C₆H₆ give 6 moles of H₂O, a ratio of 3 to 1. So 0.40 × 6 ÷ 2 = 1.2 mol.","Coefficient of what you want over coefficient of what you have."],
+[3,"In the hydrolysis of phosphorus trichloride, PCl₃ + 3H₂O → 3HCl + H₃PO₃, what mass of HCl can be produced from 15.0 g of PCl₃? P = 30.97, Cl = 35.45, H = 1.008.","11.9 g","3.98 g","35.8 g","5.97 g","PCl₃ has molar mass 137.3 g/mol, so 15.0 g is 0.109 mol. It gives 3 × 0.109 = 0.328 mol of HCl, which weighs 0.328 × 36.46 = 11.9 g.","Grams to moles, use the ratio 1 to 3, then moles to grams."],
+[3,"What mass of Al is required to produce 4.0 g of hydrogen according to 2Al + 3H₂SO₄ → Al₂(SO₄)₃ + 3H₂? Al = 27, H = 1.","35.7 g","53.5 g","80.3 g","17.9 g","4.0 g of H₂ is 1.98 mol. Aluminium needed is 2 ÷ 3 of that, 1.32 mol, which weighs 1.32 × 27 = 35.7 g.","Two Al for every three H₂, so Al moles are two thirds of the H₂ moles."],
+[3,"How many grams of CO₂ are formed when 73.9 g of propane, C₃H₈, is burnt? The equation is C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. C = 12, H = 1, O = 16.","221 g","73.7 g","110 g","664 g","Propane has molar mass 44 g/mol, so 73.9 g is 1.68 mol. It gives 3 × 1.68 = 5.04 mol of CO₂, which weighs 5.04 × 44 = 221 g.","One propane gives three CO₂, and CO₂ has the same molar mass as propane, so the mass triples."],
+[3,"How many grams of oxygen can be obtained from 2.50 g of potassium chlorate? The equation is 2KClO₃ → 2KCl + 3O₂. K = 39.1, Cl = 35.45, O = 16.","0.979 g","0.653 g","1.47 g","0.0306 g","KClO₃ has molar mass 122.5 g/mol, so 2.50 g is 0.0204 mol. It gives 3 ÷ 2 × 0.0204 = 0.0306 mol of O₂, which weighs 0.0306 × 32 = 0.979 g.","Three O₂ for two KClO₃, so multiply the moles by one and a half."],
+[3,"12.0 moles of water are mixed with 5.0 moles of barium metal. The equation is Ba + 2H₂O → Ba(OH)₂ + H₂. Which statement is correct?","Ba is limiting and 2 mol of water is left over","H₂O is limiting and 2 mol of Ba is left over","Ba is limiting and 7 mol of water is left over","H₂O is limiting and 7 mol of Ba is left over","5.0 mol of Ba needs 10 mol of water. Only 12.0 mol is present, so Ba runs out first and 12.0 − 10.0 = 2.0 mol of water is left over.","Work out how much of one reactant the other needs. The one that runs out is limiting."],
+[3,"25.0 g of nitrogen gas and 5.0 g of hydrogen are mixed to form ammonia, N₂ + 3H₂ → 2NH₃. Which one is the limiting reagent? N = 14, H = 1.","Hydrogen","Nitrogen","Ammonia","Both are limiting","25 g of N₂ needs 5.36 g of H₂ for complete reaction, but only 5.0 g of H₂ is present. So hydrogen runs out first.","Compare what is needed with what is given."],
+[3,"25.0 g of nitrogen gas and 5.0 g of hydrogen are mixed to form ammonia, N₂ + 3H₂ → 2NH₃. What mass of ammonia is produced? N = 14, H = 1.","28.3 g","30.4 g","14.2 g","56.7 g","Hydrogen is limiting, so use it. 6 g of H₂ gives 34 g of NH₃, so 5.0 g of H₂ gives 5.0 × 34 ÷ 6 = 28.3 g.","Always calculate the product from the limiting reagent, never from the excess one."],
+[3,"Which is the more effective antacid per gram: 0.50 g of NaHCO₃ or 0.50 g of Mg(OH)₂? The reactions are NaHCO₃ + HCl → NaCl + H₂O + CO₂ and Mg(OH)₂ + 2HCl → 2H₂O + MgCl₂.","Magnesium hydroxide, because it neutralises more HCl per gram","Sodium hydrogen carbonate, because it neutralises more HCl per gram","Both are equally effective","Sodium hydrogen carbonate, because its molar mass is larger","0.50 g of NaHCO₃ is 0.0060 mol and neutralises 0.0060 mol of HCl. 0.50 g of Mg(OH)₂ is 0.0086 mol and neutralises twice that, 0.017 mol of HCl. So magnesium hydroxide wins.","Count moles of acid neutralised per gram. Two HCl per Mg(OH)₂ helps it a lot."],
+[3,"If 12.0 g of HCl is mixed with 14.5 g of FeS, how many grams of H₂S can be produced? FeS + 2HCl → FeCl₂ + H₂S. H = 1, Cl = 35.5, Fe = 56, S = 32.","5.6 g","11.2 g","2.8 g","14.5 g","HCl is 12.0 ÷ 36.5 = 0.329 mol and FeS is 14.5 ÷ 88 = 0.165 mol. HCl is just short of the 0.330 mol needed, so it limits. H₂S = 0.329 ÷ 2 × 34 = 5.6 g.","Two HCl for each H₂S, so halve the moles of HCl."],
+[3,"What mass of acetic acid is needed to produce 150 g of ethyl acetate if the percent yield is 80%? Ethanol is in excess. CH₃COOH + C₂H₅OH → CH₃COOCH₂CH₃ + H₂O. C = 12, H = 1, O = 16.","128 g","102 g","81.8 g","188 g","Ethyl acetate has molar mass 88, so 150 g is 1.70 mol. At 80% yield you must start with 1.70 ÷ 0.80 = 2.13 mol of acetic acid, which weighs 2.13 × 60 = 128 g.","Yield below 100 percent means you must start with more, so divide by 0.80."],
+[3,"Calculate the theoretical yield of isopentyl acetate from 15.0 g of isopentyl alcohol and 26.9 g of acetic acid. The reaction is 1 to 1 to 1. C = 12, H = 1, O = 16.","22.2 g","58.3 g","15.0 g","11.1 g","Isopentyl alcohol, C₅H₁₂O, is 15.0 ÷ 88 = 0.170 mol. Acetic acid is 26.9 ÷ 60 = 0.448 mol. The alcohol is limiting, so 0.170 mol of isopentyl acetate, C₇H₁₄O₂ at 130 g/mol, gives 22.2 g.","Find the limiting reagent first. Then use only that one."],
+[3,"If the percent yield of the isopentyl acetate reaction is 80% and the theoretical yield is 22.2 g, what is the actual yield?","17.7 g","27.7 g","22.2 g","14.2 g","Actual yield = percent yield × theoretical yield = 0.80 × 22.2 = 17.7 g.","Actual is always less than theoretical, so multiply by 0.80."],
+[3,"When 50.0 g of C₇H₈ and 100.0 g of HNO₃ are reacted, C₇H₈ + 3HNO₃ → C₇H₅N₃O₆ + 3H₂O. Calculate the theoretical yield of TNT. C = 12, H = 1, N = 14, O = 16.","120 g","123 g","227 g","40.0 g","C₇H₈ is 50.0 ÷ 92 = 0.543 mol and needs 1.63 mol of HNO₃. There is only 100.0 ÷ 63 = 1.59 mol, so HNO₃ limits. TNT = 1.59 ÷ 3 × 227 = 120 g.","Three HNO₃ for each TNT. Divide the HNO₃ moles by three."],
+[3,"In the TNT reaction the theoretical yield is 120 g and 105.0 g of TNT were produced. What is the percent yield?","87.4%","85.1%","46.3%","105%","Percent yield = actual ÷ theoretical × 100 = 105.0 ÷ 120.1 × 100 = 87.4%.","Actual over theoretical, times 100."],
+[3,"Calculate the molarity of a solution prepared by dissolving 13.5 g of pure solid NaOH in enough water to make 2500 mL of solution. Na = 23, O = 16, H = 1.","0.135 M","0.338 M","0.0540 M","1.35 M","13.5 g of NaOH is 13.5 ÷ 40 = 0.3375 mol. The volume is 2500 mL = 2.5 L, so molarity = 0.3375 ÷ 2.5 = 0.135 M.","Change mL to liters before dividing."],
+[3,"What are the concentrations of the ions in 0.50 M K₂SO₄ solution?","1.0 M K⁺ and 0.50 M SO₄²⁻","0.50 M K⁺ and 0.50 M SO₄²⁻","0.50 M K⁺ and 1.0 M SO₄²⁻","1.0 M K⁺ and 1.0 M SO₄²⁻","K₂SO₄ splits into 2K⁺ and one SO₄²⁻. So potassium is 2 × 0.50 = 1.0 M and sulphate is 0.50 M.","The subscript in the formula is the multiplier for that ion."],
+[3,"What are the concentrations of the ions in 2.0 M HCl solution?","2.0 M H⁺ and 2.0 M Cl⁻","1.0 M H⁺ and 1.0 M Cl⁻","2.0 M H⁺ and 4.0 M Cl⁻","4.0 M H⁺ and 2.0 M Cl⁻","HCl splits completely into one H⁺ and one Cl⁻, so each ion has the same concentration as the acid, 2.0 M.","A strong acid breaks up fully. One to one."],
+[3,"How many moles of Na⁺ ions are there in 15 cm³ of a 0.8 M NaCl aqueous solution? Assume NaCl is completely soluble.","0.012 mol","0.12 mol","0.0012 mol","12 mol","15 cm³ is 15 ÷ 1000 L. Moles of NaCl = 0.015 × 0.8 = 0.012 mol. Each NaCl gives one Na⁺, so there are 0.012 mol of Na⁺.","Moles = M × V in liters. Change cm³ to liters first."],
+[3,"Calculate the percent concentration of sodium chloride in a solution made up of 1.5 g NaCl and 45 g H₂O.","3.23%","3.33%","32.3%","1.50%","Mass of solution = 1.5 + 45 = 46.5 g. Percent = 1.5 ÷ 46.5 × 100 = 3.23%.","Divide by the whole solution, not just the water."],
+[3,"What is the mass percent of ethanol in a solution composed of 110.0 g of water and 2.0 g of ethanol?","1.79%","1.82%","17.9%","0.179%","Mass of solution = 110.0 + 2.0 = 112.0 g. Percent = 2.0 ÷ 112.0 × 100 = 1.79%.","Solute over solution, not solute over solvent."],
+[3,"Calculate the molality of a solution prepared by dissolving 25.0 g of I₂, 254 g/mol, in 200 g of CCl₄.","0.49 m","0.098 m","4.9 m","0.00049 m","Moles of I₂ = 25.0 ÷ 254 = 0.098 mol. Solvent = 0.200 kg. Molality = 0.098 ÷ 0.200 = 0.49 m.","Molality needs the solvent in kg, not grams."],
+[3,"What is the molality of a 1.65 M H₂SO₄ solution, 98 g/mol, that has a density of 1.29 g/mL?","1.46 m","1.65 m","1.28 m","0.146 m","1000 mL of solution weighs 1290 g and holds 1.65 mol, which is 161.7 g of H₂SO₄. The water is 1290 − 161.7 = 1128.3 g, which is 1.1283 kg. Molality = 1.65 ÷ 1.1283 = 1.46 m.","Use the density to find the mass of the solution, then subtract the solute."],
+[3,"What is the mole fraction of glucose, 180 g/mol, in a 30% m/m aqueous solution of glucose? Water is 18 g/mol.","0.0412","0.300","0.959","0.167","In 100 g of solution there is 30 g of glucose, which is 0.167 mol, and 70 g of water, which is 3.89 mol. Mole fraction = 0.167 ÷ 0.167 + 3.89 = 0.0412.","Mole fraction uses moles, not grams. Glucose is heavy, so its mole fraction is small."],
+[3,"Describe how much of a 16.0 M stock solution of acetic acid is needed to prepare 500 mL of 2.0 M acetic acid.","62.5 mL","4000 mL","16.0 mL","250 mL","Use M₁V₁ = M₂V₂. V₁ = 2.0 × 500 ÷ 16.0 = 62.5 mL. Pipette this into a 500 mL flask and make up to the mark with distilled water.","Stock volume = final M times final V, over stock M."],
+[3,"What volume of 5.0 M HCl must be taken to prepare 0.70 L of 0.10 M HCl?","14 mL","140 mL","350 mL","1.4 mL","V₁ = M₂V₂ ÷ M₁ = 0.10 × 0.70 ÷ 5.0 = 0.014 L, which is 14 mL.","Stock is 50 times stronger, so take one fiftieth of the final volume."],
+[3,"What masses of CO and H₂ are required to form 5.0 kg of CH₃OH? CO + 2H₂ → CH₃OH. C = 12, O = 16, H = 1.","4.4 kg of CO and 0.63 kg of H₂","4.4 kg of CO and 0.31 kg of H₂","2.2 kg of CO and 0.63 kg of H₂","5.0 kg of CO and 0.63 kg of H₂","5000 g of CH₃OH is 156 mol. CO needed is 156 mol × 28 = 4.4 kg. H₂ needed is 2 × 156 mol × 2 = 0.63 kg.","One CO and two H₂ for every CH₃OH. Remember the 2 for hydrogen."],
+[3,"What mass of water must be added to 425 g of formaldehyde to prepare a 50% w/w solution of formaldehyde?","425 g","850 g","212 g","1275 g","A 50% solution has equal masses of solute and solvent, so the water must also be 425 g.","Fifty percent means half and half."],
+[3,"How many grams of KClO₃ must react to produce 4.00 moles of O₂? 2KClO₃ → 2KCl + 3O₂. K = 39.1, Cl = 35.45, O = 16.","327 g","490 g","735 g","218 g","Three O₂ come from two KClO₃, so moles of KClO₃ = 4.00 × 2 ÷ 3 = 2.67 mol. Mass = 2.67 × 122.5 = 327 g.","Two KClO₃ for three O₂. Moles of KClO₃ are two thirds of O₂ moles."],
+[3,"How many grams of O₂ can be prepared by the complete decomposition of 9.25 g of KClO₃? 2KClO₃ → 2KCl + 3O₂.","3.62 g","2.42 g","5.43 g","0.113 g","9.25 g is 0.0755 mol of KClO₃. It gives 1.5 × 0.0755 = 0.113 mol of O₂, which weighs 0.113 × 32 = 3.62 g.","Three O₂ for two KClO₃, so multiply the moles by 1.5."],
+[3,"Calculate the number of moles of KClO₃ that must be decomposed to prepare 12.0 g of O₂. 2KClO₃ → 2KCl + 3O₂.","0.250 mol","0.375 mol","0.563 mol","0.125 mol","12.0 g of O₂ is 0.375 mol. KClO₃ needed = 0.375 × 2 ÷ 3 = 0.250 mol.","Go from O₂ moles to KClO₃ moles with the ratio 2 over 3."],
+[3,"How many grams of KCl are produced during a decomposition of KClO₃ that also produced 11.0 g of O₂? 2KClO₃ → 2KCl + 3O₂. K = 39.1, Cl = 35.45.","17.1 g","25.6 g","11.0 g","8.54 g","11.0 g of O₂ is 0.344 mol. KCl formed = 0.344 × 2 ÷ 3 = 0.229 mol, which weighs 0.229 × 74.55 = 17.1 g.","Two KCl for every three O₂."],
+[3,"What is the mass of Al in 1.5 kg of AlCl₃? Al = 26.98, Cl = 35.45.","303 g","607 g","30.3 g","1137 g","The molar mass of AlCl₃ is 133.3 g/mol. Al is 26.98 ÷ 133.3 = 20.2% of the mass, so 0.202 × 1500 g = 303 g.","Mass of Al in the formula over molar mass, times the sample."],
+[3,"What is the mass of Al in 1.5 kg of Al₂O₃? Al = 26.98, O = 16.","794 g","397 g","529 g","1060 g","The molar mass of Al₂O₃ is 102 g/mol and it has 2 × 26.98 = 53.96 g of Al. So Al is 53.96 ÷ 102 = 52.9%, and 0.529 × 1500 g = 794 g.","Two Al atoms in the formula, so use 2 × 26.98."],
+[3,"What is the mass of Al in 1.5 kg of KAl(SO₄)₂·12H₂O? K = 39.1, Al = 26.98, S = 32, O = 16, H = 1.","85.3 g","171 g","8.53 g","570 g","The molar mass of the hydrated salt is 474 g/mol. Al is 26.98 ÷ 474 = 5.69%, so 0.0569 × 1500 g = 85.3 g.","Include the 12 water molecules in the molar mass."],
+[3,"What is the maximum amount of iron that can be produced from 130.0 g of Fe₂O₃ and 130.0 g of CO? Fe₂O₃ + 3CO → 2Fe + 3CO₂. Fe = 55.85, O = 16, C = 12.","90.9 g","173 g","45.5 g","130.0 g","Fe₂O₃ is 130.0 ÷ 159.7 = 0.814 mol and CO is 130.0 ÷ 28 = 4.64 mol. Fe₂O₃ needs only 2.44 mol of CO, so Fe₂O₃ limits. Iron = 2 × 0.814 = 1.63 mol, which weighs 90.9 g.","Check each reactant. Use the smaller result, which is the limiting one."],
+[3,"In the reaction of 130.0 g of Fe₂O₃ with 130.0 g of CO, Fe₂O₃ + 3CO → 2Fe + 3CO₂, which reagent is in excess and how much is left over?","CO, with 61.6 g left over","CO, with 68.4 g left over","Fe₂O₃, with 61.6 g left over","Fe₂O₃, with 68.4 g left over","Fe₂O₃ limits and uses 3 × 0.814 = 2.44 mol of CO, which is 68.4 g. So CO is in excess and 130.0 − 68.4 = 61.6 g is left over.","Leftover is what you started with, minus what was used."],
+[3,"A 26.0% m/m aqueous solution of KI has a density of 1.30 g/mL. How many grams of KI are in 70.0 mL of the solution?","23.7 g","18.2 g","91.0 g","27.0 g","70.0 mL weighs 70.0 × 1.30 = 91.0 g. KI is 26.0% of that, so 0.260 × 91.0 = 23.7 g.","Volume to mass with density, then take the percent."],
+[3,"A 26.0% m/m aqueous solution of KI has a density of 1.30 g/mL. How many grams of solution contain 25.0 g of KI?","96.2 g","6.50 g","74.0 g","125 g","KI is 26.0% of the solution, so solution mass = 25.0 ÷ 0.260 = 96.2 g.","Divide by the fraction to get the whole."],
+[3,"A 26.0% m/m aqueous solution of KI has a density of 1.30 g/mL. How many milliliters of the solution contain 20.0 g of KI?","59.2 mL","76.9 mL","100 mL","39.4 mL","Solution mass = 20.0 ÷ 0.260 = 76.9 g. Volume = mass ÷ density = 76.9 ÷ 1.30 = 59.2 mL.","Percent first to get grams, then density to get mL."],
+[3,"Calculate the percent m/m composition of nitric acid in a 3.0 m HNO₃ solution. H = 1, N = 14, O = 16.","15.9%","18.9%","21.0%","3.0%","3.0 m means 3.0 mol of HNO₃ in 1 kg of water. That is 3.0 × 63 = 189 g. The solution weighs 1000 + 189 = 1189 g, so 189 ÷ 1189 × 100 = 15.9%.","Add the solute to the water for the total mass. Do not divide by 1000."],
+[3,"How many moles of solute are contained in 13.05 mL of 3.00 M CaCl₂?","0.0392 mol","0.392 mol","3.92 mol","0.0131 mol","Change 13.05 mL to 0.01305 L. Moles = 3.00 × 0.01305 = 0.0392 mol.","Moles = M × V, with V in liters."],
+[3,"How many moles of solute are contained in 1,200 mL of 0.25 M (NH₄)₂SO₄?","0.30 mol","0.21 mol","3.0 mol","4.8 mol","1,200 mL is 1.2 L. Moles = 0.25 × 1.2 = 0.30 mol.","Milliliters to liters first, then multiply by M."],
+[3,"How many moles of solute are contained in 180 mL of 0.21 M HCl?","0.038 mol","0.38 mol","0.00038 mol","0.86 mol","180 mL is 0.180 L. Moles = 0.21 × 0.180 = 0.038 mol.","Small volume and weak concentration give a small answer, so check that it looks small."],
+[3,"A concentrated HCl contains 37.0% m/m HCl and has a density of 1.19 g/mL. What is its molarity? H = 1, Cl = 35.5.","12.1 M","10.2 M","37.0 M","16.1 M","1000 mL weighs 1190 g and 37.0% of it is 440 g of HCl. That is 440 ÷ 36.5 = 12.1 mol in 1 L, so 12.1 M.","Density times 1000 times the fraction, divided by molar mass."],
+[3,"A concentrated HCl contains 37.0% m/m HCl and has a density of 1.19 g/mL. What is its molality?","16.1 m","12.1 m","1.61 m","10.2 m","In 100 g of solution there is 37.0 g of HCl, which is 1.01 mol, and 63.0 g of water, which is 0.0630 kg. Molality = 1.01 ÷ 0.0630 = 16.1 m.","Molality uses the water only, in kg, so it comes out higher than molarity here."],
+[3,"A concentrated HCl contains 37.0% m/m HCl. What is the mole fraction of HCl? H = 1, Cl = 35.5, O = 16.","0.225","0.370","0.775","0.289","In 100 g there is 1.01 mol of HCl and 63.0 ÷ 18 = 3.50 mol of water. Mole fraction = 1.01 ÷ 4.51 = 0.225.","Mole fraction needs moles, not grams. HCl moles over total moles."],
+/* ---------- 4 · Acids, Bases and Salts ---------- */
+[4,"Calculate the pH of a solution that is 0.030 M in H⁺ ion.","1.5","2.0","3.0","12.5","pH = −log 0.030. Since 0.030 is 3.0 × 10⁻², log gives −1.52, so pH = 1.5.","Minus the log, and a bigger concentration gives a smaller pH."],
+[4,"Calculate the pH of a solution that is 2.0 × 10⁻² M in OH⁻ ion.","12.3","1.7","11.7","2.0","pOH = −log 0.020 = 1.7. pH = 14 − pOH = 14 − 1.7 = 12.3.","Work out pOH first, then take it away from 14."],
+[4,"If the pH of an aqueous system is 8.5, what is the concentration of H⁺ in this system?","3.16 × 10⁻⁹ M","3.16 × 10⁻⁶ M","8.5 × 10⁻¹⁴ M","3.16 × 10⁻⁵ M","[H⁺] = 10 to the power of −pH = 10⁻⁸·⁵ = 3.16 × 10⁻⁹ M.","Antilog of minus pH. Basic solutions have very small H⁺."],
+[4,"Calculate the pH of a buffer containing 1.0 M CH₃COOH and 1.0 M CH₃COONa. Ka for acetic acid is 1.8 × 10⁻⁵.","4.74","7.00","5.74","3.74","pH = pKa + log of salt over acid. The ratio is 1, so log is 0 and pH = pKa = 4.74.","Equal salt and acid means pH equals pKa."],
+[4,"What is the pH of the 1.0 M CH₃COOH and 1.0 M CH₃COONa buffer after adding 0.10 mol of gaseous HCl to 1 L of it? Ka = 1.8 × 10⁻⁵.","4.66","4.74","4.82","1.00","The added H⁺ turns 0.10 mol of acetate into acetic acid. Acid becomes 1.1 M and salt becomes 0.9 M. pH = 4.74 + log 0.9/1.1 = 4.66.","Strong acid added: acid goes up, salt goes down, and pH only drops a little."],
+[4,"Calculate the buffer range for the HCO₃⁻/H₂CO₃ system. pKa = 6.38.","5.38 to 7.38","6.38 to 7.38","4.38 to 8.38","5.38 to 6.38","Buffer range is pKa plus or minus 1. So 6.38 − 1 = 5.38 up to 6.38 + 1 = 7.38.","Go one unit down and one unit up from pKa."],
+[4,"What is the buffer range of the CO₃²⁻/HCO₃⁻ system? pKa = 10.32.","9.32 to 11.32","10.32 to 11.32","8.32 to 12.32","9.32 to 10.32","Buffer range is pKa ± 1, so 10.32 − 1 = 9.32 up to 10.32 + 1 = 11.32.","Minus one and plus one around pKa."],
+[4,"A buffer is made by adding 8.3 g of acetic acid and 16.0 g of sodium acetate together, then a negligible 0.07 mL of 1.0 M HCl is added. What is the pH? Ka = 1.8 × 10⁻⁵, CH₃COOH = 60, CH₃COONa = 82.","4.89","4.74","4.60","5.20","Acid is 8.3 ÷ 60 = 0.138 mol and salt is 16.0 ÷ 82 = 0.195 mol. The HCl is only 0.00007 mol, so ignore it. pH = 4.74 + log 0.195/0.138 = 4.89.","More salt than acid pushes pH above pKa."],
+[4,"How many moles of sodium acetate must be added to 1.0 L of 0.2 M CH₃COOH to make a buffer of pH 6? Ka = 1.8 × 10⁻⁵.","3.6 mol","0.36 mol","0.20 mol","36 mol","pH − pKa = 6 − 4.74 = 1.26, so salt over acid is 10¹·²⁶ = 18. Salt = 18 × 0.2 mol = 3.6 mol.","Raise 10 to the power of pH minus pKa, then multiply by the acid moles."],
+[4,"Which pair of ions is the right choice to prepare a phosphate buffer of pH about 7.40?","H₂PO₄⁻ and HPO₄²⁻","H₃PO₄ and H₂PO₄⁻","HPO₄²⁻ and PO₄³⁻","H₃PO₄ and PO₄³⁻","pH 7.40 is close to the second pKa of phosphoric acid, about 7.2. That belongs to the H₂PO₄⁻ and HPO₄²⁻ pair, mixed with a little more of the HPO₄²⁻ form.","Pick the pair whose pKa is nearest to the pH you want."],
+[4,"The molar solubility of silver sulphate, Ag₂SO₄, is 1.5 × 10⁻² mol/L. What is its solubility product?","1.4 × 10⁻⁵","2.0 × 10⁻⁶","3.4 × 10⁻⁷","6.8 × 10⁻⁵","Ag⁺ is 2 × 1.5 × 10⁻² = 3.0 × 10⁻² M and sulphate is 1.5 × 10⁻² M. Ksp = (3.0 × 10⁻²)² × 1.5 × 10⁻² = 1.4 × 10⁻⁵.","Square the silver concentration because of the 2 in the formula."],
+[4,"The solubility of calcium sulphate is 0.67 g/L at a certain temperature. Estimate its Ksp. CaSO₄ = 136.2 g/mol.","2.4 × 10⁻⁵","4.9 × 10⁻³","1.2 × 10⁻⁵","0.67","Molar solubility = 0.67 ÷ 136.2 = 4.9 × 10⁻³ M. Ca²⁺ and SO₄²⁻ are each 4.9 × 10⁻³ M, so Ksp = (4.9 × 10⁻³)² = 2.4 × 10⁻⁵.","Grams to moles first. Then multiply the two equal ion concentrations."],
+[4,"If the Ksp for CuI is 5.1 × 10⁻¹², what is the molar solubility of CuI?","2.3 × 10⁻⁶ M","5.1 × 10⁻¹² M","2.6 × 10⁻⁶ M","1.7 × 10⁻⁴ M","CuI gives one Cu⁺ and one I⁻, so Ksp = s². The square root of 5.1 × 10⁻¹² is 2.3 × 10⁻⁶ M.","One to one salt, so take the square root of Ksp."],
+[4,"The Ksp of calcium phosphate, Ca₃(PO₄)₂ = 310.2 g/mol, is 1.2 × 10⁻²⁶. What is its solubility in g/L?","8.0 × 10⁻⁴ g/L","2.6 × 10⁻⁶ g/L","1.1 × 10⁻⁵ g/L","1.1 × 10⁻¹³ g/L","Ksp = (3s)³(2s)² = 108s⁵. So s⁵ = 1.1 × 10⁻²⁸ and s = 2.6 × 10⁻⁶ mol/L. Times 310.2 g/mol gives 8.0 × 10⁻⁴ g/L.","Fifth root for a 3 and 2 salt, then turn moles into grams."],
+[4,"Exactly 200 cm³ of 0.0040 M BaCl₂ are added to exactly 600 cm³ of 0.0080 M K₂SO₄. Will a precipitate form? Ksp of BaSO₄ is 1.1 × 10⁻¹⁰.","Yes, because Q is about 6 × 10⁻⁶, far above Ksp","No, because Q is about 6 × 10⁻⁶, far below Ksp","Yes, because Q equals Ksp exactly","No, because KCl is soluble so nothing can form","After mixing, the volume is 800 cm³. Ba²⁺ is 0.8 mmol ÷ 800 cm³ = 1.0 × 10⁻³ M and SO₄²⁻ is 4.8 mmol ÷ 800 cm³ = 6.0 × 10⁻³ M. Q = 6.0 × 10⁻⁶, which is greater than Ksp, so BaSO₄ precipitates.","Dilute both first, then multiply. Q bigger than Ksp means a precipitate."],
+[4,"Which statement is true of ammonia acting as an acid in water?","It can, but only very weakly, by giving a proton to form NH₂⁻","It cannot, because it has no hydrogen","It is a strong proton donor like HCl","It can only act as a Lewis acid","Ammonia has hydrogen and can lose H⁺ to a strong base, giving NH₂⁻. But NH₂⁻ is an extremely strong base, so water cannot take the proton from NH₃ to any real extent.","A very strong conjugate base means a very weak acid."],
+[4,"The conjugate base of NH₃ is NH₂⁻. How does its basic strength compare with that of OH⁻?","NH₂⁻ is a much stronger base than OH⁻","OH⁻ is a much stronger base than NH₂⁻","They are equally strong","NH₂⁻ is not a base at all","NH₃ is a weaker acid than H₂O, so its conjugate base NH₂⁻ is the stronger base. In water NH₂⁻ grabs a proton at once to give NH₃ and OH⁻.","Weaker acid means stronger conjugate base."],
+[4,"What is the conjugate base of HCN?","CN⁻","H₂CN⁺","HCN⁻","CNH₂","A conjugate base is what is left after the acid gives up one proton. HCN losing H⁺ leaves CN⁻.","Remove one H⁺ from the acid."],
+[4,"What is the conjugate base of OH⁻?","O²⁻","H₂O","H₃O⁺","OH₂⁺","OH⁻ acting as an acid gives up its proton and leaves O²⁻. H₂O would be its conjugate acid.","Take off H⁺ for the base and add H⁺ for the acid."],
+[4,"What is the conjugate acid of CO₃²⁻?","HCO₃⁻","H₂CO₃","CO₂","H₃O⁺","A conjugate acid is the base plus one proton. CO₃²⁻ plus H⁺ gives HCO₃⁻.","Add just one H⁺, not two."],
+[4,"What is the conjugate acid of pyridine, C₅H₅N?","C₅H₅NH⁺","C₅H₄N⁻","C₅H₅NH₂","C₅H₆N⁻","Pyridine is a base, and it accepts a proton on its nitrogen. Adding H⁺ gives C₅H₅NH⁺.","A base gains H⁺, so the charge goes up by one."],
+[4,"In the reaction Ag⁺ + 2NH₃ ⇌ Ag(NH₃)₂⁺, which species is the Lewis acid?","Ag⁺","NH₃","The silver complex ion that forms","Both Ag⁺ and NH₃","A Lewis acid accepts a pair of electrons. Ag⁺ accepts lone pairs from the two NH₃ molecules, which are the Lewis bases.","Acid accepts the electron pair, base donates it."],
+[4,"In the reaction (CH₃)₂O + BF₃ → (CH₃)₂OBF₃, which species is the Lewis acid?","BF₃","The ether molecule","Neither, since no H⁺ is involved","Both act as Lewis acids","BF₃ has an empty orbital on boron and accepts an electron pair from the oxygen of the ether. So BF₃ is the acid and the ether is the base.","Boron with only six electrons wants a pair."],
+[4,"What is the advantage of the Lewis concept of acids and bases over the Brønsted-Lowry concept?","It covers reactions where no proton is transferred","It only works in water","It limits acids to proton donors","It needs a solvent to be present","Brønsted-Lowry needs proton transfer, but Lewis only needs an electron pair to move. So it covers cases like BF₃ with NH₃ and metal ions with ligands.","Lewis is about electrons, so it is the widest."],
+[4,"Which of these is an acid salt?","NaHSO₄","Na₂SO₄","SbOCl","K₂CrO₄","An acid salt still has a replaceable hydrogen after partial replacement of the acid hydrogens. NaHSO₄ still has one H.","Look for hydrogen left in the anion."],
+[4,"Which of these is a basic salt?","SbOCl","KHSO₄","NaCl","NaHCO₃","A basic salt contains an oxide or hydroxide group beside the anion, from an acid supplied in short amount. SbOCl contains the O group.","Look for an O or OH tucked into the formula."],
+[4,"Potassium alum, KAl(SO₄)₂·12H₂O, is best described as which type of salt?","A double salt","A complex salt","An acid salt","A basic salt","An alum forms from two simple salts in fixed ratio, potassium sulphate and aluminium sulphate, and shows the reactions of both. That makes it a double salt.","Two metal ions in one crystal means double."],
+[4,"Potassium hexacyanoferrate(II), K₄Fe(CN)₆, dissociates in water into which ions?","4K⁺ and one hexacyanoferrate ion with charge 4−","4K⁺, Fe²⁺ and 6CN⁻","K⁺ and one iron complex with no charge","2K⁺ and one hexacyanoferrate ion with charge 2−","It is a complex salt. The complex ion Fe(CN)₆⁴⁻ stays together as one unit and only the four K⁺ ions are released.","The charge on the complex ion balances the four K⁺."],
+/* ---------- 6 · Chemical Equilibrium and Thermodynamics ---------- */
+[6,"What is the equilibrium constant expression Kc for 2NO₂ ⇌ N₂O₄, and what are its units?","Kc = N₂O₄ over NO₂ squared, with units L/mol","Kc = N₂O₄ over NO₂ squared, with no units","Kc = NO₂ squared over N₂O₄, with units mol/L","Kc = N₂O₄ over twice NO₂, with units L/mol","Products on top and reactants below, each raised to its coefficient. So Kc = [N₂O₄] ÷ [NO₂]². The units are mol/L over (mol/L)², which leaves L/mol.","Count concentrations on top and bottom. Two on the bottom beats one on top."],
+[6,"What are the units of Kc for the reaction N₂ + 3H₂ ⇌ 2NH₃?","L²/mol²","mol²/L²","L/mol","No units","Kc = [NH₃]² ÷ ([N₂][H₂]³). The top has 2 concentration terms and the bottom has 4, so the units are (mol/L)² ÷ (mol/L)⁴ = L²/mol².","Net power is 2 minus 4, so you get minus 2 on mol/L."],
+[6,"For the esterification CH₃CH₂CO₂H + CH₃CH₂OH ⇌ CH₃CH₂CO₂CH₂CH₃ + H₂O, what are the units of Kc?","No units","mol/L","L/mol","mol²/L²","There are two concentration terms on top and two on the bottom, so the units cancel out completely.","Equal number of moles on each side means no units."],
+[6,"Which expression is the equilibrium constant for Ca(OH)₂ solid ⇌ Ca²⁺ + 2OH⁻ in water?","Ca²⁺ times OH⁻ squared","Ca²⁺ times 2OH⁻","Ca²⁺ times OH⁻ squared, divided by the solid","Ca²⁺ squared times OH⁻","Pure solids are left out of the expression. The coefficient 2 on OH⁻ becomes a power, so K = [Ca²⁺][OH⁻]².","Drop solids and liquids. Coefficients become powers."],
+[6,"For the reaction PCl₅ ⇌ PCl₃ + Cl₂, what happens when more PCl₅ is added at constant temperature?","Equilibrium shifts right and K stays the same","Equilibrium shifts left and K stays the same","Equilibrium shifts right and K increases","Nothing changes","Adding a reactant pushes the system to use it up, so it shifts to the right. K only depends on temperature, so it does not change.","Add reactant, go forward. K changes only with temperature."],
+[6,"For N₂ + 3H₂ ⇌ 2NH₃, what is the effect of increasing the pressure?","It drives the reaction to the right, giving more NH₃","It drives the reaction to the left, giving less NH₃","It has no effect","It changes the value of K only","Four moles of gas on the left form two on the right. Higher pressure favours the side with fewer molecules, so more NH₃ is made.","High pressure goes to fewer gas moles."],
+[6,"What is the effect of changing pressure on the equilibrium N₂ + O₂ ⇌ 2NO?","No effect, since the gas moles are the same on both sides","It shifts right","It shifts left","It makes the reaction stop","Two moles of gas on the left and two on the right. A pressure change cannot favour either side.","Same number of gas moles on each side means pressure does nothing."],
+[6,"The reaction H₂ + I₂ ⇌ 2HI gives off heat. What happens when the temperature is raised?","Equilibrium shifts left and less HI forms","Equilibrium shifts right and more HI forms","Nothing shifts, since the gas moles are the same","The value of K increases","Heat is a product of an exothermic reaction. Adding heat pushes the system to use it up by shifting left, so HI decomposes and K falls.","Treat heat as a product. Add it and you go backward."],
+[6,"What is the effect of a catalyst on a system at equilibrium?","It helps equilibrium to be reached faster without changing its position","It shifts equilibrium to the right","It shifts equilibrium to the left","It increases the equilibrium constant","A catalyst speeds up both forward and backward reactions equally. It does not change the position or the value of K.","Catalyst is only about speed, never about position."],
+[6,"If 600 kJ of heat is added to a system and 450 kJ of work is done on it, what is the change in internal energy?","+1050 kJ","+150 kJ","−150 kJ","−1050 kJ","ΔE = q + w. Heat absorbed is positive and work done on the system is positive, so ΔE = 600 + 450 = +1050 kJ.","Energy going in carries a plus sign, and you add everything that goes in."],
+[6,"A reaction C + H₂O → CO + H₂ was carried out at 27°C. The enthalpy change was 4500 J and the entropy change was 12 J/K. What is ΔG?","900 J","−900 J","4488 J","1200 J","T = 27 + 273 = 300 K. TΔS = 300 × 12 = 3600 J. ΔG = ΔH − TΔS = 4500 − 3600 = 900 J.","Change to kelvin before you multiply by entropy."],
+[6,"The reaction above has ΔG = +900 J at 27°C. What does that tell you?","It is not spontaneous in the forward direction at this temperature","It is spontaneous in the forward direction","It is at equilibrium","It is exothermic","A positive ΔG means the forward reaction will not go on its own. It would be spontaneous in the reverse direction.","Negative ΔG goes, positive ΔG does not."],
+/* ---------- 7 · Chemical Kinetics ---------- */
+[7,"For the reaction A → P, the rate is 0.050 M/hr at 0.170 M, 0.100 M/hr at 0.340 M and 0.200 M/hr at 0.680 M. What is the order of the reaction?","First order","Zero order","Second order","Third order","Each time the concentration doubles, the rate doubles. That means rate is directly proportional to concentration, which is first order.","Double the concentration and the rate doubles: first order."],
+[7,"For the reaction A → P, the rate is 0.050 M/hr when A is 0.170 M, and 0.100 M/hr when A is 0.340 M. What is the rate constant?","0.294 per hour","0.0085 per hour","3.40 per hour","0.050 per hour","For first order, rate = k[A]. So k = 0.050 ÷ 0.170 = 0.294 per hour. The other rows give the same value.","First order: rate divided by concentration is k."],
+[7,"A reaction rate doubles when the concentration of A doubles, and it quadruples when the concentration of B doubles. What is the overall order?","Third order","Second order","Fourth order","First order","It is first order in A and second order in B. The overall order is the sum of the exponents, 1 + 2 = 3.","Double gives 2 to the power x. 2 means x is 1, and 4 means x is 2."],
+[7,"For 2NO + H₂ → N₂O + H₂O taking place in one elementary step, what is the molecularity?","Termolecular","Bimolecular","Unimolecular","Tetramolecular","Three molecules, two NO and one H₂, collide at once. That makes it termolecular.","Count the reactant molecules in a one-step reaction."],
+[7,"For the first-order reaction, what is the formula connecting half-life and the rate constant?","t½ = 0.693 ÷ k","t½ = 1 ÷ k times the starting concentration","t½ = starting concentration ÷ 2k","t½ = k ÷ 0.693","Putting [A] = [A]₀/2 into ln[A]₀/[A] = kt gives ln 2 = kt½. So t½ = 0.693 ÷ k, and it does not depend on concentration.","First-order half-life never depends on how much you start with."],
+[7,"For a second-order reaction, which equation gives the half-life?","t½ = 1 ÷ k times the starting concentration","t½ = 0.693 ÷ k","t½ = starting concentration ÷ 2k","t½ = 3 ÷ 2k times the starting concentration squared","Second order uses 1/[A] − 1/[A]₀ = kt. At half of [A]₀ this gives t½ = 1 ÷ (k[A]₀).","Second order half-life depends on the starting concentration. Third order has the squared one."],
+[7,"On a plot of ln k against 1/T, what does the slope equal?","−Ea ÷ R","Ea ÷ R","ln A","−R ÷ Ea","From ln k = ln A − Ea/RT, a plot of ln k against 1/T is a straight line with slope −Ea/R and intercept ln A.","The minus sign is there because k goes up when 1/T goes down."],
+/* ---------- 8 · Nuclear Chemistry ---------- */
+[8,"What is the missing nuclide in ²³⁵₉₂U + ¹₀n → ⁹⁰₃₈Sr + ? + 3 ¹₀n?","¹⁴³₅₄Xe","¹⁴⁴₅₄Xe","¹⁴³₅₆Ba","¹³⁶₅₄Xe","Mass on the left is 235 + 1 = 236 and charge is 92. The right already has 90 + 3 = 93 mass and 38 charge. The missing nuclide has mass 143 and atomic number 54, which is xenon.","Balance the top numbers and the bottom numbers separately."],
+[8,"In the reaction ²⁵⁴₉₈Cf → ?Pd + ¹³²₅₂Te + 4 ¹₀n, what is the mass number and atomic number of palladium?","Mass 118 and atomic number 46","Mass 122 and atomic number 46","Mass 118 and atomic number 50","Mass 114 and atomic number 46","Mass: 254 − 132 − 4 = 118. Atomic number: 98 − 52 = 46, and that is palladium.","Take everything else away from the top and bottom numbers."],
+[8,"²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂α, and then ²³⁴₉₀Th is formed again together with a gamma ray. What are the mass and atomic numbers of gamma?","0 and 0","1 and 0","0 and 1","4 and 2","A gamma ray is pure energy. It carries no mass number and no charge, so the thorium stays the same.","Gamma changes nothing in the nucleus."],
+[8,"Americium-243 is an alpha emitter used in smoke detectors. What is the nuclear equation for its alpha emission?","²⁴³₉₅Am → ²³⁹₉₃Np + ⁴₂He","²⁴³₉₅Am → ²³⁹₉₄Pu + ⁴₂He","²⁴³₉₅Am → ²⁴³₉₆Cm + ⁰₋₁e","²⁴³₉₅Am → ²³⁹₉₃Np + ⁴₂He²⁻","Alpha emission lowers the mass by 4 to 239 and the atomic number by 2 to 93. Element 93 is neptunium.","Alpha takes away 4 mass units and 2 protons."],
+[8,"If the half-life of a radioactive material is 60 days, what fraction of the original nuclei remains after 120 days?","One quarter","One half","One eighth","Three quarters","120 days is two half-lives. Half of a half is 1/4.","Number of half-lives is time over half-life, then halve that many times."],
+[8,"Iron-59, used to diagnose anaemia, has a half-life of 45 days. What fraction of it is left after 90 days?","One quarter","One half","One eighth","One sixteenth","90 days is two half-lives of 45 days. Remaining fraction is (1/2)² = 1/4.","Two half-lives gives 1 over 4."],
+[8,"Bismuth-210 has a half-life of 5 days. How much of a 100 g sample is still bismuth-210 after 10 days?","25 g","50 g","75 g","12.5 g","10 days is two half-lives. 100 g becomes 50 g, then 25 g.","Halve once for every half-life that passes."],
+[8,"What is the formula connecting the decay constant λ and half-life?","λ = 0.693 ÷ t½","λ = t½ ÷ 0.693","λ = 0.693 × t½","λ = 1 ÷ t½","The decay constant is the fraction of atoms decaying per unit time, and λ = ln 2 ÷ t½ = 0.693 ÷ t½.","Long half-life means small decay constant."],
+[8,"Carbon-14 decays by beta emission. Which equation is correct?","¹⁴₆C → ¹⁴₇N + ⁰₋₁e","¹⁴₆C → ¹⁴₅B + ⁰₊₁e","¹⁴₆C → ¹⁰₄Be + ⁴₂He","¹⁴₆C → ¹⁴₇N + ⁴₂He","In beta emission a neutron becomes a proton and an electron is released. The mass stays 14 and the atomic number rises from 6 to 7, which is nitrogen.","Beta keeps the mass the same and raises Z by one."],
+[8,"Carbon-11 undergoes positron emission. What is the product nucleus?","¹¹₅B","¹¹₇N","¹⁰₆C","¹¹₆C","A positron has charge +1 and almost no mass. The nucleus loses one unit of atomic number, so 6 becomes 5. The mass stays at 11, which is boron.","Positron emission lowers Z by one."],
+[8,"What happens to the nucleus of an atom when it undergoes electron capture, as in ⁸¹₃₇Rb + ⁰₋₁e?","Atomic number drops by 1 and mass number stays the same","Atomic number rises by 1 and mass number stays the same","Atomic number drops by 2 and mass drops by 4","Neither number changes","The nucleus takes in an inner electron, which turns a proton into a neutron. Z falls from 37 to 36, which is krypton-81.","Electron capture looks like positron emission in the result."],
+[8,"Which of these is a correct nuclear transmutation of nitrogen-14 by bombardment with alpha particles?","¹⁴₇N + ⁴₂He → ¹⁷₈O + ¹₁H","¹⁴₇N + ⁴₂He → ¹⁶₈O + ²₁H","¹⁴₇N + ⁴₂He → ¹⁸₉F","¹⁴₇N + ⁴₂He → ¹⁷₇N + ¹₁H","Total mass is 14 + 4 = 18 and charge is 7 + 2 = 9. Oxygen-17 and a proton give 17 + 1 = 18 and 8 + 1 = 9.","Add the top numbers and the bottom numbers on the left, and match them on the right."],
+[8,"What is the main difference between nuclear fission and nuclear fusion?","Fission splits heavy nuclei, fusion joins light nuclei and needs very high temperature","Fission joins light nuclei, fusion splits heavy nuclei","Fission needs very high temperature, fusion does not","Both split heavy nuclei but at different speeds","Fission breaks a heavy unstable nucleus such as uranium into smaller ones. Fusion joins small nuclei like hydrogen isotopes, and it is hard to start because it needs very high temperature.","Fission is for splitting, fusion is for joining, and the sun runs on fusion."],
+[8,"Which radioisotope is used in radiotherapy to destroy cancer cells?","Cobalt-60","Iodine-131 for bones","Phosphorus-32","Carbon-14","Gamma rays from cobalt-60 destroy cancer cells. Iodine-131 is used for the thyroid gland, and phosphorus-32 is used to trace fertilizer in plants.","Cobalt for cancer."],
+[8,"Which radioisotope is used to study the effectiveness of the thyroid gland?","Iodine-131","Cobalt-60","Phosphorus-32","Barium-131 on the thyroid","The thyroid takes up iodine to make thyroxin, so radioactive iodine-131 shows how well the gland works. It can also treat some cancers.","Thyroid takes iodine."],
+/* ---------- 9 · Colligative Properties ---------- */
+[9,"Calculate the vapour pressure at 40°C of a solution of 95.0 g glycerine, 92.1 g/mol, in 190.0 g ethanol, 46.0 g/mol. Pure ethanol is 135.3 torr at 40°C and glycerine is non-volatile.","108 torr","135 torr","27.1 torr","86.1 torr","Glycerine is 1.03 mol and ethanol is 4.13 mol. Mole fraction of ethanol = 4.13 ÷ 5.16 = 0.80. Vapour pressure = 0.80 × 135.3 = 108 torr.","Raoult's law: mole fraction of solvent times pure vapour pressure."],
+[9,"In the glycerine and ethanol solution, with pure ethanol at 135.3 torr and mole fraction of glycerine 0.20, what is the vapour pressure lowering?","27.1 torr","108 torr","0.20 torr","135.3 torr","The lowering is the mole fraction of the solute times the pure solvent pressure: 0.20 × 135.3 = 27.1 torr.","Lowering uses the solute fraction. New pressure uses the solvent fraction."],
+[9,"Calculate the freezing point of a solution of 25.0 g sucrose, 342.3 g/mol, in 100.0 g water. Kf of water is 1.86°C per molal.","−1.36°C","1.36°C","−0.73°C","−13.6°C","Sucrose is 25.0 ÷ 342.3 = 0.073 mol. In 0.1000 kg of water this is 0.73 m. ΔTf = 1.86 × 0.73 = 1.36°C, so the solution freezes at 0 − 1.36 = −1.36°C.","Freezing point goes down from the pure solvent value."],
+[9,"Calculate the boiling point elevation when 1.0 g of glycerine, 92.1 g/mol, is dissolved in 47.9 g of water. Kb for water is 0.512°C per molal.","0.118°C","0.512°C","1.18°C","0.0118°C","Moles of glycerine are 1.0 ÷ 92.1 = 0.011 mol. Molality = 0.011 ÷ 0.0479 = 0.23 m. ΔTb = 0.512 × 0.23 = 0.118°C.","Water must be in kg: 47.9 g is 0.0479 kg."],
+[9,"Haemoglobin solution containing 20.0 g in 1 L has an osmotic pressure of 5.92 torr at 22°C. What is the molar mass of haemoglobin? R = 0.08206 L atm per mol K and 760 torr = 1 atm.","62,500 g/mol","6,250 g/mol","625,000 g/mol","20.0 g/mol","5.92 torr is 7.8 × 10⁻³ atm. M = π ÷ RT = 7.8 × 10⁻³ ÷ (0.08206 × 295) = 3.2 × 10⁻⁴ mol/L. Molar mass = 20.0 ÷ 3.2 × 10⁻⁴ = 62,500 g/mol.","Torr to atm, Celsius to kelvin, then molar mass is grams over moles."],
+[9,"Assuming an ideal solution, what is the vapour pressure of a solution with equal mole fractions of benzene and toluene? Pure benzene is 95.1 mmHg and pure toluene is 28.4 mmHg.","61.8 mmHg","123.5 mmHg","95.1 mmHg","47.6 mmHg","Each component contributes mole fraction times its pure pressure. 0.5 × 95.1 + 0.5 × 28.4 = 61.8 mmHg.","Both liquids are volatile, so add the two contributions."],
+[9,"What is the vapour pressure at 23°C of a solution of 10.0 g wax, C₂₂H₄₆, in 40.0 g CCl₄? Pure CCl₄ is 100 torr. C = 12, H = 1, Cl = 35.5.","89.0 torr","11.0 torr","100 torr","25.0 torr","Wax is 10.0 ÷ 310 = 0.0322 mol and CCl₄ is 40.0 ÷ 154 = 0.260 mol. Mole fraction of CCl₄ = 0.260 ÷ 0.292 = 0.890. Vapour pressure = 0.890 × 100 = 89.0 torr.","Only the solvent counts for pressure. Wax is non-volatile."],
+[9,"Calculate the vapour pressure at 20°C of a solution of 0.25 mol sucrose and 75.0 g urea, 60.06 g/mol, in 1 kg of water, 18.02 g/mol. Pure water is 17.5 mmHg at 20°C.","17.0 mmHg","17.5 mmHg","0.46 mmHg","16.4 mmHg","Urea is 1.25 mol, sucrose 0.25 mol and water 55.5 mol. Mole fraction of water = 55.5 ÷ 57.0 = 0.974. Pressure = 0.974 × 17.5 = 17.0 mmHg.","Add the moles of every solute together before finding the water fraction."],
+[9,"What is the freezing point of a solution of 92.1 g of I₂, 253.8 g/mol, in 800.0 g chloroform? Kf of chloroform is 4.68°C per molal and its freezing point is −63.5°C.","−65.6°C","−2.1°C","−61.4°C","−67.7°C","I₂ is 92.1 ÷ 253.8 = 0.363 mol. Molality = 0.363 ÷ 0.800 = 0.454 m. ΔTf = 4.68 × 0.454 = 2.12°C. Freezing point = −63.5 − 2.12 = −65.6°C.","Subtract the depression from the solvent's freezing point."],
+[9,"A solution of 1.5 g hemocyanin in 250 mL of water has an osmotic pressure of 0.00342 atm at 277 K. What is the molar mass of hemocyanin? R = 0.08206 L atm per mol K.","About 4.0 × 10⁴ g/mol","About 1.0 × 10⁴ g/mol","About 1.6 × 10⁵ g/mol","About 6.0 g/mol","M = π ÷ RT = 0.00342 ÷ (0.08206 × 277) = 1.5 × 10⁻⁴ mol/L. In 0.250 L that is 3.8 × 10⁻⁵ mol. Molar mass = 1.5 ÷ 3.8 × 10⁻⁵ = about 4.0 × 10⁴ g/mol.","Moles come from M times the actual volume, not per liter."],
+[9,"Using the hemocyanin solution with 1.5 × 10⁻⁴ molal concentration and Kf of 1.86°C per molal, what is its freezing point?","About −0.0003°C","About −0.28°C","About −1.86°C","About 0.0003°C","ΔTf = 1.86 × 1.5 × 10⁻⁴ = 2.8 × 10⁻⁴°C. The solution freezes just below 0°C, at about −0.0003°C, far too small to measure, which is why osmotic pressure is used for big molecules.","Large molecules give tiny molality, so the freezing point barely changes."],
+/* ---------- 10 · Redox and Electrochemistry ---------- */
+[10,"In 2H₂S + SO₂ → 3S + 2H₂O, which species is the oxidant?","SO₂","H₂S","S","H₂O","Sulphur in SO₂ goes from +4 to 0, so SO₂ is reduced. A species that is reduced is the oxidant because it oxidizes H₂S, where sulphur goes from −2 to 0.","The oxidant is the one whose oxidation number goes down."],
+[10,"In 2SO₂ + O₂ → 2SO₃, which species is the reductant?","SO₂","O₂","SO₃","Both SO₂ and O₂","Sulphur goes from +4 in SO₂ to +6 in SO₃, so it is oxidized. That makes SO₂ the reducing agent. Oxygen goes from 0 to −2 and is the oxidant.","Reductant loses electrons, so its oxidation number goes up."],
+[10,"In 2Mg + O₂ → 2MgO, which statement is correct?","Mg is the reductant and O₂ is the oxidant","Mg is the oxidant and O₂ is the reductant","Both Mg and O₂ are reductants","Both Mg and O₂ are oxidants","Magnesium goes from 0 to +2, so it is oxidized and acts as the reductant. Oxygen goes from 0 to −2, so it is reduced and acts as the oxidant.","Metal loses electrons, oxygen takes them."],
+[10,"In CuO + H₂ → Cu + H₂O, which species is the oxidizing agent?","CuO","H₂","Cu","H₂O","CuO loses oxygen, so it is reduced to Cu. The species that is reduced is the oxidizing agent, because it oxidizes the hydrogen.","Loses oxygen means reduced, and reduced means oxidizing agent."],
+[10,"In H₂S + SO₂ → S + H₂O, how does the oxidation number of sulphur in H₂S change?","From −2 to 0","From +4 to 0","From 0 to +2","From −2 to −1","Hydrogen is +1, so sulphur in H₂S is −2. It ends as free sulphur at 0, so it rises and H₂S is oxidized.","Free elements are always 0."],
+[10,"Which of these changes is an oxidation?","Na → Na⁺ + e⁻","Cl₂ + 2e⁻ → 2Cl⁻","Fe³⁺ + e⁻ → Fe²⁺","Cr₂O₇²⁻ → Cr³⁺","Sodium loses an electron, so it is oxidized. The other three show a gain of electrons.","Oxidation is loss of electrons, as in OIL RIG."],
+[10,"What colour change shows that a reducing agent has reacted with acidified KMnO₄?","Purple to colourless","Orange to green","Brown to blue","Colourless to purple","MnO₄⁻ is purple and it is reduced to Mn²⁺, which is nearly colourless. So the purple colour disappears.","Permanganate loses its purple."],
+[10,"What colour change shows that a reducing agent has reacted with acidified K₂Cr₂O₇?","Orange to green","Purple to colourless","Green to orange","Yellow to brown","Cr₂O₇²⁻ is orange and it is reduced to Cr³⁺, which is green.","Dichromate goes orange to green."],
+[10,"What colour change shows that a reducing agent has changed Fe³⁺ to Fe²⁺?","Brown solution to green","Green solution to brown","Purple to colourless","Colourless to blue","Fe³⁺ solution is brownish yellow and Fe²⁺ is pale green. Gaining an electron turns it green.","Iron three plus is brown, iron two plus is green."],
+[10,"Which test shows that an oxidizing agent is present?","It liberates iodine from KI, and the iodine turns starch blue black","It turns acidified KMnO₄ colourless","It turns orange dichromate green","It turns Fe³⁺ brown into green Fe²⁺","An oxidizing agent oxidizes iodide to iodine. The liberated iodine blackens starch paper. The other three are tests for reducing agents.","KI and starch is the oxidizer test."],
+[10,"What is the oxidation number of Li in Li₂O?","+1","+2","−1","0","Alkali metals always have +1 in compounds. Two Li at +1 balance the oxygen at −2.","Group one is plus one."],
+[10,"What is the oxidation number of P in PF₃?","+3","+5","−3","+1","Fluorine is always −1, so three F give −3. P must be +3 for the molecule to add up to zero.","Fluorine is always minus one."],
+[10,"What is the oxidation number of N in HNO₃?","+5","+3","+4","−3","H is +1 and three O give −6. So 1 + x − 6 = 0 and x = +5.","Write the sum and solve: 1 + x − 6 = 0."],
+[10,"What is the oxidation number of Cr in Cr₂O₇²⁻?","+6","+3","+7","+12","Seven O give −14 and the ion charge is −2. So 2y − 14 = −2, and y = +6.","Two chromium share +12, so each is +6."],
+[10,"What is the oxidation number of N in NH₄⁺?","−3","+3","+4","+1","H is +1 and four H give +4. The ion charge is +1, so N + 4 = +1 and N = −3.","Sum of oxidation numbers equals the ion charge."],
+[10,"In which compound does hydrogen have an oxidation number of −1?","NaH","H₂O","HCl","NH₃","In metal hydrides hydrogen is bonded to a metal and carries −1. In the others it is +1.","Hydrogen is minus one only when the partner is a metal."],
+[10,"In which compound does oxygen have an oxidation number of −1?","H₂O₂","MgO","H₂O","CO₂","In peroxides the O to O bond makes each oxygen −1. In ordinary oxides it is −2.","Peroxide means minus one."],
+[10,"Which of these reactions is a decomposition redox reaction?","2KClO₃ → 2KCl + 3O₂","Zn + CuSO₄ → ZnSO₄ + Cu","2Mg + O₂ → 2MgO","NaOH + HCl → NaCl + H₂O","One compound breaks into KCl and free oxygen, and the oxygen goes from −2 to 0. That makes it a decomposition redox reaction.","One reactant, free element among the products."],
+[10,"Why does Zn displace Ag⁺ from Ag₂SO₄ solution?","Zn is above Ag in the activity series","Zn is below Ag in the activity series","Zn is a halogen","Zn is a better oxidizing agent than Ag⁺","A metal higher in the activity series reduces the ions of a metal below it. Zn is above Ag, so it gives electrons to Ag⁺.","Higher metal pushes lower metal out of its salt."],
+[10,"In 5Ca + V₂O₅ → 2V + 5CaO, which species is the reducing agent?","Ca","V₂O₅","V","CaO","Calcium goes from 0 to +2 and loses electrons. That makes it the reducing agent, and it is above vanadium in the series.","Reductant is the metal that is used up."],
+[10,"In TiCl₄ + 2Mg → Ti + 2MgCl₂, which species is oxidized?","Mg","Ti","TiCl₄","MgCl₂","Magnesium goes from 0 to +2. A rise in oxidation number means oxidation.","The metal that becomes an ion is the one oxidized."],
+[10,"Fluorine reacts with KCl to give KF and Cl₂, but Cl₂ does not react with KF. Why?","F₂ is a stronger oxidizing agent than Cl₂","Cl₂ is a stronger oxidizing agent than F₂","KF is insoluble","Fluorine is a metal","Oxidizing power falls down the group. So F₂ can take electrons from Cl⁻, but Cl₂ cannot take them from F⁻.","Higher halogen displaces lower halogen."],
+[10,"What happens when sodium is dropped into cold water, 2Na + 2H₂O → 2NaOH + H₂?","Na is oxidized and hydrogen in water is reduced","Na is reduced and hydrogen in water is oxidized","Both Na and hydrogen are oxidized","No change in oxidation number occurs","Sodium goes from 0 to +1 and hydrogen goes from +1 in water to 0 in H₂. So sodium is the reductant and water is the oxidant.","Reactive metals push hydrogen out of water."],
+[10,"In Cl₂ + 2KBr → 2KCl + Br₂, which species is the oxidizing agent?","Cl₂","KBr","KCl","Br₂","Chlorine goes from 0 to −1 and is reduced. Chlorine is the stronger oxidizing agent, so it displaces bromine.","The one that takes electrons is the oxidizing agent."],
+[10,"Which reaction is a disproportionation?","2H₂O₂ → 2H₂O + O₂","Zn + CuSO₄ → ZnSO₄ + Cu","2Mg + O₂ → 2MgO","Cl₂ + 2KBr → 2KCl + Br₂","In H₂O₂ oxygen is −1. It becomes −2 in water and 0 in O₂. So the same element is both reduced and oxidized.","Same element goes up and down in one reaction."],
+[10,"In Cl₂ + 2NaOH → NaClO + NaCl + H₂O, what happens to chlorine?","It is both oxidized and reduced","It is only oxidized","It is only reduced","Its oxidation number stays 0","Chlorine goes from 0 to +1 in NaClO and from 0 to −1 in NaCl. That is disproportionation.","One element, two different products with different oxidation numbers."],
+[10,"For 2Sr + O₂ → 2SrO, which is the oxidation half-reaction?","Sr → Sr²⁺ + 2e⁻","O₂ + 4e⁻ → 2O²⁻","Sr + 2e⁻ → Sr²⁻","O₂ → 2O²⁻ + 4e⁻","Strontium loses two electrons, so it is oxidized and acts as the reductant. The oxygen half-reaction is the reduction one.","Electrons on the right side means oxidation."],
+[10,"For 3Mg + N₂ → Mg₃N₂, which are the correct half-reactions?","3Mg → 3Mg²⁺ + 6e⁻ and N₂ + 6e⁻ → 2N³⁻","3Mg + 6e⁻ → 3Mg²⁺ and N₂ → 2N³⁻ + 6e⁻","Mg → Mg³⁺ + 3e⁻ and N₂ + 3e⁻ → N³⁻","3Mg → 3Mg²⁺ + 3e⁻ and N₂ + 3e⁻ → 2N³⁻","Each Mg gives two electrons, and three Mg give six. Two N atoms take three electrons each, which is six. So the electrons match.","Count electrons on both sides and make them equal."],
+[10,"In Zn + I₂ → ZnI₂, which species is the reductant?","Zn","I₂","ZnI₂","Neither","Zinc goes from 0 to +2 and iodine from 0 to −1. Zinc loses electrons, so it is the reductant, and iodine is the oxidant.","Metals are reductants when they form ions."],
+[10,"In 2Li + H₂ → 2LiH, what is the oxidation number of hydrogen in LiH?","−1","+1","0","+2","Lithium is +1, so hydrogen must be −1 in this metal hydride. Hydrogen is therefore reduced.","Hydride means minus one."],
+[10,"What is the oxidation number of sulphur in H₂SO₄?","+6","+4","+2","−2","Two H give +2 and four O give −8. So 2 + x − 8 = 0 and x = +6.","Sulphur is the one left to balance the sum."],
+[10,"What is the oxidation number of sulphur in SO₂?","+4","+6","+2","−4","Two oxygen give −4, so sulphur must be +4.","Two oxygen means minus four, so S is plus four."],
+[10,"What is the oxidation number of sulphur in HS⁻?","−2","−1","+2","+1","Hydrogen is +1 and the ion has a charge of −1. So 1 + x = −1 and x = −2.","Sum equals the ion charge."],
+[10,"What is the oxidation number of Ti in TiO₂?","+4","+2","−4","+3","Two oxygen give −4, so titanium is +4.","Balance the two oxygen."],
+[10,"What is the oxidation number of Mo in MoO₄²⁻?","+6","+4","+8","+2","Four oxygen give −8 and the ion charge is −2. So x − 8 = −2, which gives x = +6.","Add 8 then take away 2."],
+[10,"What is the oxidation number of Pt in PtCl₄²⁻?","+2","+4","−2","+6","Four Cl at −1 give −4. The ion charge is −2, so Pt = +2.","Cancel the chlorine charge, and what is left is the ion charge."],
+[10,"What is the oxidation number of Cl in ClF₃?","+3","−3","+1","+5","Fluorine is always −1, so three F give −3. Chlorine must be +3.","Fluorine wins every time."],
+[10,"What is the oxidation number of Al in Al₂O₃?","+3","+2","+6","−3","Three O give −6 and two Al share +6, so each Al is +3.","Divide the total by the number of atoms."],
+[10,"What is the oxidation number of Cl in HClO₄?","+7","+5","+3","+1","H is +1 and four O give −8. So 1 + x − 8 = 0 and x = +7.","Perchloric has the highest oxidation state."],
+[10,"What is the oxidation number of Br in HBrO₄?","+7","+5","−1","+3","H is +1 and four O give −8. So Br is +7, the same pattern as in HClO₄.","Same pattern as perchloric acid."],
+[10,"What is the oxidation number of Cl in HClO₃?","+5","+7","+3","+1","H is +1 and three O give −6. So 1 + x − 6 = 0 and x = +5.","One less oxygen than HClO₄ takes off two."],
+[10,"What is the oxidation number of Cl in HClO₂?","+3","+5","+1","−3","H is +1 and two O give −4. So 1 + x − 4 = 0 and x = +3.","Count oxygen, multiply by two, then add one for hydrogen."],
+[10,"What is the oxidation number of Cl in HClO?","+1","+3","−1","0","H is +1 and one O is −2. So Cl must be +1.","Hypochlorous: the smallest positive state."],
+[10,"In balancing Cr₂O₇²⁻ + C → Cr³⁺ + CO₂ in acid, what is the balanced equation?","2Cr₂O₇²⁻ + 16H⁺ + 3C → 4Cr³⁺ + 8H₂O + 3CO₂","Cr₂O₇²⁻ + 14H⁺ + C → 2Cr³⁺ + 7H₂O + CO₂","2Cr₂O₇²⁻ + 28H⁺ + 3C → 4Cr³⁺ + 14H₂O + 3CO₂","Cr₂O₇²⁻ + 8H⁺ + 3C → 2Cr³⁺ + 4H₂O + 3CO₂","Chromium takes 6 electrons per dichromate and carbon gives 4. The lowest common number is 12, so use 2 dichromate and 3 carbon. After cancelling the water and H⁺, you get 16H⁺ and 8H₂O.","Make the electrons 12 on both sides, then cancel what appears on both sides."],
+[10,"In the balanced equation 6I⁻ + 2MnO₄⁻ + 4H₂O → 3I₂ + 2MnO₂ + 8OH⁻, how many electrons are transferred in total?","6","2","3","8","Each iodide gives one electron, so six iodide gives six. Each MnO₄⁻ takes three electrons, so two take six.","Electrons given must equal electrons taken."],
+[10,"Balance Cr₂O₇²⁻ + C₂O₄²⁻ → Cr³⁺ + CO₂ in acid. What is the coefficient of CO₂?","6","3","2","12","Dichromate takes 6 electrons and each oxalate gives 2, so 3 oxalate are needed. Three oxalate give 6 CO₂. The full equation is Cr₂O₇²⁻ + 14H⁺ + 3C₂O₄²⁻ → 2Cr³⁺ + 7H₂O + 6CO₂.","Oxalate has two carbon, so multiply by the number of oxalate."],
+[10,"Balance S₂O₃²⁻ + I₂ → I⁻ + S₄O₆²⁻. What is the coefficient of S₂O₃²⁻?","2","1","3","4","Four sulphur atoms are needed for S₄O₆²⁻, so two S₂O₃²⁻ are used. The balanced equation is 2S₂O₃²⁻ + I₂ → 2I⁻ + S₄O₆²⁻.","Match the sulphur first."],
+[10,"Balance CN⁻ + MnO₄⁻ → CNO⁻ + MnO₂ in basic medium. What are the coefficients of CN⁻ and MnO₄⁻?","3 and 2","2 and 3","1 and 1","6 and 2","Carbon in CN⁻ goes from +2 to +4, giving 2 electrons. Manganese goes from +7 to +4 and takes 3. So the electrons balance with 3 CN⁻ and 2 MnO₄⁻: 3CN⁻ + 2MnO₄⁻ + H₂O → 3CNO⁻ + 2MnO₂ + 2OH⁻.","Cross the electron numbers over."],
+[10,"Balance Bi(OH)₃ + SnO₂²⁻ → SnO₃²⁻ + Bi in basic medium. What are the coefficients of Bi(OH)₃ and SnO₂²⁻?","2 and 3","3 and 2","1 and 1","2 and 2","Bi goes from +3 to 0 and takes 3 electrons. Tin goes from +2 to +4 and gives 2. So 2 Bi(OH)₃ and 3 SnO₂²⁻: 2Bi(OH)₃ + 3SnO₂²⁻ → 3SnO₃²⁻ + 2Bi + 3H₂O.","Electrons taken must equal electrons given, so cross them over."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='CHM101', LABEL='CHM 101', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('CHM101');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
