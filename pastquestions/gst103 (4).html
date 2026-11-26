@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GST 103 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">GST 103</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 40</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">40 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>GST 103 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">40</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · GST 103 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Library & Study Skills",
+  "Types of Libraries",
+  "Serials, Books & Reference",
+  "Copyright & Plagiarism",
+  "Library Services & FUOYE",
+  "Computers & ICT",
+  "Catalogue & Software",
+  "Classification & Shelving",
+  "Computer Security"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Library & Study Skills ---------- */
+[0,"Which skills guide library users to make maximum use of library resources such as books and journals?","Library skills","Study skills","Listening skills","Reading skills","These skills are about finding and using what the library holds.","Library resources need library skills."],
+[0,"What is the full meaning of SQ3R?","Survey, Question, Read, Recite and Review","Solve, Query, Recite, Read and Review","Solution, Question, Recite, Read and Review","Survey, Query, Read, Recite and Review","SQ3R is a five step reading method.","One S, one Q, three Rs."],
+[0,"Which is an educational resource centre, a nest where scholars are hatched and a storehouse of knowledge?","Library","School","Academy","Store house","These descriptions all point to the library.","Storehouse of knowledge = library."],
+[0,"All of these are reasons for studying the use of the library EXCEPT","Needing it to meet peers","Needing it to be a successful scholar","Getting acquainted with library resources","It is a required course for undergraduates","The course is about using resources, not socialising.","Meeting friends is not the aim."],
+[0,"The library aids _____","All of these","Learning","Research","Teaching","The answer is All of these.","Link the key words in the question to All of these."],
+[0,"_____ are skills guide in the studying and understanding the information in a book.","Study skills","Library skills","User skills","Reading skills","The answer is Study skills.","Link the key words in the question to Study skills."],
+[0,"What does the letter S in SQ3R study skills stand for?","Survey","Study","Service","Skill","The answer is Survey.","Link the key words in the question to Survey."],
+/* ---------- 1 · Types of Libraries ---------- */
+[1,"Which type of library is attached to universities, polytechnics and colleges of education?","Academic library","Public library","Private library","National library","Libraries of tertiary institutions are academic libraries.","Tertiary = academic."],
+[1,"Which is defined as the apex library of any nation?","National library","Public library","Academic library","Private library","The national library sits at the top.","Apex = national."],
+[1,"FUOYE library is an example of which type of library?","Academic library","Private library","Public library","School library","It serves a university.","University = academic."],
+[1,"Libraries owned by an individual or an organization such as a church are","Private libraries","Public libraries","National libraries","Academic libraries","Ownership by a person or group makes them private.","Own = private."],
+[1,"A library that is attached to a tertiary institution is:","An Academic library","A School library","A National library","A Research library","The answer is An Academic library.","Link the key words in the question to An Academic library."],
+[1,"_____ library is personally owned by an individual or an organization.","Private","Special","Self","Academic","The answer is Private.","Link the key words in the question to Private."],
+[1,"An example of an Academic Library is?","FUOYE Library","Ekiti State Library","Central Bank of Nigeria Library","International Institute of Tropical Agriculture Library","The answer is FUOYE Library.","Link the key words in the question to FUOYE Library."],
+[1,"An example of a Public Library is","Ekiti State Library","FUOYE Library","Central Bank of Nigeria Library","Wole Soyinka Library","The answer is Ekiti State Library.","Link the key words in the question to Ekiti State Library."],
+[1,"The Mother of all libraries in Nigeria is","National Library","State library","FUOYE Library","Senatorial Library","The answer is National Library.","Link the key words in the question to National Library."],
+[1,"The advent of ICT has brought about different version of libraries except","Traditional library","Automated library","Digital Library","Virtual Library","The answer is Traditional library.","Link the key words in the question to Traditional library."],
+/* ---------- 2 · Serials, Books & Reference ---------- */
+[2,"What is the full meaning of ISSN?","International Standard Serial Number","International Serial Standard Number","Internal Standard Serial Number","Interrelation Standard Serial Number","ISSN identifies serial publications.","SS = Standard Serial."],
+[2,"What is the full meaning of ISBN?","International Standard Book Number","Interrelation Serial Book Number","International Serial Board Number","International Standard Board Number","ISBN identifies books.","B = Book."],
+[2,"Who defined serials as publications issued in successive parts and intended to continue indefinitely?","Osborn in 1980","Osborn in 1970","Dr. Olubanke Bankole","Dr. Akinwunmi","Your past question credits Osborn, 1980.","Osborn 80."],
+[2,"Publications issued in successive parts and intended to be published indefinitely are","Serials","Catalogues","Monographs","Reference books","Newspapers and journals are examples.","Series without end."],
+[2,"All of these show the importance of serials EXCEPT","They are used to highlight text","They contain up to date information","They are primary sources of new ideas","Their information may not appear in books","Highlighting text has nothing to do with serials.","Pick the odd one."],
+[2,"Reference sources are easily identified with which mark?","Ref or R","RF","REFs","REFEr","Your past question gives Ref or R.","R for reference."],
+[2,"All of these are examples of reference sources EXCEPT","Identification of files","Indexes and abstracts","Encyclopedias","Dictionaries","The others are all publications you consult.","A process is not a source."],
+[2,"All of these are examples of non-book materials EXCEPT","Paper","Computer","Television","Slides","Paper is the stuff of books.","Paper = book world."],
+[2,"Newspapers, journals and magazines are examples of _____","Serials","Books","Pamphlet","None of these","The answer is Serials.","Link the key words in the question to Serials."],
+[2,"A printed reading material of less than 49 pages is _____","Pamphlet","Serials","Book","Jotter","The answer is Pamphlet.","Link the key words in the question to Pamphlet."],
+[2,"When a printed reading material is more than 49 pages, it is _____","Book","Pamphlet","Serials","Jotter","The answer is Book.","Link the key words in the question to Book."],
+[2,"Films, Slides and Television are examples of _____","Audio-Visual materials","Instruments","Equipment","Objects","The answer is Audio-Visual materials.","Link the key words in the question to Audio-Visual materials."],
+[2,"The Library serial collection include the following except_____","Encyclopedia","Journals","Newspapers","Magazines","The answer is Encyclopedia.","Link the key words in the question to Encyclopedia."],
+[2,"_____ is a selection tool used for selecting serials in the library","Publisher’s catalogue","Memoir","Year book","Accession register","The answer is Publisher’s catalogue.","Link the key words in the question to Publisher’s catalogue."],
+[2,"_____ are periodic government publications which provide information on the activities of the government","Gazettes","Handbook","Manual","Directory","The answer is Gazettes.","Link the key words in the question to Gazettes."],
+[2,"A book to which you can refer for authoritative facts and quick information is _____","Reference book","Electronic books","Textbook","Classification scheme","The answer is Reference book.","Link the key words in the question to Reference book."],
+[2,"_____ is the section where Encyclopedia, Atlases and Handbooks are kept","Reference section","Cataloguing section","Acquisition section","Administrative section","The answer is Reference section.","Link the key words in the question to Reference section."],
+[2,"Journals can be classified under _____","Serials","Reference","Reserved","Book","The answer is Serials.","Link the key words in the question to Serials."],
+[2,"Encyclopedia can be classified under","Reference","Serials","Reserved","Books","The answer is Reference.","Link the key words in the question to Reference."],
+[2,"The back title of the page that gives the date of publication, publisher is called _____","verso page","Recto page","preface","Table of content","The answer is verso page.","Link the key words in the question to verso page."],
+[2,"The page of the book where the author briefly discusses aspect of the book is called","Preface","The text","Dedication","Acknowledgement","The answer is Preface.","Link the key words in the question to Preface."],
+[2,"The pages that precede the main text and usually numbered in Roman numerals is called","Preliminary page","Title page","copyright page","Initial page","The answer is Preliminary page.","Link the key words in the question to Preliminary page."],
+[2,"The right hand page of a book that usually bears odd number is called","Recto","Right hand side","Tranformation page","Verso","The answer is Recto.","Link the key words in the question to Recto."],
+[2,"The brief remark to a book by someone who is familiar with the subject matter is called","Foreword","Introduction","Appendix","Index","The answer is Foreword.","Link the key words in the question to Foreword."],
+[2,"_____a geographical dictionary that gives historical, statistical, cultural and other relevant information","Gazetteer","Gazettes","Directories","Yearbook","The answer is Gazetteer.","Link the key words in the question to Gazetteer."],
+[2,"Government publications can be referred to as","Gazettes","Gazzetteer","Yearbook","Directories","The answer is Gazettes.","Link the key words in the question to Gazettes."],
+[2,"All these are type of serials except _____","Bibliographies","Periodical","Journals","Magazine","The answer is Bibliographies.","Link the key words in the question to Bibliographies."],
+/* ---------- 3 · Copyright & Plagiarism ---------- */
+[3,"Copying another person's idea and presenting it as your own original idea is","Plagiarism","Piracy","Photocopying","Counterfeiting","Passing off ideas as yours is plagiarism.","Stealing credit = plagiarism."],
+[3,"The exclusive right given to authors and creative artists to authorize the use of their work is","Copyright","Piracy","Patent","Epilogue","Copyright protects creative works.","Right to copy."],
+[3,"_____is an act of violating copyright law when people illegally reproduce work for sale without permission from the owner of the work","Piracy","Plagiarism","Referencing","Counterfeit","The answer is Piracy.","Link the key words in the question to Piracy."],
+[3,"Copyright covers all of these categories of work EXCEPT","Photocopy","Literary Works","Cinematograph Works","Artistic Works Sound Recordings","The answer is Photocopy.","Link the key words in the question to Photocopy."],
+[3,"The full meaning of APA is","American Psychological Association","American Philosophy Association","African Psychological Association","Association of Psychological American","The answer is American Psychological Association.","Link the key words in the question to American Psychological Association."],
+/* ---------- 4 · Library Services & FUOYE ---------- */
+[4,"What is the FUOYE website?","www.fuoye.edu.ng","www.ecampus.fuoye.ng","www.fuoye.edu","www.fuoye.edu.com","Your past question gives the address ending in edu.ng.","Nigerian school: edu.ng."],
+[4,"Which site is the university portal for student registration, courses and payments?","www.ecampus.fuoye.edu.ng/portal","www.fuoye.edu.ng","www.fuoye.edu.ng/portal","www.portal.fuoye.com","Your past question gives the ecampus portal address.","Portal lives on ecampus."],
+[4,"What is the email address for FUOYE support?","support@fuoye.edu.ng","www.fuoye.edu.ng","gmail@fuoye.edu.ng","support.fuoye.edu.ng","An email address has the at sign.","support at fuoye."],
+[4,"All of these are departments in the library EXCEPT","Teaching sector","Administrative department","Technical services department","Readers services department","Teaching is not a library department.","Libraries do not run a teaching sector."],
+[4,"Where is registration done in the library?","Circulation section","Reference section","Personnel office","ICT section","The circulation desk registers users.","Register where you borrow."],
+[4,"All of these are library rules EXCEPT","All registered students may take books out of the library","Students must dress according to the FUOYE dress code","Only registered students may use the library","Students must carry their library cards","Borrowing out is not given to all as a rule here.","Not everyone takes books home."],
+[4,"Which department is the backbone of a library?","Technical services department","Electronic department","Readers services department","ICT department","Your past question names technical services.","Backbone is technical."],
+[4,"Who should a lost library card be reported to?","Circulation librarian","ICT manager","Reference librarian","University registrar","Cards are handled at circulation.","Cards belong to circulation."],
+[4,"Theft of library materials results in","Rustication or expulsion","A written pardon","A small overdue fine","A public flogging","Theft is a serious offence.","Theft is punished heavily."],
+[4,"Where is the new FUOYE library located?","Phase three","Phase one","Phase two","Administrative block","Your past question gives phase three.","New library, phase three."],
+[4,"Which of these is the correct University website?","www.fuoye.edu.ng","ww.fuoye.edu.ng","www.fouye.edu.ng","www.fuye.edu.ng","The answer is www.fuoye.edu.ng.","Link the key words in the question to www.fuoye.edu.ng."],
+[4,"_____ is the department in the library that handles matters relating to automation and internet services","Information and Communication Technology Department","Information Technology Department","Technology Department","Automation Department","The answer is Information and Communication Technology Department.","Link the key words in the question to Information and Communication Technology Department."],
+[4,"The section in which books are processed in the library is called _____","Cataloguing section","Circulation section","Reference section","ICT section","The answer is Cataloguing section.","Link the key words in the question to Cataloguing section."],
+[4,"The section that is responsible for the training of staff in the library is _____","Administrative section","Acquisition section","Cataloguing section","Technical section","The answer is Administrative section.","Link the key words in the question to Administrative section."],
+[4,"_____ and _____ are some of the services rendered in the circulation section","Charging and discharging of books","Stamping of books & Planning of library budget","Training of library staff & coordinating library systems","Printing of materials & Browsing of Internet","The answer is Charging and discharging of books.","Link the key words in the question to Charging and discharging of books."],
+[4,"Which students are allowed to use the library?","Registered","Postgraduate","Undergraduates","Pre-degree","The answer is Registered.","Link the key words in the question to Registered."],
+[4,"The Unit in the Library where Users are Registered is called","Circulation","Reception","Cataloging","Registration Point","The answer is Circulation.","Link the key words in the question to Circulation."],
+[4,"The fine imposed on a User for keeping the Library materials beyond expected period is called","Library fine","Legal fine","Date due Fine","Penalty fine","The answer is Library fine.","Link the key words in the question to Library fine."],
+[4,"Weeding in the Library is an act of _____ Materials in the Library","Removing","Adding","Complementing","Supplimenting","The answer is Removing.","Link the key words in the question to Removing."],
+/* ---------- 5 · Computers & ICT ---------- */
+[5,"Which technology is used to store, process, transmit and retrieve information using computers and communication devices?","Information and Communication Technology","Information science","Information handling","Industrial technology","ICT covers processing and communicating information.","Computers plus communication = ICT."],
+[5,"What is the full meaning of SSID?","Service Set Identifier","Servicecom Set Identification","Servicecom Set Identifier","Service Set Identification","SSID is the name of a wireless network.","ID = Identifier."],
+[5,"Which is the act of transmitting messages?","Communication","Transmitter","Information","Communication technology","Communication is the sending of messages.","Sending = communication."],
+[5,"The use of scientific knowledge, experience and resources to create products that meet human needs is","Technology","Information","Communication","Information science","Technology applies knowledge to needs.","Applied knowledge = technology."],
+[5,"What is the full meaning of WAN?","Wide Area Network","Wireless Area Network","Wireless Access Network","Wider Access Network","A WAN covers a large area.","W = Wide."],
+[5,"What is the full meaning of LAN?","Local Area Network","Land Area Network","Local Access Network","Land Access Network","A LAN covers a small area.","L = Local."],
+[5,"What is required to access library internet resources?","Username and password","Face and thumbprint","Matric number and username","ID number and password","Login details give access.","Log in."],
+[5,"All of these are operating systems EXCEPT","Infinix","Linux","Windows","Unix","Infinix is a phone brand.","Brand, not system."],
+[5,"_____ and _____ are computer operating systems","Linux & Windows","Linux & Koha","TEEAL & Windows","Ubuntu & AGORA","The answer is Linux & Windows.","Link the key words in the question to Linux & Windows."],
+[5,"All these are Microsoft Office desktop applications except _____","Windows","Word","Excel","Powerpoint","The answer is Windows.","Link the key words in the question to Windows."],
+[5,"_____ is an electronic device which is capable of receiving information or data in a particular form and of performing a sequence of operations in accordance with a predetermined but variable set of procedural instructions , called a program, to produce a result in the form of information or signal","Computer","Zinox","ICT","DELL","The answer is Computer.","Link the key words in the question to Computer."],
+[5,"_____ are the materials that can only be accessed with the application of Information and Communication Technology","Electronic materials","Information materials","Technological Materials","Information and Communication materials","The answer is Electronic materials.","Link the key words in the question to Electronic materials."],
+[5,"Series of instructions designed for a computer to carry out specific functions is referred to as _____","Software","Digital Library","Database","Programming","The answer is Software.","Link the key words in the question to Software."],
+[5,"The two main types of computer software are _____ and _____","System and application software","System and Analogue software","Digital and Application software","Digital and Analogue software","The answer is System and application software.","Link the key words in the question to System and application software."],
+[5,"_____ is an example of system software?","Operating system","Microsoft Office","Photoshop","Library software","The answer is Operating system.","Link the key words in the question to Operating system."],
+[5,"Android is an example of _____","Operating system","Library Software","Facebook Application","Phone Application","The answer is Operating system.","Link the key words in the question to Operating system."],
+[5,"_____ Software is responsible for managing variety of independent hardware components?","System software","Microsoftword software","Digital software","Application software","The answer is System software.","Link the key words in the question to System software."],
+[5,"_____ is not an example of operating system?","Desktop computer","Windows","Mac OS","Linux","The answer is Desktop computer.","Link the key words in the question to Desktop computer."],
+[5,"A collection of data, or information, specially organized for rapid search and retrieval by a computer is known as _____","Database","Software","Catalogue","Index","The answer is Database.","Link the key words in the question to Database."],
+[5,"_____ is not an example of Internet browser","Photoshop","Google Chrome","Opera mini","Internet explorer","The answer is Photoshop.","Link the key words in the question to Photoshop."],
+[5,"One of the examples of Micro Computer is","Laptop computer","Ubuntu","Fedora","Macintosh","The answer is Laptop computer.","Link the key words in the question to Laptop computer."],
+[5,"Which of these is NOT a type of wireless communication network?","Local Area Network","Cellular Communication Service","Wireless LAN","Bluetooth personal Area Network","The answer is Local Area Network.","Link the key words in the question to Local Area Network."],
+[5,"The full meaning of UTP is","Unshielded Twisted Pair","Untouchable Twisted Pair","Unshielded Twined pair","Untouchable Twined Pair","The answer is Unshielded Twisted Pair.","Link the key words in the question to Unshielded Twisted Pair."],
+[5,"The Man who Invented Printing Machine in 1468 was","Johannes Gutenberg","Isaac Newton","Micheal Faraday","Bill Gater","The answer is Johannes Gutenberg.","Link the key words in the question to Johannes Gutenberg."],
+/* ---------- 6 · Catalogue & Software ---------- */
+[6,"LCCS stands for","Library of Congress Classification Scheme","Library of Classification Congress Schedule","Library of Classification Congress Scheme","Library and Communication Congress Schedule","It is the American Library of Congress system.","Congress comes before Classification."],
+[6,"What is the full meaning of OPAC?","Online Public Access Catalogue","Online Publication Access Catalogue","Online Private Access Catalogue","Online Public Area Catalogue","OPAC is the library catalogue you search online.","Public Access."],
+[6,"Computer packages designed to carry out library functions are called","Library software packages","University software packages","Catalogue software packages","Shelf software packages","Library software handles library work.","Library work, library software."],
+[6,"A way of grouping things is called","Classification","Cataloguing","Abbreviation","Indexing","Classifying means grouping.","Class = group."],
+[6,"The library management software adopted by FUOYE Library is _____","KOHA","TEEAL","AGORA","HINARI","The answer is KOHA.","Link the key words in the question to KOHA."],
+[6,"All these are the databases available in FUOYE Library except _____","KOHA","Science Direct","TEEAL","HINARI","The answer is KOHA.","Link the key words in the question to KOHA."],
+[6,"All these are approaches by which information could be accessed on OPAC except _____","Editor","Author","Subject","Title","The answer is Editor.","Link the key words in the question to Editor."],
+[6,"Cataloguing is the process of describing a book where by all the _____ details are highlighted","Bibliographic","Author","Pagination","Publication","The answer is Bibliographic.","Link the key words in the question to Bibliographic."],
+[6,"_____ and _____ are the two types of catalogue you know","Card catalogue and Online Public Access Catalogue","Cataloguing and Classification","Call mark catalogue and classification catalogue","Card catalogue and Classification Catalogue","The answer is Card catalogue and Online Public Access Catalogue.","Link the key words in the question to Card catalogue and Online Public Access Catalogue."],
+[6,"The approaches to library catalogue include _____","Author’s name, Title & Subject","Call mark, Accession number & Author’s name","Title, Subject & Callmark","Title, Call mark & Accession number","The answer is Author’s name, Title & Subject.","Link the key words in the question to Author’s name, Title & Subject."],
+[6,"One of the functions of library catalogue is _____","It provides full bibliographic details","It helps registered users to use the library","It allows users to be issued tickets","It allows penalty to be charged on overdue books","The answer is It provides full bibliographic details.","Link the key words in the question to It provides full bibliographic details."],
+[6,"Imprint in bibliographic details of a book contains the following:","Place of publication, Publisher and Year of Publication","Title, Edition statement and Publisher details","Pagination, Publisher and Illustrations","Pagination, Height of book and Illustration","The answer is Place of publication, Publisher and Year of Publication.","Link the key words in the question to Place of publication, Publisher and Year of Publication."],
+[6,"Collation in bibliographic details of a book contains the following:","Pagination, Height of book and Illustration","Title, Edition statement and Publisher details","Pagination, Publisher and Illustrations","Place of publication, Publisher and Year of Publication","The answer is Pagination, Height of book and Illustration.","Link the key words in the question to Pagination, Height of book and Illustration."],
+[6,"_____ is not an element of library catalogue?","Database","ISBN","Author","Title","The answer is Database.","Link the key words in the question to Database."],
+[6,"A list of all information materials held by a library or group of libraries is known as _____","Library Catalogue","Shelf","Library Card","Library Resources","The answer is Library Catalogue.","Link the key words in the question to Library Catalogue."],
+[6,"A software that has been developed to handle basic housekeeping functions of a library is known as _____","Library software","System software","Adobe Photoshop software","PDF software","The answer is Library software.","Link the key words in the question to Library software."],
+[6,"Two types of library software are _____ and _____","Proprietary and Open source software","System and Application software","Application and Open Source software","Digital and Coded software","The answer is Proprietary and Open source software.","Link the key words in the question to Proprietary and Open source software."],
+[6,"The type of library software that requires the payment of subscription fee is known as _____","Proprietary software","System software","Digital software","Coded software","The answer is Proprietary software.","Link the key words in the question to Proprietary software."],
+[6,"The type of library software that does not require the payment of subscription fee is known as _____","Open Source software","Proprietary software","System software","Digital software","The answer is Open Source software.","Link the key words in the question to Open Source software."],
+[6,"Koha is an example of _____","Open source software","Database","Library material","Proprietary software","The answer is Open source software.","Link the key words in the question to Open source software."],
+[6,"_____ is an example of library database","AGORA","Koha","Virtua","SLAM","The answer is AGORA.","Link the key words in the question to AGORA."],
+[6,"TEEAL is an example of _____","Library Database","Library catalogue","Library software","Computer","The answer is Library Database.","Link the key words in the question to Library Database."],
+[6,"DOAJ stands for _____","Directory Open Access Journals","Directory Online Access Journals","Directory Offline Access Journals","Directory Open Application Journals","The answer is Directory Open Access Journals.","Link the key words in the question to Directory Open Access Journals."],
+[6,"Which of these is NOT a library database?","Greenstone","Ebscohost","Science Direct","Pubmed","The answer is Greenstone.","Link the key words in the question to Greenstone."],
+[6,"What gives the full Bibliographic details of a book","Cataloguing","Assessioning","Stamping","Classifying","The answer is Cataloguing.","Link the key words in the question to Cataloguing."],
+/* ---------- 7 · Classification & Shelving ---------- */
+[7,"Which is needed from KOHA to locate a book on the shelf?","Call mark","Serial title","Library card","Price list","The call mark shows the shelf position.","Call mark calls the book."],
+[7,"All of these are steps in getting books to the shelf EXCEPT","Decoding","Stamping","Accessioning","Cataloguing and classification","Decoding is not part of book processing.","Stamp, accession, classify."],
+[7,"_____ is a unique number assigned to the library material as soon as it arrives the library","Accession Number","Classification number","Pagination Number","Call mark","The answer is Accession Number.","Link the key words in the question to Accession Number."],
+[7,"_____ can be defined as the process of arranging library materials into various subjects for easy accessibility and retrieval without wasting the user’s time.","Classification","Cataloguing","Indexing","Abstracting","The answer is Classification.","Link the key words in the question to Classification."],
+[7,"Information materials in the library are well _____ for easy _____ and _____","Organised, retrieval and access","Retrieved, access and organisation","Accessed, retrieval and organization","None of these","The answer is Organised, retrieval and access.","Link the key words in the question to Organised, retrieval and access."],
+[7,"In the Library of Congress scheme, D stands for","History","general works","Music","law","In the Library of Congress scheme this class letter covers History.","D = History."],
+[7,"In the Library of Congress scheme, M stands for","Music","Medicine","science","Technology","In the Library of Congress scheme this class letter covers Music.","M = Music."],
+[7,"In the Library of Congress scheme, S stands for","Agriculture","Law","Education","Medicine","In the Library of Congress scheme this class letter covers Agriculture.","S = Agriculture."],
+[7,"In the Library of Congress scheme, Q stands for","Science","political science","Technology","Law","In the Library of Congress scheme this class letter covers Science.","Q = Science."],
+[7,"In the Library of Congress scheme, AG stands for","Dictionaries","Geography","History","Religion","In the Library of Congress scheme this class letter covers Dictionaries.","AG = Dictionaries."],
+[7,"In the Library of Congress scheme, AN stands for","Newspapers","Agriculture","Medicine","Science","In the Library of Congress scheme this class letter covers Newspapers.","AN = Newspapers."],
+[7,"In the Library of Congress scheme, BD stands for","Metaphysics","Logic","Ethics","Bible","In the Library of Congress scheme this class letter covers Metaphysics.","BD = Metaphysics."],
+[7,"In the Library of Congress scheme, BR stands for","Christianity","Islam","Quran","Aesthetics","In the Library of Congress scheme this class letter covers Christianity.","BR = Christianity."],
+[7,"In the Library of Congress scheme, HB stands for","Economic Theory","Banking and finance","public finance","Economic condition","In the Library of Congress scheme this class letter covers Economic Theory.","HB = Economic Theory."],
+[7,"In the Library of Congress scheme, HC stands for","Economic condition","Statistics","Public Finance","Economic Theory","In the Library of Congress scheme this class letter covers Economic condition.","HC = Economic condition."],
+[7,"In the Library of Congress scheme, HJ stands for","Public finance","Banking and finance","Statistics","socialism","In the Library of Congress scheme this class letter covers Public finance.","HJ = Public finance."],
+[7,"In the Library of Congress scheme, LA stands for","History of Education","astronomy","English Literature","Theory and Practice of education","In the Library of Congress scheme this class letter covers History of Education.","LA = History of Education."],
+[7,"In the Library of Congress scheme, LC stands for","Special Aspects in Education","Socialism","Economic Theory","Bible","In the Library of Congress scheme this class letter covers Special Aspects in Education.","LC = Special Aspects in Education."],
+[7,"In the Library of Congress scheme, PA stands for","Greek and Latin","Chemistry","Geology","English Literature","In the Library of Congress scheme this class letter covers Greek and Latin.","PA = Greek and Latin."],
+[7,"In the Library of Congress scheme, PS stands for","American Literature","African Literature","Greek and Latin","Public finance","In the Library of Congress scheme this class letter covers American Literature.","PS = American Literature."],
+[7,"In the Library of Congress scheme, QL stands for","Zoology","Physics","Biology","Botany","In the Library of Congress scheme this class letter covers Zoology.","QL = Zoology."],
+[7,"In the Library of Congress scheme, QK stands for","Botany","Physics","Biology","Zoology","In the Library of Congress scheme this class letter covers Botany.","QK = Botany."],
+[7,"Classification can simply be defined as","Means of grouping materials","Location of Materials on the shelf","Accessioning of Materials","Stamping of materials","The answer is Means of grouping materials.","Link the key words in the question to Means of grouping materials."],
+[7,"A number such as 06825 on a library material is the","Accessioning No","Class Mark","Catalogue No","Library No","The answer is Accessioning No.","Link the key words in the question to Accessioning No."],
+[7,"Which classification scheme uses only numbers?","Dewey Decimal Classification Scheme","Universal Decimal Classification Scheme","Colon Classification Scheme","Library of Congress Classification Scheme","The answer is Dewey Decimal Classification Scheme.","Link the key words in the question to Dewey Decimal Classification Scheme."],
+/* ---------- 8 · Computer Security ---------- */
+[8,"Someone stealing your account information from a trusted bank is an example of","A computer threat","A computer act","A computer practice","Computer ethics","Theft of information is a threat to security.","Stealing = threat."],
+[8,"Which program identifies and removes computer viruses from memory, storage and email files?","Antivirus","Computer virus","Firewall","Compiler","Antivirus software finds and removes viruses.","Against virus = antivirus."],
+[8,"Which hardware or software blocks network communications forbidden by the security policy?","Firewall","Adware","Malware","Spyware","A firewall filters network traffic.","Wall blocks."],
+[8,"A code that carries out a harmful function after a set time or when conditions are met is a","Logic bomb","Firewall","Computer worm","Antivirus","It waits for a trigger.","Bomb with a timer."],
+[8,"An example of Malicious code is","All of these","Virus","Trojan Horse","Logic Bomb","The answer is All of these.","Link the key words in the question to All of these."],
+[8,"One of the security Measures to Computer Threat is","All of these","Antivirus","Anti-Spyware","Firewall","The answer is All of these.","Link the key words in the question to All of these."],
+[8,"One of the ways to Protect our data include","All of these","Make a backup File","Detect Virus and Clean the Computer","Warn others on Various attacks","The answer is All of these.","Link the key words in the question to All of these."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='GST103', LABEL='GST 103', N=40, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('GST103');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>

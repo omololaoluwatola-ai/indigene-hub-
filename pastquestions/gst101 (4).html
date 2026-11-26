@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GST 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">GST 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 40</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">40 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>GST 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">40</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · GST 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Phonetics & Speech",
+  "Communication",
+  "Notes & Brainstorming",
+  "Word Classes",
+  "Sentences & Clauses",
+  "Paragraph, Essay & Punctuation",
+  "Writing & Comprehension",
+  "Concord & Tenses",
+  "Usage & Vocabulary"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Phonetics & Speech ---------- */
+[0,"We use angle brackets when we talk about","Grapheme","Phoneme","Morpheme","Lexeme","Angle brackets show written letters, or graphemes.","Angle for letters."],
+[0,"We use slashes when we talk about","Phoneme","Grapheme","Morpheme","Lexeme","Slashes show phonemes, the sound units.","Slash for sound."],
+[0,"For the production of speech sounds, the air starts from the _____.","Lungs","Liver","Heart","Stomach","Speech uses air pushed from the lungs.","Lungs supply the air."],
+[0,"All the _____ of English are voiced.","Vowels","Consonants","Alphabets","Pure vowels","Every English vowel is voiced.","Vowels always vibrate."],
+[0,"The rate at which the vocal cords vibrate determines the _____ of our voice.","Pitch","Voiced","Sound","Intonation","Faster vibration gives a higher pitch.","Rate decides pitch."],
+[0,"We need some _____ to articulate our speech sounds.","Air","Knowledge","Patience","Energy","Speech sounds are made by moving air.","No air, no sound."],
+[0,"The aperture between the folds is _____.","Glottis","Supraglottal vocal tract","Subglottal vocal tract","Larynx","The glottis is the opening between the vocal folds.","Gap = glottis."],
+[0,"Which does not cover the production of speech sounds?","Auditory system","Articulatory system","Phonatory system","Respiratory system","The auditory system is for hearing, not production.","Auditory = ear."],
+[0,"The _____ system consists of a few organs in our head and neck.","Articulatory","Pulmonary","Phonatory","Sound","The articulators are in the head and neck.","Mouth parts articulate."],
+[0,"The air from the lungs escapes awesomely through the mouth and such signs are called _____ sounds.","Oral","Voiced","Standard","Voiceless","Air escaping through the mouth makes oral sounds.","Oral = mouth."],
+[0,"The patterns of variation of the pitch of the voice constitutes the _____ of a language.","Intonation","Stress","Rhythm","Syllable","Intonation is the pattern of pitch change.","Pitch pattern = intonation."],
+[0,"By the expression _____ mechanism we mean a moving current of air.","Airstream","Gliding","Pitch","Intonation","An airstream mechanism is a moving current of air.","Moving air = airstream."],
+[0,"The outward movement of air from the lungs is called the","Pulmonic egressive airstream mechanism","Pulmonic mechanism","Airstream mechanism","Pulmonic airstream mechanism","Egressive means outward, and pulmonic means from the lungs.","E for exit."],
+[0,"_____ accounts for voicing, that is, the production of voiced and voiceless sounds.","Phonatory system","Articulatory system","Respiratory system","Auditory system","The phonatory system controls voicing.","Phonation = voice."],
+[0,"_____ deals with the airstream of speech production.","Respiratory system","Articulatory system","Phonatory system","Auditory system","The respiratory system provides the airstream.","Breathe = respiratory."],
+[0,"We use the air that we breathe _____ for the production of most speech sounds of the world.","Out","In and out","Out and in","In","Most speech uses air going out.","Talk while breathing out."],
+[0,"During normal breathing, the vocal cords move far away from each other and therefore the _____ is wide open.","Glottis","Lungs","Nasal cavity","Mouth","The vocal folds apart leave the glottis open.","Folds apart, glottis open."],
+[0,"_____ is made up of the larynx and vocal folds.","Phonatory system","Articulatory system","Respiratory system","Auditory system","The larynx and vocal folds make up the phonatory system.","Larynx = phonation."],
+[0,"The fleshy structure hanging loose at the extreme end of the roof of the mouth is called _____.","Uvula","Velum","Soft palate","Tongue","The uvula hangs at the back of the roof of the mouth.","Hanging flesh = uvula."],
+[0,"Soft palate is also known as _____.","Velum","Tongue","Glottis","Uvula","The soft palate is also called the velum.","Soft = velum."],
+[0,"There are _____ nasal sounds in English.","3","1","2","4","English has three nasals as in sum, sun and sung.","Three nasals."],
+[0,"A bonelike structure is _____.","Hard palate","Velum","Soft palate","Uvula","The hard palate is the bony roof of the mouth.","Bone = hard."],
+[0,"Which sounds are produced by forcing the air stream out of the lungs through the mouth?","Oral","Nasal","Voiced","Unvoiced","Sounds released through the mouth are oral.","Mouth = oral."],
+[0,"All sounds produced with the vibration of the vocal cords are called _____ sounds.","Voiced","Unvoiced","Oral","Nasal","Vibration of the vocal cords gives voiced sounds.","Vibrate = voiced."],
+[0,"How many consonant sounds are there?","24","1","44","41","English has 24 consonant sounds.","24 consonants, 20 vowels."],
+[0,"Monophthong _____","All of these","Is called as a pure vowel","Is marked by its steady quality","Is a single vowel sound","A monophthong is a steady single vowel, also called pure.","Mono = one."],
+[0,"While pronouncing _____, the passage is either completely or partially closed and the air passes through the speech organs with the audible friction.","Consonant","Monophthong","Diphthong","Vowel","Consonants involve closure or friction.","Blocked air = consonant."],
+[0,"Which is the correct symbol for the vowel in the word bat?","/æ/","/a:/","/ɔ:/","/u/","The vowel in bat is written with the ash symbol.","Bat, cat, hat."],
+[0,"_____ vowel is presented in the word 'ghost'.","/əu/","/eɪ/","/ʊə/","/aʊ/","Ghost has the diphthong in go.","Ghost rhymes with most."],
+[0,"/j/ is used in which word?","Yellow","Jug","Jam","Zebra","The j symbol is the first sound in yellow.","Phonetic j sounds like y."],
+[0,"/p/ in the word 'pen' is _____.","Oral and unvoiced","Nasal and voiced","Nasal and unvoiced","Oral and voiced","The p sound is oral and voiceless.","p has no buzz."],
+[0,"_____ is the most flexible articulator which can move in many different places and shapes.","Tongue","Lip","Uvula","Hard palate","The tongue moves most freely.","Tongue is flexible."],
+[0,"_____ is commonly called the Adam's apple?","The larynx","The glottis","Epiglottis","Vocal","The Adam's apple is the front of the larynx.","Voice box."],
+[0,"Which of these is not one of the speech organs used to make sounds?","Liver","Trachea","Vocal folds","Pharynx","The liver plays no part in making speech.","Liver is for digestion."],
+[0,"Which of these is an oral sound?","/k/","/n/","/m/","/ŋ/","The other three are nasal sounds.","M, N and NG go through the nose."],
+[0,"Which of these is a voiced sound?","/n/","/p/","/t/","/k/","The vocal folds vibrate for n.","P, T and K have no buzz."],
+[0,"How many voiceless consonant sounds does English have?","9","3","5","21","Nine of the 24 consonants are voiceless.","9 voiceless, 15 voiced."],
+[0,"/f/ is an example of a","Phoneme","Grapheme","Morpheme","Lexeme","Slashes mark a sound unit.","Slash for sound."],
+/* ---------- 1 · Communication ---------- */
+[1,"The biggest difference between speech and writing is that speech consists of _____.","Sounds","Reading","Writing","Words","Speech is made of sounds while writing is made of symbols.","Speech is sound."],
+[1,"In _____ comprehension the listener needs to understand what the speaker means and not to think about the language too much.","Listening","Reading","Writing","Speaking","This describes listening for meaning.","Listener = listening."],
+[1,"Letters, memos, reports, posters, and magazines are examples of _____","Written communication","Mass communication","Visual communication","Unwritten communication","All of them are written.","On paper = written."],
+[1,"Apart from using speech, any communication that makes use of other senses is _____","Non-verbal","Gestures","Semiotics","A sign language","Communication without words is non-verbal.","No words = non-verbal."],
+[1,"_____ involves an anonymous audience.","Mass communication","Electronic communication","Telecommunication","Anonymity","Mass communication reaches people the sender does not know.","Mass = unknown crowd."],
+[1,"In _____, an individual is both the sender and receiver of the message.","Intrapersonal communication","Interpersonal communication","One-way communication","Two-way communication","Talking to yourself is intrapersonal.","Intra = within."],
+[1,"_____ is the way through which the message is encoded or passed to the receiver.","Medium","Encoding","Communication process","Process of communication","The medium carries the message.","Medium = channel."],
+[1,"_____ is the interpreter of a coded message.","Decoder","Coder","Sender","Encoder","The decoder interprets the message.","Decode = interpret."],
+[1,"Reading as a language skill plays an important role in effective communication by _____ information.","Decoding","Encoding","Sending","None of these","Readers decode written information.","Reading decodes."],
+[1,"_____ is the process of sharing meaning through a continuous flow of symbolic messages.","Communication","Chat","Dialogue","Conversation","Communication is the sharing of meaning through symbols.","Sharing meaning."],
+[1,"Written and unwritten communication are types of _____.","Verbal communication","Non-verbal communication","Communication process","Intrapersonal communication","Written and spoken forms both use words.","Words = verbal."],
+[1,"Speech and _____ are two major mediums through which all human languages are relayed.","Writing","Speaking","Paper","Notepad","Speech and writing are the two major mediums.","Say it or write it."],
+/* ---------- 2 · Notes & Brainstorming ---------- */
+[2,"The process of writing down information gained from a particular source, such as a presentation, is _____","Note taking","Note making","Note jotting","Outlining","Recording what a source presents is note taking.","Take from others."],
+[2,"Note-taking should be directed at _____ information.","Summarizing","Illustrating","Analyzing","Recording whole","Notes should capture a summary of the points.","Summarize."],
+[2,"_____ is immensely beneficial in generating useful ideas.","Brainstorming","Writing","Tautology","Proofreading","Brainstorming generates ideas.","Storm for ideas."],
+[2,"_____ is writing without the distraction or fear of making mistakes in grammar, capitalization, punctuation, or paragraph structure.","Free writing","Direct writing","Simple writing","Auxiliary writing","Free writing ignores errors for the moment.","Free of fear."],
+/* ---------- 3 · Word Classes ---------- */
+[3,"A noun is not _____.","The action of a person","The name of a person","The name of a place","The name of an animal","A noun names, and an action is shown by a verb.","Action = verb."],
+[3,"The types of noun include these except _____.","Selective","Common","Collective","Proper","Selective is not a type of noun.","No selective noun."],
+[3,"One of these must start with a capital letter.","Proper noun","Abstract noun","Collective noun","Selective noun","Proper nouns take capital letters.","Names get capitals."],
+[3,"_____ shows action or existence.","Verb","Determiner","Article","Possessives","Verbs show action or state of being.","Verb acts."],
+[3,"What type of verb shows a transfer of action?","Transitive","Intransitive","Finite","Non-finite","A transitive verb passes action to an object.","Trans = carry across."],
+[3,"One of these can modify two other parts of speech including itself.","Adverb","Adjective","Noun","Preposition","An adverb can modify verbs, adjectives and other adverbs.","Adverbs modify adverbs too."],
+[3,"The word 'how' is what part of speech in 'how are you?'","Adverb","Verb","Adjective","Noun","How asks about manner or state.","How = adverb."],
+[3,"_____ is used to replace a noun.","Pronoun","Adjective","Noun","Verb","A pronoun stands in for a noun.","Pro = in place of."],
+[3,"Which of these is a subordinate conjunction?","While","Or","And","But","While introduces a dependent clause.","And, or, but coordinate."],
+[3,"A part of speech includes all of these except _____.","It is a punctuation mark","It is a word","It is in a sentence","It performs a function","A punctuation mark is not a word class.","Marks are not words."],
+[3,"One of these is not a relative pronoun.","When","That","Which","Who","When is a relative adverb here, not a relative pronoun.","When tells time."],
+[3,"All of these are subordinators except _____.","Yet","After","Because","Since","Yet is a coordinator.","FANBOYS coordinate."],
+[3,"There are two types of word classes, namely _____.","Open and closed","Wide and closed","Open and narrow","Simple and compound","Word classes are open or closed.","Open and closed."],
+[3,"Pick the odd word.","Beautiful","Dance","Sleep","Stand","Beautiful is an adjective and the rest are verbs.","Odd class out."],
+[3,"The green snake which lives in the green grass is using a perfect camouflage. 'Which' is an example of _____.","Relative pronoun","Indefinite pronoun","Transitive verb","Intransitive verb","Which links the clause to snake.","Which relates."],
+[3,"When the beggar was tired, he laid down by the roadside. 'Laid' is a _____.","Verb","Noun","Preposition","Pronoun","Laid is a verb.","Action word."],
+[3,"He did not like our leaving the class early. 'He' is the _____.","Pronoun","Verb","Conjunction","Phrase","He replaces a name.","He = pronoun."],
+[3,"Words can migrate from one subgroup to another in the _____ word class.","Open","Closed","Narrow","Wide","Open class words can move between groups.","Open is flexible."],
+[3,"_____ nouns are nouns that cannot be seen or touched.","Abstract","Concrete","Count","Proper","Abstract nouns cannot be touched.","Abstract = no touch."],
+[3,"_____ nouns are countable individual materials or objects. They have both singular and plural forms.","Count","Simple","Non-count","Abstract","Count nouns have singular and plural forms.","Count them."],
+[3,"Myself, himself, themselves, herself, itself are types of _____ pronouns.","Reflexive","Demonstrative","Obligatory","Personal","Words ending in self are reflexive.","Self = reflexive."],
+[3,"_____ are used to introduce relative clauses.","Relative pronouns","Adjectives","Relative nouns","Relative adverbs","Relative pronouns introduce relative clauses.","Who, which, that."],
+[3,"Black, shallow, tall, short, perfect, skinny are instances of _____.","Adjectives","Nouns","Pronouns","Adverbs","They describe nouns.","Describe = adjective."],
+[3,"Lexical and auxiliary are classifications of which word class?","Verbs","Conjunctions","Nominals","Interjections","Verbs are lexical or auxiliary.","Main or helping."],
+[3,"Can, could, may, might, shall, should, will, would are examples of _____.","Auxiliary verbs","Lexical verbs","Linking verbs","Conjunctions","Modals are auxiliary verbs.","Helpers."],
+[3,"_____ have five forms.","Irregular verbs","False verbs","Regular verbs","Adverbs","Irregular verbs such as write have five forms.","Write, writes, wrote, writing, written."],
+[3,"_____ show the degree or extent of the action expressed by a verb. Examples include: slowly, quickly, intensely.","Adverbs","Adjectives","Emphatic stress","Repetition","Adverbs show degree.","Slowly, quickly."],
+[3,"Which is used to link words, phrases, clauses, sentences and paragraphs together?","Conjunction","Linking verb","Interjection","Paragraph","Conjunctions connect.","Join = conjunction."],
+[3,"A _____ is used to show the relationship between a word and another within a sentence.","Preposition","Linker","Projector","Definition","Prepositions show relationships.","Position words."],
+[3,"An _____ is used to express an outburst of feelings or emotions like surprise, delight, anger, pain, etc.","Interjection","Expression","Examination","Adjective","Interjections express sudden feeling.","Oh, wow."],
+[3,"Which of the following is not an adverb?","Bridge","Deadly","Fast","Stealthily","Bridge is not an adverb here.","Bridge is a noun."],
+[3,"How many parts of speech are there?","8","3","5","9","Traditional grammar lists eight.","Eight word classes."],
+[3,"A coordinating conjunction mainly works as a","Linker","Modifier","Replacement for a noun","Describer of verbs","It links units of equal rank.","Coordinate means link equals."],
+[3,"In 'The teacher is around the corner', the word 'around' is a","Preposition","Noun","Pronoun","Adjective","It shows position before 'the corner'.","Position word."],
+/* ---------- 4 · Sentences & Clauses ---------- */
+[4,"The obligatory part of a sentence is _____.","Finite verb","Possessive pronoun","Collective noun","Adverb of place","A sentence must have a finite verb.","No finite verb, no sentence."],
+[4,"One of these is a sentence type by structure.","Compound-complex","Declarative","Exclamatory","Interrogative","Compound-complex describes structure.","Others show purpose."],
+[4,"One of these is a sentence type by purpose.","Imperative","Compound","Simple","Complex","Imperative describes purpose.","Command = purpose."],
+[4,"'This plot of land belongs to my father' is an example of _____.","Simple sentence","Compound sentence","Compound complex sentence","Complex sentence","It has one subject and one finite verb.","One clause = simple."],
+[4,"'While he was away on holiday, his sister-in-law was delivered of a baby boy' is an example of _____.","Complex/declarative sentence","Interrogative/simple sentence","Imperative/complex sentence","Compound/exclamatory sentence","It has a subordinate clause and makes a statement.","While starts the dependent part."],
+[4,"The sentence that has two or more independent clauses with no subordinate clause is _____.","Compound","Complex","Simple","Compound-complex","Only independent clauses joined together make a compound sentence.","Two mains = compound."],
+[4,"The sentence that has one independent clause and at least one subordinate clause is _____.","Complex","Compound","Simple","Compound complex","One main clause with a dependent clause is complex.","Main plus helper."],
+[4,"The sentence that has one independent clause and no subordinate clause is _____.","Simple","Compound","Complex","Compound-complex","One independent clause alone is simple.","One = simple."],
+[4,"In the compound sentence, independent clauses are joined together by _____.","Coordinator","Subordinator","Relative pronoun","Adjunct","Coordinators join equal clauses.","Equal parts, coordinate."],
+[4,"The predicate comprises all except _____.","Subject","Verb","Adjunct","Complement","The subject is outside the predicate.","Predicate is not the subject."],
+[4,"The subject can be all of these but _____.","The action","A word","A group of words","The actor","The action is carried by the verb.","Subject is not the action."],
+[4,"Which of these is not a kind of subject?","Complex","Complete","Simple","Compound","Subjects can be simple, compound or complete.","No complex subject here."],
+[4,"In the past, his father used to walk, but nowadays he goes to work by bicycle. The sentence is _____.","Compound","Complex","Simple","Compound-complex","Two independent clauses are joined by but.","But joins equals."],
+[4,"The old shoemaker at the corner of our street is a close friend, so I hope you will patronize him. This is a _____.","Noun phrase","Adverbial phrase","Phrasal verb","Noun clause","The group is built around the noun shoemaker.","Head word is a noun."],
+[4,"A _____ contains two independent clauses.","Compound sentence","Paragraph","Clause","Complex sentence","Two independent clauses make a compound sentence.","Two mains."],
+[4,"An _____ expresses a complete thought.","Independent clause","Unconditional clause","Aerial clause","Accepted clause","An independent clause is complete on its own.","Independent stands."],
+[4,"‘Go away!’ is an example of a _____.","Command","Scream","Expression","Declarative","Go away gives an order.","Order = command."],
+[4,"If you are tired, go home is a _____.","Complex sentence","Simple sentence","Interrogative sentence","Compound-complex sentence","It has a dependent if clause.","If makes it complex."],
+[4,"How good she is! Is an _____.","Exclamatory sentence","Interrogative sentence","Complex sentence","Compound- complex sentence","It expresses strong feeling.","How good = exclaim."],
+[4,"All the students, their lecturers, and members of the host community have been advised to live together peacefully is a _____.","Simple sentence","Complex sentence","Compound sentence","Compound-complex sentence","It has one finite verb group.","Long can still be simple."],
+[4,"All hope is lost is a _____ sentence.","Declarative","Imperative","Interrogative","Expository","It states a fact.","Statement."],
+[4,"'If I catch the rat, I will kill it unless it is harmless' is which type of sentence?","Compound-complex","Declarative","Interrogative","Compound","Two main clauses and dependent clauses are present.","Both kinds."],
+[4,"What is your name? Is a _____ sentence.","Interrogative","Declarative","Imperative","Complex","It asks a question.","Question."],
+[4,"Get out of here is a/an _____ sentence.","Imperative","Compound","Complex","Exclamatory","It gives a command.","Command."],
+[4,"What a terrible world we are! Is a/an _____.","Exclamatory","Interrogative","Complex","Compound-complex","It shows strong feeling.","What a = exclaim."],
+[4,"I can do anything because of you is a/an _____ sentence.","Simple","Compound","Complex","Compound-complex","It has one clause.","Because of is a phrase."],
+[4,"Speak up if you are certain is a _____ sentence.","Complex","Simple","Compound","Compound-complex","If starts a dependent clause.","If = complex."],
+[4,"Unless she accepts your proposal, don't take her out on Sunday is a _____ sentence.","Complex","Simple","Compound","Compound-complex","Unless starts a dependent clause.","Unless = complex."],
+[4,"'Pass me the salt' is an example of which sentence?","Imperative","Interrogative","Declarative","Exclamatory","It makes a request.","Request or order is imperative."],
+[4,"Which sentence type is used to express a wish?","Optative","Imperative","Declarative","Interrogative","Wishes and prayers are optative.","Optative for wishes."],
+[4,"A sentence with two or more main clauses and at least one subordinate clause is","Compound-complex","Compound","Complex","Simple","It has both kinds of joining.","Two mains plus a helper."],
+[4,"'I like drinking water and eating food at the right time' is which type of sentence?","Simple","Compound","Complex","Compound-complex","It has one subject and one finite verb.","Count finite verbs."],
+[4,"'If she had known, she would have left him and chosen another man' is which type of sentence?","Complex","Simple","Compound","Compound-complex","It has one main clause and one if clause.","Same subject, one main clause."],
+[4,"In 'The boy was born before his parents got married', the words 'before his parents got married' form","An adverbial clause of time","A noun clause","An adjectival clause","A verb phrase","They tell when he was born.","Before answers when."],
+[4,"In 'As he still owed me money, I did not lend him more', the words 'As he still owed me money' form","An adverbial clause of reason","A noun clause","An adjectival clause","A prepositional phrase","They explain why.","As here means because."],
+[4,"In 'If you travel by air, you will get a luggage allowance', the words 'If you travel by air' form","An adverbial clause of condition","An adverbial clause of concession","An adverbial clause of purpose","An adverbial clause of place","They state the condition.","If shows condition."],
+/* ---------- 5 · Paragraph, Essay & Punctuation ---------- */
+[5,"A paragraph is not _____.","A group of words with one finite verb","A distinct section of a piece of writing","A writing usually dealing with a single theme","A group of not less than 2 sentences","One finite verb describes a clause or simple sentence.","Paragraph has many."],
+[5,"In a paragraph, you can find all except _____.","Introductory details","Topic sentence","Concluding sentence","Supporting details","The usual parts are topic, supporting and concluding sentences.","Three parts."],
+[5,"The topic sentence is and does all of these except _____.","The beginning and ending of a paragraph","A sentence that expresses the main idea of a paragraph","The main sentence in a paragraph","Captures the meaning of the entire paragraph","It is not both the start and end of a paragraph.","One sentence, one job."],
+[5,"Which of these is not a type of paragraph?","Complementary","Descriptive","Argumentative","Narrative","Complementary is not a paragraph type.","Odd one out."],
+[5,"What helps in the coherence and cohesion of sentence expression?","Punctuation marks","Parts of speech","Essay","Paragraph","Punctuation guides how ideas connect.","Marks guide meaning."],
+[5,"The full stop may not _____.","Demarcate dependent clauses","End a sentence","Be used for initials","Separate one sentence from the other","A full stop does not separate dependent clauses.","Use a comma."],
+[5,"The comma may not _____.","Be used for initials","Demarcate dependent clauses","Be used for listing items","Be a swift pause","Initials take full stops.","Initials need dots."],
+[5,"Choose the sentence that is adequately punctuated.","This is my father's car","This is Mr. Kola","Can you pass me the salt","Have you seen Mr. Oni's new house?","It uses the apostrophe correctly.","Father's shows ownership."],
+[5,"Which of the following punctuation marks can be used when writing \"and/or\"?","Slash","Hyphen","Ellipses","Caret","The slash joins the alternatives.","And slash or."],
+[5,"An essay is not _____.","A text that messages a group of students","A well-organized piece of prose on a given topic","A composition guided by one controlling idea","A process of communicating an idea in a continuous prose format","An essay is not a message to a group of students.","Essay is prose on a topic."],
+[5,"A good sentence must have _____ and _____.","Unity and coherence","Unity and peace","Expressions and tone","Lines and words","A good sentence needs unity and coherence.","Unity, coherence."],
+[5,"A good paragraph must have both _____ and _____.","Topic sentence and supporting sentence","Theme and topic","Words and action","Clause and pronouns","A paragraph needs topic and supporting sentences.","Topic then support."],
+[5,"A _____ is a combination of sentences dealing with a single theme/focus.","Paragraph","Sentence","Conversation","String","Sentences on one theme form a paragraph.","One theme."],
+[5,"We have _____ types of essay.","Four","Five","Three","Six","The handbook lists four essay types.","Four types."],
+[5,"The structure of the essay is divided into _____ parts.","Three","Four","Six","Five","Introduction, body and conclusion.","Three parts."],
+[5,"Paragraphs in an essay should contain _____.","One idea","All ideas","Different ideas","No idea","Each paragraph carries one idea.","One idea each."],
+[5,"Which part of the essay contains the main point or the topic of discussion/writing?","Body","Paragraph","Introduction","Sentence","The handbook puts the main discussion in the body.","Discussion sits in the body."],
+[5,"A good topic sentence gives a ___ of what the paragraph is about.","Clear idea","Final verdict","Long history","Full list","It tells the reader what to expect.","Topic sentence points ahead."],
+/* ---------- 6 · Writing & Comprehension ---------- */
+[6,"Writing is the _____ stage of the language skills.","Fourth","First","Second","Third","The order is listening, speaking, reading, writing.","LSRW."],
+[6,"Writing entails the following except _____.","A spoken discourse","Literacy","Presentation of speech graphically","A stage of the language skill","Writing is not spoken.","Spoken is speech."],
+[6,"The stages involved in the writing process include all of these except _____.","Questioning","Planning","Drafting","Revising","Planning, drafting and revising are the stages.","Questioning is not a stage."],
+[6,"Academic writing admits _____.","Formality","Colloquialism","Semi-formality","Informality","Academic writing is formal.","Academic = formal."],
+[6,"The objective of academic writing is _____.","Inform","Entertain","Exercise","Evaluate","It aims to inform.","Inform first."],
+[6,"One of these is not a feature of academic writing.","Decision","Linearity","Formality","Precision","Decision is not a feature.","Odd word."],
+[6,"_____ is the systematic procedure of teaching students problem-solving skills connected with writing.","Writing process","Annotation","Documentation","Speech writing","The writing process teaches problem solving in writing.","Process = steps."],
+[6,"The gathering of information towards quality writing is technically referred to as _____.","Research","Proposal","Seminar","Project","Gathering information is research.","Research."],
+[6,"The _____ stage is also referred to as the pre-writing stage of the writing process.","Planning","Initial","Belated","Steady","Planning comes before writing.","Plan first."],
+[6,"A sloppy copy can otherwise be called _____.","Rough draft","Solo copy","Floppy draft","Simple copy","A sloppy copy is a rough draft.","Rough copy."],
+[6,"The editing stage of writing can also be called _____.","Proofreading","Deletion","Reduction","Interjections","Editing is also called proofreading.","Proofread."],
+[6,"A good writing must have a _____.","Thesis statement","Verb","Principal","Regular expression","Good writing has a thesis statement.","Thesis guides."],
+[6,"_____ is formal writing with its sole objective being to inform or educate.","Academic writing","Specific writing","Enhanced writing","Academical writing","Academic writing aims to inform or educate.","Formal and informing."],
+[6,"_____ is mindlessly lifting someone else’s writings and passing them as one’s own writing.","Plagiarism","Duplicity","Connection","Plague","Passing off another's work is plagiarism.","Lifting = plagiarism."],
+[6,"_____ is a feature of academic writing which refers to a required structure, such as introduction, discussion, and conclusion.","Linearity","Linker","Projector","Definition","Linearity is the required order of parts.","Line = order."],
+[6,"One of the methods of communication that entails a meticulously crafted process is _____.","Writing","Brainstorming","Thinking","Group brainstorming","Writing is carefully crafted.","Writing takes craft."],
+[6,"The first stage of writing is known as _____.","Pre-writing","Gathering of information","Survey","Thinking","Writing begins with pre-writing.","Pre = before."],
+[6,"The process of writing that allows the writer to carry out a survey to determine the right manner of approach to the topic is called _____.","Pre-writing","Scanning","Reading widely","Brainstorming","Surveying the approach belongs to pre-writing.","Survey early."],
+[6,"Below are the ways one can develop ideas for writing except _____.","Revising","Read widely","Reflect periodically","Interact intellectually","Revising comes after ideas are written.","Revise is later."],
+[6,"The first thing to do at the pre-writing stage of a writing process is _____.","Gather information","Think","Shape information","Develop ideas","Pre-writing starts with gathering information.","Gather first."],
+[6,"Writing process includes all but one of the following _____.","Objectivity","Pre-writing","Gathering information","Shaping information","Objectivity is a feature, not a stage.","Quality, not step."],
+[6,"Building the essay draft requires the development of ideas in the following order except _____.","Formality","Introducing the essay","Body of the essay","Coherence","Formality is not part of the order of ideas.","Odd one."],
+[6,"The achievement of smooth and logical development through the use of transitional words in a writing process is called _____.","Coherence","Coordinating information","Gathering information","Re-writing","Coherence is smooth logical flow.","Flow = coherence."],
+[6,"The foundation upon which arguments are established in the body of the essay is referred to as _____.","Paragraphs","Transitional paragraphs","Coherent paragraphs","Elaborate paragraphs","Arguments in the body rest on paragraphs.","Body is paragraphs."],
+[6,"A form of writing with the main objectivity of informing is called _____.","Academic writing","Entertainment","Purposeful writing","Journal article","Academic writing mainly informs.","Inform."],
+[6,"Features of academic writing include all but one of the following _____.","Ambiguity","Explicitness","Precision","Objectivity","Ambiguity is avoided.","No double meaning."],
+[6,"One of the following is not an academic writing style _____.","Coherent","Analytical","Descriptive","Persuasive","Coherence is a quality, not a style.","Four styles only."],
+[6,"A piece of writing is considered analytical if _____.","Two things or more are compared","One gives out facts","Evidences are given to support facts","Convincing evidences are employed","Comparing things is analytical.","Compare = analyse."],
+[6,"In persuasive academic writing style, the writer should be able to observe all but one of the following _____.","Group the assumptions","Have evidence of every claim","Ensure the assumptions are valid","Employ convincing evidence","Grouping assumptions is not required.","Odd one."],
+[6,"_____ academic writing style is a step further from persuasive academic writing style.","Critical","Analytical","Descriptive","Exploratory","Critical writing goes beyond persuasion.","Critical is higher."],
+[6,"A basic linguistic skill that tests one's understanding is called _____.","Comprehension","Communication","Writing","Dictation","Comprehension tests understanding.","Comprehend = understand."],
+[6,"The following are the things to avoid while answering a comprehension question except _____.","Your answers must be in your words","Avoid repetition of answers","Avoid rigmarolling","Avoid copying answers from the passage","Using your own words is something to do, not avoid.","Own words."],
+[6,"One of these is a type of comprehension question _____.","Traditional open-ended question","Subjective questions","Comprehensive questions","Subjunctive questions","Open ended questions are one type.","Open ended."],
+[6,"The type of writing that requires the use of formal registers include all but one of the following _____.","WhatsApp message","Academic essays","Professional report","Business letters","A chat message is informal.","Chat is casual."],
+[6,"Formal registers are most prevalent in one of the following _____.","Law court","Diaries","Personal short notes","Phone texts","Courts use formal language.","Court = formal."],
+[6,"In order to avoid miscommunication, certain social standards must be adhered to while writing an e-mail. Pick the odd one among the under-listed options _____.","Use abbreviations for professional emails","Avoid the use of capital letters","Do not assume short form of name for anybody","Keep the tone of the message accommodating","Professional emails avoid abbreviations.","Write in full."],
+[6,"_____ are important because they serve as the only form of communication for most people in business and education.","Email etiquettes","Diaries","Personal short notes","Server wiring","Good email manners matter in work and study.","Etiquette."],
+[6,"In answering comprehensive questions, one should not write a _____ if one is expected to supply a word.","Phrase","Verb","Noun","Adjunct","A word is required, so a phrase is wrong.","One word means one."],
+[6,"Which of these is not part of revising a write-up?","Choosing a new topic","Reading it aloud","Giving it to someone to read","Checking unclear points","Revision improves the work you already have.","Revise, don't restart."],
+[6,"Which is poor practice when answering comprehension questions?","Answering without reading the passage","Reading quickly for the general idea","Noting what each question requires","Answering in your own words","The passage holds the answers.","Read first."],
+/* ---------- 7 · Concord & Tenses ---------- */
+[7,"Before the operation, the dentist found that his patient's teeth had long decayed. This is in the _____ tense.","Past perfect tense","Past tense","Present tense","Present continuous tense","Had decayed is past perfect.","Had plus participle."],
+[7,"The employer, not the salesman and his representatives, _____ responsible for the loss.","Is","Are","Are being","Have been","The verb agrees with the employer.","Ignore the not phrase."],
+[7,"The telephone _____ in the nineteenth century and is now used in most countries in the world.","Was invented","Had been invented","Would have been invented","Has been invented","A finished past event takes the simple past passive.","Dated past."],
+[7,"By the end of the next semester, he _____ his university education.","Shall have completed","Would have completed","Will be completing","Was completing","By a future time takes the future perfect.","By next = shall have."],
+[7,"Olukayode _____ as a mechanic when he was young, but now he is a driver.","Used to work","Had been working","Would work","Would have worked","Used to shows a past habit.","Past habit."],
+[7,"If he had entered the room, I _____ him.","Would have seen","Saw","Had seen","May see","Had entered pairs with would have seen.","Third conditional."],
+[7,"Sule is sure to pass in November. He _____ hard since the beginning of this semester.","Has been working","Had been working","Was working","Is working","Since needs the present perfect continuous.","Since = has been."],
+[7,"Every programming language and software package _____ limitations.","Has its","Have its","Have their","Has their","Every takes a singular verb and pronoun.","Every = has its."],
+[7,"Four engineers _____ on this system since March.","Have been working","Worked","Are working","Had worked","Since March needs have been working.","Since = have been."],
+[7,"Having worked all night, the security man _____ a sense of accomplishment.","Felt","Had felt","Is feeling","Has felt","The simple past matches the finished night.","Felt."],
+[7,"A number of students _____ missed the opportunity to re-register for the course.","Have","Is","Has","Do","A number of takes a plural verb.","A number have."],
+[7,"Each of the rooms _____ well furnished.","Is","Are","Has","His","Each takes a singular verb.","Each is."],
+[7,"Had she told me, I _____ you.","Would have stopped","Will have stopped","Would stop","Must have been stopped","Had she told me pairs with would have.","Third conditional."],
+[7,"Since my transfer to Abuja, I _____ my hometown.","Have not visited","Has not visited","Did not visit","Will not visit","Since needs the present perfect.","Since = have."],
+[7,"Each _____ has a name to protect.","Student","Students","Students'","Of the student","Each is followed by a singular noun.","Each student."],
+[7,"Each of them _____ a house.","Has","Have","Having","To have","Each of them takes has.","Each has."],
+[7,"The total number of hours spent on that project _____ too much.","Is","Am","Were","Are","The number is one total, so singular.","Total is."],
+[7,"Mummy _____ come back now.","Has","Have","Had","Having","Mummy has come back now.","Singular has."],
+[7,"Husband and wife _____ equal rights.","Have","Has","Are","Were","A compound subject takes have.","Two people have."],
+[7,"Everyone _____ corrupt.","Is","Were","Are","Am","Everyone is singular.","Everyone is."],
+[7,"The president together with his ministers _____ around now.","Is","Were","Are","Was","Together with does not change the subject.","President is."],
+[7,"Either the student or I _____ the teacher.","Am","Were","Are","Is","The verb agrees with the nearer subject.","I am."],
+[7,"No sooner had I left _____ he went.","Than","Then","That","When","No sooner pairs with than.","Sooner than."],
+[7,"Many a student _____ to be punished for late coming.","Is","Were","Are","Am","Many a takes a singular verb.","Many a is."],
+[7,"More than an orange _____ in the basket now.","Is","Were","Are","Was","More than an takes a singular verb.","One item, is."],
+[7,"One of the students _____ to come.","Is","Were","Are","Have","One of the students is.","One is."],
+[7,"The issue with them _____ their behavior.","Is","Are","Am","Were","The issue is singular.","Issue is."],
+[7,"It must be they who _____ now called.","Are","Is","Am","Were","Who refers to they, so use are.","They who are."],
+[7,"The chancellor, together with all the directors, _____ in the hall.","Is","Are","Am","Were","Together with does not make the subject plural.","Chancellor is."],
+[7,"One of the students who _____ writing the examination _____ my friend.","Are/is","Is/is","Are/are","Is/are","Who refers to students, while one takes is.","Are then is."],
+[7,"The number of corrupt politicians _____ on the increase in nigeria.","Is","Are","Am","Were","The number of takes a singular verb.","The number is."],
+[7,"If I had taken you to Lagos, I _____ you.","Would have satisfied","Will satisfy","Will be satisfy","Would satisfy","Had taken pairs with would have.","Third conditional."],
+[7,"How old are you? Is _____ tense.","Present","Past simple","Present continuous","Past perfect","Are is present.","Present."],
+[7,"The sentence 'If I was informed, I would accept the offer' is in which tense?","Past","Perfect simple","Past continuous","Future","The verbs was and would are past forms.","Past forms."],
+[7,"Messi dribbles three players, passes to Neymar, and it... It is a goal is _____.","Simple present","Habitual","Past perfect","Continuous","Commentary uses the simple present.","Live action."],
+[7,"We have eaten before is in the _____.","Present perfect","Past","Present","Past perfect","Have eaten is present perfect.","Have plus participle."],
+[7,"We were always reading together last year is in the _____.","Past continuous","Past","Past perfect","Future past","Were reading is past continuous.","Were plus ing."],
+[7,"They had been reading before they came for the examination is in the _____.","Past perfect continuous","Past perfect","Present perfect progressive","Simple past","Had been reading is past perfect continuous.","Had been ing."],
+[7,"The vice chancellor had been addressing the union leaders is in the _____.","Past perfect continuous","Simple present","Present perfect","Present perfect continuous","Had been addressing is past perfect continuous.","Had been ing."],
+[7,"The school resumes next Sunday is _____ tense.","Simple present","Future continuous","Simple future","Present continuous","A timetable event uses the simple present.","Resumes."],
+[7,"Whenever you _____ around, please check on me.","Come","Comes","Coming","Came","Whenever you takes come.","You come."],
+[7,"It is high time you _____ what you are doing.","Stopped","Start","Stop","Have stopped","It is high time takes the past form.","High time you stopped."],
+[7,"'Three quarters of the biochemistry class ___ improved dramatically.'","Has","Have","Are","Were","Class is treated here as one group.","The noun after 'of' decides."],
+[7,"'Hundreds of dollars ___ spent on her education every year.'","Are","Is","Was","Has been","A yearly habit with a plural subject takes 'are'.","Every year means present."],
+[7,"'We had gone when he woke up' contains which tense in the main clause?","Past perfect","Present perfect","Future perfect","Past continuous","'Had gone' is past perfect.","Had plus gone."],
+[7,"'She will be finishing the examination by this time next week' is in the","Future continuous","Future perfect","Simple future","Future perfect continuous","'Will be finishing' shows an action in progress later.","Will be plus ing."],
+[7,"'The work ___ easier if the boss were not so hard on us.'","Would be","Would have been","Will have been","Was","An unreal present condition takes 'would be'.","Were pairs with would be."],
+/* ---------- 8 · Usage & Vocabulary ---------- */
+[8,"Choose the correct sentence.","The huge tall strong slim dark 15-year-old American footballer has arrived in Nigeria","The huge strong slim tall 15-year-old dark american footballer has arrived in Nigeria","The huge dark tall slim strong 15-year-old american footballer has arrived in Nigeria","The huge slim dark tall strong 15-year-old american footballer has arrived in Nigeria","Adjective order is size, physique, age, colour, nationality, and American takes a capital.","Capital American."],
+[8,"Last week, the _____ at the theatre was the largest I had ever seen.","Audience","Assembly","Congregation","Convention","People at a theatre are an audience.","Theatre audience."],
+[8,"Tennyson and Browning lived about the same time and are therefore _____ poets.","Contemporary","Contrary","Contractual","Contemporaneous","People living at the same time are contemporaries.","Same time = contemporary."],
+[8,"The horse is a winner; _____.","You can take my word for it","You can take that from me","You can say","It is my word against theirs","The idiom is take my word for it.","My word for it."],
+[8,"You should show some consideration _____ the feelings of others.","For","With","About","By","We show consideration for others.","Consideration for."],
+[8,"Will you know if that dog is _____? He has lost a brown and black one.","Okon's","Okon'","Okon's own","The okons","The apostrophe shows ownership.","Okon's."],
+[8,"The students in my junior class seem to have performed _____ they did last year.","As brilliantly","As brilliant as","More brilliant","Brilliant than","An adverb in an as comparison is needed.","As brilliantly as."],
+[8,"Jane and Jarawa love _____ very much.","Each other","Themselves","One another","Their selves","Two people love each other.","Two = each other."],
+[8,"I shall travel to Lagos by _____ next week.","Air or by road","Air or with lorry","Aircraft or by road","Airways or by bus","Means of travel take by with no article.","By air, by road."],
+[8,"You can never get _____ with stealing the presidential jet. You will be caught.","Away","By","Bye","Free","To escape punishment is to get away with it.","Get away with."],
+[8,"The armed robber stabbed the driver _____ the back.","In","On","At","Inside","One is stabbed in the back.","In the back."],
+[8,"She got into trouble because she refused to listen to the _____ given by her friends and relatives.","Advice","Many of the advice","Series of advices","Pieces of advices","Advice has no plural.","Never advices."],
+[8,"A program of good exercise may help a person fight _____ cold.","Off","Out","At","With","To fight off a cold means to resist it.","Fight off."],
+[8,"Baba and _____ participated in the tournament.","He","Him","His","He's","A subject needs the pronoun he.","Baba and he."],
+[8,"The physicians have more people in _____ waiting rooms than _____ have ever had.","Their/they","His/he","There/they","Them/they","Their shows ownership and they is the subject.","Their then they."],
+[8,"It seems to be a well-thought _____ scheme.","Out","Over","Off","Into","The phrase is well thought out.","Thought out."],
+[8,"Adekunle is prepared for a _____ with his opponent following his defeat last season.","Showdown","Show-off","Show-out","Show-up","A showdown is a final contest.","Showdown = face off."],
+[8,"Kunle found that thieves had entered his house in his absence. He went to the police to report the _____.","Break in","Break out","Break up","Break into","Forced entry is a break in.","Break in."],
+[8,"After the accused was found guilty by the court, his counsel _____ before sentence was passed.","Made a plea for mitigation","Begged for mercy","Made an ovation","Made a plea for litigation","The legal phrase is a plea for mitigation.","Mitigate = reduce."],
+[8,"Four persons accused of currency _____ are being held by the security agents.","Trafficking","Carriage","Stealing","Transporting","Illegal dealing in currency is trafficking.","Trafficking."],
+[8,"\"Darling, do send the children to bed. I can’t _____ their noise any longer,\" he said to his wife.","Put up with","Make do with","Make up","Deal with","To put up with is to tolerate.","Put up with = bear."],
+[8,"The man _____ reported at the police station.","Whose car was stolen","Who’s car was stolen","Which car was stolen","Who’s car they stole","Whose shows possession.","Whose car."],
+[8,"The woman at the door replied _____.","It is I","Is I","It me","Am the one","Formal usage is it is I.","It is I."],
+[8,"_____ shall I give the money to?","Whom","Whose","Which","Who","The object of a preposition is whom.","To whom."],
+[8,"They arrived just _____ time for the meeting.","In","After","Against","At","Just in time means not late.","In time."],
+[8,"You like ice cream, _____.","Don’t you","Isn’t you","Won’t you","Didn’t you","A positive statement takes a negative tag.","You like, don't you."],
+[8,"Everyone wants to be the _____ favourite.","School principal’s","School principal","School’s principal","School’s principal’s","The school principal's favourite shows ownership once.","Apostrophe on the owner."],
+[8,"We need to _____ for lost time.","Make up","Make off","Make through","Make in","Make up means recover.","Make up for."],
+[8,"The bright shirt makes him _____ in the crowd.","Stand out","Stand tall","Stand on","Stand without","Stand out means be noticeable.","Stand out."],
+[8,"A degree _____ medicine is necessary to be a medical doctor.","In","Of","On","For","The expression is a degree in a subject.","Degree in."],
+[8,"Funmi says she is better in English _____.","Than I am","As I am","As me","Than I do","Better takes than.","Better than."],
+[8,"I was barely halfway home when darkness _____.","Set in","Set out","Set up","Set at","Darkness sets in.","Set in."],
+[8,"They told her that we would solve the problems _____.","Ourselves","Herself","Himself","Themselves","The reflexive must agree with we.","We, ourselves."],
+[8,"If you insist that you are not a tailor, _____ are you?","What","Whom","Which","Who","What asks about occupation.","What are you."],
+[8,"You _____ be ashamed of yourself for saying such before the principal.","Should","Will","Can","Might","Should expresses obligation.","Should be ashamed."],
+[8,"Since we do not have more, let us _____ with what we have.","Make do","Make up","Make away","Make out","Make do means manage.","Make do with."],
+[8,"We made many attempts on the issue but couldn't get _____ with the plans.","Through","By","To","From","Get through with means complete.","Get through."],
+[8,"'The suit was filed ___ the Ilorin Magistrate Court.'","At","In","On","To","A case is filed at a particular court.","Filed at a court."],
+[8,"'We have no more oranges to give you. I have only ___ left.'","A few","Few","A little","Much","A few is used for a small number of countable things.","Oranges can be counted."],
+[8,"'Tosin refused to be ___, though he had written the same examination three times.'","Discouraged","Placated","Excited","Impressed","He kept going despite the repeats.","Refused to give up."],
+[8,"'If you have no other choice, you have no option ___ to move to another school.'","But","Than","Except","Besides","The fixed expression is 'no option but to'.","No option but."],
+[8,"'The book Mr Adeolu gave to his daughter is ___.'","Hers","His","Yours","Mine","The book now belongs to the daughter.","Daughter, so hers."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='GST101', LABEL='GST 101', N=40, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('GST101');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
