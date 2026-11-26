@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MTH 101 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<!-- ANALYTICS: paste the same Google Analytics (gtag) and GoatCounter snippets that are in index.html here -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">MTH 101</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">20:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>MTH 101 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · MTH 101 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Basic Concepts in Set Theory",
+  "Real Numbers, Indices and Logarithms",
+  "Mathematical Induction",
+  "Sequences and Series",
+  "Polynomials",
+  "Binomial Theorem",
+  "Matrices and Determinants",
+  "Complex Numbers",
+  "Circle Measure",
+  "Past Questions"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Basic Concepts in Set Theory ---------- */
+[0,"A set is best defined as","A well defined collection of objects","Any collection of objects","A list of numbers only","A group with a fixed number of members","The word well defined matters: you must be able to say clearly whether an object belongs or not.","Set = well defined collection."],
+[0,"Which of these is a well defined set?","The vowels in the English alphabet","The beautiful girls in a class","The tall students in FUOYE","The best lecturers in Nigeria","You can always say if a letter is a vowel. Words like beautiful, tall and best depend on opinion, so membership cannot be decided.","Opinion word in the set = not a set."],
+[0,"The objects that make up a set are called its","Elements","Subsets","Operators","Universals","Members of a set are its elements, written with small letters, while the set itself uses a capital letter.","Capital for the set, small for the element."],
+[0,"A set with exactly one member is called","A singleton set","An empty set","A null set","A universal set","One member means singleton. Empty and null sets have no member at all.","Single = singleton."],
+[0,"The set {0} is","A singleton set","An empty set","A null set","A void set","The set has one member, which is zero, so it is not empty. Empty means no member whatsoever.","{0} has a member, so it is not empty."],
+[0,"Which of these is NOT another name for the empty set?","Singleton set","Null set","Void set","Set with cardinality zero","Empty, null and void are the same thing. A singleton has one member.","Empty = null = void. Singleton is different."],
+[0,"The number of elements in a finite set X is called its","Cardinality","Complement","Domain","Index","It is written n of X. For an empty set the cardinality is zero.","Count of elements = cardinality."],
+[0,"Which symbol stands for the set of rational numbers?","Q","R","Z","N","Q is for quotient, numbers of the form a over b. R is the real numbers and Z the integers.","Q for quotient."],
+[0,"In this course, the set Z⁻ contains","Only the negative integers","All the integers","Negative integers and zero","The negative rational numbers","Z⁻ runs from minus 1 downwards and zero is not included. Rational numbers belong to Q⁻.","Z⁻ has no zero."],
+[0,"In this manual, the set of natural numbers N starts from","1","0","−1","2","The manual writes N as 1, 2, 3, 4 and so on. Zero is not in it.","Natural starts at one."],
+[0,"Which of these is NOT a way of specifying a set?","Graphical notation","List notation","Predicate notation","Recursive rules notation","The four ways are list, abridged list, predicate and recursive rules notation.","List, abridged, predicate, recursive."],
+[0,"The set A = {1, 2, ..., 5000} is written in","Abridged list notation","List notation","Predicate notation","Recursive rules notation","Dots stand for the elements not written out, and the last element is shown. That is the abridged list.","Dots with a last element = abridged list."],
+[0,"M = {x : x is a positive integer less than 40} is written in","Predicate notation","List notation","Abridged list notation","Recursive rules notation","The property common to all the elements is stated instead of listing them.","Property after the colon = predicate."],
+[0,"In recursive rules notation, which rule gives the basis of recursion?","The first rule","The second rule","The third rule","The last two rules together","The first rule gives the starting element. The second generates new elements and the third stops the set.","First starts, second grows, third stops."],
+[0,"For the multiples of 5 greater than 10, the rule: if x is in M then x + 5 is in M, is the rule that","Generates new elements","Gives the basis of recursion","Terminates the set","Defines the universal set","It uses elements already in the set to produce the next one.","Second rule makes new elements."],
+[0,"If every element of A is also an element of B, then","A is a subset of B","B is a subset of A","A and B are disjoint","A is the complement of B","Subset means everything in A is found in B, written A ⊆ B.","Inside = subset."],
+[0,"Two sets A and B are equal if and only if","A ⊆ B and B ⊆ A","A ⊆ B only","They have the same cardinality","A ∩ B = ∅","Equal sets contain exactly the same elements, so each is a subset of the other. Same number of elements alone is not enough.","Equal means subset both ways."],
+[0,"If a set has n elements, its power set has how many elements?","2ⁿ","n²","2n","n!","Every element is either in or out of a subset, giving 2 choices each time, so 2 multiplied n times.","In or out, 2 to the n."],
+[0,"A set has 5 elements. How many members does its power set have?","32","25","10","31","2 to the power 5 is 32. The 31 would be the proper subsets.","2⁵ = 32."],
+[0,"The power set of any set A always contains","The empty set and A itself","The empty set only","A itself only","Neither the empty set nor A","The empty set is a subset of every set and every set is a subset of itself, so both are in P of A.","Empty set and the set itself are always inside."],
+[0,"The power set of the empty set has","1 element","0 elements","2 elements","No subsets","The only subset of the empty set is the empty set, so the power set is { ∅ } with 2⁰ = 1 element.","2 to the 0 = 1."],
+[0,"The number of proper subsets of a set with 3 elements is","7","8","6","3","There are 8 subsets in all, but a proper subset cannot be the set itself, so 8 − 1 = 7.","2ⁿ − 1 for proper subsets."],
+[0,"Given A = {a, b, c, d}, which of these is a member of the power set of A?","{a, c}","a","{a, e}","{{a, c}, b}","The power set holds subsets of A. The letter a alone is an element, not a subset, and e is not in A.","Power set members are sets, not single elements."],
+[0,"If U = {1, 2, 3, 4, 7, 11, 13, 17, 19} and A = {1, 3, 7, 11, 17}, then A′ is","{2, 4, 13, 19}","{1, 3, 7, 11, 17}","{2, 4, 13}","{2, 4, 7, 19}","The complement is everything in U that is not in A, which leaves 2, 4, 13 and 19.","Complement = U minus A."],
+[0,"The set difference A − B can also be written as","A ∩ Bᶜ","Aᶜ ∩ B","A ∪ Bᶜ","Aᶜ ∪ B","A − B keeps what is in A and not in B, which is A intersect the complement of B.","A minus B = A and not B."],
+[0,"If A = {1, 3, 4, 5} and B = {o, p, q, 3, 4}, the number of elements in A ∪ B is","7","8","9","5","The union is 1, 3, 4, 5, o, p, q. The shared 3 and 4 are counted only once.","Union counts shared elements once."],
+[0,"If A = {1, 3, 4, 5} and B = {o, p, q, 3, 4}, then A ∩ B is","{3, 4}","{1, 5}","{o, p, q}","{1, 3, 4, 5, o, p, q}","The intersection holds only the elements found in both sets.","Intersection = in both."],
+[0,"The symmetric difference of A and B contains elements that are","In exactly one of the two sets","In both sets","In at least one of the sets","In neither set","It is A − B joined with B − A, so anything in both sets is thrown out.","Symmetric difference = one but not both."],
+[0,"The symmetric difference A △ B is equal to","The union of A − B and B − A","The intersection of A − B and B − A","The union of A and B","A − B only","It joins the part of A with no B and the part of B with no A.","A△B = A−B joined with B−A."],
+[0,"For A = {l, m, n, o, p, q, r, s} and B = {h, i, o, p, q, r, s}, A △ B is","{l, m, n, h, i}","{l, m, n}","{h, i}","{o, p, q, r, s}","A − B is l, m, n and B − A is h, i. The symmetric difference joins both.","Take the leftovers of both sides."],
+[0,"n of A ∪ B ∪ C is equal to","nA+nB+nC−nA∩B−nA∩C−nB∩C+nA∩B∩C","nA+nB+nC−nA∩B−nA∩C−nB∩C−nA∩B∩C","nA+nB+nC+nA∩B+nA∩C+nB∩C+nA∩B∩C","nA+nB+nC−nA∩B∩C","Add the singles, subtract the pairs, add back the triple. The triple was removed too many times.","Add, subtract, add back."],
+[0,"For subsets A, B, C of U, the number of elements outside all three sets is","nU − nA∪B∪C","nA∪B∪C − nU","nU + nA∪B∪C","nA+nB+nC − nU","Total in the universal set minus those inside the union of the three.","Outside = whole minus union."],
+[0,"X ∪ X = X is the","Idempotent law","Identity law","Complement law","Commutative law","Joining a set with itself changes nothing, which is what idempotent means.","Same set twice = idempotent."],
+[0,"X ∪ ∅ = X and X ∩ U = X belong to the","Identity laws","Idempotent laws","Complement laws","Associative laws","The empty set and the universal set leave X unchanged in these two operations.","Empty and U give identity."],
+[0,"X ∪ Xᶜ = U is a","Complement law","Identity law","Idempotent law","De Morgan law","A set joined with everything not in it gives the whole universal set.","X and not X = everything."],
+[0,"X ∩ Xᶜ equals","∅","U","X","Xᶜ","Nothing can be in a set and outside it at the same time.","In and out together = nothing."],
+[0,"X ∩ ∅ equals","∅","X","U","Xᶜ","Intersection with the empty set leaves nothing in common. Do not mix it up with X ∪ ∅, which equals X.","Intersect with empty = empty."],
+[0,"X ∪ U equals","U","X","∅","Xᶜ","U already contains every element, so adding X changes nothing.","Union with U = U."],
+[0,"The statement (X ∩ Y) ∩ Z = X ∩ (Y ∩ Z) is an example of which law?","Associative law","Idempotent law","Complement law","Identity law","In the associative law the grouping of brackets does not change the result.","Associative = regrouping."],
+[0,"The statement X ∩ (Y ∪ Z) = (X ∩ Y) ∪ (X ∩ Z) is the","Distributive law","Associative law","Commutative law","Idempotent law","The intersection with X is shared out over both Y and Z, like multiplication over addition.","Shared out = distributive."],
+[0,"The complement of X ∪ Y is equal to","Xᶜ ∩ Yᶜ","Xᶜ ∪ Yᶜ","X ∩ Y","Xᶜ − Yᶜ","De Morgan: complement the sets and flip the sign. Union becomes intersection.","Break the line, change the sign."],
+[0,"The complement of X ∩ Y is equal to","Xᶜ ∪ Yᶜ","Xᶜ ∩ Yᶜ","X ∪ Y","Xᶜ − Yᶜ","De Morgan again: the intersection changes to a union when you complement each set.","Intersection flips to union."],
+[0,"The complement of the complement of X, written Xᶜᶜ, is","X","U","∅","Xᶜ","Taking the complement twice takes you back to the starting set.","Not not X = X."],
+[0,"In a Venn diagram, the rectangle drawn around the circles represents","The universal set","The empty set","The intersection of the sets","The complement of one set","The rectangle holds every set under discussion, so it is the universal set U.","Rectangle = U."],
+[0,"With U = {1,2,...,9}, A = {1,2,3,4}, B = {1,3,5,7}, C = {3,7,9}, the set A ∩ B ∩ C is","{3}","{1, 3}","{3, 7}","{ }","Only 3 is found in all three sets.","Check the element in every set."],
+[0,"With U = {1,2,...,9}, A = {1,2,3,4}, B = {1,3,5,7}, C = {3,7,9}, the set Bᶜ is","{2, 4, 6, 8, 9}","{2, 4, 6, 8}","{1, 3, 5, 7}","{2, 4, 9}","Remove 1, 3, 5, 7 from the universal set and you are left with 2, 4, 6, 8, 9.","Complement keeps what B lacks."],
+[0,"With U = {1,2,...,9}, A = {1,2,3,4}, B = {1,3,5,7}, C = {3,7,9}, the set A ∪ B ∪ C complement is","{6, 8}","{6, 8, 9}","{2, 4}","{1, 3, 7}","The union is 1, 2, 3, 4, 5, 7, 9, so only 6 and 8 are outside it.","Union first, then flip."],
+[0,"With U = {1,2,...,9}, A = {1,2,3,4}, B = {1,3,5,7}, C = {3,7,9}, how many elements are in the complement of A ∩ B ∩ C?","8","1","9","7","A ∩ B ∩ C has only one element, 3, so the complement has 9 − 1 = 8.","Complement count = total minus inside."],
+[0,"The set P = {x : (x² − 4)(x² − 9) = 0} has the elements","−3, −2, 2, 3","−2, 2","−3, 3","2, 3","Each factor gives two roots: x² = 4 gives plus or minus 2 and x² = 9 gives plus or minus 3.","Square equal to a number gives two roots."],
+[0,"If Q = {−3, 2, 10} and S = {−2, −1, 1, 3}, then Q ∩ S is","{ }","{−3}","{2}","{3}","The two sets have no element in common.","Check each element of Q in S."],
+[0,"With P = {−3, −2, 2, 3}, Q = {−3, 2, 10} and S = {−2, −1, 1, 3}, the set P ∪ Q ∪ S is","{−3, −2, −1, 1, 2, 3, 10}","{−3, −2, 2, 3, 10}","{−2, −1, 1, 3}","{−3, −1, 1, 10}","Collect every element once: −3, −2, −1, 1, 2, 3 and 10.","List each element only once."],
+[0,"With P = {−3, −2, 2, 3}, Q = {−3, 2, 10} and S = {−2, −1, 1, 3}, the set (P − Q) − S is","{ }","{−2, 3}","{−3, 2}","{10}","P − Q leaves −2 and 3, and both of these are in S, so nothing is left.","Take away step by step."],
+[0,"190 students: 100 play football, 60 basketball and 80 volleyball. 22 play football and basketball, 17 football and volleyball, 18 basketball and volleyball. 7 play none. How many play all three games?","0","7","5","10","The games cover 190 − 7 = 183 students. Also 240 − 57 + x = 183, so x = 0.","Fit the totals, then solve for x."],
+[0,"In the same group of 190 students, how many play exactly one of the three games?","126","183","57","100","Football only 61, basketball only 20 and volleyball only 45 give 126.","Singles are total minus the overlaps."],
+[0,"In the same group of 190 students, how many play exactly two of the three games?","57","126","183","39","With nobody in all three, exactly two is 22 + 17 + 18 = 57.","No triple means pairs add straight."],
+[0,"In the same group of 190 students, how many play at least one game?","183","190","126","57","Only 7 play none, so at least one is 190 − 7 = 183.","At least one = total minus none."],
+[0,"180 sport lovers: Chelsea 122, City 105, Arsenal 90. Chelsea and City 73, Chelsea and Arsenal 62, City and Arsenal but not Chelsea 16. All three plus none is 37. How many tip all three clubs?","23","14","16","37","Adding all the Venn regions gives 203 − x = 180, so x = 23.","Write x for the centre and solve."],
+[0,"In the same group of 180 sport lovers, how many tip at least one of the three clubs?","166","180","152","143","23 tip all three and 14 tip none, so at least one is 180 − 14 = 166.","At least one = total minus none."],
+[0,"F = {2,4,6,8,10,12,14,18} and G = {1,2,3,4,5,7,9,11,16,18}. F ∩ G is","{2, 4, 18}","{2, 4}","{2, 4, 16, 18}","{1, 2, 4, 18}","Only 2, 4 and 18 appear in both sets.","Check each F element against G."],
+[0,"With the whole numbers from 1 to 20 as the universal set, F = {2,4,6,8,10,12,14,18} and G = {1,2,3,4,5,7,9,11,16,18}, the set F ∪ G complement is","{13, 15, 17, 19, 20}","{13, 15, 17, 19}","{13, 15, 20}","{6, 8, 10, 12, 14}","F ∪ G holds 1 to 12, 14, 16 and 18. The numbers left in 1 to 20 are 13, 15, 17, 19 and 20.","Do not forget 20."],
+[0,"If n(A) = 40, n(B) = 38 and n(A ∪ B) = 60, then n(A ∩ B) is","18","22","78","2","From n(A ∪ B) = n(A) + n(B) − n(A ∩ B): 60 = 78 − n(A ∩ B), so the answer is 18.","Overlap = sum minus union."],
+[0,"If n(A − B) = 18, n(A ∪ B) = 70 and n(A ∩ B) = 25, then n(B) is","52","43","45","27","First n(A) = 18 + 25 = 43. Then B only is 70 − 43 = 27, so n(B) = 27 + 25 = 52.","Find A first, then B."],
+[0,"In a group of 70 students, 37 like Chemistry and 52 like Physics. Everyone likes at least one. How many like both?","19","15","89","33","The sum 37 + 52 = 89 is 19 more than 70, so 19 like both.","Sum minus total gives the overlap."],
+[0,"290 newspaper readers: 181 Daily Times, 142 Guardian, 117 Punch. 75 read Daily Times and Guardian, 60 Daily Times and Punch, 54 Guardian and Punch, and all read at least one. How many read all three?","39","54","60","75","290 = 440 − 189 + x, so x = 39.","Use the three set formula."],
+[0,"Using the same newspaper survey, how many read exactly two of the papers?","72","189","39","111","The pairs only are 36, 21 and 15, which add to 72.","Pair minus triple, then add."],
+[0,"Using the same newspaper survey, how many read exactly one paper?","179","111","290","72","290 − 72 − 39 = 179.","Total minus two papers minus three papers."],
+[0,"In a group of 120 shareholders, 72 hold shares in First bank, 65 in Eco bank and 53 in GT bank. 35 hold First and Eco, 30 First and GT, 21 Eco and GT. Everyone holds at least one. How many hold all three banks?","16","21","35","19","120 = 190 − 86 + x, so x = 16.","Same formula, solve for x."],
+[0,"In the same group of 120 shareholders, how many hold shares in exactly two banks?","38","86","54","16","The pair only values are 19, 14 and 5, which add to 38.","Pair minus triple, then add."],
+[0,"134 lecturers judged three GST courses: 59 said A is relevant, 57 said B, 58 said C. 15 said A and B, 17 said B and C, 18 said A and C. Nobody said all three are irrelevant. How many said all three are relevant?","10","15","8","0","Everyone picked at least one, so 134 = 174 − 50 + x, which gives x = 10.","Use the three set formula and solve for x."],
+[0,"In the same lecturers survey, how many said at least two of the three courses are relevant?","30","20","10","50","Exactly two is 5 + 7 + 8 = 20, and adding the 10 who chose all three gives 30.","At least two = exactly two plus all three."],
+[0,"In the same lecturers survey, how many said A and C only are relevant?","8","18","10","5","A and C is 18 and 10 of those also like B, so A and C only is 8.","Pair total minus the centre."],
+/* ---------- 1 · Real Numbers and the Real Line ---------- */
+[1,"The real line is the line whose points are","The real numbers","The integers only","The rational numbers only","The complex numbers","Every real number matches exactly one point on the real line and every point on it is a real number.","Real line = real numbers."],
+[1,"The decimal form of a rational number is","Either terminating or repeating","Always terminating","Always repeating forever with no pattern","Neither terminating nor repeating","3 over 8 is 0.375, which stops, while 3 over 7 repeats. Both are rational.","Rational = stops or repeats."],
+[1,"The decimal form of an irrational number","Neither terminates nor repeats","Terminates","Repeats after some digits","Is always a whole number","Numbers like π and √2 go on forever without a repeating pattern.","Irrational never repeats."],
+[1,"Which of these is a rational number?","√9","√2","π","√30","√9 equals 3, which is a whole number. The others cannot be written as a ratio of integers.","Check if the root is a perfect square."],
+[1,"The number √30 is","Irrational, because it lies between 5 and 6","Rational, because it is a square root","A whole number","Rational, because it is positive","25 is less than 30 and 36 is more than 30, so the root is not whole. A square root of a non-square whole number is irrational.","Between two whole numbers means irrational."],
+[1,"A number written with a square root sign is","Not always irrational","Always irrational","Always rational","Always an integer","√16 is 4 and √100 is 10. Simplify first, then decide.","Simplify the root before judging."],
+[1,"The real number system is an example of a mathematical structure called","A field","A matrix","A vector","A function","A field has commutative, associative, identity, inverse and distributive properties for addition and multiplication.","Real numbers form a field."],
+[1,"The identity element for addition in the real numbers is","0","1","−1","The number itself","Adding zero to any number leaves it unchanged. The identity for multiplication is 1.","Add zero, multiply one."],
+[1,"The additive inverse of 4 and the multiplicative inverse of 4 are respectively","−4 and 1/4","1/4 and −4","−4 and 4","0 and 1","Four plus minus four is 0, and four times one quarter is 1.","Add inverse makes 0, multiply inverse makes 1."],
+[1,"Which property is shown by a × b = b × a?","Commutative property","Associative property","Distributive property","Inverse property","The order of the numbers does not matter.","Swap places = commutative."],
+[1,"Every real number except one has a multiplicative inverse. That number is","0","1","−1","The number itself","Zero has no reciprocal because you cannot divide by zero.","No division by zero."],
+[1,"a^p × a^q equals","a^p+q","a^pq","a^p−q","2a^p+q","When you multiply the same base, you add the powers.","Multiply bases, add powers."],
+[1,"a^p ÷ a^q equals","a^p−q","a^p+q","a^pq","a^q−p","When you divide the same base, you subtract the powers.","Divide bases, subtract powers."],
+[1,"The expression a⁰, for a not equal to zero, is","1","0","a","Undefined","Any non-zero number raised to the power 0 is 1.","Zero power = one."],
+[1,"a^−q is equal to","1 over a^q","−a^q","a^q","a over q","A negative power flips the base to the bottom of a fraction.","Negative power = reciprocal."],
+[1,"The value of a^1/q is","The q th root of a","a times q","q over a","The square of a","A fractional power with 1 on top is a root.","Power one over q is the q th root."],
+[1,"The value of 81^−1/4 × 1024^1/10 is","2/3","3/2","6","1/6","81 = 3⁴ and 1024 = 2¹⁰, so the answer is 3⁻¹ × 2 = 2/3.","Write both as powers of a prime."],
+[1,"The value of the cube root of 9 times the sixth root of 9 is","3","9","81","1/3","The powers add: 1/3 + 1/6 = 1/2, so you get 9 to the half which is 3.","Same base, add the fractions."],
+[1,"The solutions of 2²ˣ − 6 times 2ˣ + 8 = 0 are","x = 1 or x = 2","x = 2 or x = 4","x = −1 or x = −2","x = 0 or x = 3","Let u = 2ˣ. Then u² − 6u + 8 = 0, so u is 2 or 4, which gives x = 1 or 2.","Let the power be u."],
+[1,"The solutions of 2^2x+1 − 5 times 2ˣ + 2 = 0 are","x = 1 or x = −1","x = 1 or x = 2","x = 0 or x = 1","x = −2 or x = 1","Write 2 times u² − 5u + 2 = 0 with u = 2ˣ. Then u is 2 or 1/2, so x is 1 or −1.","Factor in u first."],
+[1,"The equation 7²ˣ − 2 times 7ˣ + 1 = 0 gives","x = 0","x = 1","x = 7","x = −1","It is a perfect square in 7ˣ, so 7ˣ = 1 and x = 0.","Spot the perfect square."],
+[1,"Solving 3ˣ = 9^y and 4^xy = 2^x+1 together, the values of x are","−1 or 2","1 or 2","−2 or 1","0 or 2","From the first, x = 2y. Putting that in the second gives 2y² − y − 1 = 0, so y is 1 or −1/2.","Make the bases equal."],
+[1,"log of pq to base a equals","log p + log q to base a","log p × log q to base a","log p − log q to base a","pq times log a","The log of a product is the sum of the logs.","Product becomes sum."],
+[1,"log of p over q to base a equals","log p − log q to base a","log p ÷ log q to base a","log p + log q to base a","log q − log p to base a","The log of a quotient is the difference of the logs.","Quotient becomes difference."],
+[1,"The value of log_a 1 is","0","1","a","Undefined","Since a⁰ = 1 for any base, the log of 1 is always 0.","Log of 1 is zero."],
+[1,"The value of log_a a is","1","0","a","Undefined","a raised to the power 1 gives a.","Log of the base is 1."],
+[1,"log_b of p^a equals","a log_b p","p log_b a","log_b p + a","a + p","A power inside a log comes out as a multiplier.","Power comes down."],
+[1,"The change of base rule gives log_a p equal to","log_b p over log_b a","log_b a over log_b p","log_b p times log_b a","log_a b over log_p b","Divide the log of the number by the log of the old base, both in the new base.","Number over base."],
+[1,"Which of these is NOT a valid log rule?","log of p plus q equals log p times log q","log of pq equals log p plus log q","log of p over q equals log p minus log q","log of p to the power a equals a times log p","There is no rule that splits a log of a sum. Only products, quotients and powers can be split.","No rule for log of a sum."],
+[1,"If log base 3 of y − 1 equals x, then y is equal to","1 + 3ˣ","3ˣ − 1","1 − 3ˣ","3 + x","Rewrite the log in power form: y − 1 = 3ˣ, then add 1.","Log form to power form."],
+[1,"Simplifying log of p^x−n plus log of p^y+n to base a gives","x + y times log_a p","x − y times log_a p","n times log_a p","x times y times log_a p","The powers add as x − n + y + n, which leaves x + y.","Add the powers inside."],
+[1,"If a is greater than b, then a − b is","Positive","Negative","Zero","Undefined","By definition a is greater than b exactly when a − b is positive.","Greater means the difference is positive."],
+[1,"If a > b, then for any real number x","a + x > b + x","a + x < b + x","a + x = b + x","Nothing can be said","Adding the same number to both sides keeps the inequality sign.","Add to both sides: sign stays."],
+[1,"If a > b and x is negative, then","ax < bx","ax > bx","ax = bx","ax > b","Multiplying by a negative number reverses the inequality.","Negative multiplier flips the sign."],
+[1,"If a > b and c > d, which of these must be true?","a + c > b + d","a − c > b − d","ac > bd always","a over c > b over d always","Inequalities can be added, but they cannot be subtracted. The product rule needs all numbers positive.","Add yes, subtract no."],
+[1,"If a > b and b > c, then","a > c","a < c","a = c","Nothing can be said","This is the chain rule for inequalities.","Chain them."],
+[1,"If a > b > 0, then","a² > b²","a² < b²","1 over a > 1 over b","a² = b²","For positive numbers, squaring keeps the order, but the reciprocal reverses it.","Positive powers keep, reciprocals flip."],
+[1,"The values of x for which both 3 + x > 0 and 3 − x > 0 are true are","−3 < x < 3","x > 3","x < −3","x > −3 only","The first gives x > −3 and the second gives x < 3.","Take the overlap."],
+[1,"The range of x for which the fraction 2x + 1 over x + 2 is greater than 1/2 is","x > 0 or x < −2","−2 < x < 0","x > −2","x > 0 only","Multiply by the positive square of x + 2 and solve 3x times x + 2 > 0.","Multiply by the square to keep the sign."],
+[1,"The range of x for which x² + x − 2 over x² + 4 is greater than 1/2 is","x < −4 or x > 2","−4 < x < 2","x > −4","x < 2","x² + 4 is always positive so it can be multiplied through. That leaves x + 4 times x − 2 > 0.","Sum of squares is always positive."],
+[1,"The range of x for which x + 3 over x − 2 is greater than x + 1 over x − 3 is","2 < x < 3 or x > 7","x < 2 or 3 < x < 7","2 < x < 7","x > 7 only","Multiplying by the positive x − 2 squared times x − 3 squared leaves x − 2 times x − 3 times x − 7 > 0.","Factor then use a sign table."],
+[1,"The absolute value of a number is","Its distance from zero","Always its negative","The square of the number","The reciprocal of the number","The absolute value measures distance, so it is never negative.","Absolute value = distance from zero."],
+[1,"The value of |−6| is","6","−6","0","1/6","Absolute value drops the negative sign.","Drop the minus."],
+[1,"The inequality |x| < 1 means","−1 < x < 1","x < −1 or x > 1","x < 1 only","x > −1 only","Distance from zero less than 1 means x lies between −1 and 1.","Less than = between."],
+[1,"The values of x satisfying |x + 1| = 5 are","x = 4 or x = −6","x = 4 only","x = −4 or x = 6","x = 5 or x = −5","x + 1 can be 5 or −5, which gives 4 or −6.","Absolute equal gives two cases."],
+[1,"The inequality |x − 2| < |3 − 2x| holds for","x < 1 or x > 5/3","1 < x < 5/3","x > 1","x < 5/3","Square both sides to get 3x − 5 times x − 1 > 0.","Square both sides to remove the bars."],
+[1,"For a positive constant a, the inequality |x − 3a| > |x − a| holds for","x < 2a","x > 2a","x < a","x > 3a","Squaring both sides leaves −4ax + 8a² > 0, so x < 2a.","Square both sides, then divide."],
+[1,"The values of x satisfying |3ˣ − 8| < 0.5, to 3 significant figures, are","1.83 < x < 1.95","1.83 > x > 1.95","x < 1.83","x > 1.95","3ˣ must lie between 7.5 and 8.5. Taking logs gives x between 1.83 and 1.95.","Bound 3ˣ then take logs."],
+[1,"To rationalize the denominator of 1 over √5 − √2, you multiply top and bottom by","√5 + √2","√5 − √2","√10","√5 × √2 minus 1","Multiplying by the conjugate turns the denominator into a difference of two squares, 5 − 2 = 3.","Flip the sign in the middle."],
+[1,"The conjugate of 2 − √3 is","2 + √3","−2 + √3","√3 − 2","1 over 2 − √3","Only the sign between the two terms changes. The product 2 − √3 times 2 + √3 equals 1.","Same terms, opposite sign."],
+[1,"When you rationalize a denominator, the aim is to","Remove the surd from the denominator","Remove the surd from the numerator","Turn the fraction into a decimal","Make the numerator 1","The value stays the same, but the denominator becomes a rational number.","Surd out of the bottom."],
+[1,"The square root of 7 − 4√3 is","2 − √3","√3 − 4","2 + √3","4 − √3","Write 7 − 4√3 as √m − √n squared with m + n = 7 and mn = 12. That gives m = 4 and n = 3, so the root is 2 − √3.","Find two numbers adding to 7 and multiplying to 12."],
+[1,"After rationalizing, 1 + √2 over 1 − √2 becomes","−3 − 2√2","3 + 2√2","−1 − √2","1 + 2√2","Multiplying by the conjugate 1 + √2 gives 1 + 2√2 + 2 over 1 − 2, which is −3 − 2√2.","Denominator becomes 1 minus 2, so it is negative one."],
+[1,"The expression √2 + √5 over √10 written as a√5 + b√2 gives","a = 1/5 and b = 1/2","a = 1/2 and b = 1/5","a = 1 and b = 1","a = 5 and b = 2","Split the fraction: √2 over √10 is 1 over √5 which is √5 over 5, and √5 over √10 is 1 over √2 which is √2 over 2.","Split then rationalize each part."],
+[1,"The solution of x − 1 over x − 2 greater than x − 2 over x − 3 is","2 < x < 3","x < 2 or x > 3","x > 3","x < 2","Multiplying by the positive x − 2 squared times x − 3 squared leaves a product that is positive only between 2 and 3.","Check each region with a sign table."],
+[1,"The solution of x − 4 over x − 3 less than 2x − 1 over 2 is","x > 3","x < 3","3 < x < 4","x < 2","Cross multiply carefully with the sign of x − 3 in mind. The result holds only for x greater than 3.","Watch the sign of the denominator."],
+[1,"The values of x with |x + 2| < |5 − 2x| are","x < 1 or x > 7","1 < x < 7","x < 7","x > 1","Squaring gives 3x² − 24x + 21 > 0, which factors as 3 times x − 1 times x − 7.","Square both sides, factor, sign table."],
+[1,"The values of x with |x| > |3x − 2| are","1/2 < x < 1","x < 1/2 or x > 1","x > 1","x < 1","Squaring gives 8x² − 12x + 4 < 0, which is 4 times 2x − 1 times x − 1 less than 0.","Square both sides, then check the sign."],
+[1,"The values of x with |x − 3 over 1 + x| < 1 are","x > 1","x < 1","−1 < x < 1","x > 3","Squaring both sides leaves 8 < 8x, so x is greater than 1.","Square both sides to remove bars."],
+/* ---------- 2 · Mathematical Induction ---------- */
+[2,"Mathematical induction is a technique for proving a statement that is asserted about","Every natural number","Every real number","Only even numbers","Only one fixed number","The claim must hold for all natural numbers 1, 2, 3 and so on, and induction covers all of them at once.","Induction is for natural numbers."],
+[2,"The first step in a proof by induction is to verify that the statement is true for","n = 1","n = k","n = k + 1","n = 0 only","You start with the first natural number, which is the base case.","Base case first."],
+[2,"In step 2 of induction, we assume the statement is true for","n = k","n = k + 1","n = 1","Every n","This assumption is called the induction hypothesis.","Assume k, then prove k + 1."],
+[2,"The assumption that the statement is true for n = k is called","The induction hypothesis","The base case","The conclusion","The counter example","It is what we assume while we prove the next case.","Assume k = hypothesis."],
+[2,"In the last step of induction, we must show that","n = k + 1 is true whenever n = k is true","n = k is true for every k","n = 1 is true only","n = k − 1 is true","The proof moves from one case to the next, so true for k forces true for k + 1.","The step from k to k + 1."],
+[2,"A proof by induction is complete only when","Both the base case and the k to k + 1 step are done","The base case alone is checked","Ten cases are tested","The formula works for n = 1 and n = 2","Checking a few cases does not prove it for all n. You need the base case and the induction step.","Base and step, both needed."],
+[2,"Testing a formula for n = 1, 2, 3 and 4 and finding it true","Does not prove it for all n","Proves it for all n","Proves it for even n only","Proves the induction step","Examples only support the claim. Induction is what proves it.","Examples are not a proof."],
+[2,"By the formula n times n + 1 over 2, the sum 1 + 2 + 3 + 4 equals","10","8","12","24","4 times 5 over 2 is 10.","Triangle number formula."],
+[2,"The sum 1 + 2 + 3 + ... + n is given by","n times n + 1 over 2","n² over 2","n times 2n + 1 over 6","n² times n + 1² over 4","This is the sum of the first n natural numbers.","Half of n times n plus 1."],
+[2,"The sum of the first n cubes, 1³ + 2³ + ... + n³, equals","n² times n + 1² over 4","n times n + 1 over 2","n times n + 1 times 2n + 1 over 6","n³ over 3","This is the square of the sum of the first n numbers. For n = 4 it gives 100.","Sum of cubes = square of the sum."],
+[2,"Using the sum of cubes formula, 1³ + 2³ + 3³ + 4³ equals","100","64","30","10","16 times 25 over 4 is 100.","Sum of cubes is a perfect square."],
+[2,"The sum of the first n squares, 1² + 2² + ... + n², equals","n times n + 1 times 2n + 1 over 6","n times n + 1 over 2","n² times n + 1² over 4","n³ over 3","Memorise this one for exams. For n = 10 it gives 385.","n, n plus 1, 2n plus 1, over 6."],
+[2,"The sum of the first n odd numbers 1 + 3 + 5 + ... + 2n − 1 is","n²","n times n + 1","2n","n² + 1","The sum of the first 5 odd numbers is 25, which is 5 squared.","Odd numbers add to a square."],
+[2,"The sum of r times r + 1, with r from 1 to n, is","n times n + 1 times n + 2 over 3","n times n + 1 over 2","n times n + 1 times 2n + 1 over 6","n² times n + 1² over 4","For n = 5 this gives 70, the same as 2 + 6 + 12 + 20 + 30.","n, n plus 1, n plus 2, over 3."],
+[2,"The sum 1·3 + 2·3² + 3·3³ + ... + n·3ⁿ equals","2n − 1 times 3^n+1 plus 3, all over 4","2n + 1 times 3^n minus 3, all over 4","n times 3^n+1 over 2","3^n+1 minus 3 over 2","For n = 2 the sum is 3 + 18 = 21, and the formula gives 3 times 27 plus 3 over 4, which is 21.","Test n = 2 to confirm."],
+[2,"The sum 1/1·3 + 1/3·5 + ... + 1/2n−1 times 2n+1 is equal to","n over 2n + 1","n over 2n − 1","2n over n + 1","1 over 2n + 1","For n = 1 the sum is 1/3, which fits n over 2n + 1.","Check n = 1 first."],
+[2,"The sum 1 + 3 + 3² + ... + 3^n−1 is equal to","3^n − 1 over 2","3^n + 1 over 2","3^n over 2","n times 3 over 2","This is a geometric sum with first term 1 and ratio 3.","Ratio 3, so divide by 2."],
+/* ---------- 3 · Sequences and Series ---------- */
+[3,"A sequence is best described as","An ordered list of numbers, each called a term","The sum of a list of numbers","A set with no order","A single number repeated","Each number is a term, and the general term is written a with subscript n.","Sequence = list. Series = sum."],
+[3,"An arithmetic progression is a sequence in which","Each term differs from the one before by a fixed number","Each term is a fixed multiple of the one before","Terms are all equal","Terms are squares","The fixed number is the common difference d.","Arithmetic adds, geometric multiplies."],
+[3,"The nth term of an arithmetic progression with first term a and common difference d is","a + n − 1 times d","a + nd","a times r^n−1","a − nd","From the first term you add d, n − 1 times.","n minus 1 lots of d."],
+[3,"The nth term of the sequence 7, 2, −3, −8 is","12 − 5n","2 + 5n","7 − 5n","5n − 12","The first term is 7 and d = −5. So 7 + n − 1 times −5 = 12 − 5n.","Check n = 1 gives 7."],
+[3,"The nth term of the sequence 2, 6, 10, 14 is","4n − 2","4n + 2","2n","2 + 4n","The common difference is 4 and the first term is 2, so 2 + 4n − 4 = 4n − 2.","Test n = 1."],
+[3,"The nth term of the sequence 6, 18, 54, 162 is","6 times 3^n−1","6 times 3^n","3 times 6^n−1","6n + 12","Each term is 3 times the one before, so it is a geometric sequence with a = 6 and r = 3.","Ratio 3, so powers of 3."],
+[3,"The first term of an AP is 5 and the 32nd term is −119. The common difference is","−4","4","−3","−5","−119 = 5 + 31d, so 31d = −124 and d = −4.","Use nth term formula."],
+[3,"The sum of the first n terms of an AP is","n over 2 times 2a + n − 1 d","n over 2 times a − l","n times a + l","a times 1 − r^n over 1 − r","Half of n, times twice the first term plus n − 1 common differences.","Sn = n over 2, 2a plus n minus 1 d."],
+[3,"In terms of the first term a and last term l, the sum of an AP is","n over 2 times a + l","n times a − l","n over 2 times a − l","n times a times l","Average of first and last term, times the number of terms.","Average times count."],
+[3,"The first term of an AP is 16, the last term is 60 and the sum is 342. The common difference is","5.5","4","6","5","The sum gives n over 2 times 76 = 342, so n = 9. Then 60 = 16 + 8d, so d = 5.5.","Find n first."],
+[3,"The first three terms of an AP are x, 2x + 1 and 5x + 1. The value of x is","1/2","1","2","−1/2","The differences must match: 2x + 1 − x = 5x + 1 − 2x + 1 gives x + 1 = 3x, so x = 1/2.","Equal common difference."],
+[3,"The sum of the first 10 terms of the AP whose first three terms are x, 2x + 1 and 5x + 1 is","72.5","65","75","145","With x = 1/2 the terms start at 0.5 and d = 1.5, so S = 5 times 1 + 13.5 = 72.5.","Find x first."],
+[3,"A geometric progression is a sequence in which","Each term is found by multiplying the previous by a fixed ratio","Each term adds a fixed number","The terms are all equal","The terms decrease only","The fixed multiplier is the common ratio r.","GP multiplies."],
+[3,"The nth term of a GP with first term a and common ratio r is","a times r^n−1","a times r^n","a + n − 1 r","a over r^n","The ratio is applied n − 1 times after the first term.","Power is n minus 1."],
+[3,"The common ratio of the GP 1, −2, 4, −8, 16 is","−2","2","1/2","−1/2","Divide any term by the one before it. 4 over −2 is −2.","Divide neighbours."],
+[3,"The eighth term of the GP 8, 4, 2, ... is","1/16","1/8","1/32","1/4","a = 8 and r = 1/2, so the 8th term is 8 times 1/2 to the 7, which is 1/16.","Power 7, not 8."],
+[3,"The sum of the first n terms of a GP with r not equal to 1 is","a times 1 − r^n over 1 − r","a times 1 − r over 1 − r^n","n over 2 times a + l","a over 1 − r","For r greater than 1 it is often written with r^n − 1 on the top and r − 1 at the bottom.","a times 1 minus r to the n, over 1 minus r."],
+[3,"The sum of the first 8 terms of the GP 1, −1/2, 1/4, −1/8, ... is","85/128","1","255/256","3/2","With a = 1 and r = −1/2, the sum is 1 − 1/256 over 3/2, which equals 85/128.","Plug in carefully, watch the minus sign."],
+[3,"A geometric series has a sum to infinity only when","The size of r is less than 1","r is greater than 1","r equals 1","r is negative","The terms must shrink towards zero, so r must lie between −1 and 1.","Absolute r below 1."],
+[3,"The sum to infinity of a GP with first term a and common ratio r is","a over 1 − r","a over 1 + r","a times 1 − r","a over r − 1","This holds only when the size of r is less than 1.","a over 1 minus r."],
+[3,"The sum to infinity of 4 − 1/2 + 1/16 − 1/128 + ... is","32/9","8/3","32/7","4","The first term is 4 and r = −1/8, so the sum is 4 over 1 + 1/8 = 32/9.","Watch r is negative."],
+[3,"The sum to infinity of 5 + 1 + 0.2 + 0.04 + ... is","6.25","6","5.2","7.5","a = 5 and r = 0.2, so the sum is 5 over 0.8 = 6.25.","a over 1 minus r."],
+[3,"The sum to infinity of 6 − 4 + 8/3 − ... is","3.6","18","10","2","a = 6 and r = −2/3, so the sum is 6 over 5/3 = 18/5.","Check r is between −1 and 1."],
+[3,"The sum to infinity of a GP whose first term is 9 and second term is −3 is","27/4","27/2","13.5","6","r = −1/3, so 9 over 1 + 1/3 = 27/4.","r = second over first."],
+[3,"The 3rd and 6th terms of a GP are 108 and −32. The common ratio is","−2/3","2/3","−3/2","3/2","r³ = −32 over 108 = −8/27, so r = −2/3.","Divide the terms, take the cube root."],
+[3,"The 3rd and 6th terms of a GP are 108 and −32. The first term is","243","162","81","−243","a times 4/9 = 108, so a = 243.","Use the 3rd term."],
+[3,"For the sequence a_n = 6 times 3^n−1, the ratio of one term to the one before is","3","6","2","n","In a GP the ratio is constant. Here it is 3 for every pair.","Constant ratio = GP."],
+[3,"The sum of the first 8 terms of 64, 16, 4, ... is closest to","85.33","80","64","256","The ratio is 1/4 and the first term is 64, so the sum is 64 times 1 − 1/4⁸ over 3/4, which is about 85.33.","Ratio below 1 so sum stays below a over 1 minus r."],
+/* ---------- 4 · Polynomials ---------- */
+[4,"The degree of a polynomial is","The highest power of the variable","The lowest power of the variable","The number of terms","The value of the constant","3x⁴ − 2x³ + 5x − 8 has degree 4 because 4 is the highest power.","Degree = highest power."],
+[4,"A polynomial of the form ax² + bx + c, with a not zero, is called","A quadratic polynomial","A linear polynomial","A cubic polynomial","A constant polynomial","Degree 2 means quadratic.","Degree 2 = quadratic."],
+[4,"The solutions of 2x² + 7x − 4 = 0 are","x = 1/2 or x = −4","x = −1/2 or x = 4","x = 2 or x = −4","x = 1/2 or x = 4","Factor as 2x − 1 times x + 4 and set each factor to zero.","Factor then split."],
+[4,"The roots of 1 over x + 3 = 2 over x + 2 are","x = −2/3 or x = −1","x = 2/3 or x = 1","x = −2 or x = −3","x = 2/3 or x = −1","Multiply through by x times x + 2 and you get 3x² + 5x + 2 = 0, which factors as 3x + 2 times x + 1.","Clear fractions first."],
+[4,"To solve x² − 6x − 2 = 0 by completing the square, you add what to both sides?","9","6","36","3","Half the coefficient of x is −3, and its square is 9.","Half it, then square it."],
+[4,"The roots of x² − 6x − 2 = 0 are","3 + √11 and 3 − √11","3 + √17 and 3 − √17","−3 + √11 and −3 − √11","6 + √11 and 6 − √11","x² − 6x + 9 = 11 gives x − 3 = plus or minus √11. The 17 in the manual is a slip.","Add 9 to get 2 + 9 = 11."],
+[4,"Before completing the square on 2x² + 16x − 9 = 0, you should first","Make the coefficient of x² equal to 1","Subtract 16x","Double the constant","Multiply by x","Divide the whole equation by 2 so that the x² coefficient is 1.","Leading coefficient 1 first."],
+[4,"The quadratic formula for ax² + bx + c = 0 is","x = −b ± √b² − 4ac over 2a","x = b ± √b² − 4ac over 2a","x = −b ± √b² + 4ac over 2a","x = −b ± √b² − 4ac over a","The formula comes from completing the square on the general equation.","Minus b, plus or minus root, over 2a."],
+[4,"The roots of 2x² − 7x − 5 = 0 are","7 ± √89 over 4","−7 ± √89 over 4","7 ± √39 over 4","7 ± √89 over 2","With a = 2, b = −7 and c = −5, the discriminant is 49 + 40 = 89 and the denominator is 4.","Careful with signs in b² − 4ac."],
+[4,"The roots of x + 4 over x + 2 = x + 5 over 2 come from the equation","x² + 5x + 2 = 0","x² + 5x − 2 = 0","x² − 5x + 2 = 0","x² + 7x + 10 = 0","Cross multiply: 2x + 8 = x² + 7x + 10, and moving terms gives x² + 5x + 2 = 0.","Cross multiply then collect."],
+[4,"To solve ax² + bx + c = 0 graphically, you read the roots as","The x intercepts of y = ax² + bx + c","The y intercept","The turning point","The slope of the curve","Roots are where the curve cuts y = 0, which is the x axis.","Roots = x intercepts."],
+[4,"If the graph of a quadratic does not meet the x axis, the roots are","Imaginary","Real and equal","Real and unequal","Zero","No real x intercept means the discriminant is negative.","No crossing = imaginary."],
+[4,"If a is greater than 0 in y = ax² + bx + c, the parabola","Opens upward and has a minimum value","Opens downward and has a maximum value","Opens upward and has a maximum value","Has no turning point","The manual wrongly says it opens downward. A positive a gives a U shape with a minimum.","Positive a, smile, minimum."],
+[4,"The minimum value of y = 3x² − 2x + 1 occurs at x equal to","1/3","−1/3","2/3","1","x = −b over 2a = 2 over 6 = 1/3.","x = −b over 2a."],
+[4,"The minimum value of y = 3x² − 2x + 1 is","2/3","1/3","−2/3","1","Use 4ac − b² over 4a, which is 12 − 4 over 12 = 2/3.","4ac minus b squared over 4a."],
+[4,"The maximum value of 6x − 9 − x² is","0","9","−9","3","a is negative, so there is a maximum at x = 3, and the value there is 18 − 9 − 9 = 0.","Negative a gives a maximum."],
+[4,"The maximum value of 1 − 2x − x² is","2","1","−1","3","The maximum is at x = −1, where the value is 1 + 2 − 1 = 2.","Complete the square."],
+[4,"The minimum value of 2x² + x − 5 occurs at x equal to","−1/4","1/4","−1/2","1/2","x = −1 over 4 using x = −b over 2a.","x = −b over 2a."],
+[4,"The discriminant of a quadratic is","b² − 4ac","b² + 4ac","4ac − b","b − 4ac","Its sign tells you the nature of the roots.","b squared minus 4ac."],
+[4,"If b² − 4ac is greater than 0, the roots are","Real and unequal","Real and equal","Imaginary","Equal to zero","A positive discriminant gives two different real roots.","Positive = two real."],
+[4,"If b² − 4ac = 0, the roots are","Real and equal","Real and unequal","Imaginary","Both zero","The square root part vanishes so both roots are −b over 2a.","Zero = one repeated root."],
+[4,"If b² − 4ac is less than 0, the roots are","Imaginary","Real and equal","Real and unequal","Rational","You cannot take the square root of a negative number in the real numbers.","Negative = imaginary."],
+[4,"The equation x² − 3x + 1 = px − 3 has equal roots for p equal to","1 or 5","−1 or 5","1 or −5","3 or 5","Write it as x² − 3 + p x + 1 + 3p = 0. Setting the discriminant to zero gives p² − 6p + 5 = 0.","Discriminant zero for equal roots."],
+[4,"For the equation 3x² − x − 5 = 0, the sum and product of the roots are","1/3 and −5/3","−1/3 and 5/3","1/3 and 5/3","−1/3 and −5/3","The sum is −b over a and the product is c over a.","Sum minus b over a, product c over a."],
+[4,"For a quadratic ax² + bx + c = 0 with roots α and β, the sum of the roots is","−b over a","b over a","c over a","−c over a","This comes from adding the two quadratic formula roots.","Sum has the minus sign."],
+[4,"For a quadratic ax² + bx + c = 0 with roots α and β, the product of the roots is","c over a","−c over a","−b over a","b over a","The product of the two formula roots simplifies to c over a.","Product is c over a."],
+[4,"If α and β are the roots of 2x² − x − 2 = 0, then α² + β² equals","9/4","1/4","17/4","5/4","The sum is 1/2 and product is −1, so α² + β² = 1/4 + 2 = 9/4.","Square of sum minus twice the product."],
+[4,"If α and β are the roots of 2x² − x − 2 = 0, then α − β equals","√17 over 2","17/4","√17","1/2","α − β squared is 1/4 + 4 = 17/4, so α − β is √17 over 2.","Square of sum minus 4 product."],
+[4,"The quadratic equation with roots 1/2 and 3/2 is","4x² − 8x + 3 = 0","4x² + 8x + 3 = 0","4x² − 8x − 3 = 0","x² − 2x − 3/4 = 0","The sum is 2 and the product is 3/4. Use x² minus sum x plus product and clear the fraction.","x squared minus sum x plus product."],
+[4,"The formula for forming a quadratic from its roots α and β is","x² − α + β x + αβ = 0","x² + α + β x + αβ = 0","x² − α + β x − αβ = 0","x² − αβ x + α + β = 0","The coefficient of x carries the minus sum, and the constant is the product.","Minus sum, plus product."],
+[4,"If α and β are the roots of 3x² − x − 5 = 0, the equation whose roots are 5α and 5β is","3x² − 5x − 125 = 0","3x² + 5x − 125 = 0","3x² − 5x + 125 = 0","x² − 5x − 125 = 0","The new sum is 5 over 3 and the new product is −125 over 3.","Scale the sum, square the scale for the product."],
+[4,"If α and β are the roots of 2x² − 2x − 1 = 0, the equation whose roots are α over β and β over α is","x² + 4x + 1 = 0","x² − 4x + 1 = 0","x² + 4x − 1 = 0","x² − 4x − 1 = 0","The product is 1 and the sum is α² + β² over αβ, which is −4.","Product of reciprocal pair is 1."],
+[4,"The equation x − 2 times x − 3 = p has roots that differ by 2 when p is","3/4","1/4","1","−3/4","Write x² − 5x + 6 − p = 0. Then α − β squared is 25 − 4 times 6 − p = 4, so p = 3/4.","Difference squared uses sum and product."],
+[4,"One root of 27x² + bx + 8 = 0 is the square of the other. The value of b is","−30","30","−10","10","The roots are 2/3 and 4/9, whose sum is 10/9. Then −b over 27 = 10/9.","Roots α and α², product α³."],
+[4,"For a cubic ax³ + bx² + cx + d = 0 with roots α, β, γ, the sum of the roots is","−b over a","b over a","c over a","−d over a","Compare coefficients with x − α x − β x − γ.","Sum is minus b over a."],
+[4,"For a cubic ax³ + bx² + cx + d = 0, the sum of the products of the roots two at a time is","c over a","−c over a","−d over a","b over a","The coefficient of x gives the sum of pair products, with a plus sign.","Pairs give c over a."],
+[4,"For a cubic ax³ + bx² + cx + d = 0, the product of the three roots is","−d over a","d over a","c over a","−c over a","The constant term is minus αβγ after dividing by a.","Product is minus d over a."],
+[4,"The roots of x³ + bx + c = 0 are 1, 2 and p. The value of p is","−3","3","2","−2","The sum of the roots must be zero since there is no x² term, so 1 + 2 + p = 0.","No x squared term, roots add to 0."],
+[4,"The roots of x³ + bx + c = 0 are 1, 2 and −3. The values of b and c are","b = −7 and c = 6","b = 7 and c = −6","b = −7 and c = −6","b = 6 and c = −7","The pair products add to 2 − 3 − 6 = −7 and the product is −6 which equals −c.","Use all three root relations."],
+[4,"The roots of a cubic satisfy α + β + γ = 3/2, αβ + αγ + βγ = −1/2 and αβγ = −7/2. The cubic with roots α², β², γ² is","4x³ − 13x² + 43x − 49 = 0","4x³ + 13x² + 43x + 49 = 0","4x³ − 13x² − 43x − 49 = 0","4x³ − 9x² + 43x − 49 = 0","The new sum is 13/4, the new pair sum is 43/4 and the new product is 49/4.","Square sum minus twice the pair sum."],
+[4,"When a polynomial f of x is divided by g of x, the correct relationship is","f = g times q + r, with the degree of r less than the degree of g","f = g + q times r","f = g times r + q, with r bigger than g","f = q over g","The dividend equals divisor times quotient plus remainder, and the remainder must have lower degree than the divisor.","Dividend = divisor × quotient + remainder."],
+[4,"The remainder theorem says that when f of x is divided by x − k, the remainder is","f of k","f of −k","k","f of 0","Replace x by k in the polynomial and the number you get is the remainder.","Put x = k."],
+[4,"If f of x is divided by ax + b, the remainder is","f of −b over a","f of b over a","f of a over b","f of −a over b","Set ax + b = 0, so x = −b over a, and evaluate.","Set the divisor to zero."],
+[4,"The remainder when x² − 5x + 1 is divided by x − 2 is","−5","5","−1","1","f of 2 = 4 − 10 + 1 = −5.","Put x = 2."],
+[4,"The remainder when 2x³ − 3x² − 5x + 1 is divided by x − 3 is","13","−13","1","19","f of 3 = 54 − 27 − 15 + 1 = 13.","Substitute x = 3."],
+[4,"The remainder when 2x³ − 3x² − 5x + 1 is divided by x + 3 is","−65","65","−13","13","The divisor x + 3 means x = −3. Then f of −3 = −54 − 27 + 15 + 1 = −65.","x + 3 means x = −3."],
+[4,"The remainder when 2x³ − 3x² − 5x + 1 is divided by 2x − 5 is","1","−1","0","5","Put x = 5/2: 31.25 − 18.75 − 12.5 + 1 = 1.","Use x = 5 over 2."],
+[4,"When a polynomial of degree 2 or more is divided by x − a times x − b, the remainder has the form","Ax + B","A","Ax² + Bx","A over x − a","The remainder has one degree less than the divisor, which is degree 2, so it is linear.","Quadratic divisor, linear remainder."],
+[4,"The remainder when x⁵ − x − 1 is divided by x − 1 times x − 2 is","30x − 31","31x − 30","−30x + 31","30x + 31","Putting x = 1 gives A + B = −1 and x = 2 gives 2A + B = 29, so A = 30 and B = −31.","Use both roots of the divisor."],
+[4,"The factor theorem says that x − k is a factor of f of x if and only if","f of k = 0","f of k = 1","f of 0 = k","f of −k = 0","If the remainder is zero, the divisor divides exactly.","Zero remainder, factor."],
+[4,"Which of these is a factor of x³ − 5x² + 4x + 4?","x − 2","x + 2","x − 1","x + 1","At x = 2 the value is 8 − 20 + 8 + 4 = 0. At the others the value is not zero.","Test x = 2 first."],
+[4,"If x² − 3x + 2 is a factor of x⁴ + ax² + bx + 8, then a and b are respectively","−3 and −6","3 and 6","−6 and −3","−3 and 6","Since x − 1 and x − 2 are factors, f of 1 = 0 and f of 2 = 0, giving a + b + 9 = 0 and 4a + 2b + 24 = 0.","Use each linear factor."],
+[4,"In partial fractions, a linear factor x − k in the denominator gives a term of the form","A over x − k","Ax + B over x − k","A over x − k squared","A x − k","A linear factor needs a constant over it.","Linear factor, constant on top."],
+[4,"In partial fractions, an irreducible quadratic factor in the denominator gives a term of the form","Bx + C over the quadratic","A over the quadratic","A over x − k","B over x² only","The top must be one degree lower than the quadratic, so Bx + C.","Quadratic bottom, linear top."],
+[4,"A repeated linear factor x − k squared in the denominator gives terms of the form","D over x − k plus E over x − k squared","D over x − k squared only","D x − k plus E","Dx + E over x − k squared","Both the first and second powers must be included.","Repeated factor, each power."],
+[4,"A rational function is","One polynomial divided by another","A polynomial with fractions as roots","The sum of two polynomials","A polynomial raised to a power","Q of x over P of x with P not zero.","Rational means ratio."],
+[4,"Resolving 3 over x + 2 times 2x − 1 into partial fractions gives A and B equal to","A = −3/5 and B = 6/5","A = 3/5 and B = −6/5","A = −3/5 and B = 3/5","A = 6/5 and B = −3/5","Put x = −2 to get 3 = −5A, and x = 1/2 to get 3 = 5/2 B.","Pick x to kill one factor."],
+[4,"Resolving 3x over x + 1 times x − 2 into partial fractions gives A and B equal to","A = 1 and B = 2","A = 2 and B = 1","A = −1 and B = 2","A = 1 and B = −2","Put x = −1 to get −3 = −3A, and x = 2 to get 6 = 3B.","Substitute the roots."],
+[4,"For 2x + 3 over x + 1 times 2x + 1 times x − 3 in partial fractions, the constants A, B and C are","1/4, −8/7 and 9/28","1/4, 8/7 and 9/28","−1/4, −8/7 and 9/28","1/4, −8/7 and −9/28","Putting x = −1, x = −1/2 and x = 3 in turn gives these three values.","Three roots, three constants."],
+[4,"x + 1 over x − 1 times x² + 1 equals A over x − 1 plus Bx + C over x² + 1. The values of A, B and C are","1, −1 and 0","1, 1 and 0","−1, 1 and 0","1, 0 and −1","Put x = 1 to get A = 1. Then compare to find B = −1 and C = 0.","Linear root first."],
+[4,"For 3x + 1 over x + 1 times x − 1 squared, written with A over x + 1, B over x − 1 and C over x − 1 squared, the constant C is","2","−1/2","1/2","4","Put x = 1 into 3x + 1 = A x − 1² + B x + 1 x − 1 + C x + 1, which gives 4 = 2C.","Repeated factor root gives C."],
+/* ---------- 5 · Binomial Theorem ---------- */
+[5,"0! equals","1","0","Undefined","Infinity","By definition 0 factorial is 1, and so is 1 factorial.","0! = 1."],
+[5,"n! is equal to","n times n − 1!","n + n − 1!","n² − 1","n over n − 1!","Factorial peels off one factor at a time.","n! = n × n−1!."],
+[5,"The number of ways of arranging r objects chosen from n objects is","nPr = n! over n − r!","nCr = n! over r! n − r!","n! over r!","n − r! over n!","Order matters in a permutation, so there is no r! on the bottom.","Permutation: order matters."],
+[5,"The number of ways of choosing r objects from n when order does not matter is","n! over r! times n − r!","n! over n − r!","n! over r!","r! over n!","This is combination, and it equals the permutation divided by r!.","Combination divides by r!."],
+[5,"10P8 equals","1,814,400","90","3,628,800","45","10P8 is 10! over 2!, which is 1,814,400.","Divide 10! by 2!."],
+[5,"The number of ways of arranging 4 different flasks chosen from 6 is","360","15","24","720","6P4 is 6 times 5 times 4 times 3, which is 360.","Four factors from 6."],
+[5,"The number of ways of choosing 4 boys from 6 is","15","360","24","30","6C4 is 6! over 4! times 2!, which equals 15.","Order does not matter."],
+[5,"The number of ways to select a team of 11 from 14 boys is","364","14","3,003","364,000","14C11 equals 14C3, which is 364.","Use nCr equals nC n minus r."],
+[5,"nCr is equal to","nC n − r","nC r − 1","nPr","nC r + 1","Choosing r to take is the same as choosing n minus r to leave.","Take or leave: same count."],
+[5,"The relation n+1Cr equals","nCr + nC r − 1","nCr − nC r − 1","nCr times nC r − 1","nC r + 1","This is the rule behind Pascal's triangle.","Add the two above."],
+[5,"The number of arrangements of all n objects taken together is","n!","n²","2n","nCn","nPn = n! over 0! = n!.","All n objects, n factorial."],
+[5,"nP0 and nC0 are respectively","1 and 1","0 and 0","n and 1","1 and n","There is only one way to pick nothing, whether order matters or not.","Choose none = 1 way."],
+[5,"The number of arrangements of the letters of NIGERIAN is","10,080","40,320","20,160","5,040","There are 8 letters with N twice and I twice, so 8! over 2! times 2! = 10,080.","Divide by factorial of each repeat."],
+[5,"The number of arrangements of the letters of MEDIAN is","720","360","120","6","Six different letters give 6! = 720.","No repeats, plain factorial."],
+[5,"The number of arrangements of the letters of LAWAL is","30","60","120","20","Five letters with L twice and A twice give 5! over 2! times 2! = 30.","Divide by each repeat."],
+[5,"The number of arrangements of the letters of MATHEMATICS is","4,989,600","39,916,800","1,247,400","19,958,400","There are 11 letters with M, A and T each twice, so 11! over 2! times 2! times 2!.","Three repeated pairs."],
+[5,"The number of arrangements of the letters of STATIONARY is","907,200","3,628,800","1,814,400","453,600","There are 10 letters with T twice and A twice, so 10! over 2! times 2!.","Two repeated letters."],
+[5,"Seven men volunteer to dig a well. The number of ways five of them can be chosen is","21","42","2,520","35","Order does not matter, so it is 7C5, which equals 7C2 = 21.","Choosing, not arranging."],
+[5,"The value of 3C2 is","3","6","2","1","3C2 equals 3C1, which is 3.","Same as choosing the one left out."],
+[5,"The value of 10! over 8! is","90","80","45","10","10 times 9 times 8! over 8! leaves 10 times 9.","Cancel the common factorial."],
+[5,"The value of 8P3 is","336","56","24","512","8 times 7 times 6 = 336.","Three factors starting from 8."],
+[5,"The value of 100C86 is the same as","100C14","100C86 times 14","100P14","86C14","nCr equals nC n − r and 100 − 86 = 14.","Pick the smaller side."],
+[5,"A binomial expression is one with","Two terms raised to a power","Two powers of one term","Two equal terms","Two variables multiplied","a + b raised to n is a binomial expansion.","Bi means two terms."],
+[5,"The number of terms in the expansion of a + b to the power n is","n + 1","n","n − 1","2n","The powers of b run from 0 to n, which gives n + 1 terms.","One more than the power."],
+[5,"In the expansion of a + b to the power n, the powers of a","Decrease while the powers of b increase","Increase while the powers of b decrease","Stay the same","Add up to zero","The power of a falls from n to 0 while that of b rises from 0 to n.","a goes down, b goes up."],
+[5,"In every term of a + b to the power n, the sum of the powers of a and b is","n","n + 1","2n","1","This is called homogeneous. For example in a³b² the powers add to 5.","Powers always add to n."],
+[5,"The coefficients in the expansion of a + b to the 5 are","1, 5, 10, 10, 5, 1","1, 4, 6, 4, 1","1, 5, 5, 1","1, 6, 15, 20, 15, 6, 1","These come from the fifth row of Pascal's triangle.","Row 5: 1 5 10 10 5 1."],
+[5,"The coefficients in the expansion of a + b to the 4 are","1, 4, 6, 4, 1","1, 3, 3, 1","1, 5, 10, 10, 5, 1","1, 4, 4, 1","Row 4 of Pascal's triangle.","Row 4: 1 4 6 4 1."],
+[5,"The coefficient of x⁴ in the expansion of 3x − 2 to the power 5 is","−810","810","1080","−720","It is 5 times 3x⁴ times −2, which gives −810 x⁴.","5 × 81 × −2."],
+[5,"The expansion of 3x − 2 to the power 5 is","243x⁵ − 810x⁴ + 1080x³ − 720x² + 240x − 32","243x⁵ + 810x⁴ + 1080x³ + 720x² + 240x + 32","243x⁵ − 810x⁴ − 1080x³ − 720x² − 240x − 32","81x⁵ − 405x⁴ + 810x³ − 720x² + 240x − 32","Signs alternate because b is negative. The first term is 3 to the 5 = 243 and the last is −2 to the 5 = −32.","Alternate signs for a minus."],
+[5,"The exact value of 1.01 to the power 5 is","1.0510100501","1.05","1.0501","1.0510","Using 1 + 0.01 and the binomial terms, the exact sum is 1.0510100501.","Add the terms one by one."],
+[5,"The binomial theorem gives a + b to the power n as the sum of terms of the form","nCr times a^n−r times b^r","nPr times a^r times b^n−r","nCr times a^r times b^r","n times a^n times b^r","The coefficient is nCr and the powers of a and b add to n.","Coefficient nCr, powers add to n."],
+[5,"The coefficients in a binomial expansion are symmetrical, which means","The first equals the last, the second equals the second from last","They are all equal","They increase from first to last","They decrease from first to last","This is because nCr = nC n − r.","Same from both ends."],
+[5,"The first four terms of x + 1 to the power 11 in descending powers of x are","x¹¹ + 11x¹⁰ + 55x⁹ + 165x⁸","x¹¹ + 10x¹⁰ + 45x⁹ + 120x⁸","x¹¹ + 11x¹⁰ + 66x⁹ + 220x⁸","x¹¹ + 22x¹⁰ + 55x⁹ + 165x⁸","The coefficients are 11C0, 11C1, 11C2 and 11C3, which are 1, 11, 55 and 165.","1, n, n times n−1 over 2, ..."],
+[5,"The coefficient of b^r in the expansion of a + b to the power n is","nCr times a^n−r","nCr times a^r","nPr times a^n−r","nC n times a^r","The term containing b^r also carries a^n−r, and its coefficient is nCr.","b to the r goes with a to the n minus r."],
+/* ---------- 6 · Matrices and Determinants ---------- */
+[6,"A matrix is best described as","A rectangular array of numbers or variables","A single number","A list of equations","A set of unrelated numbers","The numbers are arranged in rows and columns inside a bracket.","Matrix = array in rows and columns."],
+[6,"A matrix with 3 rows and 2 columns is of order","3 × 2","2 × 3","3 × 3","6","The row number always comes first, then the column number.","Rows then columns."],
+[6,"In the notation a_ij, the letters i and j stand for","The row and the column of the element","The column and the row","The order of the matrix","The determinant","a_ij is the element in the ith row and jth column.","i for row, j for column."],
+[6,"A matrix with only one row is called","A row matrix","A column matrix","A square matrix","A null matrix","One row, any number of columns.","One row = row matrix."],
+[6,"A matrix with a single column is called","A column matrix","A row matrix","A diagonal matrix","An identity matrix","The order is n × 1.","One column = column matrix."],
+[6,"A matrix with equal numbers of rows and columns is called","A square matrix","A null matrix","A row matrix","A symmetric matrix","The order is n × n.","Same rows and columns = square."],
+[6,"A matrix whose entries are all zero is called","A null matrix","An identity matrix","A diagonal matrix","A scalar matrix","It is written as 0 and is also called a zero matrix.","All zeros = null."],
+[6,"The identity matrix is a square matrix in which","The main diagonal entries are 1 and all others are 0","All entries are 1","All entries are 0","The diagonal entries are 0","It plays the role of 1 in matrix multiplication.","Ones on the diagonal."],
+[6,"A diagonal matrix is a square matrix whose","Entries off the main diagonal are zero","Entries on the main diagonal are zero","Entries are all equal","Entries are all positive","The main diagonal can hold any numbers, but everything else is zero.","Only the diagonal survives."],
+[6,"An upper triangular matrix is a square matrix whose entries","Below the main diagonal are zero","Above the main diagonal are zero","On the diagonal are zero","Are all equal","The nonzero entries sit on and above the diagonal.","Upper has zeros underneath."],
+[6,"A lower triangular matrix is a square matrix whose entries","Above the main diagonal are zero","Below the main diagonal are zero","On the diagonal are zero","Are all equal","The nonzero entries sit on and below the diagonal.","Lower has zeros above."],
+[6,"A square matrix in which a_ij = a_ji is called","Symmetric","Skew symmetric","Diagonal","Triangular","The entries mirror each other across the main diagonal.","Mirror image = symmetric."],
+[6,"In a skew symmetric matrix, the entries on the main diagonal are","All zero","All one","All equal to the off diagonal entries","All negative","Since a_ii = −a_ii, each diagonal entry must be 0.","Skew means zero diagonal."],
+[6,"In a skew symmetric matrix, a_ij equals","−a_ji","a_ji","0","1 over a_ji","The mirror entry has the opposite sign.","Mirror with a minus."],
+[6,"Two matrices are equal if and only if","They have the same order and all corresponding entries are equal","They have the same determinant","They have the same number of entries","They have the same diagonal","Equality needs the same size and the same entries in the same places.","Same size, same entries."],
+[6,"Two matrices can be added only if","They have the same order","They are both square","They have equal determinants","One is the identity","The sum is found entry by entry, so every position must have a partner.","Same order to add."],
+[6,"For matrices A and B of the same order, which statement is true?","A + B = B + A","A − B = B − A","A + B = A − B","A + B = 0","Matrix addition is commutative. Subtraction is not.","Add commutes, subtract does not."],
+[6,"The sum of a 3 × 2 matrix and a 2 × 2 matrix is","Not defined","A 3 × 2 matrix","A 2 × 2 matrix","A 5 × 4 matrix","They do not have the same order, so you cannot add them.","Different order, no sum."],
+[6,"If k is a scalar and A is a matrix, then kA is found by","Multiplying every entry of A by k","Multiplying only the first row by k","Adding k to every entry","Multiplying the diagonal by k","Scalar multiplication scales each entry.","Every entry gets multiplied."],
+[6,"For matrices A and B and a scalar k, k times A + B equals","kA + kB","kA + B","kAB","A + kB","Scalar multiplication distributes over addition.","k shares out."],
+[6,"The product AB of two matrices is defined only if","The number of columns of A equals the number of rows of B","A and B have the same order","The number of rows of A equals the number of columns of B","A and B are both square","Each row of A is paired with a column of B, so the lengths must match.","Columns of A = rows of B."],
+[6,"If A is of order m × n and B is of order n × p, then AB is of order","m × p","n × n","m × n","p × m","The product takes the rows of A and the columns of B.","Outer numbers remain."],
+[6,"For matrices A and B, which statement is generally true?","AB is not always equal to BA","AB always equals BA","AB = BA only if both are 2 × 2","AB equals BA when det A = 0","Matrix multiplication is not commutative. Only special cases, such as diagonal matrices, commute.","Order matters in matrix products."],
+[6,"For matrices A, B and C where the products exist, which law holds?","AB C = A BC","AB = BA","A − B = B − A","AB = A + B","Matrix multiplication is associative, but not commutative.","Regroup yes, swap no."],
+[6,"If I is the identity matrix and A is a matrix of a matching order, then IA equals","A","I","0","A transposed","Multiplying by the identity leaves the matrix unchanged.","Identity does nothing."],
+[6,"For M = 1, 8 over 9, −2 and N = 2, 0 over 4, −1, written row by row, the product MN is","34, −8 over 10, 2","2, 16 over −5, 34","34, 8 over 10, −2","2, 0 over 36, 2","Row 1 times column 1 is 2 + 32 = 34. Row 1 times column 2 is 0 − 8 = −8. Row 2 gives 10 and 2.","Row times column."],
+[6,"For the same M and N, the product NM is","2, 16 over −5, 34","34, −8 over 10, 2","2, 16 over 5, 34","34, 16 over −5, 2","It differs from MN, which shows matrix multiplication is not commutative.","MN and NM differ."],
+[6,"The transpose of a matrix is obtained by","Changing its rows into columns","Changing the sign of each entry","Swapping the diagonal entries","Taking the determinant","The ith row of A becomes the ith column of the transpose.","Rows become columns."],
+[6,"If A is a 3 × 2 matrix, then its transpose is of order","2 × 3","3 × 2","3 × 3","2 × 2","Rows and columns swap places.","Order flips."],
+[6,"If A is symmetric, then","The transpose of A equals A","The transpose of A equals −A","A has zero determinant","A is the identity","A symmetric matrix equals its own transpose.","Symmetric: A transpose = A."],
+[6,"If A is skew symmetric, then","The transpose of A equals −A","The transpose of A equals A","A is diagonal","A has determinant 1","Skew symmetric matrices change sign when transposed.","Skew: A transpose = minus A."],
+[6,"The transpose of A + B equals","Transpose of A + transpose of B","Transpose of A times transpose of B","Transpose of B minus transpose of A","A + B","Transposing is applied to each matrix separately in a sum.","Transpose splits over addition."],
+[6,"The transpose of the transpose of A is","A","−A","The identity","The determinant of A","Transposing twice takes you back.","Double flip returns."],
+[6,"For any matrix A, the matrices A times A transpose and A transpose times A are","Both symmetric","Both skew symmetric","Both identity","Both zero","Each equals its own transpose.","Product with own transpose is symmetric."],
+[6,"The determinant of a 2 × 2 matrix with rows a, b and c, d is","ad − bc","ad + bc","ab − cd","ac − bd","Multiply the main diagonal and subtract the product of the other diagonal.","Main minus cross."],
+[6,"The determinant is a","Scalar associated with a square matrix","Matrix of the same order","Vector","Row of the matrix","The determinant is a single number and exists only for square matrices.","Determinant is a number."],
+[6,"The determinant of the matrix with rows 3, 7, 1 then 2, 4, 10 then 6, −3, 1 is","478","−478","19","154","Expanding along the first row gives 3 times 34 − 7 times −58 + 1 times −30 = 478.","Expand along the first row with alternating signs."],
+[6,"The determinant of the matrix with rows 1, 0, 3 then 2, 4, 1 then −1, 3, −2 is","19","−19","11","30","1 times −11 − 0 + 3 times 10 = 19.","Zero entry saves work."],
+[6,"The determinant of BA, where A has rows 1, 2 and 5, 3 and B has rows −4, 1 and 2, 5, is","154","−154","19","27","BA has rows 1, −5 and 27, 19, and 19 + 135 = 154.","Multiply first, then take determinant."],
+[6,"When two rows of a matrix are interchanged, the determinant","Changes sign","Stays the same","Becomes zero","Doubles","Swapping two rows or two columns reverses the sign.","Swap rows, flip sign."],
+[6,"If two rows of a matrix are equal, its determinant is","0","1","−1","Undefined","Equal rows cancel out in the expansion.","Same rows, zero."],
+[6,"For a square matrix A, the cofactor of an entry is its minor multiplied by","Plus or minus 1, following the sign pattern","The entry itself","The determinant of A","The order of A","The sign pattern starts with plus in the top left corner and alternates across and down.","Minor with a sign."],
+[6,"The minor of an entry a_ij is the determinant of the matrix obtained by","Deleting the ith row and jth column","Deleting the diagonal","Transposing the matrix","Multiplying the row by the column","It is the smaller determinant left after crossing out that entry's row and column.","Cross out row and column."],
+[6,"The adjoint of a square matrix A is","The transpose of the matrix of cofactors","The matrix of minors","The inverse of A","The determinant of A","Find all the cofactors, put them in a matrix, then transpose.","Cofactors then transpose."],
+[6,"The inverse of a matrix A is given by","adj A over det A","det A over adj A","adj A times det A","A transpose over det A","Divide the adjoint by the determinant.","Adjoint over determinant."],
+[6,"A matrix A has an inverse only if","Its determinant is not zero","Its determinant is zero","It is symmetric","It is a diagonal matrix","Division by the determinant is impossible if it is zero.","No zero determinant."],
+[6,"A square matrix with no inverse is called","Singular","Non singular","Symmetric","Orthogonal","A singular matrix has determinant zero.","Zero determinant = singular."],
+[6,"A square matrix that has an inverse is called","Non singular","Singular","Null","Skew symmetric","Its determinant is not zero.","Invertible = non singular."],
+[6,"For an invertible matrix A, the product A times its inverse equals","The identity matrix","The null matrix","A","The determinant of A","The inverse undoes the matrix, so the product is I.","A A inverse = I."],
+[6,"If A is an n × n matrix, then its inverse must be","An n × n matrix","An n × 1 matrix","A 1 × n matrix","An n² × n² matrix","The inverse has the same order as A.","Inverse keeps the order."],
+[6,"The inverse of the matrix with rows 1, 3 and 5, 2 is","−1 over 13 times the matrix with rows 2, −3 and −5, 1","1 over 13 times the matrix with rows 2, −3 and −5, 1","−1 over 7 times the matrix with rows 2, 3 and 5, 1","−1 over 13 times the matrix with rows 2, −5 and −3, 1","The determinant is 2 − 15 = −13, and the adjoint swaps the diagonal entries and changes the signs of the others.","Swap diagonal, flip the others."],
+[6,"The inverse of the diagonal matrix with diagonal entries 3, −1 and 2 is the diagonal matrix with entries","1/3, −1 and 1/2","3, −1 and 2","−3, 1 and −2","1/3, 1 and 1/2","For a diagonal matrix you simply take the reciprocal of each diagonal entry.","Reciprocal of each diagonal entry."],
+[6,"The determinant of the matrix with rows 1, 2, −1 then 3, 1, 5 then 3, −1, 2 is","31","13","−31","19","Expanding along the first row gives 1 times 7 − 2 times −9 − 1 times −6 = 31.","Expand along row one."],
+[6,"For the same matrix with determinant 31, the product of A and its adjoint equals","31 times the identity matrix","The identity matrix","The null matrix","13 times the identity matrix","A times adj A always equals det A times I.","A adjA = det A times I."],
+[6,"If AX = B and A is invertible, then X is","A inverse times B","B times A inverse","B over A transposed","A times B","Multiply both sides on the left by A inverse. The order matters.","Inverse goes on the left."],
+[6,"Solving x + y = 7 and 5x − 3y = −5 by the inverse method gives","x = 2 and y = 5","x = 5 and y = 2","x = −2 and y = 5","x = 2 and y = −5","The determinant is −8 and A inverse B works out to 2 and 5.","Check by substitution."],
+[6,"Solving x1 + x2 = −3 and −x1 − 2x2 = 10 gives","x1 = 4 and x2 = −7","x1 = −4 and x2 = 7","x1 = 7 and x2 = −4","x1 = −7 and x2 = 4","The determinant is −1 and the inverse has rows 2, 1 and −1, −1. Multiplying gives 4 and −7.","Test in the first equation."],
+[6,"The solution of x + y − 2z = 5, 2x − 2y + z = 7 and x + 3y − z = 10 is","x = 5, y = 2, z = 1","x = 2, y = 5, z = 1","x = 1, y = 2, z = 5","x = 5, y = 1, z = 2","The determinant is −14, and substituting gives 5 + 2 − 2 = 5, 10 − 4 + 1 = 7 and 5 + 6 − 1 = 10.","Plug back in to check."],
+[6,"The solution of 2x − 5y − z = 4, x + 3y − 2z = −8 and 3x − 2y + z = 8 is","x = 1, y = −1, z = 3","x = 1, y = 1, z = 3","x = −1, y = 1, z = 3","x = 3, y = −1, z = 1","The determinant is 44. Check: 2 + 5 − 3 = 4, 1 − 3 − 6 = −8 and 3 + 2 + 3 = 8.","Check all three equations."],
+[6,"The currents from 5I1 − 3I2 + 4I3 = 79, 7I1 + 4I2 − 5I3 = 105 and 4I1 − 5I2 + 5I3 = 40 are","I1 = 15, I2 = 20, I3 = 16","I1 = 16, I2 = 20, I3 = 15","I1 = 20, I2 = 15, I3 = 16","I1 = 15, I2 = 16, I3 = 20","With I1 = 15, I2 = 20 and I3 = 16, the first equation gives 75 − 60 + 64 = 79.","Substitute to verify."],
+[6,"Cramer's rule gives a solution of AX = B if and only if","The determinant of A is not zero","The determinant of A is zero","B is zero","A is symmetric","Each unknown is a ratio with the determinant of A on the bottom, so it cannot be zero.","Division by determinant A."],
+[6,"In Cramer's rule, the unknown x_i equals","N_i over Δ, where N_i replaces column i of A with B","Δ over N_i","N_i times Δ","N_i minus Δ","Replace the ith column of A by the column of constants, take the determinant, and divide by the determinant of A.","Swap in the column of constants."],
+[6,"By Cramer's rule, 2x − y + 2z = 9, x − 2y − z = 4 and 3x + 4y + z = 6 give","x = 3, y = −1, z = 1","x = 1, y = −1, z = 3","x = 3, y = 1, z = −1","x = −1, y = 3, z = 1","Δ = 28, and the numerators are 84, −28 and 28.","Check by substitution."],
+[6,"Which of these is NOT an allowed step in Gaussian elimination?","Adding a constant to every coefficient in an equation","Interchanging two equations","Multiplying an equation by a nonzero number","Adding a multiple of one equation to another","Only the three row operations keep the solution unchanged.","Swap, scale, add a multiple."],
+[6,"Gaussian elimination is also known as","The echelon or triangularization method","Cramer's rule","The adjoint method","The inverse method","The aim is to reduce the system to a triangular form.","Elimination makes a triangle."],
+[6,"The determinant of the transpose of A is","The same as the determinant of A","The negative of the determinant of A","Zero","The inverse of the determinant of A","Transposing does not change the determinant.","Transpose keeps the determinant."],
+[6,"For square matrices A and B of the same order, the determinant of AB equals","The product of the determinants of A and B","The sum of the determinants of A and B","The determinant of A minus that of B","The determinant of A over that of B","This is the product rule for determinants.","Determinant of a product is the product."],
+[6,"The determinant of a diagonal matrix is","The product of its diagonal entries","The sum of its diagonal entries","Zero","The first diagonal entry","The off diagonal entries are zero so only the diagonal product survives.","Multiply the diagonal."],
+[6,"The determinant of a matrix with a zero row or zero column is","0","1","−1","Undefined","Every term in the expansion contains a zero.","Zero row, zero determinant."],
+[6,"The Cayley Hamilton theorem states that every square matrix","Satisfies its own characteristic polynomial","Has an inverse","Is symmetric","Has determinant 1","Replace t in the characteristic polynomial by the matrix and you get the null matrix.","Matrix satisfies its own equation."],
+[6,"For the matrix with rows 2, 1 and 3, 4, the characteristic polynomial is","t² − 6t + 5","t² + 6t + 5","t² − 6t − 5","t² − 5t + 6","It is t − 2 times t − 4 minus 3, which equals t² − 6t + 5.","Trace and determinant."],
+[6,"If A has rows 2, 1 and 3, −1 and f of t = 3t² − t + 2, then f of A has rows","21, 2 and 6, 15","21, 2 and 6, 19","7, 1 and 3, 4","21, 3 and 9, 16","3A² is rows 21, 3 and 9, 12. Subtracting A and adding 2I gives rows 21, 2 and 6, 15.","Replace the constant by 2I."],
+/* ---------- 7 · Complex Numbers ---------- */
+[7,"A complex number is written in the form a + ib, where a and b are","Real numbers","Imaginary numbers","Integers only","Complex numbers","a is the real part and b is the imaginary part, and both are real.","a and b are real."],
+[7,"The value of i² is","−1","1","i","−i","The imaginary unit i is defined so that its square is minus one.","i squared is minus one."],
+[7,"The value of i³ is","−i","i","1","−1","i³ = i² times i = −i.","i³ = −i."],
+[7,"The value of i⁴ is","1","−1","i","−i","i⁴ is i² times i², which is −1 times −1.","i to the 4 is 1."],
+[7,"The value of i³⁰ is","−1","1","i","−i","30 divided by 4 leaves remainder 2, so i³⁰ = i² = −1.","Divide the power by 4, use the remainder."],
+[7,"The value of i¹⁹ is","−i","i","1","−1","19 divided by 4 leaves remainder 3, so i¹⁹ = i³ = −i.","Remainder 3 gives −i."],
+[7,"The value of 3i³⁰ − i¹⁹ is","−3 + i","−3 − i","3 + i","3 − i","3 times −1 is −3 and minus −i is plus i.","Reduce each power first."],
+[7,"The sum 6 + 3i + 7 − i equals","13 + 2i","13 + 4i","13 − 2i","12 + 2i","Add the real parts and add the imaginary parts separately.","Real with real, imaginary with imaginary."],
+[7,"The value of 7 + 2i + 3 − 4i − 5 + i is","5 − 3i","5 + 3i","15 − 3i","5 − 5i","Real parts: 7 + 3 − 5 = 5. Imaginary: 2 − 4 − 1 = −3.","Collect carefully."],
+[7,"The product 3 + i times 4 − 2i is","14 − 2i","12 − 2i","10 − 2i","14 + 2i","12 − 6i + 4i − 2i², and since i² = −1 this is 14 − 2i.","Remember i² = −1."],
+[7,"The expression 2i times 1 − 3i + 3 times 4 − i simplifies to","18 − i","6 + 14i","18 + i","12 − 3i","2i + 6 + 12 − 3i gives 18 − i.","−6i² becomes +6."],
+[7,"If z1 = a + ib and z2 = c + id, then z1 times z2 equals","ac − bd + i ad + bc","ac + bd + i ad − bc","ac − bd + i ad − bc","ac + bd + i ad + bc","The i² term turns bd negative on the real part.","Real part has the minus."],
+[7,"To divide one complex number by another, you multiply top and bottom by","The conjugate of the denominator","The denominator itself","The conjugate of the numerator","The modulus","This makes the denominator a real number, c² + d².","Conjugate of the bottom."],
+[7,"The conjugate of 3 − 4i is","3 + 4i","−3 + 4i","−3 − 4i","4 − 3i","Only the sign of the imaginary part changes.","Flip the sign of i."],
+[7,"The value of 2 + i over 3 − i is","1/2 + i/2","1/2 − i/2","5/8 + i/8","1/2 + i","Multiply by 3 + i over 3 + i to get 5 + 5i over 10.","Conjugate, then divide."],
+[7,"The value of 3 − 4i over 5 + 2i is","7/29 − 26i/29","7/29 + 26i/29","−7/29 − 26i/29","11/29 − 14i/29","Multiply by 5 − 2i. The top is 7 − 26i and the bottom is 25 + 4 = 29.","Denominator is a² + b²."],
+[7,"The modulus of the complex number a + ib is","√a² + b²","a² + b²","a + b","√a² − b²","The manual leaves out the root sign by mistake. The modulus is a distance, so it needs the square root.","Pythagoras."],
+[7,"The modulus of 3 − 4i is","5","7","1","25","The root of 9 + 16 is 5.","3, 4, 5."],
+[7,"The modulus of the complex number i is","1","0","−1","i","i = 0 + 1i, so the modulus is √0 + 1 = 1.","Real part 0, imaginary part 1."],
+[7,"The complex number 1 + 3i over 3 − i simplifies to","i","1","−i","3i","Multiplying by 3 + i gives 10i over 10, which is i.","Top becomes 10i."],
+[7,"The argument of the complex number i is","π/2","π","0","π/4","The point 0, 1 lies on the positive imaginary axis, which is at 90 degrees.","Straight up = 90 degrees."],
+[7,"The complex number a + ib is represented on the Argand diagram by the point","a, b","b, a","a + b, 0","0, a + b","The real part goes on the horizontal axis and the imaginary part on the vertical axis.","Real across, imaginary up."],
+[7,"On the Argand diagram, the horizontal axis is called the","Real axis","Imaginary axis","Polar axis","Argument axis","Real parts are measured along it.","Horizontal = real."],
+[7,"The polar form of a complex number is","r cos θ + i sin θ","r cos θ − i sin θ","cos r + i sin r","r times e to the iθ squared","r is the modulus and θ is the argument. Written fully it is r times cos θ + i sin θ.","r of cos plus i sin."],
+[7,"The complex number 2 + 2√3 i in polar form is","4 cos 60° + i sin 60°","4 cos 30° + i sin 30°","2 cos 60° + i sin 60°","8 cos 60° + i sin 60°","The modulus is √4 + 12 = 4 and tan θ = √3 so θ = 60°.","Find r first, then the angle."],
+[7,"Euler's formula states that e to the iθ equals","cos θ + i sin θ","cos θ − i sin θ","sin θ + i cos θ","cos θ times sin θ","It links the exponential with the circular functions.","e to the iθ = cos plus i sin."],
+[7,"De Moivre's theorem states that cos θ + i sin θ all raised to the n equals","cos nθ + i sin nθ","cos θⁿ + i sin θⁿ","n cos θ + n i sin θ","cos θ + n i sin θ","The angle is multiplied by n while the modulus is raised to n.","The angle gets multiplied by n."],
+[7,"When two complex numbers are multiplied in polar form, their","Moduli are multiplied and arguments are added","Moduli are added and arguments are multiplied","Moduli and arguments are both multiplied","Moduli are multiplied and arguments are subtracted","This follows from the rule for adding angles.","Multiply r, add angles."],
+[7,"When two complex numbers are divided in polar form, their","Moduli are divided and arguments are subtracted","Moduli are subtracted and arguments are divided","Moduli and arguments are both divided","Moduli are divided and arguments are added","Division reverses multiplication.","Divide r, subtract angles."],
+[7,"The number of distinct nth roots of a nonzero complex number is","n","n − 1","n + 1","2n","The roots come from k = 0, 1, 2 up to n − 1.","n roots for n th root."],
+[7,"The nth roots of a complex number with modulus r have modulus","r to the power 1 over n","n times r","r over n","r to the power n","The root is taken of the modulus, and the angle is divided by n.","Root the modulus."],
+[7,"In finding the nth roots of z = r cos θ + i sin θ, the angle for each root is","θ + 2kπ over n","θ over n only","nθ + 2kπ","θ + kπ over n","Adding 2kπ gives the other equivalent angles before dividing by n.","Add 2kπ then divide."],
+[7,"The number of values of z for which z⁵ = 32 is","5","1","32","2","A fifth degree equation has five roots. One is real, namely 2.","Degree gives number of roots."],
+[7,"The fourth roots of unity are","1, i, −1 and −i","1, −1, 2 and −2","1, 2, 3 and 4","i, −i, 2i and −2i","The angles are 0, π/2, π and 3π/2 with modulus 1.","Four points around the unit circle."],
+[7,"The nth roots of unity are given by the angles","2kπ over n for k = 0 to n − 1","kπ over n for k = 1 to n","2π over n only","π over n only","They are spread evenly round the unit circle.","Evenly spaced on the unit circle."],
+[7,"If z1 = 2 + i and z2 = 3 + 2i, then 2z2 + z1 − 5i² equals","13 + 5i","3 + 5i","8 + 5i","13 − 5i","6 + 4i + 2 + i + 5 = 13 + 5i, because −5i² = +5.","i² is −1."],
+[7,"The value of 2i − 1 all squared plus 4 + 2 − i is","3 − 5i","−3 − 5i","3 + 5i","9 − 5i","2i − 1 squared is −3 − 4i, and adding 6 − i gives 3 − 5i.","Expand the square carefully."],
+[7,"The value of √2 + 3i all squared is","−7 + 6√2 i","11 + 6√2 i","−7 − 6√2 i","2 + 9i","2 + 6√2 i + 9i² = −7 + 6√2 i.","3i squared is −9."],
+[7,"If z1 = 1 − i, z2 = −2 + 4i and z3 = 3 − 2i, then Im of z1 z2 over z3 is","22/13","−22/13","6/13","−6/13","z1 z2 = 2 + 6i. Dividing by 3 − 2i gives −6 + 22i over 13.","Multiply first, then divide."],
+/* ---------- 8 · Circle Measure ---------- */
+[8,"A radian is the measure of the angle at the centre of a circle that","Cuts an arc equal in length to the radius","Cuts an arc equal to the diameter","Cuts an arc equal to the circumference","Equals 90 degrees","One radian is when the arc length is the same as the radius.","Arc = radius means 1 radian."],
+[8,"The length of an arc of a circle is given by l = rθ only when θ is measured in","Radians","Degrees","Gradians","Revolutions","The formula comes from the definition of a radian.","Radians only."],
+[8,"A full turn around a circle measures","2π radians","π radians","π/2 radians","4π radians","The circumference is 2π r, so the angle is 2π when divided by r.","Full turn = 2π."],
+[8,"To convert degrees to radians, multiply by","π over 180","180 over π","π over 360","2π","Since 180 degrees is π radians.","Degrees times π over 180."],
+[8,"To convert radians to degrees, multiply by","180 over π","π over 180","360 over π","π over 360","Reverse of degrees to radians.","Radians times 180 over π."],
+[8,"135° in radians is","3π/4","2π/3","5π/6","π/4","135 times π over 180 simplifies to 3π over 4.","Divide by 45."],
+[8,"30° in radians is","π/6","π/3","π/4","π/2","30 times π over 180 = π over 6.","30 degrees = π over 6."],
+[8,"120° in radians is","2π/3","π/3","3π/4","5π/6","120 times π over 180 = 2π over 3.","Divide by 60."],
+[8,"π/3 radians in degrees is","60°","30°","45°","90°","π over 3 times 180 over π = 60.","π over 3 = 60 degrees."],
+[8,"π/180 radians equals","1°","10°","180°","π°","This is the definition of one degree in radian measure.","One degree = π over 180."],
+[8,"125° expressed in radians is","25π/36","5π/12","7π/12","5π/9","Multiply by π over 180 and divide by 5.","Cancel the common factor 5."],
+[8,"75° expressed in radians is","5π/12","π/12","7π/12","3π/4","75 over 180 reduces to 5 over 12.","Divide by 15."],
+[8,"750° expressed in radians is","25π/6","25π/3","15π/4","5π/6","750 over 180 reduces to 25 over 6.","Divide by 30."],
+[8,"2π/5 radians in degrees is","72°","36°","108°","144°","Two fifths of 180 is 72.","Use 180 over 5 = 36."],
+[8,"3π/5 radians in degrees is","108°","72°","36°","120°","Three fifths of 180 is 108.","3 times 36."],
+[8,"1.5π radians in degrees is","270°","150°","225°","135°","1.5 times 180 is 270.","1.5 times 180."],
+[8,"0.25π radians in degrees is","45°","25°","90°","60°","A quarter of 180 is 45.","Quarter of 180."],
+[8,"4π/9 radians in degrees is","80°","40°","120°","90°","4 times 180 over 9 is 4 times 20.","180 over 9 = 20."],
+[8,"A circle has radius 6 inches. The arc cut by a central angle of 150° has length","5π inches","6π inches","15π inches","10π inches","150° is 5π over 6 radians, and l = 6 times 5π over 6.","Convert to radians first."],
+[8,"An arc of length 16π/3 cm is cut by a central angle of 240°. The radius is","4 cm","8 cm","3 cm","16 cm","240° = 4π over 3 radians, so r = l over θ = 16π over 3 divided by 4π over 3 = 4.","r = l over θ."],
+[8,"An arc of length 7π/3 inches is cut by a central angle of 210°. The radius is","2 inches","3 inches","7 inches","7/2 inches","210° = 7π over 6 radians, so r = 7π over 3 divided by 7π over 6 = 2.","Convert 210 degrees first."],
+[8,"The area of a sector of a circle with central angle θ in radians is","½ r² θ","r² θ","½ r θ","π r² θ","The sector is a fraction θ over 2π of the whole circle.","Half r squared theta."],
+[8,"The area of a segment of a circle is","½ r² θ − sin θ","½ r² θ + sin θ","r² θ − sin θ","½ r θ − sin θ","Area of the sector minus the area of the triangle, with θ in radians.","Sector minus triangle."],
+[8,"Linear speed of a point moving on a circle is","Arc length over time","Central angle over time","Radius over time","Circumference times time","v = l over t.","Distance over time."],
+[8,"Angular speed of a point moving on a circle is","Central angle over time","Arc length over time","Radius times time","Circumference over time","ω = θ over t, with θ in radians.","Angle over time."],
+[8,"Two angles are complements of each other if their sum is","π/2","π","2π","π/4","Complementary angles make a right angle.","Complement = 90 degrees."],
+[8,"Two angles are supplements of each other if their sum is","π","π/2","2π","π/4","Supplementary angles make a straight line.","Supplement = 180 degrees."],
+[8,"The equation of the unit circle in the coordinate plane is","x² + y² = 1","x² − y² = 1","x + y = 1","x² + y² = 2","The radius is 1 and the centre is at the origin.","Radius squared on the right."],
+[8,"An angle measured clockwise is","Negative","Positive","Zero","Undefined","Anticlockwise angles are positive and clockwise angles are negative.","Clock direction is negative."],
+[8,"The second quadrant corresponds to angles between","π/2 and π","0 and π/2","π and 3π/2","3π/2 and 2π","In the second quadrant x is negative and y is positive.","Second quadrant: 90 to 180."],
+[8,"The third quadrant corresponds to angles between","π and 3π/2","π/2 and π","0 and π/2","3π/2 and 2π","Both x and y are negative.","Third quadrant: 180 to 270."],
+[8,"In the fourth quadrant, the signs of x and y are","x positive and y negative","x negative and y positive","Both positive","Both negative","The fourth quadrant has angles between 270° and 360°.","Fourth: x positive, y negative."],
+/* ---------- 9 · Past Questions ---------- */
+[9,"If A is a subset of a universal set U, the complement of set A is given as","U − A","U","U + B","U − B","The complement is everything in the universal set that is not in A.","Complement = U minus A."],
+[9,"If U = {integers ≤ 20}, D = {multiples of 4} and E = {multiples of 3}, the elements of D′ ∩ E are","{3, 6, 9, 15, 18}","{1, 2}","{4, 8, 16, 20}","{3, 6, 9, 12, 15, 18}","D′ ∩ E means multiples of 3 that are not multiples of 4. So 12 is removed.","Multiples of 3, throw out 12."],
+[9,"The notation A − B is equivalent to","A ∩ Bᶜ","A ∪ Bᶜ","A ∪ B","A ∩ B","A − B keeps the elements of A that are not in B.","A and not B."],
+[9,"The notation A ∪ B complement is equivalent to","Aᶜ ∩ Bᶜ","Aᶜ − Bᶜ","A ∪ B","A ∩ Bᶜ","De Morgan: the complement of a union is the intersection of the complements.","Break the bar, flip the sign."],
+[9,"If two sets A and B are subsets of a universal set, then n of A ∪ B is equal to","nA+nB−nA∩B","nA+nB","nA+nC−nA∪B","nA+nB+nA∪B","Adding nA and nB counts the overlap twice, so one copy of the overlap is subtracted.","Add both, subtract the overlap."],
+[9,"In a group during a school sports competition, 15 play lawn tennis, 11 swim, 9 play lawn tennis and swim, and 3 take none of the sports. How many students swim only?","2","6","9","20","Swimmers only is 11 − 9 = 2.","Total of swim minus both."],
+[9,"In the same sports group of 15 lawn tennis players, 11 swimmers, 9 playing both and 3 playing neither, how many play lawn tennis only?","6","2","9","20","Lawn tennis only is 15 − 9 = 6.","Total of tennis minus both."],
+[9,"In the same sports group of 15 lawn tennis players, 11 swimmers, 9 playing both and 3 playing neither, how many students are in the group?","20","6","9","2","Tennis only 6, both 9, swim only 2 and none 3 add up to 20.","Add all four regions."],
+[9,"In a group of 40 students, 22 study Maths, 18 Physics and 14 Statistics. 9 study Maths and Physics, 7 Maths and Statistics, 5 Physics and Statistics, and 2 study all the subjects. How many study none of the subjects?","5","4","6","7","The union is 22 + 18 + 14 − 9 − 7 − 5 + 2 = 35, so none is 40 − 35 = 5.","Union first, then subtract from total."],
+[9,"Find the square root of 7 − √13","1.8424","0.8424","1.8244","0.8244","Writing it as a square of √m − √n gives m = 13/2 and n = 1/2, so the root is √13/2 − √1/2, which is about 1.8424.","Check by squaring your answer."],
+[9,"Find the roots of the equation x³ + 5x² − 2x − 24","−4, −3, 2","−4, 3, 2","−4, −3, −2","4, 3, −2","Test x = 2 first: 8 + 20 − 4 − 24 = 0. Then divide and factor the quadratic that is left.","Try small factors of 24."],
+[9,"Solve the equation 2x² − 5x + 7 = 0","5 ± i√31 over 4","5 ± √31 over 4","5 ± i√31 over 2","5 ± √31 over 2","The discriminant is 25 − 56 = −31, so the roots are complex, and the denominator is 2a = 4.","Negative discriminant brings i."],
+[9,"The value of k in √k − 1 + 5√k − 9 = 4√k − 6 is","10","9","11","12","At k = 10 the left side is 3 + 5 = 8 and the right side is 4 times 2 = 8.","Test values that make each root whole."],
+[9,"Solve for x in the equation 16^3x = ¼ × 32^x−1","−1","1","2","−2","Write everything in base 2: 12x = −2 + 5x − 5, so 7x = −7 and x = −1.","Same base, equate powers."],
+[9,"Simplify 216^−1/3 × 0.16^−1/2","5/12","12/17","5/13","12/15","216 to the −1/3 is 1/6 and 0.16 to the −1/2 is 1 over 0.4 which is 5/2. Then 1/6 times 5/2 = 5/12.","Negative power flips, fraction power is a root."],
+[9,"Given that y = 3x and 3^x−y = 1/81, the value of x is","2","3","4","5","x − 3x = −4 because 1 over 81 is 3 to the −4. So −2x = −4 and x = 2.","Make both sides base 3."],
+[9,"If 8^x/2 = 2^3/8 × 4^3/4, the value of 4x is","5","4","6","7","In base 2: 3x/2 = 3/8 + 3/2 = 15/8, so x = 5/4 and 4x = 5.","Same base, then solve."],
+[9,"Solve for x in 3^2x+1 − 18 × 3^x − 81 = 0","2","−1","3","−3","Let u = 3ˣ. Then 3u² − 18u − 81 = 0 gives u = 9, so x = 2. The value u = −3 is rejected.","Reject negative values of a power."],
+[9,"Solve for x in 26 × 5^x−1 = 5^2x + 1","−1, 1","−1, −2","−1, 2","2, −2","Let u = 5ˣ. Then 5u² − 26u + 5 = 0, so u = 5 or 1/5, which gives x = 1 or −1.","Let the power be u."],
+[9,"In log_a 256 = 4, the value of a is","4","2","3","5","a to the 4 equals 256, and 4 to the 4 is 256.","Convert to power form."],
+[9,"Given that log_2 64 = k, the value of 4k times log_16 32 is","30","60","50","40","k = 6. Then log_16 32 = 5/4, so 4 times 6 times 5/4 = 30.","Change base to 2."],
+[9,"The value of x in log_3 x − 3 log_x 3 = 2 is","27","−1/3","−27","3","Let L = log_3 x. Then L − 3 over L = 2, so L² − 2L − 3 = 0. L = 3 gives x = 27.","Let the log be L."],
+[9,"Simplify 8/27 to the power 1/3 minus 4/9 to the power 1/2","0","1","2","3","The cube root of 8/27 is 2/3 and the square root of 4/9 is 2/3. Their difference is zero.","Roots first."],
+[9,"If |x| < p, then","−p < x < p","p < x < −p","−p > x < p","−p < x > p","Distance from zero less than p puts x between −p and p.","Less than = between."],
+[9,"The values of x in 5x − 1 over 3 minus 1 − 2x over 5 is less than 8 + x are","x < 8","x < −8","x > 8","x > −8","Multiply through by 15: 25x − 5 − 3 + 6x < 120 + 15x, so 16x < 128.","Multiply by the LCM 15."],
+[9,"Given the nth term of a sequence as log_16 n + 3, the difference between the 13th and first terms is","1/2","2","1","−1","The 13th term is log_16 16 = 1 and the first term is log_16 4 = 1/2.","Evaluate each term."],
+[9,"The sum of the terms of a sequence is known as","Series","Arithmetic sequence","Geometric sequence","Sequence","A sequence is the list and a series is the sum of that list.","Add the terms, get a series."],
+[9,"The type of sequence in which the next term differs from the preceding term by a fixed difference is termed","Arithmetic sequence","Geometric sequence","Geometric infinity","Infinite series","A constant difference means an arithmetic sequence.","Difference = arithmetic."],
+[9,"The correct expression for the common difference in an A.P. is","Tn − Tn−1","T − Tn","Tn − Tn+1","Tn − Tn+2","The common difference is a term minus the one before it.","Term minus previous term."],
+[9,"The common difference in the series K, K + 3, K + 6, ... is","3","2","4","−4","Each term is 3 bigger than the one before, so d = 3.","Subtract neighbours."],
+[9,"If the first 3 terms of an A.P. are y, 3y + 1 and 7y − 4, the 10th term of the sequence is","66","55","44","33","Equal differences give y = 3, so the terms are 3, 10, 17 with d = 7. The 10th term is 3 + 9 times 7 = 66.","Equate the two differences."],
+[9,"The 6th and 13th terms of an A.P. are 0 and 14 respectively. The 20th term is","28","18","−18","−28","Seven steps add 14, so d = 2. Then the 20th term is 14 + 7 times 2 = 28.","Find d first."],
+[9,"If P = {prime factors of 84} and Q = {prime factors of 315}, the elements of P ∪ Q and P ∩ Q are respectively","{2,3,5,7} & {3,7}","{3,4,5,7,9} & {3,7}","{3,4,5,7} & {5,7}","{2,3,5,7} & {2,7}","84 = 2 × 2 × 3 × 7 and 315 = 3 × 3 × 5 × 7. Only the primes 3 and 7 are shared.","Use prime factors, not all factors."],
+[9,"In a class of 100 students, 40 study botany, 32 microbiology and 44 zoology. Botany and microbiology is 24, botany and zoology is 24, while 20 study microbiology and zoology. If 20 study all three subjects, how many study none of the three?","32","42","68","24","The union is 40 + 32 + 44 − 24 − 24 − 20 + 20 = 68, so none is 100 − 68 = 32.","Union first, then subtract from 100."],
+[9,"The union of the sets A and B, denoted A ∪ B, is the set of elements which belong to","Either A or B or both","Either A nor B nor both","Neither A nor B nor both","Neither A or B nor both","Union means in A, or in B, or in both.","Union = or."],
+[9,"In a class, 220 students offer Mathematics or Chemistry or both. 125 offer Mathematics and 110 offer Chemistry. How many offer Chemistry but not Mathematics?","95","80","110","125","Everyone is in Mathematics or Chemistry, so those not in Mathematics are 220 − 125 = 95, and they all do Chemistry.","Total minus Mathematics."],
+[9,"If R = {x : x² = 16, x > 5}, then R is equal to","∅","0","{0}","{∅}","x² = 16 gives x = 4 or −4, and neither is greater than 5. So the set is empty.","No element means empty set."],
+[9,"In a certain class, 22 pupils take one or more of Chemistry, Economics and Government. 12 take Economics, 8 take Government and 7 take Chemistry. Nobody takes Economics and Chemistry and 4 pupils take Economics and Government. How many pupils take both Chemistry and Government?","1","2","3","4","22 = 12 + 8 + 7 − 4 − 0 − x + 0, which is 27 − 4 − x, so x = 1.","Fill the Venn regions."],
+[9,"The universal set U has subsets M and N such that M ⊆ N. The set M ∩ M ∩ N complement is","∅","M","N","U","Since M is inside N, M ∩ N is just M. Then M ∩ M complement is empty.","Subset first, then simplify."],
+[9,"Given the universal set U = {2,3,4,5,6,7,8,9} and subsets P = {2,4,6,8} and Q = {x : x² < 50, x is odd}, find P ∩ Q complement.","U","{9}","{0}","∅","Q is 3, 5, 7 and P holds only even numbers, so P ∩ Q is empty. The complement of the empty set is U.","Complement of nothing is everything."],
+[9,"Simplify the cube root of 729y⁻⁶ all raised to the power 1/2","3/y","1/3y","3y","y/3","729 to the 1/6 is 3 and y to the −6 over 6 is y⁻¹.","Multiply the powers 1/3 and 1/2."],
+[9,"Evaluate the cube root of 0.0024 × 35000 over 0.0105, leaving your answer in standard form","2 × 10¹","2 × 10²","1 × 10²","1 × 10¹","The fraction inside is 84 over 0.0105 = 8000, and the cube root of 8000 is 20.","8000 has cube root 20."],
+[9,"In the equation 5x⁴ + 9x³ − 12x² − 9x + 5 = 0, the values of x − 1 over x are","1/5, −2","−1/5, 2","1/2, 5","5, 2","Divide by x² and let R = x − 1/x. Then 5R² + 9R − 2 = 0, so R = 1/5 or −2.","Divide by x squared."],
+[9,"Determine the square of the remainder when 3x⁴ − 2x³ − 10x − 5 is divided by x − 4","354025","595","475","225625","The remainder is f of 4 = 768 − 128 − 40 − 5 = 595. Its square is 354025.","Remainder first, then square."],
+[9,"What is the remainder when x³ + 3x² − 13x − 10 is divided by x − 3?","5","4","6","4¼","f of 3 = 27 + 27 − 39 − 10 = 5.","Put x = 3."],
+[9,"Given that −2 = A x − 1² + B x − 1 x − 2 + C x − 2, the value of C is","2","−2","1","−1","Put x = 1: −2 = C times −1, so C = 2.","Choose x to kill A and B."],
+[9,"Determine the values of p and q if x − 1 and x + 2 are factors of 2x³ + px² − x + q","p = 5, q = −6","p = −5, q = −6","p = 5, q = 6","p = −6, q = −5","f of 1 gives p + q = −1 and f of −2 gives 4p + q = 14. So p = 5 and q = −6.","Two factors, two equations."],
+[9,"Find the constant k if 4x³ + kx² + 7x − 23 has remainder 7 when divided by 2x − 5","−8","8","−16","16","Put x = 5/2: 62.5 + 6.25k + 17.5 − 23 = 7. So 6.25k = −50 and k = −8.","Divisor zero gives x = 5 over 2."],
+[9,"The sum of the squares of three positive numbers in arithmetic progression is 165. If the sum of the numbers is 21, the sum of the cubes of the numbers is","1407","1400","104","4","The numbers are 4, 7 and 10 and the cubes add to 64 + 343 + 1000 = 1407.","Middle term is sum over 3."],
+[9,"Given the series ln x, ln x², ln x⁴, ln x⁸, the 21st term is","2²⁰ ln x","20 ln x","20² ln x","20 ln x²","The powers are 2⁰, 2¹, 2², and so on, so the 21st is 2²⁰ ln x.","Power of 2 is n minus 1."],
+[9,"The 8th term and the sum of the first 8 terms of the GP 1/2, −1, 2, −4, ... are","−64, −42.5","−64, 42.5","64, 42.5","−64, 45.4","r = −2, so the 8th term is 1/2 times −2 to the 7 = −64. The sum is 0.5 times 1 − 256 over 3 = −42.5.","Odd power of a negative ratio is negative."],
+[9,"The sum of the first eight terms of the AP ln x, ln x², ln x³, ... is","ln x³⁶","ln x⁸","ln x⁹","ln x⁷²","The powers 1 to 8 add up to 36.","1 plus 2 up to 8 is 36."],
+[9,"The fourth term and the seventh term of an AP are in the ratio 5:8. The ratio of the 3rd and 6th term is","4:7","4:5","6:5","4:6","From 8 a + 3d = 5 a + 6d we get a = 2d, so the 3rd and 6th terms are 4d and 7d.","Find a in terms of d."],
+[9,"The second term of an AP is four times the first term, the last term is 13 times the first term and the sum of the series is 70. The first three terms of the progression are","2, 8, 14","2, 4, 6","2, 4, 8","8, 12, 14","d = 3a and the last term gives 5 terms, so 35a = 70 and a = 2.","Use the ratios to find d."],
+[9,"A polygon has 25 sides, with lengths in AP starting from the smallest side. The perimeter is 1100 cm and the largest side is ten times the smallest. The smallest side is","8 cm","5 cm","6 cm","7 cm","Sum of the AP is 25 over 2 times a + 10a = 137.5a = 1100, so a = 8.","Sum formula with first and last term."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='MTH101', LABEL='MTH 101', N=40, SECS=1200;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('MTH101');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
