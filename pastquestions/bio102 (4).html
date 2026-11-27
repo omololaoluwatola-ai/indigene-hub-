@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BIO 102 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">BIO 102</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>BIO 102 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · BIO 102 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Systematics and Body Plans",
+  "Protozoa",
+  "Cnidaria",
+  "Flatworms",
+  "Nematodes",
+  "Annelids",
+  "Molluscs",
+  "Arthropods",
+  "Echinoderms",
+  "Chordates and Vertebrates",
+  "Reproduction and Ecology"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Systematics and Body Plans ---------- */
+[0,"Animals without a backbone are found in all of these phyla except one that also holds the vertebrates. Which is it?","Chordata","Protozoa","Arthropoda","Mollusca","Vertebrates sit in Chordata, so it is the odd one out in this list.","Backbone points to Chordata."],
+[0,"The study of classification of organisms based on their evolutionary relationships and specific changes is","Systematics","Nomenclature","Taxonomy","Binomials","Systematics looks at how organisms are related through evolution, then classifies them.","Systematics = system of relationships."],
+[0,"The theory and practice of collecting, identifying, naming and classifying organisms by shared characteristics is","Taxonomy","Systematics","Nomenclature","Zoology","Taxonomy is the working practice of identifying, naming and grouping organisms.","Taxonomy sorts into taxa."],
+[0,"The act of giving names to living organisms is called","Nomenclature","Taxonomy","Systematics","Classification","Nomenclature is strictly about naming.","Nomen means name."],
+[0,"The aspect of systematics which has its own rules designed to meet its own difficulties is","Nomenclature","Taxonomy","Classification","Identification","Naming follows its own codes of rules.","Rules for names = nomenclature."],
+[0,"The act of giving three names to an organism is called","Trinomial nomenclature","Binomial nomenclature","Uninomial nomenclature","Polynomial classification","Three names, usually genus, species and subspecies.","Tri = three."],
+[0,"The two-kingdom system of classification was abandoned in the late 1960s for the","Five-kingdom system","Three-kingdom system","Four-kingdom system","Six-kingdom system","Whittaker proposed five kingdoms in 1969.","Whittaker, 1969, five."],
+[0,"Which kingdom completes this list: Plantae, Animalia, Protista, Fungi and ____?","Monera","Eukaryota","Metazoa","Protozoa","Monera holds the prokaryotes and is the fifth kingdom.","Monera = bacteria."],
+[0,"Multicellular motile organisms whose cells have no cell walls or chloroplasts belong to the kingdom","Animalia","Plantae","Fungi","Protista","Animals are multicellular, move and lack both cell walls and chloroplasts.","No wall, no chloroplast, moves = animal."],
+[0,"Animals that depend on plants and other organisms for food are called","Heterotrophs","Autotrophs","Phototrophs","Chemotrophs","They cannot make their own food, so they take it from others.","Hetero = other."],
+[0,"Organisms that feed on decaying plant and animal materials are called","Detritivores","Herbivores","Carnivores","Omnivores","Detritivores eat dead and decaying matter.","Detritus = dead bits."],
+[0,"Which of these is not a branch of Metazoa?","Protozoa","Mesozoa","Parazoa","Eumetazoa","Metazoa are multicellular animals, while protozoa are single-celled.","Proto is one cell, Meta is many."],
+[0,"An animal whose body is built from three germ layers is described as","Triploblastic","Diploblastic","Monoblastic","Acellular","Ectoderm, mesoderm and endoderm make three layers.","Tri = three."],
+[0,"Endoderm, ectoderm and mesoderm are known as the","Germ layers","Body cavities","Basement layers","Skin layers","These embryonic layers give rise to all tissues and organs.","Germ here means origin."],
+[0,"Which germ layer gives rise to the gastrodermis or gut lining?","Endoderm","Ectoderm","Mesoderm","Mesoglea","The inner layer forms the lining of the gut.","Endo = inside."],
+[0,"The concentration of sense organs and nerve cells at the front end of a bilateral animal is called","Cephalization","Segmentation","Symmetry","Coelomation","The head region collects the brain and senses.","Cephalo = head."],
+[0,"Another name for a true body cavity is","Coelom","Symmetry","Body plan","Germ layer","The coelom is the fluid filled body cavity.","Coelom = cavity."],
+[0,"Which structure suspends the organs and helps support body movement?","Body cavity","Body tissue","Body layer","Body wall cuticle","Organs hang in the cavity, and its fluid supports movement.","Cavity cradles organs."],
+[0,"A partially lined body cavity between the gut and the body wall muscle is found in a","Pseudocoelomate","Acoelomate","Eucoelomate","Diploblastic animal","The false coelom is only partly lined by mesoderm.","Pseudo = false."],
+[0,"Which of these organisms is a pseudocoelomate?","Wuchereria bancrofti","Hydra","Jellyfish","Liver fluke","Wuchereria is a roundworm, and roundworms have a false coelom.","Roundworm = pseudocoel."],
+[0,"Organ level organisation is first seen in which of these?","Liver fluke","Sponge","Hydra","Jellyfish","Flatworms are the first to have true organs.","Organs start at flatworms."],
+[0,"Lower invertebrate phyla are mainly placed on the basis of their","Body cavity","Body size","External colour","Mode of feeding","Whether a coelom is absent, false or true separates the groups.","Think acoelom, pseudocoelom, coelom."],
+[0,"Which of these is not in Deuterostomia?","Tardigrada","Echinodermata","Hemichordata","Chordata","Tardigrades are protostomes.","Deuterostomes: echinoderms, hemichordates, chordates."],
+[0,"Which branch of Animalia do the Porifera belong to?","Parazoa","Mesozoa","Eumetazoa","Placozoa","Sponges lack true tissues, so they sit beside the true animals.","Para = beside."],
+/* ---------- 1 · Protozoa ---------- */
+[1,"Acellular eukaryotic organisms that lack differentiation into tissues or organs are","Protozoans","Metazoans","Prokaryotes","Parazoans","A protozoan does everything inside one cell using organelles.","One cell, no tissues."],
+[1,"Which of these is a special protozoan organelle?","Trichocyst","Mitochondrion","Lysosome","Chromosome","Trichocysts are found in ciliates and are not general cell organelles.","Tricho = hair-like threads."],
+[1,"Which organelle do protozoans use to weaken their prey?","Toxicyst","Contractile vacuole","Centriole","Mitochondrion","Toxicysts release poison into prey.","Toxi = toxin."],
+[1,"Repeated division of the nucleus to give multiple daughter cells in protozoans, as listed in this course, is","Merogony","Sporogony","Isogamy","Binary fission","Merogony is multiple fission that produces merozoites.","Mero gives merozoites."],
+[1,"Protozoans that move by cilia are placed in the phylum","Ciliophora","Rhizopoda","Kinetoplastida","Apicomplexa","Ciliophora means cilia bearers.","Cilio = cilia."],
+[1,"Digestion in Amoeba is","Intracellular","Extracellular","Both extracellular and intracellular","Absent entirely","Food is digested inside a food vacuole.","One cell digests inside itself."],
+[1,"Protozoans take in solid prey by","Phagocytosis","Pinocytosis","Exocytosis","Active transport","Phagocytosis engulfs solid particles.","Phago = eat."],
+[1,"Which mode of feeding is not typical of protozoans as a group?","Autotrophic","Holozoic","Heterotrophic","Saprophytic","Protozoans are generally consumers, not food makers.","Protozoa mostly eat."],
+[1,"The most common way of life among protozoans, according to the course summary, is","Parasitic","Mutualistic","Commensal","Symbiotic with plants","The course summary names parasitism as the most common form.","Think malaria and amoebiasis."],
+[1,"The word Rhizopod means","Root-like foot","False hand","Tree-like foot","Bare foot","Rhizo is root and pod is foot.","Rhizo = root."],
+[1,"The two main functions of pseudopodia are","Locomotion and feeding","Locomotion and respiration","Feeding and excretion","Digestion and reproduction","Amoeba crawls and engulfs food with them.","Move and munch."],
+[1,"The pseudopodia of Amoeba are called","Lobopodia","Filopodia","Reticulopodia","Axopodia","They are blunt, lobe-shaped extensions.","Lobo = lobe."],
+[1,"The type of pseudopodium shown by Entamoeba gingivalis is","Lobopodium","Filopodium","Reticulopodium","Axopodium","It has broad, blunt pseudopodia.","Entamoeba uses lobes."],
+[1,"Protozoans with a recognisable apical complex are called","Apicomplexa","Rhizopoda","Flagellata","Ciliophora","The apical complex gives the phylum its name.","Name tells you."],
+[1,"The apical complex is absent in which developmental stage?","Trophozoite","Sporozoite","Merozoite","Invasive infective stage","The feeding trophozoite does not need the invasion machinery.","Trophic = feeding, not invading."],
+[1,"The locomotor organelle of adult apicomplexans is","Absent","Cilia","Pseudopodia","Flagella","Adult apicomplexans have no special organ of movement.","Parasites that are carried."],
+[1,"In the liver, malaria sporozoites reproduce asexually to form","Merozoites","Sporozoites","Trophozoites","Gametocytes","Exoerythrocytic schizogony releases merozoites.","Liver turns Sporo into Mero."],
+[1,"The stage of the malaria parasite passed into humans by a female Anopheles is the","Sporozoite","Merozoite","Trophozoite","Gametocyte","Sporozoites sit in the salivary glands ready to be injected.","Mosquito sends Sporo."],
+[1,"The basal bodies of Mastigophora are called","Kinetosomes","Plastids","Basal discs","Blepharoplast vacuoles","Kinetosomes anchor the flagella.","Kineto = movement."],
+[1,"Based on their mode of locomotion, Mastigophora are also called","Flagellates","Ciliates","Lobopods","Sporozoans","They swim with flagella.","Mastix means whip."],
+[1,"Paramylum granules store which kind of food?","Carbohydrate","Lipid","Protein","Nucleic acid","Paramylum is a starch-like carbohydrate in Euglena.","Para-amylum, like starch."],
+[1,"Which feature of Euglena makes it plant-like?","Chloroplast","Pellicle","Contractile vacuole","Plasma membrane","Chloroplasts let it photosynthesise.","Green means plant-like."],
+[1,"The major type of nutrition in Euglena is","Autotrophic","Heterotrophic","Holozoic","Saprophytic","With light, Euglena makes its own food.","Chloroplast = auto."],
+/* ---------- 2 · Cnidaria ---------- */
+[2,"The inner layer of sea anemones is called the","Gastrodermis","Ectoderm","Epidermis","Outer body layer","The gastrodermis lines the gut cavity.","Gastro = gut."],
+[2,"The dominant body form in Anthozoa is the","Polyp","Medusa","Planula","Ephyra","Anthozoans live as polyps.","Anemones and corals sit still."],
+[2,"Aurelia is an example of the class","Scyphozoa","Hydrozoa","Anthozoa","Cubozoa","Aurelia is a true jellyfish.","Aurelia the jellyfish = Scypho."],
+[2,"Sea anemones belong to the class","Anthozoa","Hydrozoa","Scyphozoa","Cubozoa","Anthozoa are the flower animals.","Antho = flower."],
+[2,"Which of these is a distinct feature of Cnidaria?","A single opening serving as mouth and anus","Three distinct embryonic germ layers","A body made of only one cell","A thick chitinous outer cuticle","Cnidarians have a blind gut with one opening.","One door in and out."],
+[2,"The body symmetry of a sea anemone is","Radial","Bilateral","Spherical","Asymmetrical","Its parts are arranged around a central axis.","Anemone looks like a wheel."],
+/* ---------- 3 · Flatworms ---------- */
+[3,"Platyhelminthes means","Flatworms","Roundworms","Ringworms","Segmented worms","Platy is flat and helminth is worm.","Platy = flat."],
+[3,"Which statement about Platyhelminthes is false?","They are radially symmetrical","They are dorsoventrally flattened","They show cephalization","They are acoelomate","Flatworms are bilaterally symmetrical.","Head end means bilateral."],
+[3,"Digestion in flatworms is","Both extracellular and intracellular","Only intracellular","Only extracellular","Completely absent in all classes","Food is broken down in the gut and finished inside cells.","Flatworms do both."],
+[3,"Cestodes without a developed gut absorb nutrients through the","Tegument","Cell wall","Flame cells","Scolex hooks","The tegument absorbs food from the host gut.","Tegument takes in."],
+[3,"Endoparasitic cestodes have no","Digestive system","Excretory system","Scolex","Reproductive system","They absorb digested food directly.","Tapeworm needs no gut."],
+[3,"The long chain of segments forming a tapeworm body is made of","Proglottids","Metameres","Threads of pharynx","Parapodia","Each tapeworm segment is a proglottid.","Tape pieces = proglottids."],
+[3,"Excretion in flatworms is carried out by","Flame cells","Metanephridia","Malpighian tubules","Green glands","Flame cells drive fluid into the excretory ducts.","Flat has flame."],
+[3,"The cells of the protonephridia in flatworms are called","Flame cells","Renette cells","Nephrostomes","Coelomocytes","The beating cilia look like a flickering flame.","Proto = flame."],
+[3,"Light sensitive ocelli are absent in which class of flatworms?","Cestoda","Turbellaria","Trematoda","Monogenea","Tapeworms live in the dark gut and have no eyespots.","No light in the intestine."],
+[3,"Planaria belongs to the class","Turbellaria","Cestoda","Trematoda","Monogenea","Planaria is the free-living flatworm.","Turbellaria swim freely."],
+[3,"The binomial name of the liver fluke is","Fasciola hepatica","Schistosoma mansoni","Paragonimus westermani","Taenia saginata","Hepatica points to the liver.","Hepar = liver."],
+[3,"A major difference between Trematoda and Turbellaria is the","Tegument","Flame cell","Bilateral symmetry","Flat body","Parasitic flukes are covered by a protective tegument.","Parasites need armour."],
+[3,"The main function of the tegument in parasitic flatworms is to","Protect against the host's digestive enzymes","Digest the host tissue outside the body","Dissolve the skin of the host on contact","Move the worm quickly through the gut","The tegument stops the worm from being digested.","Armour against enzymes."],
+[3,"Parasitic worms neutralise the host's digestive juice by secreting","Anti-enzymes","Antacids only","Antibodies","Antibiotics","Anti-enzymes block the host's enzymes.","Anti the enzyme."],
+[3,"In Taenia saginata, the structures similar to microvilli are","Microtriches","Microtubules","Microfilaments","Microbodies","Microtriches increase the absorbing surface.","Triches are tiny hairs."],
+[3,"Schistosoma is also known as the","Blood fluke","Liver fluke","Intestinal fluke","Lung fluke","Adult schistosomes live in blood vessels.","Schisto swims in blood."],
+[3,"Trematoda, Cestoda and Turbellaria are classes of the phylum","Platyhelminthes","Nematoda","Annelida","Protozoa","All three are flatworm classes.","Three T-C-T flatworms."],
+[3,"Which of these is not a stage in a typical trematode life cycle?","Oncosphere","Cercaria","Miracidium","Sporocyst","The oncosphere belongs to tapeworms.","Onco goes with Cestoda."],
+[3,"An organism having both male and female organs is described as","Monoecious","Dioecious","Parthenogenetic","Gonochoristic","Mono means one house for both sexes.","Mono = one house."],
+/* ---------- 4 · Nematodes ---------- */
+[4,"Nematodes are also called","Roundworms","Flatworms","Ringworms","Segmented worms","Their bodies are round in cross section.","Nema is thread, round."],
+[4,"How many labia are typical of the nematode mouth in the primitive pattern?","Six","Four","Eight","Ten","The ancestral nematode mouth has six lips.","Six lips."],
+[4,"Which of these is not found in the mouth of nematodes?","Nares","Jaws","Stylets","Teeth","Nares are nostrils.","Worms have no nostrils."],
+[4,"The chemoreceptors at the head of nematodes are called","Amphids","Solenocytes","Phasmids","Ocelli","Amphids are the anterior smell organs.","Amphid at the front."],
+[4,"The classification of nematodes uses the presence or absence of","Phasmids","Ocelli","Parapodia","Radula","Phasmids split the two classes.","Phasmid decides."],
+[4,"The class of nematodes without phasmids is","Adenophorea","Secernentea","Ciliophora","Turbellaria","Adenophorea are also called Aphasmidia.","Secernentea has them, Adeno lacks them."],
+[4,"The genital opening of a female nematode is the","Gonopore","Gonostome","Gonoblast","Cloaca","The female opening is a separate gonopore.","Pore = opening."],
+[4,"Which statement correctly compares female and male nematodes?","The female is longer and has a straight tail","The female is shorter and has a curved tail","The male is longer and has a straight tail","Both sexes are equal in length and shape","Males are shorter with a curved tail.","Male tail hooks."],
+[4,"The fluid of the pseudocoel is also called","Perienteric fluid","Cerebrospinal fluid","Periodontal fluid","Synovial fluid","It surrounds the gut, hence perienteric.","Peri-enteric = around gut."],
+[4,"Cells found in the pseudocoel are called","Coelomocytes","Coelomoblasts","Flame cells","Solenocytes","Coelomocytes float in the body cavity.","Coelomo-cytes = cavity cells."],
+[4,"Nematodes move mainly by","Muscular contraction","Cilia","Flagella","Pseudopodia","Longitudinal muscles bend the body.","Thrashing worm."],
+[4,"Digestion in nematodes is","Extracellular","Intracellular","Both intracellular and extracellular","Absent","Food is digested in the gut lumen.","Full gut, outside cells."],
+[4,"Nematodes excrete ammonia mainly through the","Body wall","Renette pore only","Anal pore","Mouth opening","Ammonia diffuses across the body wall.","Diffuse out the wall."],
+[4,"The nematode excretory system may consist of two gland cells called","Renette cells","Anal cells","Flame cells","Nephridial cells","Renettes are the excretory glands.","Renette rhymes with renal."],
+[4,"How many major nerve cords do nematodes have?","Four","Two","Three","Six","Dorsal, ventral and two lateral cords.","D, V, L, L."],
+[4,"Genital papillae in nematodes serve as","Touch and copulatory sensors","Smell and taste sensors only","Light sensors","Balance organs","They help the male find and hold the female.","Papillae feel."],
+[4,"The sperm of nematodes is","Amoeboid","Flagellated","Ciliated","Spore-like","Nematode sperm crawl.","No tail, it crawls."],
+[4,"Reproduction without fertilisation of gametes is called","Parthenogenesis","Oogenesis","Schizogony","Conjugation","The egg develops on its own.","Partheno = virgin."],
+[4,"A female pinworm migrates to the anal region at night to deposit","Eggs","Faeces","Food","Larval cysts","She lays eggs around the anus, causing itching.","Pinworm, itchy eggs."],
+/* ---------- 5 · Annelids ---------- */
+[5,"Annelids are also known as","Segmented worms","Flatworms","Roundworms","Silkworms","Their bodies are made of rings.","Annulus = ring."],
+[5,"The segments of annelids are called","Metameres","Automeres","Protomeres","Proglottids","Each repeated unit is a metamere.","Metamerism = segments."],
+[5,"The partition separating each annelid segment is the","Septum","Seta","Gutter","Clitellum","Septa divide the coelom.","Septum separates."],
+[5,"The feature that most clearly sets annelids apart from nematodes is","Metamerism","Cephalization","Bilateral symmetry","A digestive tract","Annelids are segmented and nematodes are not.","Rings versus round."],
+[5,"Excretion in annelids is mainly by","Metanephridia","Protonephridia","Solenocytes","Flame cells","Metanephridia open into the coelom by funnels.","Meta for segmented worms."],
+[5,"Which of these is not a class of Annelida?","Ophiuroidea","Oligochaeta","Polychaeta","Hirudinea","Ophiuroidea are brittle stars.","Ophiuroids are echinoderms."],
+[5,"Polychaete means","Many bristles","Few bristles","No segments","Many gills","Poly is many and chaeta is bristle.","Poly = many."],
+[5,"Many annelids anchor with setae carried on paired flaps called","Parapodia","Pseudopodia","Pedipalps","Swimmerets","Parapodia bear the setae in polychaetes.","Para-podia, side feet."],
+[5,"In Nereis, the terminal part carrying the anus is the","Pygidium","Prostomium","Peristomium","Clitellum","The pygidium is the tail end.","Pro is front, Pyg is back."],
+[5,"The clitellum helps to secrete the","Cocoon","Eggs","Setae","Oviduct","Earthworm eggs are laid inside a cocoon.","Clitellum makes the case."],
+[5,"Setae are absent in which class?","Hirudinea","Oligochaeta","Polychaeta","Archiannelida","Leeches move with suckers instead.","Leech is smooth."],
+/* ---------- 6 · Molluscs ---------- */
+[6,"The Latin word Mollis means","Soft","Hard","Succulent","Shelled","Molluscs have soft bodies.","Mollify = soften."],
+[6,"HAM stands for","Hypothetical ancestral mollusc","Historical ancestral mollusc","Historical ancestor mollusc","Hypothetical aquatic mollusc","It is the imagined ancestor used to explain the mollusc plan.","H is Hypothetical."],
+[6,"Which is not one of the three main divisions of the mollusc body plan?","Core","Visceral mass","Mantle","Foot","The plan is built from foot, visceral mass and mantle.","No core."],
+[6,"The broad muscular organ for locomotion and attachment in molluscs is the","Foot","Mantle","Shell","Radula","The muscular foot creeps and grips.","Foot for footing."],
+[6,"The space between the mantle and the visceral mass is the","Mantle cavity","Coelomic space","Vestibular cavity","Pericardial space","Gills usually sit in this cavity.","Named after the mantle."],
+[6,"The mollusc shell is secreted by the","Mantle","Foot","Visceral mass","Radula","The mantle lays down shell material.","Mantle makes the house."],
+[6,"How many layers does a typical mollusc shell have?","Three","One","Two","Four","Periostracum, prismatic and nacreous layers.","P-P-N."],
+[6,"Which is not one of the named layers of a mollusc shell?","Calciferous layer","Periostracum","Prismatic layer","Nacreous layer","The three named layers do not include a calciferous layer.","P, P, N only."],
+[6,"The main function of the shell in molluscs is","Protection against drying out and harm","Attracting mates by its colour patterns","Completing the stages of the life cycle","Producing the gametes for reproduction","The shell keeps water in and enemies out.","Shell shields."],
+[6,"Most molluscs respire using","Gills","Lungs","Spiracles","Tracheae","The majority are aquatic and use gills.","Water means gills."],
+[6,"The funnel opening of a nephridium is the","Nephrostome","Nephridiopore","Gonopore","Radula","The nephrostome collects coelomic fluid.","Stome = mouth."],
+[6,"The rasping feeding organ of molluscs is the","Radula","Odontophore","Pectinophore","Mandible","The radula is a toothed ribbon.","Radula rasps."],
+[6,"The radula sits on a cartilaginous support called the","Odontophore","Pectinophore","Radular sac gland","Mantle fold","The odontophore moves the radula.","Odonto-phore carries teeth."],
+[6,"The most popular and largest class of molluscs is","Gastropoda","Bivalvia","Cephalopoda","Monoplacophora","Snails and slugs make it the largest.","Snails everywhere."],
+[6,"Which of these is not a mollusc class?","Secernentea","Aplacophora","Bivalvia","Gastropoda","Secernentea is a nematode class.","Secernentea has phasmids."],
+[6,"Neopilina is the only living genus listed for the class","Monoplacophora","Polyplacophora","Gastropoda","Bivalvia","Neopilina has a single plate-like shell.","Mono = one."],
+[6,"Chiton belongs to the class","Polyplacophora","Aplacophora","Gastropoda","Cephalopoda","Chitons carry many shell plates.","Poly = many plates."],
+[6,"Which mollusc class lacks a shell?","Aplacophora","Monoplacophora","Polyplacophora","Bivalvia","A means without and placa means plate.","A = absent."],
+[6,"Which mollusc class lacks a head?","Bivalvia","Aplacophora","Polyplacophora","Gastropoda","Bivalves have no distinct head.","Clams have no face."],
+[6,"A clam is an example of","Bivalvia","Gastropoda","Aplacophora","Polyplacophora","It has two shell valves.","Bi = two."],
+[6,"Which of these is a cephalopod?","Squid","Snail","Mussel","Clam","Squids have arms around the head.","Head-foot."],
+[6,"Loligo, Sepia and Octopus belong to the class","Cephalopoda","Gastropoda","Bivalvia","Polyplacophora","All three are head-footed molluscs.","Cephalo = head."],
+[6,"The only mollusc class with a closed circulatory system is","Cephalopoda","Aplacophora","Gastropoda","Polyplacophora","Active hunters need high pressure circulation.","Fast squid, closed pipes."],
+[6,"The ink sac of cephalopods is used for","Protection","Locomotion","Feeding","Reproduction","Ink clouds confuse predators.","Ink to escape."],
+[6,"The free swimming molluscs mainly belong to the class","Cephalopoda","Bivalvia","Aplacophora","Polyplacophora","Squids and octopuses swim actively.","Squids swim."],
+[6,"The 180 degree twisting of the visceral mass in snails during development is","Torsion","Propulsion","Rotation of the shell","Coiling of the radula","Torsion brings the mantle cavity to the front.","Torsion = twist."],
+/* ---------- 7 · Arthropods ---------- */
+[7,"Growth by moulting is a characteristic of","Arthropoda","Platyhelminthes","Echinodermata","Porifera","The hard exoskeleton must be shed for the body to grow.","Moult means arthropod here."],
+[7,"Multiple jointed appendages and a chitin exoskeleton are characteristics of","Arthropoda","Porifera","Mollusca","Chordata","Both features are the hallmark of arthropods.","Chitin coat plus joints."],
+[7,"Arthropoda means","Jointed appendages","Segmented bodies","Short legs","Hard shells","Arthro is joint and poda is foot.","Arthritis affects joints."],
+[7,"The largest phylum in the animal kingdom is","Arthropoda","Annelida","Echinodermata","Platyhelminthes","No other phylum has as many species.","Insects tip the scale."],
+[7,"Which of these is not an arthropod?","Fish","Crab","Shrimp","Millipede","Fish are vertebrates.","Backbone means not arthropod."],
+[7,"Which is not an economic importance of arthropods?","They have jointed appendages","Some are eaten by humans","Some are staple food for fishes","Many insects benefit humans","Jointed legs are a body feature, not a use.","Feature is not benefit."],
+[7,"The blue colour of some arthropod blood is due to","Haemocyanin","Haemoglobin","Anthocyanin","Visual purple","Haemocyanin carries oxygen using copper.","Cyan = blue."],
+[7,"Shedding of the exoskeleton in arthropods is called","Ecdysis","Budding","Fragmentation","Metamorphosis","The old cuticle is cast off so the animal can grow.","Ecdysis = exit the coat."],
+[7,"The stage between two successive moults is called an","Instar","Imago","Exuvia","Ootheca","Each growth stage is an instar.","In-star, in between."],
+[7,"Fusion of segments into functional groups in arthropods is","Tagmatization","Metamerism","Segmental budding","Cephalization","The groups formed are called tagmata.","Tagma = group."],
+[7,"The fused head and thorax of crustaceans is the","Cephalothorax","Prothorax","Abdomen","Mesosternum","Cephalo is head joined to thorax.","Name joins the two."],
+[7,"The hard shield covering the cephalothorax of crustaceans is the","Carapace","Enamel","Telson","Clitellum","The carapace protects the front of the body.","Crab's cap."],
+[7,"The last abdominal segment of a crustacean is the","Telson","Furca","Cephalothorax","Rostrum","The telson is the terminal piece.","Tel = end."],
+[7,"The swimming legs of crustaceans are called","Swimmerets","Spinnerets","Chelipeds","Pedipalps","Swimmerets sit under the abdomen.","Swim in the name."],
+[7,"The subphylum of aquatic mandibulate arthropods is","Crustacea","Uniramia","Trilobita","Chelicerata","Crustaceans have mandibles and mostly live in water.","Crab in water."],
+[7,"The terrestrial mandibulate arthropods include","Insects, millipedes and centipedes","Insects, spiders and scorpions","Crabs, shrimps and lobsters","Mites, ticks and sea spiders","These are the land dwelling groups with mandibles.","Six, many, many legs on land."],
+[7,"Which is a typical crustacean?","Lobster","Scorpion","Spider","Centipede","Lobsters have gills and two pairs of antennae.","Lobster with crabs."],
+[7,"Cyclops is an example of","Crustacea","Arachnida","Diplopoda","Chilopoda","It is a small aquatic crustacean.","Water flea family."],
+[7,"Crabs respire with","Gills","Spiracles","Lungs","Book lungs","Crabs are mainly aquatic.","Water means gills."],
+[7,"Crustaceans excrete using","Green glands","Flame cells","Nephridia","Malpighian tubules","Green glands are near the antennae.","Crab goes green."],
+[7,"Insects excrete using","Malpighian tubules","Flame cells","Metanephridia","Green glands","The tubules empty into the gut.","Insect = Malpighi."],
+[7,"Insects breathe through","Spiracles and tracheae","Gills and operculum","Book lungs","Moist skin only","Air enters the spiracles and travels through tracheae.","Pores then pipes."],
+[7,"Spiders respire with","Book lungs","Gills","Spiracles only on the head","Skin","Their lungs have leaf-like folds.","Spider reads books."],
+[7,"How many legs do insects have?","Six","Four","Eight","Ten","Three pairs on the thorax.","Hexapod."],
+[7,"Houseflies, grasshoppers and ants belong to","Hexapoda","Crustacea","Diplopoda","Arachnida","All have six legs.","Hexa = six."],
+[7,"Animals nicknamed eight leggers belong to","Arachnida","Insecta","Crustacea","Chilopoda","Four pairs of walking legs.","Spider has eight."],
+[7,"Mites, ticks and scorpions belong to","Arachnida","Insecta","Crustacea","Diplopoda","They share the spider body plan.","Spider cousins."],
+[7,"The body of an arachnid is divided into","Cephalothorax and abdomen","Head, thorax and abdomen","Thorax, head and tail","Head and trunk","Arachnids have two body regions.","Two parts."],
+[7,"The second pair of arachnid appendages used with prey is the","Pedipalps","Chelicerae","Mandibles","Maxillae","Chelicerae come first, pedipalps second.","Pedipalp is number two."],
+[7,"Spiders spin webs with","Spinnerets","Swimmerets","Claspers","Pedipalps","Silk comes out of spinnerets.","Spin = spinneret."],
+[7,"Which class has one pair of legs per segment?","Chilopoda","Diplopoda","Arachnida","Insecta","Centipedes have one pair on each segment.","Chilo, one."],
+[7,"Which class has two pairs of legs per segment?","Diplopoda","Chilopoda","Arachnida","Crustacea","Millipedes carry two pairs.","Diplo = double."],
+[7,"Centipede is to Chilopoda as ____ is to Diplopoda","Millipede","Scorpion","Crab","Shrimp","Millipedes are diplopods.","Milli double legs."],
+[7,"Which of these has poison claws?","Centipede","Millipede","Crab","Prawn","Centipedes are hunters with venom claws.","Centipede stings."],
+[7,"Sea spiders belong to the class","Pycnogonida","Arachnida","Branchiopoda","Malacostraca","Pycnogonids are the sea spiders.","Pycno, sea spider."],
+[7,"The arthropod class with the highest population is","Insecta","Branchiopoda","Malacostraca","Pycnogonida","Insects outnumber the rest.","Insects rule."],
+[7,"The multiple visual units of a compound eye are called","Ommatidia","Rhodopsin","Iodopsin","Ocelli","Each ommatidium is one facet.","Omma = eye."],
+[7,"Which type of eye gives an almost all round view in arthropods?","Compound eye","Simple eye","Eyespot","Pinhole eye","Many facets point in many directions.","Many lenses, wide view."],
+[7,"Complete metamorphosis is also called","Holometabolous development","Hemimetabolous development","Ecdysial development","Ametabolous development","The insect passes egg, larva, pupa and adult.","Holo = whole."],
+[7,"The sequence egg, nymph, adult shows","Incomplete metamorphosis","Complete metamorphosis","Direct development without change","Alternation of generations","There is no pupa.","Nymph means incomplete."],
+[7,"Which of these has incomplete metamorphosis?","Grasshopper","Mosquito","Housefly","Butterfly","The young grasshopper is a nymph.","No pupa."],
+[7,"The immature stage of a cockroach from hatching to adult is the","Nymph","Larva","Pupa","Imago","Cockroaches grow through nymph stages.","Cockroach kid = nymph."],
+[7,"Aedes mosquitoes have which type of life cycle?","Complete","Incomplete","Direct","Partial without a pupa","Egg, larva, pupa and adult are all present.","Wriggler then tumbler."],
+[7,"Apterygota are","Wingless insects","Winged insects","Winged arachnids","Wingless arachnids","A means without and pteron means wing.","A-pter = no wing."],
+[7,"The study of insects is called","Entomology","Taxonomy","Anthropology","Ornithology","Entomon means insect.","Ento = insect."],
+[7,"Which is not a good economic effect of insects?","Spreading disease","Pollination","Honey production","Biological control","Disease transmission harms people.","Vector is harm."],
+/* ---------- 8 · Echinoderms ---------- */
+[8,"Echinos in Echinodermata means","Spiny","Skin","Space","Eye","Echinoderm means spiny skin.","Derm is skin, echino is spiny."],
+[8,"Which group is exclusively marine?","Echinodermata","Arthropoda","Mollusca","Annelida","Echinoderms live only in the sea.","Starfish never in rivers."],
+[8,"Adult echinoderms show which symmetry?","Pentaradial","Bilateral","Hexaradial","Spherical","Their body parts come in fives.","Penta = five."],
+[8,"Which phylum has bilateral larvae and radial adults?","Echinodermata","Porifera","Arthropoda","Nematoda","The larva changes symmetry as it matures.","Starfish swaps symmetry."],
+[8,"Echinoderms move using","Tube feet","Pseudopodia","Jointed legs","Cilia on the skin","Tube feet work with the water vascular system.","Water powered feet."],
+[8,"A water vascular system is typical of","Echinodermata","Porifera","Arthropoda","Nematoda","It runs the tube feet.","Only echinoderms."],
+[8,"The internal skeleton of echinoderms is made of","Ossicles","Chitin plates","Cartilage","Silica spicules","Small calcareous ossicles form the skeleton.","Ossi = bone-like."],
+[8,"Which of these is an echinoderm?","Sea urchin","Crab","Crayfish","Lobster","The others are crustaceans.","Urchin is spiny."],
+[8,"Which of these is not an echinoderm?","Cyclops","Sea cucumber","Sea urchin","Brittle star","Cyclops is a crustacean.","Cyclops has jointed legs."],
+[8,"The free living echinoderms are grouped as","Eleutherozoa","Pelmatozoa","Crinoidea only","Hemichordata","Eleutherozoa move freely.","Eleuthero = free."],
+[8,"Which class of echinoderms is not typically free living?","Crinoidea","Ophiuroidea","Holothuroidea","Asteroidea","Sea lilies are often attached.","Lilies stay put."],
+[8,"Respiration in echinoderms can involve","Gills and cloaca","Lungs and tracheae","Book lungs only","Spiracles and lungs","Starfish use skin gills and sea cucumbers use the cloaca.","Gills plus cloaca."],
+[8,"Which statement about echinoderms is not correct?","They are unrelated to chordates","They are triploblastic coelomates","Many of their organs are ciliated","They have a rough spiny surface","Both are deuterostomes, so they are related.","Echinoderms are chordate cousins."],
+/* ---------- 9 · Chordates and Vertebrates ---------- */
+[9,"Many amphibians keep their fertilised eggs together using","Jelly-like secretions","Hard calcareous shells","Silk cocoon threads","Leathery egg cases","A jelly coat holds the spawn together and protects it.","Frog spawn is jelly."],
+[9,"Animals with a notochord are generally called","Chordates","Acoelomates","Coelenterates","Echinoderms","The notochord gives the phylum its name.","Chord = chordate."],
+[9,"How many subphyla does Chordata have?","Three","One","Two","Four","Urochordata, Cephalochordata and Vertebrata.","U, C, V."],
+[9,"Which of these is not a basic chordate characteristic?","Solid ventral nerve cord","Dorsal hollow nerve cord","Post-anal tail","Notochord","Chordates have a dorsal hollow nerve cord, not a solid ventral one.","Chordate cord is dorsal and hollow."],
+[9,"In urochordates the notochord is confined to the","Tail","Head","Whole body","Pharynx","Uro means tail.","Uro = tail."],
+[9,"Which chordates have members living inside a coat or tunic?","Urochordates","Cephalochordates","Vertebrates","Agnathans","Urochordates are the tunicates.","Tunic = coat."],
+[9,"Oikopleura belongs to the class","Larvacea","Ascidiacea","Thaliacea","Myxini","Oikopleura keeps a larval form.","Larva-like."],
+[9,"A typical cephalochordate is the","Lancelet","Lamprey","Hagfish","Sea squirt","The lancelet is the transparent fish-like form.","Amphioxus."],
+[9,"Vertebrata are divided into which two superclasses?","Agnatha and Gnathostomata","Chondrichthyes and Osteichthyes","Myxini and Cephalaspidomorphi","Acoelomata and Coelomata","The split is jawless and jawed.","Gnatho = jaw."],
+[9,"Agnathans are known for lacking","Jaws","Teeth","Hearts","Gills","A-gnatha means no jaw.","A = without."],
+[9,"A jawless parasitic fish that feeds on big fishes is the","Lamprey","Lancelet","Shark","Seahorse","Lampreys attach with a sucking mouth.","Lamprey latches."],
+[9,"Osteichthyes are the","Bony fishes","Jawless fishes","Cartilaginous fishes","Lobe-finned amphibians","Osteo means bone.","Osteo = bone."],
+[9,"How many heart chambers do fishes have?","Two","Three","Four","Five","One atrium and one ventricle.","Fish: two."],
+[9,"The chief respiratory organ of most fishes is the","Gill","Lung","Scale","Swim bladder","Gills take oxygen from water.","Fish breathe with gills."],
+[9,"The Latin word Amphi in Amphibia means","Dual","Life","Water","Land","Amphibians live a double life.","Amphi = both."],
+[9,"Amphibians are generally","Poikilothermic","Homoiothermic","Endothermic","Warm-blooded all year","Their body temperature follows the surroundings.","Poikilo = varying."],
+[9,"Which statement describes amphibian skin?","Moist and without scales","Dry with horny scales","Covered with feathers","Covered with fur","Moist bare skin helps gas exchange.","Slimy, no scales."],
+[9,"Anurans are amphibians without","Tails","Legs","Hearts","Eyes","Adult frogs and toads have no tail.","An-ura = no tail."],
+[9,"Which amphibians have both legs and tails?","Urodeles","Anurans","Apodans","Caecilians only","Salamanders and newts keep their tails.","Uro = tail."],
+[9,"A siren belongs to the order","Caudata","Apoda","Anura","Chelonia","Sirens are tailed amphibians.","Cauda = tail."],
+[9,"Fertilisation in most frogs and toads is","External","Internal","Absent","By budding","Eggs are fertilised outside the body, in water.","Frogs spawn outside."],
+[9,"Amphibians show indirect development because they","Have a larval stage","Are very small in size","Have moist skin","Breathe with lungs only","The tadpole must change into the adult.","Tadpole = indirect."],
+[9,"Dormancy during hot dry periods is called","Aestivation","Hibernation","Migration","Moulting","Aestivation is summer sleep.","Hibernate is cold."],
+[9,"Reduced metabolism during the cold season is called","Hibernation","Aestivation","Recuperation","Acclimatisation by shivering","Hibernation is winter sleep.","Hibernate in winter."],
+[9,"The Latin word Repto means","Crawl","Run","Slow","Swim","Reptiles are crawlers.","Reptiles creep."],
+[9,"Which is not a reptile group?","Urodela","Squamata","Crocodylia","Chelonia","Urodela are amphibians.","Urodele = newt."],
+[9,"The reptile with a four-chambered heart is the","Crocodile","Lizard","Snake","Turtle","Crocodiles are the exception among reptiles.","Croc = four."],
+[9,"An egg in which the embryo develops within a fluid-filled sac is an","Amniotic egg","Cleidoic cyst","Alecithal egg","Anamniotic egg","The amnion holds the fluid.","Amnion = amniotic."],
+[9,"How many chambers does a bird's heart have?","Four","Two","Three","Five","Two atria and two ventricles.","Warm blood, four rooms."],
+[9,"Most flying birds belong to the","Neognathae","Palaeognathae","Schizochordata","Agnatha","Neognaths include nearly all fliers.","New jaw flies."],
+[9,"Fertilisation in birds is","Internal","External","Absent","Partly in water","Sperm meets egg inside the female.","Hard shell needs internal."],
+[9,"The feature that best distinguishes mammals here is","Fur or hair","Walking on two legs","Feathers","A backbone","Only mammals have hair.","Hair = mammal."],
+[9,"Three middle ear bones are found in","Mammals","Reptiles","Birds","Fishes","Malleus, incus and stapes.","Three bones, mammal."],
+[9,"Which group is best known for parental care?","Mammals","Reptiles","Amphibians","Fishes","Mammals nurse their young.","Mammary care."],
+[9,"Egg-laying mammals are called","Monotremes","Marsupials","Placentals","Eutherians","Monotremes lay eggs.","Platypus group."],
+[9,"Which is an egg-laying mammal?","Platypus","Dolphin","Tiger","Hippopotamus","The platypus is a monotreme.","Duckbill lays."],
+[9,"Another name for monotremes is","Prototheria","Metatheria","Eutheria","Placentalia","Proto means first or primitive.","Proto lays."],
+[9,"Pouched mammals are called","Marsupials","Monotremes","Placentals","Prototherians","Young finish growing in the pouch.","Marsupium = pouch."],
+[9,"Another name for marsupials is","Metatheria","Prototheria","Eutheria","Urodela","Meta is the middle group.","Proto, Meta, Eu."],
+[9,"Which of these is not a mammal subgroup?","Mesotheria","Eutheria","Metatheria","Prototheria","The three groups are Proto, Meta and Eu.","No Meso."],
+[9,"Kangaroos and koalas are","Marsupials","Monotremes","Placentals","Rodents","Both raise young in pouches.","Pouch animals."],
+[9,"Whales, bats and dolphins are","Placental mammals","Marsupial mammals","Monotreme mammals","Egg-laying mammals","They nourish the young through a placenta.","Eutherians."],
+[9,"The largest living animal is the","Blue whale","Elephant","Hippopotamus","Whale shark","No other animal matches its mass.","Blue whale wins."],
+[9,"The largest land animal is the","Elephant","Hippopotamus","Giraffe","Blue whale","The African elephant is heaviest on land.","Land means elephant."],
+/* ---------- 10 · Reproduction and Ecology ---------- */
+[10,"Which is not a means of asexual reproduction?","Conjugation","Budding","Fragmentation","Binary fission","Conjugation exchanges genetic material, so it is a sexual process.","Conjugation = exchange."],
+[10,"When the sexes are separate, an animal is","Dioecious","Monoecious","Hermaphroditic","Parthenogenetic","Di means two houses.","Di = two."],
+[10,"Gonochoristic means","Having separate sexes","Having one sense organ","Having two sex organs in one body","Reproducing without gametes","Each individual is either male or female.","Same as dioecious."],
+[10,"Laying eggs is termed","Oviparity","Viviparity","Ovoviviparity","Parthenogenesis","Ovi is egg and parity is birth.","Ovi = egg."],
+[10,"Keeping eggs inside the mother until they are ready to hatch is","Ovoviviparity","Oviparity","Viviparity","Ovulation","It combines eggs with live birth.","Ovo plus vivi."],
+[10,"A hermaphrodite is protandrous when","Male cells mature before female cells","Female cells mature before male cells","Male and female cells mature together","Neither type of sex cell ever matures","Prot is first and andr is male.","Male first."],
+[10,"Marked physical differences between males and females of a species is","Sexual dimorphism","Sexual maturation","Cross fertilisation","Metamorphosis","Di-morph means two forms.","Two shapes."],
+[10,"The ability to keep body temperature steady regardless of the surroundings is","Homoiothermy","Poikilothermy","Ectothermy","Aestivation","Homoio means same.","Same heat."],
+[10,"The branch of biology studying organisms and their environment is","Ecology","Taxonomy","Biodiversity","Physiology","Ecology is about relationships with surroundings.","Eco = home."],
+[10,"A group of organisms that can interbreed is a","Species","Community","Population","Kingdom","Members of a species can breed to give fertile young.","Breed together, same species."],
+[10,"The basic functional unit able to sustain itself is the","Ecosystem","Community","Population","Habitat","It includes living and non-living parts that cycle matter.","System sustains."],
+[10,"A collection of different populations living in the same area is a","Community","Population","Habitat","Biome","Many species together make a community.","Many populations."],
+[10,"The largest terrestrial habitat unit found around the world is a","Biome","Community","Habitat","Niche","A biome covers a huge climatic region.","Biome is big."],
+[10,"The range of variation found among organisms is called","Biodiversity","Adaptation","Comparative anatomy","Succession","Bio is life and diversity is variety.","Variety of life."],
+[10,"Changes in structure and function that suit an organism to its environment are","Adaptations","Mutations of habitat","Disuse","Successions","Adaptation improves survival.","Adapt to survive."],
+[10,"A relationship where one benefits and the other neither gains nor loses is","Commensalism","Mutualism","Parasitism","Predation","Only one partner gains and the other is unaffected.","Commensal = share table."],
+[10,"A relationship where one benefits and the other is harmed is","Parasitism","Commensalism","Mutualism","Epiphytism","The parasite gains at the host's cost.","Parasite harms."],
+[10,"A relationship where both organisms benefit is","Mutualism","Commensalism","Parasitism","Predation","Both partners gain.","Mutual = both."]
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='BIO102', LABEL='BIO 102', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('BIO102');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
