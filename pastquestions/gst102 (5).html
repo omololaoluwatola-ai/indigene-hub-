@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GST 102 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">GST 102</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>GST 102 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · GST 102 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Communication Process",
+  "Reading Skill",
+  "Reading for Study",
+  "Text Study",
+  "Logic and Syllogism in Communication",
+  "Writing Skill",
+  "Writing Skill Continued",
+  "Writing Ethics",
+  "Essay Writing",
+  "Writing Activities",
+  "Academic Writing",
+  "ICT in Modern Language Learning",
+  "Parts of Speech",
+  "Sentences",
+  "Comprehension",
+  "Register",
+  "The Full Writing Process and Academic Writing Styles",
+  "E-mail Etiquette (Extended)",
+  "Concord (Subject-Verb Agreement)",
+  "Oral Communication, Listening and Presentation"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Communication Process ---------- */
+[0,"Communication is a non-stop ____","Process","Paper","Programme","Plan","Communication keeps going back and forth between people, so it is a process and not a one-time event.","Non-stop = process."],
+[0,"Communication is a part of ____ skills","Soft","Hard","Rough","Short","Speaking, listening and writing are people skills, and people skills are called soft skills.","People skills = soft."],
+[0,"The ____ is the person who transmits the message","Sender","Receiver","Driver","Cleaner","The sender is the one who starts the communication by sending the message out.","Transmits = sender."],
+[0,"____ is the person who notices, decodes and attaches some meaning to a message","Receiver","Sender","Driver","Cleaner","The receiver is on the other end. He picks up the message and makes meaning out of it.","Decodes = receiver."],
+[0,"Message is any signal that triggers the response of a ____","Receiver","Sender","Driver","Cleaner","A message is whatever signal reaches the receiver and makes him respond.","Signal reaches the receiver."],
+[0,"The response to a sender's message is called ____","Feedback","Food bank","Food","Back","Feedback is the receiver's answer that tells the sender how the message was taken.","Response = feedback."],
+[0,"____ context refers to the relationship between the sender and the receiver","Social","Physical","Cultural","Chronological","Social context is about how the two people stand to each other, for example friends, boss and worker.","Relationship = social."],
+[0,"____ context refers to the similarity of backgrounds between the sender and the receiver","Cultural","Physical","Social","Chronological","Cultural context covers shared age, language, nationality, religion and gender.","Same background = cultural."],
+[0,"____ refers to all the factors that disrupt communication","Noise","Nonsense","Nowhere","Nobody","Noise is anything that gets in the way of the message reaching the receiver clearly.","Disrupts = noise."],
+[0,"Environmental barriers are the same as ____ noise","Physical","Physiological","Psychological","Sociological","Environmental barriers come from the surroundings, so they are physical noise.","Environment = physical."],
+[0,"Our dress code is an example of ____ communication","Nonverbal","Verbal","Written","Spoken","What you wear sends a message without words, so it is nonverbal.","No words = nonverbal."],
+[0,"____ communication includes tone of voice, body language and facial expressions","Nonverbal","Verbal","Letter","Notice","Tone, body language and facial expressions pass meaning without using words themselves.","Face and body = nonverbal."],
+[0,"When the sender and receiver share a similar background such as age, language, nationality, religion and gender, this is called ____ context","Cultural","Social","Physical","Dynamic","Shared age, language, nationality, religion and gender make up the cultural context.","Similar background = cultural."],
+[0,"Letter, e-mail and telephone are examples of ____","Channel","Message","Feedback","Encoding","They are the routes the message travels through to reach the receiver.","Route = channel."],
+[0,"According to Hoban, communication is the ____ interchange of thought or idea","Verbal","Visual","Audio","Written","Hoban defines communication as the verbal interchange of thought or idea.","Hoban = verbal."],
+[0,"Once the message is encoded in a desired format, it is transferred through a medium called the ____","Channel","Medium","Media","Way","The medium the encoded message travels through is the channel.","Encoded message travels by channel."],
+[0,"The information transferred to the receiver has to be interpreted. This process is called ____","Decoding","Encoding","Opening","Closing","The receiver unpacks the message and interprets it. That is decoding.","Receiver interprets = decoding."],
+[0,"All communication events have a ____","Source","Resource","Start","End","Every act of communication begins from a source, the one who sends the message.","Source starts it."],
+[0,"The message may be misinterpreted because of ____","Barriers","Distortions","Distractions","Noise","Barriers stand in the way and cause the message to be misunderstood.","Misinterpreted = barriers."],
+[0,"The environment in which the transmitter or receiver sits should be ____","Compatible","Complex","Competent","Complete","The surroundings must suit both sides so the message can pass without trouble.","Environment = compatible."],
+[0,"The Christian sign of the ____ is a gesture pertaining to religion and spirituality","Cross","Plus","Minus","Division","The sign of the cross is a nonverbal gesture linked to the Christian faith.","Christian sign = cross."],
+[0,"Communication is best described as a:","Two-way, circular process","Single spoken statement","Written record only","One-way delivery of a message","The notes say it is a two-way, circular process, not a one-way delivery.","Two-way, not one-way."],
+[0,"Without feedback flowing back to the sender, you only know that a message was:","Sent","Accepted","Remembered","Understood","You cannot confirm it was received and understood, only that it was sent.","No feedback = only sent."],
+[0,"Communication uses a mutually understood system of signs, symbols, sounds or:","Behaviour","Maps only","Coins","Rules of law","The definition lists signs, symbols, sounds or behaviour.","Signs, symbols, sounds, behaviour."],
+[0,"Which two elements come BEFORE encoding?","Sender and ideas","Channel and receiver","Receiver and feedback","Decoding and channel","The chain starts with sender, then ideas, then encoding.","Sender, idea, then encode."],
+[0,"Encoding is done by the:","Sender","Receiver","Channel","Observer","The sender packages the idea into words, symbols or gestures.","Encode = sender."],
+[0,"Decoding is done by the:","Receiver","Sender","Channel","Interpreter only","The receiver unpacks and interprets the coded message.","Decode = receiver."],
+[0,"Which element is the raw thought before it becomes words?","Ideas","Encoding","Channel","Feedback","Ideas are the actual thought or content to be shared.","Raw thought = ideas."],
+[0,"Radio, WhatsApp and speech are examples of which element?","Channel","Feedback","Encoding","Receiver","The channel is the medium or route the message travels through.","Medium = channel."],
+[0,"Which element proves communication was actually understood, not just sent?","Feedback","Ideas","Decoding","Channel","Feedback is the receiver's response confirming the message was understood.","Proof = feedback."],
+[0,"A lecturer choosing English words and diagrams for a topic is doing:","Encoding","Feedback","Decoding","Channeling","That is the lecturer converting the idea into symbols the students can grasp.","Choosing words = encoding."],
+[0,"A student nodding or asking a follow-up question is giving:","Feedback","Noise","Encoding","Decoding","That is the receiver's response.","Nod or question = feedback."],
+[0,"A student making sense of the lecturer's words is:","Decoding","Feedback","Idea formation","Encoding","Decoding is the receiver's interpretation of the coded message.","Making sense = decoding."],
+[0,"A bad network interrupting a call is a barrier at which element?","Channel","Decoding","Encoding","Feedback","Poor network is a channel barrier.","Network = channel."],
+[0,"Unfamiliar vocabulary the receiver cannot understand is a barrier at which stage?","Encoding or decoding","Sender only","Channel only","Feedback only","The notes call unfamiliar vocabulary an encoding/decoding barrier.","Vocabulary = encode or decode."],
+[0,"In S-I-E-C-R-D-F, which step comes immediately after channel?","Receiver","Encoding","Decoding","Feedback","After channel comes receiver, then decode, then feedback.","Channel then receiver."],
+[0,"How many elements of communication does the book list?","Seven","Six","Eight","Five","Sender, ideas, encoding, channel, receiver, decoding and feedback.","Seven elements."],
+[0,"Convincing someone to buy a product is which purpose?","To persuade","To inform","To entertain","To educate","Persuade means convince someone to believe or act, as an advert does.","Advert = persuade."],
+[0,"A condolence message mainly serves which purpose?","To express emotion","To educate","To inform","To persuade","A condolence message shares feelings.","Condolence = emotion."],
+[0,"A news broadcast passing across facts is which purpose?","To inform","To educate","To entertain","To persuade","Inform means pass across facts or knowledge.","News = inform."],
+[0,"A comedy skit mainly serves which purpose?","To entertain","To educate","To persuade","To inform","Entertain means to amuse or engage emotionally.","Skit = entertain."],
+[0,"A group project chat mainly serves which purpose?","To build relationships and coordinate action","To express emotion","To persuade","To entertain","It keeps people connected and working together.","Group chat = coordinate."],
+[0,"A lecture that builds knowledge or skill over time is to:","Educate","Inform","Entertain","Persuade","Educate means build knowledge or skill over time.","Lecture = educate."],
+[0,"Body language, gestures, tone and eye contact are:","Non-verbal communication","Verbal communication","Written communication","Mass communication","These fall under the non-verbal code.","Gestures = non-verbal."],
+[0,"Spoken or written words are:","Verbal communication","Visual only","Intrapersonal only","Non-verbal communication","Verbal covers spoken and written words.","Words = verbal."],
+[0,"Talking to yourself while thinking is which scope?","Intrapersonal","Group","Interpersonal","Mass","Intrapersonal is communication within oneself.","Self-talk = intrapersonal."],
+[0,"Two friends chatting is which scope?","Interpersonal","Mass","Intrapersonal","Group","Interpersonal is between two or more individuals.","Friends chat = interpersonal."],
+[0,"A TV news broadcast to a large audience is which scope?","Mass or public communication","Interpersonal","Group","Intrapersonal","Mass communication reaches a large, often anonymous audience.","TV and radio = mass."],
+[0,"Which is NOT a classification by channel?","Intrapersonal","Written","Audio-visual","Visual","Intrapersonal is a scope. The channel types are visual, audio, audio-visual and written.","Scope is not channel."],
+[0,"Which goal means the message is easy to understand and not vague?","Clarity","Response","Mutual understanding","Accuracy","Clarity means easy to understand, not vague or confusing.","Not vague = clarity."],
+[0,"Which goal means the information is correct and true to the sender's intent?","Accuracy","Clarity","Mutual understanding","Response","That is accuracy.","Correct = accuracy."],
+[0,"Both sender and receiver interpreting the message the same way is:","Mutual understanding","Accuracy","Clarity","Empathy","That is mutual understanding.","Same meaning = mutual understanding."],
+[0,"The receiver doing, feeling or believing what the sender aimed for is:","Eliciting the intended response","Accuracy","Etiquette","Clarity","That is the goal of eliciting the intended response or action.","Intended action = eliciting response."],
+[0,"The unwritten rules that keep an exchange respectful are called:","Communication etiquette","Communication channels","Communication noise","Communication goals","The basis for effective communication is communication etiquette.","Etiquette = respectful rules."],
+[0,"Which are the three components of communication etiquette?","Listening, empathy and feedback","Verbal, visual and written","Sender, idea and channel","Clarity, accuracy and response","The notes list listening, empathy and feedback.","Listening, empathy, feedback."],
+[0,"Giving full, undistracted attention before responding is:","Listening","Clarity","Empathy","Feedback","Listening is not just waiting for your turn to talk.","Full attention = listening."],
+[0,"Understanding a classmate's frustration before responding is:","Empathy","Clarity","Listening","Feedback","Empathy is understanding the other party's feelings or perspective first.","Their feelings = empathy."],
+/* ---------- 1 · Reading Skill ---------- */
+[1,"Reading is described as the process of decoding written symbols to construct:","Meaning","Speed","Grammar","Sound","The notes define reading as decoding written symbols to construct meaning and understanding.","Reading builds meaning."],
+[1,"Reading is an active process because the reader is constantly:","Predicting, questioning and connecting","Copying words one at a time without thought","Moving the eyes across the page only","Counting the pages as fast as possible","The reader predicts, questions and links new facts to what they know.","Active = predict and question."],
+[1,"Reading textbooks, journals and lecture materials for study is:","Academic reading","Extensive reading","Non-academic reading","Leisure reading","Academic reading is deliberate and done for study or exams.","Study = academic."],
+[1,"Reading a novel for fun is which type of reading?","Non-academic","Intensive","Critical","Academic","Novels, newspapers and social media are non-academic reading.","Novel for fun = non-academic."],
+[1,"Reading a news app on your phone for updates is:","Non-academic reading","Intensive reading","Academic reading","Detailed reading","News and social media are done for general information.","News app = non-academic."],
+[1,"Reading fast for the general idea or gist only is:","Skimming","Intensive reading","Extensive reading","Scanning","Skimming gives the general gist.","Gist = skimming."],
+[1,"Which technique finds one date in a long article quickly?","Scanning","Intensive reading","Skimming","Extensive reading","Scanning is searching fast for one specific fact or word.","One fact = scanning."],
+[1,"Slow, careful reading for deep understanding is:","Intensive or detailed reading","Scanning for a single fact","Extensive reading across many texts","Skimming for the main idea","Intensive reading suits studying for an exam.","Exam study = intensive."],
+[1,"Reading widely across many texts to build vocabulary and general knowledge is:","Extensive reading","Scanning","Intensive reading","Skimming","Extensive reading builds fluency and exposure over time.","Many texts = extensive."],
+[1,"Studying a textbook chapter slowly for an exam is which kind of reading?","Intensive or detailed academic reading","Extensive reading for general knowledge","Scanning for one fact only","Skimming for the general gist","It is slow, deep and for an exam.","Slow for exam = intensive."],
+[1,"Deciding whether a source is worth reading fully calls for:","Skimming","Intensive reading","Scanning","Subvocalising","Skimming is used to decide if a source is worth reading fully.","Worth reading? Skim."],
+[1,"Which of these is a requirement for effective reading?","A clear reading goal","A fast pen","A noisy room","A large dictionary only","The requirements include a clear goal, vocabulary, concentration, a quiet place and background knowledge.","Know why you read."],
+[1,"Which of these is also a requirement for reading?","Background knowledge of the topic","A coloured cover on the textbook","A very long text to read slowly","A famous author on the cover","Background knowledge helps you predict and interpret faster.","Know the topic first."],
+[1,"Silently pronouncing every word in your head is called:","Subvocalising","Paraphrasing","Skimming","Scanning","That habit is called subvocalising.","Silent pronouncing = subvocalising."],
+[1,"Subvocalising makes your reading speed:","Slower, down to speaking speed","Faster, up to scanning speed","Better, good for getting the gist","Unchanged, the same as before","It slows reading to speaking speed.","Subvocalising slows you."],
+[1,"What should you do BEFORE you start reading, according to the tips?","Set a purpose","Skip the headings","Recite the answers","Review your notes","The first tip is to set a purpose before reading.","Purpose first."],
+[1,"What should you do AFTER reading to lock the material in memory?","Review or summarise in your own words","Skip the notes and move on","Wait a month before looking again","Read the same page twice at once","The tip is to summarise what you read in your own words.","Summarise after."],
+[1,"Previewing a text first means looking at its titles, headings and:","First and last paragraphs","Page numbers and the index only","Footnotes and the references only","The back cover and the price only","The tips say titles, headings and first and last paragraphs give a mental map.","Preview = headings + ends."],
+[1,"How many steps are in SQ3R?","Five","Four","Six","Three","Survey, Question, Read, Recite, Review.","SQ + 3 R's = five."],
+[1,"What are the steps of SQ3R in order?","Survey, Question, Read, Recite, Review","Survey, Read, Question, Recite, Review","Survey, Question, Recite, Read, Review","Question, Survey, Read, Review, Recite","That is the order in the notes.","SQ then 3 R's."],
+[1,"Turning a heading into a question happens at which SQ3R stage?","Question","Survey","Recite","Review","The Question step turns headings into questions the text should answer.","Heading to question = Q."],
+[1,"Previewing headings, subheadings and summaries is the:","Survey step","Read step","Question step","Review step","Survey means previewing the text.","Preview = survey."],
+[1,"Explaining what you read out loud, without looking at the text, is the:","Recite step","Review step","Survey step","Read step","Recite means saying the answers in your own words without looking.","Say it aloud = recite."],
+[1,"Re-reading your notes a day later belongs to which step?","Review","Survey","Question","Recite","Review consolidates memory.","Day-later notes = review."],
+[1,"Which SQ3R step comes immediately before Recite?","Read","Question","Survey","Review","The order is Survey, Question, Read, Recite, Review.","Read comes before recite."],
+[1,"Scanning a text's structure before reading properly, to know what to expect, is:","Previewing","Skimming","Paraphrasing","Predicting","Previewing looks at structure only.","Structure first = previewing."],
+[1,"Predicting what comes next in a passage from its title is the strategy of:","Predicting","Paraphrasing","Skimming","Previewing","Predicting means guessing what comes next based on context, title or headings.","Title guess = predicting."],
+[1,"Deducing an unfamiliar word's meaning from the sentence around it is:","Guessing from context","Paraphrasing","Skimming","Previewing","It is done without a dictionary.","Nearby clues = guessing from context."],
+[1,"Restating what you read in your own words is:","Paraphrasing","Predicting","Previewing","Skimming","The notes call it the surest test that you understood it.","Own words = paraphrasing."],
+[1,"An unfamiliar word explained nearby in the passage points to:","Guessing from context","Paraphrasing","Previewing","Scanning","That is a context clue.","Explained nearby = context."],
+[1,"Reading titles and headings before the main text is:","Previewing, not skimming","Scanning","Paraphrasing","Skimming, not previewing","The exam hack says previewing looks at structure, skimming reads the body fast.","Headings = previewing."],
+/* ---------- 2 · Reading for Study ---------- */
+[2,"Reading skill is improved through regular, deliberate practice with:","Active engagement","Passive scanning of pages","Reading only fiction","Rereading once a year","The notes say active engagement, not passive scanning of the page.","Practice plus engagement."],
+[2,"Targeted, detailed reading of material most likely to be tested is the goal of reading:","For examination","For presentation","For vocabulary development","For academic writing","That is the examination goal.","Likely tested = examination."],
+[2,"Reading to extract key points to relay to an audience is the goal:","For presentation","For vocabulary development","For academic writing","For examination","That is the presentation goal.","Relay to audience = presentation."],
+[2,"Reading widely to build a bigger word bank is the goal:","For vocabulary development","For academic writing","For presentation","For examination","That is vocabulary development.","Word bank = vocabulary."],
+[2,"Reading to gather evidence for an essay is the goal:","For academic writing","For vocabulary development","For examination","For presentation","That is academic writing: evidence, arguments and references.","Evidence = academic writing."],
+[2,"How many reading goals does the book list?","Four","Six","Three","Five","Examination, presentation, vocabulary development and academic writing.","Four goals."],
+[2,"Which of these is NOT one of the four factors for choosing a text?","Length","Relevance","Currency","Credibility","The four factors are relevance, credibility, currency and reading level.","Relevance, credibility, currency, level."],
+[2,"Checking whether the text matches your purpose or topic is:","Relevance","Currency","Credibility","Reading level","Relevance asks if it matches your purpose.","Matches purpose = relevance."],
+[2,"Credibility is about whether the:","Author or source is reliable","Text is long","Text has pictures","Text is printed","Credibility is about the author or source, not length.","Credibility = source."],
+[2,"Currency refers to how:","Recent the information is","Costly the book is","Famous the writer is","Long the text is","Currency means how recent or up to date it is.","Currency = recent."],
+[2,"An outdated text fails which criterion?","Currency","Relevance","Reading level","Credibility","Outdated means it is not current.","Outdated = currency."],
+[2,"A text too advanced for the reader fails which criterion?","Reading level","Relevance","Credibility","Currency","Reading level should match the reader's vocabulary and comprehension.","Too hard = reading level."],
+[2,"Jotting down key points AS you read, in rough shorthand, is:","Note-taking","Note-making","Paraphrasing","Outlining","Note-taking captures raw information quickly during reading.","Taking = during."],
+[2,"Reorganising raw notes AFTER reading into a study-ready format is:","Note-making","Note-taking","Scanning","Skimming","Note-making happens after reading and gives structured notes.","Making = after."],
+[2,"Which happens DURING reading?","Note-taking","Note-making","Outlining only","Reviewing only","Taking happens while reading.","Taking while it happens."],
+[2,"Note-taking output is rough and raw. Note-making output is:","Structured and organised","Always shorter","Also rough","Always handwritten","That is the difference in form.","Making = organised."],
+[2,"Structuring main ideas and sub-ideas in a point and sub-point format is:","Outlining","Scanning","Skimming","Note-taking","Outlining is hierarchical.","Point and sub-point = outline."],
+[2,"Going back to re-read the same line or word unnecessarily is called:","Regression","Skimming","Previewing","Scanning","Reducing regression helps reading speed.","Going back = regression."],
+[2,"Taking in groups of words at once instead of one word at a time is:","Widening eye span","Subvocalising","Regression","Scanning","Widening eye span builds speed.","Group of words = eye span."],
+[2,"Reducing regression and widening eye span both aim to improve:","Reading speed","Handwriting","Vocabulary","Spelling","Both are speed-development techniques.","Both build speed."],
+[2,"Which of these helps develop reading speed?","Practising timed reading","Reading word by word","Pronouncing every word","Re-reading each line","Timed reading builds pace without losing comprehension.","Time yourself."],
+/* ---------- 3 · Text Study ---------- */
+[3,"How many modes of engaging a study text does the book list?","Four","Two","Five","Three","Reading, listening, speaking or responding, and writing.","Four modes."],
+[3,"Listening to an audiobook is which mode?","Listening to reading of the study text","Reading of the study text on your own","Writing a response to the study text","Speaking or responding to the text reader","The learner listens as someone else reads the text.","Audiobook = listening."],
+[3,"Discussing a text's meaning aloud with a teacher is which mode?","Speaking or responding to the text reader","Writing a summary of the study text","Listening to reading of the study text","Reading of the study text silently","The learner discusses or reacts verbally.","Discuss aloud = speaking."],
+[3,"Writing a summary of a novel is which mode?","Writing","Reading","Speaking","Listening","The learner produces written analyses, summaries or responses.","Summary = writing."],
+[3,"WHO is in a story refers to:","Character","Theme","Setting","Characterisation","Character is the person, entity or animal that acts in the story.","Who = character."],
+[3,"HOW we come to know a character refers to:","Characterisation","Plot","Theme","Character","Characterisation is the technique used to reveal personality.","How = characterisation."],
+[3,"A question that describes a method, such as \"through dialogue, the writer shows...\", points to:","Characterisation","Imagery","Character","Theme","A method of revealing a character is characterisation.","Method = characterisation."],
+[3,"\"She was kind\" is which type of characterisation?","Direct","Dynamic","Static","Indirect","The writer states the trait outright.","Stated = direct."],
+[3,"\"She gave her last coin to a beggar\" is which type?","Indirect","Round","Static","Direct","The trait is shown through action and the reader infers it.","Shown = indirect."],
+[3,"Which of these reveals a character's personality?","Speech, actions and how others react","The author's age and address","Page count and the font used","Title and the cover design","The notes list speech, actions, appearance, thoughts and reactions of other characters.","Speech, action, looks, thoughts, reactions."],
+[3,"The central message or lesson running through a text is:","Theme","Setting","Characterisation","Character","Theme is the underlying idea, such as love, betrayal, greed or resilience.","Central message = theme."],
+[3,"Which of these is given as an example of a theme?","Betrayal","Metaphor","Setting","Flashback","Love, betrayal, greed and resilience are listed.","Betrayal is a theme."],
+[3,"Symbolism, irony and foreshadowing are examples of:","Literary devices","Themes","Modes of study","Characters","They deepen meaning and effect.","Tricks of the writer = devices."],
+[3,"A storm used to represent conflict is an example of:","Symbolism","Simile","Irony","Foreshadowing","One thing stands for another idea.","Stands for = symbolism."],
+[3,"Saying the opposite of what is meant, for effect, is:","Irony","Symbolism","Metaphor","Foreshadowing","That is irony.","Opposite meaning = irony."],
+[3,"Hints early in a story about what will happen later are:","Foreshadowing","Imagery","Symbolism","Irony","That is foreshadowing.","Early hints = foreshadowing."],
+[3,"A character central to the plot is:","Major","Static","Flat","Minor","Major characters are central. Minor characters support.","Central = major."],
+[3,"A fully developed, complex character is:","Round","Minor","Flat","Static","Round characters are complex.","Complex = round."],
+[3,"A one-dimensional, simple character is:","Flat","Major","Dynamic","Round","Flat characters are one-dimensional.","Simple = flat."],
+[3,"A character who changes over the story is:","Dynamic","Flat","Static","Minor","Dynamic characters change.","Changes = dynamic."],
+[3,"A character who does not change throughout the story is:","Static","Dynamic","Round","Major","Static characters stay the same.","Same = static."],
+/* ---------- 4 · Logic and Syllogism in Communication ---------- */
+[4,"Reasoning in a structured, step-by-step, valid way is:","Logical thinking","Analogy","Generalization","Critical thinking","Logical thinking makes each point follow sensibly from the one before.","Step by step = logical."],
+[4,"Objectively questioning information before accepting it is:","Critical thinking","Logical thinking","Explanation","Analogy","Critical thinking analyses and evaluates rather than believing at face value.","Question first = critical."],
+[4,"Critical thinking means you accept information:","Only after analysing and questioning it","If it sounds confident enough","If many people around you share it","At face value, without any checking","It means not believing everything at face value.","Do not accept blindly."],
+[4,"Inductive reasoning moves from:","Specific observations to a general conclusion","Conclusions back to premises","Opinions to proven facts","General premises to a specific certain conclusion","That is the book's definition of inductive reasoning.","Specific to general = induction."],
+[4,"An inductive conclusion is only:","Probable","Proven","Certain","Guaranteed","It is probable, not guaranteed, even if the observed premises are true.","Induction = probable."],
+[4,"\"Every swan I have seen is white, so all swans are white\" is an example of:","Inductive reasoning","Deductive reasoning","Explanation","Analogy","It goes from specific cases to a general rule.","Swans = induction."],
+[4,"Why was the white swan conclusion later disproved?","Black swans were found in Australia","White swans later died out in Europe","Swans were renamed by the scientists","The sample was found to be too large","The notes say black swans were discovered in Australia.","Black swans in Australia."],
+[4,"If a conclusion could still be proven wrong by a new example, it is:","Inductive","Deductive","An explanation","A syllogism","The exam hack says so.","Could be wrong = inductive."],
+[4,"Deductive reasoning moves from:","General premises to a specific, certain conclusion","Specific cases to a probable general rule","Examples to opinions about the topic","Opinions to facts through direct proof","That is the book's definition of deductive reasoning.","General to specific = deduction."],
+[4,"If the premises are true and the form is valid, a deductive conclusion:","Must be true","Is an opinion","May be false","Is only probable","There is no room for exception.","Deduction = certain."],
+[4,"How many parts does a syllogism have?","Three","Two","Four","Five","Major premise, minor premise and conclusion.","Three parts."],
+[4,"In a syllogism, the general rule is the:","Major premise","Conclusion","Analogy","Minor premise","\"All men are mortal\" is the major premise.","General rule = major."],
+[4,"In a syllogism, the specific case is the:","Minor premise","Major premise","Conclusion","Generalization","\"Socrates is a man\" is the minor premise.","Specific case = minor."],
+[4,"Which reasoning type is riskier for guaranteeing truth?","Induction","Neither","Deduction","Both equally","Induction is only probable.","Induction is riskier."],
+[4,"Comparing two similar things to explain a point is:","Analogy","Syllogism","Generalization","Explanation","An analogy says \"X is like Y, therefore...\".","Comparison = analogy."],
+[4,"Forming a broad rule from a few examples is:","Generalization","Explanation","Analogy","Deduction","Generalization uses a limited number of instances.","Few examples = generalization."],
+[4,"Generalization is most closely related to:","Inductive reasoning","Syllogism","Deductive reasoning","Explanation","It carries the same risk of being wrong as induction.","Generalization = induction."],
+[4,"If the sample behind a generalization is too small, the risk is that the conclusion is:","Wrong or unrepresentative","Valid","Certain","Deductive","A small or unrepresentative sample weakens it.","Small sample, weak rule."],
+[4,"A statement that clarifies WHY or HOW something is the case, without trying to persuade, is:","An explanation","An analogy","A generalization","A syllogism","Explanations aim at understanding rather than persuading.","Why or how = explanation."],
+/* ---------- 5 · Writing Skill ---------- */
+[5,"Writing is the graphic representation of language through:","Symbols or letters","Gestures","Pictures only","Sounds only","The notes say symbols or letters used to communicate ideas in a durable form.","Symbols and letters."],
+[5,"Unlike speech, writing can be:","Stored, revisited and referenced later","Changed after each reading","Heard only once","Used only in class","Writing is a durable, recorded form.","Writing lasts."],
+[5,"Which writing type ends with \"Yours faithfully\"?","Formal letter","Memo","Informal letter","Article","A formal letter uses a formal closing such as Yours faithfully or sincerely.","Yours faithfully = formal."],
+[5,"Which of these is a feature of a formal letter?","Sender's address, date and recipient's address","A header block of To, From and Date","Closing with \"Love\"","A catchy title and byline","A formal letter has addresses, date, salutation, subject heading and formal closing.","Addresses and salutation = formal letter."],
+[5,"The salutation in a formal letter is:","Dear Sir or Madam","My dear one","To whom it may concern only","Hello friend","The notes give Dear Sir/Madam.","Dear Sir/Madam."],
+[5,"Salutation plus address block plus \"Yours faithfully\" identifies a:","Formal letter","Memo","Proposal","Minutes","That is the exam hack for formal letters.","Address + salutation = formal letter."],
+[5,"A subject heading appears in which writing types?","Formal letter and memo","Article and minutes","Informal letter only","Informal letter and article","Both the formal letter and the memo carry a subject.","Subject = formal letter and memo."],
+[5,"Which letter type uses a relaxed tone and closings like \"Love\"?","Informal letter","Formal letter","Report","Memo","Informal letters are for family and friends.","Love = informal."],
+[5,"Informal letters are used for:","Family and friends","Business partners","Employers","Government offices","They have a personal, casual tone.","Family and friends."],
+[5,"Which writing type has NO salutation and NO complimentary close?","Memorandum","Formal letter","Informal letter","Article","A memo uses a header block instead.","No salutation = memo."],
+[5,"A memo is used for communication:","Within an organisation","To the public","Across newspapers","Between friends","The notes say internal communication within an organisation.","Memo = internal."],
+[5,"What are the four header items at the top of a memo?","To, From, Date and Subject","Dear, Yours, Date and Title","Address, Salutation, Date and Closing","Title, Byline, Date and Body","That is the memo header block.","To, From, Date, Subject."],
+[5,"What replaces a salutation at the start of a memo?","The header block","A greeting","An address block","A byline","The header block replaces it.","Header replaces salutation."],
+[5,"A memo should be:","Concise","Written for publication","Personal in tone","Long and detailed","The notes call it concise.","Memo = short."],
+[5,"Which writing type is written for publication in a magazine, journal or newspaper?","Article","Minutes","Formal letter","Memo","An article is for publication.","Publication = article."],
+[5,"An article has a catchy title, a byline and:","A structured body","A salutation","A header block","An attendance list","The body is structured to inform or persuade a wide readership.","Title, byline, body."],
+[5,"Which writing type is best suited to informing a wide public readership?","Article","Memo","Minutes","Informal letter","An article aims at a wide readership.","Wide public = article."],
+/* ---------- 6 · Writing Skill Continued ---------- */
+[6,"The purpose of a report is to give a:","Factual, organised account of findings","A personal opinion about the event itself","A meeting record with attendance only","A persuasive plan sent for approval","A report is a factual, organised account of an event, investigation or findings.","Report = factual account."],
+[6,"A report usually has a title, introduction, findings and:","Recommendations","A byline","An attendance list","A salutation","The notes list recommendations at the end.","Report ends with recommendations."],
+[6,"Does a report typically end with recommendations?","Yes","No, with a closing greeting","No, with a signature only","Only if it is long","Recommendations are a usual part of a report.","Yes, recommendations."],
+[6,"Which document records attendance, agenda and decisions from a meeting?","Minutes of meeting","Proposal for approval","Memo to the staff","Report of the findings","Minutes are the official written record of what was discussed and decided.","Meeting record = minutes."],
+[6,"An attendance list is a required feature of:","Minutes of meeting","CV for a job","Project write-up","Proposal for funding","Minutes include attendance, agenda items, decisions and action points.","Attendance = minutes."],
+[6,"Which of these is also found in minutes?","Action points","Literature review","Byline","Salutation","Minutes include decisions and action points.","Minutes have action points."],
+[6,"Which document persuades someone to approve a plan or project?","Proposal","Minutes","Report","CV","A proposal suggests a plan for approval.","Approve a plan = proposal."],
+[6,"Which document format lists \"Objectives\" and \"Expected benefits\"?","Proposal","Report","Minutes","Memo","A proposal states the problem, objectives, methodology and expected benefits.","Objectives + benefits = proposal."],
+[6,"\"We recommend approval of...\" is typical of a:","Proposal","Minutes","CV","Project","The exam hack links it to a proposal.","Recommend approval = proposal."],
+[6,"A proposal states the problem, objectives, methodology and:","Expected benefits","A byline for the writer","A closing greeting for the reader","Attendance of the members","Those are its parts.","Problem to benefits."],
+[6,"Which writing type follows a full research format with literature review and methodology?","Project","Article","Proposal","Report","A project is an extended academic write-up in a formal research format.","Literature review = project."],
+[6,"Which writing type is the most extended and academic in structure?","Project","Article","Memo","Report","A project is extended and structured.","Longest academic = project."],
+[6,"Which of these is a section of a project?","Findings and conclusion","Byline and a catchy title","Header block of To and From","Attendance list and agenda","Introduction, literature review, methodology, findings and conclusion.","Project has findings and conclusion."],
+[6,"Chapters, methodology and literature review point to a:","Project","Proposal","Memo","Report","That is the exam hack for a project.","Methodology chapters = project."],
+[6,"Which document summarises a person's education, skills and experience?","Curriculum vitae","Minutes of a meeting","Proposal for approval","Report on findings","A CV is used when applying for jobs or opportunities.","Education and skills = CV."],
+[6,"Which document type is used when applying for a job?","Curriculum vitae","Article for a paper","Memo to the staff","Minutes of the meeting","A CV is used for job applications.","Job application = CV."],
+[6,"\"Objective: To apply for the position of...\" is typical of a:","CV","Report","Proposal","Memo","The exam hack links it to a CV.","Objective to apply = CV."],
+[6,"CV stands for:","Curriculum vitae","Career visit record","Candidate value sheet","Current view of work","CV is curriculum vitae.","CV = curriculum vitae."],
+/* ---------- 7 · Writing Ethics ---------- */
+[7,"How many core ethical considerations in writing does the book list?","Four","Five","Two","Three","Honesty, originality, accuracy and giving proper credit.","Four ethics."],
+[7,"Fabricating results in a report violates:","Honesty","Accuracy","Originality","Expression","Honesty means not fabricating facts, sources or results.","Fake results = dishonesty."],
+[7,"Presenting your own genuine ideas, not copied, reflects:","Originality","Honesty","Credit","Accuracy","Originality is producing your own genuine work.","Own ideas = originality."],
+[7,"Ensuring the information presented is correct reflects:","Accuracy","Honesty","Credit","Originality","That is accuracy.","Correct facts = accuracy."],
+[7,"You must give proper credit to sources whenever you use someone else's:","Ideas or words","Pictures only","Page numbers","Name only","The notes say ideas or words in academic or professional writing.","Credit ideas and words."],
+[7,"Copyright is the legal right of a creator to control the:","Reproduction, distribution and use of their work","Sale of paper","Title of the work","Reading of books","That is the definition.","Control reproduction and use."],
+[7,"Using or copying a copyrighted work without the owner's permission is:","Infringement","Paraphrasing","Citation","Plagiarism only","That is copyright infringement.","No permission = infringement."],
+[7,"Copyright infringement is what kind of issue?","A legal issue","A style issue","A grammar issue","An academic integrity issue","It can lead to legal penalties.","Infringement = legal."],
+[7,"What typically follows copyright infringement?","Legal penalties","Nothing","A warning letter only","A lower grade only","Being a legal matter, it can lead to penalties.","Legal matter, legal penalties."],
+[7,"Reproducing a copyrighted textbook without permission and selling it is:","Copyright infringement","Paraphrasing","Citation","Plagiarism only","That is infringement.","Selling copies = infringement."],
+[7,"Presenting another person's work as your own without acknowledgement is:","Plagiarism","Infringement","Paraphrasing","Citation","That is plagiarism.","Own claim = plagiarism."],
+[7,"Plagiarism is what kind of issue?","An academic integrity issue","A style issue","A legal issue","A grammar issue","Plagiarism concerns academic integrity.","Plagiarism = integrity."],
+[7,"Can you plagiarise a work that is not copyrighted?","Yes","Only for books","Only in exams","No","Public domain work can still be plagiarised if not credited.","Yes, credit still needed."],
+[7,"Which is broader in scope?","Plagiarism","Copyright infringement","Both equal","Neither","Plagiarism applies even without copyright.","Plagiarism is broader."],
+[7,"Which is a way to avoid plagiarism?","Proper citation and referencing","Deleting the source","Changing a few words","Hiding the author","Citation, proper paraphrasing and quotation marks avoid it.","Cite, paraphrase, quote."],
+[7,"Is changing just a few words of a source proper paraphrasing?","No","Yes, if cited","Yes, in exams","Yes","Paraphrasing means restating in your own words.","A few words changed is not paraphrasing."],
+[7,"A direct quote should be surrounded by:","Quotation marks","Capital letters","Underlines only","Brackets","The notes say quotation marks for direct quotes.","Quote = quotation marks."],
+[7,"Failing to acknowledge a source's ideas, even if paraphrased, is still:","Plagiarism","Accuracy","Infringement","Originality","Paraphrased ideas still need credit.","No credit = plagiarism."],
+[7,"Does citing a source properly protect you from a plagiarism accusation?","Yes","Only for quotes","Only for books","No","Proper citation is the main way to avoid plagiarism.","Cite and you are safe."],
+[7,"Copying another student's essay word for word without credit is:","Plagiarism","Citation","Paraphrasing","Infringement only","That is plagiarism.","Copy essay = plagiarism."],
+[7,"Ethical use of AI requires you to verify AI content for:","Accuracy","Style only","Length","Speed","The notes say AI can be confidently wrong.","Verify AI output."],
+[7,"The risk of accepting AI output without checking is that it may be:","Wrong though it sounds confident","Too original","Too short","Always correct","AI can be confidently wrong.","Confident but wrong."],
+[7,"Where required, what must be disclosed when AI helped with writing?","The AI assistance","The student's grade","The lecturer's name","Nothing","The notes say disclose or acknowledge AI assistance where required.","Disclose AI help."],
+/* ---------- 8 · Essay Writing ---------- */
+[8,"Which essay type tells a story with a plot, characters and a sequence of events?","Narrative","Descriptive","Expository","Argumentative","A narrative essay has a beginning, middle and end.","Story = narrative."],
+[8,"Which essay type presents a claim and defends it with evidence?","Argumentative","Narrative","Descriptive","Expository","It also addresses counterarguments.","Defend a claim = argumentative."],
+[8,"Which essay type creates a vivid picture using sensory detail?","Descriptive","Expository","Narrative","Argumentative","It uses adjectives and sensory language.","Picture in words = descriptive."],
+[8,"Which essay type explains a topic or process factually, with no personal opinion?","Expository","Narrative","Argumentative","Descriptive","It states facts or steps.","Facts and steps = expository."],
+[8,"An essay that addresses a counterargument is most likely:","Argumentative","Descriptive","Narrative","Expository","Counter-views are a mark of argumentative writing.","Counter-view = argumentative."],
+[8,"An essay heavy in adjectives describing a sunset is most likely:","Descriptive","Expository","Narrative","Argumentative","Heavy adjectives and sensory words point to descriptive writing.","Adjectives = descriptive."],
+[8,"An essay explaining how photosynthesis works is:","Expository","Argumentative","Narrative","Descriptive","It explains how something works.","How it works = expository."],
+[8,"The phrase \"I argue that...\" is typical of which essay type?","Argumentative","Narrative","Expository","Descriptive","That is the tell-tale sign.","I argue = argumentative."],
+[8,"How many essay types does the book list?","Four","Three","Six","Five","Narrative, argumentative, descriptive and expository.","Four types."],
+[8,"Which strategy calls for chronological order and a clear conflict and resolution?","Narrative","Expository","Descriptive","Argumentative","That is the narrative strategy.","Order and conflict = narrative."],
+[8,"Which strategy calls for a clear thesis and addressing opposing views?","Argumentative","Narrative","Descriptive","Expository","That is the argumentative strategy.","Thesis = argumentative."],
+[8,"Which strategy calls for concrete sensory detail rather than vague description?","Descriptive","Argumentative","Narrative","Expository","That is the descriptive strategy.","Sensory detail = descriptive."],
+[8,"Which strategy calls for cause-effect or compare-contrast organisation?","Expository","Argumentative","Narrative","Descriptive","That is the expository strategy.","Cause-effect = expository."],
+[8,"Which of these senses does the descriptive strategy call for?","Sight, sound, smell, touch and taste","Cause and effect","Logic and emotion only","Facts and opinion","The notes list the five senses.","Five senses."],
+[8,"What does C.O.E.M stand for?","Content, organization, expression, mechanical accuracy","Cause, outcome, example, message","Clarity, order, evidence, method","Content, opinion, essay, margin","These are the four mechanics of writing.","C-O-E-M."],
+[8,"The actual ideas and information in an essay fall under:","Content","Organization","Expression","Mechanical accuracy","Content is relevance, depth and quality of thought.","Ideas = content."],
+[8,"The logical flow of introduction, body and conclusion falls under:","Organization","Mechanical accuracy","Expression","Content","Organization covers structure and paragraphing.","Flow = organization."],
+[8,"Clarity and appropriateness of language and style fall under:","Expression","Content","Mechanical accuracy","Organization","That is expression.","Language and style = expression."],
+[8,"Correct grammar, spelling and punctuation fall under:","Mechanical accuracy","Expression","Content","Organization","That is mechanical accuracy.","Spelling and punctuation = mechanical."],
+[8,"A well-organised paragraph structure relates most to:","Organization","Content","Expression","Mechanical accuracy","Paragraphing is part of organization.","Paragraphs = organization."],
+/* ---------- 9 · Writing Activities ---------- */
+[9,"What is the very first stage of the writing process?","Pre-writing","Post-writing","Editing","Writing","Pre-writing is planning before any full sentence is written.","First = pre-writing."],
+[9,"Brainstorming and outlining happen at which stage?","Pre-writing","Editing","Writing","Proofreading","They are planning activities.","Plan = pre-writing."],
+[9,"Choosing a topic before writing any sentence happens at:","Pre-writing","Writing","Post-writing","Editing","Choosing a topic is part of planning.","Topic first = pre-writing."],
+[9,"Does pre-writing include writing full sentences?","No","Only for long essays","Yes, in the first draft","Yes","No full sentence is written at this stage.","No sentences yet."],
+[9,"Producing the first full draft happens at which stage?","Writing","Proofreading","Post-writing","Pre-writing","Writing focuses on getting ideas down rather than perfection.","First draft = writing."],
+[9,"Which stage focuses on getting ideas down rather than perfection?","Writing","Editing","Post-writing","Proofreading","Perfection comes later.","Writing = ideas first."],
+[9,"Reviewing a draft for content, structure and clarity as a whole happens at:","Post-writing","Pre-writing","Proofreading","Editing","Post-writing asks whether the essay makes sense overall.","As a whole = post-writing."],
+[9,"Which stage is more detailed, post-writing or editing?","Editing","Neither","Both equal","Post-writing","Editing works at a more detailed level than post-writing.","Editing is more detailed."],
+[9,"Revising grammar, word choice, sentence structure and coherence is:","Editing","Writing","Proofreading","Pre-writing","Editing deals with bigger issues.","Bigger issues = editing."],
+[9,"The final check for spelling, punctuation and typos is:","Proofreading","Post-writing","Writing","Editing","Proofreading catches small surface errors just before submission.","Last check = proofreading."],
+[9,"Which stage catches a spelling mistake missed during editing?","Proofreading","Writing","Post-writing","Pre-writing","Proofreading is the final surface check.","Missed typo = proofreading."],
+[9,"Which stage deals with bigger issues like structure and coherence?","Editing","Writing","Pre-writing","Proofreading","Proofreading handles small surface errors.","Big = editing."],
+[9,"How many stages make up the writing process?","Five","Three","Four","Six","Pre-writing, writing, post-writing, editing and proofreading.","Five stages."],
+[9,"What is the very last stage of the writing process?","Proofreading","Editing","Writing","Post-writing","Proofreading comes last.","Last = proofreading."],
+[9,"Which comes first, editing or proofreading?","Editing","They happen together","Proofreading","Neither","Editing is earlier.","Edit then proof."],
+[9,"Which is the correct order of the stages?","Pre-writing, writing, post-writing, editing, proofreading","Writing, pre-writing, post-writing, proofreading, editing","Pre-writing, writing, editing, post-writing, proofreading","Pre-writing, post-writing, writing, editing, proofreading","That is the order to memorise.","Plan, write, review, edit, proof."],
+/* ---------- 10 · Academic Writing ---------- */
+[10,"Academic writing is a formal, evidence-based style used to present:","Research, arguments or analysis","Jokes, stories and daily chats","Gossip, rumours and daily news","Personal feelings and daily life","It is used in scholarly contexts to present work clearly and objectively.","Evidence-based and formal."],
+[10,"Is academic writing evidence-based or belief-based?","Evidence-based","Belief-based","Opinion-based","Emotion-based","It is driven by evidence.","Evidence first."],
+[10,"Academic writing style is:","Structured and impersonal","Loose and humorous in style","Chatty and personal in tone","Casual and emotional in style","The notes say structured, impersonal and evidence-driven.","Impersonal and structured."],
+[10,"Which referencing styles are named as examples?","APA and MLA","WHO and UN","BBC and CNN","SQL and HTML","Discipline-specific conventions and referencing styles such as APA and MLA.","APA and MLA."],
+[10,"Does academic writing style change across disciplines?","Yes, it follows discipline-specific conventions","Yes, but only in the arts disciplines","Yes, but only in science disciplines","No, the rules are fixed for every discipline","The notes say it is governed by discipline-specific conventions.","Each discipline has its rules."],
+[10,"How many features of academic writing does the book list?","Six","Four","Five","Seven","Introduction, formality, precision, objectivity, explicitness, accuracy and responsibility.","Six features."],
+[10,"Which feature sets out the purpose, scope and structure at the start?","Introduction","Formality","Precision","Objectivity","The introduction gives the reader a roadmap.","Roadmap = introduction."],
+[10,"Which feature avoids slang, contractions and chatty language?","Formality","Precision","Objectivity","Introduction","Formality avoids casual language.","No slang = formality."],
+[10,"Using slang or contractions breaks which feature?","Formality","Explicitness","Precision","Objectivity","Contractions like \"can't\" break formality.","Slang breaks formality."],
+[10,"Using \"can't\" instead of \"cannot\" in an essay breaks:","Formality","Accuracy","Objectivity","Precision","Contractions are informal.","Contraction = formality."],
+[10,"Does academic writing allow a chatty, conversational tone?","No","Yes","Yes in introductions","Yes in conclusions","It must be formal.","No chatty tone."],
+[10,"Which feature uses exact, specific words rather than vague terms?","Precision","Formality","Introduction","Objectivity","Precision means exact wording.","Exact words = precision."],
+[10,"Saying \"a lot of\" instead of an exact figure breaks:","Precision","Formality","Explicitness","Objectivity","Vague terms break precision.","Vague = precision broken."],
+[10,"Which feature focuses on evidence and facts rather than personal opinion?","Objectivity","Introduction","Precision","Formality","Objectivity keeps feelings out.","Facts over feelings = objectivity."],
+[10,"\"I feel that...\" with no evidence breaks which feature?","Objectivity","Introduction","Precision","Formality","Unsupported opinion breaks objectivity.","I feel = objectivity broken."],
+[10,"Which feature clearly signals the structure and logic of the argument?","Explicitness","Precision","Objectivity","Formality","It uses linking and signposting.","Signposting = explicitness."],
+[10,"A confusing essay with no linking words between ideas breaks:","Explicitness","Precision","Introduction","Formality","Jumping between ideas with no linking breaks explicitness.","No linking = explicitness broken."],
+[10,"Which feature ensures claims are correct, properly sourced and owned by the writer?","Accuracy and responsibility","Explicitness with signposting","Objectivity with facts only","Precision with exact wording","The writer owns the content.","Sourced and owned = accuracy and responsibility."],
+[10,"An unsourced statistic in an essay breaks:","Accuracy and responsibility","Formality of the language","Introduction of the topic","Precision of the wording only","Unverified or unsourced claims break it.","No source = responsibility broken."],
+/* ---------- 11 · ICT in Modern Language Learning ---------- */
+[11,"Which tool is used mainly for word processing?","MS-Word","MS-Excel","Corel Draw","MS-PowerPoint","MS-Word is for documents, letters, reports and essays.","Documents = Word."],
+[11,"Which tool is used mainly for spreadsheets and calculations?","MS-Excel","Corel Draw","MS-Word","MS-PowerPoint","Excel handles data, tables and calculations.","Calculations = Excel."],
+[11,"Which tool is used mainly for slide presentations?","MS-PowerPoint","Corel Draw for flyers","MS-Excel for tables","MS-Word for letters","PowerPoint is slide software.","Slides = PowerPoint."],
+[11,"Which tool is used mainly for graphic design and illustration?","Corel Draw","MS-Excel","MS-Word","MS-PowerPoint","Corel Draw is for visual content.","Graphics = Corel Draw."],
+[11,"Which tool would you use to design a flyer for an event?","Corel Draw","MS-Word only","MS-PowerPoint only","MS-Excel","A flyer is graphic design work.","Flyer = Corel Draw."],
+[11,"Which two apps are named for live video-conferencing lectures?","Zoom and Google Meet","Telegram and Google Meet","WhatsApp and Telegram","WhatsApp and Zoom","They are for live, real-time virtual lectures and meetings.","Zoom and Meet = live."],
+[11,"Which two apps are named for quick messaging and class groups?","WhatsApp and Telegram","Telegram and Google Meet","Zoom and Google Meet","WhatsApp and Zoom","They are used for class groups, sharing materials and quick informal messages.","WhatsApp and Telegram = messaging."],
+[11,"A quick group announcement to classmates suits:","WhatsApp or Telegram","Zoom or Google Meet only","Corel Draw for a flyer","A formal email with a paper trail","The exam hack says quick group announcements use WhatsApp or Telegram.","Quick announcement = WhatsApp."],
+[11,"A live, face-to-face-style class suits:","Zoom or Google Meet","MS-Word documents only","WhatsApp or Telegram only","MS-Excel spreadsheets only","The exam hack says live class means Zoom or Google Meet.","Live class = Zoom."],
+[11,"Formal official communication that needs a paper trail suits:","Email","Corel Draw","WhatsApp status","Zoom call only","The exam hack links it to email.","Paper trail = email."],
+[11,"Email is an electronic system for:","Sending and receiving written messages over the internet","Making voice calls over telephone cables only","Editing photos and videos for online display","Storing music and films on remote servers only","That is the definition.","Email = internet messages."],
+[11,"Which part of an email tells the recipient what it is about at a glance?","The subject line","The attachment","The greeting","The signature","Subject crafting means a clear, specific subject line.","Subject = at a glance."],
+[11,"A polite sign-off like \"Best regards\" is called:","Complimentary closure","Subject line crafting","Salutation at the start","Electronic signature block","It is placed just before the sender's name.","Best regards = closure."],
+[11,"The block with the sender's name and contact details at the end is the:","Electronic signature","Complimentary closure","Subject line","Attachment","It sits at the very end of the email.","Name and contact = signature."],
+[11,"Which part of the email includes a greeting and organised points?","The body","The attachment","The subject","The signature","The body has a greeting, clear purpose and organised points.","Body = greeting + points."],
+[11,"Referencing and correctly attaching a file relates to which element?","Attaching attachments","Electronic signature","Subject crafting","Complimentary closure","The file should be attached and mentioned in the body.","Mention what you attach."],
+[11,"Social media content creation in this context is about producing:","Clear, appropriate written or visual content for online platforms","Long academic essays for the lecturer's marking","Private diary entries kept for oneself","Spreadsheet tables for calculations and data","That is how the notes describe it.","Content for platforms."],
+[11,"Email etiquette governs:","Proper, professional email conduct","Printer settings and ink use","Typing speed on the keyboard","Phone design and screen size","Etiquette is the set of professional norms for email.","Etiquette = professional conduct."],
+[11,"What must be checked to avoid sending an email to the wrong person?","The recipient's email address","The time of day it is sent","The attachment size in megabytes","The font size of the text","Avoiding a wrong or misleading address means double-checking the recipient.","Check the address."],
+[11,"What should be avoided in email formatting and fonts?","Overly decorative fonts and colours","A professional style from top to bottom","A readable layout for the reader","Clean and easily readable fonts","Standard format means clean, readable and professional.","No decorative fonts."],
+[11,"In email etiquette questions, the wrong option is usually the one skipping a clear:","Subject line","Date stamp","Page border","Font choice","The exam hack says the wrong option skips a clear subject or uses an incomplete signature.","No subject = wrong."],
+/* ---------- 12 · Parts of Speech ---------- */
+[12,"Understanding ____ different parts of speech forms the base of learning grammar","Eight","Five","Six","Seven","English grammar is built on the eight parts of speech.","Eight parts of speech."],
+[12,"A ____ may be defined as the name of a person, place or thing","Noun","Verb","Pronoun","Adverb","A noun names a person, place or thing.","Name = noun."],
+[12,"Proper nouns always begin with ____ letters","Capital","Small","Running","Numerical","Proper nouns name particular people and places, so they take capital letters.","Proper = capital."],
+[12,"____ nouns require capitalization only if they start the sentence or are part of a title","Common","Proper","Abstract","Collective","Common nouns stay in small letters unless they begin the sentence or sit in a title.","Common = small letters."],
+[12,"The nouns which cannot be felt, seen or heard are called ____","Abstract","Common","Proper","Collective","Ideas like peace and kindness cannot be touched, seen or heard, so they are abstract nouns.","Cannot touch = abstract."],
+[12,"Personifications of strength and violence are considered ____ gender","Masculine","Feminine","Common","Neuter","Things like death, war and thunder are personified as strong and violent, so they take the masculine gender.","Strength and violence = masculine."],
+[12,"A noun that denotes neither a male nor a female is of ____ gender","Neuter","Masculine","Feminine","Common","Neuter gender covers things with no sex, such as table and book.","Neither = neuter."],
+[12,"Countries, when referred to by name, are considered ____","Feminine","Masculine","Common","Neuter","A country is referred to as she, for example Nigeria and her people.","Country = feminine."],
+[12,"Nouns that end in Y with a consonant before the Y form their plural by dropping the Y and adding ____","ies","ves","es","s","Lady becomes ladies and city becomes cities. The consonant before Y is the clue.","Consonant + y = ies."],
+[12,"A and An are the ____ articles","Indefinite","Definite","Particular","Specified","A and an point to any one thing and not a particular one. The is the definite article.","A and an = indefinite."],
+[12,"Any word that adds more meaning to a noun is called an ____","Adjective","Adverb","Verb","Noun","An adjective describes a noun, for example a tall boy.","Describes a noun = adjective."],
+[12,"A ____ indicates the action done by the subject","Verb","Adverb","Noun","Pronoun","The verb is the action word in the sentence.","Action = verb."],
+[12,"A ____ is a word which connects words, phrases, clauses or sentences","Conjunction","Preposition","Interjection","Verb","Words like and, but and or join parts of a sentence, and a joining word is a conjunction.","Connector = conjunction."],
+[12,"\"Kemi\" and \"September\" are examples of which type of noun?","Proper noun","Collective noun","Abstract noun","Common noun","Proper nouns name specific people, places, months and days, with initial capitals.","Names = proper."],
+[12,"Which of these is a proper noun?","Oye-Ekiti","kindness","school","town","Oye-Ekiti names one specific place.","Specific place name = proper."],
+[12,"\"Pot\" and \"table\" are examples of which type of common noun?","Concrete","Abstract","Collective","Proper","Concrete nouns can be seen or touched.","See or touch = concrete."],
+[12,"\"Peace\" and \"kindness\" are examples of which type of common noun?","Abstract","Proper","Concrete","Collective","Abstract nouns cannot be seen or touched.","Cannot touch = abstract."],
+[12,"Which of these is an abstract common noun?","Happiness","School","Pens","Table","Joy, happiness, peace, beauty, kindness and love are abstract.","Feelings = abstract."],
+[12,"Nouns that can be counted and have both singular and plural forms are:","Countable","Uncountable","Proper","Collective","For example table and tables, chair and chairs.","Singular and plural = countable."],
+[12,"Can uncountable nouns take the \"s\" marker of plurality?","No","Yes","Yes, for equipment","Yes, for water","They are an undifferentiated mass.","No s on uncountables."],
+[12,"Which of these is an uncountable noun?","Furniture","Pen","Table","Chair","Furniture, equipment, information, data, oil, water and courage stay the same.","Furniture has no plural."],
+[12,"Uncountable nouns take:","Measures such as \"a piece of\"","Numbers placed directly before","A plural article in front","The s marker of plurality","For example a piece of information or a loaf of bread.","Use a measure word."],
+[12,"\"A team of players\" is an example of which noun type?","Collective noun","Uncountable noun","Abstract noun","Proper noun","Collective nouns are group nouns.","Group name = collective."],
+[12,"\"A pride of lions\" is a:","Collective noun","Proper noun","Abstract noun","Concrete noun","It names a group.","Pride of lions = collective."],
+[12,"A pronoun is used in place of a noun, usually to avoid:","Unnecessary repetition","Spelling errors","Verbs","Long sentences","For example HE replaces Ade.","Stand-in for a noun."],
+[12,"How many types of pronouns does the book list?","Eight","Ten","Six","Five","Personal, possessive, reciprocal, reflexive, relative, interrogative, demonstrative and correlative.","Eight types."],
+[12,"Which pronoun type shows ownership (my, mine, ours)?","Possessive","Reflexive","Personal","Relative","Possessive pronouns show ownership.","Ownership = possessive."],
+[12,"Which pronoun type refers back to the subject (himself, itself)?","Reflexive","Reciprocal","Personal","Relative","Reflexive pronouns refer back to the person involved.","Himself = reflexive."],
+[12,"\"Each other\" and \"one another\" are examples of which pronoun type?","Reciprocal","Demonstrative","Reflexive","Personal","Reciprocal pronouns refer from one person to another.","Each other = reciprocal."],
+[12,"Which pronoun type introduces a relative clause (who, which, whose)?","Relative","Reflexive","Interrogative","Personal","Relative pronouns introduce relative or adjectival clauses.","Who/which clause = relative."],
+[12,"Which pronoun type is used to ask questions (who, what, whose)?","Interrogative","Demonstrative","Personal","Relative","Interrogative pronouns ask questions.","Ask = interrogative."],
+[12,"This, these, that and those are:","Demonstrative pronouns","Reflexive pronouns","Personal pronouns","Relative pronouns","They are the demonstrative type.","This, that = demonstrative."],
+[12,"\"Neither...nor\" and \"either...or\" are:","Correlative pronouns","Personal pronouns","Relative pronouns","Reciprocal pronouns","The book lists them as correlative.","Either-or = correlative."],
+[12,"The object form of the first person \"I\" is:","Me","Him","Us","My","I is the subject form and me is the object form.","I becomes me."],
+[12,"The object forms of the third person subject pronouns are him, her, it and:","Them","You","Me","Us","They becomes them.","They becomes them."],
+[12,"Adjectives provide additional information about a:","Noun","Verb","Adverb","Conjunction","Adjectives describe a noun.","Adjective describes noun."],
+[12,"The three degrees of an adjective are base, comparative and:","Superlative","Plural","Positive","Auxiliary","Base, comparative and superlative.","Base, comparative, superlative."],
+[12,"Which suffixes mark comparative and superlative for short adjectives?","-er and -est","-ous and -ful","-ly and -ing","-ed and -s","For example tall, taller, tallest.","-er, -est."],
+[12,"Which premodifiers mark comparative and superlative for -ous adjectives?","More and most","-er and -est","Less and least","Very and too","For example more courageous and most courageous.","-ous takes more/most."],
+[12,"The comparative and superlative of \"good\" are:","Better and best","Gooder and goodest","More good and most good","Better and bestest","Good is irregular.","Good, better, best."],
+[12,"The comparative and superlative of \"bad\" are:","Worse and worst","Worse and worser","More bad and most bad","Badder and baddest","Bad is irregular.","Bad, worse, worst."],
+[12,"Irregular adjectives like good and bad take:","A completely different form","-ly added to the end of it","-er and -est endings added","More and most placed before","They change form entirely.","Irregular = new word."],
+[12,"Lexical verbs can:","Stand alone and make meaning","Never show any kind of action","Only help other verbs to work","Only show the tense of a verb","Dance and jump are examples.","Lexical stands alone."],
+[12,"Auxiliary verbs are also called:","Helping verbs","Action verbs","Finite verbs only","Main verbs","They are used together with lexical verbs.","Auxiliary = helping."],
+[12,"Which of these is a modal auxiliary?","Should","Has","Is","Did","Modals include can, could, shall, should, may, might, must and ought to.","Should is modal."],
+[12,"The three forms of non-modal auxiliary verbs are:","Be, have and do","Go, come and run","Can, may and must","Shall, will and should","Be, have and do.","Be, have, do."],
+[12,"In \"He can dance\", the auxiliary verb is:","Can","None","He","Dance","Can helps the lexical verb dance.","Can helps dance."],
+[12,"How many forms does a verb take in the book?","Five","Three","Four","Six","Base, -s form, past tense, past participle and -ing form.","Five forms."],
+[12,"Regular verbs form the past tense by adding:","-ed","-s","-ing","-ly","Bake becomes baked.","Regular = -ed."],
+[12,"Which of these is an irregular verb?","Kneel","Walk","Talk","Bake","Kneel becomes knelt, not kneeled.","Kneel/knelt is irregular."],
+[12,"Finite verbs show tense, number, concord and:","Mood","Spelling","Stress","Rhyme","Non-finite verbs do not.","Finite shows mood."],
+[12,"\"To err is human\" contains a:","Non-finite verb","Modal verb","Auxiliary only","Finite verb only","To err does not show tense, number or mood.","To + verb = non-finite."],
+[12,"Adverbs are used to modify:","Verbs","Nouns","Pronouns","Prepositions","They show the degree or extent of an action.","Adverb modifies verb."],
+[12,"Most adverbs end with:","-ly","-ing","-ed","-er","For example quickly, slowly and strongly.","Most end in -ly."],
+[12,"Do all adverbs end in -ly?","No, for example \"fast\"","Only in formal English","Yes, except \"fast\" and \"well\" only","Yes","\"We can walk fast\" is correct. \"Fastly\" is not a real word.","Fast has no -ly."],
+[12,"Conjunctions are:","Connectors","Describers","Exclamations","Replacers","They bring together words, phrases and clauses.","Conjunction connects."],
+[12,"How many types of conjunctions does the book list?","Two","Three","Five","Four","Co-ordinating and subordinating.","Two types."],
+[12,"Which are the three co-ordinating conjunctions in the book?","And, but and or","So, yet and for","Because, since and if","Although, when and while","They link units of the same rank.","And, but, or."],
+[12,"Which of these is a subordinating conjunction?","Although","But","And","Or","Although introduces a subordinate clause.","Although = subordinating."],
+[12,"Which conjunction links words, phrases or clauses of the SAME rank?","Co-ordinating","Correlative only","Reciprocal","Subordinating","Co-ordinating links equals.","Same rank = co-ordinating."],
+[12,"A preposition shows a relationship between:","Two nouns or their equivalents","A noun and a verb in a sentence","Two verbs in a sentence","Two sentences in a passage","For example behind, under, over and above.","Prepositions link nouns."],
+[12,"Which of these is a preposition?","Through","Ouch","Quickly","Although","Through shows relationship.","Through = preposition."],
+[12,"An interjection expresses:","An outburst of feeling or emotion","The action done by a noun or pronoun","A relationship between two nouns or pronouns","A connection between two clauses of a sentence","Surprise, delight, anger or pain, for example Ouch!","Outburst = interjection."],
+[12,"\"Ouch!\" is an:","Interjection","Adverb","Conjunction","Preposition","It is an outburst of pain.","Ouch = interjection."],
+/* ---------- 13 · Sentences ---------- */
+[13,"It is of paramount importance that one constructs a ____ sentence in day to day affairs","Correct","Wrong","Incorrect","Night","Everyday communication needs sentences that are correctly built so the meaning is clear.","Always construct a correct sentence."],
+[13,"The ____ is an exclamation mark","!","?",".",",","The exclamation mark is the sign that shows strong feeling.","Exclamation = !"],
+[13,"The ____ is the action or description that occurs in the sentence","Predicate","Subject","Object","Complement","The predicate is the part that tells what the subject does or is.","Action part = predicate."],
+[13,"The ____ speech is also called reported speech","Indirect","Direct","Indefinite","Definite","In indirect speech you report what somebody said without using the exact words.","Reported = indirect."],
+[13,"A sentence is a string of words that makes:","Complete and unified sense","Only a statement","Partial sense","Only a question","That is the book's definition.","Complete sense."],
+[13,"What must a clause contain, at minimum?","A subject and a verb","A subject and an object","A noun and an adjective","A verb and an adverb","A clause has at least a subject and a verb.","Subject + verb."],
+[13,"Can an independent clause stand on its own?","Yes","Only with a conjunction","No","Only in questions","It is a complete thought.","Independent stands alone."],
+[13,"Can a dependent clause stand on its own?","No","Yes, in commands","Yes, with a verb","Yes","It expresses an incomplete thought.","Dependent needs help."],
+[13,"Another name for the independent clause is the:","Main clause","Finite clause","Relative clause","Subordinate clause","Independent means main clause.","Independent = main."],
+[13,"Another name for the dependent clause is the:","Subordinate clause","Simple clause","Complete clause","Main clause","Dependent means subordinate.","Dependent = subordinate."],
+[13,"How many independent clauses does a simple sentence have?","One","Three","Two","None","A simple sentence has one independent clause and no dependent clause.","Simple = one."],
+[13,"\"Whales are mammals\" is which sentence type?","Simple","Compound","Compound-complex","Complex","It has one independent clause.","One clause = simple."],
+[13,"How many independent clauses does a compound sentence have?","Two or more","Exactly three","One","None","They are linked by co-ordinating conjunctions.","Compound = two or more."],
+[13,"What links the clauses in a compound sentence?","Co-ordinating conjunctions","Subordinating conjunctions","Prepositions","Interjections","And, but and or.","And, but, or."],
+[13,"Can more than one co-ordinating conjunction be used in a single compound sentence?","Yes","No","Only \"and\"","Only in questions","The notes say more than one can be used.","More than one is fine."],
+[13,"A complex sentence contains at least one independent clause and:","One dependent clause","One compound clause","One imperative clause","No other clause","They are linked by a subordinating conjunction.","Complex = independent + dependent."],
+[13,"What links a dependent clause to a main clause in a complex sentence?","A subordinating conjunction","An interjection","A preposition","A co-ordinating conjunction","For example because or if.","Subordinating links them."],
+[13,"\"Student must attend classes because classes are compulsory\" is which sentence type?","Complex","Compound","Compound-complex","Simple","Because starts the dependent clause.","Because = complex."],
+[13,"\"I will attend your party if I am invited\" is which sentence type?","Complex","Compound-complex","Compound","Simple","If starts the dependent clause.","If = complex."],
+[13,"A compound-complex sentence combines which two types?","Compound and complex","Simple and compound","Simple and declarative","Simple and complex","It has two or more independent clauses and one or more dependent clauses.","Compound + complex."],
+[13,"Two independent clauses linked by \"and\", plus dependent clauses linked by \"because\" and \"when\", make a:","Compound-complex sentence","Complex sentence","Simple sentence","Compound sentence","That is the book's compound-complex example.","Two main + dependents = compound-complex."],
+[13,"Which of these is a subordinating conjunction starting a dependent clause?","Because","But","Or","And","Dependent clauses start with words like although, when, because, since or if.","Because starts a dependent clause."],
+[13,"1 independent clause plus 1 or more dependent clauses gives a:","Complex sentence","Compound sentence","Compound-complex sentence","Simple sentence","That is the quick rule from the exam hack.","1 main + dependent = complex."],
+[13,"2 or more independent clauses and no dependent clause gives a:","Compound sentence","Simple sentence","Complex sentence","Compound-complex sentence","That is the quick rule.","2 main, no dependent = compound."],
+[13,"Which sentence function is realised as a statement?","Declarative","Interrogative","Exclamatory","Imperative","For example \"He is studying.\"","Statement = declarative."],
+[13,"Which sentence function is a command?","Imperative","Exclamatory","Interrogative","Declarative","For example \"Stand up.\"","Command = imperative."],
+[13,"Which sentence function shows feelings, usually marked with \"!\"?","Exclamatory","Interrogative","Declarative","Imperative","For example \"I am happy!\"","! = exclamatory."],
+[13,"Which sentence function asks a question and is marked with \"?\"?","Interrogative","Declarative","Imperative","Exclamatory","For example \"Is the book yours?\"","? = interrogative."],
+[13,"A command that includes the name of the person addressed is a:","Command with vocative","Declarative statement","Simple exclamation","Question tag","For example \"Tolu, keep shut.\"","Name in a command = vocative."],
+[13,"\"The table is green\" is which function?","Declarative","Interrogative","Exclamatory","Imperative","It states a fact.","Fact = declarative."],
+[13,"\"Get out\" is which function?","Imperative","Interrogative","Declarative","Exclamatory","It is a command.","Command = imperative."],
+/* ---------- 14 · Comprehension ---------- */
+[14,"To comprehend means to:","Understand a particular text","Copy a text","Summarise a text only","Memorise a text","That is the book's definition.","Comprehend = understand."],
+[14,"Which is one purpose of reading for comprehension?","To identify the main ideas in a passage","To count the words","To copy the passage","To correct the grammar","The purposes are to answer questions, get an overall view, identify main ideas and grasp details.","Main ideas and details."],
+[14,"How many purposes of reading for comprehension does the book list?","Four","Two","Three","Five","Answer questions, overall view, main ideas and details.","Four purposes."],
+[14,"To understand a passage, you need to know the significant ideas and whether they are:","Presented in a significant order","Short enough","Written in dialogue","Printed in bold","The notes list significant ideas and their order.","Ideas and their order."],
+[14,"Which of these is also something to know about a passage?","The reasons the ideas are presented in that order","The paper used","The writer's age","The number of pages","The notes list the reasons for the order.","Why that order."],
+[14,"You should also check the relation between a fact and:","An idea","A name","A title","A date","The notes say what relation exists between a fact and an idea.","Fact and idea."],
+[14,"How many types of comprehension questions does the book list?","Two","Four","Three","Five","Traditional open-ended and multiple choice.","Two types."],
+[14,"In objective multiple choice, are options made available?","Yes","No","Only for some questions","Only in the passage","Objective means options are made available.","Objective = options given."],
+[14,"In subjective multiple choice, are options made available?","No","Yes, two options","Yes","Yes, four options","Subjective means options are not made available.","Subjective = no options."],
+[14,"How many times should you read the passage before answering?","Twice","Three times","Four times","Once","Once quickly for the general idea, then slowly and carefully.","Read twice."],
+[14,"Reading the passage quickly the first time serves to get the:","General idea","Vocabulary","Answers","Exact wording","That is the first reading.","First read = general idea."],
+[14,"What should you focus on during the second reading?","Vocabulary and sentence structure","The general idea only","The questions only","The page numbers","The second reading is slower and more careful.","Second read = vocabulary and structure."],
+[14,"Why divide the passage into smaller sections?","To understand what the writer is driving at","To save paper in the exam hall","To skip the hard parts of it","To count the paragraphs in it","It helps you see the writer's point.","Sections show the point."],
+[14,"Should your answers be lifted directly from the passage?","No, use your own words","Yes, for names and dates","Yes, copy them word for word","Yes, for facts only","Avoid lifting answers verbatim.","Own words only."],
+[14,"If asked to supply another word for a phrase, you should give:","Just one word","Two or three words","A short paragraph","A full sentence","Obey the instruction and use only a word.","One word, nothing more."],
+[14,"When should you read the questions?","After reading the passage","Only at the end of the exam","Before reading the passage","Without reading the passage","The exam hack says to read the passage twice first.","Passage first."],
+[14,"Beating about the bush instead of going straight to the point is called:","Rigmarole","Repetition","Paraphrase","Summary","The notes tell you to avoid rigmarole.","Rigmarole = beating about the bush."],
+[14,"Which of these should you avoid across your answers?","Repetition","Clarity","Directness","Own words","Avoid repetition of answers.","No repetition."],
+[14,"Should you overlook the instructions in a comprehension exercise?","No","Yes","Only in objective tests","Yes, if short","Do not overlook instructions.","Obey instructions."],
+[14,"The examiner's number one trap is answers that are:","Lifted word for word from the passage","Checked twice before it is submitted","Written in the student's own words","Short and straight to the point asked","Those answers are marked down or rejected.","Lifting = trap."],
+/* ---------- 15 · Register ---------- */
+[15,"Register means the extent of:","Formality in a type of communication","Volume in talking","Speed in speech","Length in writing","That is the book's definition.","Register = formality level."],
+[15,"How many types of register does the book list?","Two","Five","Four","Three","Formal and informal.","Two registers."],
+[15,"A business letter is written in which register?","Formal","Casual","Informal","Slang","Business letters are official and professional.","Business letter = formal."],
+[15,"WhatsApp texts are written in which register?","Informal","Official","Academic","Formal","They are casual and familiar.","WhatsApp = informal."],
+[15,"Academic essays are written in which register?","Formal","Informal","Slang","Casual","Academic writing is formal.","Essay = formal."],
+[15,"Personal diaries are written in which register?","Informal","Official","Formal","Academic","Diaries are personal and casual.","Diary = informal."],
+[15,"A professional report uses which register?","Formal","Informal","Slang","Casual","Reports are professional.","Report = formal."],
+[15,"A personal short note to a friend uses which register?","Informal","Formal","Academic","Official","It is casual and familiar.","Note to a friend = informal."],
+[15,"Should formal register use slang?","No","Yes, in speeches","Yes","Yes, in reports","The first rule is to avoid slang.","No slang."],
+[15,"Should formal register use abbreviations or acronyms?","No","Yes, in reports","Yes","Yes, in letters","The rules say avoid them.","No abbreviations."],
+[15,"Should formal sentences begin with \"But\" or \"And\"?","No","Yes","Yes, in reports","Yes, in essays","Use words like However or In addition.","No But or And at the start."],
+[15,"Which word can replace \"But\" at the start of a formal sentence?","However","Anyway","So","Well","However is given in the notes.","But becomes However."],
+[15,"Should formal writing use contractions like \"can't\"?","No, write them in full","Yes, in letters","Only in speeches","Yes","Write cannot, not can't.","Write it in full."],
+[15,"Formal register should prefer which voice?","Active voice","Passive voice","Either voice","Neither voice","The book prefers active voice.","Formal = active."],
+[15,"\"The food was eaten by her mum\" is written in which voice?","Passive","Imperative","Subjunctive","Active","The doer comes after the verb.","Was eaten by = passive."],
+[15,"\"Her mum ate the food\" is written in which voice?","Active","Passive","Imperative","Subjunctive","The doer comes first.","Doer first = active."],
+[15,"To correct a passive sentence for formal register, the fix is usually to:","Flip it to active voice","Shorten it to one word","Add an exclamation mark","Add slang","The exam hack says flip to active voice.","Fix passive = make it active."],
+[15,"Informal register accommodates:","Slang, jokes and incomplete sentences","Academic citations only","Full formal words only","Passive voice only","It is the opposite of formal register.","Informal allows slang."],
+[15,"Does informal register accommodate short or incomplete sentences?","Yes","No","Only in letters","Only in reports","It does.","Yes, short is fine."],
+[15,"Full words, no contractions and no But/And starters point to:","Formal register","Informal register","Mixed register","No register","That is the quick ID.","Full words = formal."],
+/* ---------- 16 · The Full Writing Process and Academic Writing Styles ---------- */
+[16,"The main purpose of academic writing is to:","Inform","Amuse","Gossip","Entertain","The notes say it informs and does not entertain.","Academic = inform."],
+[16,"Does academic writing aim to entertain?","No","Yes, in essays","Yes","Yes, in reports","It does not.","No entertaining."],
+[16,"Academic writing has a central line of thought, and all arguments are:","Channelled toward it","Hidden from the readers entirely","Left open for readers to guess","Kept separate from the main idea","All arguments are channelled toward that line of thought.","One central line."],
+[16,"The use of informal language in academic writing is:","Strictly prohibited","Encouraged","Allowed in conclusions","Required in introductions","That is the formality rule.","No informal language."],
+[16,"Objectivity includes acknowledging others' ideas, analysing them and:","Bringing out your own view from them","Copying them into your own essay","Ignoring them in your own essay","Hiding them away from the reader","The notes describe it that way.","Acknowledge, analyse, own view."],
+[16,"Proper citation is part of which feature?","Explicitness","Introduction","Precision","Formality","Explicitness includes acknowledging what you read or gathered.","Cite = explicitness."],
+[16,"How many academic writing styles does the book list?","Four","Five","Three","Two","Descriptive, analytical, persuasive and critical.","Four styles."],
+[16,"Which style gives out facts, especially in sciences?","Descriptive","Analytical style","Critical style","Persuasive style","The researcher reports factually.","Report facts = descriptive."],
+[16,"Which style involves comparing two or more things?","Analytical","Persuasive","Critical","Descriptive","That is the analytical style.","Compare = analytical."],
+[16,"Which style needs convincing evidence and valid assumptions?","Persuasive","Analytical","Critical","Descriptive","Persuasive writing needs evidence for every claim.","Convince = persuasive."],
+[16,"Which style is a step further than persuasive writing?","Critical","Descriptive","Analytical","Persuasive","It includes the ability to debate, criticise and disagree.","Disagree = critical."],
+[16,"In an exam, \"report the facts\" points to which style?","Descriptive","Critical style","Analytical style","Persuasive style","Match the verb to the style.","Report = descriptive."],
+[16,"In an exam, \"critique or disagree\" points to which style?","Critical","Descriptive","Analytical","Persuasive","Critique is the critical style.","Critique = critical."],
+[16,"What is the first stage of the writing process for developing ideas?","Pre-writing","Gathering information","Drafting","Review","Pre-writing is stage 1.","Stage 1 = pre-writing."],
+[16,"In pre-writing, developing ideas means reading:","Widely, even beyond what is taught in class","Only the class notes your lecturer gave","Only the textbook set for the course","Only the first chapter of the textbook","The notes say widely, even on subjects not being taught.","Read widely."],
+[16,"Being conscious of your audience means keeping your:","Intended readers in mind","Your own mood on that day in mind","The printer you will use in mind","The lecturer's mood in mind","It helps you channel the write-up.","Know your readers."],
+[16,"\"Shaping information\" is divided into introduction, body and:","Conclusion","Title","Reference","Summary","Introduction, body and conclusion.","Intro, body, conclusion."],
+[16,"What is the second stage of the writing process?","Gathering information","Building the draft","Pre-writing","Review","Stage 2 is gathering information.","Stage 2 = gather."],
+[16,"What is the third stage?","Building the essay draft","Gathering information","Proofreading","Pre-writing","Stage 3 is building the draft.","Stage 3 = draft."],
+[16,"The introduction of an essay should:","Attract your audience","List all the references","Give the conclusion first","Repeat the title word for word","The notes say write something that will attract your audience.","Intro attracts."],
+[16,"Which words help organise the body of an essay?","Moreover and however","Because and so on","Wow, oh and ouch","Hello and thank you","The notes give linking words such as moreover and however.","Linking words."],
+[16,"The body of the essay should be coherent and:","Well organised","Without any links","Informal in tone","Very short and brief","Organise the work well and use linking words.","Coherent and organised."],
+[16,"The conclusion should bring together the most vital information in:","One or two sentences","A list of many quotes","A full page of points","Five full paragraphs","The notes say one or two sentences.","Short conclusion."],
+[16,"Should the conclusion contain new material?","No","Yes, a quote","Yes","Yes, one point","It must not have any new material.","No new material."],
+[16,"Which of these should a conclusion include?","The significance of your findings","A new argument not made before","A new reference list entirely","A joke to end the essay","The notes list significance, implication, prediction, advice and limitation.","Significance of findings."],
+[16,"Another thing a conclusion can include is:","A possible prediction about the future","A new heading for the next section","An attendance list for the class members","A table of contents for the readers","That is one of the five items.","Prediction is allowed."],
+[16,"After finishing a piece of work, you should:","Review and rewrite it","Add new points","Delete the conclusion","Submit immediately","The notes say sit down, review and rewrite.","Review before submit."],
+[16,"Reading your conclusion aloud slowly helps you:","Trim ideas and cut excess words","Skip the checking of the work","Add some new material at the end","Change the topic of the whole essay","That is the purpose.","Read aloud to trim."],
+[16,"Why give your work to another person before submitting?","To check correctness and catch grammar errors","To shorten the title of the work","To share the grade with that person","To delay the deadline for submission","Another person can spot mistakes.","Second pair of eyes."],
+/* ---------- 17 · E-mail Etiquette (Extended) ---------- */
+[17,"Email etiquette refers to:","The socially acceptable way of doing things in email","A type of email software package for offices","A kind of attachment sent along with a message","A way of typing faster on a computer keyboard","It is a set of customs for polite email behaviour.","Etiquette = polite customs."],
+[17,"Why does email etiquette matter so much for some people?","Email may be their only form of communication for certain purposes","Email has no rules because it is so informal","Email is always faster than every other channel","Email is always free of any charge to users","The notes give that reason.","Email may be the only channel."],
+[17,"How many points does the book list under email etiquette?","Ten","Seven","Five","Twelve","The list has ten rules.","Ten points."],
+[17,"When may you use a recipient's first name only?","If you are familiar with them or they used just their first name","Always, since email is a friendly channel","Only for friends and members of the family","Never, since a full name is always required","That is rule 2.","Familiar or they started it."],
+[17,"Should you assume a short form of someone's name?","No","Yes","Yes, for friends","Yes, for colleagues","Rule 3 says do not assume any short form.","No pet names."],
+[17,"The length of an email message should be:","Appropriate, not too long or too short","As long as possible to show detail","Unlimited, since email has no limits","One line only to save the reader time","That is rule 4.","Right length."],
+[17,"Which email element tells the reader what the message is about at a glance?","The subject line","The signature at the end","The greeting at the start","The attachment of files","Rule 5 says capture the appropriate subject line.","Subject = at a glance."],
+[17,"The tone of an email should be:","Accommodating","Blunt and direct","Cold and commanding","Harsh and demanding","Rule 6 says keep the tone accommodating.","Be accommodating."],
+[17,"Which is an example of a friendly, accommodating salutation?","Hello, I hope you had a good day","Answer this message right away","Hey you, listen to this now","Reply to me immediately please","The notes give that kind of greeting.","Friendly greeting builds relationships."],
+[17,"How is typing in ALL CAPITAL LETTERS socially perceived in email?","As yelling or insulting","As polite and respectful","As friendly and warm","As formal and proper","Rule 7.","Caps = shouting."],
+[17,"Is using all caps acceptable for emphasis in professional email?","No","Yes, once","Yes","Only in the subject line","Rule 7 says avoid it.","No caps for emphasis."],
+[17,"Should abbreviations be used in professional emails?","No","Yes, in the subject line","Yes, common ones","Yes","Rule 8.","No abbreviations."],
+[17,"How is over-punctuation such as \"!!!!\" perceived?","As unprofessional","As formal and proper","As polite and kind","As friendly and warm","Rule 9.","!!!! = unprofessional."],
+[17,"\"Please reply ASAP!!!!\" breaks which rules?","Rules 7, 8 and 9","Rule 10 and Rule 1","Rules 4, 5 and 6","Rules 1, 2 and 3","ASAP is an abbreviation, it is shouted in caps and has over-punctuation. The exam hack points to caps and punctuation.","Caps, abbreviation, punctuation."],
+[17,"Which two rules relate to how a message LOOKS rather than what it says?","All caps and over-punctuation","Tone and the recipient name","Greeting and the closing words","Length and the subject line","Rules 7 and 9.","Looks = caps and punctuation."],
+[17,"What should you do right before sending an email?","Proofread it","Add all caps","Add abbreviations","Shorten the name","Rule 10.","Proofread last."],
+[17,"Which is the final email etiquette step before hitting send?","Proofreading","Shortening the name","Changing the font","Adding exclamation marks","Proofreading is the last point.","Last = proofread."],
+/* ---------- 18 · Concord (Subject-Verb Agreement) ---------- */
+[18,"Concord is the rule that a subject and its verb must match in number and:","Person","Mood only","Voice only","Tense only","Number (singular or plural) and person (1st, 2nd, 3rd).","Number and person."],
+[18,"Which concord type is based strictly on the grammatical form of the subject?","Grammatical or formal concord","Concord of proximity","Notional concord","Mixed concord","Form decides, not meaning.","Form = grammatical."],
+[18,"Which concord type is based on the meaning of the subject?","Notional concord","Grammatical concord","Concord of proximity","Formal concord","Meaning decides.","Meaning = notional."],
+[18,"In which concord type does the verb agree with the NEAREST noun?","Concord of proximity","Formal concord","Grammatical concord","Notional concord","Especially with or and nor subjects.","Nearest = proximity."],
+[18,"\"Neither the teacher nor the students ___ happy.\"","Were","Has been","Is","Was","The nearer noun is students, which is plural.","Nearest noun decides."],
+[18,"\"Musa and Ada ___ in class.\"","Are","Is","Was","Has","Two subjects joined by and take a plural verb.","And = plural."],
+[18,"\"The secretary and treasurer (one person) ___ here.\"","Is","Have","Were","Are","Two titles for one person take a singular verb.","One person = singular."],
+[18,"\"The teacher, as well as the students, ___ present.\"","Was","Were","Have been","Are","With as well as, the verb agrees with the first subject only.","As well as = ignore it."],
+[18,"With \"together with\", \"along with\" or \"in addition to\", the verb agrees with:","The first subject only","The nearest noun","Both subjects","The second subject","Look at subject 1 only.","Ignore the add-on."],
+[18,"\"Neither the boys nor the girl ___ ready.\"","Was","Have been","Are","Were","The nearer subject is girl, which is singular.","Nearest = girl."],
+[18,"\"Neither the girl nor the boys ___ ready.\"","Were","Was","Has been","Is","The nearer subject is boys, which is plural.","Nearest = boys."],
+[18,"With or and nor, the verb agrees with the subject that is:","Nearest the verb","Longest","Singular always","First in the sentence","That is the rule.","Or/nor = nearest."],
+[18,"\"The team ___ playing well\" (as a unit).","Is","Are","Were","Have been","A collective noun acting as one unit takes a singular verb.","Unit = singular."],
+[18,"\"The team ___ arguing among themselves.\"","Are","Has","Was","Is","Members acting individually take a plural verb.","Individuals = plural."],
+[18,"Which of these is a collective noun in the book's list?","Jury","Water","Table","Kindness","Team, family, government, jury and class are listed.","Jury is collective."],
+[18,"\"Everyone ___ ready.\"","Is","Have been","Were","Are","Indefinite pronouns like everyone take a singular verb.","Everyone = singular."],
+[18,"\"Each of the students ___ a book.\"","Has","Are having","Have","Were having","Each takes a singular verb.","Each = singular."],
+[18,"\"Either of the answers ___ correct.\"","Is","Were","Have been","Are","Either used alone takes a singular verb.","Either = singular."],
+[18,"\"Every boy and girl ___ rewarded.\"","Was","Are","Were","Have been","Each or every before a compound subject still takes a singular verb.","Every = singular."],
+[18,"\"A number of students ___ absent.\"","Were","Has been","Is","Was","A number of takes a plural verb.","A number of = plural."],
+[18,"\"The number of students ___ small.\"","Was","Were","Have been","Are","The number of takes a singular verb.","The number of = singular."],
+[18,"\"Things Fall Apart\" ___ a great novel.","Is","Have been","Are","Were","Titles of books are treated as singular.","Title = singular."],
+[18,"\"The Netherlands ___ in Europe.\"","Is","Are","Have been","Were","Names of countries are treated as singular.","Country name = singular."],
+[18,"\"Five thousand naira ___ not enough.\"","Is","Are","Were","Have been","Sums of money seen as one unit are singular.","Money sum = singular."],
+[18,"\"Ten kilometres ___ a long walk.\"","Is","Have been","Were","Are","Distances are treated as singular.","Distance = singular."],
+[18,"\"The box of apples ___ on the table.\"","Is","Are","Have been","Were","The true subject is box, not apples.","Find the real subject."],
+[18,"\"The quality of these goods ___ poor.\"","Is","Are","Were","Have been","The real subject is quality.","Cross out the phrase."],
+[18,"What is the number one concord trap in exams?","A long phrase between the subject and the verb","A conjunction at the start","A very short sentence","A question mark","Cross out the phrase and find the real subject first.","Ignore the phrase in between."],
+[18,"\"He is one of the boys who ___ always late.\"","Are","Is","Has been","Was","The relative pronoun agrees with its antecedent, boys.","Who agrees with boys."],
+[18,"\"Fifty percent of the work ___ done.\"","Is","Are","Were","Have been","Percentages agree with the noun after of.","Work is singular."],
+[18,"\"Fifty percent of the students ___ absent.\"","Are","Is","Was","Has been","Students is plural.","Students are plural."],
+[18,"\"There ___ a book on the table.\"","Is","Were","Are","Have been","There is agrees with the noun that follows.","A book = is."],
+[18,"\"There ___ books on the table.\"","Are","Has been","Is","Was","Books is plural.","Books = are."],
+[18,"\"The principal and the teachers ____ in the hall.\"","Are","Is","Was","Has been","The principal and the teachers are two different groups joined by and, so the verb is plural.","And joins two = plural."],
+[18,"\"The teacher together with the students ____ at the gate.\"","Is","Are","Were","Have been","Together with adds extra people but the verb agrees with the first subject, teacher, which is singular.","Together with: first subject only."],
+[18,"\"The students along with their teacher ____ present.\"","Were","Was","Is","Has been","Along with does not make the subject plural. The first subject, students, decides the verb.","Along with: look at subject 1."],
+[18,"\"The manager in addition to the workers ____ invited.\"","Was","Were","Are","Have been","In addition to adds on, and the verb follows the first subject, manager.","In addition to: ignore the add-on."],
+[18,"\"Either the driver or the passengers ____ responsible.\"","Are","Is","Was","Has been","With either and or, the verb agrees with the noun nearest to it, passengers.","Nearest noun decides."],
+[18,"\"Neither the pupils nor the headmaster ____ aware of the change.\"","Was","Were","Are","Have been","Headmaster is the nearer noun and it is singular.","Nearest = headmaster."],
+[18,"\"The jury ____ given its verdict\" (as one body).","Has","Have","Are","Were","A collective noun acting as one body takes a singular verb.","One body = singular."],
+[18,"\"The family ____ quarrelling among themselves.\"","Are","Is","Has been","Was","The members are acting as individuals here, so the verb is plural.","Individuals = plural."],
+[18,"\"Everybody ____ expected to be on time.\"","Is","Are","Were","Have been","Everybody is an indefinite pronoun and takes a singular verb.","Every-words = singular."],
+[18,"\"Each of the boys ____ his own bag.\"","Has","Have","Are having","Were having","Each takes a singular verb, whatever follows of.","Each = singular."],
+[18,"\"A number of candidates ____ failed.\"","Have","Has","Is","Was","A number of takes a plural verb.","A number of = plural."],
+[18,"\"The number of candidates ____ increasing.\"","Is","Are","Were","Have been","The number of is singular because number is the real subject.","The number of = singular."],
+[18,"\"Fifty naira ____ not enough for the book.\"","Is","Are","Were","Have been","A sum of money seen as one amount takes a singular verb.","Money sum = singular."],
+[18,"\"Twenty kilometres ____ too far to walk.\"","Is","Are","Were","Have been","A distance is treated as one unit, so the verb is singular.","Distance = singular."],
+[18,"\"The bag of oranges ____ on the table.\"","Is","Are","Were","Have been","The real subject is bag. Oranges only sits inside the phrase.","Cross out the of phrase."],
+[18,"\"The result of the tests ____ out yesterday.\"","Came","Come","Were coming","Have come","The real subject is result, which is singular.","Find the real subject."],
+[18,"\"She is one of the girls who ____ always on time.\"","Are","Is","Was","Has been","Who refers back to girls, so the verb is plural.","Who agrees with the noun before it."],
+[18,"\"Twenty percent of the money ____ spent.\"","Was","Were","Are","Have been","With percentages, the verb agrees with the noun after of, and money is singular.","Look at the noun after of."],
+[18,"\"Twenty percent of the girls ____ absent.\"","Were","Was","Is","Has been","Girls is plural, so the verb is plural.","Noun after of decides."],
+[18,"\"There ____ many books on the shelf.\"","Are","Is","Was","Has been","In there is and there are, the verb agrees with the noun that follows, books.","There + plural noun = are."],
+[18,"\"Gulliver's Travels ____ an interesting book.\"","Is","Are","Were","Have been","The title of a book is treated as singular.","Title = singular."],
+/* ---------- 19 · Oral Communication, Listening and Presentation ---------- */
+[19,"In oral communication there is a possibility of immediate ____","Response","Reaction","Reflection","Reset","The listener can answer straight away, so the speaker gets an immediate response.","Oral = immediate response."],
+[19,"In oral communication the speaker can observe the listener's ____ to what is being relayed","Reaction","Response","Rejection","Reset","Because both sides are face to face, the speaker can see how the listener is reacting.","Observe = reaction."],
+[19,"While talking to friends you do not pay attention to the skills of ____ communication","Oral","Written","Audio","Visual","With friends you just chat freely, without minding the skills that formal speaking needs.","Friends chat = oral skills ignored."],
+[19,"In an oral presentation outside your organization you must first give the audience a ____ of your organization","Background","Flash back","Front view","Forward view","An outside audience does not know you, so you first tell them about your organization.","Outside audience = background first."],
+[19,"The ____ are used to present using overhead projectors","Acetate film transparent sheets","Paper sheets","Polythene sheets","Butter paper","Overhead projectors need clear acetate film sheets so that light can pass through.","OHP = acetate."],
+[19,"During a presentation using an OHP, one can read information line by line by covering the transparency with an opaque sheet to reduce distraction. This technique is called ____","Progressive disclosure","Positive disclosure","Zero disclosure","Negative disclosure","You reveal the content bit by bit, and that is progressive disclosure.","Line by line = progressive."],
+[19,"Another thing to avoid is writing on OHPs with a ____ during a talk","Pen","Chalk","Pencil","Marker","The source says to avoid adding to OHPs with a pen while you are speaking.","OHP: no pen."],
+[19,"It is important to consider proper ____ of the room where you are giving your presentation","Lighting","Darkness","Lightning","Ventilation","The audience must see the slides and you clearly, so the lighting of the room matters.","Room = lighting."],
+[19,"____ listening means learning through conversation","Dialogic","Evaluative","Appreciative","Empathetic","Dialogic listening is learning by talking and exchanging ideas with another person.","Conversation = dialogic."],
+[19,"In ____ listening the difference between sounds is identified","Discriminative","Comprehension","Dialogic","Empathetic","Discriminative listening is the most basic type, where you tell one sound from another.","Different sounds = discriminative."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='GST102', LABEL='GST 102', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('GST102');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
