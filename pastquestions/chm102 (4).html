@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CHM 102 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">CHM 102</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>CHM 102 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · CHM 102 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Structure & Bonding",
+  "Isomerism & Stereochemistry",
+  "Alkanes",
+  "Alkenes",
+  "Alkynes & Dienes",
+  "Alkyl Halides",
+  "Alcohols & Ethers",
+  "Aldehydes & Ketones",
+  "Acids & Derivatives",
+  "Amines",
+  "Amino Acids & Proteins",
+  "Carbohydrates",
+  "Phenols & General"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Structure & Bonding ---------- */
+[0,"The element least likely to be found in an organic compound is","silicon","oxygen","sulfur","nitrogen","Organic compounds are built mainly from C, H, O, N, S and halogens. Silicon is the odd one out.","Think CHONS. Si is not there."],
+[0,"One of the major sources of organic compounds is","Natural gas","Fermentation","Sea water","Atmosphere","Natural gas, petroleum and coal are the major sources of organic compounds.","Fossil fuels feed organic chemistry."],
+[0,"Catenation is a property of the carbon atom which describes its ability to","bond with other carbon atoms","form double and triple bonds","exist in plant and animal form","form bonds in its ground state","Catenation is carbon linking to other carbon atoms to form chains and rings.","Catena means chain."],
+[0,"Carbon-carbon double bonds consist of","one σ bond, one π bond","two σ bonds, one π bond","one σ bond, two π bonds","two σ bonds, two π bonds","A double bond is made of one sigma bond and one pi bond.","First bond sigma, extras pi."],
+[0,"Acetylene has a total of","three σ bonds, two π bonds","one σ bond, two π bonds","two σ bonds, four π bonds","one σ bond, four π bonds","In H-C≡C-H there are two C-H sigma bonds, one C-C sigma bond and two pi bonds.","Triple = 1 sigma + 2 pi."],
+[0,"In propene there are","eight σ bonds and one π bond","seven σ bonds and two π bonds","six σ bonds and three π bonds","nine σ bonds","CH3-CH=CH2 has six C-H and two C-C sigma bonds, plus one pi bond.","Sigma = atoms minus 1 for open chains."],
+[0,"1-Buten-3-yne has","seven σ and three π bonds","six σ and four π bonds","eight σ and two π bonds","nine σ and one π bond","CH2=CH-C≡CH has seven sigma bonds. The double bond gives one pi and the triple bond two.","8 atoms means 7 sigma."],
+[0,"When the carbon atom is sp2 hybridized in a compound, it is bonded to","3 other atoms","2 other atoms","4 other atoms","5 other atoms","An sp2 carbon has three sigma partners and one unhybridised p orbital.","sp2 = 2 + 1 = 3 neighbours."],
+[0,"What is bond angle between the hybrid orbitals in methane?","109.5°","180°","120°","115.5°","Methane carbon is sp3 and tetrahedral.","Tetrahedral = 109.5."],
+[0,"The H–C–H bond angle in ethylene is","120°","60°","90°","180°","Ethylene carbons are sp2 and trigonal planar.","Double bond = 120."],
+[0,"What is the bond length of a carbon-carbon double bond?","1.34 Å","1.20 Å","1.54 Å","1.68 Å","The C=C bond is about 1.34 angstrom, between single and triple.","1.54, 1.34, 1.20 for 1, 2, 3 bonds."],
+[0,"The carbon-carbon bond lengths in rank of increasing bond length is","triple, double, single","single, double, triple","single, triple, double","triple, single, double","More shared pairs pull the carbons closer, so the triple bond is shortest.","More bonds, shorter bond."],
+[0,"How many atoms are attached to an atom having a sp hybridization?","2","0","1","3","An sp atom forms two sigma bonds, so it holds two atoms.","sp has 2 letters, 2 neighbours."],
+[0,"Which molecule has a nonzero dipole moment?","CHCl3","Cl2","CO2","CCl4","CHCl3 is unsymmetrical, so its bond dipoles do not cancel.","Symmetry kills dipole."],
+[0,"The order of stability of carbonium ions is","tertiary > secondary > primary","secondary > tertiary > primary","primary > secondary > tertiary","primary > tertiary > secondary","Alkyl groups push electrons toward the positive carbon, so more of them means more stability.","Cation: 3 beats 2 beats 1."],
+[0,"Which alkyl free radical is the most stable?","tertiary","methyl","primary","secondary","Tertiary radicals get the most hyperconjugation.","Radicals follow cations."],
+[0,"Which of the following is a nucleophile?","CN–","AlCl3","H3O+","BF3","CN- carries a lone pair and a negative charge that it can donate.","Nucleophile loves positive, usually negative."],
+[0,"Which of the following is not a nucleophile?","AlCl3","NH3","HSO3–","HO–","AlCl3 has an empty orbital, so it accepts electrons.","Empty orbital = electrophile."],
+[0,"Which of the following is a Lewis acid?","AlCl3","CH3OH","NH3","CH3OCH3","A Lewis acid accepts an electron pair, and aluminium in AlCl3 is electron deficient.","Lewis acid accepts."],
+[0,"The stronger the acid","the weaker its conjugate base","the less stable its conjugate base","the larger the pKa","the larger the pH","A strong acid gives up its proton easily, leaving a weak conjugate base.","Strong acid, weak partner."],
+[0,"Which of the following is the strongest acid?","HI","H2O","CH4","CH3OH","HI has the weakest bond and the most stable anion here.","Down the halogens, acid gets stronger."],
+/* ---------- 1 · Isomerism & Stereochemistry ---------- */
+[1,"Compounds with the same molecular formula but different structural formulas are called","Isomers","Alkoxides","Iso compounds","Ortho compounds","Isomers share a molecular formula but differ in how the atoms are arranged.","Same parts, different build."],
+[1,"Which compound is not an isomer of the other three?","2,3-Dimethylbutane","n-Pentane","2,2-Dimethylpropane","2-Methylbutane","2,3-Dimethylbutane is C6H14, while the other three are C5H12.","Count the carbons first."],
+[1,"Alkenes show geometrical isomerism due to","Restricted rotation around a double bond","Asymmetry","Rotation around a single bond","Resonance","The pi bond stops rotation, which locks groups on one side or the other.","No spin, cis and trans."],
+[1,"Which of the following compounds may exist as cis-trans isomers?","2-Butene","1-Butene","Cyclopropane","Acetone","Each double bond carbon in 2-butene has two different groups.","Both ends need two different groups."],
+[1,"Plane-polarized light is affected by","Chiral molecules","Identical molecules","All polymers","All biomolecules","Only chiral molecules rotate the plane of polarised light.","Chiral turns light."],
+[1,"It is possible to distinguish between optical isomers","by polarimetry","by using chemical tests","by mass spectrometry","by IR spectroscopy","Optical isomers match in most properties but rotate light differently, which a polarimeter measures.","Optical needs polarimeter."],
+[1,"Optical isomers that are mirror images are called","Enantiomers","Tautomers","Diastereomers","Metamers","Enantiomers are non-superimposable mirror images.","Enantiomer = mirror."],
+[1,"Optical isomers that are not mirror images are called","Diastereomers","Enantiomers","Metamers","Meso compounds","Stereoisomers that are not mirror images are diastereomers.","Not mirror = diastereomer."],
+[1,"meso-Tartaric acid is","always optically inactive","sometimes optically active","always optically active","sometimes optically inactive","The meso form has an internal mirror plane, so its rotations cancel.","Meso = zero rotation."],
+[1,"Which of the following compounds will be optically active?","Lactic acid","Succinic acid","meso-Tartaric acid","Chloroacetic acid","Lactic acid has a carbon with four different groups.","Find four different groups."],
+[1,"How many optical isomers are possible for lactic acid?","2","4","6","8","One chiral carbon gives two optical isomers.","2 to the power n."],
+[1,"Which of the following compounds is never chiral?","1,4-dibromobutane","2,3-dibromobutane","1,3-dibromobutane","1,2-dichlorobutane","1,4-Dibromobutane has no carbon with four different groups.","Symmetric ends, no chiral centre."],
+[1,"How many isomers are possible for butane?","2","3","4","5","Butane exists as n-butane and isobutane.","C4 gives 2."],
+[1,"How many isomers are possible for pentane?","3","2","4","5","Pentane has n-pentane, isopentane and neopentane.","C5 gives 3."],
+[1,"How many isomers are possible for hexane?","5","4","6","7","There are five structural isomers of C6H14.","C4, C5, C6 gives 2, 3, 5."],
+[1,"The eclipsed and staggered forms of ethane are said to differ in","conformation","molecular formula","configuration","constitution","They differ only by rotation about the C-C single bond.","Rotation = conformation."],
+[1,"Which compound is not isomeric with diethyl ether?","Butanone","Methyl propyl ether","1-Butanol","2-Methyl-2-propanol","Butanone is C4H8O, not C4H10O.","Count hydrogens."],
+[1,"What is the maximum number of alkene isomers for C4H8?","4","2","3","6","1-butene, cis and trans 2-butene, and methylpropene.","Count cis and trans."],
+[1,"How many isomeric alcohols have the formula C4H10O?","4","2","3","5","There are two primary, one secondary and one tertiary.","Butanols are four."],
+[1,"How many optically active stereoisomers does butane-2,3-diol have?","2","1","3","4","The third stereoisomer is meso and inactive.","Meso does not count."],
+[1,"A pure enantiomer of an acid reacts with a racemic alcohol. The esters formed are","An optically active mixture","A single pure enantiomer","A meso compound","A racemic mixture","Two diastereomeric esters form.","Diastereomers do not cancel."],
+[1,"How many stereoisomers form on bromination of trans-2-butene?","1","2","3","4","Anti addition to the trans alkene gives the meso product.","Trans plus anti gives meso."],
+[1,"Which compound shows stereoisomerism?","2-Methylbutanoic acid","2-Methyl-1-butene","3-Methyl-1-butyne","3-Methylbutanoic acid","Carbon 2 carries four different groups.","Find the chiral carbon."],
+[1,"Which compound shows geometrical isomerism?","1-Phenyl-2-butene","3-Phenyl-1-butene","2-Phenyl-1-butene","1,1-Diphenyl-1-propene","Each double bond carbon has two different groups.","Check both ends."],
+[1,"Which is a characteristic of enantiomers?","They have the same melting point","They rotate ordinary light","Their mirror images superimpose","They react alike with chiral molecules","Mirror images share ordinary physical properties.","Same melting, opposite rotation."],
+[1,"Which describes a meso compound?","All of these","It is achiral but has chiral carbons","It has a plane or centre of symmetry","It is optically inactive","Internal symmetry cancels its rotation.","Meso cancels itself."],
+[1,"2-Butanol is optically active because it contains","An asymmetric carbon","A plane of symmetry","A hydroxyl group","A centre of symmetry","One carbon has four different groups.","Four different groups."],
+[1,"Which represents a racemic mixture of 2-butanol?","50% R and 50% S","75% R and 25% S","25% R and 75% S","35% R and 65% S","A racemic mixture has equal amounts.","Racemic is fifty fifty."],
+[1,"Which statement is true about optical activity?","A mixture of achiral compounds is inactive","All chiral molecules have a plane of symmetry","All achiral molecules are meso","Every S compound is levorotatory","Achiral molecules do not rotate light.","No chirality, no rotation."],
+[1,"Which is correct about a pair of enantiomers?","They rotate light equally in opposite directions","They rotate light unequally in opposite directions","They rotate light unequally in one direction","They have different melting points","Their rotations are equal and opposite.","Equal and opposite."],
+[1,"Which is correct about diastereomers?","They are stereoisomers that are not enantiomers","They are identical molecules","They are always mirror images","All their chiral centres are the same","Diastereomers are not mirror images.","Not mirror, diastereomer."],
+/* ---------- 2 · Alkanes ---------- */
+[2,"Hydrocarbons are","Composed of carbon and hydrogen","Composed of carbon, hydrogen, and oxygen","Composed of carbon and oxygen","Composed of carbon and nitrogen","Hydrocarbons contain only carbon and hydrogen.","The name says it."],
+[2,"A tertiary carbon is bonded directly to","3 carbons","2 hydrogens","2 carbons","4 carbons","A tertiary carbon is joined to three other carbons.","Tertiary = three."],
+[2,"Which of the following alkanes will have the highest boiling point?","n-Octane","Isopentane","n-Butane","Neopentane","n-Octane has the longest straight chain and so the strongest attractions.","Longer chain, higher boiling."],
+[2,"Which of the following alkanes will have the lowest boiling point?","Neopentane","n-Heptane","Isopentane","n-Hexane","Neopentane is compact, with less surface contact than the others here.","More branching, lower boiling."],
+[2,"Which of the following classes of compounds is unreactive toward sulfuric acid?","Alkanes","Alcohols","Alkenes","Alkynes","Alkanes have only strong, nonpolar sigma bonds.","Paraffin means little affinity."],
+[2,"The chlorination of methane to give CCl4 is an example of","a free-radical substitution","an electrophilic addition","a nucleophilic addition","an electrophilic substitution","Hydrogen atoms are replaced by chlorine through free radicals in light.","Alkane plus halogen in light = radical substitution."],
+[2,"In the chlorination of alkanes, the first step in which chlorine free radicals are produced is called","initiation","activation","propagation","deactivation","Initiation splits Cl2 into two radicals.","Radicals are born at initiation."],
+[2,"The combustion of one mole of propane, C3H8, produces how many moles of H2O?","4","2","3","5","C3H8 has eight hydrogens, which make four molecules of water.","Water = half the hydrogens."],
+[2,"The major carbon compound formed from the incomplete combustion of a hydrocarbon in air is","carbon monoxide","carbon dioxide","water","alkyl chains","Limited oxygen oxidises carbon only as far as carbon monoxide.","Less oxygen, CO."],
+[2,"The thermal decomposition of alkanes in the absence of air is called","Cracking","Combustion","Oxidation","Hydrogenation","Cracking breaks large alkanes into smaller molecules using heat.","Cracking breaks."],
+[2,"LPG (Household cooking gas) is mainly a mixture of","Butane + Isobutane","Methane + Ethane","Acetylene + O2","Acetylene + H2","Cooking gas is mostly butane and isobutane.","LPG = butanes here."],
+[2,"Octane number is related to","Gasoline","Kerosene oil","Diesel oil","Lubricating oil","Octane number rates how well gasoline resists knocking.","Octane goes with petrol."],
+[2,"The octane rating of gasoline provides information on","its antiknock properties","its ignition properties","its percentage proportion of octane","its percentage content of isooctane","A higher octane rating means less knocking.","High octane, quiet engine."],
+[2,"Which of the following compounds is assigned the Octane Number of zero","n-Heptane","n-Octane","2,3,3-Trimethylpentane","2,2,4-Trimethylpentane","n-Heptane knocks badly and is the zero point.","Heptane = 0."],
+[2,"Which of the following compounds is assigned the Octane Number of 100","2,2,4-Trimethylpentane","n-Heptane","2,3,3-Trimethylpentane","n-Octane","2,2,4-Trimethylpentane, called isooctane, is the 100 point.","Isooctane = 100."],
+[2,"Which of the following compounds is used as an antiknock compound?","Tetraethyllead","Ethyllithium","Ethyl acetate","Lead acetate","Tetraethyllead was the classic antiknock additive.","TEL stops knock."],
+/* ---------- 3 · Alkenes ---------- */
+[3,"In which solvent are alkenes most soluble?","carbon tetrachloride","water","ethyl alcohol","ammonia","Alkenes are nonpolar, so they dissolve in nonpolar solvents.","Like dissolves like."],
+[3,"Ethylene is obtained from ethyl bromide by","Dehydrohalogenation","Simple heating","Hydrolysis","Nucleophilic substitution","Removing H and Br from ethyl bromide gives ethylene.","Lose HBr, gain a double bond."],
+[3,"The dehydrohalogenation of 2-bromobutane with alcoholic KOH gives mainly","2-Butene","2-Butyne","1-Butene","1-Butyne","The more substituted alkene is the main product.","Saytzeff: more substituted wins."],
+[3,"In the reaction of propene with HCl, H+ ion acts as the","electrophile","carbonium ion","nucleophile","carbanion","H+ seeks the electron-rich double bond.","Positive = electrophile."],
+[3,"Propene reacts with bromine to form 1,2-dibromopropane. This is an example of","Electrophilic addition","Nucleophilic addition","Nucleophilic substitution","Electrophilic substitution","Bromine adds across the double bond, starting with attack by the pi electrons.","Alkenes do electrophilic addition."],
+[3,"Baeyer's reagent is","dilute KMnO4","HCl + ZnCl2","Br2 in CCl4","NH2NH2","Baeyer's reagent is cold dilute alkaline potassium permanganate.","Baeyer = purple KMnO4."],
+[3,"The disappearance of the purple color of KMnO4 in its reaction with alkene is known as","Baeyer test","Markovnikov test","Grignard test","Wurtz test","Loss of the purple colour shows unsaturation in the Baeyer test.","Purple gone, double bond there."],
+[3,"2-Butene reacts with HBr to give","2-Bromobutane","1-Bromobutane","2,3-Dibromobutane","2,2-Dibromobutane","HBr adds across the double bond, putting Br on carbon 2.","Symmetrical alkene, one product."],
+[3,"Propene reacts with HBr in the presence of a peroxide to give","n-Propyl bromide","Allyl bromide","Isopropyl bromide","Vinyl bromide","Peroxide reverses the addition, so Br goes to the end carbon.","Peroxide = anti-Markovnikov."],
+[3,"Which of the following alkenes gives only acetic acid on oxidation with hot concentrated KMnO4","2-Butene","Ethylene","1-Butene","Propene","Cutting 2-butene in the middle gives two identical CH3CH pieces, each becoming acetic acid.","Symmetrical alkene, one acid."],
+[3,"Which of the following compounds will give only acetaldehyde on ozonolysis?","2-Butene","1-Butene","Acetylene","Ethylene","Ozone cuts 2-butene into two acetaldehyde molecules.","Cut at the double bond."],
+[3,"Which of the following alkenes will give a mixture of acetone and formaldehyde on ozonolysis?","2-methylpropene","2-butene","2-methyl-2-butene","1-butene","2-Methylpropene splits into acetone and formaldehyde.","Terminal CH2 gives formaldehyde."],
+[3,"Which of the following alkenes will give a mixture of acetone and acetaldehyde an ozonolysis?","2-methyl-2-butene","1-butene","2-butene","2-methylpropene","2-Methyl-2-butene splits into acetone and acetaldehyde.","Add oxygen to each cut end."],
+[3,"Combustion of an alkene with sufficient oxygen will produce","carbon dioxide and water","carbon monoxide and water","only carbon dioxide","only carbon monoxide","Complete combustion gives only carbon dioxide and water.","Enough oxygen, CO2."],
+[3,"The hydroboration-oxidation reaction can be characterized as the  to an alkene","anti-Markovnikov syn addition of water","anti-Markovnikov anti addition of water","Markovnikov syn addition of water","Markovnikov anti addition of water","Water adds from the same face, with OH on the less substituted carbon.","Hydroboration = anti-Markovnikov, syn."],
+/* ---------- 4 · Alkynes & Dienes ---------- */
+[4,"What descriptive term is applied to the type of diene represented by 1,5- octadiene?","isolated diene","conjugated diene","cumulated diene","alkynyl diene","The double bonds are separated by more than one single bond.","Far apart = isolated."],
+[4,"What descriptive term is applied to the type of diene represented by 2,4- hexadiene?","conjugated diene","cumulated diene","isolated diene","alkynyl diene","The double and single bonds alternate.","Alternate = conjugated."],
+[4,"What is the hybridization of the central carbon of allene (1,2-propadiene)?","sp","sp2","sp3","p","The middle carbon has two double bonds and only two neighbours.","Two neighbours = sp."],
+[4,"Which of the following describes a triple bond?","one sigma bond and two pi bonds","two sigma bonds and two pi bonds","one sigma bond and one pi bond","two sigma bonds and one pi bond","A triple bond has one sigma and two pi bonds.","Only one sigma per link."],
+[4,"What two atomic orbitals or hybrid atomic orbitals overlap to form the carbon-carbon σ bond in ethyne?","sp–sp","sp3–sp3","sp2–sp2","s–s","Each ethyne carbon is sp hybridised.","Triple bond, sp."],
+[4,"The reagent needed to convert 2-butyne to cis-2-butene is","H2/Lindlar’s catalyst","H2/Pt","Li/NH3","Na/NH3","Lindlar catalyst adds one H2 from the same side.","Lindlar = cis."],
+[4,"Which of the following compounds on hydrolysis gives acetylene?","CaC2","Mg2C3","Al4C3","Cu2Cl2","Calcium carbide reacts with water to release acetylene.","Carbide lamp gas."],
+[4,"Propyne reacts with aqueous H2SO4 in the presence of HgSO4 to form","acetone","1-propanol","acetaldehyde","2-propanol","Hydration gives an enol that rearranges to acetone.","Only ethyne gives an aldehyde."],
+[4,"Acetylene reacts with water in the presence of sulfuric acid and mercuric sulfate to give","Acetaldehyde","Acetone","Acetic acid","Formaldehyde","Ethyne hydrates to vinyl alcohol, which rearranges to acetaldehyde.","Ethyne plus water = ethanal."],
+[4,"Which of the following compounds does not react with ammoniacal AgNO3 solution?","2-Butyne","Acetylene","1-Butyne","Propyne","2-Butyne has no hydrogen on the triple bond carbon.","Only terminal alkynes react."],
+[4,"Which alkyne yields propanoic acid as the only product upon treatment with ozone followed by hydrolysis?","3-Hexyne","1-Butyne","2-Hexyne","1-Pentyne","3-Hexyne is symmetrical and splits into two propanoic acid units.","Six carbons, cut into 3 and 3."],
+[4,"When acetylene is passed through hot iron tube at 400°C, it gives","Benzene","Toluene","o-Xylene","Mesitylene","Three ethyne molecules join to form benzene.","3 x C2 = benzene."],
+[4,"When propyne is passed through hot iron tube at 400°C, it gives","Mesitylene","Benzene","Toluene","m-Xylene","Three propyne molecules join to form 1,3,5-trimethylbenzene.","Propyne trimer = mesitylene."],
+[4,"The monomer for Neoprene is","Chloroprene","Isoprene","acrylonitrile","1,3-butadiene","Neoprene is the polymer of chloroprene.","Neoprene has chlorine."],
+[4,"Polymerisation of ethyne over a hot catalyst produces","Benzene","Benzoic acid","Polythene","Ethane","Three ethyne units form a benzene ring.","Three twos make six."],
+/* ---------- 5 · Alkyl Halides ---------- */
+[5,"Which of the following poisonous gas is formed when chloroform is exposed to light and air?","Phosgene","Mustard gas","Carbon monoxide","Chlorine","Chloroform is oxidised by air in light to phosgene.","Keep chloroform in brown bottles."],
+[5,"Freon-12, CCl2F2, is used as a","Refrigerant","Local anesthetic","Dry-cleaning agent","Disinfectant","Freon-12 was widely used as a cooling gas.","Freon cools."],
+[5,"Alkyl halides undergo","Nucleophilic substitution reactions","Electrophilic substitution reactions","Electrophilic addition reactions","Nucleophilic addition reactions","The halogen leaves and a nucleophile takes its place.","Halide out, nucleophile in."],
+[5,"Isopropyl bromide reacts with alcoholic KOH to give","Propene","Isopropyl alcohol","Propane","n-Propyl alcohol","Alcoholic KOH removes HBr to give an alkene.","Alcoholic eliminates, aqueous substitutes."],
+[5,"How should CH3CHClCH2CH3 be classified?","secondary alkyl halide","primary alkyl halide","tertiary alkyl halide","quarternary alkyl halide","The carbon holding Cl is joined to two other carbons.","Two carbon neighbours = secondary."],
+[5,"Which of the following is the best leaving group?","I–","F–","Cl–","Br–","Iodide is large and the weakest base, so it leaves easily.","Weak base, good leaver."],
+[5,"Grignard reagents do not show any reaction with","Alkoxyalkanes","Alkanones","Alkyl alkanoates","Acyl halides","Alkoxyalkanes are ethers and are used as the solvent for Grignard reagents.","The solvent does not react."],
+[5,"Ethylmagnesium iodide reacts with formaldehyde to give a product which on acid-hydrolysis forms","a primary alcohol","an aldehyde","a ketone","a secondary alcohol","Formaldehyde adds one carbon and gives a primary alcohol.","Methanal gives primary."],
+[5,"Ketones react with Grignard reagents to form an addition product which on hydrolysis gives a","Tertiary alcohol","Primary alcohol","Secondary alcohol","Ketal","A ketone already has two carbon groups, and Grignard adds a third.","Ketone gives tertiary."],
+[5,"n-Propylmagnesium bromide on treatment with carbon dioxide and further hydrolysis gives","Butanoic acid","Acetic acid","Propanoic acid","Formic acid","Carbon dioxide adds one carbon, making a four-carbon acid.","CO2 adds one carbon and COOH."],
+[5,"Which of the following compounds will react with methylmagnesium bromide to give tert-butyl alcohol?","Acetone","Acetyl chloride","Isopropyl alcohol","Acetaldehyde","Acetone plus a methyl group gives tert-butyl alcohol.","Remove one methyl from the product."],
+[5,"Benzyl chloride warmed with aqueous alkali produces","Benzyl alcohol","Phenol","Benzaldehyde","Benzene","OH replaces Cl on the CH2 group.","Swap Cl for OH."],
+[5,"Acetaldehyde with CH3MgBr followed by water yields","A secondary alcohol","A primary alcohol","A tertiary alcohol","A dihydric alcohol","Aldehydes other than methanal give secondary alcohols.","Aldehyde gives secondary."],
+[5,"CH3CH2MgBr is an example of","A Grignard reagent","A reducing metal","An oxidising agent","A dehydrating agent","It is an alkyl magnesium halide.","RMgX is Grignard."],
+/* ---------- 6 · Alcohols & Ethers ---------- */
+[6,"Methanol is known as","Wood alcohol","Rubbing alcohol","Grain alcohol","Denatured alcohol","Methanol was once made by heating wood.","Methanol = wood."],
+[6,"Rectified spirit is","95% Ethanol","100% Ethanol","90% Ethanol","100% Methanol","Rectified spirit is about 95 percent ethanol.","Rectified = 95."],
+[6,"Lucas reagents is","HCl/ZnCl2","HCl/NaNO2","H2/Pd","H2/Pd/BaSO4","Lucas reagent is hydrochloric acid with zinc chloride.","Lucas = HCl and ZnCl2."],
+[6,"Which of the following compounds will react fastest with Lucas reagent?","2-methyl-2-propanol","1-propanol","2-methyl-1-propanol","2-propanol","A tertiary alcohol forms the most stable carbocation.","Tertiary turns cloudy at once."],
+[6,"Ethanol on heating with concentrated H2SO4 at 170°C gives","ethylene","ethyl hydrogen sulfate","diethyl ether","diethyl sulfate","Hot concentrated acid at 170 degrees dehydrates ethanol to ethene.","170 alkene, 140 ether."],
+[6,"Hydroboration-oxidation of propene gives","n-Propyl alcohol","Isopropyl alcohol","Isobutyl alcohol","tert-Butyl alcohol","Hydroboration puts OH on the end carbon.","Anti-Markovnikov gives n-propyl."],
+[6,"Which of the following compounds will not be easily oxidized?","Tertiary alcohol","Primary alcohol","Secondary alcohol","Aldehyde","The OH carbon of a tertiary alcohol has no hydrogen.","No H, no easy oxidation."],
+[6,"Oxidation of a secondary alcohol with K2Cr2O7/H+ produces","a ketone","a carboxylic acid","an aldehyde","an ester","Secondary alcohols oxidise to ketones.","Secondary gives ketone."],
+[6,"Which of the following reagents can be used to oxidize 1° alcohols to aldehydes?","PCC","KMnO4","MnO2","K2Cr2O7","PCC is mild and stops at the aldehyde.","PCC stops early."],
+[6,"Which of the following is used as an antifreeze?","Ethylene glycol","Glycerol","Diethyl ether","Picric acid","Ethylene glycol lowers the freezing point of water.","Glycol in radiators."],
+[6,"In the manufacture of dynamite, one of the chemicals used is","Glycerol trinitrate","Glycerol","Glycerol triacetate","Glycerol triiodide","Dynamite contains nitroglycerine, also called glycerol trinitrate.","Nitro in dynamite."],
+[6,"Ethanol is isomeric with","Dimethyl ether","Ethanal","Diethyl ether","Propanone","Ethanol and dimethyl ether are both C2H6O.","Alcohols and ethers are isomers."],
+[6,"The reaction of a sodium alkoxide with an alkyl halide is called","Williamson's synthesis","Wurtz-Fittig reaction","Perkin reaction","Aldol condensation","Williamson synthesis makes ethers from an alkoxide and an alkyl halide.","Williamson makes ethers."],
+[6,"Ethers are stored in brown bottles. This is because on exposure to air and light ethers are converted to","Peroxides","Oxonium ions","Ozonides","Electrophiles","Air and light slowly turn ethers into explosive peroxides.","Old ether, peroxide danger."],
+[6,"Cyclic ethers with three-membered ring are called","Oxiranes","Lactones","Alkoxides","Epoxy resins","A three-membered ring with one oxygen is an oxirane.","Epoxide = oxirane."],
+[6,"Ethylene reacts with oxygen in the presence of silver catalyst at 300°C to form","Ethylene oxide","Diethyl ether","Ethylene glycol","Ethyl alcohol","Silver catalyses direct oxidation of ethylene to its epoxide.","Silver and O2 give epoxide."],
+[6,"The IUPAC name of CH3CH2CH2C(CH3)2CH2OH is","2,2-Dimethyl-1-pentanol","2,2-Dimethyl-1-butanol","2,2-Dimethyl-2-butanol","4,4-Dimethyl-1-butanol","The longest chain from the OH carbon has five carbons, with two methyls on carbon 2.","Number from the OH end."],
+[6,"The gas produced when sodium metal is dropped into ethanol is","Hydrogen","Oxygen","Nitrogen","Carbon dioxide","Sodium displaces the hydrogen of the OH group.","Sodium plus alcohol gives H2."],
+[6,"X is oxidised to a product that reacts with phenylhydrazine but gives no silver mirror. X is","Propan-2-ol","Ethanal","Ethanol","Ethanoyl chloride","A secondary alcohol gives a ketone.","No mirror, ketone."],
+[6,"Which of these has the highest boiling point?","Propan-1-ol","Propanone","Propanal","Propane","Only the alcohol hydrogen bonds with itself.","OH raises boiling point."],
+[6,"Which compound is a stronger acid than water?","Phenol","Propanone","Ethanol","Ethanal","The phenoxide ion is stabilised by the ring.","Phenol beats water."],
+[6,"Tertiary alcohols are hard to oxidise because","The carbon bearing OH has no hydrogen","They have no alpha carbon","Their OH group is not polar","They contain only one OH group","Oxidation needs a hydrogen on that carbon.","No H, no oxidation."],
+[6,"Ethanol heated with excess acidified KMnO4 gives","Ethanoic acid","Ethene","Ethane","Methanal","A primary alcohol is fully oxidised to an acid.","Excess oxidant, acid."],
+[6,"Alcohol can be concentrated beyond ordinary distillation by","Distilling it with benzene","Boiling it in open air","Adding more water","Cooling it","Benzene breaks the ethanol and water azeotrope.","Benzene for absolute alcohol."],
+[6,"Dehydration of ethanol with concentrated H2SO4 produces","Ethene","Ethane","Propanol","Sulphur trioxide only","Water is removed to form a double bond.","Dehydrate to alkene."],
+[6,"Isopropyl alcohol is an isomer of","Propan-1-ol","Propylamine","Propanoic acid","Propanal","Both are C3H8O.","Same formula, OH moved."],
+[6,"Methanol is classed as a","Primary alcohol","Dihydric alcohol","Secondary alcohol","Tertiary alcohol","It is grouped with primary alcohols.","One OH, no branching."],
+[6,"How many phenyl groups does triphenyl carbinol have?","3","0","1","2","Tri means three.","Read the name."],
+[6,"Ethanol fully oxidised with acidified KMnO4 produces","Ethanoic acid","Ethanal","Ethane","Ethyne","Full oxidation goes past the aldehyde.","Full oxidation, acid."],
+[6,"Acid catalysed reaction of diethyl ether with water produces","Ethanol","Butanol","Ethane","Ethanal","The ether splits into two ethanol molecules.","Ether plus water, two alcohols."],
+[6,"Which is not true about Lucas reagent?","It is used to test for acids","It is HCl with ZnCl2","It is used to test for alcohols","It shows the class of an alcohol","Lucas reagent classifies alcohols.","Lucas is for alcohols."],
+/* ---------- 7 · Aldehydes & Ketones ---------- */
+[7,"Formalin is","40% solution of formaldehyde in water","10% solution of formaldehyde in water","20% solution of formaldehyde in water","80% solution of formaldehyde in water","Formalin is about 40 percent formaldehyde in water.","Formalin = forty."],
+[7,"Acetone reacts with HCN to form a cyanohydrin. It is an example of","Nucleophilic addition","Electrophilic addition","Electrophilic substitution","Nucleophilic substitution","Cyanide attacks the carbonyl carbon and adds on.","Carbonyls do nucleophilic addition."],
+[7,"Acetone undergoes reduction with zinc amalgam in HCl to form propane. This reaction is known as","Clemmensen reduction","Wolf-Kishner reduction","Rosenmund reduction","Aldol condensation","Zinc amalgam with HCl reduces C=O to CH2.","Clemmensen = zinc and acid."],
+[7,"Cannizzaro reaction is not given by","Acetaldehyde","Formaldehyde","Trimethylacetaldehyde","Benzaldehyde","Acetaldehyde has alpha hydrogens, so it does aldol instead.","Alpha H means no Cannizzaro."],
+[7,"When formaldehyde is treated with 50% NaOH solution, it undergoes","Cannizzaro reaction","Wurtz reaction","Aldol condensation","Hydrolysis","With no alpha hydrogen, one molecule is oxidised and another reduced.","Self redox = Cannizzaro."],
+[7,"The reduction of a ketone","always gives a secondary alcohol","always gives a primary alcohol","always gives a carboxylic acid","always gives a ketal","A ketone gains hydrogen to become a secondary alcohol.","Ketone to secondary."],
+[7,"Aldehydes undergo oxidation with KMnO4/H+ to give","Acids","Alcohols","Acetals","Ketones","Aldehydes are easily oxidised to carboxylic acids.","Aldehyde to acid."],
+[7,"The appearance of a silver mirror in Tollens' test indicates the presence of","an aldehyde","a ketone","an alcohol","an alkene","Only the aldehyde reduces silver ions to silver.","Mirror means aldehyde."],
+[7,"Which of the following compounds will give a positive test with Fehling's solution?","Formaldehyde","Acetone","Ethyl acetate","Acetic acid","Formaldehyde is an aldehyde that reduces Fehling's solution.","Fehling picks aliphatic aldehydes."],
+[7,"Which of the following compounds does not give a positive iodoform test","Methanol","Ethanol","Ethanal","Propanone","Methanol cannot form a CH3CO group.","No methyl next to C=O, no iodoform."],
+[7,"Which of the following compounds will give a positive iodoform test?","2-Pentanone","Benzaldehyde","3-Hexanone","3-Pentanone","2-Pentanone is a methyl ketone.","Number 2 ketone passes."],
+[7,"The final product of aldol condensation of two aldehyde molecules is","An alpha,beta-unsaturated aldehyde","A beta-hydroxyaldehyde","An alpha-hydroxyaldehyde","A beta-hydroxy acid","The aldol first formed loses water to give the unsaturated aldehyde.","Condensation means water leaves."],
+[7,"Ketones are less open to nucleophilic attack than aldehydes mainly because of","Steric hindrance from two alkyl groups","Lower stability of ketones","Higher reactivity of ketones","Absence of a carbonyl group","Two alkyl groups crowd the carbonyl carbon.","Crowded carbon, slow attack."],
+[7,"The carbonyl compounds easily oxidised to carboxylic acids are","Aldehydes","Ketones","Esters","Alkanes","The aldehyde hydrogen makes oxidation easy.","Aldehyde to acid."],
+[7,"A compound whose cyanohydrin hydrolyses to lactic acid is","Acetaldehyde","Formaldehyde","Benzaldehyde","Acetone","Lactic acid has three carbons and cyanide supplies one.","Subtract one carbon."],
+[7,"Acetophenone reduced with LiAlH4 gives","1-Phenylethanol","Ethylbenzene","Benzyl alcohol","Styrene","A ketone is reduced to a secondary alcohol.","Ketone to secondary alcohol."],
+[7,"Which of these is a method of preparing ketones?","Oxidation of secondary alcohols","Oxidation of primary alcohols","Reduction of aldehydes","Reduction of haloalkanes","Secondary alcohols oxidise to ketones.","Two degree gives ketone."],
+[7,"Which structure is semicarbazide?","H2N-NH-CO-NH2","H2N-CO-NH2","H2N-CH2-CO-NH2","H2N-NH2","Semicarbazide is hydrazine joined to a CONH2 group.","Hydrazine plus amide."],
+[7,"Which compound will not give a positive iodoform reaction?","CH3CH2COCH2CH3","CH3CHO","CH3COCH3","CH3COCH2CH3","Pentan-3-one has no methyl group next to the carbonyl.","Needs CH3CO."],
+[7,"Clemmensen reduction of a ketone is done with","Zinc amalgam and HCl","Hydrogen and platinum","Glycol and KOH","LiAlH4","Clemmensen uses zinc amalgam in acid.","Clemmensen is acidic."],
+[7,"Which pair of reactants produces an acetal?","Aldehyde and alcohol","Ketone and ketone","Aldehyde and ketone","Acid and acetone","An aldehyde adds two alcohol molecules with acid.","Acetal is aldehyde plus alcohol."],
+[7,"When aldols are heated they","Lose water to form an unsaturated aldehyde","Lose CO2 to form an alkene","Lose CO2 to form an aldehyde","Remain unchanged","Heating dehydrates the aldol.","Heat removes water."],
+[7,"Iodoform is easily recognised by its","Medicinal smell and yellow colour","Ether smell and blue colour","Urine smell and green colour","Ammonia smell and white colour","Iodoform is a yellow solid with an antiseptic smell.","Yellow and medicinal."],
+[7,"Which is the formula of hydroxylamine?","H2NOH","CH3OH","CH3NH2","C6H5NHOH","Hydroxylamine is an amino group joined to OH.","Name tells the parts."],
+[7,"Which reagent distinguishes benzaldehyde from phenylethanol?","Tollens reagent","Sodium chloride","Dilute HCl","Bromine water","Only the aldehyde gives a silver mirror.","Mirror finds aldehyde."],
+[7,"Reduction of cyclopentanone with LiAlH4 produces","Cyclopentanol","Cyclopentanoic acid","Cyclopentanal","Cyclopentene","A ketone becomes a secondary alcohol.","Ketone to alcohol."],
+[7,"Acetone is also called","Propanone","Ethanone","Butanone","Ethanal","Acetone has three carbons.","Prop means three."],
+[7,"Clemmensen reduction converts a carbonyl compound to","An alkane","An alkene","An alkyne","An alcohol","C=O becomes CH2.","Remove oxygen fully."],
+[7,"In a strong base, two molecules of a suitable aldehyde give","An aldol","Two alcohol molecules only","A ketone","An ether","Aldehydes with alpha hydrogen condense.","Aldehyde plus aldehyde."],
+[7,"Ammonia derivatives reacting with carbonyl compounds always form","Water","Ammonia","Nitrogen","Hydrogen","These are condensation reactions.","Condensation gives water."],
+/* ---------- 8 · Acids & Derivatives ---------- */
+[8,"Vinegar is a","5% solution of acetic acid in water","25% solution of acetic acid in water","50% solution of acetic acid in water","40% solution of formic acid in water","Vinegar is a dilute solution of about 5 percent acetic acid.","Vinegar = about 5."],
+[8,"Which is the strongest acid?","Cl3CCOOH","CH3COOH","Cl2CHCOOH","ClCH2COOH","Three chlorine atoms pull the most electron density from the carboxylate.","More Cl, stronger acid."],
+[8,"Which of the following compounds on treatment with NaHCO3 will liberate CO2?","Acetic acid","Ethylamine","Acetone","Ethyl alcohol","Carboxylic acids release carbon dioxide from sodium bicarbonate.","Fizz means acid."],
+[8,"Acetic acid undergoes reduction with LiAlH4 to give","Ethanol","Ethane","Ethanal","Ethyne","LiAlH4 reduces acetic acid to ethanol.","Acid reduces to primary alcohol."],
+[8,"Acetic acid reacts with methyl alcohol in the presence of an acid catalyst to give","Methyl acetate","Methyl formate","Ethyl formate","Ethyl acetate","Acetic acid and methanol form methyl acetate.","Alcohol names the first word."],
+[8,"Silver acetate reacts with Br2 to form methyl bromide, carbon dioxide, and AgBr. This is an example of","Hunsdiecker reaction","Wurtz reaction","Etard's reaction","Perkin reaction","The silver salt loses carbon dioxide and gains bromine.","Silver salt plus Br2 = Hunsdiecker."],
+[8,"Which of the following acid-derivatives are most stable?","Amides","Acid chlorides","Esters","Anhydrides","Nitrogen shares its lone pair strongly with the carbonyl.","Amide is the calmest derivative."],
+[8,"Acetamide can be converted into methylamine by","Br2/NaOH","P2O5","PCl5","LiAlH4","Bromine and sodium hydroxide remove the carbonyl carbon.","Hofmann loses one carbon."],
+[8,"Acetamide on reduction with LiAlH4 gives","Ethylamine","Acetaldehyde","Acetone","Methylamine","LiAlH4 turns C=O in the amide into CH2.","Reduction keeps the carbons."],
+[8,"Basic-hydrolysis of esters is called","Saponification","Acetylation","Acidification","Esterification","Hydrolysis of an ester with base is saponification.","Base plus ester = soap."],
+[8,"Base-catalyzed condensation of two ester molecules to form an alcohol and β-keto ester is called","Claisen condensation","Corey-House reaction","Aldol condensation","Transesterification","Claisen condensation joins two esters into a beta-keto ester.","Esters = Claisen."],
+[8,"Sodium or potassium salts of fatty acids are called","Soaps","Proteins","Terpenes","Carbohydrates","Soaps are sodium or potassium salts of long-chain acids.","Fatty acid salt = soap."],
+[8,"Fats and oils are","triesters of glycerol","monoesters of glycerol","diesters of glycerol","diesters of glycol","A fat is glycerol joined to three fatty acids.","Triglyceride = three."],
+[8,"Alkaline hydrolysis of oils (or fats) is called","Saponification","Fermentation","Diazotization","Rancidification","Alkali splits fats into glycerol and soap.","Same word as soap making."],
+[8,"The degree of unsaturation of a fat can be determined by means of its","Iodine number","Octane number","Saponification number","Melting point","Iodine adds to double bonds, so it measures unsaturation.","Iodine counts double bonds."],
+[8,"Saponification reaction is best described as","Soap making reaction","Condensation reaction","Acid promoted hydrolysis reaction","Neutralization of an acid by a base","Saponification means soap making: a fat reacts with alkali to give soap and glycerol.","Sapo means soap."],
+[8,"The compound CH3CO-O-COCH3 is","An anhydride","An ether","An amide","A dicarboxylic acid","Two acyl groups share one oxygen.","Two C=O around one O."],
+[8,"Identify the most acidic compound among these","Cl2CHCOOH","ClCH2COOH","CH3COOH","C2H5COOH","Two chlorine atoms pull more electron density than one.","More Cl, more acid."],
+[8,"The products of CH3COOH and CH3OH with an acid catalyst are","CH3COOCH3 + H2O","CH3COCH3 + H2O","CH3CH2CHO + H2O","CH3CH2CH3 + H2O","Acid and alcohol give an ester and water.","Esterification releases water."],
+[8,"An amide reacting with bromine and potassium hydroxide gives","A primary amine","A nitrile","A nitro compound","Another amide","Hofmann degradation removes the carbonyl carbon.","Hofmann gives primary amine."],
+[8,"Which group contains a compound unable to hydrogen bond with itself?","Alcohols and disubstituted amides","Carboxylic acids and alcohols","Unsubstituted and monosubstituted amides","Water and alcohols","A disubstituted amide has no N-H.","No H on N, no bond."],
+[8,"The product of decarboxylation of ethanoic acid is","Methane","Ethane","Propane","Carbon","The acid loses carbon dioxide.","Lose one carbon."],
+[8,"Acid anhydrides react with alcohols to give","Esters and carboxylic acids","Alcohols and ketones","Only carboxylic acids","Amides and water","One acyl part becomes an ester and the other an acid.","Anhydride gives two products."],
+[8,"An acyl chloride can be converted to an acid anhydride by reacting it with","A carboxylic acid","Water","An ether","An amide","The acid joins the acyl group and HCl leaves.","Acyl plus acyl."],
+[8,"Which statement about esterification is not true?","Adding water increases the yield","It is acid catalysed","It is usually reversible","It is an equilibrium reaction","Water is a product, so adding it lowers the yield.","Add product, go backward."],
+[8,"To make a primary amide, an acid chloride should be treated with","Ammonia","An alcohol","A secondary amine","A tertiary amine","Ammonia gives RCONH2.","NH3 gives primary amide."],
+[8,"Basic hydrolysis of any oil produces","Soap","Hydrated oil","Detergent from benzene","Wax","Alkali splits the oil into soap and glycerol.","Oil plus alkali, soap."],
+[8,"Which molecule can be classified as a soap?","C15H31COONa","CH3COOH","C2H5COOH","C15H31CH3","A soap is the sodium salt of a long chain acid.","Long chain and Na."],
+/* ---------- 9 · Amines ---------- */
+[9,"Which of the following is least soluble in water?","Aniline","Methylamine","Trimethylamine","Dimethylamine","The benzene ring makes aniline largely water repelling.","Big ring, poor solubility."],
+[9,"Amines are generally classified as","Weak bases","Weak acids","Strong acids","Strong bases","The nitrogen lone pair accepts protons only partially.","Amines are weak bases."],
+[9,"Acetonitrile undergoes reduction with LiAlH4 to form","Ethylamine","Methylamine","Dimethylamine","Trimethylamine","The nitrile CH3CN is reduced to ethylamine.","Nitrile keeps all its carbons."],
+[9,"Which of the following is most basic?","Dimethylamine","Ammonia","Methylamine","Trimethylamine","Dimethylamine has the best balance of electron push and solvation in water.","In water, secondary methyl wins."],
+[9,"Which type of amine produces N2 when treated with HONO?","Primary","Secondary","Tertiary","Quaternary","Primary aliphatic amines form unstable diazonium salts that lose nitrogen.","Primary gives bubbles."],
+[9,"Which of the following amines react with nitrous acid to form nitrosoamine?","Diethylamine","Ethylamine","Triethylamine","Isopropylamine","Secondary amines form yellow oily nitrosamines.","Secondary = nitrosamine."],
+[9,"Which of the following does not react with acyl chlorides to form amides","3° amine","ammonia","1° amine","2° amine","A tertiary amine has no N-H to lose.","No H, no amide."],
+[9,"Which of the following compounds does not react with acetyl chloride?","Trimethylamine","Methylamine","Dimethylamine","Aniline","Trimethylamine has no hydrogen on nitrogen, so no amide forms.","Tertiary cannot be acylated."],
+[9,"A primary amine can be identified by using","CHCl3 + KOH","HCl","CHCl3","NaOH","Primary amines give a foul smelling isocyanide with chloroform and KOH.","Carbylamine test = primary."],
+[9,"Which of the following is a primary amine?","1,3-Pentanediamine","N-Ethyl-N-methylamine","Triethylamine","N-Methylphenylamine","Both nitrogens in 1,3-pentanediamine carry two hydrogens.","Primary means NH2."],
+[9,"Amines belong to which general class of compounds?","Bases","Acids","Oxidizing agents","Dehydrating agents","The nitrogen lone pair accepts a proton.","Lone pair, base."],
+[9,"An amine reacting with a carboxylic acid on strong heating forms","An amide","An amine oxide","A tertiary amine","A nitrile","The salt formed loses water to give an amide.","Acid plus amine, amide."],
+[9,"The easiest way to recognise phenylamine in the laboratory is by its","Strong fishy smell","Solubility in acid","Colour","Solubility in water","Aniline has a distinct fishy smell.","Amines smell fishy."],
+[9,"Which statement about the basicity of amines is true?","Arylamines are weaker because the nitrogen lone pair spreads into the ring","Alkylamines are weaker because nitrogen is sp hybridised","Arylamines are stronger because of the aryl group","Alkylamines are weaker because their lone pair is not delocalised","Delocalisation makes the lone pair less available.","Ring steals the lone pair."],
+[9,"How many structural isomers are possible for C3H9N?","4","2","3","5","Propylamine, isopropylamine, ethylmethylamine and trimethylamine.","Two primary, one secondary, one tertiary."],
+[9,"Which statement about primary amines is incorrect?","Arylamines give phenol directly with cold nitrous acid","Alkylamines give alcohols with nitrous acid","Alkylamines are more basic than ammonia","Alkylamines are more basic than arylamines","Cold nitrous acid turns arylamines into diazonium salts.","Cold aryl gives diazonium."],
+[9,"Aniline is a weaker base than","Benzylamine","Triphenylamine","p-Nitroaniline","Diphenylamine","The lone pair of benzylamine is not on the ring.","CH2 shields the ring."],
+[9,"An alkyl primary amine reacting with nitrous acid forms mainly","An alcohol","An alkyl nitrite","A secondary amine","A nitroalkane","The unstable diazonium salt loses nitrogen.","N2 leaves, OH arrives."],
+[9,"In which reaction is an amide converted to an amine?","Hofmann","Claisen","Kekule","Perkin","Hofmann degradation uses bromine and alkali.","Hofmann, amide to amine."],
+[9,"Which compound gives a secondary amine on reduction with LiAlH4?","Methyl isocyanide","Methyl cyanide","Nitroethane","Acetamide","An isocyanide reduces to a methyl secondary amine.","Isocyanide gives secondary."],
+[9,"Which is formed when an aldehyde reacts with a primary amine?","Schiff base","Ketone","Aromatic acid","Carboxylic acid","Water is lost to give a C=N bond.","Schiff has C=N."],
+[9,"An amine made from an amide with bromine and alkali has","One carbon less than the amide","The same number of carbons","One carbon more","Two carbons more","The carbonyl carbon leaves as carbonate.","Hofmann loses one."],
+[9,"CH3CN reduced with sodium and ethanol gives","CH3CH2NH2","CH3CONH2","C2H6","CH3NHCH3","The nitrile is reduced to a primary amine.","Nitrile to amine."],
+[9,"Ethylamine is prepared by bromine and caustic potash acting on","Propionamide","Acetamide","Formamide","Methyl cyanide","Propionamide loses one carbon.","Start with one extra carbon."],
+[9,"Reduction of nitroalkanes yields","Amines","Alcohols","Acids","Diazo compounds","The nitro group becomes an amino group.","NO2 to NH2."],
+[9,"Changing acetamide into methylamine is called the","Hofmann reaction","Friedel-Crafts reaction","Hinsberg reaction","Wurtz reaction","It is the Hofmann degradation.","Amide down to amine."],
+[9,"Methyl iodide heated with ammonia gives","A mixture of methyl substituted amines","Only methylamine","Only dimethylamine","Only trimethylamine","Each amine formed can react again.","Alkylation keeps going."],
+[9,"Ethanol and ammonia passed over hot alumina give","C2H5NH2","C2H4","C2H5OC2H5","CH3OCH3","Ammonia replaces the OH group.","NH3 swaps for OH."],
+[9,"The nitrogen atom of an amino group is","sp3 hybridised","sp hybridised","sp2 hybridised","sp3d hybridised","It has three bonds and one lone pair.","Four regions, sp3."],
+[9,"Excess ethyl iodide treated with ammonia finally gives","Tetraethylammonium iodide","Ethylamine","Diethylamine","Triethylamine","Alkylation continues to the quaternary salt.","Excess alkyl goes all the way."],
+[9,"Secondary amines can be prepared by","Reduction of isonitriles","Reduction of nitro compounds","Reduction of nitriles","Oxidation of N-substituted amides","Isonitriles give N-methyl secondary amines.","Isonitrile gives secondary."],
+[9,"Which amide gives ethylamine with sodium hypobromite?","Propanamide","Butanamide","Acetamide","Benzamide","One carbon is lost.","Three carbons give two."],
+[9,"Tertiary amines boil lowest among isomeric amines because they","Cannot hydrogen bond with each other","Have the highest molecular mass","Are the most polar","Are always the most basic","They have no N-H bond.","No N-H, low boiling."],
+[9,"Primary and secondary amines can be distinguished with","HNO2","NH3","Br2 in alcohol","HClO","They give different products with nitrous acid.","Gas versus yellow oil."],
+[9,"Which is the correct order of increasing basicity?","C6H5NH2 < NH3 < CH3NH2 < CH3NHCH3","CH3NH2 < CH3NHCH3 < NH3 < C6H5NH2","C6H5NH2 < NH3 < CH3NHCH3 < CH3NH2","CH3NHCH3 < CH3NH2 < NH3 < C6H5NH2","Aniline is weakest and dimethylamine strongest.","Aryl low, alkyl high."],
+[9,"Which of these is the least basic?","C6H5NH2","CH3NH2","C2H5NH2","C3H7NH2","The ring draws the lone pair away.","Aniline is weak."],
+[9,"Which compound is amphoteric in nature?","CH3CONH2","CH3NH2","CH3NHCH3","C6H5NH2","Acetamide can react as a weak acid and a weak base.","Amides play both sides."],
+[9,"Which amine will not dissolve in dilute HCl?","Triphenylamine","Ethylamine","Dimethylamine","Methylamine","Three rings leave the lone pair too weak to take a proton.","Three rings, no salt."],
+[9,"Primary, secondary and tertiary amines can be separated using","Benzenesulphonyl chloride","Iodoform","Acetaldehyde","Sodium chloride","This is the Hinsberg method.","Hinsberg separates."],
+[9,"Which is the strongest base?","Benzylamine","Aniline","p-Phenylenediamine","m-Nitroaniline","Its lone pair does not enter the ring.","Benzyl beats aryl."],
+[9,"Hofmann degradation converts RCONH2 to","RNH2","R2NH","R3N","RCN","A primary amine with one carbon less forms.","Amide to primary amine."],
+/* ---------- 10 · Amino Acids & Proteins ---------- */
+[10,"Which of the following describes the side chain for Valine?","isopropyl group","ethyl group","hydrogen","isobutyl group","Valine carries an isopropyl side chain.","V looks like a fork of two methyls."],
+[10,"Which of the following describes the side chain of Leucine?","isobutyl group","ethyl group","isopropyl group","sec-butyl group","Leucine carries an isobutyl side chain.","Leucine = isobutyl."],
+[10,"Which of the following amino acids has an aromatic R group?","Tyrosine","Serine","Cysteine","Asparagine","Tyrosine contains a phenol ring.","Aromatic: Phe, Tyr, Trp."],
+[10,"Which of the following amino acids has a heterocyclic R group?","Proline","Glycine","Threonine","Aspartic acid","Proline has its nitrogen inside a ring.","Proline is the ring one."],
+[10,"The monomeric units that make up peptides and protein polymers are","amino acids","nucleic acids","oligosaccharides","amylopectins","Proteins are chains of amino acids.","Amino acids are the beads."],
+[10,"Glycine is a unique amino acid because it","has no chiral carbon","has a sulfur containing R group","cannot form a peptide bond","is an essential amino acid","Glycine has two hydrogens on its alpha carbon.","Glycine is not chiral."],
+[10,"Proteins are","polyamides","Polymers of ethylene","α-Aminocarboxylic acids","Polymers of propylene","Amino acids are joined by amide bonds, so proteins are polyamides.","Peptide bond is an amide."],
+[10,"The nitrogen content of proteins can be quantitatively determined by","Kjeldahl's method","Carius method","Victor Meyer's method","Rast method","Kjeldahl's method measures nitrogen.","Kjeldahl for nitrogen."],
+[10,"The linear arrangement of amino acid units in proteins is called","primary structure","secondary structure","tertiary structure","quaternary structure","The amino acid sequence is the primary structure.","Primary = order."],
+[10,"The α-Helix is held in a coiled conformation partially because of","Hydrogen bonding","Optical activity","Resonance","Delocalization","Hydrogen bonds between peptide groups hold the helix.","Helix held by H bonds."],
+[10,"Irreversible precipitation of proteins caused by heating is called","Denaturation","Polymerisation","Electrophoresis","Inversion","Heat destroys the folded shape of a protein.","Boiled egg = denatured."],
+[10,"Which of the following tests is not used for testing proteins?","Tollens' test","Ninhydrin test","Biuret test","Xanthoproteic test","Tollens' test detects aldehydes, not proteins.","Tollens is for sugars and aldehydes."],
+[10,"A protein solution on warming with concentrated HNO3 may turn yellow. This test is called","Xanthoproteic test","Ninhydrin test","Biuret test","Million's test","Aromatic rings in the protein are nitrated and turn yellow.","Xantho means yellow."],
+[10,"In neutral solution most amino acids exist as","Zwitterions","Positively charged ions","Negatively charged ions","Hydrophobic molecules","They carry both a positive and a negative charge.","Zwitter means double."],
+[10,"Proline is strictly speaking","An amino acid","A dicarboxylic acid","An aromatic hydrocarbon","A simple amide","Proline is the cyclic amino acid.","Proline is ringed."],
+[10,"Proteins are a group of what kind of compounds found in living matter?","Nitrogen containing organic compounds","Nitrogen free organic compounds","Nitrogen containing inorganic compounds","Chlorine containing salts","Proteins are organic and contain nitrogen.","Protein means nitrogen."],
+[10,"Which is not a major component of protein?","Chlorine","Oxygen","Nitrogen","Hydrogen","Proteins are mainly C, H, O, N and some S.","No chlorine."],
+[10,"A peptide linkage joins the amino and carboxyl groups of","Adjacent amino acids","Opposite amino acids","The same carbon of one amino acid","Unrelated sugar units","Neighbouring amino acids are joined with loss of water.","Neighbours link."],
+[10,"The simplest unit of a protein is","An amino acid","Nitrogen","An amine","A carboxylic acid","Proteins are polymers of amino acids.","Amino acid is the brick."],
+[10,"Amino acids show which characteristics?","Both acidic and basic","Only acidic","Only basic","Only neutral","They carry COOH and NH2 groups.","Two groups, two natures."],
+[10,"The simplest amino acid is","Glycine","Alanine","Valine","Cysteine","Its side chain is just hydrogen.","Glycine is smallest."],
+[10,"The nature of an amino acid is","Amphoteric","Only acidic","Only basic","Inert","It reacts with both acids and bases.","Amphi means both."],
+[10,"Which is not an essential amino acid?","Glycine","Lysine","Histidine","Valine","The body can make glycine.","Glycine is homemade."],
+[10,"Which is not usually classed as a non-essential amino acid among these?","Arginine","Alanine","Glycine","Proline","Arginine is often grouped as essential or conditionally essential.","Arginine is the exception."],
+[10,"Which is not a neutral amino acid?","Lysine","Alanine","Glycine","Methionine","Lysine has an extra amino group.","Lysine is basic."],
+[10,"How many amino groups does an acidic amino acid usually have?","1","0","2","3","It has one amino group and two carboxyl groups.","Acidic means extra acid."],
+[10,"How many carboxyl groups does an acidic amino acid usually have?","2","0","1","3","The extra carboxyl group makes it acidic.","Aspartate has two."],
+[10,"How many amino groups does a basic amino acid such as lysine have?","2","0","1","3","The extra amino group makes it basic.","Basic means extra amine."],
+[10,"How many carboxyl groups does a basic amino acid have?","1","0","2","3","Only the amino groups are extra.","One acid only."],
+[10,"Which is a basic amino acid?","Arginine","Alanine","Proline","Tyrosine","Arginine has a basic side chain.","Basic: Arg, Lys, His."],
+[10,"How do essential amino acids differ from non-essential ones?","The body cannot make essential ones","The body makes only essential ones","Essential ones are absent from food","Only organs make essential ones","Essential amino acids must come from the diet.","Essential, eat it."],
+[10,"Which is an aromatic amino acid?","Tyrosine","Proline","Arginine","Methionine","Tyrosine has a benzene ring.","Tyr has a ring."],
+[10,"Which condition would not denature a protein?","Optimal pH","Strong heat","High pressure","Ionising radiation","At optimal pH the shape is kept.","Optimal is safe."],
+[10,"When a protein is denatured it","Unfolds into a random coil","Returns to its natural state","Gains a new peptide order","Becomes an amino acid at once","The folded structure is lost.","Fold lost."],
+[10,"Which is a test for protein?","Biuret test","Lucas test","Grignard test","Tollens test","Peptide bonds turn the reagent violet.","Biuret turns violet."],
+/* ---------- 11 · Carbohydrates ---------- */
+[11,"Cellulose can be described by all of these terms except","Bioenzyme","Polymer","Biopolymer","Polysaccharide","Enzymes are proteins, while cellulose is a carbohydrate.","Cellulose is no enzyme."],
+[11,"Which food will not turn blue-black with iodine?","Groundnut","Gari","Guinea corn","Pupuru","Groundnut is mainly fat and protein.","Iodine looks for starch."],
+[11,"Starch is also known by or related to all these names except","Pectin","Amylum","Amylose","Amylopectin","Pectin is a different polysaccharide found in fruit.","Pectin sets jam."],
+[11,"Which of these is not a reducing sugar?","Sucrose","Glucose","Maltose","Lactose","Both anomeric carbons of sucrose are tied up in its bond.","Sucrose does not reduce."],
+[11,"A positive Benedict test is shown by a colour change from","Blue to brick red","Brick red to blue","Brown to blue","Blue to black","Copper two is reduced to red copper one oxide.","Blue to brick."],
+[11,"The enzyme responsible for fermentation in bread yeast is","Zymase","Amylase","Pepsin","Lipase","Zymase turns sugar into ethanol and carbon dioxide.","Zymase makes dough rise."],
+[11,"Glycogen is a branched polymer made of residues of","Glucose","Maltose","Fructose","Galactose","Glycogen is the animal store of glucose.","Glycogen is stored glucose."],
+[11,"Which is not a property of cellulose?","It is easily hydrolysed","It is a white solid","It is insoluble in water","It is a carbohydrate","Cellulose resists hydrolysis and needs strong acid or cellulase.","Cellulose is tough."],
+[11,"The enzyme that helps hydrolyse cellulose is found in","Termites","Spiders","Man","Pigs","Microbes in termite guts supply cellulase.","Termites eat wood."],
+[11,"Cellulose can be used to produce all of these except","Polythene","Cardboard","Cellophane","Rayon","Polythene is made from ethene.","Polythene is from petroleum."],
+[11,"Which statement is false about a chain of 300 to 600 glucose units?","It is a disaccharide","It can be an amylose molecule","Its monomer is glucose","It can be hydrolysed to glucose","A disaccharide has only two units.","Di means two."],
+[11,"The main form in which carbohydrates are carried in plants is","Sucrose","Glucose","Maltose","Galactose","Sucrose is stable and moves in the phloem.","Phloem carries sucrose."],
+[11,"Which of these is not a disaccharide?","Glucose","Sucrose","Maltose","Lactose","Glucose is a single sugar unit.","Glucose is mono."],
+[11,"Which is not an isomer of D-glucose?","D-Sorbitol","L-Glucose","D-Galactose","D-Fructose","Sorbitol has two more hydrogens.","Check the formula."],
+[11,"Strong heating of C12H22O11 produces","Carbon and water","Ethane","Ethene","Methane only","The sugar is dehydrated to black carbon.","Sugar chars."],
+[11,"The product of fermentation of maize is","Alcohol","Ketone","Amine","Ester","Starch breaks to glucose, which ferments to ethanol.","Fermentation gives alcohol."],
+[11,"Which reagent can be used to lengthen a sugar chain?","HCN","NH2OH","NaBH4","HNO3","The Kiliani synthesis adds one carbon using cyanide.","HCN adds one carbon."],
+[11,"Converting glucose to sorbitol involves","Reduction of glucose","Oxidation of glucose","Substitution","Hydrolysis","The aldehyde group becomes an alcohol.","Aldose to alditol is reduction."],
+[11,"Glucose reacting with concentrated HNO3 gives","An aldaric acid","Gluconic acid","Glucitol","Fructose","Both ends of the chain are oxidised.","Strong nitric, both ends."],
+[11,"An oil rich in 9,12,15-octadecatrienoic acid is likely to be useful for","Making paints","Making margarine without treatment","Supplying glucose","Making a saturated wax","Three double bonds make it a drying oil.","Drying oils go into paint."],
+/* ---------- 12 · Phenols & General ---------- */
+[12,"A natural source of phenol is","Coal tar","Bones","Vegetable oils","Fermented plants","Phenol is distilled from coal tar.","Phenol from tar."],
+[12,"Phenol is regarded as an acid because","It easily releases a proton due to resonance","It is volatile","It is insoluble in water","It is corrosive to the skin","Resonance stabilises the phenoxide ion.","Stable anion, acid."],
+[12,"The interconversion of phenol and cyclohexadienone is called","Tautomerism","Dehydration","Deprotonation","Reduction","A hydrogen and a double bond shift position.","Keto and enol are tautomers."],
+[12,"Which functional group is not found in urea?","Hydroxyl","Amino","Carbonyl","Amide","Urea is two amino groups on a carbonyl.","Urea has no OH."],
+[12,"Plastics are","Polymers","Minerals","Monomers","Metals","Plastics are long chains of repeating units.","Many units, polymer."],
+[12,"Which is not a method of purification?","Halogenation","Filtration","Centrifugation","Adsorption","Halogenation is a chemical reaction that adds halogen.","Halogenation changes the substance."]
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='CHM102', LABEL='CHM 102', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('CHM102');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
