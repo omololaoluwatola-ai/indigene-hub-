@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PHY 102 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">PHY 102</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>PHY 102 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · PHY 102 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Charges & Coulomb's Law",
+  "Electric Field, Potential & Gauss",
+  "Capacitance",
+  "Current, Resistance & Circuits",
+  "Magnetic Fields & Forces",
+  "Electromagnetic Induction",
+  "Inductance & Transformers",
+  "Maxwell's Equations & Waves"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Charges & Coulomb's Law ---------- */
+[0,"The electron and proton of a hydrogen atom are about 5.3 × 10⁻¹¹ m apart. The magnitude of the electric force between them is","8.2 × 10⁻⁸ N","5.3 × 10⁻⁸ N","9.6 × 10⁻⁸ N","3.3 × 10⁻⁹ N","F = kq²/r² with q = 1.6 × 10⁻¹⁹ C gives 8.2 × 10⁻⁸ N, and it is attractive.","Hydrogen atom force: remember 8.2 × 10⁻⁸ N."],
+[0,"A point charge of −1 μC sits at the origin and a +1 μC charge is 50 cm away. The force on the second charge is","3.6 × 10⁻² N, attractive","3.6 × 10⁻² N, repulsive","1.8 × 10⁻² N, attractive","9.0 × 10⁻³ N, attractive","F = 9 × 10⁹ × 10⁻¹² ÷ 0.25 = 0.036 N. Unlike charges attract.","Opposite signs always pull."],
+[0,"Two identical small conducting spheres have their centres 0.300 m apart and carry 12.0 nC and −18.0 nC. The force between them is","2.16 × 10⁻⁵ N, attractive","2.16 × 10⁻⁵ N, repulsive","6.48 × 10⁻⁶ N, attractive","1.50 × 10⁻³ N, attractive","F = kq₁q₂/r² = 9 × 10⁹ × 216 × 10⁻¹⁸ ÷ 0.09.","Nano means 10⁻⁹. Do the numbers first, powers last."],
+[0,"Object A has a charge of +2 μC and object B has +6 μC. Which statement is true about the forces on them?","F_AB = −F_BA","F_AB = −3F_BA","3F_AB = −F_BA","F_AB = 3F_BA","The two forces are an action and reaction pair, equal in size and opposite in direction.","Unequal charges, still equal forces."],
+[0,"Three charges lie on a line: q₁ = −4 μC, q₂ = +3 μC, q₃ = −7 μC. q₁ to q₂ is 20 cm and q₂ to q₃ is 15 cm. The net force on q₂ is","5.7 N toward q₃","5.7 N toward q₁","11.1 N toward q₃","2.7 N toward q₁","q₁ pulls with 2.7 N one way and q₃ pulls with 8.4 N the other way, leaving 5.7 N.","Pulls in opposite directions subtract."],
+[0,"Which of these systems has the most negative net charge, given that N is at least 3?","N electrons and N − 3 protons","2 electrons and no protons","3 electrons and 1 proton","5 electrons and 5 protons","The net charge is −3e, larger in size than −2e or zero.","Net charge = protons minus electrons."],
+[0,"Charging an object without direct contact with it is known as charging by","Induction","Conduction","Convection","Friction","Induction rearranges or separates charge using a nearby charged body without touching it.","No touch = induction."],
+[0,"Which of the following is NOT one of the fundamental forces?","Frictional force","Gravitational force","Electromagnetic force","Strong nuclear force","The four fundamental forces are gravity, electromagnetism, weak nuclear and strong nuclear.","Friction comes from electromagnetism, so it is not basic."],
+[0,"Coulomb's law states that the force between two point charges is directly proportional to the","product of the charge magnitudes","sum of the charge magnitudes","square of their separation","cube of their separation","F = kq₁q₂/r², so force follows the product of charges and the inverse square of distance.","Product on top, r squared below."],
+[0,"The value of the constant k in Coulomb's law depends upon the","medium between the charges","magnitude of the charges","distance between the charges","charges and their distance","k = 1/(4πε₀εᵣ), and εᵣ belongs to the medium.","k lives in the medium."],
+[0,"Which combination of particles would attract each other?","Electrons and protons","Neutrons and protons by charge","Neutrons and electrons","Electrons and electrons","Only unlike charges attract electrically, and neutrons carry no charge.","Unlike attract."],
+[0,"Which of these will NOT increase the electric force between two charged objects?","Making one object physically bigger","Increasing the charge on one object","Bringing the objects closer together","Increasing the charge on both objects","Coulomb's law depends on charge and distance, not on the size of the body.","Size is not in the formula."],
+[0,"If the charge on one of two objects is doubled, the force between them becomes","twice as strong","half as strong","four times as strong","unchanged in size","Force is directly proportional to each charge.","Double one charge, double the force."],
+[0,"For a collection of point charges, the net force on any one charge is obtained using the","superposition principle","Pythagoras theorem alone","Faraday induction law","charge conservation law","The net force is the vector sum of the forces from each of the other charges.","Many charges = superpose."],
+[0,"For charges of 1 C and −4 C in air, the electric force between them is","attractive, pulling each toward the other","repulsive, pushing each away from the other","zero, because the two charges are unequal","felt only by the smaller 1 C charge","Unlike charges attract, and both feel the same size of force.","Plus and minus pull."],
+[0,"If both charges in Coulomb's law are doubled and their distance is also doubled, the force","remains the same","increases four times","increases eight times","increases two times","The top grows by 4 and the bottom r² also grows by 4.","4 over 4 equals 1."],
+[0,"The algebraic sum of electric charges in a closed system stays constant. This is the conservation of","charge","mass","energy","momentum","Charge is neither created nor destroyed, only transferred.","Charge sum = charge law."],
+[0,"According to Coulomb's law, if the force between two charges is positive, then","the force between them is repulsive","the force between them is attractive","one is positive and one negative","the two charges must be equal","A positive product means like signs, and like charges repel.","Positive answer = push."],
+/* ---------- 1 · Electric Field, Potential & Gauss ---------- */
+[1,"A positive test charge of 3.0 × 10⁻⁸ C experiences a force of 6.0 × 10⁻⁸ N. The electric field at that place is","2 N/C","18 N/C","9 N/C","6 N/C","E = F/q = 6 ÷ 3 = 2 N/C.","Field = force per charge."],
+[1,"The total electric flux over any closed surface enclosing a charge q is","q / ε₀","ε₀ / q","q² / ε₀","q × ε₀","This is Gauss's law.","Charge on top, epsilon below."],
+[1,"The potential in an xy plane is V = 2x² − 3y². The magnitude and direction of the field at (3.0 m, 2.0 m) are","17 V/m at 135°","17 V/m at 45°","25 V/m at 45°","42 V/m at 35°","E = −gradient of V, so Ex = −12 and Ey = +12, giving 17 V/m in the second quadrant.","Do not forget the minus sign: left and up is 135°."],
+[1,"The total electric flux through a closed surface depends on","the charge enclosed only","the location of the charge only","the shape of the surface only","the size of the surface only","Gauss's law gives flux = enclosed charge ÷ ε₀.","Shape and position do not count."],
+[1,"An infinite nonconducting sheet has σ = 0.10 μC/m². How far apart are equipotential surfaces that differ by 50 V?","8.85 mm","88 mm","0.885 mm","17.7 mm","E = σ/2ε₀ = 5650 V/m and d = V/E.","d = 2ε₀V/σ."],
+[1,"Two fields of 3.00 N/C and 2.00 N/C act at right angles at point P. The net field and its angle from the 3.00 N/C field are","3.61 N/C at 33.7°","3.61 N/C at 56.3°","5.00 N/C at 33.7°","5.00 N/C at 42.0°","Magnitude is √13 and the angle is tan⁻¹ of 2/3.","Right angles: Pythagoras then tan."],
+[1,"A set of points at the same potential, where no work is needed to move a charge between them, is called","an equipotential surface","an interpolar field surface","a Gaussian charge surface","a neutral flux surface","With no potential difference, W = qΔV = 0.","Equal potential, zero work."],
+[1,"Two +2 μC charges are on the x-axis at x = 1.00 m and x = −1.00 m. The electric field on the y-axis at y = 0.500 m is about","1.29 × 10⁴ N/C","6.4 × 10³ N/C","1.44 × 10⁴ N/C","2.88 × 10⁴ N/C","The x parts cancel and the two y parts of about 6440 N/C add.","Symmetry kills the x parts."],
+[1,"The work needed to carry an electron from the positive terminal to the negative terminal of a 12 V battery is","1.9 × 10⁻¹⁸ J","−1.9 × 10⁻¹⁸ J","1.6 × 10⁻¹⁷ J","1.2 × 10⁻¹⁸ J","W = qΔV = (−1.6 × 10⁻¹⁹)(−12), which is positive.","Pushing an electron to the negative side costs work."],
+[1,"Two large parallel plates 12 cm apart exert a force of 3.9 × 10⁻¹⁵ N on an electron between them. The field and the potential difference are","2.4 × 10⁴ V/m and 2.9 × 10³ V","3.5 × 10⁴ V/m and 2.7 × 10³ V","6.4 × 10⁴ V/m and 5.9 × 10³ V","2.5 × 10⁵ V/m and 2.5 × 10² V","E = F/e and V = Ed with d = 0.12 m.","Force to field first, then multiply by distance."],
+[1,"An electric field is 160 N/C at 15 cm from a charge. The field 26 cm from the same charge is","53.3 N/C","92.3 N/C","36.0 N/C","18.0 N/C","E follows 1/r², so E = 160 × 15² ÷ 26².","Square the distance ratio."],
+[1,"The field between two deflecting plates of an oscilloscope is 30,000 N/C. The force on an electron there is","4.8 × 10⁻¹⁵ N","4.8 × 10⁻¹⁸ N","2.8 × 10⁻¹⁵ N","6.8 × 10⁻¹⁸ N","F = eE = 1.6 × 10⁻¹⁹ × 3 × 10⁴.","F = qE, add the powers."],
+[1,"The potential difference between a cloud and the ground is 1.2 × 10⁹ V. The change in potential energy of an electron moving between them is","1.2 GeV","4.8 GeV","2.4 GeV","3.6 GeV","One electron moved through one volt gains one electronvolt.","For one electron, volts read straight as eV."],
+[1,"A +3 μC test charge sits at P where the external field points right with 4 × 10⁶ N/C. If it is replaced by a −3 μC charge, the external field at P","stays the same","reverses its direction","doubles its strength","drops to zero","The external field is made by other charges. Only the force on the test charge reverses.","Test charge changes force, not field."],
+[1,"Five charges +3, −2, −2, +4 and −1 nC are enclosed in a cylindrical surface. The total flux through it is","226 V m","200 V m","678 V m","760 V m","The net charge is 2 nC and flux = q/ε₀.","Add with signs before dividing."],
+[1,"Five charges +3, −2, +2, +4 and −1 nC are enclosed in a cylindrical surface. The total flux through it is","678 V m","226 V m","460 V m","900 V m","The net charge is 6 nC and 6 × 10⁻⁹ ÷ 8.85 × 10⁻¹² is about 678.","Watch the sign of q₃."],
+[1,"The electric potential energy of two electrons 2 nm apart in free space is","1.15 × 10⁻¹⁹ J","2.75 × 10⁻¹⁹ J","1.73 × 10⁻¹⁹ J","4.75 × 10⁻¹⁹ J","U = ke²/r.","Energy uses r, force uses r²."],
+[1,"An electron moves around a fixed proton at 5.29 × 10⁻¹¹ m. The potential created by the proton at this distance is","+27.2 V","−13.6 V","+13.6 V","+6.8 V","V = ke/r, positive because the proton is positive.","Potential at the Bohr radius is 27.2 V."],
+[1,"A line charge of λ = 10⁻¹² C/m passes through the centre of a sphere. If the flux through the sphere is 1.13 × 10⁻³ V m, what is the radius?","5 × 10⁻³ m","4 × 10⁻³ m","1 × 10⁻³ m","7 × 10⁻³ m","The enclosed length is 2R, so flux = 2Rλ/ε₀.","A line through a sphere encloses one diameter."],
+[1,"Two equal and opposite 10 μC charges are 40 cm apart. The electric field midway between them is","4.5 × 10⁶ N/C","2.25 × 10⁶ N/C","2.25 × 10⁵ N/C","zero","Each gives 2.25 × 10⁶ N/C in the same direction, so they add.","Opposite charges add at the middle."],
+[1,"The field needed so that the electric force on an electron equals its weight is about","5.6 × 10⁻¹¹ N/C","4.0 × 10⁻¹¹ N/C","9.8 N/C","1.8 × 10¹¹ N/C","eE = mg gives E = mg/e.","Balance means qE = mg."],
+[1,"A metal sphere of radius 20 cm carries 600 μC. The electric field at a point inside the sphere is","zero","1.35 × 10⁸ N/C","2.70 × 10⁷ N/C","6.75 × 10⁶ N/C","Charge on a conductor stays on its surface, so the field inside is zero.","Inside a metal: no field."],
+[1,"The electric field intensity at a point 15 cm from a 10 μC charge is","4 × 10⁶ N/C","3 × 10⁶ N/C","1.5 × 10⁶ N/C","6 × 10⁶ N/C","E = kq/r² = 9 × 10⁹ × 10⁻⁵ ÷ 0.0225.","Convert cm to m before squaring."],
+[1,"Which of the following does NOT obey an inverse square law?","Electric potential","Gravitational force","Electrostatic force","Electric field strength","Potential of a point charge varies as 1/r, not 1/r².","Potential has a single r."],
+[1,"A 50 μC charge gives a field of 360 N/C at a point. The field due to a 120 μC charge at the same distance in the same medium is","864 N/C","150 N/C","1150 N/C","16.7 N/C","At fixed distance E is proportional to q, so 360 × 120 ÷ 50 = 864.","Same distance, scale by charge."],
+[1,"An electron of mass m and charge e enters the field between plates a distance d apart with potential difference V. Its acceleration is","eV / md","md / eV","d / meV","e / Vmd","ma = eE and E = V/d.","Push on top, mass and gap below."],
+[1,"Which expression gives the electric force between two equal charges q separated by r?","q² / 4πε₀r²","kq² / 4πε₀r²","kq / 4πε₀r²","q / 4πε₀r²","F = kq²/r² and k = 1/4πε₀.","Use k or 1/4πε₀, never both."],
+[1,"Which expression gives the electric field of a point charge q at a distance r?","kq / r²","kq² / r²","kq / r","kq² / r","E = F/q, so one q cancels.","Field: one q, r squared."],
+[1,"The nucleus of an atom has charge 3e. The flux through a sphere of radius 10⁻¹⁰ m around it is","5.42 × 10⁻⁸ N m²/C","4.8 × 10⁻⁷ N m²/C","4.8 × 10⁻⁹ N m²/C","5.42 × 10⁻⁶ N m²/C","Flux = 3e/ε₀ and the radius does not matter.","Ignore the radius for flux."],
+[1,"A 0.2 g ball hangs from a thread in an upward field of 3 kN/C. The thread tension is zero when the charge on the ball is","+653 nC","−653 nC","+680 nC","−680 nC","qE must equal mg and point up, so q is positive.","Zero tension: electric force carries the weight."],
+[1,"The expression ∮E · dA belongs to","Gauss's law","Coulomb's law","Kirchhoff's law","Ampere's law","It is the electric flux through a closed surface.","E dot dA means Gauss."],
+[1,"The line integral of electric field intensity gives","electric potential","magnetomotive force","magnetic potential","electric flux","Potential difference is the integral of E along a path.","Integrate E over length, get volts."],
+[1,"When a positive test charge is moved from a lower to a higher potential, its potential energy","increases","decreases","stays the same","becomes zero","U = qV, so U rises with V for a positive charge.","Uphill in potential stores energy."],
+[1,"Coulomb's law can be derived from which law?","Gauss's law","Ampere's law","Biot-Savart law","Lenz's law","Applying Gauss's law to a sphere around a point charge gives kq/r².","Sphere plus Gauss gives Coulomb."],
+[1,"Surface charge density is defined as charge per unit","area","length","volume","force","σ = q/A in C/m².","Surface means area."],
+/* ---------- 2 · Capacitance ---------- */
+[2,"Filtering out unwanted signals is one of the applications of a","capacitor","resistor","transistor","insulator","Capacitors are used for filtering, coupling, smoothing, timing and storing charge.","Filter and smooth: capacitor."],
+[2,"A 3.0 μF capacitor is charged to 2000 V. The energy stored is","6 J","1.5 J","150 J","6000 J","E = ½CV² = 0.5 × 3 × 10⁻⁶ × 4 × 10⁶.","Micro cancels the square of 2000."],
+[2,"Three capacitors of 3 μF, 5 μF and 8 μF are connected in parallel and given 200 μC. The potential difference across them is","12.5 V","1.52 V","16.0 V","131 V","Parallel capacitance is 16 μF and V = Q/C.","Parallel capacitors just add."],
+[2,"Capacitors of 0.2 μF and 0.6 μF are in parallel and given 200 μC. The potential difference is","0.25 kV","0.16 kV","8.0 kV","40 kV","C = 0.8 μF and V = 200 ÷ 0.8 = 250 V.","250 V is 0.25 kV."],
+[2,"For a parallel plate capacitor of fixed area, the capacitance is","inversely proportional to plate separation","directly proportional to plate separation","independent of the plate separation","proportional to the separation squared","C = εA/d.","Closer plates, bigger C."],
+[2,"A capacitor charged to 200 V holds 2000 μC. Its capacitance is","10 μF","100 μF","1000 μF","10 F","C = Q/V.","Q = CV."],
+[2,"A 2 μF and a 3 μF capacitor are in series with a parallel pair of 2 μF and 4 μF, followed by a 4 μF capacitor in series. The resultant capacitance is","0.8 μF","1.3 μF","9.8 μF","15 μF","The pair makes 6 μF, then 1/C = 1/2 + 1/3 + 1/6 + 1/4.","Series answer is smaller than the smallest."],
+/* ---------- 3 · Current, Resistance & Circuits ---------- */
+[3,"Two 1 Ω resistors in parallel are connected in series with another parallel pair of 1 Ω resistors. The total resistance is","1 Ω","2 Ω","0.5 Ω","4 Ω","Each pair is 0.5 Ω and the two add to 1 Ω.","Equal pair in parallel: halve it."],
+[3,"The integral of current over time, ∫I dt, gives the","quantity of charge","electrical resistance","potential difference","electric field strength","I = dQ/dt, so Q = ∫I dt.","Current times time = charge."],
+[3,"A uniform wire of length 2.0 m, resistivity 5.4 × 10⁻⁷ Ω m and area 9.5 × 10⁻³ cm² has conductivity and resistance of","1.85 × 10⁶ S/m and 1.14 Ω","3.70 × 10⁶ S/m and 1.14 Ω","1.85 × 10⁶ S/m and 2.28 Ω","1.60 × 10⁶ S/m and 3.14 Ω","σ = 1/ρ and R = ρL/A.","cm² to m² means times 10⁻⁴."],
+[3,"Which statement about the resistance of a wire is NOT correct?","It increases as cross-sectional area increases","It increases as the length of wire increases","It usually rises as a metal gets hotter","It depends on the material of the wire","R = ρL/A, so a thicker wire has less resistance.","Fat wire, easy flow."],
+[3,"The integral ∫J dA, where J is current density, represents","electric current","electrical resistance","potential difference","resistivity","Current density is current per area.","J times area = I."],
+[3,"How much charge flows through a wire carrying 6 A in 2 seconds?","12 C","10 C","8 C","4 C","Q = It.","Q = I × t."],
+[3,"The property of a substance that opposes the flow of electricity through it is called","resistance","conductance","inductance","capacitance","Resistance is measured in ohms.","Oppose = resist."],
+[3,"Each of the following affects the resistance of a wire EXCEPT the","potential difference applied","cross-sectional area","temperature of the wire","length of the wire","R depends on material, length, area and temperature.","Voltage changes current, not R."],
+[3,"For resistors connected in parallel, which quantity is the same for each?","Voltage","Current","Power","Resistance","All parallel branches join the same two points.","Parallel shares voltage."],
+[3,"The resistance of a 2.0 m wire with resistivity 5.4 × 10⁻⁷ Ω m and area 9.5 × 10⁻³ cm² is","1.14 Ω","10.8 Ω","0.10 Ω","2.28 Ω","R = ρL/A with A = 9.5 × 10⁻⁷ m².","Powers of 10⁻⁷ cancel."],
+/* ---------- 4 · Magnetic Fields & Forces ---------- */
+[4,"The cyclotron frequency of an electron in a uniform field of 2.0 × 10⁻⁴ T is","5.59 × 10⁶ Hz","3.51 × 10⁷ Hz","5.72 × 10⁵ Hz","1.82 × 10⁴ Hz","f = qB/2πm.","28 GHz per tesla for an electron."],
+[4,"A magnetic field is B = axz i + byz j + c k. Gauss's law for magnetism requires that","a = −b","a = b","a = −c","a = 2b","div B = az + bz = 0.","No monopoles: divergence is zero."],
+[4,"A particle moving north in a vertically downward magnetic field is deflected east. The sign of its charge is","negative","positive","neutral","impossible to tell","v × B points west, so a force to the east needs a negative charge.","Positive would go west, so flip it."],
+[4,"A coil of 160 turns and radius 1.90 cm has a magnetic dipole moment of 2.30 A m². The current in it is about","12.7 A","1.30 A","5.67 A","0.081 A","m = NIA, so I = m/NA.","Radius in metres, then πr²."],
+[4,"Which expression is the magnetic force part of the Lorentz equation?","F = qv × B","F = qB × v","F = qB × v²","F = qAB × v","The force on a moving charge is q times v cross B.","v comes before B."],
+[4,"The equation F = q(E + v × B) is known as the","Lorentz force law","magnetic force law","Coulomb force law","inverse square law","It gives the total electric and magnetic force on a charge.","E and B together: Lorentz."],
+[4,"A 12-turn circular coil 6.5 cm in diameter carries 2.7 A in a 0.56 T field. The maximum torque is about","0.060 N m","0.699 N m","0.274 N m","1.25 N m","τ = NIAB with A = π(0.0325)².","Max torque: sin 90 = 1."],
+[4,"The integral form of Ampere's law is","∮B · dl = μ₀I","∮B · dl = ε₀I","∮E · dl = μ₀q","∮B · dl = ε₀q","The circulation of B equals μ₀ times the enclosed current.","Ampere: B, dl, mu, I."],
+[4,"An electron moving at 7.60 × 10⁶ m/s in an 83.0 mT field has acceleration 4.70 × 10¹⁴ m/s². The angle between v and B is","0.24°","0.52°","24°","52°","sin θ = ma/qvB = 0.0042.","Small sine, small angle."],
+[4,"If magnetic flux density and current are at right angles, the force on the conductor is","BIL","BIL tan θ","BIL cos θ","BI / L","F = BIL sin θ and sin 90° is 1.","Perpendicular: just BIL."],
+[4,"The region around a magnet where it attracts or repels another magnetic pole is called a","magnetic field","free space field","electric field","gravitational field","A field is a region where a force is felt.","Magnet force, magnetic field."],
+[4,"The force on a charge moving in a magnetic field is half the maximum when the angle between v and B is","30°","0°","45°","90°","F = qvB sin θ and sin 30° is 0.5.","Half means 30."],
+[4,"The parts of a bar magnet where the magnetic effect is strongest are called the","poles","neutral points","magnetic meridians","declinations","Field lines crowd at the poles.","Strongest at the ends."],
+[4,"The total magnetic flux through a closed surface is","zero","infinity","unity","q / ε₀","Field lines are closed loops, so as much enters as leaves.","No magnetic monopoles."],
+[4,"A magnetic field has","lines of force","electric charge poles","lines of resistance","lines of reluctance","A magnetic field is pictured with lines of force.","Fields are drawn as lines."],
+[4,"Electromagnetism is the","magnetic field action with a current-carrying wire","current produced inside a stationary resistor coil","action between a permanent and an artificial magnet","magnetic field caused by a permanent bar magnet","It deals with the link between current and magnetism.","Current plus magnetism."],
+[4,"Increasing the field or the current will decrease the force on a conductor. This statement is","false, the force increases","true, the force decreases","true only for a weak field","false, the force stays fixed","F = BIL, so more B or I means more force.","Force follows B and I."],
+[4,"What happens to the force on a conductor if either the field or the current is reversed?","The force reverses direction","The force keeps its direction","The force becomes zero","The force doubles in size","Reversing one of the two flips the force. Reversing both leaves it unchanged.","One flip flips, two flips cancel."],
+[4,"A student writes the force on a conductor at angle θ to the field as F = Bl sin² θ. The correct expression is","F = BIl sin θ","F = Bl sin² θ","F = BIl cos θ","F = BIl tan θ","The force needs current and a single sine.","BIL sine."],
+/* ---------- 5 · Electromagnetic Induction ---------- */
+[5,"The magnetic flux Φ through a loop is given by","∫B · dA","∫B · dE","∇ · D","∫E · dD","Flux is the field summed over the area.","B dot area."],
+[5,"Flux through a loop is Φ = 6t² + 7 milliweber. The induced emf at t = 2 s is","0.024 V","0.031 V","0.020 V","0.094 V","emf = dΦ/dt = 12t = 24 mV.","The constant 7 vanishes."],
+[5,"A 100-turn coil of resistance 6 Ω encloses 80 cm². How fast must the axial field change to induce 1 mA?","0.0075 T/s","75.0 T/s","0.75 T/s","0.0006 T/s","IR = NA dB/dt.","emf first, then divide by NA."],
+[5,"A 10-turn coil of area 5 cm² is at right angles to a 2 × 10⁻² T field that falls to zero in 10 s. The induced emf is","1.0 × 10⁻⁵ V","1.0 × 10⁻⁴ V","1.0 × 10⁻³ V","1.3 × 10⁻⁵ V","emf = NBA/t.","Keep the N."],
+[5,"Lenz's law is a consequence of the conservation of","energy","charge","field lines","momentum","The induced current opposes the change, so work must be done to produce it.","Lenz = energy."],
+[5,"The lagging of magnetisation behind the magnetising force is called","hysteresis","induction","retentivity","reluctance","Hysteresis means to lag behind.","Lag = hysteresis."],
+[5,"Whenever a conductor cuts magnetic flux, an emf is induced in it. This is","Faraday's law","Coulomb's law","Joule's law","Ohm's law","This is Faraday's first law of induction.","Cut flux: Faraday."],
+[5,"A 500-turn coil of diameter 12 cm is perpendicular to a field that rises from 0.5 T to 0.85 T in 0.60 s. The induced emf is","3.30 V","45.6 V","33.0 V","52.4 V","emf = NAΔB/Δt.","Use radius 0.06 m."],
+[5,"Who stated that an emf is induced in a circuit whenever the magnetic flux linked with it changes?","Faraday","Fleming","Newton","Lenz","Lenz gave the direction, Faraday the induction.","Change of flux: Faraday."],
+[5,"Flux through a loop is φ = 6t² + 7t milliweber. The induced emf at t = 2 s is","0.031 V","0.024 V","0.038 V","0.014 V","dφ/dt = 12t + 7 = 31 mV.","Differentiate both terms."],
+[5,"Which law relates the induced emf to the rate of change of flux linkage?","Faraday's law","Coulomb's law","Ampere's law","Biot-Savart law","emf = −N dΦ/dt.","Rate of change of flux: Faraday."],
+[5,"The flux linkage of a material is 2t². The emf at t = 1 s is","4 V","1 V","9 V","12 V","The derivative is 4t.","2t² becomes 4t."],
+[5,"An emf is induced in a conductor whenever it","cuts magnetic flux","lies in a magnetic field","lies perpendicular to the flux","moves parallel to the field","There must be a change, which happens when flux is cut.","No cutting, no emf."],
+[5,"If the current in a conductor increases, the self-induced voltage will","drive current against the increase","aid the increasing current flow","aid the applied source voltage","have no effect on the current","Lenz's law says the induced effect opposes its cause.","Induced always fights the change."],
+[5,"The direction of the emf induced in a moving conductor can be found with","Fleming's right-hand rule","Laplace's rule","Kirchhoff's voltage law","Fleming's left-hand rule","The right hand is for generators, the left for motors.","Right hand generates."],
+[5,"The magnitude of an induced emf depends on the","rate of change of flux linkages","flux density of the field alone","total amount of flux cut alone","total flux linkages alone","Faraday's second law is about the rate.","Speed of change matters."],
+[5,"The magnitude of an induced emf does NOT depend on the","current already in the conductor","flux density of the magnetic field","amount of flux linkage change","rate of change of flux linkages","emf is set by how flux changes.","Current is a result, not a cause here."],
+[5,"Faraday's law is concerned with a magnetic field","cutting a conductor","resting inside a conductor","stored within a coil","showing hysteresis loss","Relative motion between field and conductor induces emf.","Cutting is the key word."],
+[5,"A moving magnetic field past a stationary conductor produces the same effect as a moving conductor in a field. This statement is","true, only relative motion matters","false, only the conductor may move","false, a moving field induces nothing","true only for insulating materials","Induction depends on relative motion.","Relative motion."],
+[5,"A 500-turn solenoid develops an average induced voltage of 60 V. Over what time must the flux change by 0.06 Wb?","0.5 s","0.01 s","0.1 s","5 s","t = NΔΦ/V = 30 ÷ 60.","N times flux over volts."],
+[5,"An average of 10 V is induced in a 250-turn solenoid by a flux change lasting 0.5 s. The total flux change is","0.02 Wb","20 Wb","2 Wb","0.2 Wb","ΔΦ = Vt/N = 5 ÷ 250.","Volt-seconds divided by turns."],
+/* ---------- 6 · Inductance & Transformers ---------- */
+[6,"The energy stored in a 20 mH coil carrying 0.2 A is","4 × 10⁻⁴ J","4 × 10⁻³ J","4 × 10⁻⁵ J","6.4 × 10⁻⁶ J","E = ½LI².","Half L I squared."],
+[6,"A coil of inductance L has its area and turns doubled and gets a core of relative permeability 1000. The new inductance is","8000 L","4000 L","2000 L","8 × 10⁻³ L","L ∝ μN²A, giving 1000 × 4 × 2.","Turns are squared."],
+[6,"The mutual inductance of two magnetically coupled coils depends on","core permeability, turns and area","core permeability and current only","number of turns and voltage only","coil current and core area only","M depends on geometry and core material.","Built features, not current."],
+[6,"A 250-turn solenoid is 20.0 cm long with cross-sectional area 400 × 10⁻⁴ m². Its inductance is","15.7 mH","0.157 mH","0.0157 mH","18.7 mH","L = μ₀N²A/l with A = 0.04 m² gives 0.0157 H.","400 × 10⁻⁴ is 0.04, not 4 × 10⁻⁴."],
+[6,"Which circuit element stores energy in a magnetic field?","Inductor","Capacitor","Variable resistor","Fixed resistor","An inductor stores ½LI² in its field.","Inductor magnetic, capacitor electric."],
+[6,"A transformer on a 120 V line has 200 primary and 50 secondary turns, with a 100 Ω bulb on the secondary. The current drawn from the line is","0.075 A","0.300 A","0.0075 A","0.560 A","Vs = 30 V, Is = 0.3 A and Ip is one quarter of that.","Step down voltage, small primary current."],
+[6,"A coil's core length is 200 mm and its inductance 6 mH. If the core length is doubled and all else stays the same, the inductance becomes","3 mH","12 mH","24 mH","48 mH","L = μN²A/l, so doubling l halves L.","Longer coil, less L."],
+[6,"The emf induced in a coil by the changing current of a neighbouring coil is called","mutually induced emf","self-induced emf","dynamically induced emf","statically stored emf","Two coils are involved, so it is mutual induction.","Neighbour = mutual."],
+[6,"A transformer converts 60 V to 230 V with 85% efficiency and feeds a 230 V, 100 W lamp. The primary current is","1.96 A","1.67 A","0.43 A","3.40 A","Input power is 100 ÷ 0.85 and I = P/60.","Divide by efficiency for input."],
+[6,"The unit of inductance is the","henry","ampere","ohm","farad","Inductance L is measured in henrys.","L is in H."],
+[6,"The property of a coil by which a counter emf is induced when its own current changes is","self-inductance","mutual inductance","series aiding inductance","capacitance","The coil reacts to its own changing flux.","Own current = self."],
+[6,"The inductance of a coil increases in all these cases EXCEPT when","it is made longer with the same turns","the number of turns is increased","the area of each turn is increased","the core permeability is increased","L = μN²A/l, so length is in the denominator.","Only length pulls L down."],
+[6,"The higher the self-inductance of a coil, the","longer the delay in reaching steady current","smaller the number of weber-turns it has","lower the emf induced in it by a change","smaller the flux produced by a current","Back emf is larger, so current rises more slowly.","Big L, slow current."],
+[6,"If the iron core is removed from a coil, its inductance will","decrease","increase","remain the same","rise then fall","Air has far lower permeability than iron.","No iron, less L."],
+[6,"An open coil has","infinite resistance and zero inductance","zero resistance and zero inductance","infinite resistance and normal inductance","zero resistance and very high inductance","A broken winding carries no current, so it links no flux.","Open means nothing flows."],
+[6,"Both the number of turns and the core length of a coil are doubled. Its self-inductance will be","doubled","unaffected","halved","quadrupled","N² gives 4 and the length gives ½.","4 over 2."],
+[6,"Air-core coils are practically free from","both hysteresis and eddy current losses","hysteresis losses but not eddy losses","eddy current losses but not hysteresis","resistive heating losses in the wire","Both losses happen in a magnetic core.","No core, no core losses."],
+[6,"Is direct contact between two coils needed for mutual induction?","No, magnetic flux links them","Yes, their wires must touch","Yes, they must share a battery","No, but they must share charge","The changing flux of one coil reaches the other.","Flux is the bridge."],
+[6,"In an inductor, the current is proportional to the","magnetic field it produces","voltage across it at any instant","resistance of its core material","charge stored on its turns","The field of a coil is proportional to its current.","Current makes field."],
+[6,"An emf of 16 V is induced in a 4 H coil. The rate of change of current is","4 A/s","64 A/s","32 A/s","16 A/s","dI/dt = emf/L.","Divide volts by henrys."],
+[6,"A straight air-cored solenoid of length 1 m, area 10 cm² and 2000 turns carries 1 A that is reversed in 0.1 s. The average induced emf is about","0.1 V","10 V","1 V","0.5 V","L is about 5 mH and ΔI is 2 A, so emf = 5 mH × 20 A/s.","Reversal means change of 2I."],
+[6,"A long solenoid with 10 turns per cm has a short 50-turn coil of area 2 cm² fixed inside at its middle. Their mutual inductance in microhenry is","4π","400","40","π","M = μ₀nNA using the inner coil's area.","Use the smaller area."],
+[6,"A small coil inside a long solenoid is moved along the axis near the middle while the solenoid current stays at 2 A. The emf induced in it is","zero","200π μV","100π μV","20π μV","The field there is uniform, so the linked flux does not change.","No flux change, no emf."],
+[6,"A solenoid and inner coil have mutual inductance 4π μH. The solenoid current of 4 A is switched off in 100 ms. The emf induced in the inner coil is","0.16π mV","0.2π mV","0.4π mV","π mV","emf = M × 40 A/s = 160π μV.","M times the current rate."],
+[6,"A battery of emf V is connected to a coil of inductance L and resistance R. The current after two time constants is","V/R − V/R × e⁻²","V/R × e⁻²","V/R − V/R × e⁻¹","V/R × e⁻¹","I = I₀ minus I₀e^(−t/τ) with t = 2τ.","Growth is final value minus decay."],
+[6,"Self-induced emf is also known as","back emf","forward emf","terminal emf","contact emf","It acts against the change in current.","Self-induced pushes back."],
+[6,"A current change of 1 A/s produces an emf of 1 V. The inductance is","1 henry","1 weber","1 tesla","1 farad","L = emf ÷ rate of change of current.","1 V per A/s = 1 H."],
+[6,"Changing current in one coil inducing an emf in another coil is called","mutual induction","self induction","electrostatic induction","magnetic retention","Two coils are linked by flux.","Another coil = mutual."],
+[6,"The negative sign in the self-induction equation shows that the induced emf","opposes the change","supports the change","keeps the current rising","has no fixed direction","This is Lenz's law.","Minus means against."],
+[6,"The geometric quantity linking two coils is called their","mutual inductance","self inductance","coil reluctance","core retentivity","M is fixed by the arrangement of the two coils.","Between two = mutual."],
+[6,"The mutual inductance between two coils depends on the","core size, material and winding","values of the two coil currents","voltage difference between coils","rate at which current changes","M is a property of construction.","Hardware decides M."],
+[6,"An important application of mutual inductance is the","transformer","transistor","capacitor","DC battery","A transformer passes energy between windings by flux linkage.","Two windings: transformer."],
+[6,"When current in a circuit changes, the self-induced emf acts to","oppose the rise or fall of current","speed up the rise or fall of current","double the current in the circuit","hold the current permanently at zero","It slows both increases and decreases.","Inductors hate change."],
+[6,"Which equation gives the self-induced emf in a coil?","emf = −L dI/dt","emf = L I t","emf = −I dL/dR","emf = L ÷ dI/dt","It is proportional to the rate of change of current.","Minus L dI by dt."],
+[6,"The magnetic flux of a current-carrying coil is directly proportional to the","current","voltage rating","wire resistance","frequency squared","Φ is proportional to I, and the constant leads to L.","NΦ = LI."],
+[6,"Coils of 5 H and 4 H wound on a non-magnetic core have mutual inductance 1.5 H. The coupling coefficient is","33.5%","3.35%","40.6%","7.50%","k = M ÷ √(L₁L₂) = 1.5 ÷ √20.","M over root of the product."],
+[6,"A crack in the magnetic path of an inductor results in","reduced inductance","increased inductance","unchanged inductance","zero resistance","The air gap raises reluctance.","Crack, less flux."],
+[6,"When the current in one coil becomes steady, the current induced in a neighbouring coil is","zero","infinite","doubled","halved","Steady current means constant flux.","No change, nothing induced."],
+[6,"Coil 1 has 500 turns and flux 3 Wb per turn when coil 2 carries 2 A. The mutual inductance is","750 H","500 H","450 H","900 H","M = NΦ/I.","Turns times flux over amps."],
+[6,"Coil 1 links 3 Wb when coil 2 carries 2 A. If M is 750 H, the number of turns in coil 1 is","500","300","400","700","N = MI/Φ.","750 × 2 ÷ 3."],
+[6,"Coil 1 has 500 turns and coil 2 carries 2 A. If M is 750 H, the flux in coil 1 is","3 Wb","1 Wb","2 Wb","4 Wb","Φ = MI/N.","1500 over 500."],
+[6,"Coil 1 has 500 turns and flux 3 Wb. If M is 750 H, the current in coil 2 is","2 A","1 A","3 A","4 A","I = NΦ/M.","1500 over 750."],
+[6,"Self-inductance is the emf induced when current changes at the rate of one weber-turn. This definition is","wrong, the rate is one ampere per second","right, the rate is one weber-turn per second","right, the rate is one volt per second","wrong, the rate is one coulomb per second","L equals the emf per unit rate of change of current.","Henry uses amps per second."],
+[6,"Which of these is the correct expression for mutual inductance?","M = N₂φ₂ / I₁","M = N₂φ₂ / I₂","M = N₁φ₂ / I₂","M = N₁φ₁ / I₁","Linkage in coil 2 divided by the current in coil 1 that causes it.","Effect in 2, cause in 1."],
+[6,"What is the SI unit of mutual inductance?","Henry","Ohm","Volt","Siemens","Mutual and self inductance share the unit.","Inductance is henry."],
+[6,"An inductor does not allow sudden changes in","current","voltage","resistance","capacitance","A sudden current change would need an infinite emf.","L guards current, C guards voltage."],
+[6,"The electrical energy taken by a coil is stored in the form of","a magnetic field","an electric field","an electrostatic charge","a gravitational field","Energy ½LI² sits in the magnetic field.","Coil stores magnetic."],
+[6,"The four factors that determine inductance are turns, coil length, coil area and","permeability","reluctance of air only","counter emf","coupling coefficient","L = μN²A/l.","mu, N, A, l."],
+/* ---------- 7 · Maxwell's Equations & Waves ---------- */
+[7,"Which type of wave needs a material medium to travel?","Sound wave","Radio wave","Light wave","X-ray wave","Sound is mechanical, the others are electromagnetic.","No air, no sound."],
+[7,"Which of these is NOT one of Maxwell's equations?","Coulomb's law","Gauss's law","Faraday's law","Ampere's law","The set is two Gauss laws, Faraday's law and Ampere's law.","G, G, F, A."],
+[7,"Which wave does not require a material medium for its propagation?","Light wave","Sound wave","Water wave","Wave on a string","Light is electromagnetic.","EM crosses a vacuum."],
+[7,"Which is the correct order of increasing frequency in the electromagnetic spectrum?","Radio, infrared, visible, ultraviolet, X-ray, gamma","Gamma, X-ray, ultraviolet, visible, infrared, radio","Infrared, ultraviolet, X-ray, radio, visible, gamma","Visible, gamma, infrared, radio, X-ray, ultraviolet","Frequency rises as wavelength falls from radio to gamma.","Radio is lowest, gamma highest."],
+[7,"The maximum displacement of a wave from its equilibrium position is its","amplitude","period","frequency","wave speed","Amplitude is the peak displacement.","Height of the wave."],
+[7,"The electromagnetic spectrum relates frequency, speed and","wavelength","angular momentum","amplitude","particle mass","v = fλ.","v equals f lambda."],
+[7,"Which components exist in an electromagnetic wave?","Both electric and magnetic fields","Only an oscillating electric field","Only an oscillating magnetic field","Neither electric nor magnetic fields","The two fields oscillate together at right angles.","Name says both."],
+[7,"Which of these laws does NOT contribute to Maxwell's equations?","Curie-Weiss law","Gauss's law","Faraday's law","Ampere's law","Curie-Weiss describes magnetic materials.","Curie is the outsider."],
+[7,"The laws that govern the relationship between electric and magnetic fields are known as","Maxwell's equations","Kirchhoff's equations","Millman's equations","Newton's equations","Maxwell unified electricity and magnetism.","E and B together: Maxwell."],
+[7,"Which group of devices makes use of electromagnetic waves?","Television, radio and radar","Stethoscope, sonar and drum","Wheatstone bridge and rheostat","Thermometer, barometer and balance","TV, radio and radar all use electromagnetic waves.","Broadcast and detect: EM."],
+[1,"Two electrons are 20 nm apart in free space. Their electric potential energy is","1.15 × 10⁻²⁰ J","1.15 × 10⁻¹⁹ J","2.75 × 10⁻²⁰ J","4.75 × 10⁻²⁰ J","U = ke²/r with r = 2 × 10⁻⁸ m.","Ten times farther means ten times less energy."],
+/* ---------- textbook chapter and practice questions ---------- */
+[0,"Five particles are evenly spaced on a line with a fixed charge in the middle. From left to right the other four are: set 1 −e, −e, +e, −e; set 2 +e, +e, +e, −e; set 3 −e, −e, +e, +e; set 4 −e, +e, +e, −e. Rank the force on the middle charge, greatest first.","3, 1, 2, 4","1, 3, 2, 4","3, 2, 1, 4","4, 2, 1, 3","Adding with weights 1 for near and ¼ for far gives 2.5, 2.0, 0.5 and zero.","Symmetric set 4 cancels to zero, so it must be last."],
+[0,"Identical spheres are touched and separated in pairs: pair 1 +6e and −4e; pair 2 zero and +2e; pair 3 −12e and +14e. Rank the charge transferred, greatest first.","3, 1, 2","1, 2, 3","2, 1, 3","3, 2, 1","Each sphere ends with +e, so the transfers are 13e, 5e and e.","Half the difference of the starting charges moves."],
+[0,"Pairs of identical spheres start with +6e and −4e, zero and +2e, and −12e and +14e. After touching, how do the final charges on the positive spheres compare?","All three are equal at +e","The first pair keeps the most","The third pair keeps the most","The second pair keeps the least","Each pair has a total of +2e shared equally.","Add, then halve."],
+[1,"The magnitude of the electric field 2.0 m from a 4.0 nC point charge is","9.0 N/C","18 N/C","4.5 N/C","36 N/C","E = kq/r² = 36 ÷ 4.","k times nano gives 9."],
+[0,"On the x-axis, +4.00 nC is at 0, −1.20 nC at 6.00 cm and −2.00 nC at 4.00 cm. The net force on the −2.00 nC charge is","9.9 × 10⁻⁵ N toward −x","9.0 × 10⁻⁶ N toward +x","9.9 × 10⁻⁵ N toward +x","5.4 × 10⁻⁵ N toward −x","The pull of 4.5 × 10⁻⁵ N and the push of 5.4 × 10⁻⁵ N both point to −x.","Draw each arrow before adding."],
+[0,"+4.00 nC is at 0, 0.200 m and −4.00 nC is at the origin. The force components on −1.50 nC at 0.250 m, 0 are","Fx = 4.5 × 10⁻⁷ N, Fy = 3.3 × 10⁻⁷ N","Fx = 8.6 × 10⁻⁷ N, Fy = 5.3 × 10⁻⁷ N","Fx = 3.3 × 10⁻⁷ N, Fy = 4.5 × 10⁻⁷ N","Fx = 4.1 × 10⁻⁷ N, Fy = 8.6 × 10⁻⁷ N","Resolve the pull from the upper charge, then add the push from the origin charge.","Only the off-axis charge gives a y part."],
+[0,"Charges of 26.0 μC and −47.0 μC attract with 5.70 N. Their separation is","1.39 m","1.93 m","0.72 m","2.78 m","r = √ of kq₁q₂ ÷ F.","Do not forget the square root."],
+[0,"The force between +3.00 × 10⁻⁶ C and −1.50 × 10⁻⁶ C placed 12.0 cm apart is","2.81 N","0.34 N","28.1 N","1.41 N","F = kq₁q₂/r² with r = 0.12 m.","Convert cm first."],
+[0,"Charges q₁ at x = −a and q₂ at x = +a give zero net force on a third charge at x = +0.500a. The ratio q₁/q₂ is","9","3","−9","25","The distances are 1.5a and 0.5a, so the ratio is the square of 3.","Between the charges, the ratio is positive."],
+[0,"Charges q₁ at x = −a and q₂ at x = +a give zero net force on a third charge at x = +1.50a. The ratio q₁/q₂ is","−25","25","−5","−9","The distances are 2.5a and 0.5a and the signs must be opposite.","Outside the pair, the signs differ."],
+[0,"Two water drops each carry −1.00 × 10⁻¹⁶ C and are 1.00 cm apart. The force between them is","9.0 × 10⁻¹⁹ N","9.0 × 10⁻¹⁷ N","9.0 × 10⁻²¹ N","4.5 × 10⁻¹⁹ N","F = kq²/r².","Square both q and r."],
+[0,"How many excess electrons give a drop a charge of −1.00 × 10⁻¹⁶ C?","625","160","6250","62","n = q ÷ e.","1 ÷ 1.6 = 0.625."],
+[0,"How many electrons must be removed from a coin to give it +1.0 × 10⁻⁷ C?","6.25 × 10¹¹","1.60 × 10¹²","6.25 × 10⁹","1.60 × 10¹⁰","n = q ÷ e.","Divide by 1.6 × 10⁻¹⁹."],
+[0,"The force between a Na⁺ ion and a Cl⁻ ion 2.82 × 10⁻¹⁰ m apart is","2.90 × 10⁻⁹ N","8.18 × 10⁻¹⁹ N","2.90 × 10⁻¹⁰ N","5.80 × 10⁻⁹ N","F = ke²/r².","ke² is 2.3 × 10⁻²⁸."],
+[0,"Two identical ions 5.0 × 10⁻¹⁰ m apart repel with 3.7 × 10⁻⁹ N. How many electrons is each ion missing?","2","1","3","4","q = 3.2 × 10⁻¹⁹ C, which is 2e.","Find q, then divide by e."],
+[1,"The field 30 cm from a 5 × 10⁻⁹ C point charge in air is","500 N/C","150 N/C","1500 N/C","50 N/C","E = kq/r² = 45 ÷ 0.09.","45 over 0.09."],
+[0,"The force on a 4 × 10⁻¹⁰ C charge placed 30 cm from a 5 × 10⁻⁹ C charge is","2 × 10⁻⁷ N","2 × 10⁻⁶ N","8 × 10⁻⁷ N","5 × 10⁻⁸ N","F = qE with E = 500 N/C.","Reuse the field."],
+[0,"A nucleus of charge −3e and another of +8e are 6.5 μm apart. The attractive force is","1.31 × 10⁻¹⁶ N","8.52 × 10⁻²² N","5.45 × 10⁻¹⁸ N","1.31 × 10⁻¹⁰ N","F = k × 24e²/r².","Multiply 3 by 8 first."],
+[0,"Equal 6.4 μC charges sit at the corners of an equilateral triangle of side 0.25 m. The resultant force on one charge is","10.2 N","5.9 N","11.8 N","8.3 N","Two forces of 5.9 N at 60° add to √3 F.","Equilateral means √3 F."],
+[0,"Equal 0.99 μC charges sit at the corners of an equilateral triangle of side 0.25 m. The resultant force on one charge is","0.24 N","0.14 N","0.28 N","0.20 N","F = 0.141 N and the resultant is √3 F.","Equilateral means √3 F."],
+[1,"An electron enters a uniform electric field at right angles to it with speed V₀. Its path is","a parabola","a circle","a straight line","a helix","It keeps constant speed across and accelerates along the force.","Electric field bends like gravity on a projectile."],
+[1,"Charges of +1 C and −1 C are 5 mm apart. The field on the dipole axis 15 cm from the dipole is about","2.67 × 10¹⁰ N/C","1.33 × 10¹⁰ N/C","2.67 × 10⁹ N/C","4.00 × 10⁸ N/C","E = 2kp/r³ with p = 5 × 10⁻³ C m.","On the axis there is a factor of 2."],
+[0,"The force between 15 μC and 10 μC charges 200 cm apart is","0.34 N","0.68 N","34 N","0.17 N","F = kq₁q₂/r² with r = 2 m.","200 cm is 2 m."],
+[1,"A water molecule has dipole moment 6.2 × 10⁻³⁰ C m from 10 electrons and 10 protons. The separation of the charge centres is","3.9 × 10⁻¹² m","7.8 × 10⁻¹² m","1.95 × 10⁻¹¹ m","3.9 × 10⁻¹¹ m","d = p ÷ 10e.","Water has 10 electrons."],
+[1,"An electric dipole is two charges that are","equal, opposite and slightly separated","equal, alike and slightly separated","unequal, opposite and touching","unequal, alike and slightly separated","A dipole needs equal and opposite charges a small distance apart.","Di means two opposites."],
+[1,"The electric dipole moment p is given by","qd","qE","Ed","Fd","p is charge times separation.","p = qd."],
+[1,"The direction of the electric field at a point is","along the tangent to the field line there","opposite to the field line through it","at right angles to the field line there","unrelated to the field line through it","Field lines are drawn to follow the field.","Tangent gives direction."],
+[1,"Where an electric field is weak, its field lines are","far apart","closely packed","crossing each other","forming closed loops","Line density shows field strength.","Wide spacing, weak field."],
+[1,"Which statement about electric field lines is false?","They attract and cross one another","They begin on positive charges","They are continuous in free space","They are parallel in a uniform field","Field lines never cross, because the field has one direction at a point.","No crossing."],
+[1,"Between two oppositely charged parallel plates, the field lines are","uniform in the middle, fringing at the edges","circular in the middle, straight at the edges","radial from the centre of each charged plate","closed loops that surround both charged plates","The central field is uniform and bulges only at the ends.","Edges fringe."],
+[1,"On the perpendicular bisector of a dipole, the field points","opposite to the dipole moment","along the dipole moment direction","at right angles to the dipole moment","at 45° to the dipole moment","The perpendicular parts cancel and the rest point from plus to minus.","Bisector: antiparallel."],
+[1,"The dimension of electric dipole moment is","ITL","ITL⁻¹","MLT⁻²","IT⁻¹L","It is charge, which is current times time, times length.","C m is A s m."],
+[1,"The flux through a Gaussian surface holding 200 million electrons is","−3.6 N m²/C","+3.6 N m²/C","−36 N m²/C","−0.36 N m²/C","Flux = q/ε₀ and q is negative.","Electrons give negative flux."],
+[1,"A uniformly charged solid insulating sphere of radius 0.25 m holds 3.4 pC. The field 0.15 m from its centre is","0.29 N/C","1.36 N/C","0.49 N/C","0.08 N/C","Inside, E = kQr/R³.","Inside an insulator E rises with r."],
+[1,"A very long line charge carries 0.4 C per metre. The field 0.3 m from it is","2.4 × 10¹⁰ N/C","1.2 × 10¹⁰ N/C","4.0 × 10¹⁰ N/C","8.0 × 10⁹ N/C","E = 2kλ/r.","Line charge falls as 1/r."],
+[1,"A −2 μC charge sits at the centre of a cube of side 5 cm. The net flux through the cube is","−2.26 × 10⁵ N m²/C","−3.77 × 10⁴ N m²/C","+2.26 × 10⁵ N m²/C","−1.13 × 10⁵ N m²/C","Flux = q/ε₀ whatever the cube size.","Size is a distraction."],
+[1,"A charge Q is at the centre of a cube. The flux through one face is","Q / 6ε₀","Q / ε₀","Q / 4ε₀","6Q / ε₀","The six faces share Q/ε₀ equally.","Six faces, divide by six."],
+[1,"A 3.5 cm hemisphere encloses 6.6 × 10⁻⁷ C and the flux through its curved part is 9.8 × 10⁴ N m²/C. The flux through the flat base is","−2.3 × 10⁴ N m²/C","+7.5 × 10⁴ N m²/C","−7.5 × 10⁴ N m²/C","+1.7 × 10⁵ N m²/C","Total flux q/ε₀ is 7.5 × 10⁴, so the base carries the difference.","Total minus curved."],
+[1,"A cube of side 8.5 cm sits in a uniform 7500 N/C field with two faces at right angles to it. The flux through each of those two faces has magnitude","54 N m²/C","325 N m²/C","27 N m²/C","638 N m²/C","Φ = EL². The net flux is zero.","In one side, out the other."],
+[1,"The net flux through a closed cube placed in a uniform electric field with no charge inside is","zero","EL²","2EL²","6EL²","What enters also leaves.","No charge inside, no net flux."],
+[1,"A point charge q is very close to an infinite plane. The flux through the plane due to q is","q / 2ε₀","q / ε₀","q / 4ε₀","q / 6ε₀","The plane catches half of all the field lines.","Infinite plane takes half."],
+[1,"A 100 g charged ball is released 10 m above the centre of a fixed sphere of radius 1 m with equal charge q. It stops just before touching. q is about","33 μC","3.3 μC","10 μC","98 μC","Gravitational energy lost equals electric energy gained.","Energy conservation, not forces."],
+[1,"An empty hollow metal sphere is at +400 V. The potential at its centre is","400 V","zero","200 V","800 V","The field inside is zero, so the potential stays the same as the surface.","Inside a conductor V is constant."],
+[1,"Two electrons are fixed 2.0 cm apart. A third electron from infinity stops midway. Its initial speed was about","318 m/s","225 m/s","450 m/s","636 m/s","½mv² equals 2ke²/r with r = 1 cm.","Two fixed charges, two energy terms."],
+[1,"As the distance between two electrons increases, their electric potential energy","decreases","increases","stays constant","becomes negative","U = ke²/r.","Like charges lose energy moving apart."],
+[1,"A conducting sphere of radius 0.15 m is at 200 V. Its charge is","3.3 × 10⁻⁹ C","2.0 × 10⁻⁸ C","5.0 × 10⁻¹⁰ C","1.2 × 10⁻⁸ C","q = VR/k.","V = kq/R."],
+[1,"The surface charge density on a 0.15 m radius conducting sphere at 200 V is","1.18 × 10⁻⁸ C/m²","3.33 × 10⁻⁹ C/m²","2.36 × 10⁻⁸ C/m²","4.72 × 10⁻⁸ C/m²","σ = ε₀V/R.","Shortcut: ε₀V over R."],
+[1,"Charges +q, −q, +q, −q sit in turn at the corners of a square of side a. The work needed to assemble them is","−2.59 kq²/a","−4.00 kq²/a","+2.59 kq²/a","−5.41 kq²/a","Four sides give −4 and two diagonals give +1.41.","Six pairs in a square."],
+[1,"Two spheres each with 5.00 μC are joined by a 1.00 m string. The electric potential energy of the system is","0.225 J","0.450 J","0.113 J","2.25 J","U = kq²/d.","One pair, one term."],
+[0,"Spheres of 5.00 g and 10.0 g, each with 5.00 μC, are 1.00 m apart when the string is cut. Their starting accelerations are","45 and 22.5 m/s²","22.5 and 45 m/s²","45 and 45 m/s²","90 and 45 m/s²","The force is 0.225 N on each and a = F/m.","Same force, lighter one faster."],
+[1,"Spheres of 5.00 g and 10.0 g with 0.225 J of electric energy are released from rest. Their final speeds are","7.75 and 3.87 m/s","3.87 and 7.75 m/s","6.71 and 6.71 m/s","9.49 and 4.74 m/s","Momentum gives the 2 to 1 ratio and energy gives the size.","Momentum first, then energy."],
+[1,"A charge q fills a sphere of radius R uniformly. The potential difference between the centre and the surface is","q / 8πε₀R","q / 4πε₀R","3q / 8πε₀R","q / 2πε₀R","Centre is 3kq/2R and surface is kq/R.","The difference is half of kq/R."],
+[3,"Three 2.00 Ω resistors in parallel are connected to a 5 V battery. The total current is","7.5 A","0.83 A","2.5 A","30 A","R = 2/3 Ω and I = V/R.","Equal parallel resistors: R over n."],
+[3,"A 75 V source feeds 50 Ω in parallel with a branch of 35 Ω and 40 Ω in series. The total current is","2.5 A","0.6 A","1.5 A","1.0 A","The branch is 75 Ω and the total is 30 Ω.","Series inside the branch first."],
+[3,"A 9.0 V accumulator feeds 5 Ω in series with 5 Ω and 20 Ω in parallel. The total current is","1.0 A","0.3 A","1.8 A","0.9 A","The pair is 4 Ω, so the total is 9 Ω.","Parallel pair first."],
+[3,"The resistance of a 20 m wire of area 8 × 10⁻⁶ m² and resistivity 4 × 10⁻⁷ Ω m is","1.0 Ω","10 Ω","0.1 Ω","2.0 Ω","R = ρL/A.","8 over 8."],
+[3,"A wire of area 2π × 10⁻⁸ m², resistivity 1.1 × 10⁻⁶ Ω m has resistance 21 Ω. Its length is","1.2 m","12 m","0.6 m","2.4 m","L = RA/ρ with π = 22/7.","Rearrange R = ρL/A."],
+[3,"A fan draws 0.75 A at 240 V for 10 hours at $0.50 per kWh. The cost is","$0.90","$9.00","$1.80","$0.09","Energy is 0.18 kW × 10 h = 1.8 kWh.","kW times hours times rate."],
+[3,"The maximum power in a 100 Ω resistor is 8 W. The voltage across it is","28.3 V","800 V","12.5 V","0.28 V","V = √PR.","P = V²/R."],
+[3,"A current I = 5 sin ωt with f = 10 Hz flows. At t = 5 s, the current and the charge passed since t = 0 are","both zero","5 A and zero","zero and 5 C","5 A and 25 C","t covers a whole number of cycles.","Whole cycles cancel."],
+[3,"A 24 V source feeds R in series with 100 Ω, across which a 600 Ω voltmeter reads 10 V. The value of R is","120 Ω","140 Ω","206 Ω","86 Ω","The parallel pair is 85.7 Ω and carries 0.117 A, leaving 14 V on R.","The voltmeter draws current too."],
+[3,"A 24 V source drives a total resistance of 205.7 Ω. The total power dissipated is about","2.8 W","4.9 W","1.2 W","5.8 W","P = V²/R.","576 over 206."],
+[3,"A 100 W bulb runs 2 hours daily for 30 days at 0.10 per kWh. The cost is","0.60","6.00","0.06","1.20","It uses 6 kWh.","Watts to kilowatts first."],
+[3,"The difference between electrical power and electrical energy is that power is the","rate at which energy is used","total energy used over time","charge moved per unit volt","product of energy and time","Energy equals power times time.","Power per second, energy in total."],
+[2,"The capacitance of a capacitor does NOT depend on the","charge stored on its plates","area of the facing plates","separation of the plates","dielectric between the plates","C is set by geometry and material.","Q changes V, not C."],
+[2,"C₁ and C₂ in parallel have a total P, and C₃ is in series with them. The equivalent capacitance is the","product of P and C₃ divided by their sum","sum of P and C₃ divided by their product","sum of P and C₃ with nothing divided","product of P and C₃ with nothing divided","The parallel pair adds first, then series uses product over sum.","Parallel add, series product over sum."],
+[2,"A capacitor C is in parallel with two capacitors C in series. The equivalent capacitance is","3C / 2","2C / 3","3C","C / 3","The series pair gives C/2, added to C.","C plus half C."],
+[2,"Two 2 μF capacitors in parallel have 120 V across them. The charge on each is","240 μC","120 μC","60 μC","480 μC","Q = CV.","Parallel means full voltage on each."],
+[2,"A 2 μF capacitor in series with three equal capacitors C in parallel gives 1.5 μF. C is","2 μF","6 μF","3 μF","1 μF","The parallel group must be 6 μF.","Subtract reciprocals."],
+[2,"A parallel pair of 2 μF and 6 μF is in series with 2 μF. The effective capacitance is","1.6 μF","10 μF","3.5 μF","0.9 μF","8 μF and 2 μF in series.","16 over 10."],
+[2,"A 1.6 μF combination is connected to 10 V. The energy stored is","8 × 10⁻⁵ J","1.6 × 10⁻⁵ J","8 × 10⁻⁶ J","1.6 × 10⁻⁴ J","E = ½CV².","Half C V squared."],
+[2,"Three 120 pF capacitors each charged to 0.50 kV are joined in series. The potential difference between the end plates is","1.5 kV","0.50 kV","0.17 kV","3.0 kV","Their voltages add.","Series voltages add."],
+[2,"Three 120 pF capacitors are each charged to 500 V. The charge on each is","60 nC","180 nC","20 nC","6 nC","Q = CV.","120 times 500."],
+[2,"Three 120 pF capacitors each at 500 V together store","45 μJ","15 μJ","90 μJ","5 μJ","Each stores 15 μJ.","One, then times three."],
+[2,"0.30 μF and 0.50 μF in parallel are given 200 μC. The charges on them are","75 μC and 125 μC","125 μC and 75 μC","100 μC and 100 μC","60 μC and 140 μC","V is 250 V and Q = CV for each.","Bigger C takes more charge."],
+[2,"A 5.0 μF capacitor is connected to 2000 V. The energy stored is","10 J","5 J","20 J","0.01 J","E = ½CV².","Half of 20."],
+[4,"A proton at 23° to a 26 mT field feels 6.50 × 10⁻¹⁷ N. Its speed is","4.0 × 10⁴ m/s","1.6 × 10⁴ m/s","9.8 × 10⁴ m/s","4.0 × 10⁶ m/s","v = F ÷ qB sin θ.","Keep the sine."],
+[4,"A particle of mass 6.0 × 10⁻²⁷ kg and charge e moves at 4.0 × 10⁴ m/s. Its kinetic energy is","30 eV","60 eV","4.8 eV","300 eV","½mv² = 4.8 × 10⁻¹⁸ J, then divide by e.","Joules to eV: divide by 1.6 × 10⁻¹⁹."],
+[4,"A microwave magnetron works at 2450 MHz. The field needed for electrons to circle at this frequency is","0.0877 T","0.877 T","0.0140 T","0.175 T","B = 2πfm/q.","About 36 mT per GHz."],
+[4,"The field needed for electrons to circle at 2540 MHz is","0.091 T","0.910 T","0.014 T","0.182 T","B = 2πfm/q.","f up, B up."],
+[4,"An electron at 40.0° to a 3.50 × 10⁻³ T field feels 4.60 × 10⁻¹⁵ N. Its speed is","1.28 × 10⁷ m/s","8.21 × 10⁶ m/s","1.07 × 10⁷ m/s","1.28 × 10⁵ m/s","v = F ÷ qB sin 40°.","Sine, not cosine."],
+[4,"Electrons moving at 3.7 × 10⁷ m/s in a 2.0 T field have orbit radius","1.05 × 10⁻⁴ m","2.10 × 10⁻⁴ m","1.05 × 10⁻² m","4.20 × 10⁻⁵ m","r = mv/qB.","mv over qB."],
+[4,"The field needed for electrons to produce 2.00 THz radiation is about","71.6 T","11.4 T","7.16 T","143 T","B = 2πfm/q.","Tera is 10¹²."],
+[4,"A coil of dipole moment 2.30 A m² is in a 35.0 mT field. The maximum torque is","0.081 N m","65.7 N m","0.805 N m","0.015 N m","τ = μB.","Max torque is mu B."],
+[4,"A 0.200 m rod at right angles to a 0.087 T field feels 0.22 N. The current is","12.6 A","3.8 A","1.26 A","25.3 A","I = F/BL.","F over BL."],
+[4,"An electron beam bends in a 2.0 cm circle in a 4.5 × 10⁻³ T field. The electron speed is","1.6 × 10⁷ m/s","7.9 × 10⁶ m/s","1.6 × 10⁵ m/s","3.2 × 10⁷ m/s","v = qBr/m.","From r = mv/qB."],
+[4,"A semicircular wire of radius 0.20 m carries 150 A. The field at its centre is about","2.4 × 10⁻⁴ T","4.7 × 10⁻⁴ T","1.5 × 10⁻⁴ T","7.5 × 10⁻⁵ T","B = μ₀I/4r.","Semicircle is half a loop."],
+[5,"A transformer has 1000 primary and 500 secondary turns with 240 V on the primary. The secondary emf is","120 V","480 V","240 V","60 V","Vs/Vp = Ns/Np.","Half the turns, half the volts."],
+[5,"A step-down transformer takes 240 V and gives 60 V. The ratio of secondary to primary turns is","1 : 4","4 : 1","1 : 2","1 : 16","Turns follow voltage.","Same ratio as volts."],
+[5,"A transformer takes 240 V and gives 960 V with 720 secondary turns. The primary turns are","180","2880","360","90","Np = 720 × 240 ÷ 960.","Quarter the volts, quarter the turns."],
+[6,"A 200-turn solenoid is 20.0 cm long with area 5.00 × 10⁻³ m². Its inductance is","1.26 mH","12.6 mH","0.25 mH","6.28 mH","L = μ₀N²A/l.","Square N."],
+[6,"The current in a 1.26 mH solenoid falls at 40.0 A/s. The self-induced emf is about","50 mV","5 mV","32 mV","500 mV","emf = L dI/dt.","mH times A/s gives mV."],
+[5,"A 220 V step-down transformer lights eight 12 V, 20 W lamps with 1 A in the primary. Its efficiency is","72.7%","87.5%","54.5%","91.0%","Output 160 W over input 220 W.","Output over input."],
+[6,"The energy in a 250 mH coil carrying 0.02 A is","5 × 10⁻⁵ J","5 × 10⁻³ J","2.5 × 10⁻³ J","1 × 10⁻⁴ J","E = ½LI².","Square the current."],
+[5,"An 85% efficient transformer runs a 230 V, 100 W lamp from a 30 V supply. The primary current is","3.92 A","3.33 A","0.43 A","1.96 A","Input is 100 ÷ 0.85 W at 30 V.","Input power over input volts."],
+[5,"A simple a.c. generator is changed to give direct current by","replacing slip rings with a split ring","replacing the coil with a soft iron bar","connecting the brushes to a capacitor","replacing the magnet with a solenoid","The split ring commutator reverses the connection every half turn.","d.c. needs a split ring."],
+[5,"A 20-turn loop of area 0.06 m² turns at 100 Hz in a 0.50 T field. The maximum emf is","377 V","60 V","188 V","754 V","emf = NBAω with ω = 2πf.","Do not forget 2π."],
+[5,"A generator with 377 V peak emf has a 24.0 Ω loop. The maximum current is","15.7 A","9.0 A","31.4 A","7.9 A","I = V/R.","Peak over R."],
+[5,"A loop with peak emf 377 V rotates at 100 Hz. The emf as a function of time is","377 sin 200πt V","377 sin 100t V","377 sin 100πt V","200 sin 377πt V","ω = 2πf.","Inside the sine goes 2πf t."],
+[5,"A generator has peak current 15.7 A at 100 Hz. The current as a function of time is","15.7 sin 200πt A","15.7 sin 100πt A","24.0 sin 200πt A","15.7 cos 100t A","It follows the emf.","Same angle as the emf."],
+[7,"A wave has a period of 0.01667 s. Its frequency is","60 Hz","16.7 Hz","6 Hz","120 Hz","f = 1/T.","One over the period."],
+[7,"A building sways at 0.1 Hz. Its period is","10 s","0.1 s","1 s","100 s","T = 1/f.","Flip it."],
+[7,"A water wave oscillates three times a second with crests 2 m apart. Its speed is","6 m/s","1.5 m/s","0.67 m/s","5 m/s","v = fλ.","f times lambda."],
+[7,"For y = 0.2 sin of 6.28x − 1.57t in SI units, the period and speed are","4 s and 0.25 m/s","1.57 s and 4 m/s","4 s and 4 m/s","0.25 s and 1.57 m/s","T = 2π/ω and v = ω/k.","ω goes with t, k with x."],
+[7,"For y = 0.2 sin of 0.04t + 0.02x − π/6 with x in cm, the wavelength is","314 cm","157 cm","50 cm","628 cm","λ = 2π/0.02.","2π over the x number."],
+[1,"The flux through a sphere containing 15 protons and 10 electrons is","9.04 × 10⁻⁸ V m","4.52 × 10⁻⁷ V m","1.81 × 10⁻⁷ V m","9.04 × 10⁻⁹ V m","The net charge is 5e.","Cancel pairs first."],
+[1,"A disk with σ = 2 × 10⁻¹⁰ C/m² inside a sphere gives flux 5.2 × 10⁻² V m. The disk diameter is","0.054 m","0.027 m","0.108 m","0.54 m","Charge is ε₀Φ and area is charge over σ.","Flux to charge to area."],
+[1,"A proton rests at the centre of the rim of a hemispherical bowl. The flux through the bowl is","9.04 × 10⁻⁹ V m","1.81 × 10⁻⁸ V m","4.52 × 10⁻⁹ V m","3.01 × 10⁻⁹ V m","The bowl gets half of e/ε₀.","Hemisphere, half."],
+[1,"A half cylinder of height h has an infinite line charge λ along its axis. The flux through its curved surface is","λh / 2ε₀","λh / ε₀","2λh / ε₀","λh / 4ε₀","A full cylinder would get λh/ε₀.","Half of the full cylinder."],
+[0,"Which particles in an atom carry negative charge?","Electrons around the nucleus","Protons inside the nucleus","Neutrons inside the nucleus","Protons around the nucleus","Electrons are the negative particles outside the nucleus.","Electron is negative."],
+[0,"When a plastic rod is charged by rubbing, charge is","moved from one body to the other","created freshly on both of the bodies","destroyed on one of the two bodies","made by protons leaving their nuclei","Rubbing transfers electrons.","Transfer, not creation."],
+[0,"Which of these is a good electrical conductor?","Copper","Rubber","Glass","Dry wood","Copper has free electrons.","Metals conduct."],
+[0,"The charge on any body is always a whole number multiple of","1.6 × 10⁻¹⁹ C","9.1 × 10⁻³¹ C","8.85 × 10⁻¹² C","6.25 × 10¹⁸ C","Charge is quantised in units of e.","Quantised in e."],
+[1,"The torque on a dipole of moment p in a uniform field E is greatest when the angle between them is","90°","0°","45°","180°","τ = pE sin θ.","Sine peaks at 90."],
+[1,"The potential energy of a dipole in a uniform field is lowest when p is","parallel to E","opposite to E","at 90° to E","at 45° to E","U = −pE cos θ.","Aligned is relaxed."],
+[1,"The net force on a dipole in a uniform electric field is","zero","2qE","qE","pE","The two forces are equal and opposite.","Torque yes, force no."],
+[1,"The electric field at the centre of a uniformly charged ring is","zero","kq / R²","2kq / R²","kq / 2R²","Opposite parts of the ring cancel.","Symmetry cancels."],
+[1,"One electronvolt is equal to","1.6 × 10⁻¹⁹ J","1.6 × 10¹⁹ J","9.1 × 10⁻³¹ J","8.85 × 10⁻¹² J","It is the energy of charge e through one volt.","eV is e joules."],
+[1,"One volt is the same as one","joule per coulomb","coulomb per joule","newton per coulomb","joule per second","Potential is energy per unit charge.","V = J/C."],
+[1,"The work done moving a charge along an equipotential surface is","zero","equal to qV","equal to qEd","negative","There is no potential difference.","Same V, no work."],
+[1,"Equipotential surfaces always cross electric field lines at","90°","0°","45°","60°","Otherwise the field would do work along the surface.","Always perpendicular."],
+[3,"Ohm's law holds for a conductor when its","temperature stays constant","current stays constant","length keeps changing","voltage stays constant","Resistance changes with temperature.","Constant temperature."],
+[3,"The instrument connected in parallel to measure potential difference is the","voltmeter","ammeter","rheostat","galvanostat","An ammeter goes in series.","Volts across, amps through."],
+[3,"Heat produced in a resistor is given by","I²Rt","IR²t","I²R / t","IRt²","This is Joule's law of heating.","I squared R t."],
+[3,"Direct current differs from alternating current because it","flows in one direction only","reverses direction regularly","has no electrons moving in it","cannot pass through resistors","a.c. reverses, d.c. does not.","Direct means one way."],
+[3,"In a series circuit, the quantity that is the same in every resistor is the","current","voltage","power","energy","There is only one path.","Series shares current."],
+[2,"Inserting a dielectric between the plates of an isolated capacitor","raises its capacitance","lowers its capacitance","leaves capacitance as before","reduces capacitance to zero","C is multiplied by the dielectric constant.","Dielectric boosts C."],
+[2,"The energy density of an electric field E in free space is","½ε₀E²","ε₀E","½ε₀E","2ε₀E²","It is the stored energy per unit volume.","Half epsilon E squared."],
+[2,"The capacitance of an isolated sphere of radius R is","4πε₀R","4πε₀R²","ε₀ / 4πR","4πR / ε₀","C = q/V with V = q/4πε₀R.","Proportional to radius."],
+[2,"One farad is one","coulomb per volt","volt per coulomb","joule per volt","coulomb-volt","C = Q/V.","Q over V."],
+[4,"The SI unit of magnetic flux is the","weber","tesla","henry","gauss","Tesla is flux per square metre.","Flux in Wb, density in T."],
+[4,"The work done by a magnetic force on a moving charge is","zero","qvB","qvBr","½mv²","The force is at right angles to the motion.","Magnetic force turns, never speeds."],
+[4,"The radius of a charged particle's circle in a magnetic field is","mv / qB","qB / mv","mB / qv","qv / mB","Magnetic force supplies the centripetal force.","Momentum over qB."],
+[4,"In Fleming's left-hand rule, the thumb shows the direction of the","force on the conductor","current in the conductor","magnetic field lines","induced emf in a coil","First finger is field, second is current.","Thumb is thrust."],
+[4,"At a magnetic neutral point, the resultant field is","zero","at its maximum","twice the earth's","directed upward","Two fields cancel there.","Neutral means nothing."],
+[5,"The induced emf in a moving magnet experiment increases when the magnet is","moved faster into the coil","held still inside the coil","made of a weaker material","pulled more slowly out","Faster motion changes flux faster.","Speed up, emf up."],
+[5,"The main use of a step-up transformer in power transmission is to","raise voltage and cut line losses","raise current and cut line voltage","turn alternating current into direct","increase the total power delivered","Less current means smaller I²R loss.","High volts, low loss."],
+[5,"A transformer will not work on steady direct current because","the flux does not change","the resistance is too high","the core cannot be magnetised","the turns ratio becomes zero","Induction needs changing flux.","No change, no emf."],
+[5,"Eddy current losses in a transformer core are reduced by","laminating the iron core","using thicker copper wire","adding more secondary turns","using a solid steel core","Thin insulated sheets break up the loops.","Laminate for eddies."],
+[5,"The Biot-Savart law is used to find the","magnetic field of a current element","electric field of a point charge","capacitance of a charged sphere","resistance of a uniform wire","It gives dB from a small piece of current.","Biot-Savart: current to B."],
+[6,"The energy stored in an inductor is","½LI²","½CV²","LI²","½L²I","It is held in the magnetic field.","Half L I squared."],
+[6,"Two perfectly coupled coils have a coupling coefficient of","1","0","0.5","2","All the flux of one links the other.","Perfect is one."],
+[6,"The mutual inductance of coils L₁ and L₂ with coupling coefficient k is","k√L₁L₂","kL₁L₂","L₁ + L₂ ÷ k","k² L₁ ÷ L₂","k = M ÷ √L₁L₂.","Root of the product."],
+[6,"One henry is equal to one","weber per ampere","ampere per weber","volt per ampere","weber per second","L is flux linkage per unit current.","Wb over A."],
+[7,"Maxwell added which term to Ampere's law?","Displacement current","Conduction current","Eddy current term","Leakage current","A changing electric field also makes a magnetic field.","Maxwell's gift: displacement."],
+[7,"The speed of electromagnetic waves in vacuum is","1 ÷ √μ₀ε₀","√μ₀ε₀","μ₀ ÷ ε₀","1 ÷ μ₀ε₀","It comes out as 3 × 10⁸ m/s.","One over root mu epsilon."],
+[7,"In a transverse wave, particles of the medium move","at right angles to the wave travel","parallel to the direction of travel","in circles along the wave path","only forward with the wave","Longitudinal waves vibrate along the travel.","Transverse crosses."],
+[7,"In AM radio transmission, what is varied to carry the signal?","Amplitude of the carrier","Frequency of the carrier","Speed of the carrier","Period of the carrier","AM is amplitude modulation, FM is frequency modulation.","Read the letters."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='PHY102', LABEL='PHY 102', N=60, SECS=900;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('PHY102');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
