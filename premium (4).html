@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Go Premium — INDIGENE Study Console</title>
+<meta name="theme-color" content="#0d0704">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0704;
+    --card: #17100a;
+    --fire1: #ff6a00;
+    --fire2: #ffb300;
+    --fire3: #ff2e00;
+    --text: #fdf1e6;
+    --muted: #b89a80;
+    --line: rgba(255,140,0,0.18);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(255,106,0,0.20) 0%, transparent 42%),
+      radial-gradient(circle at 50% 100%, rgba(255,46,0,0.12) 0%, transparent 60%),
+      var(--bg);
+    font-family: 'Exo 2', sans-serif;
+    color: var(--text);
+    padding: 22px 16px 48px;
+  }
+  .wrap { width: 100%; max-width: 420px; }
+  .backlink { display: inline-block; color: var(--fire2); text-decoration: none; font-weight: 600; font-size: 13px; margin-bottom: 14px; }
+
+  .hero { text-align: center; margin-bottom: 18px; position: relative; }
+  .hero-glow {
+    position: absolute; top: -50px; left: 50%; transform: translateX(-50%);
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,170,50,0.32) 0%, rgba(255,120,0,0.10) 45%, transparent 75%);
+    filter: blur(6px); z-index: -1;
+  }
+  .wordmark {
+    font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 36px; letter-spacing: 2px; line-height: 1;
+    background: linear-gradient(180deg, #ffe27a 0%, #ffb020 25%, #ff7a00 55%, #ff3d00 80%, #d92600 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-shadow: 0 0 14px rgba(255,140,0,0.5);
+  }
+  .tagline { margin-top: 4px; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #7d6650; }
+  h1.lead { font-size: 22px; line-height: 1.25; text-align: center; margin: 16px 0 6px; font-weight: 800; }
+  p.lead-sub { text-align: center; color: var(--muted); font-size: 14px; line-height: 1.5; margin: 0 0 20px; }
+
+  .card {
+    width: 100%;
+    background: linear-gradient(180deg, #1c130b 0%, #140d07 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px 18px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,180,80,0.06);
+    margin-bottom: 14px;
+  }
+  .card h2 { margin: 0 0 4px; font-family: 'Orbitron', sans-serif; font-size: 14px; letter-spacing: 1px; color: var(--fire2); }
+  .card .sub { color: var(--muted); font-size: 12.5px; line-height: 1.5; margin: 0 0 14px; }
+
+  /* free vs premium */
+  .cmp { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .cmp .r { display: grid; grid-template-columns: 1fr 58px 70px; align-items: center; gap: 6px; padding: 11px 12px; font-size: 13.5px; border-top: 1px solid rgba(255,140,0,0.10); }
+  .cmp .r:first-child { border-top: 0; }
+  .cmp .h { background: rgba(255,140,0,0.07); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .cmp .h .p { color: var(--fire2); }
+  .cmp .c { text-align: center; }
+  .cmp .yes { color: var(--fire2); font-weight: 900; }
+  .cmp .no { opacity: .55; }
+  .note { margin: 12px 2px 0; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* plans */
+  .plans { margin: 0 0 14px; }
+  .plan-opt {
+    position: relative; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    width: 100%; margin-bottom: 10px; padding: 14px 14px;
+    border-radius: 14px; background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line); color: var(--text); text-align: left; cursor: pointer;
+    font-family: 'Exo 2', sans-serif;
+  }
+  .plan-opt .l { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .plan-opt .dot { flex: 0 0 18px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,179,0,0.45); }
+  .plan-opt .nm { font-size: 15px; font-weight: 700; display: block; }
+  .plan-opt .dt { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
+  .plan-opt .pr { font-size: 19px; font-weight: 800; color: var(--fire2); white-space: nowrap; }
+  .plan-opt.on { border-color: var(--fire1); background: rgba(255,106,0,0.13); box-shadow: 0 0 0 1px var(--fire1) inset; }
+  .plan-opt.on .dot { border-color: var(--fire2); background: radial-gradient(circle, var(--fire2) 0 45%, transparent 50%); }
+  .badge {
+    position: absolute; top: -9px; right: 12px; padding: 2px 9px; border-radius: 20px;
+    background: linear-gradient(90deg, var(--fire1), var(--fire2)); color: #1a0a00;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
+  }
+  .sum { text-align: center; font-size: 13px; color: var(--muted); margin: 2px 0 12px; line-height: 1.5; }
+  .sum b { color: var(--text); }
+
+  button.btn-primary {
+    width: 100%; padding: 15px; border-radius: 12px; border: none; font-size: 16px; font-weight: 800;
+    font-family: 'Exo 2', sans-serif; cursor: pointer; letter-spacing: .3px;
+    background: linear-gradient(90deg, var(--fire3), var(--fire1), var(--fire2));
+    color: #1a0a00; box-shadow: 0 4px 18px rgba(255,90,0,0.35);
+  }
+  button.btn-primary:disabled { opacity: .6; cursor: default; }
+  #msg { font-size: 13px; text-align: center; min-height: 18px; margin-top: 12px; }
+  #msg.error { color: #ff6b5c; }
+  #msg.success { color: #ffcf5c; }
+  #msg.info { color: var(--muted); }
+
+  /* steps + good to know */
+  .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  .steps li { counter-increment: s; display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.45; margin-bottom: 12px; }
+  .steps li:last-child { margin-bottom: 0; }
+  .steps li::before {
+    content: counter(s); flex: 0 0 24px; height: 24px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--fire1), var(--fire2)); color: #1a0a00;
+    font-weight: 800; font-size: 12.5px; display: flex; align-items: center; justify-content: center;
+  }
+  .steps b { color: var(--fire2); }
+  ul.know { margin: 0; padding: 0; list-style: none; }
+  ul.know li { display: flex; gap: 10px; font-size: 13px; line-height: 1.5; color: var(--text); margin-bottom: 9px; }
+  ul.know li:last-child { margin-bottom: 0; }
+  ul.know .t { color: var(--fire2); font-weight: 900; flex: 0 0 auto; }
+
+  .status-card {
+    width: 100%; text-align: center; display: none; margin-bottom: 14px;
+    background: linear-gradient(180deg, #1c130b 0%, #140d07 100%);
+    border: 1px solid var(--line); border-radius: 18px; padding: 20px;
+  }
+  .status-card.show { display: block; }
+  .status-card .until { color: var(--fire2); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">&larr; Back to INDIGENE Hub</a>
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="wordmark">INDIGENE</div>
+    <div class="tagline">Go Premium</div>
+  </div>
+
+  <h1 class="lead">Open every topic. Open every past question.</h1>
+  <p class="lead-sub">Everything you need to read, practise and pass, in one place.</p>
+
+  <div id="alreadyPremium" class="status-card">
+    <div style="font-weight:700;color:var(--fire2);margin-bottom:6px;">You're already Premium</div>
+    <div style="color:var(--muted);font-size:13px;">Active until <span class="until" id="untilDate"></span>. You can add more time below.</div>
+  </div>
+
+  <div class="card">
+    <h2>WHAT YOU GET</h2>
+    <ul class="know">
+      <li><span class="t">✓</span><span>Full CBT and full past questions unlocked.</span></li>
+      <li><span class="t">✓</span><span>1000+ past questions and 10000+ CBT questions.</span></li>
+      <li><span class="t">✓</span><span>Full explanation and time saving hacks for every question.</span></li>
+      <li><span class="t">✓</span><span>Practice your weak topics from History.</span></li>
+      <li><span class="t">✓</span><span>Past questions timed like the real exam, with correction.</span></li>
+      <li><span class="t">✓</span><span>Score and grade for every topic, so you see where you stand.</span></li>
+    </ul>
+  </div>
+
+  <div id="planCard" class="card">
+    <h2>PICK YOUR PLAN</h2>
+    <p class="sub">No auto-renewal. When it ends, you pay again only if you want to.</p>
+    <div id="plans" class="plans"></div>
+    <div id="msg"></div>
+    <button id="payBtn" class="btn-primary">Log in to continue</button>
+  </div>
+
+  <p class="note" style="text-align:center">Paying again adds days on top. Paid and it did not open? <a href="https://wa.me/2349060016878?text=Hello%20INDIGENE%2C%20I%20paid%20for%20Premium%20and%20it%20did%20not%20open.%20My%20payment%20reference%20is%3A%20" style="color:var(--fire2);font-weight:700;text-decoration:none">Message INDIGENE on WhatsApp</a> with your payment reference.</p>
+</div>
+
+<script type="module">
+  import { watchAuthState } from "./auth.js";
+  import { PLANS, getPremiumState } from "./premium.js";
+  import { PAY_API, startCheckout, confirmReturn } from "./pay.js";
+
+  const msg = document.getElementById("msg");
+  const payBtn = document.getElementById("payBtn");
+  const alreadyPremium = document.getElementById("alreadyPremium");
+  const untilDate = document.getElementById("untilDate");
+  const plansBox = document.getElementById("plans");
+
+  const naira = (n) => "₦" + Number(n).toLocaleString("en-NG");
+  const dateText = (ms) => new Date(ms).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  function showMsg(text, type) { msg.textContent = text; msg.className = type; }
+
+  const monthly = PLANS.find((p) => p.id === "1m") || PLANS[0];
+  // Semester is the one we want them to pick
+  let chosen = PLANS.find((p) => p.badge) || PLANS[PLANS.length - 1];
+  let signedIn = false, isActive = false, activeUntil = 0;
+
+  function perWeek(p) {
+    const w = p.price / (p.days / 7), r = Math.round(w / 10) * 10;
+    return (Math.abs(w - r) < 1 ? "" : "about ") + naira(r) + " a week";
+  }
+  function detail(p) {
+    let t = p.days + " days · " + perWeek(p);
+    const save = Math.round(monthly.price * (p.days / monthly.days) - p.price);
+    if (p.badge && save > 0) t += " · save " + naira(save);
+    return t;
+  }
+  function setPayLabel() {
+    if (!signedIn) { payBtn.textContent = "Log in to continue"; return; }
+    payBtn.textContent = (isActive ? "Add time · " : "Pay ") + naira(chosen.price) + " · " + chosen.label;
+  }
+  function drawPlans() {
+    plansBox.innerHTML = "";
+    PLANS.forEach((p) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "plan-opt" + (p.id === chosen.id ? " on" : "");
+      if (p.badge) { const g = document.createElement("span"); g.className = "badge"; g.textContent = p.badge; b.appendChild(g); }
+      const l = document.createElement("span"); l.className = "l";
+      const dot = document.createElement("span"); dot.className = "dot";
+      const tx = document.createElement("span");
+      const nm = document.createElement("span"); nm.className = "nm"; nm.textContent = p.label;
+      const dt = document.createElement("span"); dt.className = "dt"; dt.textContent = detail(p);
+      tx.appendChild(nm); tx.appendChild(dt); l.appendChild(dot); l.appendChild(tx);
+      const pr = document.createElement("span"); pr.className = "pr"; pr.textContent = naira(p.price);
+      b.appendChild(l); b.appendChild(pr);
+      b.onclick = () => { chosen = p; drawPlans(); setPayLabel(); };
+      plansBox.appendChild(b);
+    });
+  }
+  drawPlans();
+
+  let currentUser = null;
+
+  watchAuthState(async (user) => {
+    currentUser = user;
+    signedIn = !!user;
+    if (!user) {
+      setPayLabel();
+      payBtn.onclick = () => (window.location.href = "login.html");
+      return;
+    }
+    // Coming back from Paystack: confirm the payment first
+    try {
+      const idToken = await user.getIdToken();
+      showReturnCheck(await confirmReturn(idToken));
+    } catch (e) {
+      showMsg("Could not confirm the payment right now. Refresh this page in a minute.", "error");
+    }
+    try {
+      const s = await getPremiumState();
+      if (s.premium) {
+        isActive = true; activeUntil = s.until || 0;
+        alreadyPremium.classList.add("show");
+        untilDate.textContent = s.until ? dateText(s.until) : "further notice";
+      }
+    } catch (e) { /* the plans still work */ }
+    setPayLabel();
+    payBtn.onclick = startPayment;
+  });
+
+  function showReturnCheck(r) {
+    if (!r) return;
+    if (r.ok) {
+      showMsg("Payment confirmed. Your Premium is open.", "success");
+      setTimeout(() => (window.location.href = "index.html"), 1500);
+    } else if (r.status === "abandoned" || r.status === "failed") {
+      showMsg("The payment did not go through. You were not charged.", "error");
+    } else {
+      showMsg("Payment not confirmed yet. If you were debited, wait a minute and refresh. Keep this reference: " + r.reference, "info");
+    }
+  }
+
+  async function startPayment() {
+    if (!currentUser) return;
+    if (PAY_API.includes("YOUR-NAME")) {
+      showMsg("Payments are not set up yet. Check back soon.", "error");
+      return;
+    }
+    payBtn.disabled = true;
+    payBtn.textContent = "Opening payment...";
+    try {
+      await startCheckout(chosen.id, await currentUser.getIdToken());
+    } catch (e) {
+      showMsg("Could not open the payment page. Check your network and try again.", "error");
+      payBtn.disabled = false;
+      setPayLabel();
+    }
+  }
+</script>
+</body>
+</html>
