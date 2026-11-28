@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MTH 102 Past Questions · INDIGENE</title>
+<meta name="theme-color" content="#080503">
+<script src="../protect.js"></script>
+<script src="../history.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8MQXCOH4G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8MQXCOH4G8');
+</script>
+<script data-goatcounter="https://indigene-console.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#080503;--card:#130a05;--card2:#1b0f08;--line:#3d2213;
+  --text:#fff3e8;--mut:#bf9d86;
+  --fire:#ff6a1a;--fire2:#ff9a1f;--gold:#ffc24a;--ember:#e8350f;
+  --green:#2ecc71;--red:#ef4444;--yellow:#ffd23f;--ink:#120803;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Exo 2',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.45}
+body{min-height:100vh;background:radial-gradient(800px 380px at 50% -120px,rgba(255,106,26,.20),transparent 70%),var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hide{display:none!important}
+.orb{font-family:'Orbitron','Exo 2',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- loader ---------- */
+#s-load{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(600px 420px at 50% 40%,rgba(255,106,26,.22),transparent 70%),var(--bg);z-index:60;text-align:center;padding:24px}
+.ring{width:92px;height:92px;margin:0 auto 26px;border-radius:50%;border:7px solid #2a160b;border-top-color:var(--gold);border-right-color:var(--fire);border-bottom-color:var(--ember);animation:spin .9s linear infinite;box-shadow:0 0 28px rgba(255,106,26,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-name{font-size:32px;font-weight:900;letter-spacing:.2em;margin-right:-.2em;background:linear-gradient(90deg,var(--fire2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-name2{font-size:15px;font-weight:700;letter-spacing:.34em;margin-right:-.34em;color:var(--text);margin-top:6px}
+.ld-sub{margin:14px 0 0;color:var(--mut);font-size:14px;letter-spacing:.06em}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(8,5,3,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:640px;margin:0 auto;padding:10px 12px 10px 16px;display:flex;align-items:stretch;justify-content:space-between;gap:10px}
+.id{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:0 0 44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:21px;color:var(--ink);background:linear-gradient(145deg,var(--gold),var(--fire) 60%,var(--ember))}
+.id small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--fire2)}
+.id b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.timer{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(160deg,#4a2108,#331506);border:2.5px solid #d4691f;border-radius:16px;padding:8px 16px;font-weight:900;font-size:clamp(26px,8vw,34px);letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1;box-shadow:0 0 18px rgba(255,106,26,.28)}
+.timer svg{width:1em;height:1em;flex:0 0 1em}
+.timer.low{background:linear-gradient(160deg,#7a1414,#4d0b0b);border-color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+
+/* ---------- question ---------- */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;border:1.5px solid}
+.pill.count{background:#241006;border-color:#8a4a1c;color:var(--gold)}
+.pill.topic{background:#2b1204;border-color:var(--fire);color:var(--fire2);letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+.done-pill{font-size:13px;font-weight:700;color:#6fe3a0;background:#0f2a1a;border:1.5px solid #1f7a45;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.toplabel{margin:14px 3px 0;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2)}
+.qtext{font-size:19px;font-weight:600;line-height:1.5;margin:7px 2px 16px;letter-spacing:.01em}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1.5px solid #5a3118;border-radius:16px;padding:13px 14px;min-height:56px;transition:border-color .12s,background .12s}
+.opt .box{flex:0 0 28px;height:28px;border-radius:8px;border:2px solid #7a4a2a;display:grid;place-items:center;font-size:16px;line-height:1;color:transparent}
+.opt .l{flex:0 0 22px;font-weight:800;color:var(--gold);font-size:17px}
+.opt .t{flex:1;font-size:16.5px}
+.opt:active{transform:scale(.99)}
+.opt.sel{background:linear-gradient(135deg,#4a1e06,#2f1204);border-color:var(--fire)}
+.opt.sel .box{background:var(--fire);border-color:var(--fire);color:var(--ink);font-weight:900}
+.opt.right{background:#0f2a1a;border-color:var(--green)}
+.opt.right .box{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:900}
+.opt.wrong{background:#35100f;border-color:var(--red)}
+.opt.wrong .box{background:var(--red);border-color:var(--red);color:#fff;font-weight:900}
+.opt.static{cursor:default}
+
+/* ---------- nav row ---------- */
+.navrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-top:20px;align-items:center}
+.nb{border-radius:16px;padding:14px 16px;font-weight:800;font-size:16px;letter-spacing:.02em;border:1.5px solid var(--line)}
+.nb.prev{background:#1d0f07;color:var(--text);border-color:#5a3118}
+.nb.next{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.nb.submit{background:#241508;border-color:#6b4a22;color:var(--gold);padding:14px 20px}
+.nb[disabled]{opacity:.38;pointer-events:none}
+.nb:active{transform:scale(.97)}
+
+/* ---------- navigator ---------- */
+.navg{margin-top:22px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 16px 18px}
+.navg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navg-h h3{margin:0;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.navg-h .pills{display:flex;gap:8px}
+.mini{font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 11px;border:1.5px solid}
+.mini.d{background:#0f2a1a;border-color:#1f7a45;color:#6fe3a0}
+.mini.l{background:#241508;border-color:#6b4a22;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.mb{position:relative;height:42px;border-radius:11px;border:1.5px solid #3a2112;background:#170c06;font-weight:700;font-size:15px;color:#c9ab96;padding:0}
+.mb.ans,.mb.ok{background:rgba(46,204,113,.10);border-color:rgba(46,204,113,.50);color:#7ee8a9}
+.mb.skip{background:rgba(255,210,63,.09);border-color:rgba(255,210,63,.50);color:#ffe07a}
+.mb.bad{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.55);color:#ff9b9b}
+.mb.ans::after,.mb.ok::after,.mb.skip::after,.mb.bad::after{content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9}
+.mb.cur{border-color:#fff;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 14px rgba(255,160,60,.35)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* ---------- result ---------- */
+.score{text-align:center;padding:26px 16px 22px;margin-top:18px;background:radial-gradient(500px 260px at 50% 0,rgba(255,106,26,.28),transparent 70%),var(--card);border:1.5px solid #6b3a1a;border-radius:22px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fire2);background:#2b1204;border:1px solid var(--fire);border-radius:999px;padding:4px 12px}
+.big{font-size:74px;line-height:1;font-weight:900;margin-top:14px;background:linear-gradient(180deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:28px;font-weight:700;-webkit-text-fill-color:var(--mut)}
+.pct{font-size:22px;font-weight:800;margin-top:4px}
+.grade{display:inline-grid;place-items:center;min-width:60px;height:60px;border-radius:16px;font-size:36px;font-weight:900;margin:14px 0 6px;color:var(--ink)}
+.g-A{background:#2ecc71}.g-B{background:#9be04a}.g-C{background:#ffd23f}.g-D{background:#ffa733}.g-E{background:#ff7a1a;color:#fff}.g-F{background:#ef4444;color:#fff}
+.remark{color:var(--mut);margin:2px 8px 0}
+.facts{display:flex;justify-content:center;gap:20px;margin-top:16px;color:var(--mut);font-size:13px}
+.facts b{display:block;color:var(--text);font-size:19px}
+.best{margin-top:12px;color:var(--mut);font-size:13px}
+.stack{display:grid;gap:11px;margin-top:16px}
+.btn{border:1.5px solid #5a3118;background:#1d0f07;border-radius:16px;padding:15px 14px;font-weight:800;text-align:center;width:100%;font-size:16px;letter-spacing:.02em}
+.btn.main{background:linear-gradient(135deg,var(--fire),var(--ember));border-color:var(--fire);color:#fff}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn:active{transform:scale(.98)}
+.row{display:flex;gap:11px}.row>*{flex:1}
+.topics{margin-top:18px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px}
+.topics h3{margin:0 0 8px;font-size:13px;letter-spacing:.2em;color:var(--fire2);font-weight:800;border-left:4px solid var(--fire);padding-left:10px}
+.tp{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.tp:first-of-type{border-top:0}
+.tp .n small{display:block;color:var(--mut);font-size:12.5px}
+.tp .p{font-weight:800;min-width:46px;text-align:right}
+.tp .g{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+
+/* ---------- review ---------- */
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;border:1.5px solid;letter-spacing:.04em}
+.badge.ok{background:#0f2a1a;color:#6fe3a0;border-color:#1f7a45}
+.badge.bad{background:#35100f;color:#ff9a9a;border-color:#8a2a2a}
+.badge.skip{background:#3a2e08;color:#ffe27a;border-color:#8a7410}
+.ans-line{margin:14px 2px 0;font-size:15px;color:var(--mut)}
+.ans-line b{color:var(--text)}
+.note{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15.5px}
+.note h4{margin:0 0 5px;font-size:11.5px;letter-spacing:.18em;font-weight:800}
+.note.why{background:#1c1109;border:1.5px solid #6b4a22}
+.note.why h4{color:var(--gold)}
+.note.hack{background:#2b1204;border:1.5px solid var(--fire)}
+.note.hack h4{color:var(--fire2)}
+
+/* ---------- overlay ---------- */
+.ov{position:fixed;inset:0;background:rgba(4,2,1,.85);display:grid;place-items:center;padding:20px;z-index:80}
+.ov .box{background:var(--card);border:1.5px solid #6b3a1a;border-radius:20px;padding:22px;max-width:380px;width:100%;text-align:center}
+.ov h3{margin:0 0 6px;font-size:20px}
+.ov p{margin:0 0 16px;color:var(--mut)}
+.gatemsg{padding-top:90px;text-align:center;color:var(--mut)}
+
+/* ---------- smooth motion ---------- */
+html{scroll-behavior:smooth}
+.top{transition:box-shadow .2s}
+#s-load{transition:opacity .45s ease,visibility .45s}
+#s-load.fade{opacity:0;visibility:hidden}
+section{animation:secIn .35s ease both}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.swap{animation:qIn .28s cubic-bezier(.2,.7,.2,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.swap.back{animation-name:qInBack}
+@keyframes qInBack{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.opt,.mb,.nb,.btn{transition:background-color .18s ease,border-color .18s ease,transform .12s ease,opacity .2s ease,box-shadow .18s ease}
+.opt .box{transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s cubic-bezier(.3,1.6,.5,1)}
+.opt.sel .box{transform:scale(1.08)}
+.opt.sel{box-shadow:0 0 0 3px rgba(255,106,26,.16)}
+.mb.cur{transition:box-shadow .2s,border-color .2s}
+.big,.grade{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- loader: shows first, then the questions start straight away -->
+<div id="s-load">
+  <div>
+    <div class="ring" aria-hidden="true"></div>
+    <div class="ld-name orb">INDIGENE</div>
+    <div class="ld-name2 orb">PAST QUESTIONS</div>
+    <div class="ld-sub" id="ld-sub">Loading…</div>
+  </div>
+</div>
+
+<div id="gate" class="gatemsg hide"></div>
+
+<div id="app" class="hide">
+
+  <!-- QUIZ -->
+  <section id="s-quiz" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b class="orb">MTH 102</b></div></div>
+      <div class="timer orb" id="timer-box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3M18.5 6.5l1.5-1.5"/></svg><span id="timer">15:00</span></div>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb"><span id="q-n">1 of 60</span></span>
+        <span class="done-pill" id="q-done">0 answered</span>
+      </div>
+      <div class="toplabel" id="q-tag"></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-prev">‹ Prev</button>
+        <button class="nb submit" id="b-finish">Submit</button>
+        <button class="nb next" id="b-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h">
+          <h3 class="orb">QUESTION NAVIGATOR</h3>
+          <div class="pills"><span class="mini d" id="m-done">0 done</span><span class="mini l" id="m-left">60 left</span></div>
+        </div>
+        <div class="grid" id="q-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Answered</span><span><i style="background:#ffd23f"></i>Skipped</span><span><i style="background:transparent;border:1.5px solid #fff;width:9px;height:9px"></i>You are here</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b>MTH 102 · RESULT</b></div></div>
+    </div></header>
+    <div class="wrap">
+      <div class="score">
+        <span class="tag orb">Past Questions</span>
+        <div class="big orb"><span id="r-c">0</span><small> / <span id="r-t">60</span></small></div>
+        <div class="pct orb" id="r-pct">0%</div>
+        <div class="grade orb" id="r-grade">F</div>
+        <p class="remark" id="r-remark"></p>
+        <div class="facts">
+          <div><b class="orb" id="r-right">0</b>correct</div>
+          <div><b class="orb" id="r-wrong">0</b>wrong</div>
+          <div><b class="orb" id="r-skip">0</b>skipped</div>
+          <div><b class="orb" id="r-time">0:00</b>time used</div>
+        </div>
+        <div class="best" id="r-best"></div>
+      </div>
+      <div class="stack">
+        <button class="btn main" id="b-rev-all">Review total correction</button>
+        <button class="btn" id="b-rev-wrong">Review wrong correction</button>
+      </div>
+      <div class="topics" id="r-topics"></div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="b-again">New attempt</button>
+        <button class="btn" id="b-home">Back to courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="s-review" class="hide">
+    <header class="top"><div class="top-in">
+      <div class="id"><div class="logo orb">I</div><div><small class="orb">INDIGENE</small><b id="v-mode">CORRECTION</b></div></div>
+      <button class="nb submit" style="padding:10px 14px;font-size:14px" id="b-v-back">Score</button>
+    </div></header>
+    <div class="wrap">
+      <div class="meta">
+        <span class="pill count orb" id="v-n">Q 1</span>
+        <span class="badge" id="v-badge"></span>
+      </div>
+      <div class="toplabel" id="v-tag"></div>
+      <div class="qtext" id="v-text"></div>
+      <div class="opts" id="v-opts"></div>
+      <div class="ans-line" id="v-line"></div>
+      <div class="note why"><h4 class="orb">WHY</h4><div id="v-why"></div></div>
+      <div class="note hack"><h4 class="orb">SPEED HACK</h4><div id="v-hack"></div></div>
+      <div class="navrow">
+        <button class="nb prev" id="b-v-prev">‹ Prev</button>
+        <button class="nb submit" id="b-v-score">Score</button>
+        <button class="nb next" id="b-v-next">Next ›</button>
+      </div>
+      <div class="navg">
+        <div class="navg-h"><h3 class="orb">QUESTION NAVIGATOR</h3></div>
+        <div class="grid" id="v-map"></div>
+        <div class="legend"><span><i style="background:#2ecc71"></i>Correct</span><span><i style="background:#ef4444"></i>Wrong</span><span><i style="background:#ffd23f"></i>Skipped</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="ov" class="ov hide"><div class="box"><h3 id="ov-h"></h3><p id="ov-p"></p><div class="stack" id="ov-b" style="margin-top:0"></div></div></div>
+
+<script>
+/* INDIGENE · MTH 102 Past Questions bank
+   Format: [topic, question, CORRECT, wrong1, wrong2, wrong3, explanation, hack]
+   The correct answer is always written first here. The page shuffles the options on screen.
+   To grow the bank, add new lines at the end. Do not change the question text of old lines
+   (the site tracks "seen" questions by their text). */
+window.PQ_TOPICS = [
+  "Functions, Domain and Range",
+  "Limits and Continuity",
+  "Differentiation",
+  "Applications of Differentiation",
+  "Integration",
+  "Definite Integrals and Area",
+  "Past Questions"
+];
+window.PQ_BANK = [
+/* ---------- 0 · Functions, Domain and Range ---------- */
+[0,"If f(x) = 2x + 1, find f(3).","7","6","5","9","Put 3 in place of x: 2 times 3 is 6, plus 1 gives 7.","Swap x for the number first, then work it out."],
+[0,"Find f(−5) if f(x) = x² + 2x − 3.","12","32","−38","18","Square first: 25. Then 2 times −5 is −10. So 25 − 10 − 3 = 12.","Square a negative number and it turns positive."],
+[0,"What is the value of [f(a + h) − f(a)] / h when f(x) = x² − 2x + 7?","2a + h − 2","2a + 2h − 2","a² + h − 2","2a − h − 2","f(a + h) − f(a) = 2ah + h² − 2h. Divide every term by h and you get 2a + h − 2.","Expand, cancel the constants, then divide by h."],
+[0,"If f(z − 1) = z² − 2z + 13, find f(−1).","13","16","12","1","Set z − 1 = −1, so z = 0. Then f(−1) = 0 − 0 + 13 = 13.","Solve the bracket for z first, do not plug −1 straight in."],
+[0,"If h(x) = x² + x, then h(x + 1) − h(x) equals","2x + 2","2x + 1","2x","x² + 2","h(x + 1) = x² + 3x + 2. Subtract x² + x and you are left with 2x + 2.","Expand h(x + 1) fully before you subtract."],
+[0,"If f(t − 1) = t² + 2t, find f(2).","15","8","3","24","Put t − 1 = 2, so t = 3. Then f(2) = 9 + 6 = 15.","Bracket equals the input, solve for t."],
+[0,"If f(x) = x² − 2x + 7, find f(−5).","42","22","32","−8","25 + 10 + 7 = 42. The −2x term becomes +10 because x is negative.","Minus times minus is plus."],
+[0,"Find the value of f(x) = x² − 5x + 1 when x = 4.","−3","3","37","−7","16 − 20 + 1 = −3.","Square, multiply, then add and subtract left to right."],
+[0,"Given f(x) = 2x − 4 and g(x) = x² + 3, find f(g(x)) when x = 2.","10","3","6","12","g(2) = 7 first, then f(7) = 14 − 4 = 10.","In f of g, work the inside function first."],
+[0,"Given f(x) = 2x − 4 and g(x) = x² + 3, find g(f(x)) when x = 1.","7","4","5","3","f(1) = −2 first, then g(−2) = 4 + 3 = 7.","Inside function first, always."],
+[0,"Find the inverse of f(x) = √(2x − 3) and evaluate it at x = 1.","2","1","4","3/2","Write y = √(2x − 3), square both sides and make x the subject: x = (y² + 3)/2. At 1 this gives 2.","Swap x and y, then solve for y."],
+[0,"If f(x) = x² − 4x + 3, find f(x + 1).","x² − 2x","x² − 4x + 4","x² + 2x","x² − 2x + 6","(x + 1)² − 4(x + 1) + 3 = x² + 2x + 1 − 4x − 4 + 3 = x² − 2x.","Replace every x with the whole bracket."],
+[0,"If f(x − 3) = x² − 2x + 7, find f(−1).","7","10","31","4","Set x − 3 = −1, so x = 2. Then f(−1) = 4 − 4 + 7 = 7.","Solve the bracket for x, then use that x."],
+[0,"If G(x) = x² + x − 5, find G(x + 2) − G(−x).","6x + 6","4x + 6","6x − 4","6x + 2","G(x + 2) = x² + 5x + 1 and G(−x) = x² − x − 5. The difference is 6x + 6.","Expand both, then subtract carefully."],
+[0,"If H(x) = x² + 4x − 5, find H(x + d) − H(x).","2xd + d² + 4d","2xd + 4d","x² + 2xd + 4d","2xd + d² + 4","H(x + d) = x² + 2xd + d² + 4x + 4d − 5. Take away H(x) and 2xd + d² + 4d remains.","Everything without d cancels out."],
+[0,"If f(x − 1) = x² + 5x − 1, find f(4) + f(−2).","44","49","28","54","For f(4) set x = 5, which gives 49. For f(−2) set x = −1, which gives −5. The sum is 44.","Each f needs its own x from the bracket."],
+[0,"Given f(x) = 2x − 1 and g(x) = x² − 4, find f(g(x)).","2x² − 9","4x² − 4x − 3","2x² − 5","2x² − 8","Put g(x) into f: 2(x² − 4) − 1 = 2x² − 9.","f of g means g goes inside f."],
+[0,"Given f(x) = 2x − 1 and g(x) = x² − 4, find g(f(x)).","4x² − 4x − 3","2x² − 9","x² + 6x + 2","4x² + 4x − 3","Put f(x) into g: (2x − 1)² − 4 = 4x² − 4x + 1 − 4 = 4x² − 4x − 3.","Square the whole bracket, do not square just 2x."],
+[0,"Find the inverse of f(x) = 3x + 5.","x − 5 all over 3","x + 5 all over 3","3x − 5","x over 3 minus 5","Write y = 3x + 5, so x = (y − 5)/3. Swap the letters to get (x − 5)/3.","Undo the plus 5 first, then undo the times 3."],
+[0,"What do we call the set of all possible inputs of a function?","The domain","The range","The co-domain","The image","The domain holds the inputs. The range holds the outputs that actually come out.","Domain = Data going in."],
+[0,"What do we call the set of all outputs a function actually produces?","The range","The domain","The origin","The gradient","Range is the set of values f(x) takes. Domain is where x comes from.","Range = results."],
+[0,"Which of these terms best describes a mapping?","A transformation","A derivative","A constant","A fraction","A mapping takes each element of one set and sends it to an element of another set, which is why it is also called a transformation.","Map = move elements across."],
+[0,"A function f(x) is called an even function if","f of −x equals f of x","f of −x equals minus f of x","f of x equals 0 for all x","f of −x equals 1 over f of x","For an even function, replacing x with −x changes nothing, like x² or cos x.","Even gives the same, odd flips the sign."],
+[0,"If f(x) = 2x³ − 4x, then f(x) is","An odd function","An even function","Neither odd nor even","Both odd and even","f(−x) = −2x³ + 4x = −f(x), so the sign flips. That is the mark of an odd function.","Only odd powers of x give an odd function."],
+[0,"A function assigns −2 to each negative integer and 2 to each positive integer. What is its domain?","All integers except zero","All integers","Only the positive integers","The set containing only −2 and 2","Zero is neither negative nor positive, so it is not given a value. Every other integer is in the domain.","Zero is left out because it has no sign."],
+[0,"The total cost in naira of making q units is C(q) = q³ − 30q² + 500q + 200. What is the cost of making 5 units?","N2,075","N3,575","N2,675","N1,925","C(5) = 125 − 750 + 2500 + 200 = 2075.","Work each power separately before adding."],
+[0,"The total cost in naira of making q units is C(q) = q³ − 30q² + 500q + 200. What is the cost of making 10 units?","N3,200","N9,200","N5,900","N3,000","C(10) = 1000 − 3000 + 5000 + 200 = 3200.","The 30q² term is 3000 at q = 10, so subtract it."],
+[0,"What is the ceiling of 3.2?","4","3","3.5","2","The ceiling is the smallest integer not less than the number, so 3.2 goes up to 4.","Ceiling goes up."],
+[0,"What is the floor of 7.8?","7","8","7.5","6","The floor is the largest integer not greater than the number, so 7.8 drops to 7.","Floor goes down."],
+[0,"What is the ceiling of −2.3?","−2","−3","−2.5","−1","Going up from −2.3 on the number line the next integer is −2.","Ceiling goes up, even for negatives."],
+[0,"What is the floor of −0.5?","−1","0","−0.5","1","Going down from −0.5 the next integer is −1.","Floor goes down, so negatives get bigger in size."],
+[0,"Which of these relations is NOT a function?","One where an element of the domain has two different images","One where two different domain elements share the same image","One where some co-domain elements have no object","One where every domain element has exactly one image","A function must give each domain element exactly one image. Sharing an image or leaving co-domain elements unused is allowed.","One input, one output. Two outputs kills it."],
+[0,"Two different elements of the domain are sent to the same image. What does this tell us about the mapping?","It is a function but it is not one-one","It is not a function","It is a function that is onto","It is only a relation","Sharing an image does not break the rule for a function. It only means the function is not one-one.","Many to one is fine for a function, not for one-one."],
+[0,"A mapping is one-one when","Different elements of the domain always have different images","Every element of the co-domain has an image","Every element of the domain has the same image","The range is equal to the domain","One-one is about the domain side: no two inputs may land on the same output.","One-one: no two inputs share an output."],
+[0,"A function is onto when","Its range is equal to its co-domain","Its domain is equal to its range","No two elements of the domain share an image","Every element of the domain has an image","Onto means every element of the co-domain is hit. The last option is true of every function, so it cannot define onto.","Onto: range fills the co-domain."],
+[0,"The function f from R to R given by f of x equals x² is","Neither one-one nor onto","One-one but not onto","Onto but not one-one","Both one-one and onto","f of 2 and f of −2 are both 4, so it is not one-one. Negative numbers are never reached, so it is not onto R.","Squares lose the sign and never go negative."],
+[0,"The function f from R to R given by f of x equals 2x + 1 is","Both one-one and onto","One-one but not onto","Onto but not one-one","Neither one-one nor onto","Different x always give different 2x + 1, and every real y comes from x = y minus 1 over 2.","A straight line that is not flat is one-one and onto."],
+[0,"The range of a constant function is","A singleton","The whole co-domain","The empty set","The same as its domain","A constant function sends everything to one value, so the range holds only that value.","One output value only."],
+[0,"Every function whose domain is a singleton is","A constant function","A signum function","An identity function","A many-valued function","With only one input there can only be one output value, so the function is constant.","One input gives one output value."],
+[0,"The signum function takes the value −1 when","x is negative","x is positive","x is zero","x is an integer","Signum gives 1 for positive, 0 for zero and −1 for negative numbers.","Signum copies the sign."],
+[0,"The floor of x and the ceiling of x are equal when","x is an integer","x is positive","x is a fraction","x is zero only","For an integer both give the number itself. For any other number the ceiling is one more than the floor.","Integers do not move up or down."],
+[0,"For a number x that is not an integer, the ceiling of x minus the floor of x is","1","0","2","x","The floor and ceiling are the two integers on either side of x, so they are exactly 1 apart.","Neighbouring integers differ by 1."],
+[0,"What is the ceiling of −0.9?","0","−1","1","−0.9","The ceiling is the smallest integer not less than −0.9. That integer is 0.","Ceiling climbs up, even from a negative number."],
+[0,"The function f of x equals x² + x is","Neither even nor odd","Even","Odd","Both even and odd","f of −x = x² − x. That is not f of x and it is not minus f of x.","Mixed powers usually give neither."],
+[0,"Which of these is an even function?","The modulus function |x|","The cubic function x³","The sine function","The linear function x + 1","|−x| = |x|. The cubic and sine are odd, and x + 1 is neither.","Even powers and |x| are even."],
+[0,"The graph of an even function is symmetric about","The y-axis","The x-axis","The origin","The line y = x","Even functions give the same height at x and −x, so the left side mirrors the right side. Odd functions are symmetric about the origin.","Even mirror, odd spin."],
+[0,"Which of these is NOT a polynomial function?","1/x","7","x² + 3x","5x − 2","A polynomial has only non-negative whole number powers of x. 1/x is x to the power −1. The constant 7 is a polynomial of order zero.","No x under a line, no roots, no negative powers."],
+[0,"A polynomial of order one is called","A linear function","A quadratic function","A constant function","A cubic function","Order one means the highest power of x is 1, so the graph is a straight line.","Order is the highest power."],
+[0,"A rational function is","The quotient of two polynomials with the bottom not zero","Any function with a root sign","A polynomial with fractional coefficients only","The sum of an exponential and a polynomial","Rational means ratio. One polynomial over another polynomial.","Rational = ratio."],
+[0,"Which of these is a transcendental function?","The exponential function","A polynomial function","A rational function","A constant function","Transcendental functions do not satisfy any polynomial equation in x and y. Exponential, logarithmic, trigonometric and hyperbolic functions all belong here.","Exp, log, trig, hyperbolic are transcendental."],
+[0,"The domain of the logarithmic function log of x is","All positive real numbers","All real numbers","All non-negative real numbers","All real numbers except 1","You can only take the log of a number greater than zero. Zero itself is not allowed.","Log needs positive input."],
+[0,"The function f of x equals aˣ, with a greater than zero and a not equal to 1, has range","All positive real numbers","All real numbers","All non-negative real numbers","All numbers between 0 and 1","An exponential never reaches zero and never goes negative.","Exponentials stay above zero."],
+[0,"The symbol sin⁻¹x means","The angle whose sine is x","One divided by sin x","The cosecant of x","The cosine of x","The −1 here marks the inverse function. It is not a power, so it is not 1 over sin x.","Minus one on a function means inverse, not reciprocal."],
+[0,"The absolute value of a real number x equals x when","x is zero or positive","x is negative","x is positive only","x is an integer","|x| keeps x as it is for zero and positive numbers. It only changes the sign of negatives.","Zero is included."],
+[0,"Which statement about absolute values is true for all real x and y?","|xy| equals |x| times |y|","|x + y| equals |x| + |y|","|x − y| equals |x| − |y|","|x| always equals x","Absolute value passes through a product. It does not pass through a sum or difference.","Product yes, sum no."],
+[0,"For any real numbers x and y, the value of |x + y| is always","Less than or equal to |x| + |y|","Equal to |x| + |y|","Greater than |x| + |y|","Equal to |x| − |y|","This is the triangle inequality. Opposite signs can make the sum smaller.","Triangle inequality: sum is never bigger."],
+[0,"The range of a function is always","A subset of the co-domain","Equal to the co-domain","Equal to the domain","Larger than the co-domain","The range holds only the values actually reached. The co-domain may hold extra values that are never reached.","Range sits inside the co-domain."],
+[0,"The relation y² = x gives y as","A many-valued relation, so y is not a function of x","A single-valued function of x","A constant function of x","A one-one function of x","For x = 4, y can be 2 or −2. One input with two outputs is not a function.","Plus or minus root breaks single value."],
+[0,"A curve is the graph of a function of x only if","No vertical line cuts it more than once","No horizontal line cuts it more than once","It passes through the origin","It is a straight line","A vertical line meeting the curve twice means one x has two y values. The horizontal line test is for one-one.","Vertical for function, horizontal for one-one."],
+[0,"A function is one-one when its graph is such that","No horizontal line cuts it more than once","No vertical line cuts it more than once","It is symmetric about the y-axis","It starts at the origin","A horizontal line meeting the graph twice means two inputs share one output.","Horizontal line test."],
+[0,"Composition of functions, f of g and g of f, is","Not the same in general","Always the same","Always equal to the product of f and g","Defined only for one-one functions","The order matters. f of g puts g inside f, and g of f puts f inside g.","Order matters."],
+[0,"A function has an inverse function when it is","Both one-one and onto","Even","Constant","Onto only","One-one means no outputs are shared and onto means every output is used, so each output can be sent back to exactly one input.","Inverse needs one-one and onto."],
+[0,"In the notation f⁻¹, the −1 means","The inverse function, not a reciprocal","The reciprocal of f","The negative of f","The derivative of f","f⁻¹ undoes f. The reciprocal of f is 1 over f.","Inverse is not reciprocal."],
+/* ---------- 1 · Limits and Continuity ---------- */
+[1,"Evaluate the limit of (x² − 1)/(x − 1) as x approaches 1.","2","0","1","The limit does not exist","Factor the top: (x − 1)(x + 1). Cancel x − 1 and put x = 1 into x + 1, giving 2.","Factor, cancel, then substitute."],
+[1,"Evaluate the limit of (x² − 25)/(x − 5) as x approaches 5.","10","0","5","25","x² − 25 = (x − 5)(x + 5). After cancelling, x + 5 gives 10 at x = 5.","Difference of two squares."],
+[1,"Evaluate the limit of (x² − 9)/(x + 3) as x approaches −3.","−6","6","0","−3","x² − 9 = (x − 3)(x + 3). Cancel x + 3 and put x = −3 into x − 3 to get −6.","Cancel the bracket that causes zero, then substitute."],
+[1,"Evaluate the limit of (x² − 16)/(x − 4) as x approaches 4.","8","0","4","16","Factor as (x − 4)(x + 4), cancel, and x + 4 gives 8.","Difference of two squares again."],
+[1,"Evaluate the limit of (x² − 5x + 6)/(x − 2) as x approaches 2.","−1","1","0","5","x² − 5x + 6 = (x − 2)(x − 3). Cancel x − 2 and put x = 2 into x − 3 to get −1.","Factor the quadratic first."],
+[1,"Evaluate the limit of (x² + 7x)/x as x approaches 0.","7","0","1","The limit does not exist","Take out x from the top, cancel it, and x + 7 gives 7 at x = 0.","Cancel the common x before substituting."],
+[1,"Evaluate the limit of sin 3x / x as x approaches 0.","3","1","0","1/3","Write sin 3x / x as 3 times sin 3x / 3x. The fraction tends to 1, so the answer is 3.","Match the inside of sin to the bottom."],
+[1,"A function f is continuous at x = a when","The limit of f as x approaches a equals the value of f at a","The value of f at a is any real number","The limit exists but f is not defined at a","f equals zero at x = a","Three things must agree: f(a) exists, the limit exists, and both are equal.","No gap, no jump, no hole."],
+[1,"The function (x² − 9)/(x − 3) is not defined at x = 3. What type of discontinuity is this?","Removable","Infinite","Jump","None, it is continuous","The factor x − 3 cancels, so the hole can be filled with the value 6. That is a removable discontinuity.","Cancels out means removable."],
+[1,"The point of removable discontinuity of f(x) = (x² − 4)/(x − 2) is found by","Setting the cancelled factor to zero","Setting the numerator to 4","Differentiating f","Setting x = 0","The factor x − 2 cancels from top and bottom. Setting it to zero gives x = 2, where the hole sits.","Cancelled bracket equals zero gives the hole."],
+[1,"The limit of f as x approaches c depends on","The values of f near c, not necessarily at c","The value of f at c only","The values of f far away from c","Whether f is defined at c","A limit looks at what f does as x gets close to c. What happens exactly at c does not matter.","Near c, not at c."],
+[1,"If f is not defined at x = c, then the limit of f as x approaches c","May still exist","Cannot exist","Must be zero","Must be infinite","The limit ignores the value at c. Think of x² − 1 over x − 1 at x = 1: undefined there but the limit is 2.","Hole in the graph, limit still fine."],
+[1,"The limit of f as x approaches c exists only if","The left and right limits are equal","f is defined at c","The left limit is zero","f is continuous everywhere","Both sides must head towards the same value. If they disagree, the limit does not exist.","Left equals right."],
+[1,"If the left limit at x = c is 3 and the right limit is 5, then the limit at c","Does not exist","Is 3","Is 4","Is 5","The two sides disagree, so there is no single value for f to approach.","Do not average the sides."],
+[1,"The limit of a quotient of two functions is the quotient of their limits provided","The limit of the denominator is not zero","The limit of the numerator is not zero","Both limits are integers","The limit of the denominator is positive","Dividing by a zero limit breaks the rule. Then you must simplify the function first.","Bottom limit not zero."],
+[1,"The limit of the nth root of a function is the nth root of its limit provided","That root of the limit is a finite real number","n is even","The limit is positive","The limit is an integer","If the root of the limit is not a real number, the rule does not apply, for example the square root of a negative limit.","Root of the limit must be real."],
+[1,"The limit of a constant k as x approaches c is","k","0","c","kc","A constant never changes, so it approaches itself.","Constant stays constant."],
+[1,"Which of these is NOT required for a function f to be continuous at x = c?","f must be differentiable at c","f must be defined at c","The limit of f must exist at c","The limit must equal f of c","Continuity needs the value, the limit and equality of the two. Differentiability is a stronger condition.","Continuity is weaker than differentiability."],
+[1,"A function that is continuous at a point is","Not necessarily differentiable there","Always differentiable there","Always increasing there","Always zero there","The graph of |x| is continuous at 0 but has a sharp corner, so there is no derivative.","Smooth is more than connected."],
+[1,"A function that is differentiable at a point is","Continuous at that point","Not continuous at that point","Constant at that point","Even at that point","Having a derivative forces the function to be continuous at the point.","Differentiable gives continuous."],
+[1,"The function |x| at x = 0 is","Continuous but not differentiable","Differentiable but not continuous","Both continuous and differentiable","Neither continuous nor differentiable","There is no gap in the graph, but the slope jumps from −1 to 1 at the corner.","Corner means no derivative."],
+[1,"Which of these functions is continuous at every real number?","A polynomial","1/x","The floor function","The signum function","Polynomials have no gaps, jumps or breaks. The other three are broken at some point.","Polynomials never break."],
+[1,"The floor function has jump discontinuities at","Every integer","Every real number","Only zero","Every positive number","The floor stays at one integer value and then jumps up at the next integer.","Jumps at integers."],
+[1,"A rational function is continuous","Everywhere except where the denominator is zero","Everywhere","Nowhere","Only where the numerator is zero","It is a quotient of continuous functions, so it only fails where the bottom vanishes.","Bottom zero is the only trouble."],
+[1,"The function 1/x at x = 0 has","An infinite discontinuity","A removable discontinuity","A jump discontinuity","No discontinuity","As x approaches 0 the values blow up, so no value can fill the gap.","Blows up means infinite."],
+[1,"In the standard limit that sin x over x tends to 1, the angle x must be measured in","Radians","Degrees","Gradians","Any unit","The limit equals 1 only in radians. In degrees the value is π over 180.","Radians only."],
+[1,"The limit of tan x over x as x approaches 0 is","1","0","π","The limit does not exist","Write tan x over x as sin x over x times 1 over cos x. Each part tends to 1.","Tan behaves like x near zero."],
+[1,"The limit of 1 − cos x all over x² as x approaches 0 is","1/2","0","1","2","Using 1 − cos x equals 2 sin²x/2, the limit works out to 1/2. Many students wrongly say 0 or 1.","Remember one half."],
+[1,"The limit of eˣ − 1 all over x as x approaches 0 is","1","0","e","The limit does not exist","This is a standard limit. It says the slope of eˣ at 0 is 1.","e to the x has slope 1 at zero."],
+[1,"The limit of x sin of 1 over x as x approaches 0 is","0","1","The limit does not exist","Infinity","The sine part stays between −1 and 1, while x shrinks to zero, so the product is squeezed to 0.","Bounded times zero is zero."],
+[1,"The limit of 1/x as x approaches 0 from the right is","Positive infinity","Negative infinity","0","1","Small positive x gives a very large positive value. From the left it would go to negative infinity.","Right side positive."],
+[1,"The two-sided limit of 1/x as x approaches 0","Does not exist","Is 0","Is positive infinity","Is negative infinity","The right side goes to positive infinity and the left side to negative infinity, so they disagree.","Sides disagree."],
+[1,"Which of these is NOT an indeterminate form?","A nonzero number over 0","0 over 0","Infinity over infinity","Infinity minus infinity","A nonzero number over zero is not indeterminate. The size just blows up, so the limit is infinite or does not exist.","Only 0 over 0 type forms are indeterminate."],
+[1,"The limit of 3x² + 1 all over x² − 5 as x tends to infinity is","3","0","1","Infinity","Divide top and bottom by x². The ratio tends to 3 over 1.","Same degree: ratio of leading coefficients."],
+[1,"The limit of 2x + 1 all over x² + 1 as x tends to infinity is","0","2","1","Infinity","The bottom has the higher power, so it grows faster and the fraction shrinks to zero.","Bigger power at the bottom gives zero."],
+[1,"The limit of 1 + 1/n all raised to the power n, as n tends to infinity, is","e","1","0","Infinity","This is the standard limit that defines the number e.","Compound growth limit is e."],
+/* ---------- 2 · Differentiation ---------- */
+[2,"If f(x) = x² − 5x + 5, what does [f(x + Δx) − f(x)] / Δx approach as Δx approaches zero?","2x − 5","2x + 5","2x − 4","x² − 5","This is differentiation from first principles. For x² − 5x + 5 the derivative is 2x − 5.","The limit of the difference quotient is the derivative."],
+[2,"Differentiate P(x) = (x − 1)(3x − 2) with respect to x.","6x − 5","3x − 5","6x − 2","6x + 5","Expand to 3x² − 5x + 2, then differentiate to get 6x − 5.","Expand first, then use the power rule."],
+[2,"Differentiate y = 2 sin 3x.","6 cos 3x","−6 cos 3x","2 cos 3x","6 sin 3x","The derivative of sin 3x is 3 cos 3x, and the 2 stays in front, giving 6 cos 3x.","Bring the inside number to the front."],
+[2,"Find the differential coefficient of y = 7 sin 2x − 3 cos x.","14 cos 2x + 3 sin x","14 cos 2x − 3 sin x","7 cos 2x + 3 sin x","−14 cos 2x + 3 sin x","The derivative of 7 sin 2x is 14 cos 2x. The derivative of −3 cos x is +3 sin x.","Cos gives minus sin, and minus times minus is plus."],
+[2,"What is the gradient of the curve f(x) = x² at x = 2?","4","2","8","6","f′(x) = 2x, so at x = 2 the gradient is 4.","Gradient equals the derivative at that point."],
+[2,"An alternating voltage is v = 100 sin 200t volts, where t is in seconds. What is the rate of change of voltage at t = 0.005 s?","10806 volts per second","19997 volts per second","−8323 volts per second","54 volts per second","dv/dt = 20000 cos 200t. At t = 0.005 the angle is 1 radian and cos 1 = 0.5403, so the answer is about 10806.","Keep your calculator in radian mode for this one."],
+[2,"An alternating voltage is v = 100 sin 200t volts, where t is in seconds. What is the rate of change of voltage at t = 0.01 s?","−8323 volts per second","8323 volts per second","19988 volts per second","−10806 volts per second","dv/dt = 20000 cos 200t. At t = 0.01 the angle is 2 radians and cos 2 = −0.4161, so the answer is about −8323.","Radian mode again. Cos 2 is negative."],
+[2,"Differentiate e⁻²ˣ with respect to x.","−2e⁻²ˣ","2e⁻²ˣ","e⁻²ˣ","−e⁻²ˣ","The derivative of e to the power ax is a times e to the power ax. Here a = −2.","The power comes down in front."],
+[2,"If y = ln(6x − 4), find dy/dx.","6 over 6x − 4","1 over 6x − 4","6x − 4 over 6","ln 6","The derivative of ln u is u′/u. Here u′ = 6, so dy/dx = 6/(6x − 4).","Derivative of the inside over the inside."],
+[2,"Find the second derivative of y = sin 2x + 3 cos 5x.","−4 sin 2x − 75 cos 5x","2 cos 2x − 15 sin 5x","−4 sin 2x − 15 cos 5x","−2 sin 2x − 75 cos 5x","First derivative: 2 cos 2x − 15 sin 5x. Differentiate again: −4 sin 2x − 75 cos 5x.","Each time, the inside number multiplies again."],
+[2,"If y = cos 4t and x = sin 3t, find dy/dx.","−4 sin 4t over 3 cos 3t","4 sin 4t over 3 cos 3t","3 cos 3t over −4 sin 4t","−4 sin 4t","dy/dt = −4 sin 4t and dx/dt = 3 cos 3t. Divide dy/dt by dx/dt.","Top over bottom: dy/dt over dx/dt."],
+[2,"Differentiate y = x⁵.","5x⁴","x⁴","4x⁵","5x⁶","Bring the power down and reduce it by one.","Power down, power minus one."],
+[2,"Differentiate y = 4x³ − 2x + 7.","12x² − 2","12x² − 2x","4x² − 2","12x² + 7","4x³ gives 12x², −2x gives −2, and the constant 7 gives 0.","Constants disappear."],
+[2,"Differentiate y = e³ˣ.","3e³ˣ","e³ˣ","3e²ˣ","e³ˣ over 3","The derivative of e to the power ax is a times e to the power ax.","Power comes down in front."],
+[2,"Differentiate y = cos 2x.","−2 sin 2x","2 sin 2x","−sin 2x","2 cos 2x","The derivative of cos is minus sin, and the 2 comes out in front.","Cos turns into minus sin."],
+[2,"Differentiate y = ln x.","1 over x","x","ln x over x","e to the power x","This is a standard result: the derivative of ln x is 1/x.","Learn it as a pair: ln x gives 1 over x."],
+[2,"Differentiate y = x² sin x.","2x sin x + x² cos x","2x cos x","x² cos x","2x sin x − x² cos x","Product rule: derivative of the first times the second, plus the first times derivative of the second.","u′v + uv′."],
+[2,"Differentiate y = x over x + 1.","1 over x + 1 all squared","1 over x + 1","x over x + 1 all squared","2x + 1 over x + 1 all squared","Quotient rule: (x + 1)(1) − (x)(1) = 1 on top, and the bottom is squared.","Low d high minus high d low, over low squared."],
+[2,"Differentiate y = 2x + 1 all to the power 5.","10 times 2x + 1 all to the power 4","5 times 2x + 1 all to the power 4","10 times 2x + 1 all to the power 5","2 times 2x + 1 all to the power 4","Chain rule: bring down 5, reduce the power to 4, then multiply by the derivative of the inside, which is 2.","Power down, inside derivative out."],
+[2,"Find the second derivative of y = x⁴ − 3x².","12x² − 6","4x³ − 6x","12x² − 6x","12x³ − 6","First derivative is 4x³ − 6x. Differentiate again to get 12x² − 6.","Differentiate twice, one step at a time."],
+[2,"What is the gradient of y = x³ − 3x at x = 2?","9","3","6","12","y′ = 3x² − 3. At x = 2 this is 12 − 3 = 9.","Differentiate first, then substitute."],
+[2,"Differentiate y = 3 sin x + 2 cos x.","3 cos x − 2 sin x","3 cos x + 2 sin x","−3 cos x − 2 sin x","3 sin x − 2 cos x","Sin gives cos, and cos gives minus sin.","Sin up, cos down with a minus."],
+[2,"Differentiate y = 5e²ˣ.","10e²ˣ","5e²ˣ","10e⁵ˣ","2e²ˣ","The derivative of e²ˣ is 2e²ˣ, and the 5 stays in front.","Number out front, power comes down."],
+[2,"If x = 2t and y = t², find dy/dx.","t","2t","t over 2","2","dy/dt = 2t and dx/dt = 2, so dy/dx = 2t/2 = t.","dy/dt over dx/dt."],
+[2,"The derivative of a product uv is","u′v + uv′","u′v′","u′v − uv′","uv′ only","Differentiate one factor at a time and add. The derivative of a product is not the product of the derivatives.","One at a time, then add."],
+[2,"The derivative of u over v is","u′v − uv′ all over v²","uv′ − u′v all over v²","u′v′ over v²","u′v + uv′ all over v²","The order in the numerator matters. It is the derivative of the top times the bottom, minus the top times the derivative of the bottom.","Low d high minus high d low, over low squared."],
+[2,"If y is f of g of x, then dy/dx is","f′ at g of x, times g′ of x","f′ at g of x only","f′ of x times g′ of x","f of g′ of x","Differentiate the outside and leave the inside alone, then multiply by the derivative of the inside.","Outside, then inside."],
+[2,"The derivative of π² with respect to x is","0","2π","π²","2","π² is just a number, a constant, so its derivative is zero. Do not apply the power rule to it.","Constants die."],
+[2,"The derivative of 2ˣ with respect to x is","2ˣ ln 2","x times 2ˣ⁻¹","2ˣ","2ˣ over ln 2","The power rule works when the base is x. Here the variable is in the power, so we get the function times ln of the base.","Variable in the power: times ln of base."],
+[2,"The derivative of log base a of x is","1 over x ln a","1 over x","ln a over x","a over x","The natural log gives 1 over x. Any other base brings in the extra ln a at the bottom.","Other base puts ln a at the bottom."],
+[2,"The derivative of xˣ is found by","Logarithmic differentiation","The power rule","The chain rule only","The quotient rule","Both the base and the power vary. Taking ln first turns the power into a product that can be differentiated.","Variable base and variable power: take logs."],
+[2,"The derivative of cot x is","−cosec²x","cosec²x","−sec²x","−cot²x","Tan goes to sec² and cot goes to minus cosec². The co-functions carry the minus sign.","Co-functions get the minus."],
+[2,"The derivative of cosec x is","−cosec x cot x","cosec x cot x","−sec x tan x","−cosec²x","Cosec is a co-function, so its derivative has a minus sign, and it mirrors sec x tan x.","Co-function minus, same pattern as sec."],
+[2,"The derivative of cosh x is","sinh x","−sinh x","cosh x","−cosh x","Unlike cos x, the hyperbolic cosine has no minus sign in its derivative.","Hyperbolic: no sign flip for cosh."],
+[2,"The derivative of tan⁻¹x is","1 over 1 + x²","1 over the square root of 1 − x²","−1 over 1 + x²","1 + x²","This is a standard result. The sin⁻¹ version has the square root.","Tan inverse goes with 1 plus x squared."],
+[2,"The second derivative of a function measures","The rate of change of the gradient","The rate of change of the function","Twice the first derivative","The square of the first derivative","It is the derivative of the first derivative, so it tells how fast the slope itself is changing.","Second derivative is slope of slope."],
+[2,"The notation d²y/dx² means","The derivative of dy/dx","dy/dx squared","dy over dx, all squared","2 times dy/dx","The 2 shows we differentiate twice. It is not a square of dy/dx.","Twice differentiate, not squared."],
+[2,"When y² is differentiated with respect to x implicitly, the result is","2y dy/dx","2y","2x","y dy/dx","Chain rule: the derivative of y² with respect to y is 2y, then multiply by dy/dx.","Every y brings a dy/dx."],
+[2,"Differentiating xy with respect to x implicitly gives","y + x dy/dx","y dy/dx","x dy/dx only","1","It is a product of x and y, so use the product rule with dy/dx for the y part.","Product rule, and y brings dy/dx."],
+[2,"Logarithmic differentiation is most useful when","The function is a product or quotient of many factors, or has a variable power","The function is linear","The function is a constant","The function is a sine","Taking logs turns products into sums and powers into multipliers, which are easy to differentiate.","Use logs for messy products and powers."],
+[2,"The first step in logarithmic differentiation of y = f of x is to","Take natural logs of both sides","Differentiate both sides","Square both sides","Divide both sides by y","Take ln, simplify with the log laws, differentiate implicitly, solve for dy/dx, then put y back.","Log first, differentiate second."],
+[2,"For x less than zero, the derivative of |x| is","−1","1","0","Undefined","For negative x, |x| equals −x, whose derivative is −1.","Negative side slope is −1."],
+[2,"If y = x⁴, then d³y/dx³ is","24x","12x²","24","4x","First 4x³, then 12x², then 24x.","Differentiate three times in turn."],
+[2,"For parametric equations x of t and y of t, the gradient dy/dx equals","dy/dt over dx/dt","dx/dt over dy/dt","dy/dt times dx/dt","dy/dt minus dx/dt","Chain rule: dy/dx = dy/dt times dt/dx, and dt/dx is 1 over dx/dt.","Top y, bottom x."],
+/* ---------- 3 · Applications of Differentiation ---------- */
+[3,"The position of an object on a line is s(t) = t³ − 6t² + 9t + 5. What is its acceleration at t = 1?","−6","0","6","12","Differentiate twice: s″(t) = 6t − 12. At t = 1 this is −6.","Acceleration is the second derivative."],
+[3,"The position of an object on a line is s(t) = t³ − 6t² + 9t + 5. What is its velocity at t = 1?","0","−6","9","5","Velocity is s′(t) = 3t² − 12t + 9. At t = 1 this is 3 − 12 + 9 = 0.","Velocity is the first derivative."],
+[3,"An object moves along the y-axis so that its position at time x is f(x) = x³ − 6x² + 9x. What is its velocity at x = 2?","−3 m/s","3 m/s","9 m/s","0 m/s","f′(x) = 3x² − 12x + 9. At x = 2 this is 12 − 24 + 9 = −3.","Differentiate once, then put in the time."],
+[3,"The position of an object is s(t) = t³ − t² + 9t + 5. What is its acceleration at t = 4?","22","24","46","18","s″(t) = 6t − 2. At t = 4 this is 24 − 2 = 22.","Second derivative, then substitute."],
+[3,"The position of an object is s(t) = 2t³ − t² + 3t − 15. What is its velocity at t = 2?","23","20","22","39","s′(t) = 6t² − 2t + 3. At t = 2 this is 24 − 4 + 3 = 23.","Do not forget the derivative of 3t, which is 3."],
+[3,"A car supplies a constant deceleration A m/s². It travels at 25 m/s when the brakes are applied and stops in 50 m. What is A?","6.25","12.5","3.125","25","Use v² = 2As: 625 = 2 times A times 50, so A = 6.25.","Final speed zero: v² = 2As."],
+[3,"A car decelerates at 6.25 m/s² after the brakes are applied. How far does it travel before stopping if it was going at 54 km/h?","18 m","30 m","42 m","9 m","54 km/h is 15 m/s. Then s = v²/2A = 225/12.5 = 18 m.","Change km/h to m/s by dividing by 3.6."],
+[3,"A car decelerates at a constant 6 m/s² after its brakes are applied. It was going at 108 km/h. How far does it go before stopping?","75 m","150 m","180 m","5 m","108 km/h is 30 m/s. Then s = v²/2A = 900/12 = 75 m.","Always convert to m/s first."],
+[3,"What is the equation of the tangent to y = x³ at the point where x = −1?","y = 3x + 2","y = 3x − 2","y = −3x − 4","y = 3x + 1","At x = −1, y = −1 and the gradient is 3x² = 3. So y + 1 = 3(x + 1), which gives y = 3x + 2.","Point and gradient, then y minus y1 equals m times x minus x1."],
+[3,"The position of an object is s(t) = t³ + 2t² − 5t. What is its velocity at t = 2?","15","16","12","7","s′(t) = 3t² + 4t − 5. At t = 2 this is 12 + 8 − 5 = 15.","Velocity is the first derivative."],
+[3,"The position of an object is s(t) = t³ + 2t² − 5t. What is its acceleration at t = 2?","16","15","12","8","s″(t) = 6t + 4. At t = 2 this is 16.","Differentiate twice."],
+[3,"Find the stationary point of y = x² − 6x + 5.","x = 3","x = −3","x = 6","x = 5","Set y′ = 2x − 6 = 0. This gives x = 3.","Stationary means derivative equals zero."],
+[3,"The stationary points of y = x³ − 3x occur at","x = 1 and x = −1","x = 3 and x = −3","x = 0 only","x = 1 only","y′ = 3x² − 3 = 0 gives x² = 1, so x = 1 or x = −1.","Set the derivative to zero and solve."],
+[3,"At which value of x does y = x² − 4x + 1 have its minimum?","x = 2","x = −2","x = 4","x = 1","y′ = 2x − 4 = 0 gives x = 2. The second derivative is 2, which is positive, so it is a minimum.","Second derivative positive means minimum."],
+[3,"What is the equation of the tangent to y = x² at x = 3?","y = 6x − 9","y = 6x + 9","y = 3x − 9","y = 6x − 3","At x = 3, y = 9 and the gradient is 2x = 6. So y − 9 = 6(x − 3), giving y = 6x − 9.","Point and gradient again."],
+[3,"A car decelerates at 5 m/s² from a speed of 20 m/s. How far does it travel before stopping?","40 m","20 m","80 m","4 m","s = v²/2A = 400/10 = 40 m.","v² = 2As with final speed zero."],
+[3,"The derivative of f at x = c is defined as","The limit as h tends to zero of f of c + h minus f of c, all over h","f of c divided by c","The average of f over an interval","The limit as h tends to zero of f of c + h all over h","It is the limit of the difference quotient. Dropping the minus f of c part gives something different.","Change in f over change in x, then shrink h."],
+[3,"The average rate of change of f over the interval from a to b is","f of b minus f of a, all over b minus a","f of b minus f of a","f of b over f of a","f prime of a plus f prime of b, all over 2","It is the change in f divided by the change in x, the slope of the chord joining the two points.","Rise over run."],
+[3,"The derivative of a function at a point is","The instantaneous rate of change at that point","The average rate of change over a long interval","The total change of the function","The increment of x","The derivative is what the average rate of change becomes when the interval shrinks to a point.","Instant, not average."],
+[3,"Geometrically, f prime of c is","The gradient of the tangent to the curve at x = c","The gradient of the chord from the origin to the point","The area under the curve up to c","The height of the curve at c","The derivative gives the slope of the tangent line at the point.","Derivative equals tangent slope."],
+[3,"If x changes from x₁ to x₂, the increment Δx is","x₂ minus x₁","x₁ minus x₂","x₂ over x₁","x₁ plus x₂","An increment is the new value minus the old value.","New minus old."],
+[3,"A critical point of f is a point c in the domain where f prime of c","Is zero or does not exist","Is positive","Equals f of c","Is exactly zero only","Critical points include stationary points and also points where the derivative fails to exist, like the corner of |x|.","Zero or undefined."],
+[3,"A stationary point of a curve is a point where","The derivative is zero","The function is zero","The second derivative is zero","The function is undefined","At a stationary point the tangent is flat, so the gradient is zero.","Flat tangent."],
+[3,"Fermat's theorem says that if f has a local extremum at c and f prime of c exists, then","f prime of c equals zero","f double prime of c equals zero","f of c equals zero","f is constant near c","At a smooth peak or valley the tangent must be flat.","Smooth peak means flat tangent."],
+[3,"If f prime of c equals zero, can we conclude that f has a local extremum at c?","No, as in f of x equals x³ at x equals 0","Yes, always a maximum","Yes, always a minimum","Yes, either a maximum or a minimum","For x³ the derivative is zero at 0, but the curve keeps rising through that point, so there is no peak or valley.","Fermat goes one way only."],
+[3,"The function |x| has a local minimum at x = 0. At that point the derivative","Does not exist","Is zero","Is 1","Is −1","The slope jumps from −1 to 1, so there is no derivative. This shows an extremum can happen at a critical point that is not stationary.","Corner minimum, no derivative."],
+[3,"Besides continuity and differentiability, Rolle's theorem needs","f of a equals f of b","f of a equals zero","f of b equals zero","f is increasing","The two ends of the interval must have the same height. Then there is a flat tangent somewhere between.","Same height at both ends."],
+[3,"Rolle's theorem guarantees a point c between a and b where","f prime of c equals zero","f of c equals zero","f double prime of c equals zero","f of c equals f of a","If the ends are level, the curve must turn somewhere between, where the tangent is flat.","Level ends give a flat tangent."],
+[3,"The Mean Value Theorem guarantees a point c where f prime of c equals","The average rate of change over the interval","Zero","f of c","The average of f of a and f of b","Somewhere the tangent is parallel to the chord joining the end points.","Tangent parallel to chord."],
+[3,"Rolle's theorem is a special case of","The Mean Value Theorem","Fermat's theorem","The chain rule","The product rule","If f of a equals f of b, the average rate of change is zero, and the Mean Value Theorem gives a flat tangent.","Mean Value with level ends is Rolle."],
+[3,"If f prime is positive on an interval, then on that interval f is","Increasing","Decreasing","Constant","Concave up","A positive gradient means the curve rises as x increases. Concavity is about the second derivative.","First derivative goes up or down."],
+[3,"If f double prime is positive on an interval, the graph there is","Concave up","Increasing","Concave down","Decreasing","A positive second derivative means the gradient is growing, so the curve bends upward.","Second derivative controls the bend."],
+[3,"A point of inflection is a point where","The concavity of the curve changes","The curve is at its highest","f prime equals zero","The curve crosses the y-axis","On one side the curve bends up and on the other side it bends down.","Bend flips."],
+[3,"If f double prime of c equals zero, the point c is","Not necessarily an inflection point","Always an inflection point","Always a maximum","Always a minimum","For x⁴ the second derivative is zero at 0, but the curve is concave up on both sides, so there is no inflection.","Zero second derivative is only a candidate."],
+[3,"If f prime of c equals zero and f double prime of c is less than zero, then f has","A local maximum at c","A local minimum at c","A point of inflection at c","No conclusion can be made","A negative second derivative means the curve bends downward at a flat point, which is a peak.","Negative second derivative: frown, maximum."],
+[3,"If f prime of c equals zero and f double prime of c equals zero, the second derivative test is","Inconclusive","A maximum","A minimum","An inflection point","With a zero second derivative the test says nothing. Use the first derivative test instead.","Zero means test fails."],
+[3,"A local maximum is","Not necessarily the highest value of the function overall","Always the highest value overall","Always at an endpoint","Always where f prime does not exist","It is only the highest value near its point. The function may go higher somewhere else.","Local is only nearby."],
+[3,"A continuous function on a closed interval from a to b","Has both a global maximum and a global minimum","Has only a global maximum","Has no extreme values","Always has a stationary point","This is the extreme value theorem. A straight rising line has extremes at the ends and no stationary point.","Closed interval, continuous function, extremes guaranteed."],
+[3,"On a closed interval, a global extremum of a continuous function can occur at","A critical point or an end point","Only at critical points","Only at end points","Only at inflection points","Check the critical points and also the two ends, then compare the values.","Test the ends too."],
+[3,"If f prime is positive just before c and negative just after c, then c is a","Local maximum","Local minimum","Point of inflection","Neither of these","The curve rises and then falls, so it peaks at c.","Up then down is a hill."],
+[3,"To find where a curve crosses the x-axis, we solve","y = 0","x = 0","dy/dx = 0","d²y/dx² = 0","On the x-axis the height is zero. The y-axis crossing comes from putting x = 0.","x-axis crossing: y equals zero."],
+[3,"A vertical asymptote of a rational function occurs where","The denominator is zero and the numerator is not","The numerator is zero","Both top and bottom are always zero","The derivative is zero","If both vanish the common factor may cancel and leave a hole instead.","Bottom zero, top not zero."],
+/* ---------- 4 · Integration ---------- */
+[4,"Integrate 1/√(1 − x²) with respect to x.","sin⁻¹x + c","cos⁻¹x + c","tan⁻¹x + c","ln x + c","This is a standard integral. The derivative of sin⁻¹x is 1/√(1 − x²).","Learn the inverse trig pair by heart."],
+[4,"Integrate (3x² + 2x − 1)/x³ with respect to x.","3 ln x − 2/x + 1/2x² + c","3 ln x − 2x + 1/2x² + c","3 ln x + 2/x − 1/2x² + c","x³/3 + x² − x + c","Split into 3/x + 2/x² − 1/x³. Integrating gives 3 ln x − 2/x + 1/(2x²).","Divide each term by x³ before integrating."],
+[4,"Determine the integral of 1/[(x + 1)(x + 2)] with respect to x.","ln of x + 1 minus ln of x + 2, plus c","ln of x + 1 plus ln of x + 2, plus c","ln of x + 2 minus ln of x + 1, plus c","ln of x + 1 times ln of x + 2, plus c","Use partial fractions: 1/(x + 1) − 1/(x + 2). Integrate each part to get ln|x + 1| − ln|x + 2|.","Split into partial fractions first."],
+[4,"Integrate sin³x cos x with respect to x.","sin⁴x/4 + c","−cos⁴x/4 + c","sin⁴x + c","cos⁴x/4 + c","Let u = sin x, so du = cos x dx. The integral becomes u³ du = u⁴/4.","The derivative of sin x is sitting right there."],
+[4,"Integrate x⁴ with respect to x.","x⁵/5 + c","4x³ + c","x⁵ + c","x³/3 + c","Raise the power by one and divide by the new power.","Power up, divide by the new power."],
+[4,"Integrate 3x² + 2 with respect to x.","x³ + 2x + c","6x + c","x³ + 2 + c","3x³ + 2x + c","3x² gives x³, and the constant 2 gives 2x.","Do not forget the plus c."],
+[4,"Integrate cos 5x with respect to x.","sin 5x / 5 + c","5 sin 5x + c","−sin 5x / 5 + c","sin 5x + c","The integral of cos ax is sin ax over a.","Divide by the number beside x."],
+[4,"Integrate e⁻²ˣ with respect to x.","−e⁻²ˣ / 2 + c","e⁻²ˣ / 2 + c","−2e⁻²ˣ + c","e⁻²ˣ + c","The integral of e to the power ax is that same term divided by a. Here a = −2.","Divide by the number beside x, sign included."],
+[4,"Integrate 4/x with respect to x.","4 ln x + c","ln 4x + c","4/x² + c","−4/x² + c","The integral of 1/x is ln x, and the 4 stays in front.","One over x gives ln x."],
+[4,"Integrate sec²3x with respect to x.","tan 3x / 3 + c","3 tan 3x + c","−tan 3x / 3 + c","tan 3x + c","The integral of sec² ax is tan ax over a.","Divide by the number beside x."],
+[4,"Integrate x·e^(x²) with respect to x.","eˣ² / 2 + c","eˣ² + c","2eˣ² + c","x eˣ² / 2 + c","Let u = x². Then du = 2x dx and the integral becomes e to the u, divided by 2.","Substitute u = x²."],
+[4,"Integrate 2x/(x² + 1) with respect to x.","ln of x² + 1, plus c","2 ln x + c","1 over x² + 1, plus c","x² + 1, plus c","The top is exactly the derivative of the bottom, so the answer is ln of the bottom.","Top is the derivative of the bottom gives ln of the bottom."],
+[4,"Integrate sin 2x with respect to x.","−cos 2x / 2 + c","cos 2x / 2 + c","−2 cos 2x + c","2 cos 2x + c","The integral of sin ax is minus cos ax over a.","Sin integrates to minus cos."],
+[4,"Integrate x³ + 4x² + 6x + 3 with respect to x.","x⁴/4 + 4x³/3 + 3x² + 3x + c","x⁴/4 + 4x³ + 6x² + 3x + c","3x² + 8x + 6 + c","x⁴/4 + 4x³/3 + 6x² + 3x + c","Raise each power by one and divide by the new power.","Power up, divide by the new power, term by term."],
+[4,"Why do we add the constant c to an indefinite integral?","Because many functions have the same derivative","Because the answer must be positive","Because the limits are unknown","Because differentiating a constant gives 1","Functions that differ only by a constant have the same derivative, so integration gives a whole family of answers.","Constants vanish when you differentiate."],
+[4,"The integral of xⁿ is xⁿ⁺¹ over n + 1, provided","n is not −1","n is positive","n is an integer","n is not 0","For n = −1 the formula would divide by zero. That integral is ln of x.","Minus one is the exception."],
+[4,"The integral of 1/x with respect to x is","ln of the absolute value of x, plus c","x⁰ over 0, plus c","−1/x², plus c","x, plus c","The power rule fails here. The answer is a log, and the absolute value covers negative x.","One over x gives log."],
+[4,"The integral of sin x with respect to x is","−cos x + c","cos x + c","sin x + c","−sin x + c","Differentiating −cos x gives sin x. The minus sign is easy to forget.","Sin integrates to minus cos."],
+[4,"Which statement about integrals is wrong?","The integral of f times g equals the integral of f times the integral of g","The integral of f + g equals the sum of the separate integrals","A constant factor can be taken outside the integral","The integral of f − g equals the difference of the separate integrals","Sums, differences and constant factors pass through the integral. Products do not.","Products never split."],
+[4,"The integral of f of ax + b with respect to x, where F is an antiderivative of f, is","1 over a times F of ax + b, plus c","a times F of ax + b, plus c","F of ax + b, plus c","1 over b times F of ax + b, plus c","The inside has gradient a, so divide by a to undo the chain rule.","Divide by the number beside x."],
+[4,"The integral of 3x + 2 all to the power 5, dx, is","3x + 2 all to the power 6, over 18, plus c","3x + 2 all to the power 6, over 6, plus c","3x + 2 all to the power 6, over 3, plus c","5 times 3x + 2 all to the power 4, plus c","Raise the power to 6 and divide by 6, then divide again by 3 for the inside. That gives 18.","Divide by the new power and by the inside number."],
+[4,"The integral of f′ over f, dx, is","ln of the absolute value of f, plus c","f′ ln f, plus c","1 over f, plus c","f ln f, plus c","The top is the derivative of the bottom, so the integral is the log of the bottom.","Top is derivative of bottom gives ln."],
+[4,"The integral of x over x² + 1, dx, is","Half of ln of x² + 1, plus c","ln of x² + 1, plus c","tan⁻¹x, plus c","2 ln of x² + 1, plus c","The derivative of the bottom is 2x, but the top has only x, so we need the factor one half.","Fix the missing 2 with one half."],
+[4,"The integral of 1 over 1 + x², dx, is","tan⁻¹x + c","ln of 1 + x², plus c","sin⁻¹x + c","1 over 2x, plus c","This is a standard form. It is not a log, because the top is 1 and not the derivative of the bottom.","Learn it as an inverse tan form."],
+[4,"The integral of sec x tan x, dx, is","sec x + c","tan x + c","sec²x + c","−sec x + c","The derivative of sec x is sec x tan x, so the integral takes us back to sec x.","Reverse the derivative."],
+[4,"In integration by substitution with u = g of x, the dx is replaced by","du over g′ of x","du","g′ of x times du","du times g of x","From du = g′ of x dx we get dx = du over g′ of x.","Solve du for dx."],
+[4,"In a definite integral, after changing the variable from x to u, you must","Change the limits to u values, or return to x before using the limits","Keep the original x limits","Drop the limits","Square the limits","The limits belong to x. Put in the matching u values, or go back to x first.","Limits follow the variable."],
+[4,"In integration by parts, the integral of u dv equals","uv minus the integral of v du","uv plus the integral of v du","u′v minus the integral of uv′","uv minus the integral of u dv","This comes from reversing the product rule.","uv minus integral v du."],
+[4,"Using LIATE, which part should be chosen as u in the integral of x ln x dx?","ln x","x","dx","x ln x","L for logarithm comes before A for algebraic, so ln x is chosen as u. Choosing x would make the integral worse.","LIATE: log comes first."],
+[4,"Using LIATE, which part should be chosen as u in the integral of x eˣ dx?","x","eˣ","dx","x eˣ","A for algebraic comes before E for exponential, so x is chosen as u.","Algebraic before exponential."],
+[4,"Integration by parts is mainly used when the integrand is","A product of two different kinds of function","A single power of x","A fraction whose top is the derivative of the bottom","A constant","Products like x times sin x or x times eˣ do not integrate directly, so we use parts.","Two kinds multiplied, use parts."],
+[4,"Partial fractions can be used directly only when the degree of the numerator is","Less than the degree of the denominator","Greater than the degree of the denominator","Equal to zero","Always equal to the degree of the denominator","If the top is not smaller, divide first and apply partial fractions to the remainder.","Top must be smaller."],
+[4,"A repeated factor x − 1 squared in the denominator gives partial fractions","A over x − 1, plus B over x − 1 all squared","A over x − 1 all squared only","Ax + B over x − 1 all squared","A over x − 1 all squared, plus B","A repeated factor needs one term for each power, up to the repeat.","One term per power."],
+[4,"An irreducible quadratic factor in the denominator gives a partial fraction whose numerator has the form","Ax + B","A","Ax²","A + B","A quadratic bottom needs a linear top to be general enough.","Quadratic bottom, linear top."],
+[4,"The integral of sin²x dx is found by using the identity","sin²x equals 1 − cos 2x, all over 2","sin²x equals 1 + cos 2x, all over 2","sin²x equals 2 sin x cos x","sin²x equals cos²x − 1","The sign matters. The plus version is for cos²x.","Sin squared has the minus."],
+[4,"The integral of sin x cos x, dx, is","sin²x over 2, plus c","cos²x over 2, plus c","sin x cos x, plus c","sin x + cos x, plus c","Let u = sin x. Then du = cos x dx and the integral becomes the integral of u du, which is u² over 2, giving sin²x over 2.","Substitute u equals sin x."],
+[4,"The product sin A cos B can be turned into a sum using","A half of sin of A + B, plus sin of A − B","A half of sin of A + B, minus sin of A − B","A half of cos of A + B, plus cos of A − B","sin A sin B plus cos A cos B","The product to sum identity for sin A cos B is half of the sum of sin A + B and sin A − B.","Sin cos gives sum of sines."],
+/* ---------- 5 · Definite Integrals and Area ---------- */
+[5,"A piece of land is bounded by the y-axis, the x-axis, the line x = 1000 and the curve f(x) = 100 + (x/100)². What is its exact area?","133,333.33","100,333.33","233,333.33","100,000","Integrate from 0 to 1000: 100x + x³/30000. This gives 100,000 + 33,333.33 = 133,333.33.","Area under a curve is a definite integral."],
+[5,"Evaluate the integral of 2 + 2t + 3t² dt from t = 2 to t = 5.","144","160","16","150","The antiderivative is 2t + t² + t³. At 5 it is 160 and at 2 it is 16. The difference is 144.","Upper limit minus lower limit."],
+[5,"Evaluate the integral of x²(x − 1) dx from 0 to 6.","252","324","72","396","Expand to x³ − x². The antiderivative is x⁴/4 − x³/3. At 6 this is 324 − 72 = 252, and at 0 it is 0.","Expand before you integrate."],
+[5,"What is the area under y = 4x³ from x = 0 to x = 2?","16","32","8","64","The antiderivative is x⁴. At 2 this is 16, and at 0 it is 0.","Integrate, then put in the limits."],
+[5,"Evaluate the integral of 3x·e^(x²) dx from x = 0 to x = 1.","Three halves of e minus 1","3 times e minus 1","e minus 1","Three halves of e","Let u = x². The integral becomes 3/2 times e to the u, from 0 to 1. That is 3/2 (e − 1).","Change the limits when you substitute, or substitute back."],
+[5,"Evaluate the integral of 3x² dx from 0 to 2.","8","4","12","6","The antiderivative is x³. At 2 this is 8, and at 0 it is 0.","Integrate, then upper minus lower."],
+[5,"Evaluate the integral of 2x dx from 1 to 3.","8","6","9","4","The antiderivative is x². At 3 this is 9 and at 1 it is 1, so 9 − 1 = 8.","Upper minus lower."],
+[5,"Evaluate the integral of sin x dx from 0 to π.","2","0","1","−2","The antiderivative is −cos x. At π it is 1 and at 0 it is −1, so 1 − (−1) = 2.","Minus cos, then subtract carefully."],
+[5,"Evaluate the integral of eˣ dx from 0 to 1.","e − 1","e","1","e + 1","The antiderivative is eˣ. At 1 it is e and at 0 it is 1.","Upper minus lower."],
+[5,"Evaluate the integral of 1/x dx from 1 to e.","1","e","0","e − 1","The antiderivative is ln x. At e it is 1 and at 1 it is 0.","ln e is 1 and ln 1 is 0."],
+[5,"What is the area under y = x² from x = 0 to x = 3?","9","27","3","6","The antiderivative is x³/3. At 3 this is 9, and at 0 it is 0.","Integrate, then put in the limits."],
+[5,"Evaluate the integral of x³ dx from −1 to 1.","0","1/2","2","1/4","x³ is an odd function, so the area below the axis cancels the area above it over symmetric limits.","Odd function over symmetric limits gives zero."],
+[5,"Evaluate the integral of cos x dx from 0 to π/2.","1","0","−1","π/2","The antiderivative is sin x. At π/2 it is 1 and at 0 it is 0.","Sin of 90 degrees is 1."],
+[5,"Evaluate the integral of x² + 1 dx from 1 to 2.","10/3","3","7/3","13/3","The antiderivative is x³/3 + x. At 2 it is 8/3 + 2 = 14/3 and at 1 it is 4/3. The difference is 10/3.","Do the fractions with a common denominator."],
+[5,"What is the area under y = 2x + 1 between x = 0 and x = 4?","20","16","9","12","The antiderivative is x² + x. At 4 it is 20, and at 0 it is 0.","Integrate, then upper minus lower."],
+[5,"Swapping the limits of a definite integral","Changes the sign of the answer","Leaves the answer unchanged","Doubles the answer","Makes the answer zero","The integral from a to b equals minus the integral from b to a.","Swap the limits, flip the sign."],
+[5,"A definite integral with the same limit at the top and bottom is","Zero","One","Undefined","Equal to the integrand","There is no interval, so there is no area.","No width, no area."],
+[5,"The definite integral of f from a to b gives the area under the curve only when","f is above the x-axis on a to b","f is below the x-axis","f is increasing","f is a polynomial","Parts below the axis count as negative in the integral, so they cancel part of the area.","Signed area, not plain area."],
+[5,"If a curve crosses the x-axis between a and b, the total area is found by","Integrating the parts separately and adding their positive values","Integrating once from a to b","Doubling the integral from a to b","Subtracting the two parts","Split at the crossing points and take the size of each part before adding.","Split at the roots."],
+[5,"The integral of an odd function from −a to a is","Zero","Twice the integral from 0 to a","a","Undefined","The part left of zero is the negative of the part right of zero, so they cancel.","Odd cancels."],
+[5,"The integral of an even function from −a to a is","Twice the integral from 0 to a","Zero","Half the integral from 0 to a","The integral from 0 to a minus the integral from −a to 0","The two halves are mirror images, so they are equal.","Even doubles."],
+[5,"A definite integral gives","A number","A function of x","A family of curves","A constant of integration","Once the limits are put in, x disappears and only a number is left.","Limits make it a number."],
+[5,"By the fundamental theorem of calculus, d/dx of the integral of f of t dt from a to x is","f of x","f′ of x","F of a","0","Differentiating an integral with a variable upper limit gives back the integrand evaluated at that limit.","Derivative undoes integral."],
+[5,"The trapezoidal rule approximates the area under a curve using","Straight line segments joining points on the curve","Parabolic arcs through three points","Rectangles of equal height","Tangent lines","Each strip is treated as a trapezium.","Trapezoidal means trapeziums."],
+[5,"Simpson's rule approximates the area under a curve using","Parabolic arcs, and it needs an even number of strips","Straight lines, and it needs an odd number of strips","Rectangles, and it needs any number of strips","Circular arcs, and it needs an even number of strips","Each parabola is fitted through three points, which covers two strips at a time.","Simpson uses parabolas and even strips."],
+[5,"In the trapezoidal rule with strip width h, the area is h over 2 times","First ordinate plus last ordinate plus twice the sum of the rest","First ordinate plus last ordinate plus four times the sum of the rest","The sum of all the ordinates","First ordinate minus last ordinate plus twice the sum of the rest","The inside ordinates are each shared by two trapeziums, so they count twice.","Ends once, middle twice."],
+[5,"In Simpson's rule the area is h over 3 times","First plus last plus 4 times the odd ordinates plus 2 times the even ordinates","First plus last plus 2 times the odd ordinates plus 4 times the even ordinates","First plus last plus the sum of the rest","First minus last plus 4 times the odd ordinates","The pattern of weights goes 1, 4, 2, 4, 2, up to 4, 1.","One, four, two, four, one."],
+/* ---------- 6 · Past Questions ---------- */
+[6,"The range of the function f: Z → Z⁺ defined as f(x) = 9|x| is","{9x : x is in Z⁺}","Z","Z⁺","−9|x|","The outputs are only the multiples of 9 made from positive integers, so the range is not all of Z or Z⁺.","Range = the multiples you actually get."],
+[6,"The domain of the function f(x) = 2x² − 4 is","R","R − {1}","R − {−1}","{1}","A polynomial has no division and no root, so every real number can go in.","Polynomial means every real number is allowed."],
+[6,"Given that f(x) = 4ˣ, find f(2 + x).","16 times 4ˣ","4 times 16ˣ","16 times 4²ˣ","4 times 16²ˣ","f(2 + x) = 4² times 4ˣ = 16 times 4ˣ.","Add powers when you multiply, so the 4² splits off."],
+[6,"The point of removable discontinuity of f(x) = (x² − 9)/(x − 3) is","3","9","−4","−3","The factor x − 3 cancels from top and bottom. It equals zero at x = 3, so the hole is at x = 3.","Cancelled bracket equals zero."],
+[6,"What is the ceiling of 16.1?","17","16","16.2","17.2","The ceiling is the smallest integer not less than 16.1, which is 17.","Ceiling goes up."],
+[6,"What is the floor of −2.9?","−3","−2","−1","−5","The floor is the largest integer not greater than −2.9, which is −3.","Floor goes down, even for negatives."],
+[6,"Evaluate the limit of sin x / x as x approaches 0.","1","0","−1","1/2","This is a standard limit and it equals 1.","Learn it: sin x over x tends to 1."],
+[6,"Find dy/dx if y = 1/x².","−2/x³","−2/x","2/x³","1 over 2x","Write y = x⁻². The derivative is −2x⁻³, which is −2/x³.","Bring the power down, reduce it by one."],
+[6,"Differentiate (3/2)x⁴ − 3x² + 6x − 1.","6x³ − 6x + 6","12x³ − 6x + 6","4x³ − 6x + 6","6x³ − 6x − 6","3/2 times 4 is 6, so 6x³. Then −6x, then +6. The constant −1 disappears.","Multiply the number in front by the power."],
+[6,"If y = (7x² − 2)/(x³ − 1), find dy/dx.","−7x⁴ + 6x² − 14x all over x³ − 1 all squared","7x⁴ − 6x² − 14x all over x³ − 1 all squared","−7x⁴ − 6x² − 14x all over x³ + 1 all squared","−7x⁴ + 6x² − 14 all over x³ − 1 all squared","Quotient rule: 14x(x³ − 1) − 3x²(7x² − 2) = −7x⁴ + 6x² − 14x. The bottom is squared.","Low d high minus high d low, over low squared."],
+[6,"If y = sin x³, find dy/dx.","3x² cos x³","x³ cos x²","x³ cos x³","3x² sin x³","Chain rule: the derivative of sin of something is cos of the same thing, times the derivative of the inside, 3x².","Outside derivative times inside derivative."],
+[6,"d/dx of tan x gives","sec²x","sec x","tan 2x","tan²x","This is a standard result.","Tan goes to sec squared."],
+[6,"d/dx of log base e of u, where u is a function of x, gives","1 over u times du/dx","u times du/dx","log u over u","u over log u","The derivative of ln u is 1/u, then multiply by du/dx by the chain rule.","Derivative of the inside over the inside."],
+[6,"Differentiate 3x − 5 all to the power 4.","12 times 3x − 5 all cubed","3 times 3x − 5 all cubed","4 times 3x − 5 all cubed","12x times 3x − 5 all cubed","Bring down 4, reduce the power to 3, then multiply by the derivative of the inside, which is 3. That gives 12.","Power down, then times the inside derivative."],
+[6,"Calculate dy/dx if xy³ − 3x² = xy − 5.","6x + y − y³ all over 3xy² − x","6x − y − y³ all over 3xy² − x","6x + y − y³ all over 3xy² + x","6x + y − y³ all over 3y² − x","Differentiate both sides: y³ + 3xy² dy/dx − 6x = y + x dy/dx. Collect dy/dx terms on one side and solve.","Product rule on xy³ and xy, then collect dy/dx."],
+[6,"Let y = x⁻⁶ + 3x⁵ + 2x − 1. Calculate dy/dx.","−6x⁻⁷ + 15x⁴ + 2","6x⁻⁷ + 15x⁴ + 2","−6x⁻⁵ + 15x⁴ + 2","−x⁻⁷ + 15x⁴ − 2","Bring each power down and reduce it by one. −6 times x⁻⁷, 15x⁴, 2, and the constant goes.","Power down, reduce by one. Negative powers too."],
+[6,"Find the derivative of (x² + 1)(x − 5).","3x² − 10x + 1","3x² − 10x − 1","3x² + 10x − 1","3x² + 10x + 1","Expand to x³ − 5x² + x − 5, then differentiate to get 3x² − 10x + 1.","Expand first, then differentiate."],
+[6,"Find d²y/dx² at x = 1 when y = (3x² − 4)⁴.","408","480","208","80","y′ = 24x(3x² − 4)³. Differentiating again gives 24(3x² − 4)³ + 432x²(3x² − 4)². At x = 1 this is −24 + 432 = 408.","Product rule on the second step."],
+[6,"Find d²y/dx² if y = x³ − 7.","6x","3x²","21x²","7x²","First derivative is 3x². The second derivative is 6x.","Differentiate twice."],
+[6,"Differentiate e⁻⁵ˣ.","−5e⁻⁵ˣ","5e⁻⁵ˣ","25e⁻⁵ˣ","e⁻⁵ˣ","The power comes down in front, so −5 times e⁻⁵ˣ.","Number beside x comes down."],
+[6,"Evaluate the integral of 3 cos x dx.","3 sin x + c","−3 sin x + c","3 cos x + c","sin x + c","The integral of cos x is sin x, and the 3 stays.","Cos integrates to sin."],
+[6,"Evaluate the integral of 6/x dx.","6 ln x + c","6 over ln x, plus c","5x + c","5 ln x + c","The integral of 1/x is ln x, and the 6 stays in front.","One over x gives ln x."],
+[6,"Evaluate the integral of x⁻⁵ dx.","−x⁻⁴/4 + c","x⁻⁴/4 + c","x⁻⁶/6 + c","−5x⁻⁶ + c","Raise the power by one to get −4 and divide by −4.","Power up, divide by the new power."],
+[6,"Calculate the integral of e⁶ˣ dx.","e⁶ˣ/6 + c","6e⁶ˣ + c","e⁶ˣ + c","e⁵ˣ/5 + c","The integral of e to the power ax is that term divided by a.","Divide by the number beside x."],
+[6,"Integrate 5 sin x with respect to x.","−5 cos x + c","5 cos x + c","sin⁵x + c","sin 5x + c","Sin integrates to minus cos, and the 5 stays in front.","Sin integrates to minus cos."],
+[6,"Evaluate the integral of cos 3x dx.","sin 3x / 3 + c","−sin 3x + c","3 sin 3x + c","tan 3x + c","The integral of cos ax is sin ax over a.","Divide by the number beside x."],
+[6,"Evaluate the integral of x⁵ + 3 dx.","x⁶/6 + 3x + c","x⁶/5 + 3x + c","x⁶/6 + 3 + c","x⁶/6 + 3x²/2 + c","x⁵ gives x⁶/6 and the constant 3 gives 3x.","A constant integrates to constant times x."],
+[6,"Evaluate the integral of 3x⁵ dx from x = 2 to x = 4.","2016","1565","2137","3145","The antiderivative is x⁶/2. At 4 it is 2048 and at 2 it is 32. The difference is 2016.","Upper minus lower."],
+[6,"Evaluate the integral of x³ dx from x = −1 to x = 0.","−1/4","3","1/2","−1/2","The antiderivative is x⁴/4. At 0 it is 0 and at −1 it is 1/4, so 0 − 1/4 = −1/4.","Upper minus lower."],
+[6,"Evaluate the limit of (x² − 9)/(x − 3) as x approaches 3.","6","0","−3","−9","Factor as (x − 3)(x + 3), cancel x − 3, and x + 3 gives 6.","Factor, cancel, substitute."],
+[6,"Evaluate the limit of (1 − cos x)/x as x approaches 0.","0","−1","1/2","1","This is a standard limit. Top and bottom both go to 0, but the top shrinks faster, so the limit is 0.","Cos limit over x gives zero."],
+[6,"Evaluate the integral of 12x² + 10 over 4x³ + 10x + 5, dx.","ln of 4x³ + 10x + 5, plus c","ln of 12x² + 10, plus c","1 over ln of 4x³ + 10x + 5","ln of 4x³ + 10x + 5 all over 12x² + 10","The top is exactly the derivative of the bottom, so the integral is ln of the bottom.","Top is the derivative of the bottom gives ln of the bottom."],
+[6,"Find the area bounded by the curve y = 3x² + 14x + 15, the x-axis and the ordinates x = −1 and x = 2.","75 unit²","34 unit²","66 unit²","90 unit²","Integrate: x³ + 7x² + 15x. At 2 it is 66 and at −1 it is −9. The curve stays above the axis here, so the area is 66 + 9 = 75.","Check the curve is above the axis, then upper minus lower."],
+[6,"Evaluate the integral of sec²x dx.","tan x + c","2 tan x + c","2 cos x + c","cosec x over x, plus c","The derivative of tan x is sec²x, so the integral of sec²x is tan x.","Sec squared and tan are a pair."],
+[6,"By partial fractions, evaluate the integral of (5x + 2)/(3x² + x − 4) dx.","Two thirds of ln of 3x + 4, plus ln of x − 1, plus c","3 ln of 3x − 4, plus c","ln of 3x² + x − 4, plus c","Three halves of ln of 5x + 2, plus c","3x² + x − 4 = (3x + 4)(x − 1). Splitting gives 2/(3x + 4) + 1/(x − 1), and each part integrates to a log.","Factor the bottom, then split."],
+[6,"If x = sin t³, find d²x/dt².","6t cos t³ − 9t⁴ sin t³","6t cos t³ − 3 sin t","6t cos t³ − 9t² sin t³","6 cos t³ − 3t⁴ sin t³","First derivative: 3t² cos t³. Product rule on the second step gives 6t cos t³ − 9t⁴ sin t³.","Product rule, then chain rule on each part."],
+[6,"If y = sec x, then dy/dx gives","sec x tan x","sec 2x","sec x cos x","tan 2x","This is a standard result.","Sec goes to sec tan."],
+[6,"Differentiate sin of 5x − 2.","5 cos of 5x − 2","cos of 5x − 2","−cos of 5x − 2","−5 cos of 5x − 2","The derivative of sin of something is cos of it, times the derivative of the inside, which is 5.","Outside derivative times inside derivative."],
+[6,"Given that f(x) = 2ˣ, find f(x)·f(x + 2).","4 times 2²ˣ","2²ˣ","3²ˣ","3 times 9²ˣ","2ˣ times 2ˣ⁺² = 2²ˣ⁺² = 4 times 2²ˣ.","Add the powers, then split off the constant."],
+[6,"Given that f(x) = 3ˣ, find f(x)·f(2 + x).","9 times 3²ˣ","3 times 9ˣ","9 times 3ˣ","3 times 9²ˣ","3ˣ times 3²⁺ˣ = 3²ˣ⁺² = 9 times 3²ˣ.","Add the powers, then split off the constant."],
+[6,"The range of a signum function is","{−1, 0, 1}","R","{−1, 1}","{0, 1}","The signum function gives −1 for negative numbers, 0 for zero and 1 for positive numbers.","Three outputs: minus one, zero, one."],
+[6,"What is the ceiling of 6.1?","7","6","6.5","5","The ceiling is the smallest integer not less than 6.1, which is 7.","Ceiling goes up."],
+[6,"What is the floor of −3.4?","−4","−3","−2","−6","The floor is the largest integer not greater than −3.4, which is −4.","Floor goes down."],
+[6,"What is the floor of −2.4?","−3","−2","−1","−5","The floor is the largest integer not greater than −2.4, which is −3.","Floor goes down."],
+[6,"Find dy/dx if y = ln sin x.","cot x","1 over sin x","tan x","1 over cos x","Derivative of the inside over the inside: cos x / sin x = cot x.","Derivative of the inside over the inside."],
+[6,"Given that y = 5x² times 6/x, find dy/dx.","30","30x","−30","−30x","Simplify first: 5x² times 6/x = 30x. The derivative of 30x is 30.","Simplify before you differentiate."],
+[6,"If y = cos of −2x, then dy/dx is","2 sin of −2x","−2 sin of −2x","sin of −2x","2 sin of 2x","The derivative of cos u is minus sin u times u′. With u = −2x, u′ = −2, so the answer is +2 sin of −2x.","Two minus signs make a plus."],
+[6,"Given that w = 40x²y, what is d²w/dx², treating y as a constant?","80y","40y","40x","80x²y","First derivative with respect to x is 80xy. Differentiate again and you get 80y.","Hold y still, differentiate in x twice."],
+[6,"Given that w = 40x²y, find the partial derivative of w with respect to x.","80xy","40x²","80x²y","40x²y","Treat y as a constant. The derivative of x² is 2x, so 40 times 2x times y gives 80xy.","Hold y still."],
+[6,"A local maximum point for the function f(x) = x³ − x is at","x = −√3/3","x = √3/3","x = 3√3","x = −3√3","f′(x) = 3x² − 1 = 0 gives x = ±√3/3. f″(x) = 6x is negative at x = −√3/3, so that is the maximum.","Second derivative negative means maximum."],
+[6,"The minimum of f(x) = 2 sin x − cos 2x on [0, 2π] is","−3/2","−1/2","1/2","3/2","Use cos 2x = 1 − 2 sin²x. Then f = 2s² + 2s − 1 with s = sin x. The least value is at s = −1/2, giving −3/2.","Turn everything into sin x, then complete the square."],
+[6,"The stationary point of x² − x + 1 is at x =","1/2","0","3","3/4","Set 2x − 1 = 0, which gives x = 1/2.","Derivative equals zero."],
+[6,"Integrate 5/x with respect to x.","5 ln x + c","ln x + c","ln 5x + c","3 ln 5x + c","The integral of 1/x is ln x, and the 5 stays in front.","One over x gives ln x."],
+[6,"All of the following are stationary points of x⁵ − 5x⁴ + 5x³ except","2","0","1","3","The derivative is 5x²(x − 1)(x − 3), which is zero at 0, 1 and 3 only. It is not zero at 2.","Factor the derivative, read off the roots."],
+[6,"Evaluate the limit of (x² − 4)/(x − 2) as x approaches 2.","4","0","−2","−4","Factor as (x − 2)(x + 2), cancel, and x + 2 gives 4.","Factor, cancel, substitute."],
+[6,"The point of removable discontinuity of f(x) = (x² − 4)/(x − 2) is","2","4","−4","−2","The factor x − 2 cancels from top and bottom and equals zero at x = 2, so the hole is at x = 2.","Cancelled bracket equals zero."],
+[6,"If sin θ = 4/5 and 90° < θ < 180°, the exact value of cos θ is","−3/5","3/5","−4/5","−3/4","The triangle has sides 3, 4, 5. In the second quadrant cosine is negative, so cos θ = −3/5.","Second quadrant: only sine is positive."],
+[6,"If cos θ = 0.8, then cos(180° + θ) equals","−0.8","0.8","0.6","−0.6","Adding 180° puts the angle in the third quadrant, where cosine flips its sign.","180 plus theta flips the sign."],
+[6,"If cos θ = 0.8, then sin(90° − θ) equals","0.8","−0.8","0.6","0.2","sin of 90° minus θ is cos θ, so the answer is 0.8.","Sin of the complement is cos."],
+[6,"A circle has a radius of 6 inches. What is the length of the arc intercepted by a central angle of 150°?","5π inches","10π inches","15π inches","5π over 6 inches","150° is 5π/6 radians. Arc length is radius times angle: 6 times 5π/6 = 5π.","Change degrees to radians first, then s = rθ."],
+[6,"The derivative of y = 3x² is 6x. What is the gradient of the curve at the point with abscissa 3?","18","6","9","27","Put x = 3 into 6x to get 18.","Gradient equals the derivative at that point."],
+[6,"Differentiate y = (x − 1)/(x + 1).","2 over x + 1 all squared","1 over x + 1 all squared","2 over x + 1","x over x + 1 all squared","Quotient rule: (x + 1)(1) − (x − 1)(1) = 2 on top, and the bottom is squared.","Low d high minus high d low, over low squared."],
+[6,"Differentiate y = eˣ ln x.","eˣ ln x + eˣ over x","eˣ over x","eˣ ln x + 1 over x","eˣ ln x","Product rule: eˣ times ln x, plus eˣ times 1/x.","u′v + uv′."],
+[6,"If x = sin t and y = cos 2t, find dy/dx.","−4 sin t","4 sin t","−2 sin 2t","−4 cos t","dy/dt = −2 sin 2t = −4 sin t cos t and dx/dt = cos t. Dividing gives −4 sin t.","dy/dt over dx/dt, then cancel cos t."],
+[6,"The stationary points of y = x³/3 − x²/2 − 2x + 5 are at","x = 2 and x = −1","x = −2 and x = 1","x = 2 and x = 1","x = 3 and x = −1","y′ = x² − x − 2 = (x − 2)(x + 1). Setting it to zero gives x = 2 and x = −1.","Differentiate, factor, set to zero."],
+[6,"For y = x³/3 − x²/2 − 2x + 5, the nature of the stationary points is","Minimum at x = 2 and maximum at x = −1","Maximum at x = 2 and minimum at x = −1","Minimum at both points","Maximum at both points","y″ = 2x − 1. At x = 2 it is 3, which is positive, so a minimum. At x = −1 it is −3, which is negative, so a maximum.","Second derivative positive means minimum."],
+[6,"Using the product rule, d/dx of x·e²ˣ is","e²ˣ + 2x e²ˣ","2e²ˣ","e²ˣ + x e²ˣ","2x e²ˣ","Derivative of x is 1, times e²ˣ, plus x times the derivative of e²ˣ, which is 2e²ˣ.","u′v + uv′."],
+[6,"Hence the integral of x·e²ˣ dx is","x e²ˣ/2 − e²ˣ/4 + c","x e²ˣ/2 + e²ˣ/4 + c","x e²ˣ − e²ˣ + c","e²ˣ/2 + c","Since d/dx of x e²ˣ = e²ˣ + 2x e²ˣ, rearrange: x e²ˣ dx integrates to x e²ˣ/2 minus half the integral of e²ˣ, which is e²ˣ/4.","Integrate by parts."],
+[6,"Integrate eˣ − sin x − 4 cos x with respect to x.","eˣ + cos x − 4 sin x + c","eˣ − cos x − 4 sin x + c","eˣ + cos x + 4 sin x + c","eˣ + sin x − 4 cos x + c","eˣ gives eˣ, −sin x gives +cos x, and −4 cos x gives −4 sin x.","Sin integrates to minus cos, cos integrates to sin."],
+[6,"By partial fractions, find the integral of (8x + 10)/(4x² + 8x + 3) dx.","Three halves of ln of 2x + 1, plus one half of ln of 2x + 3, plus c","3 ln of 2x + 1, plus ln of 2x + 3, plus c","One half of ln of 2x + 1, plus three halves of ln of 2x + 3, plus c","ln of 4x² + 8x + 3, plus c","4x² + 8x + 3 = (2x + 1)(2x + 3). Splitting gives 3/(2x + 1) + 1/(2x + 3), and each integrates to a log divided by 2.","Factor the bottom, split, then integrate each part."],
+[6,"Evaluate the integral of e³ˣ dx from 0 to 1.","e³ − 1 all over 3","e³ − 1","3e³ − 3","e³ over 3","The antiderivative is e³ˣ/3. At 1 it is e³/3 and at 0 it is 1/3.","Upper minus lower."],
+[6,"Evaluate the integral of 5x³ + 4x dx from −1 to 1.","0","13 over 2","6","9","The whole function is odd, so the part below the axis cancels the part above over symmetric limits.","Odd function over symmetric limits gives zero."],
+[6,"Find the area enclosed by y = x³ − 2x² − x + 2, the x-axis and the lines x = −1 and x = 2.","37/12","9/4","8/3","5/12","The curve crosses the axis at x = −1, 1 and 2, so find the two areas separately. Between −1 and 1 it is 8/3, and between 1 and 2 it is 5/12. Add them to get 37/12.","Split at the roots, then add the positive areas."],
+];
+
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings for this course ---------- */
+var CODE='MTH102', LABEL='MTH 102', N=40, SECS=1200;
+var K_SEEN='indigene_pq_seen_'+CODE, K_WRONG='indigene_pq_wrong_'+CODE,
+    K_RUN='indigene_pq_run_'+CODE, K_BEST='indigene_pq_best_'+CODE;
+
+/* ---------- small helpers ---------- */
+var mem={};
+var LS={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return (k in mem)?mem[k]:d}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+};
+function $(s){return document.querySelector(s)}
+function swap(sel,dir){sel.forEach(function(s){var e=$(s);e.classList.remove('swap','back');void e.offsetWidth;e.className+=' swap'+(dir||'')})}
+function show(id){['s-quiz','s-result','s-review'].forEach(function(x){$('#'+x).classList.toggle('hide',x!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function hid(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function grade(p){return p>=70?'A':p>=60?'B':p>=50?'C':p>=45?'D':p>=40?'E':'F'}
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+var LET=['A','B','C','D'];
+
+/* ---------- bank ---------- */
+var TOPICS=window.PQ_TOPICS;
+var ALL=window.PQ_BANK.map(function(r){return {id:hid(r[1]),t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],h:r[7]}});
+var BY={};ALL.forEach(function(x){BY[x.id]=x});
+
+/* ---------- the draw: unseen first, then old wrong ones, then oldest seen ---------- */
+function draw(n){
+  var seen=LS.get(K_SEEN,{}), wrong={};
+  LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  var unseen=shuffle(ALL.filter(function(x){return !seen[x.id]}));
+  var pick=unseen.slice(0,n);
+  if(pick.length<n){
+    var rest=ALL.filter(function(x){return seen[x.id]});
+    var w=shuffle(rest.filter(function(x){return wrong[x.id]}));
+    var o=rest.filter(function(x){return !wrong[x.id]}).sort(function(a,b){return seen[a.id]-seen[b.id]});
+    pick=pick.concat(w,o).slice(0,n);
+  }
+  var now=Date.now();
+  pick.forEach(function(x){seen[x.id]=now});
+  LS.set(K_SEEN,seen);
+  return shuffle(pick);
+}
+
+/* ---------- attempt state ---------- */
+var run=null, cur=0, tick=null, rv=null;
+function saveRun(){LS.set(K_RUN,run)}
+function newRun(){
+  var picks=draw(Math.min(N,ALL.length));
+  var secs=Math.round(SECS*picks.length/N);
+  run={
+    ids:picks.map(function(x){return x.id}),
+    ord:picks.map(function(){return shuffle([0,1,2,3])}),
+    ans:picks.map(function(){return -1}),
+    vis:picks.map(function(_,i){return i===0}),
+    end:Date.now()+secs*1000, secs:secs, cur:0, done:false, res:null, saved:false
+  };
+  cur=0;saveRun();
+}
+function qOf(i){return BY[run.ids[i]]}
+function rightPos(i){return run.ord[i].indexOf(0)}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  lastQ=-1;show('s-quiz');renderQ();
+  clearInterval(tick);tick=setInterval(onTick,250);onTick();
+}
+function onTick(){
+  if(!run||run.done){clearInterval(tick);return}
+  var left=Math.ceil((run.end-Date.now())/1000);
+  if(left<=0){$('#timer').textContent='0:00';finish(true);return}
+  $('#timer').textContent=mmss(left);
+  $('#timer-box').classList.toggle('low',left<=60);
+}
+var lastQ=-1;
+function renderQ(){
+  var changed=(cur!==lastQ),dir=cur<lastQ?' back':'';lastQ=cur;
+  run.cur=cur;run.vis[cur]=true;saveRun();
+  var q=qOf(cur),ord=run.ord[cur],tot=run.ids.length;
+  $('#q-n').textContent=(cur+1)+' of '+tot;
+  var a=run.ans.filter(function(x){return x>=0}).length;
+  $('#q-done').textContent=a+' answered';
+  $('#m-done').textContent=a+' done';
+  $('#m-left').textContent=(tot-a)+' left';
+  $('#q-tag').textContent=TOPICS[q.t];
+  $('#q-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var s=run.ans[cur]===pos;
+    h+='<button class="opt'+(s?' sel':'')+'" data-p="'+pos+'"><span class="box">'+(s?'✓':'')+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></button>';
+  });
+  $('#q-opts').innerHTML=h;
+  var m='';
+  for(var i=0;i<tot;i++){
+    var c='mb';
+    if(run.ans[i]>=0)c+=' ans';else if(run.vis[i]&&i!==cur)c+=' skip';
+    if(i===cur)c+=' cur';
+    m+='<button class="'+c+'" data-i="'+i+'">'+(i+1)+'</button>';
+  }
+  $('#q-map').innerHTML=m;
+  $('#b-prev').disabled=cur===0;
+  $('#b-next').disabled=cur===tot-1;
+  if(changed)swap(['#q-tag','#q-text','#q-opts'],dir);
+}
+$('#q-opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||run.done)return;
+  var p=+b.getAttribute('data-p');
+  run.ans[cur]=(run.ans[cur]===p)?-1:p;
+  renderQ();
+});
+$('#q-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b||run.done)return;
+  cur=+b.getAttribute('data-i');renderQ();window.scrollTo(0,0);
+});
+$('#b-prev').onclick=function(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-next').onclick=function(){if(cur<run.ids.length-1){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-finish').onclick=function(){finish(false)};
+
+/* ---------- finish + score ---------- */
+function compute(){
+  var c=0,w=0,s=0,per={};
+  TOPICS.forEach(function(_,i){per[i]={c:0,t:0}});
+  run.ids.forEach(function(id,i){
+    var q=BY[id];per[q.t].t++;
+    if(run.ans[i]<0)s++;
+    else if(run.ans[i]===rightPos(i)){c++;per[q.t].c++}
+    else w++;
+  });
+  var tot=run.ids.length,p=Math.round(c/tot*100);
+  var topics=[];
+  TOPICS.forEach(function(name,i){
+    if(!per[i].t)return;
+    var tp=Math.round(per[i].c/per[i].t*100);
+    topics.push({name:name,c:per[i].c,t:per[i].t,p:tp,g:grade(tp)});
+  });
+  return {c:c,w:w,s:s,t:tot,p:p,g:grade(p),topics:topics};
+}
+function finish(timeUp){
+  if(run.done)return;
+  clearInterval(tick);
+  run.done=true;
+  run.used=Math.min(run.secs,Math.round((Math.min(Date.now(),run.end)-(run.end-run.secs*1000))/1000));
+  run.res=compute();
+  var wrong={};LS.get(K_WRONG,[]).forEach(function(i){wrong[i]=1});
+  run.ids.forEach(function(id,i){
+    if(run.ans[i]===rightPos(i))delete wrong[id];else wrong[id]=1;
+  });
+  LS.set(K_WRONG,Object.keys(wrong));
+  var b=LS.get(K_BEST,{p:-1,g:'F',n:0});
+  b.n=(b.n||0)+1;if(run.res.p>b.p){b.p=run.res.p;b.g=run.res.g}
+  LS.set(K_BEST,b);
+  if(!run.saved){
+    run.saved=true;
+    try{
+      if(window.IndigeneHistory&&typeof window.IndigeneHistory.save==='function'){
+        window.IndigeneHistory.save({
+          course:CODE,type:'past-questions',score:run.res.c,total:run.res.t,
+          percent:run.res.p,grade:run.res.g,
+          topics:run.res.topics.map(function(t){return {name:t.name,percent:t.p,grade:t.g,correct:t.c,total:t.t}})
+        });
+      }
+    }catch(e){}
+  }
+  saveRun();
+  showResult(timeUp);
+}
+var REMARK={A:'Very strong. Keep it up.',B:'Good work.',C:'Fair. Push a little more.',D:'A weak pass. Go through the wrong ones.',E:'Just about. Study the corrections.',F:'Not there yet. Read the corrections and try again.'};
+function showResult(timeUp){
+  var r=run.res;
+  $('#r-c').textContent=r.c;$('#r-t').textContent=r.t;
+  $('#r-pct').textContent=r.p+'%';
+  var g=$('#r-grade');g.textContent=r.g;g.className='grade orb g-'+r.g;
+  $('#r-remark').textContent=(timeUp?'Time up. Your answers have been submitted. ':'')+REMARK[r.g];
+  $('#r-right').textContent=r.c;$('#r-wrong').textContent=r.w;$('#r-skip').textContent=r.s;
+  $('#r-time').textContent=mmss(run.used||0);
+  var b=LS.get(K_BEST,null);
+  $('#r-best').textContent=b?('Best on this device: '+b.p+'% ('+b.g+') · Attempts: '+b.n):'';
+  var h='<h3 class="orb">SCORE BY TOPIC</h3>';
+  r.topics.forEach(function(t){
+    h+='<div class="tp"><div class="n">'+esc(t.name)+'<small>'+t.c+' of '+t.t+'</small></div><div class="p orb">'+t.p+'%</div><div class="g orb g-'+t.g+'">'+t.g+'</div></div>';
+  });
+  $('#r-topics').innerHTML=h;
+  var nw=r.w+r.s;
+  var bw=$('#b-rev-wrong');bw.textContent='Review wrong correction ('+nw+')';bw.disabled=nw===0;
+  show('s-result');
+}
+$('#b-rev-all').onclick=function(){openReview('all')};
+$('#b-rev-wrong').onclick=function(){openReview('wrong')};
+$('#b-again').onclick=function(){newRun();startQuiz()};
+$('#b-home').onclick=function(){location.href='../index.html'};
+
+/* ---------- review ---------- */
+function state(i){return run.ans[i]<0?'skip':run.ans[i]===rightPos(i)?'ok':'bad'}
+function openReview(mode){
+  var list=[];
+  run.ids.forEach(function(_,i){if(mode==='all'||state(i)!=='ok')list.push(i)});
+  rv={mode:mode,list:list,k:0};
+  show('s-review');renderReview();
+}
+function renderReview(){
+  var i=rv.list[rv.k],q=qOf(i),ord=run.ord[i],st=state(i),rp=rightPos(i),mine=run.ans[i];
+  $('#v-n').textContent='Q '+(i+1)+' of '+run.ids.length;
+  $('#v-mode').textContent=rv.mode==='all'?'TOTAL CORRECTION':'WRONG CORRECTION';
+  $('#v-tag').textContent=TOPICS[q.t];
+  var bd=$('#v-badge');
+  bd.className='badge '+st;bd.textContent=st==='ok'?'CORRECT':st==='bad'?'WRONG':'SKIPPED';
+  $('#v-text').textContent=q.q;
+  var h='';
+  ord.forEach(function(oi,pos){
+    var c='opt static',mk='';
+    if(pos===rp){c+=' right';mk='✓'}else if(pos===mine){c+=' wrong';mk='✕'}
+    h+='<div class="'+c+'"><span class="box">'+mk+'</span><span class="l orb">'+LET[pos]+'</span><span class="t">'+esc(q.o[oi])+'</span></div>';
+  });
+  $('#v-opts').innerHTML=h;
+  $('#v-line').innerHTML=(mine<0?'You did not answer this one.':'You picked <b>'+LET[mine]+'</b>.')+' Correct answer: <b>'+LET[rp]+'</b>.';
+  $('#v-why').textContent=q.e;
+  $('#v-hack').textContent=q.h;
+  var m='';
+  rv.list.forEach(function(qi,k){
+    m+='<button class="mb '+state(qi)+(k===rv.k?' cur':'')+'" data-k="'+k+'">'+(qi+1)+'</button>';
+  });
+  $('#v-map').innerHTML=m;
+  $('#b-v-prev').disabled=rv.k===0;
+  $('#b-v-next').disabled=rv.k===rv.list.length-1;
+  swap(['#v-tag','#v-text','#v-opts','#v-line','.note.why','.note.hack'],'');
+}
+$('#v-map').addEventListener('click',function(e){
+  var b=e.target.closest('.mb');if(!b)return;
+  rv.k=+b.getAttribute('data-k');renderReview();window.scrollTo(0,0);
+});
+$('#b-v-prev').onclick=function(){if(rv.k>0){rv.k--;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-next').onclick=function(){if(rv.k<rv.list.length-1){rv.k++;renderReview();window.scrollTo({top:0,behavior:'smooth'})}};
+$('#b-v-back').onclick=function(){show('s-result')};
+$('#b-v-score').onclick=function(){show('s-result')};
+
+/* ---------- boot: load, then start straight away ---------- */
+function boot(){
+  var t0=Date.now();
+  $('#app').classList.remove('hide');
+  var r=LS.get(K_RUN,null);
+  var resumed=false;
+  if(r&&!r.done&&r.end>Date.now()){run=r;cur=run.cur||0;resumed=true}
+  else if(r&&!r.done&&r.end<=Date.now()){run=r;}   /* time ran out while the page was closed */
+  else newRun();
+  $('#ld-sub').textContent=resumed?'Welcome back. Loading your attempt…':'Loading…';
+  var wait=Math.max(0,1100-(Date.now()-t0));
+  setTimeout(function(){
+    if(!run.done&&run.end<=Date.now()){finish(true)}else{startQuiz()}
+    $('#s-load').classList.add('fade');
+    setTimeout(function(){$('#s-load').classList.add('hide')},500);
+  },wait);
+}
+window.__pqBoot=boot;
+window.__pqGate=function(msg){
+  $('#s-load').classList.add('hide');
+  var g=$('#gate');g.classList.remove('hide');g.innerHTML=msg;
+};
+})();
+</script>
+
+<script type="module">
+/* Past Questions lock. The shared file is ../pq-gate.js (one file for every course). */
+var m=null;
+try{ m=await import('../pq-gate.js'); }catch(e){ m=null; }
+if(!m||typeof m.pqAccess!=='function'){
+  window.__pqBoot();
+}else{
+  try{
+    var r=await m.pqAccess('MTH102');
+    if(r&&r.blocked)window.__pqGate(m.pqLockHTML(r.reason));
+    else window.__pqBoot();
+  }catch(err){
+    window.__pqGate(m.pqLockHTML('offline'));
+  }
+}
+</script>
+</body>
+</html>
